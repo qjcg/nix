@@ -2,6 +2,10 @@
 # See https://github.com/rycee/home-manager#usage
 # For a good example with i3 configuration, see:
 #   https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix
+#
+# TODO:
+#  - decide howto manage secrets (passwords, keys, etc)
+
 { pkgs, lib ? pkgs.stdenv.lib, ... }:
 
 {
@@ -10,17 +14,19 @@
     # BROKEN
     # FIXME: These apps close immediately on startup, complaining about GLX.
     alacritty
-    zoom-us
-    glxinfo
     cool-retro-term
+    glxinfo
+    zoom-us
 
     # Utilities
     ansible
     aria2
+    openssl
     st
 
+    # FIXME: Baresip NOT working.
     baresip
-    openssl
+
 
     # MultiMedia
     alsaLib
