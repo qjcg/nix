@@ -1,4 +1,4 @@
-# DRW home-manager configuration.
+# home-manager configuration.
 # See https://github.com/rycee/home-manager#usage
 # For a good example with i3 configuration, see:
 #   https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix
@@ -8,9 +8,8 @@
   home.packages = (with pkgs; [
 
     # BROKEN
-    # FIXME: Closes immediately on startup.
+    # FIXME: These apps close immediately on startup, complaining about GLX.
     alacritty
-    st
     zoom-us
     glxinfo
     cool-retro-term
@@ -18,6 +17,7 @@
     # Utilities
     ansible
     aria2
+    st
 
     baresip
     openssl
@@ -197,6 +197,7 @@
         keybindings =
           lib.mkOptionDefault {
             "${modifier}+period" = "exec i3lock";
+            "${modifier}+Return" = "exec ${pkgs.st}/bin/st -f 'Iosevka Term:style=Regular:size=16'";
 	  };
 
         colors = {
