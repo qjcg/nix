@@ -189,10 +189,18 @@
     windowManager.i3 = 
     let
       modifier = "Mod4";
-      left = "";
+      left = "h";
+      down = "j";
+      up = "k";
+      right = "l";
     in {
       enable = true;
+
       config = {
+        fonts = [
+          "Iosevka Term Regular 11"
+        ];
+
         modifier = "${modifier}";
 
         gaps = {
@@ -202,8 +210,20 @@
 
         keybindings =
           lib.mkOptionDefault {
-            "${modifier}+period" = "exec i3lock";
-            "${modifier}+Return" = "exec ${pkgs.st}/bin/st -f 'Iosevka Term:style=Regular:size=16'";
+            "${modifier}+Return" = "exec ${pkgs.st}/bin/st -f 'Iosevka Term:style=Regular:size=13'";
+
+            "${modifier}+${left}"  = "focus left";
+            "${modifier}+${down}"  = "focus down";
+            "${modifier}+${up}"    = "focus up";
+            "${modifier}+${right}" = "focus right";
+
+            "${modifier}+Shift+${left}"  = "move left";
+            "${modifier}+Shift+${down}"  = "move down";
+            "${modifier}+Shift+${up}"    = "move up";
+            "${modifier}+Shift+${right}" = "move right";
+
+            "${modifier}+minus"       = "scratchpad show";
+            "${modifier}+Shift+minus" = "move scratchpad";
 	  };
 
         colors = {
@@ -215,6 +235,7 @@
         bars = [{
           command = "${pkgs.i3blocks-gaps}/bin/i3blocks";
           position = "top";
+          mode = "dock";
 
           colors = {
             background = "#000000";
