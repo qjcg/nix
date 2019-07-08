@@ -21,16 +21,20 @@
     # Utilities
     ansible
     aria2
+    davmail
     ed
     fdupes
+    fzf
     gopass
     jq
     libfaketime
     lsof
+    mkpasswd
     mtr
     openssl
     pv
     renameutils
+    ripgrep
     tesseract
     tree
     unzip
@@ -80,14 +84,11 @@
     upx
     mkcert
 
-    davmail
-    fzf
-    ripgrep
-    mkpasswd
 
     # Virtualization & Containers
     buildah
     docker-compose
+    packer
     podman
     qemu
     skopeo
