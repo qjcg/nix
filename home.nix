@@ -158,9 +158,27 @@
         colorscheme abstract
 
         set autochdir
-        set hls
+        set autoindent
+        set hlsearch			" highlight search results
+        set ignorecase			" case insensitive searches
+        set laststatus=1		" only show statusbar if >1 windows open
+        set listchars=tab:>-,eol:$
         set nowrap
-        set wildmenu
+        set shortmess+=I		" disable welcome screen
+        set smartcase			" case-sensitive search only if specified
+        set splitright			" vsplit window to the right by default
+        set wildmenu			" dmenu-style menu
+        set wildmode=full
+
+        "" MAPS
+        "" See :h keycodes
+        let mapleader=","
+
+        nnoremap <leader>l :set list!<CR>
+        nnoremap <leader>r :source $MYVIMRC<CR>
+        nnoremap <leader>S :setlocal spell!<CR>
+        nnoremap <leader>v :e $MYVIMRC<CR>
+        nnoremap <leader>w :w !sudo tee %<CR><CR>
 
         autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
         autocmd FileType nix setlocal cuc
