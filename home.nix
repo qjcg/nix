@@ -21,8 +21,32 @@
     # Utilities
     ansible
     aria2
+    ed
+    fdupes
+    gopass
+    jq
+    libfaketime
+    lsof
+    mtr
     openssl
-    st
+    pv
+    renameutils
+    tesseract
+    tree
+    unzip
+    weechat
+
+    ## Utilities; Network
+    bettercap
+    dnsutils
+    nmap
+    wireshark
+
+    ## Utilities: Backup
+    rclone
+    restic
+    rsync
+    syncthing
 
     # FIXME: Baresip NOT working.
     baresip
@@ -30,14 +54,22 @@
 
     # MultiMedia
     alsaLib
-    alsaPlugins
     alsaPluginWrapper
+    alsaPlugins
     alsaTools
     alsaUtils
     cmus
+
+    fluidsynth
+    soundfont-fluid
+
+    mpv
+    pavucontrol
     pulseaudio
     pulseeffects
-    mpv
+    sox
+    streamripper
+    youtube-dl
 
     # Dev Tools
     ctags
@@ -46,28 +78,55 @@
     go
     tig
     upx
+    mkcert
 
     davmail
-    docker-compose
     fzf
-    qemu
     ripgrep
     mkpasswd
 
-    # GUI & Window Manager
-    dmenu
-    feh
+    # Virtualization & Containers
+    buildah
+    docker-compose
+    podman
+    qemu
+    skopeo
+    tinyemu
+    vagrant
+
+    # GUI
     gcolor3
-    gtk2fontsel
+    mesa
+    xaos
+
+    ## GUI: Window Manager
+    dmenu
     i3blocks-gaps
     i3lock
-    sxiv
-    zathura
-    fontconfig-penultimate
-    iosevka
-    mesa
+    slock
+    st
 
-    # VideoConferencing
+    ## GUI: Documents
+    libreoffice-fresh
+    zathura
+
+    ## GUI: Graphics
+    feh
+    gimp # gimp-with-plugins didn't compile! 2019-07-07
+    imagemagick
+    inkscape
+    sxiv
+
+    ## GUI: Fonts
+    fira-code
+    fontconfig-penultimate
+    gtk2fontsel
+    iosevka
+    inconsolata
+    libertine
+    roboto
+
+    ## GUI: VideoConferencing
     bluejeans-gui
   ]);
 
@@ -152,8 +211,9 @@
   };
 
   # X11 compositor (transparency, etc).
+  # FIXME: Fails, complaining about GLX.
   services.compton = {
-    enable = true;
+    enable = false;
     activeOpacity = "0.9";
   };
 
@@ -211,6 +271,7 @@
         keybindings =
           lib.mkOptionDefault {
             "${modifier}+Return" = "exec ${pkgs.st}/bin/st -f 'Iosevka Term:style=Regular:size=13'";
+            "${modifier}+d"      = "exec ${pkgs.dmenu}/bin/dmenu_run -fn 'Iosevka Term:style=Regular:size=13' -nb '#000000'";
 
             "${modifier}+${left}"  = "focus left";
             "${modifier}+${down}"  = "focus down";
@@ -233,7 +294,8 @@
         };
 
         bars = [{
-          command = "${pkgs.i3blocks-gaps}/bin/i3blocks";
+        # FIXME: Setting i3blocks as command doesn't work, causes bar not to display.
+        # command = "${pkgs.i3blocks-gaps}/bin/i3blocks";
           position = "top";
           mode = "dock";
 
