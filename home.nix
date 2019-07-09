@@ -30,7 +30,7 @@
     libfaketime
     lsof
     mkpasswd
-    mtr
+    #mtr
     openssl
     pv
     renameutils
@@ -104,7 +104,11 @@
     dmenu
     i3blocks-gaps
     i3lock
-    slock
+
+    # FIXME: Fails with error on invocation.
+    # slock: getgrnam nogroup: group entry not found
+    #slock
+
     st
 
     ## GUI: Documents
@@ -258,9 +262,9 @@
   #};
 
   # Assuming this is needed when NOT using NixOS.
-  systemd.user = {
-    systemctlPath = "/usr/bin/systemctl";
-  };
+  #systemd.user = {
+  #  systemctlPath = "/usr/bin/systemctl";
+  #};
 
   xsession = {
     enable = true;
@@ -314,7 +318,7 @@
 
         bars = [{
         # FIXME: Setting i3blocks as command doesn't work, causes bar not to display.
-        # command = "${pkgs.i3blocks-gaps}/bin/i3blocks";
+          #command = "${pkgs.i3blocks-gaps}/bin/i3blocks";
           position = "top";
           mode = "dock";
 
@@ -332,10 +336,15 @@
 
         startup = [
           # FIXME: Remove absolute path for alacritty when working via home-manager.
-          { command = "/usr/bin/alacritty"; notification = false; }
-          { command = "firefox"; notification = false; }
-          { command = "~/.fehbg"; notification = false; }
-          { command = "home-manager-help"; notification = false; }
+          { notification = false; command = "/usr/bin/alacritty"; }
+          { notification = false; command = "firefox"; }
+          { notification = false; command = "~/.fehbg"; }
+          { notification = false; command = "home-manager-help"; }
+
+          # Set faster key repeat rate, inspired by EXWM.
+          # Results in snappier Emacs usage.
+          # See https://github.com/ch11ng/exwm/blob/master/xinitrc
+          { notification = false; command = "xset r rate 200 60"; }
         ];
 
       };
