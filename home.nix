@@ -31,7 +31,6 @@
     lsof
     mkpasswd
     #mtr
-    openssl
     pv
     renameutils
     ripgrep
@@ -83,6 +82,8 @@
     tig
     upx
     mkcert
+    python37Packages.cookiecutter
+    nodejs
 
 
     # Virtualization & Containers
@@ -99,9 +100,11 @@
     gcolor3
     mesa
     xaos
+    rdesktop
 
     ## GUI: Window Manager
-    dmenu
+    # FIXME: dmenu_run exits after one keypress (Ubuntu 18.04).
+    #dmenu
     i3blocks-gaps
     i3lock
 
@@ -112,7 +115,9 @@
     st
 
     ## GUI: Documents
+    # TODO: Find out *why* this only runs when started as root (Ubuntu 18.04).
     libreoffice-fresh
+
     zathura
 
     ## GUI: Graphics
