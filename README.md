@@ -2,6 +2,7 @@
 
 My [home-manager] configuration.
 
+
 ## Setup
 
 1. [Install nix](https://nixos.org/nix/download.html).
@@ -10,3 +11,8 @@ My [home-manager] configuration.
 3. `home-manager -b BKUP switch`
 
 [home-manager]: https://github.com/rycee/home-manager
+
+
+## Other interesting configs
+
+- <https://github.com/nocoolnametom/nix-configs>
