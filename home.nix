@@ -190,6 +190,8 @@
         nnoremap <leader>v :e $MYVIMRC<CR>
         nnoremap <leader>w :w !sudo tee %<CR><CR>
 
+        nnoremap <leader>g :Goyo<CR>
+
         autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
         autocmd FileType nix setlocal cuc
       '';
