@@ -279,6 +279,11 @@
     windowManager.i3 = 
     let
       modifier = "Mod4";
+
+      cmd_term = "gnome-terminal";
+      cmd_menu = "dmenu_run -fn 'Iosevka Term:style=Regular:size=13' -nb '#000000'";
+      cmd_browser = "${pkgs.firefox}/bin/firefox";
+
       left = "h";
       down = "j";
       up = "k";
@@ -300,8 +305,9 @@
 
         keybindings =
           lib.mkOptionDefault {
-            "${modifier}+Return" = "exec ${pkgs.st}/bin/st -f 'Iosevka Term:style=Regular:size=13'";
-            "${modifier}+d"      = "exec ${pkgs.dmenu}/bin/dmenu_run -fn 'Iosevka Term:style=Regular:size=13' -nb '#000000'";
+            # FIXME: st not working on Ubuntu 18.04 desktop
+            "${modifier}+Return" = "exec ${cmd_term}";
+            "${modifier}+d"      = "exec ${cmd_menu}";
 
             "${modifier}+${left}"  = "focus left";
             "${modifier}+${down}"  = "focus down";
@@ -326,6 +332,7 @@
         bars = [{
         # FIXME: Setting i3blocks as command doesn't work, causes bar not to display.
           #command = "${pkgs.i3blocks-gaps}/bin/i3blocks";
+          command = "/usr/bin/i3bar";
           position = "top";
           mode = "dock";
 
@@ -343,8 +350,8 @@
 
         startup = [
           # FIXME: Remove absolute path for alacritty when working via home-manager.
-          { notification = false; command = "/usr/bin/alacritty"; }
-          { notification = false; command = "firefox"; }
+          { notification = false; command = "${cmd_term}"; }
+          { notification = false; command = "${cmd_browser}"; }
           { notification = false; command = "~/.fehbg"; }
           { notification = false; command = "home-manager-help"; }
 
