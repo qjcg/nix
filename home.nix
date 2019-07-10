@@ -322,6 +322,10 @@
             "${modifier}+Shift+${up}"    = "move up";
             "${modifier}+Shift+${right}" = "move right";
 
+            "${modifier}+n"       = "workspace next_on_output";
+            "${modifier}+p"       = "workspace prev_on_output";
+            "${modifier}+Tab"     = "workspace back_and_forth";
+
             "${modifier}+minus"       = "scratchpad show";
             "${modifier}+Shift+minus" = "move scratchpad";
 	  };
