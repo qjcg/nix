@@ -9,7 +9,10 @@
 { pkgs, lib ? pkgs.stdenv.lib, ... }:
 
 {
-  home.packages = (with pkgs; [
+  home.packages = with pkgs; [
+
+    # Nix utilities
+    nixops
 
     # BROKEN
     # FIXME: These apps close immediately on startup, complaining about GLX.
@@ -30,7 +33,7 @@
     libfaketime
     lsof
     mkpasswd
-    #mtr
+    mtr
     pv
     renameutils
     ripgrep
@@ -138,7 +141,7 @@
 
     ## GUI: VideoConferencing
     bluejeans-gui
-  ]);
+  ];
 
   fonts.fontconfig.enable = true;
 
