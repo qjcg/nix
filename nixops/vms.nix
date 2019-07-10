@@ -4,18 +4,23 @@
 
   workstation =
     { config, pkgs, ... }:
+
     {
       deployment = {
         targetEnv = "virtualbox";
         virtualbox = {
           memorySize = 1024;
           vcpu = 2;
+          vmFlags = [
+            "--vram" "128"
+          ];
         };
       };
 
       environment.systemPackages = with pkgs; [
         git
         home-manager
+        psmisc
         rsync
         tmux
         tree
@@ -30,7 +35,14 @@
         displayManager.lightdm = {
           enable = true;
         };
+
+        windowManager.i3 = {
+          enable = true;
+          package = pkgs.i3-gaps;
+        };
       };
+
+      time.timeZone = "America/Montreal";
 
       users = {
         groups = {
