@@ -86,6 +86,7 @@
     mkcert
     python37Packages.cookiecutter
     nodejs
+    sbcl
 
 
     # Virtualization & Containers
