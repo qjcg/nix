@@ -81,7 +81,6 @@
     ctags
     delve
     fossil
-    go
     tig
     upx
     mkcert
@@ -159,63 +158,6 @@
     VISUAL = "nvim";
   };
 
-  programs.autorandr.enable = true;
-
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    withPython3 = true;
-    configure = {
-      customRC = ''
-        colorscheme abstract
-
-        set autochdir
-        set autoindent
-        set hlsearch			" highlight search results
-        set ignorecase			" case insensitive searches
-        set laststatus=1		" only show statusbar if >1 windows open
-        set listchars=tab:>-,eol:$
-        set nowrap
-        set shortmess+=I		" disable welcome screen
-        set smartcase			" case-sensitive search only if specified
-        set splitright			" vsplit window to the right by default
-        set wildmenu			" dmenu-style menu
-        set wildmode=full
-
-        "" MAPS
-        "" See :h keycodes
-        let mapleader=","
-
-        nnoremap <leader>l :set list!<CR>
-        nnoremap <leader>r :source $MYVIMRC<CR>
-        nnoremap <leader>S :setlocal spell!<CR>
-        nnoremap <leader>v :e $MYVIMRC<CR>
-        nnoremap <leader>w :w !sudo tee %<CR><CR>
-
-        nnoremap <leader>g :Goyo<CR>
-
-        autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
-        autocmd FileType nix setlocal cuc
-      '';
-
-      packages.myVimPackage = with pkgs.vimPlugins; {
-        start = [
-          ansible-vim
-          awesome-vim-colorschemes
-          fzf-vim
-          goyo
-          limelight-vim
-          neosnippet
-          nerdtree
-          python-mode
-          tagbar
-          vim-nix
-        ];
-      };
-
-    };
-  };
 
   home.keyboard = {
     layout = "us,ca";
@@ -225,23 +167,114 @@
 
   manual.html.enable = true;
 
-  programs.emacs = {
-    enable = true;
-    extraPackages = epkgs: [
-      epkgs.nix-mode
-      epkgs.magit
-    ];
+  programs = {
+
+    autorandr.enable = true;
+
+    bash = {
+      enable = true;
+      profileExtra = ''
+        export npm_config_prefix=~/.node_modules
+        export PATH=$npm_config_prefix/bin:$PATH
+        export PATH=$GOPATH/bin:$PATH
+
+        if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+      '';
+      shellAliases = {
+        ls = "ls --color=auto";
+        grep = "grep -E";
+        winvm = "rdesktop -u jgosset -p - -g 1680x1050 -K mt1n-jgosset";
+      };
+    };
+
+    emacs = {
+      enable = true;
+      extraPackages = epkgs: [
+        epkgs.nix-mode
+        epkgs.magit
+        epkgs.paradox
+      ];
+    };
+
+    firefox.enable = true;
+
+    git = {
+      enable = true;
+      userName = "John Gosset";
+      userEmail = "jgosset@drw.com";
+      ignores = [
+        "node_modules"
+        "*.pyc"
+      ];
+    };
+
+    go = {
+      enable = true;
+      goPath = "go";
+      goBin = "go/bin";
+      packages = {
+        "github.com/qjcg/4d" = builtins.fetchGit "git@github.com:qjcg/4d";
+      };
+    };
+
+    neovim = {
+      enable = true;
+      viAlias = true;
+      vimAlias = true;
+      withPython3 = true;
+      configure = {
+        customRC = ''
+          colorscheme abstract
+
+          set autochdir
+          set autoindent
+          set hlsearch			" highlight search results
+          set ignorecase			" case insensitive searches
+          set laststatus=1		" only show statusbar if >1 windows open
+          set listchars=tab:>-,eol:$
+          set nowrap
+          set shortmess+=I		" disable welcome screen
+          set smartcase			" case-sensitive search only if specified
+          set splitright			" vsplit window to the right by default
+          set wildmenu			" dmenu-style menu
+          set wildmode=full
+
+          "" MAPS
+          "" See :h keycodes
+          let mapleader=","
+
+          nnoremap <leader>l :set list!<CR>
+          nnoremap <leader>r :source $MYVIMRC<CR>
+          nnoremap <leader>S :setlocal spell!<CR>
+          nnoremap <leader>v :e $MYVIMRC<CR>
+          nnoremap <leader>w :w !sudo tee %<CR><CR>
+
+          nnoremap <leader>g :Goyo<CR>
+
+          autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
+          autocmd FileType nix setlocal cuc
+        '';
+
+        packages.myVimPackage = with pkgs.vimPlugins; {
+          start = [
+            ansible-vim
+            awesome-vim-colorschemes
+            fzf-vim
+            goyo
+            limelight-vim
+            neosnippet
+            nerdtree
+            python-mode
+            tagbar
+            vim-nix
+          ];
+        };
+
+      };
+    };
+
   };
 
-  programs.firefox = {
-    enable = true;
-  };
-
-  programs.git = {
-    enable = true;
-    userName = "John Gosset";
-    userEmail = "jgosset@drw.com";
-  };
 
   # X11 compositor (transparency, etc).
   # FIXME: Fails, complaining about GLX.
