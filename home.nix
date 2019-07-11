@@ -316,8 +316,8 @@
     let
       modifier = "Mod4";
 
-      cmd_term = "gnome-terminal";
-      cmd_menu = "dmenu_run -fn 'Iosevka Term:style=Regular:size=13' -nb '#000000'";
+      cmd_term = "${pkgs.st}/bin/st -f 'monospace:style=regular:size=11'";
+      cmd_menu = "dmenu_run -fn 'monospace:style=Regular:size=13' -nb '#000000'";
       cmd_browser = "${pkgs.firefox}/bin/firefox";
 
       left = "h";
