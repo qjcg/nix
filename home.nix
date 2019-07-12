@@ -1,172 +1,172 @@
 # home-manager configuration.
 # See https://github.com/rycee/home-manager#usage
-# For a good example with i3 configuration, see:
-#   https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix
 #
-# TODO:
-#  - decide howto manage secrets (passwords, keys, etc)
+# TODO: decide howto manage secrets (passwords, keys, etc)
 
 { pkgs, lib ? pkgs.stdenv.lib, ... }:
 
 {
-  home.packages = with pkgs; [
-
-    # Nix utilities
-    nixops
-
-    # BROKEN
-    # FIXME: These apps close immediately on startup, complaining about GLX.
-    alacritty
-    cool-retro-term
-    glxinfo
-    zoom-us
-
-    # Utilities
-    ansible
-    aria2
-    davmail
-    ed
-    fdupes
-    fzf
-    gopass
-    jq
-    libfaketime
-    lsof
-    mkpasswd
-    mtr
-    pv
-    renameutils
-    ripgrep
-    tesseract
-    tree
-    unzip
-    weechat
-
-    ## Utilities; Network
-    bettercap
-    dnsutils
-    nmap
-    wireshark
-
-    ## Utilities: Backup
-    rclone
-    restic
-    rsync
-    syncthing
-
-    # FIXME: Baresip NOT working.
-    baresip
-
-
-    # MultiMedia
-    alsaLib
-    alsaPluginWrapper
-    alsaPlugins
-    alsaTools
-    alsaUtils
-    cmus
-
-    fluidsynth
-    soundfont-fluid
-
-    mpv
-    pavucontrol
-    pulseaudio
-    pulseeffects
-    sox
-    streamripper
-    youtube-dl
-
-    # Dev Tools
-    ctags
-    delve
-    fossil
-    tig
-    upx
-    mkcert
-    python37Packages.cookiecutter
-    nodejs
-    sbcl
-
-
-    # Virtualization & Containers
-    buildah
-    docker-compose
-    packer
-    podman
-    qemu
-    skopeo
-    tinyemu
-    vagrant
-
-    # GUI
-    gcolor3
-    mesa
-    xaos
-    rdesktop
-
-    ## GUI: Window Manager
-    # FIXME: dmenu_run exits after one keypress (Ubuntu 18.04).
-    #dmenu
-    i3blocks-gaps
-    i3lock
-
-    # FIXME: Fails with error on invocation.
-    # slock: getgrnam nogroup: group entry not found
-    #slock
-
-    st
-
-    ## GUI: Documents
-    # TODO: Find out *why* this only runs when started as root (Ubuntu 18.04).
-    libreoffice-fresh
-
-    zathura
-
-    ## GUI: Graphics
-    feh
-    gimp # gimp-with-plugins didn't compile! 2019-07-07
-    imagemagick
-    inkscape
-    sxiv
-
-    ## GUI: Fonts
-    fira-code
-    fontconfig-penultimate
-    gtk2fontsel
-    iosevka
-    inconsolata
-    libertine
-    roboto
-
-    ## GUI: VideoConferencing
-    bluejeans-gui
-  ];
-
   fonts.fontconfig.enable = true;
-
-  gtk = {
-    enable = true;
-  };
-
-  home.language = {
-    base = "en_US.utf8";
-  };
-
-  home.sessionVariables = {
-    BROWSER = "firefox";
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-  };
-
-
-  home.keyboard = {
-    layout = "us,ca";
-    model = "pc105";
-    options = ["grp:shifts_toggle"];
-  };
-
+  gtk.enable = true;
   manual.html.enable = true;
+
+
+  home = {
+    language = {
+      base = "en_US.utf8";
+    };
+
+    sessionVariables = {
+      BROWSER = "firefox";
+      EDITOR = "nvim";
+      PAGER = "less";
+      VISUAL = "nvim";
+    };
+
+    keyboard = {
+      layout = "us,ca";
+      model = "pc105";
+      options = ["grp:shifts_toggle"];
+    };
+
+    # TODO: Refactor in to sublists, and concatenate them together.
+    packages = with pkgs; [
+
+      # Nix utilities
+      nixops
+
+      # BROKEN
+      # FIXME: These apps close immediately on startup, complaining about GLX.
+      alacritty
+      cool-retro-term
+      glxinfo
+      zoom-us
+
+      # Utilities
+      ansible
+      aria2
+      davmail
+      ed
+      fdupes
+      fortune
+      fzf
+      gopass
+      jq
+      libfaketime
+      lsof
+      mkpasswd
+      mtr
+      pv
+      renameutils
+      ripgrep
+      tesseract
+      tmux
+      tree
+      unzip
+      weechat
+
+      ## Utilities; Network
+      bettercap
+      dnsutils
+      nmap
+      wireshark
+
+      ## Utilities: Backup
+      rclone
+      restic
+      rsync
+      syncthing
+
+      # FIXME: baresip NOT working.
+      baresip
+
+
+      # MultiMedia
+      alsaLib
+      alsaPluginWrapper
+      alsaPlugins
+      alsaTools
+      alsaUtils
+      cmus
+
+      fluidsynth
+      soundfont-fluid
+
+      mpv
+      pavucontrol
+      pulseaudio
+      pulseeffects
+      sox
+      streamripper
+      youtube-dl
+
+      # Dev Tools
+      ctags
+      delve
+      fossil
+      tig
+      upx
+      mkcert
+      python37Packages.cookiecutter
+      nodejs
+      sbcl
+
+
+      # Virtualization & Containers
+      buildah
+      docker-compose
+      packer
+      podman
+      qemu
+      skopeo
+      tinyemu
+      vagrant
+
+      # GUI
+      gcolor3
+      mesa
+      xaos
+      rdesktop
+      slack
+
+      ## GUI: Window Manager
+      # FIXME: dmenu_run exits after one keypress (Ubuntu 18.04).
+      #dmenu
+      i3blocks-gaps
+      i3lock
+
+      # FIXME: slock fails with error on invocation ("getgrnam nogroup: group entry not found")
+      #slock
+
+      st
+
+      ## GUI: Documents
+      libreoffice-fresh
+
+      zathura
+
+      ## GUI: Graphics
+      feh
+      gimp # gimp-with-plugins didn't compile! 2019-07-07
+      imagemagick
+      inkscape
+      sxiv
+
+      ## GUI: Fonts
+      fira-code
+      fontconfig-penultimate
+      gtk2fontsel
+      iosevka
+      inconsolata
+      libertine
+      roboto
+
+      ## GUI: VideoConferencing
+      bluejeans-gui
+    ];
+
+  };
+
 
   programs = {
 
@@ -175,12 +175,21 @@
     bash = {
       enable = true;
       profileExtra = ''
+        export PAGER=less
+
+        # nodejs
         export npm_config_prefix=~/.node_modules
         export PATH=$npm_config_prefix/bin:$PATH
-        export PATH=$GOPATH/bin:$PATH
 
+        # go
+        export GOPATH=~/go
+        export GOBIN=$GOPATH/bin
+        export PATH=$GOBIN:$PATH
+
+        # nix
         if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
       '';
+
       shellAliases = {
         ls = "ls --color=auto";
         grep = "grep -E";
@@ -206,6 +215,7 @@
       ignores = [
         "node_modules"
         "*.pyc"
+        "*.iso"
       ];
     };
 
@@ -213,6 +223,9 @@
       enable = true;
       goPath = "go";
       goBin = "go/bin";
+
+      # TODO: For *applications*,create packages using buildGoModule.
+      # Ref: https://nixos.org/nixpkgs/manual/#ssec-go-modules
       packages = {
         "github.com/qjcg/4d" = builtins.fetchGit "git@github.com:qjcg/4d";
       };
@@ -277,38 +290,42 @@
   };
 
 
-  # X11 compositor (transparency, etc).
-  # FIXME: Fails, complaining about GLX.
-  services.compton = {
-    enable = false;
-    activeOpacity = "0.9";
+  services = {
+    compton = {
+      enable = false;
+      activeOpacity = "0.9";
+    };
+
+    # X11 compositor (transparency, etc).
+    # FIXME: compton fails, complaining about GLX.
+    dunst = {
+      enable = true;
+    };
+
+    gpg-agent = {
+      enable = true;
+      defaultCacheTtl = 3600;
+      defaultCacheTtlSsh = 3600;
+      enableScDaemon = false;
+      enableSshSupport = true;
+      extraConfig = ''
+        allow-emacs-pinentry
+      '';
+    };
+
+    # FIXME: i3lock does NOT unlock with correct password!
+    #services.screen-locker = {
+    #  enable = true;
+    #  lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 000000";
+    #};
+
+    # TODO: Determine whether systemctlPath is needed for anything (Ubuntu 18.04).
+    #systemd.user = {
+    #  systemctlPath = "/usr/bin/systemctl";
+    #};
+
   };
 
-  services.dunst = {
-    enable = true;
-  };
-
-  services.gpg-agent = {
-    enable = true;
-    defaultCacheTtl = 3600;
-    defaultCacheTtlSsh = 3600;
-    enableScDaemon = false;
-    enableSshSupport = true;
-    extraConfig = ''
-      allow-emacs-pinentry
-    '';
-  };
-
-  # FIXME: Does NOT unlock with correct password!
-  #services.screen-locker = {
-  #  enable = true;
-  #  lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 000000";
-  #};
-
-  # Assuming this is needed when NOT using NixOS.
-  #systemd.user = {
-  #  systemctlPath = "/usr/bin/systemctl";
-  #};
 
   xsession = {
     enable = true;
@@ -320,6 +337,7 @@
       cmd_term = "${pkgs.st}/bin/st -f 'monospace:style=regular:size=11'";
       cmd_menu = "dmenu_run -fn 'monospace:style=Regular:size=13' -nb '#000000'";
       cmd_browser = "${pkgs.firefox}/bin/firefox";
+      cmd_slack = "${pkgs.slack}/bin/slack";
 
       left = "h";
       down = "j";
@@ -327,6 +345,10 @@
       right = "l";
     in {
       enable = true;
+
+      extraConfig = ''
+        default_border pixel 5
+      '';
 
       config = {
         fonts = [
@@ -342,7 +364,6 @@
 
         keybindings =
           lib.mkOptionDefault {
-            # FIXME: st not working on Ubuntu 18.04 desktop
             "${modifier}+Return" = "exec ${cmd_term}";
             "${modifier}+d"      = "exec ${cmd_menu}";
 
@@ -365,7 +386,7 @@
 	  };
 
         colors = {
-          focused         = { border = "#000000"; background = "#000000"; text = "#00ffed"; indicator = "#ffffff"; childBorder = "#000000"; };
+          focused         = { border = "#0000ff"; background = "#000000"; text = "#00ffed"; indicator = "#ffffff"; childBorder = "#000000"; };
           focusedInactive = { border = "#000000"; background = "#000000"; text = "#ffffff"; indicator = "#ffffff"; childBorder = "#000000"; };
           unfocused       = { border = "#000000"; background = "#222222"; text = "#999999"; indicator = "#ffffff"; childBorder = "#000000"; };
         };
@@ -390,11 +411,11 @@
         }];
 
         startup = [
-          # FIXME: Remove absolute path for alacritty when working via home-manager.
+          { notification = false; command = "~/.fehbg"; }
+
+          { notification = false; command = "${cmd_slack}"; }
           { notification = false; command = "${cmd_term}"; }
           { notification = false; command = "${cmd_browser}"; }
-          { notification = false; command = "~/.fehbg"; }
-          { notification = false; command = "home-manager-help"; }
 
           # Set faster key repeat rate, inspired by EXWM.
           # Results in snappier Emacs usage.
