@@ -16,3 +16,4 @@ My [home-manager] configuration.
 ## Other interesting configs
 
 - <https://github.com/nocoolnametom/nix-configs>
+- With i3 config: <https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix>
