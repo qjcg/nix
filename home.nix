@@ -82,6 +82,7 @@
     delve
     fossil
     go
+    mr
     tig
     upx
     mkcert
