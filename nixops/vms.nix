@@ -22,10 +22,13 @@
         home-manager
         psmisc
         rsync
+        st
         tmux
         tree
         vim
       ];
+
+      security.sudo.wheelNeedsPassword = false;
 
       services.xserver = {
         enable = true;
@@ -46,11 +49,17 @@
 
       users = {
         groups = {
-          john = { gid = 7777; };
+          dev = { gid = 7777; };
         };
 
         users = {
-          john = { createHome = true; home = "/home/john"; shell = "/bin/sh"; group = "john"; extraGroups = ["wheel"]; description = "John Gosset"; };
+          dev = {
+            createHome = true;
+            home = "/home/dev";
+            group = "dev";
+            extraGroups = ["wheel"];
+            description = "Developer";
+          };
         };
       };
     };
