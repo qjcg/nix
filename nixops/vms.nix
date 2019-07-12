@@ -9,10 +9,10 @@
       deployment = {
         targetEnv = "virtualbox";
         virtualbox = {
-          memorySize = 1024;
+          memorySize = 2048;
           vcpu = 2;
           vmFlags = [
-            "--vram" "128"
+            "--vram" "256"
           ];
         };
       };
