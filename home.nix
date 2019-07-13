@@ -201,7 +201,7 @@
       shellAliases = {
         ls = "ls --color=auto";
         grep = "grep -E";
-        winvm = "rdesktop -u jgosset -p - -g 1680x1050 -K mt1n-jgosset";
+        drwWinVM = "rdesktop -u jgosset -p - -g 1680x1050 -K mt1n-jgosset";
       };
     };
 
