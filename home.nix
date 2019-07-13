@@ -2,6 +2,7 @@
 # See https://github.com/rycee/home-manager#usage
 #
 # TODO: decide howto manage secrets (passwords, keys, etc)
+# NOTE: See https://github.com/disassembler/network/blob/master/load-secrets.nix
 
 { pkgs, lib ? pkgs.stdenv.lib, ... }:
 
@@ -34,6 +35,8 @@
 
       # Nix utilities
       nixops
+      nix-bash-completions
+      nix-zsh-completions
 
       # BROKEN
       # FIXME: These apps close immediately on startup, complaining about GLX.
@@ -59,6 +62,7 @@
       pv
       renameutils
       ripgrep
+      sent
       tesseract
       tmux
       tree
@@ -131,8 +135,11 @@
       slack
 
       ## GUI: Window Manager
-      # FIXME: dmenu_run exits after one keypress (Ubuntu 18.04).
-      #dmenu
+      albert
+
+      # FIXME: dmenu_run exits after one keypress (Ubuntu 18.04, but NOT arch).
+      dmenu
+
       i3blocks-gaps
       i3lock
 
@@ -336,6 +343,10 @@
       '';
     };
 
+    polybar = {
+      enable = false;
+    };
+
     # FIXME: i3lock does NOT unlock with correct password!
     #services.screen-locker = {
     #  enable = true;
@@ -408,6 +419,7 @@
             "${modifier}+Shift+minus" = "move scratchpad";
 	  };
 
+        # FIXME: i3 border is NOT being set for full windows, just title tabs.
         colors = {
           focused         = { border = "#0000ff"; background = "#000000"; text = "#00ffed"; indicator = "#ffffff"; childBorder = "#000000"; };
           focusedInactive = { border = "#000000"; background = "#000000"; text = "#ffffff"; indicator = "#ffffff"; childBorder = "#000000"; };
@@ -415,9 +427,6 @@
         };
 
         bars = [{
-        # FIXME: Setting i3blocks as command doesn't work, causes bar not to display.
-          #command = "${pkgs.i3blocks-gaps}/bin/i3blocks";
-          command = "/usr/bin/i3bar";
           position = "top";
           mode = "dock";
 
@@ -431,6 +440,11 @@
             inactiveWorkspace  = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
             urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
           };
+
+          extraConfig = ''
+            status_command ${pkgs.i3blocks-gaps}/bin/i3blocks
+          '';
+
         }];
 
         startup = [
