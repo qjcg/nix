@@ -343,6 +343,7 @@
       '';
     };
 
+    # TODO: polybar -- configure and use, or remove
     polybar = {
       enable = false;
     };
