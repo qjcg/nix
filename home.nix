@@ -133,6 +133,7 @@
       xaos
       rdesktop
       slack
+      tor-browser-bundle-bin
 
       ## GUI: Window Manager
       albert
