@@ -255,7 +255,7 @@
       goPath = "go";
       goBin = "go/bin";
 
-      # TODO: For *applications*,create packages using buildGoModule.
+      # TODO: For *applications*, create packages using buildGoModule.
       # Ref: https://nixos.org/nixpkgs/manual/#ssec-go-modules
       packages = {
         "github.com/qjcg/4d" = builtins.fetchGit "git@github.com:qjcg/4d";
