@@ -1,8 +1,5 @@
 # home-manager configuration.
-# See https://github.com/rycee/home-manager#usage
-#
-# TODO: decide howto manage secrets (passwords, keys, etc)
-# NOTE: See https://github.com/disassembler/network/blob/master/load-secrets.nix
+# See https://github.com/rycee/home-manager
 
 {
   pkgs,
@@ -12,11 +9,23 @@
 
 let
   pg = pkgs.callPackage ./pkgGroups.nix {};
+
+  # A secrets.nix file should be created containing the following values.
+  secrets = if builtins.pathExists ./secrets.nix then import ./secrets.nix else {
+    openweathermap-api-key = "";
+    openweathermap-city-id = "";
+    work-user = "";
+    git-name = "";
+    git-email = "";
+  };
 in
 {
   fonts.fontconfig.enable = true;
-  gtk.enable = true;
   manual.html.enable = true;
+
+  gtk = {
+    enable = true;
+  };
 
 
   home = {
@@ -64,9 +73,9 @@ in
       albert
 
       # FIXME: dmenu_run exits after one keypress (Ubuntu 18.04, but NOT arch).
-      dmenu
+      #dmenu
 
-      i3blocks-gaps
+      i3status-rust
       i3lock
 
       # FIXME: slock fails with error on invocation ("getgrnam nogroup: group entry not found")
@@ -124,7 +133,7 @@ in
       shellAliases = {
         ls = "ls --color=auto";
         grep = "grep -E";
-        drwWinVM = "rdesktop -u jgosset -p - -g 1680x1050 -K mt1n-jgosset";
+        drwWinVM = "rdesktop -u ${secrets.work-user} -p - -g 1680x1050 -K mt1n-${secrets.work-user}";
       };
     };
 
@@ -141,8 +150,8 @@ in
 
     git = {
       enable = true;
-      userName = "John Gosset";
-      userEmail = "jgosset@drw.com";
+      userName = "${secrets.git-name}";
+      userEmail = "${secrets.git-email}";
       ignores = [
         "node_modules"
         "*.pyc"
@@ -284,6 +293,59 @@ in
 
   };
 
+  xdg.configFile = {
+    "i3/status.toml" = {
+      onChange = "i3-msg restart";
+      text = ''
+        # i3status-rust configuration
+
+        theme = "slick"
+        icons = "awesome"
+
+        [[block]]
+        block = "weather"
+        format = "{weather} ({location}) {temp}°"
+        service = { name = "openweathermap", api_key = "${secrets.openweathermap-api-key}", city_id = "${secrets.openweathermap-city-id}", units = "metric" }
+
+        # DISABLED: Information overload.
+        #[[block]]
+        #block = "nvidia_gpu"
+        #label = "Quadro P1000"
+
+        # DISABLED: Information overload.
+        #[[block]]
+        #block = "xrandr"
+        #resolution = true
+
+        # DISABLED: Information overload.
+        #[[block]]
+        #block = "uptime"
+
+        [[block]]
+        block = "disk_space"
+        path = "/"
+        alias = "/"
+        info_type = "available"
+        unit = "GB"
+        interval = 20
+        warning = 20.0
+        alert = 10.0
+
+        [[block]]
+        block = "load"
+        interval = 1
+        format = "{1m} {5m} {15m}"
+
+        [[block]]
+        block = "sound"
+
+        [[block]]
+        block = "time"
+        interval = 60
+        format = "%a %b %-d, %-I:%M%P"
+      '';
+    };
+  };
 
   xsession = {
     enable = true;
@@ -293,6 +355,7 @@ in
       modifier = "Mod4";
 
       cmd_term = "${pkgs.st}/bin/st -f 'monospace:style=regular:size=11'";
+      # FIXME: nix dmenu_run not working on Ubuntu 18.04
       cmd_menu = "dmenu_run -fn 'monospace:style=Regular:size=13' -nb '#000000'";
       cmd_browser = "${pkgs.firefox}/bin/firefox";
       cmd_slack = "${pkgs.slack}/bin/slack";
@@ -366,7 +429,7 @@ in
           };
 
           extraConfig = ''
-            status_command ${pkgs.i3blocks-gaps}/bin/i3blocks
+            status_command ${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/status.toml
           '';
 
         }];
