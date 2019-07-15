@@ -229,6 +229,7 @@ in
 
           autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
           autocmd FileType nix setlocal cuc
+          autocmd FileType go,python nested :TagbarOpen
         '';
 
         packages.myVimPackage = with pkgs.vimPlugins; {
