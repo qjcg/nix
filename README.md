@@ -13,6 +13,12 @@ My [home-manager] configuration.
 [home-manager]: https://github.com/rycee/home-manager
 
 
+## Tested Platforms
+
+- Arch Linux
+- Ubuntu 18.04
+
+
 ## Other interesting configs
 
 - <https://github.com/nocoolnametom/nix-configs>
