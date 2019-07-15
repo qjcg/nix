@@ -4,8 +4,15 @@
 # TODO: decide howto manage secrets (passwords, keys, etc)
 # NOTE: See https://github.com/disassembler/network/blob/master/load-secrets.nix
 
-{ pkgs, lib ? pkgs.stdenv.lib, ... }:
+{
+  pkgs,
+  lib ? pkgs.stdenv.lib,
+  ...
+}:
 
+let
+  pg = pkgs.callPackage ./pkgGroups.nix {};
+in
 {
   fonts.fontconfig.enable = true;
   gtk.enable = true;
@@ -33,90 +40,6 @@
     # TODO: Refactor in to sublists, and concatenate them together.
     packages = with pkgs; [
 
-      # Nix utilities
-      nixops
-      nix-bash-completions
-      nix-zsh-completions
-
-      # BROKEN
-      # FIXME: These apps close immediately on startup, complaining about GLX.
-      alacritty
-      cool-retro-term
-      glxinfo
-      zoom-us
-
-      # Utilities
-      ansible
-      aria2
-      davmail
-      ed
-      fdupes
-      fortune
-      fzf
-      gopass
-      jq
-      libfaketime
-      lsof
-      mkpasswd
-      mtr
-      pv
-      renameutils
-      ripgrep
-      sent
-      tesseract
-      tmux
-      tree
-      unzip
-      weechat
-
-      ## Utilities; Network
-      bettercap
-      dnsutils
-      nmap
-      wireshark
-
-      ## Utilities: Backup
-      rclone
-      restic
-      rsync
-      syncthing
-
-      # FIXME: baresip NOT working.
-      baresip
-
-
-      # MultiMedia
-      alsaLib
-      alsaPluginWrapper
-      alsaPlugins
-      alsaTools
-      alsaUtils
-      cmus
-
-      fluidsynth
-      soundfont-fluid
-
-      mpv
-      pavucontrol
-      pulseaudio
-      pulseeffects
-      sox
-      streamripper
-      youtube-dl
-
-      # Dev Tools
-      ctags
-      delve
-      fossil
-      mkcert
-      mr
-      nodejs
-      python37Packages.cookiecutter
-      sbcl
-      tig
-      upx
-
-
       # Virtualization & Containers
       buildah
       docker-compose
@@ -134,6 +57,8 @@
       rdesktop
       slack
       tor-browser-bundle-bin
+      xscreensaver
+      xwinwrap
 
       ## GUI: Window Manager
       albert
@@ -162,17 +87,14 @@
       sxiv
 
       ## GUI: Fonts
-      fira-code
-      fontconfig-penultimate
-      gtk2fontsel
-      iosevka
-      inconsolata
-      libertine
-      roboto
+      #import ./fonts.nix
 
       ## GUI: VideoConferencing
       bluejeans-gui
-    ];
+    ]
+    ++ lib.lists.flatten (lib.attrsets.collect builtins.isList pg.GUI)
+    ++ lib.lists.flatten (lib.attrsets.collect builtins.isList pg.CLI)
+    ;
 
   };
 
