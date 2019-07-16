@@ -1,6 +1,8 @@
 # home-manager configuration.
 # See https://github.com/rycee/home-manager
 
+# TODO: Use separate configurations for different environments (ex: home, work).
+
 {
   pkgs,
   lib ? pkgs.stdenv.lib,
