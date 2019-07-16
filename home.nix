@@ -46,64 +46,10 @@ in
       options = ["grp:shifts_toggle"];
     };
 
-    # TODO: Refactor in to sublists, and concatenate them together.
-    packages = with pkgs; [
-
-      # Virtualization & Containers
-      buildah
-      docker-compose
-      packer
-      podman
-      qemu
-      skopeo
-      tinyemu
-      vagrant
-
-      # GUI
-      gcolor3
-      mesa
-      xaos
-      rdesktop
-      slack
-      tor-browser-bundle-bin
-      xscreensaver
-      xwinwrap
-
-      ## GUI: Window Manager
-      albert
-
-      # FIXME: dmenu_run exits after one keypress (Ubuntu 18.04, but NOT arch).
-      #dmenu
-
-      i3status-rust
-      i3lock
-
-      # FIXME: slock fails with error on invocation ("getgrnam nogroup: group entry not found")
-      #slock
-
-      st
-
-      ## GUI: Documents
-      libreoffice-fresh
-
-      zathura
-
-      ## GUI: Graphics
-      feh
-      gimp # gimp-with-plugins didn't compile! 2019-07-07
-      imagemagick
-      inkscape
-      sxiv
-
-      ## GUI: Fonts
-      #import ./fonts.nix
-
-      ## GUI: VideoConferencing
-      bluejeans-gui
-    ]
-    ++ lib.lists.flatten (lib.attrsets.collect builtins.isList pg.GUI)
-    ++ lib.lists.flatten (lib.attrsets.collect builtins.isList pg.CLI)
-    ;
+    packages =
+      lib.lists.flatten (lib.attrsets.collect builtins.isList pg.GUI) ++
+      lib.lists.flatten (lib.attrsets.collect builtins.isList pg.CLI)
+      ;
 
   };
 
