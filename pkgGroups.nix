@@ -11,6 +11,7 @@ with pkgs;
     ];
 
     utilities = [
+      aerc
       ansible
       aria2
       davmail
@@ -24,6 +25,7 @@ with pkgs;
       lsof
       mkpasswd
       mtr
+      pandoc
       pv
       renameutils
       ripgrep
