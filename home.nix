@@ -200,13 +200,13 @@ in
 
 
   services = {
+
+    # FIXME: compton fails, complaining about GLX.
     compton = {
       enable = false;
       activeOpacity = "0.9";
     };
 
-    # X11 compositor (transparency, etc).
-    # FIXME: compton fails, complaining about GLX.
     dunst = {
       enable = true;
     };
