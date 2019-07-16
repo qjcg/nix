@@ -374,14 +374,14 @@ in
 
       config = {
         fonts = [
-          "Iosevka Term Regular 11"
+          "monospace 11"
         ];
 
         modifier = "${modifier}";
 
         gaps = {
-          inner = 8;
-          outer = 8;
+          inner = 10;
+          outer = 10;
         };
 
         keybindings =
@@ -418,6 +418,10 @@ in
           position = "top";
           mode = "dock";
 
+          fonts = [
+            "monospace 11"
+          ];
+
           colors = {
             background = "#000000";
             statusline = "#cccccc";
@@ -429,10 +433,7 @@ in
             urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
           };
 
-          extraConfig = ''
-            status_command ${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/status.toml
-          '';
-
+          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/status.toml";
         }];
 
         startup = [
