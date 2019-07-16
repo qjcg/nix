@@ -20,6 +20,7 @@ with pkgs;
       fortune
       fzf
       gopass
+      htop
       jq
       libfaketime
       lsof
@@ -96,6 +97,11 @@ with pkgs;
 
 
   GUI = {
+
+    browsers = [
+      chromium
+      qutebrowser
+    ];
 
     utilities = [
       gcolor3
