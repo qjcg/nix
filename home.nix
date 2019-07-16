@@ -305,7 +305,7 @@ in
 
         [[block]]
         block = "weather"
-        format = "{weather} ({location}) {temp}°"
+        format = "{location}: {weather} {temp}°"
         service = { name = "openweathermap", api_key = "${secrets.openweathermap-api-key}", city_id = "${secrets.openweathermap-city-id}", units = "metric" }
 
         # DISABLED: Information overload.
