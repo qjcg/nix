@@ -75,6 +75,7 @@ with pkgs;
       mr
       nodejs
       python37Packages.cookiecutter
+      python37Packages.poetry
       sbcl
       tig
       upx
