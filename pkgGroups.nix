@@ -61,9 +61,7 @@ with pkgs;
       soundfont-fluid
 
       mpv
-      pavucontrol
       pulseaudio
-      pulseeffects
       sox
       streamripper
       youtube-dl
@@ -83,10 +81,6 @@ with pkgs;
     ];
   };
 
-  # FIXME: Use lib.attrsets.collect and lib.lists.flatten to combine lists here.
-  # Ref:
-  # - file:///home/john/.config/nixpkgs/_docs/nixpkgs-manual.html#function-library-lib.attrsets.collect
-  # - file:///home/john/.config/nixpkgs/_docs/nixpkgs-manual.html#function-library-lib.lists.flatten
   GUI = {
     fonts = [
       fira-code
@@ -109,6 +103,11 @@ with pkgs;
 
     utilities = [
       sent
+    ];
+
+    multimedia = [
+      pulseeffects
+      pavucontrol
     ];
 
     network = [
