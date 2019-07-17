@@ -134,12 +134,6 @@ in
       enable = true;
       goPath = "go";
       goBin = "go/bin";
-
-      # TODO: For *applications*, create packages using buildGoModule.
-      # Ref: https://nixos.org/nixpkgs/manual/#ssec-go-modules
-      packages = {
-        "github.com/qjcg/4d" = builtins.fetchGit "git@github.com:qjcg/4d";
-      };
     };
 
     neovim = {
@@ -154,13 +148,13 @@ in
           set autochdir
           set autoindent
           set hlsearch			" highlight search results
-          set ignorecase			" case insensitive searches
+          set ignorecase		" case insensitive searches
           set laststatus=1		" only show statusbar if >1 windows open
           set listchars=tab:>-,eol:$
           set nowrap
           set shortmess+=I		" disable welcome screen
           set smartcase			" case-sensitive search only if specified
-          set splitright			" vsplit window to the right by default
+          set splitright		" vsplit window to the right by default
           set wildmenu			" dmenu-style menu
           set wildmode=full
 
