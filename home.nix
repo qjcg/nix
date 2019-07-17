@@ -247,6 +247,9 @@ in
   };
 
   xdg.configFile = {
+    "i3/workspace1.json" = {
+      source = ./files/workspace1.json;
+    };
     "i3/status.toml" = {
       onChange = "i3-msg restart";
       text = ''
@@ -322,6 +325,9 @@ in
 
       extraConfig = ''
         default_border pixel 5
+
+        # Disable floating slack window to enable layout restore.
+        for_window [class="^Slack$"] floating disable
       '';
 
       config = {
@@ -389,6 +395,7 @@ in
         }];
 
         startup = [
+          { notification = false; command = "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace1.json'"; }
           { notification = false; command = "~/.fehbg"; }
 
           { notification = false; command = "${cmd_slack}"; }
