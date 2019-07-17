@@ -34,7 +34,6 @@ with pkgs;
       renameutils
       ripgrep
       tesseract
-      tmux
       tree
       unzip
       utillinux

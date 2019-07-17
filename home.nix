@@ -164,6 +164,13 @@ in
       };
     };
 
+    tmux = {
+      enable = true;
+      escapeTime = 10;
+      shortcut = "b";
+      terminal = "screen-256color";
+    };
+
   };
 
 
