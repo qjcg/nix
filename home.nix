@@ -3,11 +3,7 @@
 
 # TODO: Use separate configurations for different environments (ex: home, work).
 
-{
-  pkgs,
-  lib ? pkgs.stdenv.lib,
-  ...
-}:
+{ pkgs, lib, ... }:
 
 let
   pg = pkgs.callPackage ./pkgGroups.nix {};
@@ -81,6 +77,7 @@ in
       shellAliases = {
         ls = "ls --color=auto";
         grep = "grep -E";
+        tree = "tree -A -C";
 
         hm = "home-manager";
         hmRemoveAllBut3 = "home-manager generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
