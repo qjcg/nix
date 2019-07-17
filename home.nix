@@ -364,9 +364,9 @@ in
             "${modifier}+Shift+e" = "exit";
 	  };
 
-        # FIXME: i3 border is NOT being set for full windows, just title tabs.
+        # NOTE: Border of i3-gaps windows is set via childBorder.
         colors = {
-          focused         = { border = "#0000ff"; background = "#000000"; text = "#00ffed"; indicator = "#ffffff"; childBorder = "#000000"; };
+          focused         = { border = "#0000ff"; background = "#000000"; text = "#00ffed"; indicator = "#ffffff"; childBorder = "#00ff83"; };
           focusedInactive = { border = "#000000"; background = "#000000"; text = "#ffffff"; indicator = "#ffffff"; childBorder = "#000000"; };
           unfocused       = { border = "#000000"; background = "#222222"; text = "#999999"; indicator = "#ffffff"; childBorder = "#000000"; };
         };
