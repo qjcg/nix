@@ -59,6 +59,7 @@ in
     bash = {
       enable = true;
       profileExtra = ''
+        export LC_COLLATE=C
         export PAGER=less
 
         # nodejs
