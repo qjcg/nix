@@ -41,6 +41,7 @@ with pkgs;
       weechat
 
       myPackages.go-4d
+      myPackages.horeb
       myPackages.mtlcam
       #myPackages.loccount # FIXME: Needs make-based build
     ];
