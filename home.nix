@@ -344,23 +344,29 @@ in
 
         keybindings =
           lib.mkOptionDefault {
+
+            # Start apps
             "${modifier}+Return" = "exec ${cmd_term}";
             "${modifier}+d"      = "exec ${cmd_menu}";
 
+            # Focus windows
             "${modifier}+${left}"  = "focus left";
             "${modifier}+${down}"  = "focus down";
             "${modifier}+${up}"    = "focus up";
             "${modifier}+${right}" = "focus right";
 
+            # Move windows
             "${modifier}+Shift+${left}"  = "move left";
             "${modifier}+Shift+${down}"  = "move down";
             "${modifier}+Shift+${up}"    = "move up";
             "${modifier}+Shift+${right}" = "move right";
 
+            # Switch workspaces
             "${modifier}+n"       = "workspace next_on_output";
             "${modifier}+p"       = "workspace prev_on_output";
             "${modifier}+Tab"     = "workspace back_and_forth";
 
+            # Use scratchpad
             "${modifier}+minus"       = "scratchpad show";
             "${modifier}+Shift+minus" = "move scratchpad";
 	  };
