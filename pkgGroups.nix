@@ -1,5 +1,9 @@
 # Package Groups
-{ pkgs, ... }:
+{
+  pkgs ? import <nixpkgs> {},
+  myPackages ? pkgs.callPackage ./myPackages {},
+  ...
+}:
 
 with pkgs; 
 {
@@ -33,7 +37,11 @@ with pkgs;
       tmux
       tree
       unzip
+      utillinux
       weechat
+
+      myPackages.go-4d
+      #myPackages.loccount # FIXME: Needs make-based build
     ];
 
     network = [
