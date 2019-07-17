@@ -369,6 +369,8 @@ in
             # Use scratchpad
             "${modifier}+minus"       = "scratchpad show";
             "${modifier}+Shift+minus" = "move scratchpad";
+
+            "${modifier}+Shift+e" = "exit";
 	  };
 
         # FIXME: i3 border is NOT being set for full windows, just title tabs.
