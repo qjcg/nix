@@ -105,8 +105,10 @@ in
       userEmail = "${secrets.git-email}";
       ignores = [
         "node_modules"
+        "__pycache__"
         "*.pyc"
         "*.iso"
+        ".netrwhist"
       ];
 
       aliases = {
