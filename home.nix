@@ -81,6 +81,7 @@ in
         tree = "tree -A -C";
 
         hm = "home-manager";
+        hms = "home-manager switch";
         hmRemoveAllBut3 = "home-manager generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
 
         drwWinVM = "rdesktop -u ${secrets.work-user} -p - -g 1680x1050 -K mt1n-${secrets.work-user}";
