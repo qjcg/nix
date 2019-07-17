@@ -32,4 +32,3 @@ buildGoModule rec {
     maintainers = [ { email = "john@gossetx.com"; github = "qjcg"; name = "John Gosset"; } ];
   };
 }
-

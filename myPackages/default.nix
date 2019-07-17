@@ -3,7 +3,8 @@
   ...
 }:
 
-let self = with pkgs; rec {
+with pkgs;
+{
   go-4d = callPackage ./4d {};
   loccount = callPackage ./loccount {};
-}; in self
+}
