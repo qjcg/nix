@@ -216,9 +216,9 @@ in
   };
 
   xdg.configFile = {
-    "i3/workspace1.json" = {
-      source = ./files/workspace1.json;
-    };
+    "cmus/rc".source = ./files/cmusrc;
+    "i3/workspace1.json".source = ./files/workspace1.json;
+
     "i3/status.toml" = {
       onChange = "i3-msg restart";
       text = ''
