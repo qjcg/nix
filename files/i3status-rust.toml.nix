@@ -5,7 +5,15 @@
 # See: https://github.com/greshake/i3status-rust/blob/master/blocks.md
 
 theme = "slick"
-icons = "awesome"
+
+[icons]
+name = "awesome"
+
+# TODO: Fix broken icons
+# Ref: https://github.com/greshake/i3status-rust/wiki/Theming-&-Icons#overwriting-themes-and-icon-sets
+[icons.overrides]
+#time = ""
+#volume_full = ""
 
 # DISABLED: "response contained malformed JSON" error causing bar to error out.
 #[[block]]
