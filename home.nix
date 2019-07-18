@@ -200,11 +200,6 @@ in
       '';
     };
 
-    # TODO: polybar -- configure and use, or remove
-    polybar = {
-      enable = false;
-    };
-
     # FIXME: i3lock does NOT unlock with correct password!
     #services.screen-locker = {
     #  enable = true;
@@ -223,7 +218,8 @@ in
     "i3/workspace1.json".source = ./files/workspace1.json;
 
     "i3/i3status-rust.toml" = {
-      source = ./files/i3status-rust.toml;
+      # Using fileContents allows antiquotations to be expanded.
+      text = pkgs.callPackage ./files/i3status-rust.toml.nix { inherit secrets; };
       onChange = "i3-msg restart";
     };
   };
