@@ -81,6 +81,7 @@ with pkgs;
       ctags
       delve
       fossil
+      gotools
       mkcert
       mr
       nodejs

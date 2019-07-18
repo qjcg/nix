@@ -154,9 +154,11 @@ in
             goyo
             limelight-vim
             neosnippet
+            neosnippet-snippets
             nerdtree
             python-mode
             tagbar
+            vim-go
             vim-nix
           ];
         };

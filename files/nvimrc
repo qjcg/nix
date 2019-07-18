@@ -27,4 +27,8 @@ nnoremap <leader>g :Goyo<CR>
 
 autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
 autocmd FileType nix setlocal cuc
-autocmd FileType go,python nested :TagbarOpen
+
+autocmd FileType go,python nested :TagbarOpen setlocal autowrite
+autocmd FileType go,python setlocal autowrite
+
+let g:go_fmt_command = "goimports"
