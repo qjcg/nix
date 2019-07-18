@@ -274,6 +274,10 @@ in
     };
   };
 
+  xdg.dataFile = {
+    "nvim/site/after/ftplugin/go.vim".source = ./files/go.vim;
+  };
+
   xsession = {
     enable = true;
 

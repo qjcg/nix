@@ -79,9 +79,16 @@ with pkgs;
 
     devtools = [
       ctags
-      delve
       fossil
+
+      # For Go.
+      delve
+      gogetdoc
+      gotags
       gotools
+      errcheck
+      upx
+
       mkcert
       mr
       nodejs
@@ -89,7 +96,6 @@ with pkgs;
       python37Packages.poetry
       sbcl
       tig
-      upx
     ];
 
     virt = [
