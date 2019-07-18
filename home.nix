@@ -144,7 +144,7 @@ in
       vimAlias = true;
       withPython3 = true;
       configure = {
-        customRC = lib.strings.fileContents ./files/nvimrc;
+        customRC = builtins.readFile ./files/nvimrc;
 
         packages.myVimPackage = with pkgs.vimPlugins; {
           start = [
@@ -218,7 +218,8 @@ in
     "i3/workspace1.json".source = ./files/workspace1.json;
 
     "i3/i3status-rust.toml" = {
-      # Using fileContents allows antiquotations to be expanded.
+
+      # Using pkgs.callPackage allows antiquotations to be expanded.
       text = pkgs.callPackage ./files/i3status-rust.toml.nix { inherit secrets; };
       onChange = "i3-msg restart";
     };
