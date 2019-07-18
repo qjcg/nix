@@ -146,7 +146,7 @@ in
       vimAlias = true;
       withPython3 = true;
       configure = {
-        customRC = lib.strings.fileContents ./files/nvimrc;
+        customRC = builtins.readFile ./files/nvimrc;
 
         packages.myVimPackage = with pkgs.vimPlugins; {
           start = [
@@ -156,10 +156,13 @@ in
             goyo
             limelight-vim
             neosnippet
+            neosnippet-snippets
             nerdtree
             python-mode
             tagbar
+            vim-go
             vim-nix
+            vim-toml
           ];
         };
 
@@ -199,11 +202,6 @@ in
       '';
     };
 
-    # TODO: polybar -- configure and use, or remove
-    polybar = {
-      enable = false;
-    };
-
     # FIXME: i3lock does NOT unlock with correct password!
     #services.screen-locker = {
     #  enable = true;
@@ -221,57 +219,16 @@ in
     "cmus/rc".source = ./files/cmusrc;
     "i3/workspace1.json".source = ./files/workspace1.json;
 
-    "i3/status.toml" = {
+    "i3/i3status-rust.toml" = {
+
+      # Using pkgs.callPackage allows antiquotations to be expanded.
+      text = pkgs.callPackage ./files/i3status-rust.toml.nix { inherit secrets; };
       onChange = "i3-msg restart";
-      text = ''
-        # i3status-rust configuration
-
-        theme = "slick"
-        icons = "awesome"
-
-        [[block]]
-        block = "weather"
-        format = "{temp}°/{weather}"
-        service = { name = "openweathermap", api_key = "${secrets.openweathermap-api-key}", city_id = "${secrets.openweathermap-city-id}", units = "metric" }
-
-        # DISABLED: Information overload.
-        #[[block]]
-        #block = "nvidia_gpu"
-        #label = "Quadro P1000"
-
-        # DISABLED: Information overload.
-        #[[block]]
-        #block = "xrandr"
-        #resolution = true
-
-        # DISABLED: Information overload.
-        #[[block]]
-        #block = "uptime"
-
-        [[block]]
-        block = "disk_space"
-        path = "/"
-        alias = "/"
-        info_type = "available"
-        unit = "GB"
-        interval = 20
-        warning = 20.0
-        alert = 10.0
-
-        [[block]]
-        block = "load"
-        interval = 1
-        format = "{1m} {5m} {15m}"
-
-        [[block]]
-        block = "sound"
-
-        [[block]]
-        block = "time"
-        interval = 60
-        format = "%a %b %-d, %-I:%M%P"
-      '';
     };
+  };
+
+  xdg.dataFile = {
+    "nvim/site/after/ftplugin/go.vim".source = ./files/go.vim;
   };
 
   xsession = {
@@ -370,7 +327,7 @@ in
             urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
           };
 
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/status.toml";
+          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/i3status-rust.toml";
         }];
 
         startup = [
