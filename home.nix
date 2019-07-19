@@ -137,10 +137,10 @@ in
       };
     };
 
-    go = {
+    go = rec {
       enable = true;
       goPath = "go";
-      goBin = "go/bin";
+      goBin = "${goPath}/bin";
     };
 
     neovim = {
