@@ -8,8 +8,8 @@
 let
   pg = pkgs.callPackage ./pkgGroups.nix {};
 
-  homeLaptop = lib.callPackage ./home/machines/homeLaptop {};
-  workDesktop = lib.callPackage ./home/machines/workDesktop {};
+  homeLaptop = lib.callPackage ./machines/homeLaptop {};
+  workDesktop = lib.callPackage ./machines/workDesktop {};
 
   # A secrets.nix file should be created containing the following values.
   secrets = if builtins.pathExists ./secrets.nix then import ./secrets.nix else {
