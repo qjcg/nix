@@ -12,7 +12,6 @@ nmap <leader>gi <Plug>(go-info)
 nmap <leader>gr <Plug>(go-run)
 nmap <leader>gt <Plug>(go-test)
 
-" FIXME: (go-def) not working (bug :GoDef is!!)
-nmap CTRL-] <Plug>(go-def)
+nmap <C-]> <Plug>(go-def)
 
 call tagbar#autoopen(1)
