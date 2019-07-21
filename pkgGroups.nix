@@ -126,6 +126,7 @@ with pkgs;
       tor-browser-bundle-bin
       wireshark
       xaos
+      xorg.xev
       xscreensaver
       xwinwrap
     ];
@@ -152,10 +153,11 @@ with pkgs;
 
     fonts = [
       fira-code
+      font-awesome_4
       fontconfig-penultimate
       gtk2fontsel
-      iosevka
       inconsolata
+      iosevka
       libertine
       roboto
     ];
