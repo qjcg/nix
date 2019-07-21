@@ -8,7 +8,7 @@
 let
   pg = pkgs.callPackage ./pkgGroups.nix {};
 
-  homeLaptop = lib.callPackage ./machines/homeLaptop {};
+  luban = lib.callPackage ./machines/luban {};
   workDesktop = lib.callPackage ./machines/workDesktop {};
 
   # A secrets.nix file should be created containing the following values.
