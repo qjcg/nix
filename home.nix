@@ -297,6 +297,10 @@ in
             "${modifier}+p"       = "workspace prev_on_output";
             "${modifier}+Tab"     = "workspace back_and_forth";
 
+            # Move containers accross outputs.
+            "${modifier}+Shift+period"       = "move container to output right";
+            "${modifier}+Shift+comma"        = "move container to output left";
+
             # Use scratchpad
             "${modifier}+minus"       = "scratchpad show";
             "${modifier}+Shift+minus" = "move scratchpad";
