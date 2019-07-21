@@ -36,6 +36,10 @@ name = "awesome"
 #block = "uptime"
 
 [[block]]
+block = "battery"
+format = "{percentage}% {time}"
+
+[[block]]
 block = "disk_space"
 path = "/"
 alias = "/"
