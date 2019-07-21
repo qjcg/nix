@@ -184,10 +184,11 @@ in
 
   services = {
 
-    # FIXME: compton fails, complaining about GLX.
     compton = {
-      enable = false;
+      enable = true;
+      fade = true;
       activeOpacity = "0.9";
+      inactiveOpacity = "0.8";
     };
 
     dunst = {
@@ -242,6 +243,10 @@ in
       modifier = "Mod4";
 
       cmd_term = "${pkgs.st}/bin/st -f 'monospace:style=regular:size=11'";
+
+      # FIXME: cmd_term_tmux: not working, new window exits immediately with exit code 1.
+      cmd_term_tmux = "${cmd_term} -e 'tmux attach -dt main || tmux new -s main'";
+
       # FIXME: nix dmenu_run not working on Ubuntu 18.04
       cmd_menu = "dmenu_run -fn 'monospace:style=Regular:size=13' -nb '#000000'";
       cmd_browser = "${pkgs.firefox}/bin/firefox";
@@ -320,7 +325,7 @@ in
           mode = "dock";
 
           fonts = [
-            "monospace 11"
+            "monospace 16"
           ];
 
           colors = {
@@ -341,8 +346,7 @@ in
           { notification = false; command = "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace1.json'"; }
           { notification = false; command = "~/.fehbg"; }
 
-          { notification = false; command = "${cmd_slack}"; }
-          { notification = false; command = "${cmd_term}"; }
+          { notification = false; command = "${cmd_term_tmux}"; }
           { notification = false; command = "${cmd_browser}"; }
 
           # Set faster key repeat rate, inspired by EXWM.
