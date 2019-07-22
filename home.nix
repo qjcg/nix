@@ -191,8 +191,8 @@ in
     compton = {
       enable = true;
       fade = true;
-      activeOpacity = "0.9";
-      inactiveOpacity = "0.8";
+      activeOpacity = "1.0";
+      inactiveOpacity = "1.0";
     };
 
     dunst = {
