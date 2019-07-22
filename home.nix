@@ -177,6 +177,14 @@ in
       escapeTime = 10;
       shortcut = "b";
       terminal = "screen-256color";
+      historyLimit = 10000;
+      extraConfig = ''
+        set-option -g renumber-windows on
+
+        bind-key '"' split-window -c "#{pane_current_path}"
+        bind-key % split-window -h -c "#{pane_current_path}"
+        bind-key c new-window -c "#{pane_current_path}"
+      '';
     };
 
   };
