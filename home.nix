@@ -260,7 +260,7 @@ in
       cmd_term_tmux = "${cmd_term} -e 'tmux attach -dt main || tmux new -s main'";
 
       # FIXME: nix dmenu_run not working on Ubuntu 18.04
-      cmd_menu = "dmenu_run -fn 'Iosevka:style=Regular:size=13' -nb '#000000' -sb '#00fcff' -sf '#ffffff'";
+      cmd_menu = "${pkgs.dmenu}/bin/dmenu_run -fn 'Iosevka:style=Regular:size=13' -nb '#000000' -sb '#00fcff' -sf '#000000'";
       cmd_browser = "${pkgs.firefox}/bin/firefox";
       cmd_slack = "${pkgs.slack}/bin/slack";
 
