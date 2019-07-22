@@ -9,11 +9,6 @@ theme = "slick"
 [icons]
 name = "awesome"
 
-# TODO: Fix broken icons
-# Ref: https://github.com/greshake/i3status-rust/wiki/Theming-&-Icons#overwriting-themes-and-icon-sets
-[icons.overrides]
-#time = ""
-#volume_full = ""
 
 # DISABLED: "response contained malformed JSON" error causing bar to error out.
 #[[block]]
@@ -34,6 +29,12 @@ name = "awesome"
 # DISABLED: Information overload.
 #[[block]]
 #block = "uptime"
+
+# DISABLED: Failing with "unknown block" error
+#[[block]]
+#block = "bluetooth"
+#mac = "FC:58:FA:98:9E:21"
+
 
 [[block]]
 block = "battery"
