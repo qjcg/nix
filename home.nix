@@ -87,7 +87,7 @@ in
       # To override, you can use:
       #    home-manager -I nixpkgs=~/.nix-defexpr/channels/unstable switch
       # Ref: https://github.com/rycee/home-manager/issues/376#issuecomment-419666167
-        hm = "home-manager -I nixpkgs=~/.nix-defexpr/channels/unstable";
+        hm = "home-manager";
         hms = "${hm} switch";
         hmRemoveAllBut3 = "${hm} generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
 
