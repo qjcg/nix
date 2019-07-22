@@ -128,15 +128,16 @@ with pkgs;
   GUI = {
 
     browsers = [
+      browserpass
       chromium
       qutebrowser
+      tor-browser-bundle-bin
     ];
 
     utilities = [
       gcolor3
       mesa
       sent
-      tor-browser-bundle-bin
       wireshark
       xaos
       xorg.xev
