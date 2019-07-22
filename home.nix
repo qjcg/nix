@@ -9,7 +9,7 @@ let
   pg = pkgs.callPackage ./pkgGroups.nix {};
 
   luban = lib.callPackage ./machines/luban {};
-  workDesktop = lib.callPackage ./machines/workDesktop {};
+  eiffel = lib.callPackage ./machines/eiffel {};
 
   # A secrets.nix file should be created containing the following values.
   secrets = if builtins.pathExists ./secrets.nix then import ./secrets.nix else {
