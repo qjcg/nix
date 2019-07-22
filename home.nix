@@ -167,9 +167,11 @@ in
             nerdtree
             python-mode
             tagbar
+            vim-beancount
             vim-go
             vim-nix
             vim-toml
+            typescript-vim
           ];
         };
 
