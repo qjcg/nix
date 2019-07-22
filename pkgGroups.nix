@@ -26,6 +26,7 @@ with pkgs;
       gopass
       htop
       jq
+      lastpass-cli
       libfaketime
       lsof
       mkpasswd
@@ -154,6 +155,7 @@ with pkgs;
       fira-code
       fontconfig-penultimate
       gtk2fontsel
+      go-font
       iosevka
       inconsolata
       libertine
