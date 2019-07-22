@@ -35,9 +35,9 @@ service = { name = "openweathermap", api_key = "${secrets.openweathermap-api-key
 #mac = "FC:58:FA:98:9E:21"
 
 
-[[block]]
-block = "battery"
-format = "{percentage}% {time}"
+#[[block]]
+#block = "battery"
+#format = "{percentage}% {time}"
 
 [[block]]
 block = "disk_space"
