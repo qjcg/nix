@@ -41,7 +41,9 @@ with pkgs;
       utillinux
       weechat
 
-      # FIXME: Not compiling on fresh NixOS installation.
+      fava
+      python37Packages.beancount
+
       packages.go-4d
       packages.horeb
       packages.mtlcam
@@ -84,7 +86,6 @@ with pkgs;
     ];
 
     devtools = [
-      ctags
       fossil
 
       # For Go.
@@ -99,9 +100,11 @@ with pkgs;
       mr
       nodejs
       python37Packages.cookiecutter
+      python37Packages.ipython
       python37Packages.poetry
       sbcl
       tig
+      universal-ctags
     ];
 
     virt = [
@@ -142,12 +145,10 @@ with pkgs;
     ];
 
     window_manager = [
+      dmenu
       i3status-rust
       i3lock
       st
-
-      # FIXME: dmenu_run exits after one keypress (Ubuntu 18.04, but NOT arch).
-      dmenu
 
       # FIXME: slock fails with error on invocation ("getgrnam nogroup: group entry not found")
       #slock
