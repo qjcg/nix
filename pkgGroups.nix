@@ -1,7 +1,7 @@
 # Package Groups
 {
-  pkgs ? import <nixpkgs> {},
-  myPackages ? pkgs.callPackage ./myPackages {},
+  pkgs,
+  packages ? pkgs.callPackage ./packages {},
   ...
 }:
 
@@ -21,6 +21,7 @@ with pkgs;
       davmail
       ed
       fdupes
+      file
       fortune
       fzf
       gopass
@@ -40,10 +41,12 @@ with pkgs;
       utillinux
       weechat
 
-      myPackages.go-4d
-      myPackages.horeb
-      myPackages.mtlcam
-      #myPackages.loccount # FIXME: Needs make-based build
+      # FIXME: Not compiling on fresh NixOS installation.
+      packages.go-4d
+      packages.horeb
+      packages.mtlcam
+
+      #packages.loccount # FIXME: Needs make-based build
     ];
 
     network = [
@@ -66,6 +69,7 @@ with pkgs;
       alsaPlugins
       alsaTools
       alsaUtils
+
       cmus
 
       fluidsynth
@@ -76,6 +80,7 @@ with pkgs;
       sox
       streamripper
       youtube-dl
+      youtube-viewer
     ];
 
     devtools = [
@@ -108,6 +113,10 @@ with pkgs;
       skopeo
       tinyemu
       vagrant
+      virtualbox
+
+      # FIXME: Not working with *system* kernel
+      #linuxPackages_4_19.virtualbox
     ];
 
   };
@@ -127,6 +136,7 @@ with pkgs;
       tor-browser-bundle-bin
       wireshark
       xaos
+      xorg.xev
       xscreensaver
       xwinwrap
     ];
@@ -137,7 +147,7 @@ with pkgs;
       st
 
       # FIXME: dmenu_run exits after one keypress (Ubuntu 18.04, but NOT arch).
-      #dmenu
+      dmenu
 
       # FIXME: slock fails with error on invocation ("getgrnam nogroup: group entry not found")
       #slock
@@ -153,13 +163,16 @@ with pkgs;
 
     fonts = [
       fira-code
+      font-awesome-ttf
       fontconfig-penultimate
-      gtk2fontsel
       go-font
-      iosevka
+      gtk2fontsel
       inconsolata
+      iosevka
       libertine
       roboto
+      unifont
+      unifont_upper
     ];
 
     multimedia = [
@@ -167,6 +180,7 @@ with pkgs;
       gimp # gimp-with-plugins didn't compile! 2019-07-07
       imagemagick
       inkscape
+      obs-studio
       pavucontrol
       pulseeffects
       sxiv

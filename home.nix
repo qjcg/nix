@@ -8,8 +8,8 @@
 let
   pg = pkgs.callPackage ./pkgGroups.nix {};
 
-  homeLaptop = lib.callPackage ./machines/homeLaptop {};
-  workDesktop = lib.callPackage ./machines/workDesktop {};
+  luban = lib.callPackage ./machines/luban {};
+  eiffel = lib.callPackage ./machines/eiffel {};
 
   # A secrets.nix file should be created containing the following values.
   secrets = if builtins.pathExists ./secrets.nix then import ./secrets.nix else {
@@ -78,14 +78,18 @@ in
         if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
       '';
 
-      shellAliases = {
+      shellAliases = rec {
         ls = "ls --color=auto";
         grep = "grep -E";
         tree = "tree -A -C";
 
-        hm = "home-manager";
-        hms = "home-manager switch";
-        hmRemoveAllBut3 = "home-manager generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
+      # NOTE: Home manager ALWAYS users <nixpkgs> for the package set.
+      # To override, you can use:
+      #    home-manager -I nixpkgs=~/.nix-defexpr/channels/unstable switch
+      # Ref: https://github.com/rycee/home-manager/issues/376#issuecomment-419666167
+        hm = "home-manager -I nixpkgs=~/.nix-defexpr/channels/unstable";
+        hms = "${hm} switch";
+        hmRemoveAllBut3 = "${hm} generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
 
         drwWinVM = "rdesktop -u ${secrets.work-user} -p - -g 1680x1050 -K mt1n-${secrets.work-user}";
       };
@@ -192,10 +196,11 @@ in
 
   services = {
 
-    # FIXME: compton fails, complaining about GLX.
     compton = {
-      enable = false;
-      activeOpacity = "0.9";
+      enable = true;
+      fade = true;
+      activeOpacity = "1.0";
+      inactiveOpacity = "1.0";
     };
 
     dunst = {
@@ -250,6 +255,10 @@ in
       modifier = "Mod4";
 
       cmd_term = "${pkgs.st}/bin/st -f 'monospace:style=regular:size=11'";
+
+      # FIXME: cmd_term_tmux: not working, new window exits immediately with exit code 1.
+      cmd_term_tmux = "${cmd_term} -e 'tmux attach -dt main || tmux new -s main'";
+
       # FIXME: nix dmenu_run not working on Ubuntu 18.04
       cmd_menu = "dmenu_run -fn 'monospace:style=Regular:size=13' -nb '#000000'";
       cmd_browser = "${pkgs.firefox}/bin/firefox";
@@ -305,6 +314,10 @@ in
             "${modifier}+p"       = "workspace prev_on_output";
             "${modifier}+Tab"     = "workspace back_and_forth";
 
+            # Move containers accross outputs.
+            "${modifier}+Shift+period"       = "move container to output right";
+            "${modifier}+Shift+comma"        = "move container to output left";
+
             # Use scratchpad
             "${modifier}+minus"       = "scratchpad show";
             "${modifier}+Shift+minus" = "move scratchpad";
@@ -324,7 +337,7 @@ in
           mode = "dock";
 
           fonts = [
-            "monospace 11"
+            "monospace 16"
           ];
 
           colors = {
@@ -345,8 +358,7 @@ in
           { notification = false; command = "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace1.json'"; }
           { notification = false; command = "~/.fehbg"; }
 
-          { notification = false; command = "${cmd_slack}"; }
-          { notification = false; command = "${cmd_term}"; }
+          { notification = false; command = "${cmd_term_tmux}"; }
           { notification = false; command = "${cmd_browser}"; }
 
           # Set faster key repeat rate, inspired by EXWM.
