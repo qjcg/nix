@@ -26,9 +26,9 @@ nnoremap <leader>S :setlocal spell!<CR>
 nnoremap <leader>v :e $MYVIMRC<CR>
 nnoremap <leader>w :w !sudo tee %<CR><CR>
 
-nnoremap <leader>g :Goyo<CR>
-nnoremap <leader>n :NERDTreeToggle<CR>
-nnoremap <leader>t :TagbarToggle<CR>
+nnoremap <silent> <leader>g :Goyo<CR>
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+nnoremap <silent> <leader>t :TagbarToggle<CR>
 
 autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
 autocmd FileType nix setlocal cuc
