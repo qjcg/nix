@@ -78,14 +78,18 @@ in
         if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
       '';
 
-      shellAliases = {
+      shellAliases = rec {
         ls = "ls --color=auto";
         grep = "grep -E";
         tree = "tree -A -C";
 
-        hm = "home-manager";
-        hms = "home-manager switch";
-        hmRemoveAllBut3 = "home-manager generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
+      # NOTE: Home manager ALWAYS users <nixpkgs> for the package set.
+      # To override, you can use:
+      #    home-manager -I nixpkgs=~/.nix-defexpr/channels/unstable switch
+      # Ref: https://github.com/rycee/home-manager/issues/376#issuecomment-419666167
+        hm = "home-manager -I nixpkgs=~/.nix-defexpr/channels/unstable";
+        hms = "${hm} switch";
+        hmRemoveAllBut3 = "${hm} generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
 
         drwWinVM = "rdesktop -u ${secrets.work-user} -p - -g 1680x1050 -K mt1n-${secrets.work-user}";
       };
