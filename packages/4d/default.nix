@@ -1,5 +1,5 @@
 {
-  pkgs ? import <nixpkgs> {},
+  pkgs,
   lib ? pkgs.lib,
   fetchFromGitHub ? pkgs.fetchFromGitHub,
   buildGoModule ? pkgs.buildGoModule,

@@ -1,5 +1,5 @@
 {
-  pkgs ? import <nixpkgs> {},
+  pkgs,
   lib ? pkgs.lib,
   fetchFromGitHub ? pkgs.fetchFromGitHub,
   buildGoModule ? pkgs.buildGoModule,
@@ -23,7 +23,7 @@ buildGoModule rec {
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
-  modSha256 = "11scb4mg8y8p0sldxdascngbc1w5v9hnpch54hjifcglf2hhi0fc";
+  modSha256 = "0w8q1ria631pl2wc0cnpcgk43ywvi15qij2nab46wd4cjsxd7z0r";
 
   meta = with lib; {
     description = "Download Montreal traffic camera images.";
