@@ -1,7 +1,7 @@
 # Package Groups
 {
-  pkgs ? import <nixpkgs> {},
-  myPackages ? pkgs.callPackage ./myPackages {},
+  pkgs,
+  packages ? pkgs.callPackage ./packages {},
   ...
 }:
 
@@ -15,7 +15,7 @@ with pkgs;
     ];
 
     utilities = [
-      #aerc
+      aerc
       ansible
       aria2
       davmail
@@ -41,11 +41,11 @@ with pkgs;
       weechat
 
       # FIXME: Not compiling on fresh NixOS installation.
-      #myPackages.go-4d
-      #myPackages.horeb
-      #myPackages.mtlcam
+      packages.go-4d
+      packages.horeb
+      packages.mtlcam
 
-      #myPackages.loccount # FIXME: Needs make-based build
+      #packages.loccount # FIXME: Needs make-based build
     ];
 
     network = [
@@ -94,7 +94,7 @@ with pkgs;
       errcheck
       upx
 
-      #mkcert
+      mkcert
       mr
       nodejs
       python37Packages.cookiecutter
@@ -162,7 +162,7 @@ with pkgs;
 
     fonts = [
       fira-code
-      font-awesome_4
+      font-awesome-ttf
       fontconfig-penultimate
       go-font
       gtk2fontsel
@@ -170,6 +170,8 @@ with pkgs;
       iosevka
       libertine
       roboto
+      unifont
+      unifont_upper
     ];
 
     multimedia = [
