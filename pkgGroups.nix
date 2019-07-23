@@ -99,6 +99,7 @@ with pkgs;
       mkcert
       mr
       nodejs
+
       python37Packages.cookiecutter
       python37Packages.ipython
       python37Packages.poetry
@@ -143,6 +144,10 @@ with pkgs;
       xorg.xev
       xscreensaver
       xwinwrap
+    ];
+
+    dev = [
+      dbeaver
     ];
 
     window_manager = [
