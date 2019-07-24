@@ -327,6 +327,7 @@ in
             "${modifier}+Shift+minus" = "move scratchpad";
 
             "${modifier}+Shift+e" = "exit";
+            "${modifier}+Shift+x" = "kill";
 	  };
 
         # NOTE: Border of i3-gaps windows is set via childBorder.
