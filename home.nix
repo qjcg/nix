@@ -189,8 +189,9 @@ in
         bind-key % split-window -h -c "#{pane_current_path}"
         bind-key c new-window -c "#{pane_current_path}"
 
-        bind-key S command-prompt -p 'new-session name:' "new-session -s %1"
+        bind-key S command-prompt -p "new-session name:" "new-session -s %1"
         bind-key R source-file ~/.tmux.conf; display-message "source-file ~/.tmux.conf"
+        bind-key < command-prompt -p "rename-session to:" "rename-session %%"
       '';
     };
 
