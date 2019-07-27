@@ -192,7 +192,10 @@ with pkgs;
       gimp # gimp-with-plugins didn't compile! 2019-07-07
       imagemagick
       inkscape
+
       obs-studio
+      qt5.qtbase
+
       pavucontrol
       pulseeffects
       sxiv
