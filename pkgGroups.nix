@@ -24,6 +24,7 @@ with pkgs;
       file
       fortune
       fzf
+      gnupg
       gopass
       htop
       jq
@@ -144,6 +145,10 @@ with pkgs;
       xorg.xev
       xscreensaver
       xwinwrap
+    ];
+
+    games = [
+      retroarch
     ];
 
     dev = [
