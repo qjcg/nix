@@ -138,6 +138,7 @@ with pkgs;
 
     utilities = [
       gcolor3
+      libnotify
       mesa
       sent
       wireshark
