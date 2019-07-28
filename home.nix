@@ -294,6 +294,7 @@ in
 
       extraConfig = ''
         default_border pixel 2
+        title_align center
       '';
 
       config = {
