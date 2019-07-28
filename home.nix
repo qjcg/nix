@@ -57,6 +57,18 @@ in
 
   programs = {
 
+    alacritty = {
+      enable = true;
+      settings = {
+        font.family = "Iosevka"; # FIXME: alacritty font family not working!
+        font.style = "Regular";
+        font.size = 6.0;
+
+        cursor.text = "0x000000";
+        cursor.color = "0xffffff";
+      };
+    };
+
     autorandr.enable = true;
 
     bash = {

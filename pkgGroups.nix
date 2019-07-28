@@ -203,7 +203,6 @@ with pkgs;
 
     # FIXME: These apps close immediately on startup, complaining about GLX.
     broken = [
-      alacritty
       baresip
       cool-retro-term
       glxinfo
