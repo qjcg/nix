@@ -10,10 +10,10 @@ theme = "solarized-dark"
 name = "awesome"
 
 
-[[block]]
-block = "weather"
-format = "{temp}°/{weather}"
-service = { name = "openweathermap", api_key = "${secrets.openweathermap-api-key}", city_id = "${secrets.openweathermap-city-id}", units = "metric" }
+#[[block]]
+#block = "weather"
+#format = "{temp}°/{weather}"
+#service = { name = "openweathermap", api_key = "${secrets.openweathermap-api-key}", city_id = "${secrets.openweathermap-city-id}", units = "metric" }
 
 # DISABLED: Information overload.
 #[[block]]
