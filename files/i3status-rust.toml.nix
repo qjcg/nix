@@ -4,7 +4,7 @@
 # i3status-rust configuration
 # See: https://github.com/greshake/i3status-rust/blob/master/blocks.md
 
-theme = "slick"
+theme = "solarized-dark"
 
 [icons]
 name = "awesome"
