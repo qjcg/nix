@@ -304,10 +304,10 @@ in
     let
       modifier = "Mod4";
 
-      cmd_term = "${pkgs.st}/bin/st -f 'Iosevka:size=13'";
+      cmd_term = "${pkgs.st}/bin/st -f 'Iosevka-13'";
 
       # FIXME: cmd_term_tmux: not working, new window exits immediately with exit code 1.
-      cmd_term_tmux = "${cmd_term} -e 'tmux attach -dt main || tmux new -s main'";
+      cmd_term_tmux = "${cmd_term} -e sh -c 'tmux new -ADs main'";
 
       cmd_menu = "${pkgs.dmenu}/bin/dmenu_run -fn 'Iosevka:size=20' -nb '#000000' -sb '#00fcff' -sf '#000000'";
       cmd_browser = "${pkgs.firefox}/bin/firefox";
@@ -321,8 +321,8 @@ in
       enable = true;
 
       extraConfig = ''
-        default_border pixel 2
-        title_align center
+        default_border  pixel 2
+        title_align     center
       '';
 
       config = {
