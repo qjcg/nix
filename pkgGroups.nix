@@ -18,6 +18,7 @@ with pkgs;
       aerc
       ansible
       aria2
+      bash_5
       davmail
       ed
       fdupes
