@@ -281,8 +281,7 @@ in
       # FIXME: cmd_term_tmux: not working, new window exits immediately with exit code 1.
       cmd_term_tmux = "${cmd_term} -e 'tmux attach -dt main || tmux new -s main'";
 
-      # FIXME: nix dmenu_run not working on Ubuntu 18.04
-      cmd_menu = "${pkgs.dmenu}/bin/dmenu_run -fn 'Iosevka:style=Regular:size=20' -nb '#000000' -sb '#00fcff' -sf '#000000'";
+      cmd_menu = "${pkgs.dmenu}/bin/dmenu_run -fn 'Iosevka:size=20' -nb '#000000' -sb '#00fcff' -sf '#000000'";
       cmd_browser = "${pkgs.firefox}/bin/firefox";
       cmd_slack = "${pkgs.slack}/bin/slack";
 
@@ -294,15 +293,12 @@ in
       enable = true;
 
       extraConfig = ''
-        default_border pixel 5
-
-        # Disable floating slack window to enable layout restore.
-        for_window [class="^Slack$"] floating disable
+        default_border pixel 2
       '';
 
       config = {
         fonts = [
-          "monospace 11"
+          "Iosevka Medium 13"
         ];
 
         modifier = "${modifier}";
@@ -360,7 +356,7 @@ in
           mode = "dock";
 
           fonts = [
-            "Iosevka 13"
+            "Iosevka Medium 13"
           ];
 
           colors = {
