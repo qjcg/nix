@@ -276,7 +276,7 @@ in
     let
       modifier = "Mod4";
 
-      cmd_term = "${pkgs.st}/bin/st -f 'Iosevka:style=Regular:size=11'";
+      cmd_term = "${pkgs.st}/bin/st -f 'Iosevka:size=13'";
 
       # FIXME: cmd_term_tmux: not working, new window exits immediately with exit code 1.
       cmd_term_tmux = "${cmd_term} -e 'tmux attach -dt main || tmux new -s main'";
