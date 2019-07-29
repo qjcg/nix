@@ -5,8 +5,9 @@
   ...
 }:
 
-with pkgs; 
+with pkgs;
 {
+
   CLI = {
     nix = [
       nixops

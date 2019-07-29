@@ -1,8 +1,12 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
 
-let
-  pg = pkgs.callPackage ../../pkgGroups.nix {};
-in
+  pg,
+  secrets,
+  ...
+}:
+
 {
   fonts.fontconfig.enable = true;
   manual.html.enable = true;

@@ -1,13 +1,12 @@
 {
   pkgs,
   lib,
+
+  pg,
   secrets,
   ...
 }:
 
-let
-  pg = pkgs.callPackage ../../pkgGroups.nix {};
-in
 {
   fonts.fontconfig.enable = true;
   manual.html.enable = true;
