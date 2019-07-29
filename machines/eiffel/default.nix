@@ -292,6 +292,12 @@
   xsession = {
     enable = true;
 
+    pointerCursor = with pkgs; {
+      name = "Vanilla-DMZ";
+      package = vanilla-dmz;
+      size = 64;
+    };
+
     windowManager.i3 = 
     let
       modifier = "Mod4";
