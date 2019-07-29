@@ -9,7 +9,7 @@
     "nodes": [
         {
             "border": "pixel",
-            "current_border_width": 5,
+            "current_border_width": 2,
             "floating": "auto_off",
             "geometry": {
                "height": 460,
@@ -29,7 +29,7 @@
         },
         {
             "border": "pixel",
-            "current_border_width": 5,
+            "current_border_width": 2,
             "floating": "auto_off",
             "geometry": {
                "height": 2085,
