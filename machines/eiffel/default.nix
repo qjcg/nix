@@ -280,7 +280,7 @@
     "i3/i3status-rust.toml" = {
 
       # Using pkgs.callPackage allows antiquotations to be expanded.
-      text = pkgs.callPackage ../../files/i3status-rust.toml.nix { inherit secrets; };
+      text = pkgs.callPackage ../../files/i3status-rust_eiffel.toml.nix { inherit secrets; };
       onChange = "i3-msg restart";
     };
   };
