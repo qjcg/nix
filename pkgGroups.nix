@@ -1,6 +1,6 @@
 # Package Groups
 {
-  pkgs,
+  pkgs ? import <nixpkgs>,
   packages ? pkgs.callPackage ./packages {},
   ...
 }:
@@ -9,6 +9,15 @@ with pkgs;
 {
 
   CLI = {
+    personal = [
+      packages.go-4d
+      packages.horeb
+      packages.mtlcam
+
+      #packages.loccount # FIXME: Needs make-based build
+    ];
+
+
     nix = [
       nixops
       nix-bash-completions
@@ -47,11 +56,6 @@ with pkgs;
       fava
       python37Packages.beancount
 
-      packages.go-4d
-      packages.horeb
-      packages.mtlcam
-
-      #packages.loccount # FIXME: Needs make-based build
     ];
 
     network = [
