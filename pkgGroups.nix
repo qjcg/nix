@@ -117,6 +117,7 @@ with pkgs;
 
     virt = [
       buildah
+      dive
       docker-compose
       packer
       podman
