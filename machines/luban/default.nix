@@ -1,16 +1,12 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  secrets,
+  ...
+}:
 
 let
   pg = pkgs.callPackage ../../pkgGroups.nix {};
-
-  # A secrets.nix file should be created containing the following values.
-  secrets = if builtins.pathExists ../../secrets.nix then import ../../secrets.nix else {
-    openweathermap-api-key = "";
-    openweathermap-city-id = "";
-    work-user = "";
-    git-name = "";
-    git-email = "";
-  };
 in
 {
   fonts.fontconfig.enable = true;
