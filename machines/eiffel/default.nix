@@ -82,6 +82,9 @@
         grep = "grep -E";
         tree = "tree -A -C";
 
+        # Print all Active Directory groups. It seems they have GID >= 10000.
+        adGroups = "id | sed -e 's/,/\\n/g' -e 's/(/: /g' -e 's/)//g' | sort -n | awk -F: '/^[1-9]/ && $1 > 10000'";
+
       # NOTE: Home manager ALWAYS uses <nixpkgs> for the package set.
       # Ref: https://github.com/rycee/home-manager/issues/376#issuecomment-419666167
         hm = "home-manager";
