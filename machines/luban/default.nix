@@ -208,8 +208,6 @@
     compton = {
       enable = true;
       fade = true;
-
-      # FIXME: compton faceExclude NOT working for dmenu.
       fadeExclude = [
         "class_g ~= 'dmenu'"
       ];
@@ -266,10 +264,7 @@
     #  lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 000000";
     #};
 
-    # TODO: Determine whether systemctlPath is needed for anything (Ubuntu 18.04).
-    #systemd.user = {
-    #  systemctlPath = "/usr/bin/systemctl";
-    #};
+    syncthing.enable = true;
 
   };
 

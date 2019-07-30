@@ -81,6 +81,7 @@ with pkgs;
 
       cmus
 
+      ffmpeg
       fluidsynth
       soundfont-fluid
 
