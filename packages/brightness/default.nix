@@ -2,6 +2,7 @@
   pkgs ? import <nixpkgs> {},
   lib ? pkgs.lib,
   buildGoModule ? pkgs.buildGoModule,
+  fetchgit ? builtins.fetchgit,
   ...
 }:
 
@@ -9,7 +10,7 @@ buildGoModule rec {
   name = "brightness-${version}";
   version = "0.6.0";
 
-  src = builtins.fetchGit {
+  src = fetchgit {
     url = "git@git.jgosset.net:brightness";
     rev = "v${version}";
 

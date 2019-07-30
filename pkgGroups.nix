@@ -14,6 +14,10 @@ with pkgs;
       packages.horeb
       packages.mtlcam
 
+      # Clone not working ("No user exists for uid").
+      # Known issue, see: https://github.com/NixOS/nixpkgs/issues/31762
+      #packages.brightness
+
       #packages.loccount # FIXME: Needs make-based build
     ];
 
