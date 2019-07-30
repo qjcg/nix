@@ -275,7 +275,7 @@
 
   xdg.configFile = {
     "cmus/rc".source = ../../files/cmusrc;
-    "i3/workspace1.json".source = ../../files/workspace1.json;
+    "i3/workspace1.json".source = ../../files/workspace1_luban.json;
 
     "i3/i3status-rust.toml" = {
 
