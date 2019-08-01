@@ -112,6 +112,8 @@ with pkgs;
       mr
       nodejs
 
+      postgresql_11
+
       python37Packages.cookiecutter
       python37Packages.ipython
       python37Packages.poetry
