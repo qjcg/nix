@@ -70,6 +70,7 @@ with pkgs;
     ];
 
     backup = [
+      adb-sync
       rclone
       restic
       rsync
