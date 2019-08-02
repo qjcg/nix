@@ -186,6 +186,7 @@ with pkgs;
       libreoffice-fresh
       rdesktop
       slack
+      thunderbird-bin
       zathura
     ];
 
