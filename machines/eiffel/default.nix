@@ -286,6 +286,12 @@
       text = pkgs.callPackage ../../files/i3status-rust_eiffel.toml.nix { inherit secrets; };
       onChange = "i3-msg restart";
     };
+    "i3/i3status-rust_smallscreen.toml" = {
+
+      # Using pkgs.callPackage allows antiquotations to be expanded.
+      text = pkgs.callPackage ../../files/i3status-rust_eiffel-smallscreen.toml.nix { inherit secrets; };
+      onChange = "i3-msg restart";
+    };
   };
 
   xdg.dataFile = {
@@ -379,27 +385,56 @@
           unfocused       = { border = "#000000"; background = "#222222"; text = "#999999"; indicator = "#ffffff"; childBorder = "#000000"; };
         };
 
-        bars = [{
-          position = "top";
-          mode = "dock";
+        bars = [
+          {
+            position = "top";
+            mode = "dock";
 
-          fonts = [
-            "Iosevka Medium 13"
-          ];
+            fonts = [
+              "Iosevka Medium 13"
+            ];
 
-          colors = {
-            background = "#000000";
-            statusline = "#cccccc";
-            separator  = "#00ffea";
+            colors = {
+              background = "#000000";
+              statusline = "#cccccc";
+              separator  = "#00ffea";
 
-            focusedWorkspace   = {border = "#000000"; background = "#000000"; text = "#00fcff"; };
-            activeWorkspace    = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
-            inactiveWorkspace  = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
-            urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
-          };
+              focusedWorkspace   = {border = "#000000"; background = "#000000"; text = "#00fcff"; };
+              activeWorkspace    = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
+              inactiveWorkspace  = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
+              urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
+            };
 
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/i3status-rust.toml";
-        }];
+            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/i3status-rust.toml";
+            extraConfig = ''
+              output DP-4
+            '';
+          }
+          {
+            position = "top";
+            mode = "dock";
+
+            fonts = [
+              "Iosevka Medium 10"
+            ];
+
+            colors = {
+              background = "#000000";
+              statusline = "#cccccc";
+              separator  = "#00ffea";
+
+              focusedWorkspace   = {border = "#000000"; background = "#000000"; text = "#00fcff"; };
+              activeWorkspace    = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
+              inactiveWorkspace  = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
+              urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
+            };
+
+            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/i3status-rust_smallscreen.toml";
+            extraConfig = ''
+              output DP-6
+            '';
+          }
+        ];
 
         startup = [
           { notification = false; command = "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace1.json'"; }
