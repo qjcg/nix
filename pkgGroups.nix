@@ -48,6 +48,7 @@ with pkgs;
       lsof
       mkpasswd
       pandoc
+      pdfcpu
       pv
       renameutils
       ripgrep
