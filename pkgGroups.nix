@@ -23,6 +23,7 @@ with pkgs;
 
 
     nix = [
+      cachix
       nixops
       nix-bash-completions
       nix-zsh-completions
@@ -47,6 +48,11 @@ with pkgs;
       libfaketime
       lsof
       mkpasswd
+
+      # Needed for techne-form
+      # FIXME: terminfo file collides with st-256color
+      #ncurses
+
       pandoc
       pdfcpu
       pv
