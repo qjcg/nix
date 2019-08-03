@@ -4,26 +4,11 @@
 # i3status-rust configuration
 # See: https://github.com/greshake/i3status-rust/blob/master/blocks.md
 
-theme = "solarized-dark"
+theme = "plain"
 
 [icons]
 name = "awesome"
 
-
-#[[block]]
-#block = "weather"
-#format = "{temp}°/{weather}"
-#service = { name = "openweathermap", api_key = "${secrets.openweathermap-api-key}", city_id = "${secrets.openweathermap-city-id}", units = "metric" }
-
-# DISABLED: Information overload.
-#[[block]]
-#block = "nvidia_gpu"
-#label = "Quadro P1000"
-
-# DISABLED: Information overload.
-#[[block]]
-#block = "xrandr"
-#resolution = true
 
 # DISABLED: Information overload.
 #[[block]]
@@ -34,10 +19,22 @@ name = "awesome"
 #block = "bluetooth"
 #mac = "FC:58:FA:98:9E:21"
 
+[[block]]
+block = "net"
+device = "wlp4s0"
+ssid = true
+speed_up = false
+speed_down = false
+interval = 10
+
 
 [[block]]
 block = "battery"
 format = "{percentage}% {time}"
+
+[[block]]
+block = "xrandr"
+resolution = false
 
 [[block]]
 block = "disk_space"
