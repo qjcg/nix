@@ -33,10 +33,6 @@ block = "battery"
 format = "{percentage}% {time}"
 
 [[block]]
-block = "xrandr"
-resolution = false
-
-[[block]]
 block = "disk_space"
 path = "/"
 alias = "/"
