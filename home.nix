@@ -10,8 +10,7 @@ let
   pkgs = import <nixpkgs> {};
   lib = pkgs.lib;
 
-  packages = import ./packages { inherit pkgs; };
-  pg = import ./pkgGroups.nix { inherit pkgs packages; };
+  pg = import ./pkgGroups.nix { inherit pkgs; };
   secrets = import ./secrets.nix;
 in
 {

@@ -1,7 +1,6 @@
 # Package Groups
 {
   pkgs ? import <nixpkgs>,
-  packages ? pkgs.callPackage ./packages {},
   ...
 }:
 
@@ -10,9 +9,9 @@ with pkgs;
 
   CLI = {
     personal = [
-      packages.go-4d
-      packages.horeb
-      packages.mtlcam
+      go-4d
+      horeb
+      mtlcam
 
       # Clone not working ("No user exists for uid").
       # Known issue, see: https://github.com/NixOS/nixpkgs/issues/31762
