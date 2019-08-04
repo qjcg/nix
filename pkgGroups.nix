@@ -153,6 +153,7 @@ with pkgs;
     utilities = [
       gcolor3
       libnotify
+      lxappearance
       mesa
       sent
       wireshark
@@ -181,6 +182,7 @@ with pkgs;
 
     office = [
       bluejeans-gui
+      evince
       libreoffice-fresh
       rdesktop
       slack
@@ -202,6 +204,10 @@ with pkgs;
       unifont_upper
     ];
 
+    themes = [
+      qogir-theme
+    ];
+
     multimedia = [
       blender
       feh
@@ -216,6 +222,7 @@ with pkgs;
       pavucontrol
       pulseeffects
       sxiv
+      vlc
     ];
 
     # FIXME: These apps close immediately on startup, complaining about GLX.
