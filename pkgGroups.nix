@@ -47,11 +47,6 @@ with pkgs;
       libfaketime
       lsof
       mkpasswd
-
-      # Needed for techne-form
-      # FIXME: terminfo file collides with st-256color
-      #ncurses
-
       pandoc
       pdfcpu
       pv
@@ -183,9 +178,7 @@ with pkgs;
       i3status-rust
       i3lock
       st
-
-      # FIXME: slock fails with error on invocation ("getgrnam nogroup: group entry not found")
-      #slock
+      slock
     ];
 
     office = [
