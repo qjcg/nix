@@ -18,6 +18,9 @@
 
     st = super.st.override {
       conf = builtins.readFile ./files/st-config.h;
+      patches = [
+        ./files/st-themed_cursor-0.8.1.diff
+      ];
     } // super.st.overrideAttrs (oldAttrs: rec {
       meta.priority = "4";
     });
