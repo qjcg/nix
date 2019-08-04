@@ -125,6 +125,7 @@ with pkgs;
       universal-ctags
     ];
 
+    # NOTE: VirtualBox is enabled at the system level.
     virt = [
       buildah
       dive
@@ -135,10 +136,6 @@ with pkgs;
       skopeo
       tinyemu
       vagrant
-      virtualbox
-
-      # FIXME: Not working with *system* kernel
-      #linuxPackages_4_19.virtualbox
     ];
 
   };
