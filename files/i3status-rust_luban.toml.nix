@@ -9,6 +9,11 @@ theme = "plain"
 [icons]
 name = "awesome"
 
+[[block]]
+block = "custom"
+command = "echo LOCK"
+on_click = "xscreensaver-command -lock"
+interval = 3600
 
 [[block]]
 block = "battery"
