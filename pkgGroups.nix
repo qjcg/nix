@@ -66,6 +66,7 @@ with pkgs;
     network = [
       bettercap
       dnsutils
+      iw
       mtr
       nmap
     ];
@@ -205,7 +206,9 @@ with pkgs;
     ];
 
     themes = [
+      arc-icon-theme
       qogir-theme
+      vanilla-dmz
     ];
 
     multimedia = [
