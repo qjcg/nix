@@ -11,9 +11,21 @@
   fonts.fontconfig.enable = true;
   manual.html.enable = true;
 
-  gtk = {
-    enable = true;
-  };
+  # FIXME: Not working (settings.ini is *empty*), so creating manual config file below.
+  #gtk = with pkgs; {
+  #  enable = true;
+
+  #  font = {
+  #    package = roboto;
+  #    name = "Roboto 18";
+  #  };
+
+  #  theme = {
+  #    package = qogir-theme;
+  #    name = "Qogir-light";
+  #  };
+
+  #};
 
 
   home = {
@@ -271,8 +283,10 @@
   };
 
   xdg.configFile = {
-    "cmus/rc".source = ../../files/cmusrc;
-    "i3/workspace1.json".source = ../../files/workspace1_luban.json;
+    "cmus/rc".source = ../../files/cmusrc ;
+    "gtk-3.0/settings.ini".source = ../../files/gtk-3.0_settings.ini ;
+
+    "i3/workspace1.json".source = ../../files/workspace1_luban.json ;
 
     "i3/i3status-rust.toml" = {
 
@@ -283,7 +297,7 @@
   };
 
   xdg.dataFile = {
-    "nvim/site/after/ftplugin/go.vim".source = ../../files/go.vim;
+    "nvim/site/after/ftplugin/go.vim".source = ../../files/go.vim ;
   };
 
   xsession = {
