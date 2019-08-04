@@ -163,6 +163,7 @@ with pkgs;
     ];
 
     games = [
+      nethack
       retroarch
     ];
 
@@ -170,12 +171,12 @@ with pkgs;
       dbeaver
     ];
 
+    # NOTE: Screen locker is configured via system config.
     window_manager = [
       dmenu
       i3status-rust
       i3lock
       st
-      slock
     ];
 
     office = [
