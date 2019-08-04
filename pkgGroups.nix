@@ -154,7 +154,6 @@ with pkgs;
     utilities = [
       gcolor3
       libnotify
-      lxappearance
       mesa
       sent
       wireshark
@@ -207,6 +206,8 @@ with pkgs;
 
     themes = [
       arc-icon-theme
+      lxappearance
+      qt5ct
       qogir-theme
       vanilla-dmz
     ];
