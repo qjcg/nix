@@ -27,7 +27,7 @@
       PAGER = "less";
       VISUAL = "nvim";
 
-      NIX_PATH = "nixpkgs=/nix/var/nix/profiles/per-user/$USER/channels/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
+      NIX_PATH = "nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
     };
 
     keyboard = {
