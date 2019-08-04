@@ -1,0 +1,11 @@
+diff --git a/ludo.json b/ludo.json
+new file mode 100644
+index 0000000..68417a4
+--- /dev/null
++++ b/ludo.json
+@@ -0,0 +1,5 @@
++{
++	"cores_dir": "@out@/share/ludo/cores",
++	"assets_dir": "@out@/share/ludo/assets",
++	"database_dir": "@out@/share/ludo/database"
++}
