@@ -10,24 +10,6 @@ theme = "plain"
 name = "awesome"
 
 
-# DISABLED: Information overload.
-#[[block]]
-#block = "uptime"
-
-# DISABLED: Failing with "unknown block" error
-#[[block]]
-#block = "bluetooth"
-#mac = "FC:58:FA:98:9E:21"
-
-[[block]]
-block = "net"
-device = "wlp4s0"
-ssid = true
-speed_up = false
-speed_down = false
-interval = 10
-
-
 [[block]]
 block = "battery"
 format = "{percentage}% {time}"
