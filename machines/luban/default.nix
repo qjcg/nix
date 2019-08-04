@@ -283,6 +283,7 @@
     #};
 
     syncthing.enable = true;
+    xscreensaver.enable = true;
 
   };
 
