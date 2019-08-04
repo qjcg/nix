@@ -40,6 +40,10 @@
       VISUAL = "nvim";
 
       NIX_PATH = "nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
+
+      QT_PLATFORMTHEME = "qt5ct";
+      QT_PLATFORM_PLUGIN = "qt5ct";
+      QT_QPA_PLATFORMTHEME = "qt5ct";
     };
 
     keyboard = {
