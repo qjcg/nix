@@ -11,6 +11,7 @@
     # Refs:
     #   - https://nixos.org/nixpkgs/manual/#sec-pkg-override
     #   - https://nixos.org/nixpkgs/manual/#sec-pkg-overrideAttrs
+    s-nail = super.callPackage ./packages/s-nail {};
 
     dunst = super.dunst.override {
       dunstify = true;

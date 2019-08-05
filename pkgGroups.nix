@@ -13,6 +13,8 @@ with pkgs;
       horeb
       mtlcam
 
+      s-nail
+
       # Clone not working ("No user exists for uid").
       # Known issue, see: https://github.com/NixOS/nixpkgs/issues/31762
       #packages.brightness
