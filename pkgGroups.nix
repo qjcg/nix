@@ -45,6 +45,7 @@ with pkgs;
       gnupg
       gopass
       htop
+      iotop
       jq
       lastpass-cli
       libfaketime
