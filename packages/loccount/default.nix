@@ -1,9 +1,8 @@
 {
   pkgs,
-  lib ? pkgs.lib,
-  fetchFromGitLab ? pkgs.fetchFromGitLab,
-  buildGoPackage ? pkgs.buildGoPackage,
-  ...
+  lib,
+  fetchFromGitLab,
+  buildGoPackage,
 }:
 
 buildGoPackage rec {
@@ -23,7 +22,6 @@ buildGoPackage rec {
     description = "Count source lines of code in a project.";
     homepage = https://gitlab.com/esr/loccount;
     license = licenses.bsd3;
-    maintainers = [ { email = "john@gossetx.com"; github = "qjcg"; name = "John Gosset"; } ];
   };
 }
 

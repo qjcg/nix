@@ -1,9 +1,8 @@
 {
-  pkgs ? import <nixpkgs> {},
-  lib ? pkgs.lib,
-  buildGoModule ? pkgs.buildGoModule,
-  fetchgit ? builtins.fetchgit,
-  ...
+  pkgs,
+  lib,
+  buildGoModule,
+  fetchgit,
 }:
 
 buildGoModule rec {
@@ -28,6 +27,5 @@ buildGoModule rec {
     description = "A CLI tool for adjusting screen brightness.";
     homepage = https://github.com/qjcg/brightness;
     license = licenses.mit;
-    maintainers = [ { email = "john@gossetx.com"; github = "qjcg"; name = "John Gosset"; } ];
   };
 }

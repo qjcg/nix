@@ -1,9 +1,8 @@
 {
   pkgs,
-  lib ? pkgs.lib,
-  fetchFromGitHub ? pkgs.fetchFromGitHub,
-  buildGoModule ? pkgs.buildGoModule,
-  ...
+  lib,
+  fetchFromGitHub,
+  buildGoModule,
 }:
 
 buildGoModule rec {
@@ -29,6 +28,5 @@ buildGoModule rec {
     description = "Download Montreal traffic camera images.";
     homepage = https://github.com/qjcg/mtlcam;
     license = licenses.mit;
-    maintainers = [ { email = "john@gossetx.com"; github = "qjcg"; name = "John Gosset"; } ];
   };
 }
