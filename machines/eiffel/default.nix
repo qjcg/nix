@@ -26,6 +26,14 @@
       EDITOR = "nvim";
       PAGER = "less";
       VISUAL = "nvim";
+
+      NIX_PATH = "nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
+
+      QT_PLATFORMTHEME = "qt5ct";
+      QT_PLATFORM_PLUGIN = "qt5ct";
+      QT_QPA_PLATFORMTHEME = "qt5ct";
+
+      MAILRC = "$HOME/.config/s-nail/mailrc";
     };
 
     keyboard = {
@@ -292,6 +300,8 @@
       text = pkgs.callPackage ../../files/i3status-rust_eiffel-smallscreen.toml.nix { inherit secrets; };
       onChange = "i3-msg restart";
     };
+
+    "s-nail/mailrc".source = ../../files/mailrc ;
   };
 
   xdg.dataFile = {
