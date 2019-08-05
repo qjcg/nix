@@ -3,7 +3,9 @@
   pkgs,
   lib,
   fetchurl,
+
   openssl,
+  ncurses,
 }:
 
 stdenv.mkDerivation rec {
@@ -18,7 +20,7 @@ stdenv.mkDerivation rec {
     sha256 = "032ixa9jsdwbc1w8dnxsi4pzmf857yjqrid6zdb3fgy9fi92gqzh";
   };
 
-  buildInputs = [ openssl ];
+  buildInputs = [ ncurses openssl ];
 
   buildPhase = ''
     make VAL_PREFIX=$out CONFIG=maximal all
