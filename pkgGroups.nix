@@ -66,6 +66,7 @@ with pkgs;
 
     network = [
       bettercap
+      caddy
       dnsutils
       iw
       mtr
