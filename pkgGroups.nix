@@ -33,6 +33,7 @@ with pkgs;
       ansible
       aria2
       bash_5
+      binutils
       davmail
       ed
       fdupes
