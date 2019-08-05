@@ -7,16 +7,19 @@
     mtlcam = super.callPackage ./packages/mtlcam {};
     horeb = super.callPackage ./packages/horeb {};
 
-    # Overriding existing packages.
-    # Refs:
-    #   - https://nixos.org/nixpkgs/manual/#sec-pkg-override
-    #   - https://nixos.org/nixpkgs/manual/#sec-pkg-overrideAttrs
+    # Adding 3rd-party packages.
     s-nail = super.callPackage ./packages/s-nail {};
 
     dunst = super.dunst.override {
       dunstify = true;
     };
 
+    loccount = super.callPackage ./packages/loccount {};
+
+    # Overriding existing packages.
+    # Refs:
+    #   - https://nixos.org/nixpkgs/manual/#sec-pkg-override
+    #   - https://nixos.org/nixpkgs/manual/#sec-pkg-overrideAttrs
     st = super.st.override {
       conf = builtins.readFile ./files/st-config.h;
       patches = [
