@@ -302,7 +302,7 @@
       onChange = "i3-msg restart";
     };
 
-    "s-nail/mailrc".source = ../../files/mailrc ;
+    "s-nail/mailrc".text = pkgs.callPackage ../../files/mailrc.nix { inherit secrets; };
   };
 
   xdg.dataFile = {
