@@ -24,6 +24,8 @@ stdenv.mkDerivation rec {
   '';
 
   buildPhase = ''
+    export GOCACHE=/tmp/cache/go-build
+    mkdir -p $GOCACHE
     make
   '';
 
