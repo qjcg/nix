@@ -143,6 +143,7 @@ with pkgs;
       skopeo
       tinyemu
       vagrant
+      vault
     ];
 
   };
