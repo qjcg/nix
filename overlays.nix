@@ -8,6 +8,7 @@
     horeb = super.callPackage ./packages/horeb {};
 
     # Adding 3rd-party packages.
+    battery = super.callPackage ./packages/battery {};
     k3d = super.callPackage ./packages/k3d {};
     loccount = super.callPackage ./packages/loccount {};
     s-nail = super.callPackage ./packages/s-nail {};

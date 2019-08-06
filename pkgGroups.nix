@@ -13,6 +13,7 @@ with pkgs;
       horeb
       mtlcam
 
+      battery
       k3d
       loccount
       s-nail
