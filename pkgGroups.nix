@@ -13,6 +13,7 @@ with pkgs;
       horeb
       mtlcam
 
+      k3d
       loccount
       s-nail
 
@@ -135,6 +136,7 @@ with pkgs;
       buildah
       dive
       docker-compose
+      kubectl
       packer
       podman
       qemu

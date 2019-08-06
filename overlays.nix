@@ -8,13 +8,14 @@
     horeb = super.callPackage ./packages/horeb {};
 
     # Adding 3rd-party packages.
+    k3d = super.callPackage ./packages/k3d {};
+    loccount = super.callPackage ./packages/loccount {};
     s-nail = super.callPackage ./packages/s-nail {};
 
     dunst = super.dunst.override {
       dunstify = true;
     };
 
-    loccount = super.callPackage ./packages/loccount {};
 
     # Overriding existing packages.
     # Refs:
