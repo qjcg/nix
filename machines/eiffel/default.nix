@@ -167,6 +167,7 @@
           start = [
             ansible-vim
             awesome-vim-colorschemes
+            changeColorScheme-vim
             fzf-vim
             goyo
             limelight-vim
