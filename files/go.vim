@@ -16,5 +16,3 @@ nmap <leader>gr <Plug>(go-run)
 nmap <leader>gt <Plug>(go-test)
 
 nmap <C-]> <Plug>(go-def)
-
-call tagbar#autoopen(1)
