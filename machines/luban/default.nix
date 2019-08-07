@@ -189,6 +189,7 @@
             vim-nix
             vim-toml
             typescript-vim
+            ultisnips
           ];
         };
 
