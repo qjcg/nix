@@ -23,7 +23,6 @@ with pkgs;
       #brightness
     ];
 
-
     nix = [
       cachix
       nixops
@@ -31,11 +30,15 @@ with pkgs;
       nix-zsh-completions
     ];
 
+    shell = [
+      bash_5
+      bash-completion
+    ];
+
     utilities = [
       aerc
       ansible
       aria2
-      bash_5
       binutils
       davmail
       ed
