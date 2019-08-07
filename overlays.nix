@@ -22,10 +22,9 @@
     # Refs:
     #   - https://nixos.org/nixpkgs/manual/#sec-pkg-override
     #   - https://nixos.org/nixpkgs/manual/#sec-pkg-overrideAttrs
-    st = super.st.overrideAttrs (oldAttrs: rec {
+    st = super.st.override {
       conf = builtins.readFile ./files/st-config.h;
-      meta.priority = "4";
-    });
+    };
 
   }
 

@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "Iosevka-11:weight=regular:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -107,7 +107,7 @@ static const char *colorname[] = {
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"magenta3",
+	"#d000a9",
 	"#555555",
 };
 
@@ -118,7 +118,7 @@ static const char *colorname[] = {
  */
 unsigned int defaultfg = 7;
 unsigned int defaultbg = 0;
-static unsigned int defaultcs = 256;
+static unsigned int defaultcs = 5;
 static unsigned int defaultrcs = 257;
 
 /*
