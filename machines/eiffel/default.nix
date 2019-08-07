@@ -171,8 +171,13 @@
             fzf-vim
             goyo
             limelight-vim
+
+            deoplete-nvim
+            deoplete-go
+            deoplete-lsp
             neosnippet
             neosnippet-snippets
+
             nerdtree
             python-mode
             tagbar

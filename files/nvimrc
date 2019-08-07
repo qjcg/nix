@@ -2,7 +2,7 @@
 " - https://github.com/corps/nix-machines/blob/master/packages/vim/vimrc
 " - https://github.com/shdpl/nixos-configuration/blob/master/data/.config/nvim/bundle/go/plugin/go.vim
 set background=dark
-colorscheme abstract
+colorscheme one
 
 set autochdir
 set autoindent
@@ -17,23 +17,32 @@ set splitright			" vsplit window to the right by default
 set wildmenu			" dmenu-style menu
 set wildmode=full
 
+autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
+autocmd FileType nix setlocal cuc
+
 "" MAPS
 "" See :h keycodes
 let mapleader=","
 
 nnoremap <leader>l :set list!<CR>
-nnoremap <leader>r :source $MYVIMRC<CR>
+nnoremap <leader>r :source $MYVIMRC<CR>		" FIXME: Broken since $MYVIMRC is unset.
 nnoremap <leader>S :setlocal spell!<CR>
-nnoremap <leader>v :e $MYVIMRC<CR>
+nnoremap <leader>v :e $MYVIMRC<CR>		" FIXME: Broken since $MYVIMRC is unset.
 nnoremap <leader>w :w !sudo tee %<CR><CR>
 
 nnoremap <silent> <leader>g :Goyo<CR>
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>t :TagbarToggle<CR>
 
+" Cycling color schemes.
 nnoremap <silent> <S-F4> :call PreviousColorScheme()<CR>:colo<CR>
 nnoremap <silent> <C-F4> :call NextColorScheme()<CR>:colo<CR>
 nnoremap <silent> <F4> :call RandomColorScheme()<CR>:colo<CR>
 
-autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
-autocmd FileType nix setlocal cuc
+" Deoplete
+let g:deoplete#enable_at_startup = 1
+
+" Neosnippet
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_or_jump)

@@ -115,6 +115,7 @@ with pkgs;
       # For Go.
       delve
       gnumake
+      gocode
       gogetdoc
       gotags
       gotools
