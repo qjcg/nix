@@ -22,12 +22,8 @@
     # Refs:
     #   - https://nixos.org/nixpkgs/manual/#sec-pkg-override
     #   - https://nixos.org/nixpkgs/manual/#sec-pkg-overrideAttrs
-    st = super.st.override {
+    st = super.st.overrideAttrs (oldAttrs: rec {
       conf = builtins.readFile ./files/st-config.h;
-      patches = [
-        ./files/st-themed_cursor-0.8.1.diff
-      ];
-    } // super.st.overrideAttrs (oldAttrs: rec {
       meta.priority = "4";
     });
 
