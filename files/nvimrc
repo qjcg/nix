@@ -3,7 +3,7 @@
 " - https://github.com/shdpl/nixos-configuration/blob/master/data/.config/nvim/bundle/go/plugin/go.vim
 set background=dark
 set termguicolors
-colorscheme iceberg
+colorscheme abstract
 
 set autochdir
 set autoindent
