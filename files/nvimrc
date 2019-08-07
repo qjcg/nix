@@ -1,6 +1,8 @@
 " Examples
 " - https://github.com/corps/nix-machines/blob/master/packages/vim/vimrc
 " - https://github.com/shdpl/nixos-configuration/blob/master/data/.config/nvim/bundle/go/plugin/go.vim
+set background=dark
+set termguicolors
 colorscheme iceberg
 
 set autochdir
