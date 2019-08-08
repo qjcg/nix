@@ -111,6 +111,7 @@ with pkgs;
 
     devtools = [
       fossil
+      hugo
 
       # For Go.
       delve
