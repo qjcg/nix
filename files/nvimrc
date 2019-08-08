@@ -30,7 +30,7 @@ nnoremap <leader>S :setlocal spell!<CR>
 nnoremap <leader>v :e $MYVIMRC<CR>		" FIXME: Broken since $MYVIMRC is unset.
 nnoremap <leader>w :w !sudo tee %<CR><CR>
 
-nnoremap <silent> <leader>g :Goyo<CR>
+nnoremap <silent> <leader>G :Goyo<CR>
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 nnoremap <silent> <leader>t :TagbarToggle<CR>
 
