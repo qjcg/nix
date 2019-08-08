@@ -39,6 +39,10 @@ nnoremap <silent> <S-F4> :call PreviousColorScheme()<CR>:colo<CR>
 nnoremap <silent> <C-F4> :call NextColorScheme()<CR>:colo<CR>
 nnoremap <silent> <F4> :call RandomColorScheme()<CR>:colo<CR>
 
+" Reload syntax highlighting.
+nnoremap <F12> <Esc>:syntax sync fromstart<CR>
+inoremap <F12> <C-o>:syntax sync fromstart<CR>
+
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 
