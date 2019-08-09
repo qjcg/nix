@@ -113,7 +113,7 @@ with pkgs;
       fossil
       hugo
 
-      # For Go.
+      # Go.
       delve
       gnumake
       gocode
@@ -125,13 +125,18 @@ with pkgs;
 
       mkcert
       mr
+
+      # Node.
       nodejs
+      now-cli
 
       postgresql_11
 
+      # Python.
       python37Packages.cookiecutter
       python37Packages.ipython
       python37Packages.poetry
+
       sbcl
       tig
       universal-ctags
