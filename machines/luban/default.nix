@@ -367,6 +367,17 @@
 
             "${modifier}+Shift+e" = "exit";
             "${modifier}+Shift+x" = "kill";
+
+            # Control pulseaudio volume for default sink.
+            # Ref: https://wiki.archlinux.org/index.php/PulseAudio#Keyboard_volume_control
+            "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+            "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+            "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+            "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+
+            # Control brightness.
+            "XF86MonBrightnessDown" = "exec sudo brightness -5";
+            "XF86MonBrightnessUp" = "exec sudo brightness +5";
 	  };
 
         # NOTE: Border of i3-gaps windows is set via childBorder.
