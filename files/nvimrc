@@ -1,8 +1,15 @@
 " Examples
 " - https://github.com/corps/nix-machines/blob/master/packages/vim/vimrc
 " - https://github.com/shdpl/nixos-configuration/blob/master/data/.config/nvim/bundle/go/plugin/go.vim
+
+" COLORS
 set background=dark
 colorscheme abstract
+" My customizations for the above colorscheme.
+" See:
+"   - :h highlight
+"   - :h syntax
+highlight Search ctermfg=236 ctermbg=229
 
 set autochdir
 set autoindent
