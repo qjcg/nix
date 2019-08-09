@@ -171,28 +171,7 @@
       withPython3 = true;
       configure = {
         customRC = builtins.readFile ../../files/nvimrc;
-
-        packages.myVimPackage = with pkgs.vimPlugins; {
-          start = [
-            ansible-vim
-            awesome-vim-colorschemes
-            fzf-vim
-            goyo
-            limelight-vim
-            neosnippet
-            neosnippet-snippets
-            nerdtree
-            python-mode
-            tagbar
-            vim-beancount
-            vim-go
-            vim-nix
-            vim-toml
-            typescript-vim
-            ultisnips
-          ];
-        };
-
+        packages.myVimPackage = with pkgs.vimPlugins; pg.vim;
       };
     };
 

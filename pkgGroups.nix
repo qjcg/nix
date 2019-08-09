@@ -251,4 +251,32 @@ with pkgs;
     ];
 
   };
+
+  vim = with pkgs.vimPlugins; {
+    start = [
+            ansible-vim
+            awesome-vim-colorschemes
+            changeColorScheme-vim
+            fzf-vim
+            goyo
+            limelight-vim
+
+            deoplete-nvim
+            deoplete-go
+            deoplete-lsp
+            neosnippet
+            neosnippet-snippets
+
+            nerdtree
+            python-mode
+            tagbar
+            vim-beancount
+            vim-go
+            vim-nix
+            vim-toml
+            typescript-vim
+    ];
+    opt = [];
+  };
+
 }
