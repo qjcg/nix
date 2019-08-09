@@ -78,6 +78,7 @@ with pkgs;
       iw
       mtr
       nmap
+      wireguard-tools
     ];
 
     backup = [
