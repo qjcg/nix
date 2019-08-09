@@ -366,6 +366,18 @@
 
             "${modifier}+Shift+e" = "exit";
             "${modifier}+Shift+x" = "kill";
+
+            # Control cmus(1) music playback.
+            "XF86AudioPlay" = "exec cmus-remote --pause";
+            "XF86AudioPrev" = "exec cmus-remote --prev";
+            "XF86AudioNext" = "exec cmus-remote --next";
+            "XF86AudioStop" = "exec cmus-remote --stop";
+
+            # Control pulseaudio volume for default sink.
+            # Ref: https://wiki.archlinux.org/index.php/PulseAudio#Keyboard_volume_control
+            "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+            "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+            "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
 	  };
 
         # NOTE: Border of i3-gaps windows is set via childBorder.
