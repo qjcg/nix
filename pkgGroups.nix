@@ -120,6 +120,7 @@ with pkgs;
       gnumake
       gocode
       gogetdoc
+      gomodifytags
       gotags
       gotools
       errcheck
