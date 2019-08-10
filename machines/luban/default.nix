@@ -406,7 +406,7 @@
             urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
           };
 
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/i3status-rust.toml";
+          statusCommand = "while barr; do sleep 5 ; done";
         }];
 
         startup = [

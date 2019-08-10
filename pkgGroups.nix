@@ -10,6 +10,7 @@ with pkgs;
   CLI = {
     personal = [
       go-4d
+      barr
       horeb
       mtlcam
 
