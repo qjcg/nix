@@ -7,7 +7,7 @@
 
 buildGoModule rec {
   name = "barr-${version}";
-  version = "1.12.0";
+  version = "1.12.1";
 
   subPackages = [ "cmd/barr" ];
 
