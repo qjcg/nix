@@ -245,6 +245,7 @@ with pkgs;
       qt5.qtbase
 
       pavucontrol
+      picard
       pulseeffects
       sxiv
       vlc
