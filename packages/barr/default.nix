@@ -18,7 +18,7 @@ buildGoModule rec {
 
     # To get this value, use "nix-prefetch-url --unpack" with the release tarball, eg:
     #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
-    sha256 = "112yfgaiygnlx72cb4zfj9dmhgbnn0baqri2l3930b07fvmdnwss";
+    sha256 = "0i36sj4ql5rxw20302fa3q677hy5v5xfm4sc2bxakj2nbpmrjgir";
   };
 
   # First, provide a fake hash via the value: lib.fakeSha256
