@@ -15,6 +15,7 @@ with pkgs;
       mtlcam
 
       battery
+      goplot
       k3d
       loccount
       s-nail
