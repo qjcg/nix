@@ -282,6 +282,7 @@ with pkgs;
             tagbar
             vim-beancount
             vim-go
+            vim-jsx-pretty
             vim-nix
             vim-toml
             typescript-vim
