@@ -118,6 +118,7 @@ with pkgs;
 
       # Go.
       delve
+      fly
       gnumake
       gocode
       gogetdoc
