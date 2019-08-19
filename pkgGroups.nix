@@ -26,7 +26,7 @@ with pkgs;
     ];
 
     nix = [
-      cachix
+      #cachix
       nixops
       nix-bash-completions
       nix-zsh-completions
