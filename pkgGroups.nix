@@ -158,7 +158,10 @@ with pkgs;
       qemu
       skopeo
       tinyemu
-      vagrant
+
+      # FIXME: 2019-08-21 - TEMPORARILY disabled since build fails (xen related error).
+      #vagrant
+
       vault
     ];
 
