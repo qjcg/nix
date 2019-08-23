@@ -11,6 +11,13 @@ My personal dotfiles.
 - templating via [nix expression language](https://nixos.org/nix/manual/#ch-expression-language)
 
 
+## Use
+
+```sh
+curl -s https://${THIS_GIT_REPO}/bootstrap.sh | bash
+```
+
+
 ## Stack
 
 - [nix](https://nixos.org/nix/)
