@@ -200,8 +200,8 @@ with pkgs;
 
     # NOTE: Screen locker is configured via system config.
     window_manager = [
+      albert
       dmenu
-      i3status-rust
       i3lock
       st
     ];
