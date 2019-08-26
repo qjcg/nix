@@ -89,7 +89,6 @@
           mtr
           myNeovim
           nethack
-          nix
           nix-bash-completions
           nixops
           nodejs
