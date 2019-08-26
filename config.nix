@@ -14,8 +14,8 @@
       vimAlias = true;
       configure = {
         customRC = builtins.readFile ./files/nvimrc ;
-	packages.myVimPackage = with pkgs.vimPlugins; {
-	  start = [
+        packages.myVimPackage = with pkgs.vimPlugins; {
+          start = [
             ansible-vim
             awesome-vim-colorschemes
             changeColorScheme-vim
@@ -38,9 +38,9 @@
             vim-nix
             vim-toml
             typescript-vim
-	  ];
-	  opt = [ ];
-	};
+          ];
+          opt = [ ];
+        };
       };
     };
 
@@ -228,10 +228,10 @@
           #vagrant
 
           vault
-      ];
+        ];
+      };
     };
   };
-};
 }
 
   # TODO: Add appropriate formatting to make usable environments as above with env-cli.
