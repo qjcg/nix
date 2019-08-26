@@ -27,7 +27,7 @@
     };
 
     st = super.st.override {
-      conf = builtins.readFile ./files/st-config.h;
+      conf = builtins.readFile ../files/st-config.h;
     };
 
   }
