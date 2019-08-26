@@ -15,15 +15,16 @@
     loccount = super.callPackage ./packages/loccount {};
     s-nail = super.callPackage ./packages/s-nail {};
 
-    dunst = super.dunst.override {
-      dunstify = true;
-    };
-
 
     # Overriding existing packages.
     # Refs:
     #   - https://nixos.org/nixpkgs/manual/#sec-pkg-override
     #   - https://nixos.org/nixpkgs/manual/#sec-pkg-overrideAttrs
+
+    dunst = super.dunst.override {
+      dunstify = true;
+    };
+
     st = super.st.override {
       conf = builtins.readFile ./files/st-config.h;
     };
