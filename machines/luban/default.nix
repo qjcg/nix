@@ -317,7 +317,7 @@
       enable = true;
 
       extraConfig = ''
-        default_border  pixel 2
+        default_border  pixel 4
         title_align     center
       '';
 
@@ -382,7 +382,7 @@
 
         # NOTE: Border of i3-gaps windows is set via childBorder.
         colors = {
-          focused         = { border = "#0000ff"; background = "#000000"; text = "#00ffed"; indicator = "#ffffff"; childBorder = "#00ff83"; };
+          focused         = { border = "#0000ff"; background = "#000000"; text = "#00ffed"; indicator = "#ffffff"; childBorder = "#0000ff"; };
           focusedInactive = { border = "#000000"; background = "#000000"; text = "#ffffff"; indicator = "#ffffff"; childBorder = "#000000"; };
           unfocused       = { border = "#000000"; background = "#222222"; text = "#999999"; indicator = "#ffffff"; childBorder = "#000000"; };
         };
