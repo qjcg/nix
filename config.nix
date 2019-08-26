@@ -115,6 +115,7 @@
           tig
           tmux
           tree
+          universal-ctags
           unzip
           upx
           vscode-with-extensions
