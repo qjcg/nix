@@ -4,17 +4,17 @@
   {
 
     # Adding my own packages.
-    go-4d = super.callPackage ../packages/4d {};
-    barr = super.callPackage ../packages/barr {};
-    mtlcam = super.callPackage ../packages/mtlcam {};
-    horeb = super.callPackage ../packages/horeb {};
+    go-4d = super.callPackage ./packages/4d {};
+    barr = super.callPackage ./packages/barr {};
+    mtlcam = super.callPackage ./packages/mtlcam {};
+    horeb = super.callPackage ./packages/horeb {};
 
     # Adding 3rd-party packages.
-    battery = super.callPackage ../packages/battery {};
-    goplot = super.callPackage ../packages/goplot {};
-    k3d = super.callPackage ../packages/k3d {};
-    loccount = super.callPackage ../packages/loccount {};
-    s-nail = super.callPackage ../packages/s-nail {};
+    battery = super.callPackage ./packages/battery {};
+    goplot = super.callPackage ./packages/goplot {};
+    k3d = super.callPackage ./packages/k3d {};
+    loccount = super.callPackage ./packages/loccount {};
+    s-nail = super.callPackage ./packages/s-nail {};
 
 
     # Overriding existing packages.
@@ -27,7 +27,7 @@
     };
 
     st = super.st.override {
-      conf = builtins.readFile ../files/st-config.h;
+      conf = builtins.readFile ./files/st-config.h;
     };
 
   }
