@@ -6,7 +6,7 @@
   # See:
   #   - https://nixos.org/nixpkgs/manual/#sec-declarative-package-management
   #   - https://github.com/CMCDragonkai/.dotfiles-nixos/tree/master#nix-installation
-  packageOverrides = pkgs: with pkgs; {
+  packageOverrides = pkgs: with pkgs; rec {
 
     # Ref: https://nixos.wiki/wiki/Vim#Custom_setup_without_using_Home_Manager
     myNeovim = neovim.override {
@@ -44,6 +44,83 @@
         };
       };
     };
+
+    # To install: `nix-env -iA nixpkgs.env-mac`
+    env-mac = pkgs.buildEnv {
+        name = "env-mac";
+        paths = [
+          alacritty
+          ansible
+          aria2
+          bash-completion
+          bash_5
+          cacert
+          caddy
+          cmus
+          coreutils
+          delve
+          docker-compose
+          emacsMacport
+          errcheck
+          fdupes
+          ffmpeg
+          findutils
+          fly
+          fortune
+          fossil
+          fzf
+          git
+          gnugrep
+          gnumake
+          go
+          go-font
+          gopass
+          gotags
+          htop
+          imagemagick
+          inconsolata
+          inkscape
+          iosevka
+          jq
+          lastpass-cli
+          lsof
+          mkcert
+          mpv
+          mtr
+          myNeovim
+          nethack
+          nix
+          nix-bash-completions
+          nixops
+          nodejs
+          pandoc
+          pdfcpu
+          poetry
+          python3
+          python37Packages.ipython
+          python37Packages.notebook
+          python37Packages.pandas
+          python37Packages.pip
+          qemu
+          rclone
+          rdesktop
+          renameutils
+          restic
+          ripgrep
+          rsync
+          sox
+          stdenv
+          streamripper
+          syncthing
+          tig
+          tmux
+          tree
+          unzip
+          upx
+          vscode-with-extensions
+          youtube-dl
+        ];
+      };
 
     env-cli = {
 
