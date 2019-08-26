@@ -1,6 +1,8 @@
 {
   allowUnfree = true;
 
+  # TODO: Replace packageOverrides with overlay?
+  # For this, see https://ebzzry.io/en/nix/
   # See:
   #   - https://nixos.org/nixpkgs/manual/#sec-declarative-package-management
   #   - https://github.com/CMCDragonkai/.dotfiles-nixos/tree/master#nix-installation
