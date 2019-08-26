@@ -13,8 +13,18 @@ My personal dotfiles.
 
 ## Use
 
+On a mac:
+
 ```sh
-curl -s https://${THIS_GIT_REPO}/bootstrap.sh | bash
+# Install the nix package manager.
+curl https://nixos.org/nix/install | sh
+
+# Clone this repo.
+mkdir -p ~/.config
+git clone https://github.com/qjcg/nix-home ~/.config/nixpkgs
+
+# Install the mac environment.
+nix-env -iA env-mac
 ```
 
 
