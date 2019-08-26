@@ -1,3 +1,4 @@
+# Ref: https://nixos.org/nixpkgs/manual/#chap-overlays
 [(self: super:
 
   {
