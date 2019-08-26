@@ -5,6 +5,43 @@
   #   - https://nixos.org/nixpkgs/manual/#sec-declarative-package-management
   #   - https://github.com/CMCDragonkai/.dotfiles-nixos/tree/master#nix-installation
   packageOverrides = pkgs: with pkgs; {
+
+    # Ref: https://nixos.wiki/wiki/Vim#Custom_setup_without_using_Home_Manager
+    myNeovim = neovim.override {
+      viAlias = true;
+      vimAlias = true;
+      configure = {
+        customRC = builtins.readFile ./files/nvimrc ;
+	packages.myVimPackage = with pkgs.vimPlugins; {
+	  start = [
+            ansible-vim
+            awesome-vim-colorschemes
+            changeColorScheme-vim
+            fzf-vim
+            goyo
+            limelight-vim
+
+            deoplete-nvim
+            deoplete-go
+            deoplete-lsp
+            neosnippet
+            neosnippet-snippets
+
+            nerdtree
+            python-mode
+            tagbar
+            vim-beancount
+            vim-go
+            vim-jsx-pretty
+            vim-nix
+            vim-toml
+            typescript-vim
+	  ];
+	  opt = [ ];
+	};
+      };
+    };
+
     env-cli = {
 
       personal = pkgs.buildEnv {
@@ -185,142 +222,144 @@
           skopeo
           tinyemu
 
-        # FIXME: 2019-08-21 - TEMPORARILY disabled since build fails (xen related error).
-        #vagrant
+          # FIXME: 2019-08-21 - TEMPORARILY disabled since build fails (xen related error).
+          #vagrant
 
-        vault
+          vault
       ];
     };
   };
-
-  env-gui = {
-    browsers = pkgs.buildEnv {
-      name = "env-gui-browsers";
-      paths = [
-        browserpass
-        chromium
-        qutebrowser
-        tor-browser-bundle-bin
-      ];
-    };
-
-    utilities = [
-      gcolor3
-      libnotify
-      mesa
-      sent
-      wireshark
-      xaos
-      xorg.xev
-      xscreensaver
-      xwinwrap
-    ];
-
-    games = [
-      nethack
-      retroarch
-    ];
-
-    dev = [
-      dbeaver
-    ];
-
-      # NOTE: Screen locker is configured via system config.
-      window_manager = [
-        albert
-        dmenu
-        i3lock
-        st
-      ];
-
-      office = [
-        bluejeans-gui
-        evince
-        libreoffice-fresh
-        rdesktop
-        slack
-        thunderbird-bin
-        zathura
-      ];
-
-      fonts = [
-        fira-code
-        font-awesome-ttf
-        fontconfig-penultimate
-        go-font
-        gtk2fontsel
-        inconsolata
-        iosevka
-        libertine
-        roboto
-        unifont
-        unifont_upper
-      ];
-
-      themes = [
-        arc-icon-theme
-        lxappearance
-        qt5ct
-        qogir-theme
-        vanilla-dmz
-      ];
-
-      multimedia = [
-        blender
-        feh
-        flashplayer-standalone
-        gimp # gimp-with-plugins didn't compile! 2019-07-07
-        imagemagick
-        inkscape
-
-        obs-studio
-        qt5.qtbase
-
-        pavucontrol
-        picard
-        pulseeffects
-        sxiv
-        vlc
-      ];
-
-      # FIXME: These apps close immediately on startup, complaining about GLX.
-      broken = [
-        baresip
-        cool-retro-term
-        glxinfo
-        zoom-us
-      ];
-
-    };
-
-    vim = with pkgs.vimPlugins; {
-      start = [
-        ansible-vim
-        awesome-vim-colorschemes
-        changeColorScheme-vim
-        fzf-vim
-        goyo
-        limelight-vim
-
-        deoplete-nvim
-        deoplete-go
-        deoplete-lsp
-        neosnippet
-        neosnippet-snippets
-
-        nerdtree
-        python-mode
-        tagbar
-        vim-beancount
-        vim-go
-        vim-jsx-pretty
-        vim-nix
-        vim-toml
-        typescript-vim
-      ];
-      opt = [];
-    };
-
-  };
-
+};
 }
+
+  # TODO: Add appropriate formatting to make usable environments as above with env-cli.
+  #env-gui = {
+  #  browsers = pkgs.buildEnv {
+  #    name = "env-gui-browsers";
+  #    paths = [
+  #      browserpass
+  #      chromium
+  #      qutebrowser
+  #      tor-browser-bundle-bin
+  #    ];
+  #  };
+
+  #  utilities = [
+  #    gcolor3
+  #    libnotify
+  #    mesa
+  #    sent
+  #    wireshark
+  #    xaos
+  #    xorg.xev
+  #    xscreensaver
+  #    xwinwrap
+  #  ];
+
+  #  games = [
+  #    nethack
+  #    retroarch
+  #  ];
+
+  #  dev = [
+  #    dbeaver
+  #  ];
+
+  #    # NOTE: Screen locker is configured via system config.
+  #    window_manager = [
+  #      albert
+  #      dmenu
+  #      i3lock
+  #      st
+  #    ];
+
+  #    office = [
+  #      bluejeans-gui
+  #      evince
+  #      libreoffice-fresh
+  #      rdesktop
+  #      slack
+  #      thunderbird-bin
+  #      zathura
+  #    ];
+
+  #    fonts = [
+  #      fira-code
+  #      font-awesome-ttf
+  #      fontconfig-penultimate
+  #      go-font
+  #      gtk2fontsel
+  #      inconsolata
+  #      iosevka
+  #      libertine
+  #      roboto
+  #      unifont
+  #      unifont_upper
+  #    ];
+
+  #    themes = [
+  #      arc-icon-theme
+  #      lxappearance
+  #      qt5ct
+  #      qogir-theme
+  #      vanilla-dmz
+  #    ];
+
+  #    multimedia = [
+  #      blender
+  #      feh
+  #      flashplayer-standalone
+  #      gimp # gimp-with-plugins didn't compile! 2019-07-07
+  #      imagemagick
+  #      inkscape
+
+  #      obs-studio
+  #      qt5.qtbase
+
+  #      pavucontrol
+  #      picard
+  #      pulseeffects
+  #      sxiv
+  #      vlc
+  #    ];
+
+  #    # FIXME: These apps close immediately on startup, complaining about GLX.
+  #    broken = [
+  #      baresip
+  #      cool-retro-term
+  #      glxinfo
+  #      zoom-us
+  #    ];
+
+  #  };
+
+  #  vim = with pkgs.vimPlugins; {
+  #    start = [
+  #      ansible-vim
+  #      awesome-vim-colorschemes
+  #      changeColorScheme-vim
+  #      fzf-vim
+  #      goyo
+  #      limelight-vim
+
+  #      deoplete-nvim
+  #      deoplete-go
+  #      deoplete-lsp
+  #      neosnippet
+  #      neosnippet-snippets
+
+  #      nerdtree
+  #      python-mode
+  #      tagbar
+  #      vim-beancount
+  #      vim-go
+  #      vim-jsx-pretty
+  #      vim-nix
+  #      vim-toml
+  #      typescript-vim
+  #    ];
+  #    opt = [];
+  #  };
+  #};
+
+#}
