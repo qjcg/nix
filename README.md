@@ -23,8 +23,8 @@ curl https://nixos.org/nix/install | sh
 mkdir -p ~/.config
 git clone https://github.com/qjcg/nix-home ~/.config/nixpkgs
 
-# Install the mac environment.
-nix-env -iA env-mac
+# Install the mac environment (for details, see config.nix).
+nix-env -iA nixpkgs.env-mac
 ```
 
 
@@ -37,6 +37,7 @@ nix-env -iA env-mac
 
 ## Tested Platforms
 
+- macOS
 - Arch Linux
 - Ubuntu 18.04
 
