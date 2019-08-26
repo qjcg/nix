@@ -270,6 +270,7 @@
   };
 
   xdg.configFile = {
+    "albert/albert.conf".source = ../../files/albert.conf ;
     "cmus/rc".source = ../../files/cmusrc ;
     "gtk-3.0/settings.ini".source = ../../files/gtk-3.0_settings.ini ;
 
@@ -412,6 +413,7 @@
         startup = [
           { notification = false; command = "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace1.json'"; }
           { notification = false; command = "~/.fehbg"; }
+          { notification = false; command = "${pkgs.albert}/bin/albert"; }
 
           { notification = false; command = "${cmd_term_tmux}"; }
           { notification = false; command = "${cmd_browser}"; }
