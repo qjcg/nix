@@ -163,7 +163,8 @@ with pkgs;
       # FIXME: 2019-08-21 - TEMPORARILY disabled since build fails (xen related error).
       #vagrant
 
-      vault
+      # FIXME: vault disabled due to build error.
+      #vault
     ];
 
   };
