@@ -194,6 +194,15 @@ with pkgs;
     games = [
       nethack
       retroarch
+      libretro.fba
+      libretro.fceumm
+      libretro.genesis-plus-gx
+      libretro.mame
+      libretro.mupen64plus
+      libretro.nestopia
+      libretro.prboom
+      libretro.snes9x-next
+      libretro.stella
     ];
 
     dev = [
