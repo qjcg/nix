@@ -192,6 +192,7 @@ with pkgs;
     ];
 
     games = [
+      dosbox
       nethack
       retroarch
       libretro.fba
