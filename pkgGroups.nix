@@ -45,6 +45,7 @@ with pkgs;
       binutils
       davmail
       ed
+      elinks
       fdupes
       file
       fortune
