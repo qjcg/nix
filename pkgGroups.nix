@@ -187,6 +187,9 @@ with pkgs;
       wireshark
       xaos
       xorg.xev
+      xorg.xeyes
+      xorg.xhost
+      xorg.xinit
       xscreensaver
       xwinwrap
     ];
