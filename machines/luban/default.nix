@@ -273,16 +273,7 @@
     "albert/albert.conf".source = ../../files/albert.conf ;
     "cmus/rc".source = ../../files/cmusrc ;
     "gtk-3.0/settings.ini".source = ../../files/gtk-3.0_settings.ini ;
-
     "i3/workspace1.json".source = ../../files/workspace1_luban.json ;
-
-    "i3/i3status-rust.toml" = {
-
-      # Using pkgs.callPackage allows antiquotations to be expanded.
-      text = pkgs.callPackage ../../files/i3status-rust_luban.toml.nix { inherit secrets; };
-      onChange = "i3-msg restart";
-    };
-
     "s-nail/mailrc".text = pkgs.callPackage ../../files/mailrc.nix { inherit secrets; };
   };
 
