@@ -109,6 +109,7 @@ with pkgs;
       mpv
       pulseaudio
       sox
+      strawberry
       streamripper
       youtube-dl
       youtube-viewer
