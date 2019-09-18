@@ -262,6 +262,7 @@ with pkgs;
     multimedia = [
       audacity
       blender
+      darktable
       feh
       flashplayer-standalone
       gimp # gimp-with-plugins didn't compile! 2019-07-07
