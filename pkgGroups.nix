@@ -263,6 +263,7 @@ with pkgs;
       audacity
       blender
       darktable
+      digikam
       feh
       flashplayer-standalone
       gimp # gimp-with-plugins didn't compile! 2019-07-07
