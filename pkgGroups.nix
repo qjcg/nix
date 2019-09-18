@@ -257,7 +257,7 @@ with pkgs;
     multimedia = [
       blender
       feh
-      #flashplayer-standalone
+      flashplayer-standalone
       gimp # gimp-with-plugins didn't compile! 2019-07-07
       imagemagick
       inkscape
@@ -277,7 +277,7 @@ with pkgs;
       baresip
       cool-retro-term
       glxinfo
-      #zoom-us
+      zoom-us
     ];
 
   };
