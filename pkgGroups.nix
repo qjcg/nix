@@ -177,7 +177,7 @@ with pkgs;
       browserpass
       chromium
       qutebrowser
-      #torbrowser
+      torbrowser
     ];
 
     utilities = [
