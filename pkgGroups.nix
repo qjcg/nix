@@ -192,6 +192,7 @@ with pkgs;
       xorg.xeyes
       xorg.xhost
       xorg.xinit
+      xorg.xkill
       xscreensaver
       xwinwrap
     ];
@@ -225,6 +226,8 @@ with pkgs;
 
     office = [
       bluejeans-gui
+      bookworm
+      calibre
       evince
       libreoffice-fresh
       rdesktop
@@ -256,6 +259,7 @@ with pkgs;
     ];
 
     multimedia = [
+      audacity
       blender
       feh
       flashplayer-standalone
