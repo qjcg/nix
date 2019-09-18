@@ -187,6 +187,7 @@ with pkgs;
       sent
       wireshark
       xaos
+      xorg.xclock
       xorg.xev
       xorg.xeyes
       xorg.xhost
@@ -277,7 +278,7 @@ with pkgs;
       baresip
       cool-retro-term
       glxinfo
-      zoom-us
+      #zoom-us
     ];
 
   };
