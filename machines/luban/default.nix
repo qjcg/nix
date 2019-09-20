@@ -277,6 +277,11 @@
     #  lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 000000";
     #};
 
+    # TODO: Configure and enable polybar as i3 statusbar.
+    #polybar = {
+    #  enable = true;
+    #};
+
     syncthing.enable = true;
     xscreensaver.enable = true;
 
