@@ -108,6 +108,7 @@ with pkgs;
       soundfont-fluid
 
       mpv
+      opus-tools
       pulseaudio
       sox
       strawberry
