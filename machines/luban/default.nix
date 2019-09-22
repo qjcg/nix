@@ -110,7 +110,7 @@
 
         # Aliases for downloading audio via youtube-dl.
         ytj = "youtube-dl --dump-single-json" ;
-        yta = "youtube-dl --add-metadata --write-info-json --embed-thumbnail --ignore-errors -o '%(playlist)s/%(playlist_index)02d. %(fulltitle)s - %(uploader)s.mp3'";
+        yta = "youtube-dl --add-metadata --embed-thumbnail --ignore-errors -o '%(playlist)s/%(playlist_index)02d. %(uploader)s - %(title)s.mp3'";
 
         drwWinVM = "rdesktop -u ${secrets.work-user} -p - -g 1680x1050 -K mt1n-${secrets.work-user}";
       };
