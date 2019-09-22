@@ -70,10 +70,11 @@ with pkgs;
       unzip
       utillinux
       weechat
+    ];
 
+    financial = [
+      beancount
       fava
-      python37Packages.beancount
-
     ];
 
     network = [
@@ -108,7 +109,7 @@ with pkgs;
       soundfont-fluid
 
       mpv
-      opus-tools
+      opusTools
       pulseaudio
       sox
       strawberry
@@ -145,6 +146,9 @@ with pkgs;
       # Python.
       python37Packages.cookiecutter
       python37Packages.ipython
+
+      # TODO: Re-enable poetry when fixed here: https://hydra.nixos.org/build/100467607
+      # See also: https://github.com/NixOS/nixpkgs/issues/68361
       #python37Packages.poetry
 
       sbcl
@@ -163,12 +167,7 @@ with pkgs;
       qemu
       skopeo
       tinyemu
-
-      # FIXME: 2019-08-21 - TEMPORARILY disabled since build fails (xen related error).
-      #vagrant
-
-      # FIXME: vault disabled due to build error.
-      #vault
+      vagrant
     ];
 
   };
@@ -264,20 +263,17 @@ with pkgs;
     multimedia = [
       audacity
       blender
-      darktable
       digikam
       feh
       flashplayer-standalone
       gimp # gimp-with-plugins didn't compile! 2019-07-07
       imagemagick
       inkscape
-
       obs-studio
-      qt5.qtbase
-
       pavucontrol
       picard
       pulseeffects
+      qt5.qtbase
       sxiv
       vlc
     ];
