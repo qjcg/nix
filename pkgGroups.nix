@@ -53,6 +53,7 @@ with pkgs;
       gnupg
       gopass
       htop
+      influxdb
       iotop
       jq
       lastpass-cli
