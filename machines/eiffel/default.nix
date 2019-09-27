@@ -174,21 +174,34 @@
       terminal = "screen-256color";
       historyLimit = 10000;
       extraConfig = ''
-        set-option -g renumber-windows on
+        set -g renumber-windows on
+        set -g set-titles on
+        set -g set-titles-string "tmux: #H/#S/#W"
 
-        bind-key '"' split-window -c "#{pane_current_path}"
-        bind-key % split-window -h -c "#{pane_current_path}"
-        bind-key c new-window -c "#{pane_current_path}"
+        set -g status-left "[#H/#S] "
+        set -g status-left-length 25
+        set -g status-right ""
+        set -g status-right-length 25
+        set -g status-justify left
+        set -g message-style                 "fg=green bright"
+        set -g status-style                  "fg=white dim"
+        setw -g window-status-style	     "fg=white dim"
+        setw -g window-status-current-style  "fg=cyan  dim"
 
-        bind-key C command-prompt -p "New session name:" "new-session -s %1"
-        bind-key R source-file ~/.tmux.conf \; display-message "source-file ~/.tmux.conf"
-        bind-key < command-prompt -p "Rename session to:" "rename-session %%"
+        bind '"' split-window -c "#{pane_current_path}"
+        bind % split-window -h -c "#{pane_current_path}"
+        bind c new-window -c "#{pane_current_path}"
 
-        bind-key -r M-Left previous-window
-        bind-key -r M-Right next-window
+        bind C command-prompt -p "New session name:" "new-session -s %1"
+        bind R source-file ~/.tmux.conf \; display-message "source-file ~/.tmux.conf"
+        bind < command-prompt -p "Rename session to:" "rename-session %%"
+        bind > choose-tree "move-window -t %%"
 
-        #bind-key -r C-Left previous-session
-        #bind-key -r C-Right next-session
+        bind -r M-Left previous-window
+        bind -r M-Right next-window
+
+        #bind -r C-Left previous-session
+        #bind -r C-Right next-session
       '';
     };
 
