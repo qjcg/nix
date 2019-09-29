@@ -103,6 +103,7 @@ with pkgs;
       alsaTools
       alsaUtils
 
+      beets
       cmus
 
       ffmpeg
