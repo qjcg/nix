@@ -237,6 +237,7 @@ with pkgs;
       rdesktop
       slack
       thunderbird-bin
+      tectonic
       zathura
     ];
 
