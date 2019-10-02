@@ -210,18 +210,6 @@
 
   services = {
 
-    compton = {
-      enable = true;
-      fade = true;
-
-      # FIXME: compton faceExclude NOT working for dmenu.
-      fadeExclude = [
-        "class_g ~= 'dmenu'"
-      ];
-      activeOpacity = "1.0";
-      inactiveOpacity = "1.0";
-    };
-
     dunst = {
       enable = true;
 
