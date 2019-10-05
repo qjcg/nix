@@ -204,6 +204,7 @@ with pkgs;
     games = [
       dosbox
       nethack
+      pokerth
       retroarch
       libretro.fba
       libretro.fceumm
