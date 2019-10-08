@@ -65,6 +65,7 @@ with pkgs;
       pv
       renameutils
       ripgrep
+      rlwrap
       sqlite
       tesseract
       tree
