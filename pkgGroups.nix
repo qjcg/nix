@@ -165,6 +165,7 @@ with pkgs;
       dive
       docker-compose
       kubectl
+      minikube
       packer
       podman
       qemu
