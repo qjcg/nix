@@ -170,6 +170,7 @@ with pkgs;
       podman
       qemu
       skopeo
+      stern
       tinyemu
       vagrant
     ];
