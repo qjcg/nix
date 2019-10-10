@@ -243,6 +243,7 @@ with pkgs;
       slack
       thunderbird-bin
       tectonic
+      texlive.combined.scheme-medium
       zathura
     ];
 
@@ -312,6 +313,10 @@ with pkgs;
             neosnippet-snippets
 
             nerdtree
+
+            vim-pandoc
+            vim-pandoc-syntax
+
             python-mode
             tagbar
             vim-beancount
