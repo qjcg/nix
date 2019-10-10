@@ -54,7 +54,6 @@
         aria2
         bash-completion
         bash_5
-        cacert
         caddy
         cmus
         coreutils
@@ -82,8 +81,10 @@
         inkscape
         iosevka
         jq
+        kubectl
         lastpass-cli
         lsof
+        minikube
         mkcert
         mpv
         mtr
