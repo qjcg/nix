@@ -274,7 +274,7 @@ with pkgs;
       blender
       digikam
       feh
-      flashplayer-standalone
+      #flashplayer-standalone # FIXME: re-enable when building successfully
       gimp # gimp-with-plugins didn't compile! 2019-07-07
       imagemagick
       inkscape
