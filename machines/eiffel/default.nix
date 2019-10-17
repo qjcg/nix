@@ -86,7 +86,7 @@
       '';
 
       shellAliases = rec {
-        ls = "ls --color=auto";
+        ls = "ls --color --human-readable --group-directories-first";
         grep = "grep -E";
         tree = "tree -A -C";
 
