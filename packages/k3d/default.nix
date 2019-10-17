@@ -23,7 +23,7 @@ buildGoModule rec {
   # Then, during build, copy "got" value in here.
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
   #modSha256 = lib.fakeSha256;
-  modSha256 = "1p6pglgbbvkqgn9kj0lvhrhb4q2hdh68339ig1ixgxfkw5l8dlj0";
+  modSha256 = "11mhbvf39ny8ga5j792rj9qyk421x69hp723wl9r2fwkjmggsvzz";
 
   meta = with lib; {
     description = "Little helper to run Rancher Lab's k3s in Docker";
