@@ -90,15 +90,14 @@
         grep = "grep -E";
         tree = "tree -A -C";
 
-        # Print all Active Directory groups. It seems they have GID >= 10000.
-        adGroups = "id | sed -e 's/,/\\n/g' -e 's/(/: /g' -e 's/)//g' | sort -n | awk -F: '/^[1-9]/ && $1 > 10000'";
-
       # NOTE: Home manager ALWAYS uses <nixpkgs> for the package set.
       # Ref: https://github.com/rycee/home-manager/issues/376#issuecomment-419666167
         hm = "home-manager";
         hms = "${hm} switch -A eiffel";
         hmRemoveAllBut3 = "${hm} generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
 
+        # Print all Active Directory groups. It seems they have GID >= 10000.
+        drwADGroups = "id | sed -e 's/,/\\n/g' -e 's/(/: /g' -e 's/)//g' | sort -n | awk -F: '/^[1-9]/ && $1 > 10000'";
         drwHomeUsage = "shopt -s dotglob && du --threshold 1M --exclude={G,H,W,X} -s ~/* | sort -n | sed 's/.home.jgosset.//' | awk '{print $2,$1}' | goplot bar";
         drwWinVM = "rdesktop -u ${secrets.work-user} -p - -g 1680x1050 -K mt1n-${secrets.work-user}";
       };
