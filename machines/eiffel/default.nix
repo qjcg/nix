@@ -282,6 +282,7 @@
       onChange = "i3-msg restart";
     };
 
+    "nvim/coc-settings.json".source = ../../files/coc-settings.json ;
     "s-nail/mailrc".text = pkgs.callPackage ../../files/mailrc.nix { inherit secrets; };
   };
 

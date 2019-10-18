@@ -307,25 +307,30 @@ with pkgs;
             goyo
             limelight-vim
 
-            deoplete-nvim
-            deoplete-go
-            deoplete-lsp
-            neosnippet
-            neosnippet-snippets
+            coc-css
+            coc-git
+            coc-go
+            coc-highlight
+            coc-html
+            coc-json
+            coc-nvim
+            coc-prettier
+            coc-python
+            coc-snippets
+            coc-yaml
 
             nerdtree
 
             vim-pandoc
             vim-pandoc-syntax
 
-            python-mode
+            #python-mode
             tagbar
             vim-beancount
             vim-go
             vim-jsx-pretty
             vim-nix
             vim-toml
-            typescript-vim
     ];
     opt = [];
   };
