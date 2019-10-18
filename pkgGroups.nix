@@ -264,7 +264,8 @@ with pkgs;
     themes = [
       arc-icon-theme
       lxappearance
-      qt5ct
+      # FIXME: re-enable qt5ct when building successfully
+      #qt5ct
       qogir-theme
       vanilla-dmz
     ];
