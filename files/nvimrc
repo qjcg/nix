@@ -49,11 +49,3 @@ nnoremap <silent> <F4> :call RandomColorScheme()<CR>:colo<CR>
 " Reload syntax highlighting.
 nnoremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
-
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-
-" Neosnippet
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_or_jump)
