@@ -22,7 +22,7 @@ buildGoModule rec {
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
-  modSha256 = "0b9hw2glbdlc0psw44xhngmwajpslibdn3a6g6fpnp5vw0j6q8hn";
+  modSha256 = "1lk0yr8da58wx5qy3x909kkaq1cbyjkxrjsnyabxj7i9vs9fxxss";
 
   meta = with lib; {
     description = "Speaking in tongues via stdout.";
