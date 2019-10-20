@@ -251,11 +251,13 @@ with pkgs;
       fira-code
       font-awesome-ttf
       fontconfig-penultimate
+      fontforge-gtk
       go-font
       gtk2fontsel
       inconsolata
       iosevka
       libertine
+      monoid
       roboto
       unifont
       unifont_upper
