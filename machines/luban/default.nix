@@ -304,7 +304,7 @@
     "fonts/Apl385.ttf" = {
       source = ../../files/fonts/Apl385.ttf;
       onChange = "fc-cache -f";
-    }
+    };
     "nvim/site/after/ftplugin/go.vim".source = ../../files/go.vim ;
   };
 
