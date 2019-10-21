@@ -224,6 +224,7 @@ with pkgs;
 
     dev = [
       dbeaver
+      vscode
     ];
 
     # NOTE: Screen locker is configured via system config.
