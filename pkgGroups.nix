@@ -67,6 +67,7 @@ with pkgs;
       ripgrep
       rlwrap
       sqlite
+      telegraf
       tesseract
       tree
       unzip
