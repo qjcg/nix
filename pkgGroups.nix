@@ -252,6 +252,7 @@ with pkgs;
     fonts = [
       fira-code
       font-awesome-ttf
+      font-manager
       fontconfig-penultimate
       fontforge-gtk
       go-font
