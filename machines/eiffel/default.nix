@@ -159,11 +159,8 @@
       enable = true;
       viAlias = true;
       vimAlias = true;
-      withPython3 = true;
-      configure = {
-        customRC = builtins.readFile ../../files/nvimrc;
-        packages.myVimPackage = with pkgs.vimPlugins; pg.vim;
-      };
+      extraConfig = builtins.readFile ../../files/nvimrc;
+      plugins = pg.vim;
     };
 
     tmux = {
