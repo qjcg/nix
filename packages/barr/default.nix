@@ -3,13 +3,13 @@
   lib,
   fetchFromGitHub,
   buildGoModule,
+
+  upx,
 }:
 
 buildGoModule rec {
   name = "barr-${version}";
   version = "1.13.3";
-
-  subPackages = [ "cmd/barr" ];
 
   src = fetchFromGitHub {
     owner = "qjcg";
@@ -20,6 +20,10 @@ buildGoModule rec {
     #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
     sha256 = "1r4sf3wrhdvbxv8wp9597hxindsqzffzkpqs6vb5b6x4x4mlhdxg" ;
   };
+
+  subPackages = [ "cmd/barr" ];
+  buildInputs = [ upx ];
+  fixupPhase = '' upx $out/bin/* '';
 
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.
