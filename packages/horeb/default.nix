@@ -7,7 +7,7 @@
 
 buildGoModule rec {
   name = "horeb-${version}";
-  version = "0.8.1";
+  version = "0.9.0";
 
   src = fetchFromGitHub {
     owner = "qjcg";
@@ -16,13 +16,25 @@ buildGoModule rec {
 
     # To get this value, use "nix-prefetch-url --unpack" with the release tarball, eg:
     #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
-    sha256 = "0ss84xfrjz9mljg84n8dwx8bcp8drnngmscf150knp3z8cc8sr8z";
+    sha256 = "1j1l56qrv8q525g8x40ik2k1r8bfasz6axp3fca4x8d5r61dpf5w";
   };
+
+  subPackages = [
+    "cmd/horeb"
+    "cmd/horebd"
+    "cmd/horebctl"
+  ];
+
+  # FIXME: Version is NOT being set properly (see `horeb -v` output).
+  buildFlagsArray = ''
+    -ldflags='-s -w -X github.com/qjcg/horeb/pkg/horeb.Version=${src.rev}'
+    -extldflags '-static'
+  '';
 
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
-  modSha256 = "1dvr61wkxh4jfskw9k427qb4wwy01mr12q9f4d5pi106d9j9d3hd";
+  modSha256 = "03vi9wmqgwrpq2853b3dwar075sx6qldh6jd3y71f5yqa53fpnf2";
 
   meta = with lib; {
     description = "Speaking in tongues via stdout.";
