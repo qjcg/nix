@@ -3,6 +3,8 @@
   lib,
   fetchFromGitHub,
   buildGoModule,
+
+  upx,
 }:
 
 buildGoModule rec {
@@ -19,16 +21,15 @@ buildGoModule rec {
     sha256 = "1j1l56qrv8q525g8x40ik2k1r8bfasz6axp3fca4x8d5r61dpf5w";
   };
 
-  subPackages = [
-    "cmd/horeb"
-    "cmd/horebd"
-    "cmd/horebctl"
-  ];
+  buildInputs = [ upx ];
 
-  # FIXME: Version is NOT being set properly (see `horeb -v` output).
-  buildFlagsArray = ''
-    -ldflags='-s -w -X github.com/qjcg/horeb/pkg/horeb.Version=${src.rev}'
-    -extldflags '-static'
+  # FIXME: Evaluate whether `go build` can be used here instead.
+  buildPhase = ''
+    CGO_ENABLED=0 go install -ldflags='-s -w -X github.com/qjcg/horeb/pkg/horeb.Version=${src.rev}' ./...
+  '';
+
+  fixupPhase = ''
+    upx $out/bin/*
   '';
 
   # First, provide a fake hash via the value: lib.fakeSha256
