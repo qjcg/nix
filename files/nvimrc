@@ -24,6 +24,7 @@ set splitright			" vsplit window to the right by default
 set wildmenu			" dmenu-style menu
 set wildmode=full
 
+autocmd BufRead,BufNewFile *.mdx setlocal ai et sw=2 ts=2 ft=typescript
 autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
 autocmd FileType nix setlocal cuc
 
