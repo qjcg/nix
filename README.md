@@ -24,7 +24,7 @@ mkdir -p ~/.config
 git clone https://github.com/qjcg/nix-home ~/.config/nixpkgs
 
 # Install the mac environment (for details, see config.nix).
-nix-env -iA nixpkgs.env-mac
+nix-env -i env-mac
 ```
 
 
