@@ -1,5 +1,5 @@
 self: super:
 
 {
-    go-4d = super.callPackage ./4d.nix {};
+    go-4d = super.callPackage ./package.nix {};
 }
