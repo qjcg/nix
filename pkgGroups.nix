@@ -193,6 +193,7 @@ with pkgs;
       gcolor3
       libnotify
       mesa
+      qrencode
       sent
       wireshark
       xaos
