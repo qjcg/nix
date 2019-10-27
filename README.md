@@ -42,7 +42,11 @@ nix-env -iA nixpkgs.env-mac
 - Ubuntu 18.04
 
 
-## Other interesting configs
+## References
+- <https://ebzzry.io/en/nix/>
+- <https://nixos.wiki/wiki/Vim#Custom_setup_without_using_Home_Manager>
+
+### Other interesting configs
 
 - <https://github.com/nocoolnametom/nix-configs>
 - With i3 config: <https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix>
