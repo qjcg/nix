@@ -10,10 +10,9 @@ let
   pkgs = import <nixpkgs> {};
   lib = pkgs.lib;
 
-  pg = import ./pkgGroups.nix { inherit pkgs; };
   secrets = import ./secrets.nix;
 in
 {
-  luban   = import ./machines/luban { inherit lib pkgs pg secrets; };
-  eiffel  = import ./machines/eiffel { inherit lib pkgs pg secrets; };
+  luban   = import ./machines/luban { inherit lib pkgs secrets; };
+  eiffel  = import ./machines/eiffel { inherit lib pkgs secrets; };
 }

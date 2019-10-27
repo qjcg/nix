@@ -2,7 +2,6 @@
   pkgs,
   lib,
 
-  pg,
   secrets,
   ...
 }:
@@ -54,10 +53,9 @@
       options = ["grp:shifts_toggle"];
     };
 
-    packages =
-      lib.lists.flatten (lib.attrsets.collect builtins.isList pg.GUI) ++
-      lib.lists.flatten (lib.attrsets.collect builtins.isList pg.CLI)
-      ;
+    packages = with pkgs; [
+      env-workstation
+    ];
 
   };
 

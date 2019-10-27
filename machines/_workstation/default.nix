@@ -1,7 +1,6 @@
 { pkgs, lib, ... }:
 
 let
-  pg = pkgs.callPackage ../../pkgGroups.nix {};
 
   # A secrets.nix file should be created containing the following values.
   secrets = if builtins.pathExists ../../secrets.nix then import ../../secrets.nix else {
@@ -39,10 +38,9 @@ in
       options = ["grp:shifts_toggle"];
     };
 
-    packages =
-      lib.lists.flatten (lib.attrsets.collect builtins.isList pg.GUI) ++
-      lib.lists.flatten (lib.attrsets.collect builtins.isList pg.CLI)
-      ;
+    packages = [
+      env-workstation
+    ];
 
   };
 
