@@ -13,6 +13,6 @@ let
   secrets = import ./secrets.nix;
 in
 {
-  luban   = import ./machines/luban { inherit lib pkgs secrets; };
-  eiffel  = import ./machines/eiffel { inherit lib pkgs secrets; };
+  luban   = import ./machines/luban { inherit pkgs lib secrets; };
+  eiffel  = import ./machines/eiffel { inherit pkgs lib secrets; };
 }
