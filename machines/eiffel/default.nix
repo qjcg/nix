@@ -155,14 +155,6 @@
       goBin = "${goPath}/bin";
     };
 
-    neovim = {
-      enable = true;
-      viAlias = true;
-      vimAlias = true;
-      extraConfig = builtins.readFile ../../files/nvimrc;
-      plugins = pg.vim;
-    };
-
     tmux = {
       enable = true;
       escapeTime = 10;

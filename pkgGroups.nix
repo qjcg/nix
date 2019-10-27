@@ -123,6 +123,8 @@ with pkgs;
     ];
 
     devtools = [
+      neovim
+
       fossil
       hugo
 
