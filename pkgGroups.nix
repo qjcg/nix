@@ -262,6 +262,7 @@ with pkgs;
       roboto
       unifont
       unifont_upper
+      victor-mono
     ];
 
     themes = [
