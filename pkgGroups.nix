@@ -305,38 +305,4 @@ with pkgs;
 
   };
 
-  vim = with pkgs.vimPlugins; [
-    ansible-vim
-    awesome-vim-colorschemes
-    changeColorScheme-vim
-    fzf-vim
-    goyo
-    limelight-vim
-
-    coc-css
-    coc-git
-    coc-go
-    coc-highlight
-    coc-html
-    coc-json
-    coc-nvim
-    coc-prettier
-    coc-python
-    coc-snippets
-    coc-yaml
-
-    nerdtree
-
-    vim-pandoc
-    vim-pandoc-syntax
-
-    #python-mode
-    tagbar
-    vim-beancount
-    vim-go
-    vim-jsx-pretty
-    vim-nix
-    vim-toml
-  ];
-
 }
