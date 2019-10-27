@@ -1,10 +1,6 @@
 self: super:
 
 {
-    dunst = super.dunst.override {
-      dunstify = true;
-    };
-
     # TODO: Figure out syntax for enabling various cores (below does NOT work).
     #retroarch = super.retroarch.override {
     #  cores = [
