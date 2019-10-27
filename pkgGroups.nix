@@ -150,10 +150,7 @@ with pkgs;
       # Python.
       python37Packages.cookiecutter
       python37Packages.ipython
-
-      # TODO: Re-enable poetry when fixed here: https://hydra.nixos.org/build/100467607
-      # See also: https://github.com/NixOS/nixpkgs/issues/68361
-      #python37Packages.poetry
+      python37Packages.poetry
 
       sbcl
       tig
@@ -271,6 +268,7 @@ with pkgs;
       arc-icon-theme
       lxappearance
       # FIXME: re-enable qt5ct when building successfully
+      # See issue: https://github.com/NixOS/nixpkgs/issues/71463
       #qt5ct
       qogir-theme
       vanilla-dmz
@@ -281,7 +279,7 @@ with pkgs;
       blender
       digikam
       feh
-      #flashplayer-standalone # FIXME: re-enable when building successfully
+      flashplayer-standalone
       gimp # gimp-with-plugins didn't compile! 2019-07-07
       imagemagick
       inkscape
@@ -294,12 +292,12 @@ with pkgs;
       vlc
     ];
 
-    # FIXME: These apps close immediately on startup, complaining about GLX.
+    # FIXME: These apps close immediately on startup (eiffel only?), complaining about GLX.
     broken = [
       baresip
       cool-retro-term
       glxinfo
-      #zoom-us
+      zoom-us
     ];
 
   };
