@@ -305,10 +305,11 @@ let
 in
   {
 
-    env-demo = super.pkgs.buildEnv {
-      name = "env-demo";
+    # A test environment containing only the hello package.
+    env-hello = super.pkgs.buildEnv {
+      name = "env-hello";
       meta.priority = 0;
-      paths = with super.pkgs; [ horeb ];
+      paths = with super.pkgs; [ hello ];
     };
 
     env-cli = super.pkgs.buildEnv {
