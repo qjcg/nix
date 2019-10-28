@@ -70,6 +70,8 @@ Interesting and useful links on a variety of nix-related topics.
 - [Setting up a custom nix channel](https://savanni.luminescent-dreams.com/2019/09/13/nix-channel/)
 - [How to put your /nix directory on a separate device](https://cs-syd.eu/posts/2019-09-14-nix-on-seperate-device)
 - [Cheatsheet comparing Ubuntu & NixOS](https://nixos.wiki/wiki/Cheatsheet)
+- [Flakes RFC / proposal](https://github.com/tweag/rfcs/blob/flakes/rfcs/0049-flakes.md)
+	- [Flakes RFC GitHub PR (discussion)](https://github.com/NixOS/rfcs/pull/49)
 
 ### Containers
 
