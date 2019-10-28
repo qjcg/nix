@@ -341,7 +341,7 @@ let
         mkcert
         mpv
         mtr
-        myNeovim
+        neovim
         nethack
         nix-bash-completions
         nixops
