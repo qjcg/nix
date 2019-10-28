@@ -7,7 +7,7 @@ My personal [nix] configuration.
 
 - Uses [home-manager] to manage user settings
 - Per-machine configurations with common core
-- Templating via [nix expression language](https://nixos.org/nix/manual/#ch-expression-language)
+- Templating via the [nix expression language](https://nixos.org/nix/manual/#ch-expression-language)
 - Secure secret storage via [GPG](https://gnupg.org) (TODO: elaborate on this!)
 - Multi-platform (NixOS, Ubuntu, macOS)
 
@@ -51,7 +51,7 @@ nix-env -i env-mac
 
 # References
 - <https://ebzzry.io/en/nix/>
-- <https://nixos.wiki/wiki/Vim#Custom_setup_without_using_Home_Manager>
+- [(neo)vim overlay configuration example](https://nixos.wiki/wiki/Vim#Custom_setup_without_using_Home_Manager)
 
 ## Other interesting configs
 
