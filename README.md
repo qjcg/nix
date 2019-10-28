@@ -90,6 +90,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [nix-pre-commit-hooks](https://github.com/hercules-ci/nix-pre-commit-hooks)
 - [cachix: Nix binary cache hosting](https://cachix.org/)
 - [Cachix & Install Nix actions for GitHub](https://discourse.nixos.org/t/cachix-nix-install-actions-for-github/4242/2)
+- [netboot.xyz (boot nix directly via network, no USB key)](https://github.com/antonym/netboot.xyz)
 
 
 
