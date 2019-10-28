@@ -42,6 +42,12 @@ nix-env -i env-mac
 ```
 
 
+# TODO
+
+- [ ] Add NixOS system configuration(s)
+- [ ] Consider using [nix-darwin] on macOS
+
+
 # References
 - <https://ebzzry.io/en/nix/>
 - <https://nixos.wiki/wiki/Vim#Custom_setup_without_using_Home_Manager>
@@ -54,3 +60,4 @@ nix-env -i env-mac
 
 [nix]: https://nixos.org/nix/
 [home-manager]: https://github.com/rycee/home-manager
+[nix-darwin]: https://github.com/LnL7/nix-darwin
