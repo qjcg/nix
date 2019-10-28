@@ -1,23 +1,29 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
 
-let
+  secrets,
+}:
 
-  # A secrets.nix file should be created containing the following values.
-  secrets = if builtins.pathExists ../../secrets.nix then import ../../secrets.nix else {
-    openweathermap-api-key = "";
-    openweathermap-city-id = "";
-    work-user = "";
-    git-name = "";
-    git-email = "";
-  };
-in
 {
   fonts.fontconfig.enable = true;
   manual.html.enable = true;
 
-  gtk = {
-    enable = true;
-  };
+  # FIXME: Not working (settings.ini is *empty*), so creating manual config file below.
+  #gtk = with pkgs; {
+  #  enable = true;
+
+  #  font = {
+  #    package = roboto;
+  #    name = "Roboto 18";
+  #  };
+
+  #  theme = {
+  #    package = qogir-theme;
+  #    name = "Qogir-light";
+  #  };
+
+  #};
 
 
   home = {
@@ -30,6 +36,15 @@ in
       EDITOR = "nvim";
       PAGER = "less";
       VISUAL = "nvim";
+
+      # TODO: MACHINE
+      NIX_PATH = "nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
+
+      QT_PLATFORMTHEME = "qt5ct";
+      QT_PLATFORM_PLUGIN = "qt5ct";
+      QT_QPA_PLATFORMTHEME = "qt5ct";
+
+      MAILRC = "$HOME/.config/s-nail/mailrc";
     };
 
     keyboard = {
@@ -38,7 +53,7 @@ in
       options = ["grp:shifts_toggle"];
     };
 
-    packages = [
+    packages = with pkgs; [
       env-workstation
     ];
 
@@ -81,16 +96,25 @@ in
       '';
 
       shellAliases = rec {
-        ls = "ls --color=auto";
+        ls = "ls --color --human-readable --group-directories-first";
         grep = "grep -E";
         tree = "tree -A -C";
 
+      # TODO: MACHINE
       # NOTE: Home manager ALWAYS uses <nixpkgs> for the package set.
       # Ref: https://github.com/rycee/home-manager/issues/376#issuecomment-419666167
         hm = "home-manager";
         hms = "${hm} switch";
         hmRemoveAllBut3 = "${hm} generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
 
+        # Aliases for downloading audio via youtube-dl.
+        ytj = "youtube-dl --dump-single-json" ;
+        yta = "youtube-dl --add-metadata --embed-thumbnail --ignore-errors -o '%(playlist)s/%(playlist_index)02d. %(uploader)s - %(title)s.mp3'";
+
+        # TODO: MACHINE
+        # Print all Active Directory groups. It seems they have GID >= 10000.
+        drwADGroups = "id | sed -e 's/,/\\n/g' -e 's/(/: /g' -e 's/)//g' | sort -n | awk -F: '/^[1-9]/ && $1 > 10000'";
+        drwHomeUsage = "shopt -s dotglob && du --threshold 1M --exclude={G,H,W,X} -s ~/* | sort -n | sed 's/.home.jgosset.//' | awk '{print $2,$1}' | goplot bar";
         drwWinVM = "rdesktop -u ${secrets.work-user} -p - -g 1680x1050 -K mt1n-${secrets.work-user}";
       };
     };
@@ -147,37 +171,6 @@ in
       goBin = "${goPath}/bin";
     };
 
-    neovim = {
-      enable = true;
-      viAlias = true;
-      vimAlias = true;
-      withPython3 = true;
-      configure = {
-        customRC = builtins.readFile ../../files/nvimrc;
-
-        packages.myVimPackage = with pkgs.vimPlugins; {
-          start = [
-            ansible-vim
-            awesome-vim-colorschemes
-            fzf-vim
-            goyo
-            limelight-vim
-            neosnippet
-            neosnippet-snippets
-            nerdtree
-            python-mode
-            tagbar
-            vim-beancount
-            vim-go
-            vim-nix
-            vim-toml
-            typescript-vim
-          ];
-        };
-
-      };
-    };
-
     tmux = {
       enable = true;
       escapeTime = 10;
@@ -185,21 +178,34 @@ in
       terminal = "screen-256color";
       historyLimit = 10000;
       extraConfig = ''
-        set-option -g renumber-windows on
+        set -g renumber-windows on
+        set -g set-titles on
+        set -g set-titles-string "tmux: #H/#S/#W"
 
-        bind-key '"' split-window -c "#{pane_current_path}"
-        bind-key % split-window -h -c "#{pane_current_path}"
-        bind-key c new-window -c "#{pane_current_path}"
+        set -g status-left "[#H/#S] "
+        set -g status-left-length 25
+        set -g status-right ""
+        set -g status-right-length 25
+        set -g status-justify left
+        set -g message-style                 "fg=green bright"
+        set -g status-style                  "fg=white dim"
+        setw -g window-status-style	     "fg=white dim"
+        setw -g window-status-current-style  "fg=cyan  dim"
 
-        bind-key C command-prompt -p "New session name:" "new-session -s %1"
-        bind-key R source-file ~/.tmux.conf \; display-message "source-file ~/.tmux.conf"
-        bind-key < command-prompt -p "Rename session to:" "rename-session %%"
+        bind '"' split-window -c "#{pane_current_path}"
+        bind % split-window -h -c "#{pane_current_path}"
+        bind c new-window -c "#{pane_current_path}"
 
-        bind-key -r M-Left previous-window
-        bind-key -r M-Right next-window
+        bind C command-prompt -p "New session name:" "new-session -s %1"
+        bind R source-file ~/.tmux.conf \; display-message "source-file ~/.tmux.conf"
+        bind < command-prompt -p "Rename session to:" "rename-session %%"
+        bind > choose-tree "move-window -t %%"
 
-        #bind-key -r C-Left previous-session
-        #bind-key -r C-Right next-session
+        bind -r M-Left previous-window
+        bind -r M-Right next-window
+
+        #bind -r C-Left previous-session
+        #bind -r C-Right next-session
       '';
     };
 
@@ -208,11 +214,10 @@ in
 
   services = {
 
+    # TODO:: MACHINE
     compton = {
       enable = true;
       fade = true;
-
-      # FIXME: compton faceExclude NOT working for dmenu.
       fadeExclude = [
         "class_g ~= 'dmenu'"
       ];
@@ -274,26 +279,36 @@ in
     #  systemctlPath = "/usr/bin/systemctl";
     #};
 
+    syncthing.enable = true;
+    xscreensaver.enable = true;
+
   };
 
   xdg.configFile = {
-    "cmus/rc".source = ../../files/cmusrc;
-    "i3/workspace1.json".source = ../../files/workspace1.json;
-
-    "i3/i3status-rust.toml" = {
-
-      # Using pkgs.callPackage allows antiquotations to be expanded.
-      text = pkgs.callPackage ../../files/i3status-rust.toml.nix { inherit secrets; };
-      onChange = "i3-msg restart";
-    };
+    "albert/albert.conf".source = ../../files/albert.conf ;
+    "cmus/rc".source = ../../files/cmusrc ;
+    "gtk-3.0/settings.ini".source = ../../files/gtk-3.0_settings.ini ;
+    "i3/workspace1.json".source = ../../files/workspace1_luban.json ;
+    "nvim/coc-settings.json".source = ../../files/coc-settings.json ;
+    "s-nail/mailrc".text = pkgs.callPackage ../../files/mailrc.nix { inherit secrets; };
   };
 
   xdg.dataFile = {
+    "fonts/Apl385.ttf" = {
+      source = ../../files/fonts/Apl385.ttf;
+      onChange = "fc-cache -f";
+    };
     "nvim/site/after/ftplugin/go.vim".source = ../../files/go.vim;
   };
 
   xsession = {
     enable = true;
+
+    pointerCursor = with pkgs; {
+      name = "Vanilla-DMZ";
+      package = vanilla-dmz;
+      size = 64;
+    };
 
     windowManager.i3 = 
     let
@@ -314,7 +329,7 @@ in
       enable = true;
 
       extraConfig = ''
-        default_border  pixel 2
+        default_border  pixel 8
         title_align     center
       '';
 
@@ -364,11 +379,23 @@ in
 
             "${modifier}+Shift+e" = "exit";
             "${modifier}+Shift+x" = "kill";
+
+            # TODO: MACHINE
+            # Control pulseaudio volume for default sink.
+            # Ref: https://wiki.archlinux.org/index.php/PulseAudio#Keyboard_volume_control
+            "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+            "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+            "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+            "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+
+            # Control brightness.
+            "XF86MonBrightnessDown" = "exec sudo brightness -5";
+            "XF86MonBrightnessUp" = "exec sudo brightness +5";
 	  };
 
         # NOTE: Border of i3-gaps windows is set via childBorder.
         colors = {
-          focused         = { border = "#0000ff"; background = "#000000"; text = "#00ffed"; indicator = "#ffffff"; childBorder = "#00ff83"; };
+          focused         = { border = "#0000ff"; background = "#000000"; text = "#00ffed"; indicator = "#ffffff"; childBorder = "#0000ff"; };
           focusedInactive = { border = "#000000"; background = "#000000"; text = "#ffffff"; indicator = "#ffffff"; childBorder = "#000000"; };
           unfocused       = { border = "#000000"; background = "#222222"; text = "#999999"; indicator = "#ffffff"; childBorder = "#000000"; };
         };
@@ -378,7 +405,7 @@ in
           mode = "dock";
 
           fonts = [
-            "Iosevka Medium 13"
+            "Iosevka Medium 15"
           ];
 
           colors = {
@@ -392,12 +419,15 @@ in
             urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
           };
 
+          # TODO: MACHINE
           statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/i3status-rust.toml";
+          statusCommand = "while barr; do sleep 5 ; done";
         }];
 
         startup = [
           { notification = false; command = "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace1.json'"; }
           { notification = false; command = "~/.fehbg"; }
+          { notification = false; command = "${pkgs.albert}/bin/albert"; }
 
           { notification = false; command = "${cmd_term_tmux}"; }
           { notification = false; command = "${cmd_browser}"; }
