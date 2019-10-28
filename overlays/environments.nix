@@ -301,6 +301,80 @@ let
 
     };
 
+    mac = [
+        alacritty
+        ansible
+        aria2
+        bash-completion
+        bash_5
+        caddy
+        cmus
+        coreutils
+        delve
+        docker-compose
+        emacsMacport
+        errcheck
+        fdupes
+        ffmpeg
+        findutils
+        fly
+        fortune
+        fossil
+        fzf
+        git
+        gnugrep
+        gnumake
+        go
+        go-font
+        gopass
+        gotags
+        htop
+        imagemagick
+        inconsolata
+        inkscape
+        iosevka
+        jq
+        kubectl
+        lastpass-cli
+        lsof
+        minikube
+        mkcert
+        mpv
+        mtr
+        myNeovim
+        nethack
+        nix-bash-completions
+        nixops
+        nodejs
+        pandoc
+        pdfcpu
+        poetry
+        python3
+        python37Packages.ipython
+        python37Packages.notebook
+        python37Packages.pandas
+        python37Packages.pip
+        qemu
+        rclone
+        rdesktop
+        renameutils
+        restic
+        ripgrep
+        rsync
+        sox
+        stdenv
+        streamripper
+        syncthing
+        tig
+        tmux
+        tree
+        universal-ctags
+        unzip
+        upx
+        vscode-with-extensions
+        youtube-dl
+    ];
+
   };
 in
   {
@@ -331,6 +405,12 @@ in
         super.lib.lists.flatten (super.lib.attrsets.collect builtins.isList pkgGroups.CLI) ++
         super.lib.lists.flatten (super.lib.attrsets.collect builtins.isList pkgGroups.GUI)
         ;
+    };
+
+    env-mac = super.pkgs.buildEnv {
+      name = "env-mac";
+      meta.priority = 0;
+      paths = pkgGroups.mac;
     };
 
   }
