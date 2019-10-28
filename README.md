@@ -50,15 +50,14 @@ nix-env -i env-mac
 
 
 # References
-- <https://ebzzry.io/en/nix/>
+- [A Gentle Introduction to the Nix Family](https://ebzzry.io/en/nix/)
 - [(neo)vim overlay configuration example](https://nixos.wiki/wiki/Vim#Custom_setup_without_using_Home_Manager)
 	- [Example of adding new custom (neo)vim plugin](https://nixos.wiki/wiki/Vim#Add_a_new_custom_plugin_to_the_users_packages)
 
 ## Other interesting configs
 
-- <https://github.com/nocoolnametom/nix-configs>
-- With i3 config: <https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix>
-- Has system configurations, custom NixOS modules, uses nix-darwin and home-manager: <https://github.com/rummik/nixos-config>
+- [j0xaf (with i3 config)](https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix)
+- [rummik (with system configurations, custom NixOS modules, nix-darwin, and home-manager)](https://github.com/rummik/nixos-config)
 
 
 [nix]: https://nixos.org/nix/
