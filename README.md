@@ -1,14 +1,15 @@
 # nix-config
 
-My personal nix configuration.
+My personal [nix] configuration.
 
 
 # Features
 
 - Uses [home-manager] to manage user settings
-- Secure secret storage via [GPG](https://gnupg.org) (TODO: elaborate on this!)
 - Per-machine configurations with common core
 - Templating via [nix expression language](https://nixos.org/nix/manual/#ch-expression-language)
+- Secure secret storage via [GPG](https://gnupg.org) (TODO: elaborate on this!)
+- Multi-platform (NixOS, Ubuntu, macOS)
 
 
 # Use
@@ -25,6 +26,7 @@ git clone https://github.com/qjcg/nix-home ~/.config/nixpkgs
 nix-env -i env-mac
 ```
 
+
 # Layout
 
 ```
@@ -40,13 +42,6 @@ nix-env -i env-mac
 ```
 
 
-# Tested Platforms
-
-- macOS
-- Arch Linux
-- Ubuntu 18.04
-
-
 # References
 - <https://ebzzry.io/en/nix/>
 - <https://nixos.wiki/wiki/Vim#Custom_setup_without_using_Home_Manager>
@@ -57,4 +52,5 @@ nix-env -i env-mac
 - With i3 config: <https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix>
 
 
+[nix]: https://nixos.org/nix/
 [home-manager]: https://github.com/rycee/home-manager
