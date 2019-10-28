@@ -10,9 +10,18 @@ let
   pkgs = import <nixpkgs> {};
   lib = pkgs.lib;
 
-  secrets = import ./secrets.nix;
+  secrets = if builtins.pathExists ./secrets.nix then
+    import ./secrets.nix
+    else {
+      openweathermap-api-key = "";
+      openweathermap-city-id = "";
+      work-user = "";
+      git-name = "";
+      git-email = "";
+    };
+
 in
-{
-  luban   = import ./machines/luban { inherit pkgs lib secrets; };
-  eiffel  = import ./machines/eiffel { inherit pkgs lib secrets; };
-}
+  {
+    luban   = import ./machines/luban { inherit pkgs lib secrets; };
+    eiffel  = import ./machines/eiffel { inherit pkgs lib secrets; };
+  }
