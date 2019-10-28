@@ -81,12 +81,13 @@ Interesting and useful links on a variety of nix-related topics.
 
 - [NixOS Weekly](https://weekly.nixos.org/)
 
-## Tools
+## Tools & Services
 
 - [nixery](https://nixery.dev/)
 - [`nixfmt`](https://github.com/serokell/nixfmt)
 - [mobile nixos](https://github.com/samueldr/mobile-nixos/)
 - [nix-pre-commit-hooks](https://github.com/hercules-ci/nix-pre-commit-hooks)
+- [cachix: Nix binary cache hosting](https://cachix.org/)
 - [Cachix & Install Nix actions for GitHub](https://discourse.nixos.org/t/cachix-nix-install-actions-for-github/4242/2)
 
 
