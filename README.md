@@ -27,6 +27,7 @@ nix-env -i env-mac
 
 # Layout
 
+```
 .
 ├── `README.md`: this README file
 ├── `config.nix`: nix configuration
@@ -36,6 +37,7 @@ nix-env -i env-mac
 ├── `nixops`: nixops configurations
 ├── `overlays`: overlay packages and environments
 └── `secrets.nix`: secrets file (to be added locally)
+```
 
 
 # Tested Platforms
