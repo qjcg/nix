@@ -29,14 +29,14 @@ nix-env -i env-mac
 
 ```
 .
-├── `README.md`: this README file
-├── `config.nix`: nix configuration
-├── `files`: application files and templates
-├── `home.nix`: home-manager configuration
-├── `machines`: per-machine configuration
-├── `nixops`: nixops configurations
-├── `overlays`: overlay packages and environments
-└── `secrets.nix`: secrets file (to be added locally)
+├── README.md   - this README file
+├── config.nix  - nix configuration
+├── files       - application files and templates
+├── home.nix    - home-manager configuration
+├── machines    - per-machine configuration
+├── nixops      - nixops configurations
+├── overlays    - overlay packages and environments
+└── secrets.nix - secrets file (to be added locally)
 ```
 
 
