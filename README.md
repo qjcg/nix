@@ -60,6 +60,7 @@ nix-env -i env-mac
 - [nixpkgs manual](https://nixos.org/nixpkgs/manual/)
 - [nix manual](https://nixos.org/nix/manual/)
 - [NixOps manual](https://nixos.org/nixops/manual/)
+- [Home Manager manual](https://rycee.gitlab.io/home-manager/index.html)
 
 
 ## Config Examples
