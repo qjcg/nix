@@ -45,6 +45,7 @@ nix-env -i env-mac
 # TODO
 
 - [ ] Add NixOS system configuration(s)
+- [ ] Consider adding custom [NixOS modules](https://nixos.org/nixos/manual/index.html#sec-writing-modules)
 - [ ] Consider using [nix-darwin] on macOS
 
 
@@ -56,6 +57,7 @@ nix-env -i env-mac
 
 - <https://github.com/nocoolnametom/nix-configs>
 - With i3 config: <https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix>
+- Has system configurations, custom NixOS modules, uses nix-darwin and home-manager: <https://github.com/rummik/nixos-config>
 
 
 [nix]: https://nixos.org/nix/
