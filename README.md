@@ -1,19 +1,17 @@
-# dotfiles
+# nix-config
 
-My personal dotfiles.
+My personal nix configuration.
 
 
 # Features
 
-- only one command needed to bootstrap new machines
-- per-machine configurations with common core
-- secure secret storage via GPG (TODO: elaborate on this!)
-- templating via [nix expression language](https://nixos.org/nix/manual/#ch-expression-language)
+- Uses [home-manager] to manage user settings
+- Secure secret storage via [GPG](https://gnupg.org) (TODO: elaborate on this!)
+- Per-machine configurations with common core
+- Templating via [nix expression language](https://nixos.org/nix/manual/#ch-expression-language)
 
 
 # Use
-
-On a mac:
 
 ```sh
 # Install the nix package manager.
@@ -23,16 +21,21 @@ curl https://nixos.org/nix/install | sh
 mkdir -p ~/.config
 git clone https://github.com/qjcg/nix-home ~/.config/nixpkgs
 
-# Install the mac environment (for details, see config.nix).
+# Install the mac environment.
 nix-env -i env-mac
 ```
 
+# Layout
 
-# Stack
-
-- [nix](https://nixos.org/nix/)
-- [home-manager](https://github.com/rycee/home-manager)
-- [GnuPG](https://gnupg.org/)
+.
+├── `README.md`: this README file
+├── `config.nix`: nix configuration
+├── `files`: application files and templates
+├── `home.nix`: home-manager configuration
+├── `machines`: per-machine configuration
+├── `nixops`: nixops configurations
+├── `overlays`: overlay packages and environments
+└── `secrets.nix`: secrets file (to be added locally)
 
 
 # Tested Platforms
@@ -50,3 +53,6 @@ nix-env -i env-mac
 
 - <https://github.com/nocoolnametom/nix-configs>
 - With i3 config: <https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix>
+
+
+[home-manager]: https://github.com/rycee/home-manager
