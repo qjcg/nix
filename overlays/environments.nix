@@ -392,12 +392,6 @@ in
       paths = super.lib.lists.flatten (super.lib.attrsets.collect builtins.isList pkgGroups.CLI) ;
     };
 
-    env-gui = super.pkgs.buildEnv {
-      name = "env-gui";
-      meta.priority = 0;
-      paths = super.lib.lists.flatten (super.lib.attrsets.collect builtins.isList pkgGroups.CLI) ;
-    };
-
     env-workstation = super.pkgs.buildEnv {
       name = "env-workstation";
       meta.priority = 0;
