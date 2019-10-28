@@ -51,7 +51,7 @@ nix-env -i env-mac
 
 # References
 
-Interesting and useful links on a variety of nix-related subjects.
+Interesting and useful links on a variety of nix-related topics.
 
 ## Guides
 
