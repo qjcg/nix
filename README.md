@@ -53,6 +53,14 @@ nix-env -i env-mac
 
 Interesting and useful links on a variety of nix-related topics.
 
+## Manuals
+
+- [NixOS manual](https://nixos.org/nixos/manual/)
+- [nixpkgs manual](https://nixos.org/nixpkgs/manual/)
+- [nix manual](https://nixos.org/nix/manual/)
+- [NixOps manual](https://nixos.org/nixops/manual/)
+- [Home Manager manual](https://rycee.gitlab.io/home-manager/index.html)
+
 ## Guides
 
 - [nix-1p: A one page introduction to Nix, the language](https://github.com/tazjin/nix-1p)
@@ -68,14 +76,6 @@ Interesting and useful links on a variety of nix-related topics.
 - [Tekton Pipelines - the Nix way](https://lewo.abesis.fr/posts/2019-09-30-tekton-pipelines-the-nix-way.html)
 - [Deploying k8s apps with kubenix](https://zimbatm.com/deploying-k8s-apps-with-kubenix/)
 - [Optimising Docker Layers for Better Caching with Nix](https://grahamc.com/blog/nix-and-layered-docker-images)
-
-## Manuals
-
-- [NixOS manual](https://nixos.org/nixos/manual/)
-- [nixpkgs manual](https://nixos.org/nixpkgs/manual/)
-- [nix manual](https://nixos.org/nix/manual/)
-- [NixOps manual](https://nixos.org/nixops/manual/)
-- [Home Manager manual](https://rycee.gitlab.io/home-manager/index.html)
 
 ## Config Examples
 
