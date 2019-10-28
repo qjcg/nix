@@ -51,6 +51,11 @@ nix-env -i env-mac
 
 # References
 
+Interesting and useful links on a variety of nix-related subjects.
+
+## Guides
+
+- [nix-1p: A one page introduction to Nix, the language](https://github.com/tazjin/nix-1p)
 - [A Gentle Introduction to the Nix Family](https://ebzzry.io/en/nix/)
 - [(neo)vim overlay configuration example](https://nixos.wiki/wiki/Vim#Custom_setup_without_using_Home_Manager)
 	- [Example of adding new custom (neo)vim plugin](https://nixos.wiki/wiki/Vim#Add_a_new_custom_plugin_to_the_users_packages)
@@ -71,6 +76,11 @@ nix-env -i env-mac
 ## News
 
 - [NixOS Weekly](https://weekly.nixos.org/)
+
+## Tools
+
+- [nixery](https://nixery.dev/)
+- [`nixfmt`](https://github.com/serokell/nixfmt)
 
 
 
