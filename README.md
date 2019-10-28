@@ -52,6 +52,7 @@ nix-env -i env-mac
 # References
 - <https://ebzzry.io/en/nix/>
 - [(neo)vim overlay configuration example](https://nixos.wiki/wiki/Vim#Custom_setup_without_using_Home_Manager)
+	- [Example of adding new custom (neo)vim plugin](https://nixos.wiki/wiki/Vim#Add_a_new_custom_plugin_to_the_users_packages)
 
 ## Other interesting configs
 
