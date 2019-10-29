@@ -252,6 +252,8 @@ let
         font-manager
         fontconfig-penultimate
         fontforge-gtk
+        gentium
+        gentium-book-basic
         go-font
         gtk2fontsel
         inconsolata
