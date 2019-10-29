@@ -127,6 +127,7 @@ let
 
         # Go.
         delve
+        errcheck
         fly
         gnumake
         gocode
@@ -134,7 +135,7 @@ let
         gomodifytags
         gotags
         gotools
-        errcheck
+        protobuf
         upx
 
         mkcert
