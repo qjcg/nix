@@ -9,6 +9,7 @@ colorscheme abstract
 " See:
 "   - :h highlight
 "   - :h syntax
+highlight Comment cterm=italic gui=italic
 highlight Search ctermfg=236 ctermbg=229
 
 set autochdir
