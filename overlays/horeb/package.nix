@@ -9,7 +9,7 @@
 
 buildGoModule rec {
   name = "horeb-${version}";
-  version = "0.9.0";
+  version = "0.10.0";
 
   src = fetchFromGitHub {
     owner = "qjcg";
@@ -18,7 +18,7 @@ buildGoModule rec {
 
     # To get this value, use "nix-prefetch-url --unpack" with the release tarball, eg:
     #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
-    sha256 = "1j1l56qrv8q525g8x40ik2k1r8bfasz6axp3fca4x8d5r61dpf5w";
+    sha256 = "02yh7h38724ighd404k5pshcqvpbgbpx1rbkz1d6b79rwdplc3a5";
   };
 
   buildInputs = [ upx ];
