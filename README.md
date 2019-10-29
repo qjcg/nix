@@ -59,6 +59,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [nixpkgs manual](https://nixos.org/nixpkgs/manual/)
 - [nix manual](https://nixos.org/nix/manual/)
 - [NixOps manual](https://nixos.org/nixops/manual/)
+- [Nix Pills](https://nixos.org/nixos/nix-pills/)
 - [Home Manager manual](https://rycee.gitlab.io/home-manager/index.html)
 
 ## Guides
@@ -85,8 +86,9 @@ Interesting and useful links on a variety of nix-related topics.
 - [j0xaf (with i3 config)](https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix)
 - [rummik (with system configurations, custom NixOS modules, nix-darwin, and home-manager)](https://github.com/rummik/nixos-config)
 
-## News
+## Community Resources
 
+- [NixOS Wiki](https://nixos.wiki/)
 - [NixOS Weekly](https://weekly.nixos.org/)
 
 ## Tools & Services
