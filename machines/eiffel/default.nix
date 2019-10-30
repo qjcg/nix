@@ -191,12 +191,19 @@
       settings = {
 
         global = {
+          monitor = "1";
           alignment = "center";
+          geometry = "600x600+25+50";
           browser = "${pkgs.firefox}/bin/firefox -new-tab";
-          dmenu = "${pkgs.dmenu}/bin/dmenu -fn 'Iosevka:size=35' -nb '#000000' -sb '#a10094' -sf '#ffffff'";
-          font = "Iosevka Heavy 18";
-          frame_width = "3";
-          padding = "10";
+          dmenu = "${pkgs.dmenu}/bin/dmenu -fn 'Victor Mono:size=14' -nb '#000000' -sb '#a10094' -sf '#ffffff'";
+          font = "Victor Mono Medium 15";
+          frame_width = "2";
+          padding = "20";
+          corner_radius = "10";
+
+          # Docs: https://developer.gnome.org/pango/stable/pango-Markup.html
+          markup = "full";
+          format = "<span foreground='#38dbff'><b><i>%a</i></b></span>  %s %b";
         };
 
         shortcuts = {
@@ -206,10 +213,24 @@
           context = "ctrl+shift+apostrophe";
         };
 
+        urgency_low = {
+          background = "#000000";
+          foreground = "#999999";
+          frame_color = "#76ff3a";
+          separator_color = "#a2ffa2";
+        };
+
         urgency_normal = {
           background = "#000000";
-          foreground = "#a2ffa2";
-          frame_color = "#a2ffa2";
+          foreground = "#ffffff";
+          frame_color = "#76ff3a";
+          separator_color = "#a2ffa2";
+        };
+
+        urgency_critical = {
+          background = "#000000";
+          foreground = "#ff3838";
+          frame_color = "#76ff3a";
           separator_color = "#a2ffa2";
         };
 
