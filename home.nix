@@ -22,6 +22,6 @@ let
 
 in
   {
-    luban   = import ./machines/luban { inherit pkgs lib secrets; };
-    eiffel  = import ./machines/eiffel { inherit pkgs lib secrets; };
+    luban  = import ./machines/luban  { inherit pkgs lib secrets; };
+    eiffel = import ./machines/eiffel { inherit pkgs lib secrets; };
   }
