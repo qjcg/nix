@@ -80,6 +80,8 @@ Interesting and useful links on a variety of nix-related topics.
 - [Tekton Pipelines - the Nix way](https://lewo.abesis.fr/posts/2019-09-30-tekton-pipelines-the-nix-way.html)
 - [Deploying k8s apps with kubenix](https://zimbatm.com/deploying-k8s-apps-with-kubenix/)
 - [Optimising Docker Layers for Better Caching with Nix](https://grahamc.com/blog/nix-and-layered-docker-images)
+- [arion: Run docker-compose with help from Nix/NixOS](https://github.com/hercules-ci/arion)
+	- [Arion Docs](https://docs.hercules-ci.com/arion/)
 
 ## Config Examples
 
