@@ -8,7 +8,7 @@ My personal [nix] configuration.
 - Uses [home-manager] to manage user settings
 - Per-machine configurations with common core
 - Templating via the [nix expression language](https://nixos.org/nix/manual/#ch-expression-language)
-- Secure secret storage via [GPG](https://gnupg.org) (TODO: elaborate on this!)
+- Get secrets from [gopass](https://www.gopass.pw/) / [password-store](https://www.passwordstore.org/)
 - Multi-platform (NixOS, Ubuntu, macOS)
 
 
