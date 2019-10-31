@@ -83,6 +83,9 @@ Interesting and useful links on a variety of nix-related topics.
 
 ## Config Examples
 
+- [grahamc](https://github.com/grahamc/nixos-config)
+	- [network (personal servers & router config)](https://github.com/grahamc/network)
+	- [grahamc: NixOS 2019 Talks](https://github.com/grahamc/talks) (overrides, overlays, ...)
 - [j0xaf (with i3 config)](https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix)
 - [rummik (with system configurations, custom NixOS modules, nix-darwin, and home-manager)](https://github.com/rummik/nixos-config)
 
