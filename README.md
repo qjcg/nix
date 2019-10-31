@@ -74,6 +74,11 @@ Interesting and useful links on a variety of nix-related topics.
 - [Flakes RFC / proposal](https://github.com/tweag/rfcs/blob/flakes/rfcs/0049-flakes.md)
 	- [Flakes RFC GitHub PR (discussion)](https://github.com/NixOS/rfcs/pull/49)
 
+## Packaging
+
+- [Announcing the new Golang infrastructure: buildGoModule](https://kalbas.it/2019/03/17/announcing-the-new-golang-infrastructure-buildgomodule/)
+- [Nixpkgs Manual: Go modules](https://nixos.org/nixpkgs/manual/#ssec-go-modules)
+
 ### Containers
 
 - [ociTools in NixOS](https://spacekookie.de/blog/ocitools-in-nixos/) (for building and running containers)
