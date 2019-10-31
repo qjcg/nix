@@ -83,6 +83,12 @@ Interesting and useful links on a variety of nix-related topics.
 - [arion: Run docker-compose with help from Nix/NixOS](https://github.com/hercules-ci/arion)
 	- [Arion Docs](https://docs.hercules-ci.com/arion/)
 
+### Build System
+
+- [Nix, the purely functional build system](http://www.boronine.com/2018/02/02/Nix/)
+- [Nix + Bazel = Fully Reproducible, Incremental Builds](https://www.tweag.io/posts/2018-03-15-bazel-nix.html)
+
+
 ## Config Examples
 
 - [grahamc: nixos-config](https://github.com/grahamc/nixos-config)
