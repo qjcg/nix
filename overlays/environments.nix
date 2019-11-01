@@ -349,10 +349,10 @@ let
         nodejs
         pandoc
         pdfcpu
-        poetry
+        #poetry
         python3
-        python37Packages.ipython
-        python37Packages.notebook
+        #python37Packages.ipython
+        #python37Packages.notebook
         python37Packages.pandas
         python37Packages.pip
         qemu
