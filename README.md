@@ -74,6 +74,8 @@ Interesting and useful links on a variety of nix-related topics.
 - [Flakes RFC / proposal](https://github.com/tweag/rfcs/blob/flakes/rfcs/0049-flakes.md)
 	- [Flakes RFC GitHub PR (discussion)](https://github.com/NixOS/rfcs/pull/49)
 - [Secure, Declarative Key Management with NixOps, Pass, and nix-plugins](https://elvishjerricco.github.io/2018/06/24/secure-declarative-key-management.html)
+- [Nix by example Part 1: The Nix expression language](https://medium.com/@MrJamesFisher/nix-by-example-a0063a1a4c55)
+- [Learn X in Y Minutes: nix](https://learnxinyminutes.com/docs/nix/)
 
 ## Packaging
 
