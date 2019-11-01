@@ -10,16 +10,7 @@ let
   pkgs = import <nixpkgs> {};
   lib = pkgs.lib;
 
-  secrets = if builtins.pathExists ./secrets.nix then import ./secrets.nix
-  else {
-    openweathermap-api-key = "";
-    openweathermap-city-id = "";
-    work-user = "";
-    git-name = "";
-    git-email = "";
-    s-nail-accounts = "";
-  };
-
+  secrets = import ./secrets.nix;
 in
   {
     luban  = import ./machines/luban  { inherit pkgs lib secrets; };

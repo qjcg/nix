@@ -5,8 +5,7 @@
 { config, pkgs, ... }:
 
 let
-  root = ../.. ;
-  secrets = import "${root}/secrets.nix";
+  secrets = import ../../secrets.nix;
 in
 {
   imports =
