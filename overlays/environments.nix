@@ -269,8 +269,6 @@ let
       themes = [
         arc-icon-theme
         lxappearance
-        # FIXME: re-enable qt5ct when building successfully
-        # See issue: https://github.com/NixOS/nixpkgs/issues/71463
         qt5ct
         qogir-theme
         vanilla-dmz
