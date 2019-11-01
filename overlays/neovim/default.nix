@@ -1,7 +1,7 @@
 self: super:
 
 let
-  customPlugins = import ./plugins.nix {inherit self super; };
+  customPlugins = import ./plugins.nix { inherit self super; };
   allPlugins = super.pkgs.vimPlugins // customPlugins;
 in
   {
