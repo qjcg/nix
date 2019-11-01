@@ -145,7 +145,7 @@ let
         nodejs
         now-cli
 
-        postgresql_11
+        postgresql_12
 
         # Python.
         python37Packages.cookiecutter
@@ -271,7 +271,7 @@ let
         lxappearance
         # FIXME: re-enable qt5ct when building successfully
         # See issue: https://github.com/NixOS/nixpkgs/issues/71463
-        #qt5ct
+        qt5ct
         qogir-theme
         vanilla-dmz
       ];
