@@ -1,11 +1,11 @@
 # nix-config
 
-My personal [nix] configuration.
+My personal [nix](https://nixos.org/nix/) configuration.
 
 
 # Features
 
-- Uses [home-manager] to manage user settings
+- Uses [home-manager](https://github.com/rycee/home-manager) to manage user settings
 - Per-machine configurations with common core
 - Templating via the [nix expression language](https://nixos.org/nix/manual/#ch-expression-language)
 - Get secrets from [gopass](https://www.gopass.pw/) / [password-store](https://www.passwordstore.org/)
@@ -46,7 +46,7 @@ nix-env -i env-mac
 
 - [ ] Add NixOS system configuration(s)
 - [ ] Consider adding custom [NixOS modules](https://nixos.org/nixos/manual/index.html#sec-writing-modules)
-- [ ] Consider using [nix-darwin] on macOS
+- [ ] Consider using [nix-darwin](https://github.com/LnL7/nix-darwin) on macOS
 
 
 # References
@@ -119,9 +119,3 @@ Interesting and useful links on a variety of nix-related topics.
 - [cachix: Nix binary cache hosting](https://cachix.org/)
 - [Cachix & Install Nix actions for GitHub](https://discourse.nixos.org/t/cachix-nix-install-actions-for-github/4242/2)
 - [netboot.xyz (boot nix directly via network, no USB key)](https://github.com/antonym/netboot.xyz)
-
-
-
-[nix]: https://nixos.org/nix/
-[home-manager]: https://github.com/rycee/home-manager
-[nix-darwin]: https://github.com/LnL7/nix-darwin
