@@ -25,8 +25,6 @@ set splitright			" vsplit window to the right by default
 set wildmenu			" dmenu-style menu
 set wildmode=full
 
-autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
-autocmd FileType nix setlocal cuc
 
 "" MAPS
 "" See :h keycodes
@@ -51,6 +49,22 @@ nnoremap <silent> <F4> :call RandomColorScheme()<CR>:colo<CR>
 nnoremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
+
+
+autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
+autocmd FileType nix setlocal cuc
+
+
+
+" Settings for GO + vim
+" References:
+"   - https://octetz.com/posts/vim-as-go-ide
+setlocal autowrite
+autocmd BufWritePre *.go CocCommand editor.action.organizeImport
+
+" disable vim-go :GoDef short cut (gd)
+" this is handled by COC LanguageClient [LC]
+let g:go_def_mapping_enabled = 0
 
 
 " -------------------------------------------------------------------------------------------------
