@@ -76,7 +76,7 @@ let
 
       financial = [
         beancount
-        fava
+        #fava
       ];
 
       network = [
@@ -150,7 +150,7 @@ let
         # Python.
         python37Packages.cookiecutter
         python37Packages.ipython
-        python37Packages.poetry
+        #python37Packages.poetry
 
         sbcl
         tig
@@ -220,7 +220,7 @@ let
       ];
 
       dev = [
-        dbeaver
+        #dbeaver
         vscode
       ];
 
