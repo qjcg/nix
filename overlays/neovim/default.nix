@@ -34,6 +34,7 @@ in
             nerdtree
             #python-mode
             tagbar
+            vim-bazel
             vim-beancount
             vim-go
             vim-jsx-pretty
