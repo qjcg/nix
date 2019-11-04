@@ -45,6 +45,7 @@ let
         ed
         elinks
         fdupes
+        figlet
         file
         fortune
         fzf
@@ -68,6 +69,7 @@ let
         sqlite
         telegraf
         tesseract
+        toilet
         tree
         unzip
         utillinux
