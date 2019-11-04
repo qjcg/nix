@@ -148,9 +148,10 @@ let
         postgresql_12
 
         # Python.
-        python37Packages.cookiecutter
-        python37Packages.ipython
-        #python37Packages.poetry
+        pypy3
+        python38Packages.cookiecutter
+        python38Packages.ipython
+        #python38Packages.poetry
 
         sbcl
         tig
@@ -349,12 +350,12 @@ let
         nodejs
         pandoc
         pdfcpu
-        #poetry
         python3
-        python37Packages.ipython
+        python38Packages.ipython
         #python37Packages.notebook
-        python37Packages.pandas
-        python37Packages.pip
+        python38Packages.pandas
+        python38Packages.pip
+        #python38Packages.poetry
         qemu
         rclone
         rdesktop
