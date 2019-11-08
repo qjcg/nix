@@ -1,6 +1,7 @@
 self: super:
 
 {
+
   delve = super.delve.overrideAttrs (oldAttrs: rec {
     version = "1.3.2";
     src = self.fetchFromGitHub {
@@ -16,7 +17,7 @@ self: super:
   };
 
   retroarch = super.retroarch.override {
-    cores = with super.libretro; [
+    cores = with self.libretro; [
       #beetle-lynx
       #beetle-vb
       #dosbox
