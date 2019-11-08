@@ -346,7 +346,7 @@ let
         python3
         python38Packages.ipython
         #python37Packages.notebook
-        python38Packages.pandas
+        python37Packages.pandas
         python38Packages.pip
         #python38Packages.poetry
         qemu
