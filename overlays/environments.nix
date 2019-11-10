@@ -24,7 +24,7 @@ let
       ];
 
       nix = [
-        #cachix
+        cachix
         nix-index
         nixops
         nix-bash-completions
@@ -238,7 +238,7 @@ let
         slack
         thunderbird-bin
         tectonic
-        texlive.combined.scheme-medium
+        texlive.combined.scheme-basic
         zathura
       ];
 
@@ -276,7 +276,7 @@ let
         digikam
         feh
         flashplayer-standalone
-        gimp # gimp-with-plugins didn't compile! 2019-07-07
+        gimp-with-plugins
         imagemagick
         inkscape
         obs-studio
