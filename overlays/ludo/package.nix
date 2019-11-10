@@ -10,14 +10,14 @@
 
 stdenv.mkDerivation rec {
   name = "ludo-bin-${version}";
-  version = "0.7.1";
+  version = "0.9.12";
 
   src = fetchurl {
     url = "https://github.com/libretro/ludo/releases/download/v${version}/Ludo-Linux-x86_64-${version}.tar.gz";
 
     # To get this value, use "nix-prefetch-url --unpack" with the release tarball, eg:
     #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
-    sha256 = "0xyh1sxlk8fgah9nkwlm7p9f4xx1sp26bl61x8qfvcp4kmfgviz9";
+    sha256 = "179cypw5gc8bsfh9ijpz8420siljg6fghx9jpkiwy90sn8b1d9pl";
   };
 
   buildInputs = [ 
