@@ -155,6 +155,7 @@ let
         python38Packages.ipython
         #python38Packages.poetry
 
+        janet
         sbcl
         tig
         universal-ctags
