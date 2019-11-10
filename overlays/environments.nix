@@ -59,6 +59,7 @@ let
         libfaketime
         lsof
         mkpasswd
+        neofetch
         neovim
         pandoc
         pdfcpu
