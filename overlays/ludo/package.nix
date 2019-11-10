@@ -17,7 +17,7 @@ stdenv.mkDerivation rec {
 
     # To get this value, use "nix-prefetch-url --unpack" with the release tarball, eg:
     #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
-    sha256 = "179cypw5gc8bsfh9ijpz8420siljg6fghx9jpkiwy90sn8b1d9pl";
+    sha256 = "0blmfj35phdr3jsfd1vy6d65fwpic8zvs88z40l5462pqd6d0bp8";
   };
 
   buildInputs = [ 
