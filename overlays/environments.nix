@@ -120,6 +120,8 @@ let
         sox
         strawberry
         streamripper
+
+        python38Packages.mps-youtube
         youtube-dl
         youtube-viewer
       ];
