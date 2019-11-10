@@ -1,3 +1,4 @@
+# FIXME: WORK IN PROGRESS. This ludo package currently produces a BROKEN binary that does nothing!
 {
   stdenv,
   lib,
