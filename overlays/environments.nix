@@ -371,7 +371,7 @@ let
         universal-ctags
         unzip
         upx
-        vscode-with-extensions
+        vscodium
         youtube-dl
     ];
 
