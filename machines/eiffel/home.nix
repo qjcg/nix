@@ -244,6 +244,7 @@
       enableScDaemon = false;
       enableSshSupport = true;
       extraConfig = ''
+        pinentry-program ${pkgs.pinentry}/bin/pinentry
         allow-emacs-pinentry
       '';
     };
