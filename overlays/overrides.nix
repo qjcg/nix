@@ -18,9 +18,9 @@ self: super:
 
   retroarch = super.retroarch.override {
     cores = with self.libretro; [
-      #beetle-lynx
-      #beetle-vb
-      #dosbox
+      beetle-lynx
+      beetle-vb
+      dosbox
       fba
       fceumm
       genesis-plus-gx
@@ -28,7 +28,7 @@ self: super:
       mupen64plus
       nestopia
       prboom
-      snes9x
+      #snes9x-next
       stella
     ];
   };
