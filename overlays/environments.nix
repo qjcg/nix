@@ -50,6 +50,7 @@ let
         fortune
         fzf
         gnupg
+        pinentry
         gopass
         htop
         influxdb
