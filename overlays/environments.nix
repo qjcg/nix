@@ -220,7 +220,7 @@ let
 
       dev = [
         #dbeaver
-        vscode
+        vscodium
       ];
 
       # NOTE: Screen locker is configured via system config.
