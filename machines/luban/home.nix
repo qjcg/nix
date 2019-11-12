@@ -285,6 +285,10 @@
     "i3/workspace1.json".source = ../../files/workspace1_luban.json ;
     "nvim/coc-settings.json".source = ../../files/coc-settings.json ;
     "s-nail/mailrc".text = pkgs.callPackage ../../files/mailrc.nix { inherit secrets; };
+    "sxiv/exec/key-handler" = {
+      executable = true;
+      source = ../../files/sxiv-key-handler.sh ;
+    };
   };
 
   xdg.dataFile = {
