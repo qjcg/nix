@@ -41,9 +41,7 @@
       options = ["grp:shifts_toggle"];
     };
 
-    packages = with pkgs; [
-      env-workstation
-    ];
+    packages = with pkgs; [ env-workstation ];
 
   };
 
@@ -87,15 +85,6 @@
         drwHomeUsage = "shopt -s dotglob && du --threshold 1M --exclude={G,H,W,X} -s ~/* | sort -n | sed 's/.home.jgosset.//' | awk '{print $2,$1}' | goplot bar";
         drwWinVM = "rdesktop -u ${secrets.work-user} -p - -g 1680x1050 -K mt1n-${secrets.work-user}";
       };
-    };
-
-    emacs = {
-      enable = true;
-      extraPackages = epkgs: [
-        epkgs.nix-mode
-        epkgs.magit
-        epkgs.paradox
-      ];
     };
 
     firefox.enable = true;
@@ -244,8 +233,7 @@
       enableScDaemon = false;
       enableSshSupport = true;
       extraConfig = ''
-        pinentry-program ${pkgs.pinentry}/bin/pinentry
-        allow-emacs-pinentry
+        pinentry-program /usr/bin/pinentry-gnome3
       '';
     };
 
@@ -411,9 +399,10 @@
 
             statusCommand = "while ${pkgs.barr}/bin/barr; do sleep 5; done";
             extraConfig = ''
-              output DP-4
+              output DP-2
             '';
           }
+
           {
             position = "top";
             mode = "dock";
@@ -435,7 +424,7 @@
 
             statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/i3status-rust_smallscreen.toml";
             extraConfig = ''
-              output DP-6
+              output DP-0
             '';
           }
         ];
