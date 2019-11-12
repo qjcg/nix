@@ -303,6 +303,9 @@
       cmd_browser = "${pkgs.firefox}/bin/firefox";
       cmd_slack = "${pkgs.slack}/bin/slack";
 
+      wpdir = /home/jgosset/Pictures/wallpapers ;
+      cmd_browse_wallpaper = "${pkgs.sxiv}/bin/sxiv -fartos f ${wpdir}";
+
       left = "h";
       down = "j";
       up = "k";
@@ -333,6 +336,7 @@
             # Start apps
             "${modifier}+Return" = "exec ${cmd_term}";
             "${modifier}+d"      = "exec ${cmd_menu}";
+            "${modifier}+Shift+w" = "exec ${cmd_browse_wallpaper}";
 
             # Focus windows
             "${modifier}+${left}"  = "focus left";
