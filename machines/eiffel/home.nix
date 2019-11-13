@@ -283,6 +283,11 @@
     };
   };
 
+  xresources.properties = {
+    "Sxiv.background" = "black";
+    "Sxiv.foreground" = "blue";
+  };
+
   xsession = {
     enable = true;
 
@@ -303,8 +308,8 @@
       cmd_browser = "${pkgs.firefox}/bin/firefox";
       cmd_slack = "${pkgs.slack}/bin/slack";
 
-      wpdir = /home/jgosset/Pictures/wallpapers ;
-      cmd_browse_wallpaper = "${pkgs.sxiv}/bin/sxiv -fartos f ${wpdir}";
+      wpdir = "/home/jgosset/Pictures/wallpapers" ;
+      cmd_browse_wallpaper = "${pkgs.sxiv}/bin/sxiv -artos f ${wpdir}";
 
       left = "h";
       down = "j";

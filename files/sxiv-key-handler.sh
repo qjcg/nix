@@ -1,4 +1,4 @@
-#!/nix/store/zavn4np1jvm79f0rafkv0p1mrag09qkz-bash-4.4-p23/bin/sh
+#!/bin/sh
 
 # Called by sxiv(1) after the external prefix key (C-x by default) is pressed.
 # The next key combo is passed as its first argument. Passed via stdin are the
@@ -12,6 +12,6 @@
 # keysym as listed in /usr/include/X11/keysymdef.h without the "XK_" prefix.
 
 case "$1" in
-"w") while read file; do feh --bg-fill "$file" & done ;;
+"f") while read file; do feh --bg-fill "$file" & done ;;
+"m") while read file; do feh --bg-max "$file" & done ;;
 esac
-
