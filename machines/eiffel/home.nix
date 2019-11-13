@@ -336,7 +336,7 @@
             # Start apps
             "${modifier}+Return" = "exec ${cmd_term}";
             "${modifier}+d"      = "exec ${cmd_menu}";
-            "${modifier}+Shift+w" = "exec ${cmd_browse_wallpaper}";
+            "${modifier}+Shift+b" = "exec ${cmd_browse_wallpaper}";
 
             # Focus windows
             "${modifier}+${left}"  = "focus left";
