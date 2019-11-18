@@ -337,7 +337,6 @@ let
         kubectl
         lastpass-cli
         lsof
-        minikube
         mkcert
         mpv
         mtr
