@@ -171,6 +171,7 @@ let
         dive
         docker-compose
         kubectl
+        kubectx
         kubernetes-helm
         minikube
         packer
@@ -335,6 +336,7 @@ let
         iosevka
         jq
         kubectl
+        kubectx
         lastpass-cli
         lsof
         mkcert
