@@ -170,6 +170,8 @@ let
         buildah
         dive
         docker-compose
+        k3d
+        kind
         kubectl
         kubectx
         kubernetes-helm
@@ -335,6 +337,8 @@ let
         inkscape
         iosevka
         jq
+        k3d
+        kind
         kubectl
         kubectx
         lastpass-cli
