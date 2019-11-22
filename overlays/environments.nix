@@ -341,6 +341,7 @@ let
         kind
         kubectl
         kubectx
+        kubernetes-helm
         lastpass-cli
         lsof
         mkcert
