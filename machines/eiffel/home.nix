@@ -70,6 +70,8 @@
       '';
 
       shellAliases = rec {
+        k = "kubectl";
+
         ls = "ls --color --human-readable --group-directories-first";
         grep = "grep -E";
         tree = "tree -A -C";
