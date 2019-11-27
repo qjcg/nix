@@ -415,7 +415,7 @@
 
             statusCommand = "while ${pkgs.barr}/bin/barr; do sleep 5; done";
             extraConfig = ''
-              output DP-2
+              output DP-6
             '';
           }
 
