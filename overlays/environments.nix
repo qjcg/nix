@@ -282,13 +282,13 @@ let
         digikam
         feh
         flashplayer-standalone
-        gimp-with-plugins
+        gimp
         imagemagick
         inkscape
         obs-studio
         pavucontrol
         picard
-        pulseeffects
+        #pulseeffects
         qt5.qtbase
         sxiv
         vlc
