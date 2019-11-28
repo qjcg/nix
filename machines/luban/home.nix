@@ -179,6 +179,8 @@
         set -g set-titles on
         set -g set-titles-string "tmux: #H/#S/#W"
 
+        set -sa terminal-overrides ',st-256color:Tc'
+
         set -g status-left "[#H/#S] "
         set -g status-left-length 25
         set -g status-right ""
