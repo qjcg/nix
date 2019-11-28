@@ -40,6 +40,7 @@ in
             vim-jsx-pretty
             vim-mdx-js
             vim-nix
+            vim-orgmode
             vim-pandoc
             vim-pandoc-syntax
             vim-toml
