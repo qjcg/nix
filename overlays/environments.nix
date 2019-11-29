@@ -157,7 +157,7 @@ let
         pypy3
         python38Packages.cookiecutter
         python38Packages.ipython
-        #python38Packages.poetry
+        python38Packages.poetry
 
         janet
         sbcl
