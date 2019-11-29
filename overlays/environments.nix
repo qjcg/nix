@@ -358,7 +358,7 @@ let
         nodejs
         pandoc
         pdfcpu
-        python3
+        python38
         python38Packages.ipython
         #python38Packages.notebook
         python37Packages.pandas
