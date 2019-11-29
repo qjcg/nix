@@ -305,6 +305,10 @@ let
     };
 
     mac = [
+        go-4d
+        horeb
+        mtlcam
+
         alacritty
         ansible
         aria2
