@@ -3,8 +3,6 @@
   lib,
   fetchFromGitHub,
   buildGoModule,
-
-  upx,
 }:
 
 buildGoModule rec {
@@ -22,8 +20,6 @@ buildGoModule rec {
   };
 
   subPackages = [ "cmd/barr" ];
-  buildInputs = [ upx ];
-  fixupPhase = '' upx $out/bin/* '';
 
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.

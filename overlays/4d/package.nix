@@ -3,8 +3,6 @@
   lib,
   fetchFromGitHub,
   buildGoModule,
-
-  upx,
 }:
 
 buildGoModule rec {
@@ -20,10 +18,6 @@ buildGoModule rec {
     #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
     sha256 = "0nfdzgamjb127838xp3ald6vjwlvn080h5mhlb7zwrbw75bmxpql";
   };
-
-  buildInputs = [ upx ];
-
-  fixupPhase = ''upx $out/bin/*'';
 
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.

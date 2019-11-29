@@ -3,8 +3,6 @@
   lib,
   fetchFromGitHub,
   buildGoModule,
-
-  upx,
 }:
 
 buildGoModule rec {
@@ -21,15 +19,9 @@ buildGoModule rec {
     sha256 = "02yh7h38724ighd404k5pshcqvpbgbpx1rbkz1d6b79rwdplc3a5";
   };
 
-  buildInputs = [ upx ];
-
   # FIXME: Evaluate whether `go build` can be used here instead.
   buildPhase = ''
     CGO_ENABLED=0 go install -ldflags='-s -w -X github.com/qjcg/horeb/pkg/horeb.Version=${src.rev}' ./...
-  '';
-
-  fixupPhase = ''
-    upx $out/bin/*
   '';
 
   # First, provide a fake hash via the value: lib.fakeSha256
