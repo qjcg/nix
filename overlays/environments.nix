@@ -356,10 +356,10 @@ let
         pdfcpu
         python3
         python38Packages.ipython
-        #python37Packages.notebook
+        #python38Packages.notebook
         python37Packages.pandas
         python38Packages.pip
-        #python38Packages.poetry
+        python38Packages.poetry
         qemu
         rclone
         rdesktop
