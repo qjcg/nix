@@ -311,7 +311,7 @@ let
         bash-completion
         bash_5
         caddy
-        cmus
+        #cmus
         coreutils
         delve
         docker-compose
@@ -367,9 +367,9 @@ let
         restic
         ripgrep
         rsync
-        sox
+        #sox
         stdenv
-        streamripper
+        #streamripper
         syncthing
         tig
         tmux
