@@ -328,6 +328,7 @@ let
         fortune
         fossil
         fzf
+        getent
         git
         gnugrep
         gnumake
