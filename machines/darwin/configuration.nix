@@ -20,6 +20,11 @@
       getent
       #env-mac
     ];
+
+    variables = {
+      BROWSER = "firefox";
+      EDITOR = "nvim";
+    };
   };
 
   programs = {
