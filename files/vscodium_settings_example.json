@@ -1,0 +1,55 @@
+{
+    "editor.fontFamily": "'Iosevka', monospace",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+
+    "files.eol": "\n",
+    "files.exclude": {
+        "**/*.pyc": true
+    },
+
+    // Settings as described here:
+    // https://github.com/golang/tools/blob/master/gopls/doc/vscode.md
+    "go.formatTool": "goimports",
+    "go.lintTool": "golangci-lint",
+    "go.useLanguageServer": true,
+    "[go]": {
+        "editor.fontFamily": "'Go Mono', monospace",
+        "editor.fontSize": 13,
+        "editor.snippetSuggestions": "none",
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    "[go.mod]": {
+        "editor.fontFamily": "'Go Mono', monospace",
+        "editor.fontSize": 13,
+    },
+    "[go.sum]": {
+        "editor.fontFamily": "'Go Mono', monospace",
+        "editor.fontSize": 13,
+    },
+    "gopls": {
+        "usePlaceholders": true,
+
+        // Experimental settings
+        "completeUnimported": true, // autocomplete unimported packages
+        "watchFileChanges": true, // watch file changes outside of the editor
+        "deepCompletion": true, // enable deep completion
+    },
+
+    "telemetry.enableCrashReporter": false,
+
+    "vim.searchHighlightColor": "yellow",
+    "vim.useCtrlKeys": false,
+
+    "window.menuBarVisibility": "toggle",
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Winter is Coming (Dark Blue - No Italics)",
+    "workbench.iconTheme": "ayu",
+    "git.confirmSync": false,
+    "terminal.integrated.cursorBlinking": true,
+    "update.mode": "none",
+    "workbench.statusBar.visible": true
+}
