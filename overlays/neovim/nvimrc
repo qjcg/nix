@@ -55,6 +55,12 @@ autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
 autocmd FileType nix setlocal cuc
 
 
+" Limelight
+" See https://github.com/junegunn/limelight.vim#options
+let g:limelight_conceal_ctermfg = 'DarkGray'
+let g:limelight_paragraph_span = 1
+
+
 
 " Settings for GO + vim
 " References:
