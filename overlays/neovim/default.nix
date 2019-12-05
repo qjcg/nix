@@ -21,6 +21,9 @@ in
             ## FIXME: These COC plugins are DISABLED for now, pending resolution of: https://github.com/NixOS/nixpkgs/issues/64560
             ## For now, my workaround has been to install each of these individually via ex: `:CocInstall coc-css`.
             ## Extentions are installed into ~/.config/coc/extensions/package.json
+            ## To review available extensions, do:
+            ## - `:CocInstall coc-marketplace`
+            ## - `:CocList marketplace`
             #coc-css
             #coc-git
             #coc-go
