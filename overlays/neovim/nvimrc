@@ -38,7 +38,8 @@ nnoremap <leader>w :w !sudo tee %<CR><CR>
 
 nnoremap <silent> <leader>G :Goyo<CR>
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
-nnoremap <silent> <leader>t :TagbarToggle<CR>
+nnoremap <silent> <leader>t :Vista!!<CR>
+
 
 " Cycling color schemes.
 nnoremap <silent> <S-F4> :call PreviousColorScheme()<CR>:colo<CR>

@@ -43,7 +43,6 @@ in
             limelight-vim
             nerdtree
             #python-mode
-            tagbar
             vim-bazel
             vim-beancount
             vim-go
@@ -55,6 +54,7 @@ in
             vim-pandoc
             vim-pandoc-syntax
             vim-toml
+            vista.vim
             yats-vim
           ];
 
