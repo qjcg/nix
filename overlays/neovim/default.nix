@@ -51,7 +51,6 @@ in
             vim-go
             vim-jsx-pretty
             vim-mdx-js
-            vim-minimap
             vim-nix
             vim-orgmode
             vim-pandoc
