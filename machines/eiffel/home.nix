@@ -443,7 +443,7 @@
 
             statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/i3status-rust_smallscreen.toml";
             extraConfig = ''
-              output DP-0
+              output DP-4
             '';
           }
         ];
