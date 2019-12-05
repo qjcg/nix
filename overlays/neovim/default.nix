@@ -3,6 +3,10 @@ self: super:
 let
   customPlugins = import ./plugins.nix { inherit self super; };
   allPlugins = super.pkgs.vimPlugins // customPlugins;
+
+  # Concatenate all modular nvim config files from ./init.vim.d
+  nvimConfigPaths = map(f: "/" + f) (builtins.attrNames (builtins.readDir ./init.vim.d));
+  nvimConfig = super.lib.concatStrings (map(f: builtins.readFile (./init.vim.d + f)) nvimConfigPaths);
 in
   {
     neovim = super.neovim.override {
@@ -10,7 +14,7 @@ in
       vimAlias = true;
 
       configure = {
-        customRC = builtins.readFile ./nvimrc ;
+        customRC = nvimConfig ;
         packages.myVimPackage = with allPlugins; {
 
           start = [
@@ -42,7 +46,6 @@ in
             goyo
             limelight-vim
             nerdtree
-            #python-mode
             vim-bazel
             vim-beancount
             vim-go

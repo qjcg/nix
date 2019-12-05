@@ -1,0 +1,46 @@
+" Examples
+" - https://github.com/corps/nix-machines/blob/master/packages/vim/vimrc
+" - https://github.com/shdpl/nixos-configuration/blob/master/data/.config/nvim/bundle/go/plugin/go.vim
+
+" COLORS
+set background=dark
+colorscheme abstract
+" My customizations for the above colorscheme.
+" See:
+"   - :h highlight
+"   - :h syntax
+highlight Comment cterm=italic gui=italic
+highlight Search ctermfg=236 ctermbg=229
+
+set autochdir
+set autoindent
+set hlsearch			" highlight search results
+set ignorecase			" case insensitive searches
+set laststatus=1		" only show statusbar if >1 windows open
+set listchars=tab:>-,eol:$
+set nowrap
+set shortmess+=I		" disable welcome screen
+set smartcase			" case-sensitive search only if specified
+set splitright			" vsplit window to the right by default
+set wildmenu			" dmenu-style menu
+set wildmode=full
+
+
+"" MAPS
+"" See :h keycodes
+let mapleader=","
+let myVimCfg = "$HOME/.config/nixpkgs/overlays/neovim/init.vim.d/00_nvimrc"
+
+nnoremap <leader>l :set list!<CR>
+nnoremap <leader>r :source myVimCfg<CR>
+nnoremap <leader>S :setlocal spell!<CR>
+nnoremap <leader>v :e myVimCfg<CR>
+nnoremap <leader>w :w !sudo tee %<CR><CR>
+
+" Reload syntax highlighting.
+nnoremap <F12> <Esc>:syntax sync fromstart<CR>
+inoremap <F12> <C-o>:syntax sync fromstart<CR>
+
+
+autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
+autocmd FileType nix setlocal cuc
