@@ -17,6 +17,7 @@ in
             ansible-vim
             awesome-vim-colorschemes
             changeColorScheme-vim
+
             coc-css
             coc-git
             coc-go
@@ -27,7 +28,10 @@ in
             coc-prettier
             coc-python
             coc-snippets
+            coc-tslint-plugin
+            coc-tsserver
             coc-yaml
+
             fzf-vim
             goyo
             limelight-vim
@@ -45,6 +49,7 @@ in
             vim-pandoc
             vim-pandoc-syntax
             vim-toml
+            yats-vim
           ];
 
           opt = [ ];
