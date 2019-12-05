@@ -2,7 +2,7 @@
 " References:
 "   - https://octetz.com/posts/vim-as-go-ide
 setlocal autowrite
-autocmd BufWritePre *.go CocCommand editor.action.organizeImport
+autocmd BufWritePre *.go :call CocAction('runCommand', 'editor.action.organizeImport')
 
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
