@@ -18,19 +18,22 @@ in
             awesome-vim-colorschemes
             changeColorScheme-vim
 
-            coc-css
-            coc-git
-            coc-go
-            coc-highlight
-            coc-html
-            coc-json
+            ## FIXME: These COC plugins are DISABLED for now, pending resolution of: https://github.com/NixOS/nixpkgs/issues/64560
+            ## For now, my workaround has been to install each of these individually via ex: `:CocInstall coc-css`.
+            ## Extentions are installed into ~/.config/coc/extensions/package.json
+            #coc-css
+            #coc-git
+            #coc-go
+            #coc-highlight
+            #coc-html
+            #coc-json
             coc-nvim
-            coc-prettier
-            coc-python
-            coc-snippets
-            coc-tslint-plugin
-            coc-tsserver
-            coc-yaml
+            #coc-prettier
+            #coc-python
+            #coc-snippets
+            #coc-tslint-plugin
+            #coc-tsserver
+            #coc-yaml
 
             fzf-vim
             goyo
