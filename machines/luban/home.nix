@@ -287,7 +287,7 @@
     "cmus/rc".source = ../../files/cmusrc ;
     "gtk-3.0/settings.ini".source = ../../files/gtk-3.0_settings.ini ;
     "i3/workspace1.json".source = ../../files/workspace1_luban.json ;
-    "nvim/coc-settings.json".source = ../../files/coc-settings.json ;
+    "nvim/coc-settings-example.json".source = ../../files/coc-settings.json ;
     "s-nail/mailrc".text = pkgs.callPackage ../../files/mailrc.nix { inherit secrets; };
     "sxiv/exec/key-handler" = {
       executable = true;
