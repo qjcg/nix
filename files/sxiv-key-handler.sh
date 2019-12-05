@@ -13,5 +13,7 @@
 
 case "$1" in
 "f") while read file; do feh --bg-fill "$file" & done ;;
+"F") while read file; do feh --bg-fill --no-xinerama "$file" & done ;;
 "m") while read file; do feh --bg-max "$file" & done ;;
+"M") while read file; do feh --bg-max --no-xinerama "$file" & done ;;
 esac
