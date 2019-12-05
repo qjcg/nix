@@ -80,7 +80,7 @@ let
 
       financial = [
         beancount
-        #fava
+        fava
       ];
 
       network = [
@@ -288,7 +288,7 @@ let
         obs-studio
         pavucontrol
         picard
-        #pulseeffects
+        pulseeffects
         qt5.qtbase
         sxiv
         vlc
