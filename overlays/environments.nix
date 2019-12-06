@@ -262,6 +262,8 @@ let
         iosevka
         libertine
         monoid
+        noto-fonts
+        noto-fonts-emoji
         roboto
         unifont
         unifont_upper
