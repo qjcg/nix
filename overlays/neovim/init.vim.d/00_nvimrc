@@ -42,5 +42,8 @@ nnoremap <F12> <Esc>:syntax sync fromstart<CR>
 inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
 
-autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
+" FIXME: This needs to be applied "after". Currently not working.
+autocmd FileType markdown setlocal ai tw=80
+
 autocmd FileType nix setlocal cuc
+autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
