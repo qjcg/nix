@@ -307,7 +307,7 @@
     let
       modifier = "Mod4";
 
-      cmd_term = "${pkgs.st}/bin/st -f 'Iosevka-11'";
+      cmd_term = "${pkgs.st}/bin/st -f 'monospace-11'";
       cmd_term_tmux = "${cmd_term} -t 'tmux-main' -e sh -c 'tmux new -ADs main'";
 
       cmd_menu = "${pkgs.dmenu}/bin/dmenu_run -fn 'Iosevka:size=20' -nb '#000000' -sb '#00fcff' -sf '#000000'";
