@@ -252,7 +252,6 @@ let
         fira-code
         font-awesome-ttf
         font-manager
-        fontconfig-penultimate
         fontforge-gtk
         gentium
         gentium-book-basic
@@ -265,6 +264,7 @@ let
         noto-fonts
         noto-fonts-emoji
         roboto
+        roboto-slab
         unifont
         unifont_upper
         victor-mono
