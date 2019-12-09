@@ -256,7 +256,7 @@
 
   xdg.configFile = {
     "cmus/rc".source = ../../files/cmusrc;
-    "fontconfig/conf.d/20-user-font-preferences.conf".source = ../../files/20-user-font-preferences.conf;
+    "fontconfig/conf.d/50-user-font-preferences.conf".source = ../../files/50-user-font-preferences.conf;
     "i3/workspace1.json".source = ../../files/workspace1.json;
 
     "i3/i3status-rust.toml" = {
