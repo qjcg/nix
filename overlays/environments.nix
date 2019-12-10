@@ -284,6 +284,7 @@ let
         digikam
         feh
         flashplayer-standalone
+        freetube
         gimp
         imagemagick
         inkscape
