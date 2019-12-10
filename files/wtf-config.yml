@@ -1,0 +1,116 @@
+wtf:
+  colors:
+    background: "transparent"
+    border:
+      focusable: "lightgreen"
+      focused: "goldenrod"
+      normal: "darkgreen"
+    checked: "gray"
+    highlight:
+      fore: "black"
+      back: "green"
+    labels: "lightgreen::b"
+    rows:
+      even: "green"
+      odd: "lightgreen"
+    subheading: "lightgreen::b"
+    text: "green"
+    title: "lightgreen"
+
+  grid:
+    columns: [13, 20, 20, 20, 20, 20, 20, 20, 20]
+    rows: [3, 16, 10, 10, 10, 13, 10, 23, 10, 10, 10]
+
+  refreshInterval: 1
+
+  mods:
+
+    uptime:
+      type: cmdrunner
+      cmd: "uptime"
+      args: [""]
+      enabled: true
+      position:
+        top: 0
+        left: 0
+        height: 1
+        width: 6
+      refreshInterval: 10
+
+    resourceusage:
+      title: CPU / Mem / Swap
+      enabled: true
+      position:
+        top: 1
+        left: 0
+        height: 1
+        width: 3
+      refreshInterval: 1
+
+    ipinfo:
+      colors:
+        name: "lightblue"
+        value: "white"
+      enabled: true
+      position:
+        top: 1
+        left: 3
+        height: 1
+        width: 3
+      refreshInterval: 150
+
+    docker:
+      title: Docker
+      type: docker
+      enabled: true
+      labelColor: lightblue
+      refreshInterval: 10
+      position:
+        top: 2
+        left: 0
+        height: 3
+        width: 2
+
+    kubernetes:
+      title: "K8s: techne-qa"
+      enabled: true
+      kubeconfig: "/home/jgosset/.kube/config"
+      namespaces:
+        - techne-qa
+      objects:
+        #- nodes
+        - pods
+        - deployments
+      position:
+        top: 2
+        left: 2
+        height: 3
+        width: 2
+      refreshInterval: 60
+
+    hackernews:
+      title: HN
+      enabled: true
+      numberOfStories: 20
+      storytype: top
+      position:
+        top: 5
+        left: 0
+        height: 2
+        width: 6
+      refreshInterval: 900
+
+    feedreader:
+      title: F
+      enabled: true
+      feeds:
+        - http://feeds.bbci.co.uk/news/world/us_and_canada/rss.xml
+        - https://www.phoronix.com/rss.php
+       #- http://feeds.reuters.com/Reuters/worldNews
+      feedLimit: 10
+      position:
+        top: 7
+        left: 0
+        height: 1
+        width: 6
+      refreshInterval: 900

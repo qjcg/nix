@@ -278,6 +278,7 @@
       executable = true;
       source = ../../files/sxiv-key-handler.sh ;
     };
+    "wtf/config.yml".source = ../../files/wtf-config.yml ;
     "VSCodium/User/settings_example.json".source = ../../files/vscodium_settings_example.json ;
 
   };
