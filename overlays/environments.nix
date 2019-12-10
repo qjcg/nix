@@ -76,6 +76,7 @@ let
         unzip
         utillinux
         weechat
+        wtf
       ];
 
       financial = [
