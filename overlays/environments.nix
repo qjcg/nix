@@ -259,6 +259,7 @@ let
         gentium-book-basic
         go-font
         gtk2fontsel
+        gucharmap
         inconsolata
         iosevka
         libertine
