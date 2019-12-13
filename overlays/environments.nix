@@ -206,6 +206,7 @@ let
         wireshark
         xaos
         xorg.xclock
+        xorg.xdpyinfo
         xorg.xev
         xorg.xeyes
         xorg.xhost
