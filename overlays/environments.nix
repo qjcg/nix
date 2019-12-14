@@ -389,6 +389,7 @@ let
         unzip
         upx
         vscodium
+        wtf
         youtube-dl
     ];
 
