@@ -194,6 +194,7 @@ let
         browserpass
         chromium
         qutebrowser
+        surf
         tor-browser-bundle-bin
       ];
 
