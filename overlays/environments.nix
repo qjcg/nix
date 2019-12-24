@@ -178,6 +178,7 @@ let
         kubectl
         kubectx
         kubernetes-helm
+        kubeseal
         minikube
         packer
         podman
