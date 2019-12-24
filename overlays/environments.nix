@@ -182,6 +182,7 @@ let
         packer
         podman
         qemu
+        skaffold
         skopeo
         stern
         tinyemu
