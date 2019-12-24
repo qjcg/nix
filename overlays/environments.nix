@@ -169,6 +169,7 @@ let
       # NOTE: VirtualBox is enabled at the system level.
       virt = [
         buildah
+        conmon
         dive
         docker-compose
         k3d
