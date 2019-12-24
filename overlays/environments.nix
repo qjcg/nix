@@ -161,6 +161,7 @@ let
         python38Packages.poetry
 
         janet
+        racket
         sbcl
         tig
         universal-ctags
