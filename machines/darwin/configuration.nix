@@ -9,6 +9,7 @@
 
     shellAliases = {
       ls = "ls --color --group-directories-first";
+      k = "kubectl";
     };
 
     shells = with pkgs; [
