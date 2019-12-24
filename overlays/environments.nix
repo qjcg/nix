@@ -385,6 +385,7 @@ let
         ripgrep
         rsync
         #sox
+        skaffold
         stdenv
         #streamripper
         syncthing
