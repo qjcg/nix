@@ -174,6 +174,7 @@ let
         docker-compose
         k3d
         kind
+        kompose
         kubectl
         kubectx
         kubernetes-helm
