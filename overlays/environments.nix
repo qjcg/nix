@@ -34,6 +34,7 @@ let
       shell = [
         bash_5
         bash-completion
+        xonsh
       ];
 
       utilities = [
