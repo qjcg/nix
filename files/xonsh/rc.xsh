@@ -10,10 +10,8 @@ source $XDG_CONFIG_DIR/xonsh/rc.d/hm.xsh
 source $XDG_CONFIG_DIR/xonsh/rc.d/uncapturable_aliases.xsh
 
 
-
 aliases['drw_winvm'] = 'rdesktop -u jgosset -p - -g 1680x1050 -K mt1n-jgosset'
 aliases['grep'] = 'grep -E'
-aliases['k'] = 'kubectl'
 aliases['ls'] = 'ls --color --human-readable --group-directories-first'
 aliases['tree'] = 'tree -A -C'
 aliases['vi'] = 'nvim'
