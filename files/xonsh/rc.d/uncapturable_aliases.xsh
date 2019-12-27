@@ -1,20 +1,8 @@
 # Uncapturable Aliases
-# See https://xon.sh/tutorial.html#uncapturable-aliases
 
-from xonsh.tools import unthreadable, uncapturable
+# Workaround for programs that open an editor (or similar).
+# See: https://github.com/xonsh/xonsh/issues/3133#issuecomment-494384522
+# Solution here NOT working: https://xon.sh/tutorial.html#uncapturable-aliases
 
-
-@unthreadable
-@uncapturable
-def _nix(args, stdin=None):
-	nix @(args)
-
-
-@unthreadable
-@uncapturable
-def _tig(args, stdin=None):
-	tig @(args)
-
-aliases['nix'] = _nix
-aliases['tig'] = _tig
-
+__xonsh__.commands_cache.threadable_predictors['nix'] = lambda args: False
+__xonsh__.commands_cache.threadable_predictors['tig'] = lambda args: False
