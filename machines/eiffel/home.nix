@@ -52,6 +52,13 @@
 
     bash = {
       enable = true;
+
+      initExtra = ''
+
+        # Run xonsh shell by default, overriding LDAP settings.
+        exec ${pkgs.xonsh}/bin/xonsh
+      '';
+
       profileExtra = ''
         export LC_COLLATE=C
         export PAGER=less
@@ -67,6 +74,9 @@
 
         # nix
         if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+        # Run xonsh shell by default, overriding LDAP settings.
+        exec ${pkgs.xonsh}/bin/xonsh
       '';
 
       shellAliases = rec {
