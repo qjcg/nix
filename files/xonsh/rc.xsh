@@ -6,6 +6,7 @@ $XONSH_COLOR_STYLE = 'paraiso-dark'
 
 # PROMPT
 $PROMPT = '{env_name}{BOLD_GREEN}{user}@{hostname}{BOLD_BLUE} {cwd}{NO_COLOR} {BOLD_YELLOW}{prompt_end}{NO_COLOR} '
+$RIGHT_PROMPT = '{gitstatus}'
 
 $BROWSER = 'firefox'
 $PAGER = 'less'
