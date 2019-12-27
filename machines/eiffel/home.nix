@@ -280,7 +280,7 @@
     };
     "wtf/config.yml".source = ../../files/wtf-config.yml ;
     "VSCodium/User/settings_example.json".source = ../../files/vscodium_settings_example.json ;
-    "xonsh/rc.xsh".source = ../../files/rc.xsh ;
+    "xonsh/".source = ../../files/xonsh ;
   };
 
   xdg.dataFile = {
