@@ -12,7 +12,7 @@ $EDITOR = 'nvim'
 $VISUAL = 'nvim'
 $MAILRC = p'~/.config/s-nail/mailrc'.as_posix()
 
-# Modular configuration.
+# Source all modular xonsh config files in the rc.d directory.
 for f in pg`~/.config/xonsh/rc.d/**xsh`:
 	source @(f.absolute())
 
