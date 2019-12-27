@@ -398,6 +398,7 @@ let
         upx
         vscodium
         wtf
+        xonsh
         youtube-dl
     ];
 
