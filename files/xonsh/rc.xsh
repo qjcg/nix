@@ -1,5 +1,3 @@
-import os.path
-
 xontrib load bashisms coreutils
 
 $XONSH_COLOR_STYLE = 'paraiso-dark'
@@ -12,13 +10,11 @@ $BROWSER = 'firefox'
 $PAGER = 'less'
 $EDITOR = 'nvim'
 $VISUAL = 'nvim'
-$MAILRC = os.path.expanduser('~/.config/s-nail/mailrc')
+$MAILRC = p`~/.config/s-nail/mailrc`.as_posix()
 
 # Modular configuration.
-$XDG_CONFIG_DIR = os.path.expanduser('~/.config')
-source $XDG_CONFIG_DIR/xonsh/rc.d/docker.xsh
-source $XDG_CONFIG_DIR/xonsh/rc.d/hm.xsh
-source $XDG_CONFIG_DIR/xonsh/rc.d/uncapturable_aliases.xsh
+for f in pg`~/.config/xonsh/rc.d/**xsh`:
+	source @(f.absolute())
 
 
 aliases['drw_winvm'] = 'rdesktop -u jgosset -p - -g 1680x1050 -K mt1n-jgosset'
