@@ -22,4 +22,14 @@
     };
   };
 
+  xonsh-vim = super.pkgs.vimUtils.buildVimPlugin {
+    name = "xonsh-vim";
+    src = super.pkgs.fetchFromGitHub {
+      owner = "linkinpark342";
+      repo = "xonsh-vim";
+      rev = "984a7e8cf5f2516976667c34d6cb61bd01f93be0";
+      sha256 = "052r678mh3cg8dc1ghv0gp459pddnzxvmgmdp6y5085rhib191d5";
+    };
+  };
+
 }

@@ -57,6 +57,7 @@ in
             vim-pandoc-syntax
             vim-toml
             vista.vim
+            xonsh-vim
             yats-vim
           ];
 
