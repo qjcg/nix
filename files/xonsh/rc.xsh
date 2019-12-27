@@ -10,7 +10,7 @@ $BROWSER = 'firefox'
 $PAGER = 'less'
 $EDITOR = 'nvim'
 $VISUAL = 'nvim'
-$MAILRC = p`~/.config/s-nail/mailrc`.as_posix()
+$MAILRC = p'~/.config/s-nail/mailrc'.as_posix()
 
 # Modular configuration.
 for f in pg`~/.config/xonsh/rc.d/**xsh`:
