@@ -414,6 +414,7 @@ let
       nodejs
       skaffold
       tig
+      tmux
       xonsh
     ];
 
