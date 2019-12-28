@@ -406,13 +406,16 @@ let
       curl
       git
       go
+      horeb
       jq
       kubectl
       kubectx
       kubernetes-helm
       less
+      gnumake
       neovim
       nodejs
+      openssh
       skaffold
       tig
       tmux
