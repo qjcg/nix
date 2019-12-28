@@ -410,11 +410,13 @@ let
       kubectl
       kubectx
       kubernetes-helm
+      less
       neovim
       nodejs
       skaffold
       tig
       tmux
+      tree
       xonsh
     ];
 
