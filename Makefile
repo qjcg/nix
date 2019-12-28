@@ -1,14 +1,23 @@
 IMG_NAME := nix-workstation
 
-.PHONY: build
 build:
 	docker build -t $(IMG_NAME) .
+.PHONY: build
 
-.PHONY: run
+# Run the container with:
+# - ~/.ssh mounted at /root/.ssh for access to SSH keys.
+# - ~/src mounted at /src for persistence.
+# - All ports mapped to random high ports on the host
 run:
-	docker run -it --rm -v ~/src:/src -w /src --name workstation $(IMG_NAME)
+	docker run \
+		--name workstation -it -P --rm \
+		-v ~/.ssh:/root/.ssh \
+		-v ~/src:/src \
+		-w /src \
+		$(IMG_NAME)
+.PHONY: run
 
-.PHONY: clean
 clean:
 	-docker container prune -f
 	-docker image prune -f
+.PHONY: clean
