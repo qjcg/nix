@@ -402,6 +402,21 @@ let
         youtube-dl
     ];
 
+    container = [
+      curl
+      git
+      go
+      jq
+      kubectl
+      kubectx
+      kubernetes-helm
+      neovim
+      nodejs
+      skaffold
+      tig
+      xonsh
+    ];
+
   };
 in
   {
@@ -432,6 +447,12 @@ in
       name = "env-mac";
       meta.priority = 0;
       paths = pkgGroups.mac;
+    };
+
+    env-container = super.pkgs.buildEnv {
+      name = "env-container";
+      meta.priority = 0;
+      paths = pkgGroups.container;
     };
 
   }
