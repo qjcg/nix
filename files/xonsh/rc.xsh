@@ -3,7 +3,7 @@ xontrib load bashisms coreutils
 $XONSH_COLOR_STYLE = 'paraiso-dark'
 
 # PROMPT
-$PROMPT = '{env_name}{BOLD_GREEN}{user}@{hostname}{BOLD_BLUE} {cwd}{NO_COLOR} {BOLD_YELLOW}{prompt_end}{NO_COLOR} '
+$PROMPT = '{env_name}{BOLD_GREEN}{user}@{hostname}{NO_COLOR}:{CYAN}{cwd_base}{NO_COLOR} {BOLD_YELLOW}{prompt_end}{NO_COLOR} '
 $RIGHT_PROMPT = '{gitstatus}'
 
 $BROWSER = 'firefox'
