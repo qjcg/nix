@@ -13,6 +13,7 @@ run:
 		--name workstation -it -P --rm \
 		-v ~/.ssh:/root/.ssh \
 		-v ~/src:/src \
+		-v ~/go:/root/go \
 		-w /src \
 		$(IMG_NAME)
 .PHONY: run
