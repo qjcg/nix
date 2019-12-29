@@ -404,8 +404,10 @@ let
 
     container = [
       curl
+      file
       git
       go
+      gotools
       horeb
       jq
       kubectl
