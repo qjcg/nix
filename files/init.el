@@ -153,6 +153,12 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (projectile-mode +1))
 
+(use-package all-the-icons
+  :ensure t)
+
+(use-package discover-my-major
+  :ensure t)
+
 (use-package dockerfile-mode
   :ensure t)
 
@@ -168,17 +174,42 @@
 (use-package json-mode
   :ensure t)
 
+(use-package nix-mode
+  :ensure t)
+
+;; Installed as dependency for dashboard.
+(use-package page-break-lines
+  :ensure t)
+
+(use-package paradox
+  :ensure t)
+
 (use-package systemd
   :ensure t)
 
 (use-package yaml-mode
   :ensure t)
 
-(use-package paradox
-  :ensure t)
 
-(use-package nix-mode
-  :ensure t)
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook)
+  (setq initial-buffer-choice (lambda () (get-buffer "*dashboard*")))
+  (setq dashboard-center-content t)
+  (setq dashboard-banner-logo-title "My Dashboard")
+  (setq dashboard-show-shortcuts nil)
+  (setq dashboard-items '((recents  . 5)
+			  (bookmarks . 5)
+			  (projects . 5)
+			  (agenda . 5)
+			  (registers . 5)))
+  (setq dashboard-set-navigator t)
+  (setq dashboard-set-init-info t)
+  )
 
-(use-package discover-my-major
-  :ensure t)
+(use-package neotree
+  :ensure t
+  :config
+  (global-set-key [f8] 'neotree-toggle)
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
