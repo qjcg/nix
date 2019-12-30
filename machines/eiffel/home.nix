@@ -99,6 +99,15 @@
       };
     };
 
+    emacs = {
+      enable = true;
+      extraPackages = epkgs: [
+        epkgs.nix-mode
+        epkgs.magit
+        epkgs.paradox
+      ];
+    };
+
     firefox.enable = true;
 
     git = {
@@ -247,6 +256,7 @@
       enableScDaemon = false;
       enableSshSupport = true;
       extraConfig = ''
+        allow-emacs-pinentry
         pinentry-program /usr/bin/pinentry-gnome3
       '';
     };
