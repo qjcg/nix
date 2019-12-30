@@ -231,8 +231,7 @@ let
       ];
 
       dev = [
-        #dbeaver
-        vscodium
+        emacs
       ];
 
       # NOTE: Screen locker is configured via system config.

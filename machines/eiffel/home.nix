@@ -99,15 +99,6 @@
       };
     };
 
-    emacs = {
-      enable = true;
-      extraPackages = epkgs: [
-        epkgs.nix-mode
-        epkgs.magit
-        epkgs.paradox
-      ];
-    };
-
     firefox.enable = true;
 
     git = {
@@ -276,6 +267,7 @@
 
   xdg.configFile = {
     "cmus/rc".source = ../../files/cmusrc;
+    "emacs/init.el".source = ../../files/init.el;
     "fontconfig/conf.d/50-user-font-preferences.conf".source = ../../files/50-user-font-preferences.conf;
     "i3/workspace1.json".source = ../../files/workspace1.json;
 
