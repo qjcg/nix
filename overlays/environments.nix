@@ -293,7 +293,7 @@ let
         blender
         digikam
         feh
-        #flashplayer-standalone
+        flashplayer-standalone
         freetube
         gimp
         imagemagick
