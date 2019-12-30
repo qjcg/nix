@@ -24,7 +24,7 @@ let
       ];
 
       nix = [
-        cachix
+        #cachix
         nix-index
         nixops
         nix-bash-completions
