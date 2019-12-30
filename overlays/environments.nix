@@ -28,7 +28,6 @@ let
         nix-index
         nixops
         nix-bash-completions
-        nix-zsh-completions
       ];
 
       shell = [
@@ -38,7 +37,6 @@ let
       ];
 
       utilities = [
-        aerc
         ansible
         aria2
         binutils
@@ -130,14 +128,14 @@ let
       ];
 
       devtools = [
+        fly
         fossil
+        gnumake
         hugo
 
-        # Go.
+        # Go
         delve
         errcheck
-        fly
-        gnumake
         gocode
         gogetdoc
         gomodifytags
@@ -149,26 +147,28 @@ let
         mkcert
         mr
 
-        # Node.
+        # Node
         nodejs
         now-cli
 
         postgresql_12
 
-        # Python.
+        # Python
         pypy3
         python38Packages.cookiecutter
         python38Packages.ipython
         python38Packages.poetry
 
+        # Lisp / Scheme
         janet
         racket
         sbcl
+
         tig
         universal-ctags
       ];
 
-      # NOTE: VirtualBox is enabled at the system level.
+      # NOTE: VirtualBox is enabled at the system level on NixOS.
       virt = [
         buildah
         conmon
@@ -442,6 +442,7 @@ in
       paths = super.lib.lists.flatten (super.lib.attrsets.collect builtins.isList pkgGroups.CLI) ;
     };
 
+    # A workstation environment for Linux.
     env-workstation = super.pkgs.buildEnv {
       name = "env-workstation";
       meta.priority = 0;
@@ -451,12 +452,14 @@ in
         ;
     };
 
+    # A workstation environment for MacOS.
     env-mac = super.pkgs.buildEnv {
       name = "env-mac";
       meta.priority = 0;
       paths = pkgGroups.mac;
     };
 
+    # A workstation / development environment in a Docker container.
     env-container = super.pkgs.buildEnv {
       name = "env-container";
       meta.priority = 0;
