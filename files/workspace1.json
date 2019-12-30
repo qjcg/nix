@@ -12,18 +12,18 @@
             "current_border_width": 2,
             "floating": "auto_off",
             "geometry": {
-               "height": 460,
-               "width": 724,
-               "x": 0,
-               "y": 0
+		"height": 460,
+		"width": 724,
+		"x": 0,
+		"y": 0
             },
             "name": "sh",
             "percent": 0.5,
             "swallows": [
-               {
-               "class": "^st\\-256color$",
-               "title": "^tmux-main$"
-               }
+		{
+		    "class": "^st\\-256color$",
+		    "title": "^tmux-main$"
+		}
             ],
             "type": "con"
         },
@@ -32,17 +32,17 @@
             "current_border_width": 2,
             "floating": "auto_off",
             "geometry": {
-               "height": 2085,
-               "width": 1885,
-               "x": 0,
-               "y": 0
+		"height": 2085,
+		"width": 1885,
+		"x": 0,
+		"y": 0
             },
             "name": "Mozilla Firefox",
             "percent": 0.5,
             "swallows": [
-               {
-               "class": "^Firefox$"
-               }
+		{
+		    "class": "^Firefox$"
+		}
             ],
             "type": "con"
         }
