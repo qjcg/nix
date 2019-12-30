@@ -327,7 +327,7 @@
       cmd_browser = "${pkgs.firefox}/bin/firefox";
       cmd_slack = "${pkgs.slack}/bin/slack";
 
-      wpdir = "/home/jgosset/Pictures/wallpapers" ;
+      wpdir = "/home/jgosset/Sync/Pictures/Wallpapers" ;
       cmd_browse_wallpaper = "${pkgs.sxiv}/bin/sxiv -artos f ${wpdir}";
 
       left = "h";
