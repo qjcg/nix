@@ -179,3 +179,6 @@
 
 (use-package nix-mode
   :ensure t)
+
+(use-package discover-my-major
+  :ensure t)
