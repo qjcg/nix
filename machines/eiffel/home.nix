@@ -267,7 +267,7 @@
 
   xdg.configFile = {
     "cmus/rc".source = ../../files/cmusrc;
-    "emacs/init.el".source = ../../files/init.el;
+    "emacs/init.el".source = ../../files/emacs/init.el;
     "fontconfig/conf.d/50-user-font-preferences.conf".source = ../../files/50-user-font-preferences.conf;
     "i3/workspace1.json".source = ../../files/workspace1.json;
 

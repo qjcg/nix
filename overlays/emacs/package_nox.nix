@@ -17,6 +17,7 @@ let
 in
   pkgsWithOverlay.emacsWithPackagesFromUsePackage {
     config = builtins.readFile myConfig;
+    package = pkgsWithOverlay.emacs-nox;
 
     # TODO: Figure out how to deploy my personal init.el via this overlay (i.e. avoiding home-manager).
     #override = epkgs: epkgs // {
