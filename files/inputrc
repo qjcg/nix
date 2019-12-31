@@ -1,0 +1,29 @@
+# see readline(3)/#'VI Mode bindings' and "help bind"
+
+# for vi mode
+set editing-mode vi
+"\C-w": shell-backward-kill-word
+"\C-x\C-r": re-read-init-file
+"\C-x\C-e": edit-and-execute-command
+
+$if mode=vi
+	set keymap vi-command
+	# these are for vi-command mode
+	"\e[A": history-search-backward # arrow up
+	"\e[B": history-search-forward  # arrow down
+	#"\ey": yank-last-arg            # bind to Alt-y
+	"\M-y": yank-last-arg            # bind to Alt-y
+	"\C-k": kill-line
+	"\C-l": clear-screen
+	"\C-w": shell-backward-kill-word
+
+	set keymap vi-insert
+	# these are for vi-insert mode
+	"\e[A": history-search-backward
+	"\e[B": history-search-forward
+	#"\ey": yank-last-arg            # bind to Alt-y
+	"\M-y": yank-last-arg            # bind to Alt-y
+	"\C-k": kill-line
+	"\C-l": clear-screen
+	"\C-w": shell-backward-kill-word
+$endif
