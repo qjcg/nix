@@ -63,6 +63,11 @@ in
 
   time.timeZone = secrets.timeZone;
 
+  environment.shells = with pkgs; [
+    bash_5
+    xonsh
+  ];
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
