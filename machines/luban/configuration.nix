@@ -50,9 +50,12 @@ in
   # NOTE: Disabled due to DRW EAP-PEAP not being usable without a certificate (that doesn't seem to be provided).
   #networking.wireless.iwd.enable = true;
 
+  console = {
+    font = "iso01-12x22";
+    keyMap = "us";
+  };
+
   i18n = {
-    consoleFont = "iso01-12x22";
-    consoleKeyMap = "us";
     defaultLocale = "en_CA.UTF-8";
   };
 
