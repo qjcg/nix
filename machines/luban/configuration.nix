@@ -5,7 +5,7 @@
 { config, pkgs, ... }:
 
 let
-  secrets = import ../../secrets.nix;
+  secrets = import ./secrets.nix;
 in
 {
   imports =
@@ -14,6 +14,8 @@ in
     ];
 
   hardware.cpu.intel.updateMicrocode = true;
+
+  nixpkgs.overlays = [];
 
   boot.kernelPackages = pkgs.linuxPackages_latest ;
   boot.extraModulePackages = with config.boot.kernelPackages ; [
@@ -140,6 +142,7 @@ in
   virtualisation.virtualbox.host.enable = true;
 
   security.sudo = secrets.sudo;
+
   users.users = secrets.users;
 
   # This value determines the NixOS release with which your system is to be
