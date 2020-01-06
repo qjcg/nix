@@ -63,11 +63,6 @@ in
 
   time.timeZone = secrets.timeZone;
 
-  environment.shells = with pkgs; [
-    bash_5
-    xonsh
-  ];
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -89,6 +84,9 @@ in
   programs.mtr.enable = true;
   programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
   programs.slock.enable = true;
+
+  # FIXME: Re-enable when the xonsh package builds properly.
+  #programs.xonsh.enable = true;
 
   # List services that you want to enable:
 
