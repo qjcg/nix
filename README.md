@@ -20,7 +20,7 @@ curl https://nixos.org/nix/install | sh
 
 # Clone this repo.
 mkdir -p ~/.config
-git clone https://github.com/qjcg/nix-home ~/.config/nixpkgs
+git clone https://github.com/qjcg/nix-config ~/.config/nixpkgs
 
 # Install the mac environment.
 nix-env -i env-mac
