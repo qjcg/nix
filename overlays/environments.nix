@@ -128,6 +128,7 @@ let
       ];
 
       devtools = [
+        cue
         fly
         fossil
         gnumake
