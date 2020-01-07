@@ -38,15 +38,15 @@ nix-env -i env-mac
 ├── machines/   - per-machine configuration
 ├── nixops/     - nixops configurations
 ├── overlays/   - overlay packages and environments
-└── secrets.nix - secrets file (to add locally, not stored in repo)
+└── secrets.nix - secrets file (gitignored, do e.g.: `gopass nix-secrets > secrets.nix`)
 ```
 
 
 # TODO
 
-- [ ] Add NixOS system configuration(s)
+- [x] Add NixOS system configuration(s)
+- [x] Consider using [nix-darwin](https://github.com/LnL7/nix-darwin) on macOS
 - [ ] Consider adding custom [NixOS modules](https://nixos.org/nixos/manual/index.html#sec-writing-modules)
-- [ ] Consider using [nix-darwin](https://github.com/LnL7/nix-darwin) on macOS
 
 
 # References
