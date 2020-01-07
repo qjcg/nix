@@ -175,6 +175,7 @@ let
         conmon
         dive
         docker-compose
+        glooctl
         k3d
         kind
         kompose
