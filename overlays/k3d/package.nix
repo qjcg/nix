@@ -7,7 +7,7 @@
 
 buildGoModule rec {
   name = "k3d-${version}";
-  version = "1.3.4";
+  version = "1.4.0";
 
   src = fetchFromGitHub {
     owner = "rancher";
@@ -16,7 +16,7 @@ buildGoModule rec {
 
     # To get this value, use "nix-prefetch-url --unpack" with the release tarball, eg:
     #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
-    sha256 = "0bdpjnzyxd6mdc1qv0ml89qds6305kn3wmyci2kv6g2y7r7wxvm2";
+    sha256 = "0dbyyzyprhxsq6ardq380hppzdg01crppad5fczzlqsaxxvac039";
   };
 
   # First, provide a fake hash via the value: lib.fakeSha256
