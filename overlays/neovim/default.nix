@@ -48,6 +48,7 @@ in
             nerdtree
             vim-bazel
             vim-beancount
+            vim-cue
             vim-go
             vim-jsx-pretty
             vim-mdx-js

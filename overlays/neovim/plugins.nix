@@ -1,6 +1,15 @@
 { self, super }:
 
 {
+  vim-cue = super.pkgs.vimUtils.buildVimPlugin {
+    name = "vim-cue";
+    src = super.pkgs.fetchFromGitHub {
+      owner = "jjo";
+      repo = "vim-cue";
+      rev = "8338fb7642976ead40d3eec53e17ba025c67ed2e";
+      sha256 = "1rgw9drbwshj310azypf4wkvl2m4s5c79w3niygpgz6ysd70rq8v";
+    };
+  };
 
   vim-mdx-js = super.pkgs.vimUtils.buildVimPlugin {
     name = "vim-mdx-js";
