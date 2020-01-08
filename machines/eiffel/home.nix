@@ -331,6 +331,7 @@
 
       wpdir = "/home/jgosset/Sync/Pictures/Wallpapers" ;
       cmd_browse_wallpaper = "${pkgs.sxiv}/bin/sxiv -artos f ${wpdir}";
+      cmd_set_wallpaper = "${pkgs.feh}/bin/feh --bg-fill ${wpdir}/gtgraphics.de/infinitus.jpg ${wpdir}/wallpaperfx.com/white-tiger-in-jungle-2560x1440-wallpaper-2916.jpg --geometry -500";
 
       left = "h";
       down = "j";
@@ -467,8 +468,8 @@
         startup = [
           { notification = false; command = "${pkgs.autorandr}/bin/autorandr -l eiffel"; }
           { notification = false; command = "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace1.json'"; }
-          { notification = false; command = "~/.fehbg"; }
 
+          { notification = false; command = "${cmd_set_wallpaper}"; }
           { notification = false; command = "${cmd_term_tmux}"; }
           { notification = false; command = "${cmd_browser}"; }
           { notification = false; command = "${cmd_slack}"; }
