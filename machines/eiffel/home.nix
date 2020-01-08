@@ -465,6 +465,7 @@
         ];
 
         startup = [
+          { notification = false; command = "${pkgs.autorandr}/bin/autorandr -l eiffel"; }
           { notification = false; command = "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace1.json'"; }
           { notification = false; command = "~/.fehbg"; }
 
