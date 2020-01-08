@@ -352,7 +352,7 @@
         modifier = "${modifier}";
 
         gaps = {
-          inner = 10;
+          inner = 50;
           outer = 10;
         };
 
