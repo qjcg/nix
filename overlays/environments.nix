@@ -344,6 +344,7 @@ let
         fzf
         getent
         git
+        glooctl
         gnugrep
         gnumake
         go
@@ -397,6 +398,7 @@ let
         universal-ctags
         unzip
         upx
+        vault-bin
         vscodium
         wtf
         xonsh
