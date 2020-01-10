@@ -133,6 +133,7 @@ let
         fossil
         gnumake
         hugo
+        vault-bin
 
         # Go
         delve
