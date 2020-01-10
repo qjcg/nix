@@ -390,6 +390,7 @@ let
         rsync
         #sox
         skaffold
+        skopeo
         stdenv
         #streamripper
         syncthing
