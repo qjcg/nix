@@ -14,6 +14,7 @@ let
 
         battery
         goplot
+        hey
         k3d
         loccount
         s-nail
@@ -352,6 +353,7 @@ let
         go-font
         gopass
         gotags
+        hey
         htop
         imagemagick
         inconsolata
