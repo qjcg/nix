@@ -46,6 +46,7 @@ nix-env -i env-mac
 
 - [x] Add NixOS system configuration(s)
 - [x] Consider using [nix-darwin](https://github.com/LnL7/nix-darwin) on macOS
+- [ ] Consider using [home-manager](https://github.com/rycee/home-manager) on macOS
 - [ ] Consider adding custom [NixOS modules](https://nixos.org/nixos/manual/index.html#sec-writing-modules)
 
 
