@@ -76,6 +76,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [Secure, Declarative Key Management with NixOps, Pass, and nix-plugins](https://elvishjerricco.github.io/2018/06/24/secure-declarative-key-management.html)
 - [Nix by example Part 1: The Nix expression language](https://medium.com/@MrJamesFisher/nix-by-example-a0063a1a4c55)
 - [Learn X in Y Minutes: nix](https://learnxinyminutes.com/docs/nix/)
+- [Your Home in Nix (dotfile management)](https://hugoreeves.com/posts/2019/nix-home/)
 
 ## Packaging
 
