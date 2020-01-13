@@ -38,6 +38,7 @@ nix-env -i env-mac
 ├── machines/   - per-machine configuration
 ├── nixops/     - nixops configurations
 ├── overlays/   - overlay packages and environments
+├── roles/      - system roles
 └── secrets.nix - secrets file (gitignored, do e.g.: `gopass nix-secrets > secrets.nix`)
 ```
 
