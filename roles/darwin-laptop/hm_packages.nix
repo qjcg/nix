@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
-with pkgs; [
+{
+  home.packages = with pkgs; [
       # personal
       go-4d
       horeb
@@ -102,4 +103,5 @@ with pkgs; [
       vscodium
       wtf
       youtube-dl
-]
+    ]
+}

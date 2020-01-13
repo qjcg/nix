@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-
   imports = [
 
     # Use the home-manager nix-darwin module.
@@ -14,10 +13,7 @@
     ./nixpkgs.nix
     ./programs.nix
     ./services.nix
+    ./system.nix
     ./time.nix
   ];
-
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
-  system.stateVersion = 4;
 }
