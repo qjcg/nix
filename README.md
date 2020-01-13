@@ -47,8 +47,8 @@ nix-env -i env-mac
 
 - [x] Add NixOS system configuration(s)
 - [x] Consider using [nix-darwin](https://github.com/LnL7/nix-darwin) on macOS
-- [ ] Consider using [home-manager](https://github.com/rycee/home-manager) on macOS
-	- Consider refactoring to follow layout of [Your Home in Nix (dotfile management)](https://hugoreeves.com/posts/2019/nix-home/)
+- [x] Consider using [home-manager](https://github.com/rycee/home-manager) on macOS
+	- [x] Consider refactoring to follow layout of [Your Home in Nix (dotfile management)](https://hugoreeves.com/posts/2019/nix-home/)
 - [ ] Consider adding custom [NixOS modules](https://nixos.org/nixos/manual/index.html#sec-writing-modules)
 
 
@@ -108,6 +108,7 @@ Interesting and useful links on a variety of nix-related topics.
 	- [grahamc: NixOS 2019 Talks](https://github.com/grahamc/talks) (overrides, overlays, ...)
 - [j0xaf (with i3 config)](https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix)
 - [rummik (with system configurations, custom NixOS modules, nix-darwin, and home-manager)](https://github.com/rummik/nixos-config)
+- [HugoReeves (with machine / role / user structure)](https://github.com/HugoReeves/nix-home/)
 
 ## Community Resources
 
