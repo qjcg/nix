@@ -320,95 +320,6 @@ let
 
     };
 
-    mac = [
-        go-4d
-        horeb
-        mtlcam
-
-        alacritty
-        ansible
-        aria2
-        bash-completion
-        bash_5
-        caddy
-        #cmus
-        coreutils
-        delve
-        docker-compose
-        emacsMacport
-        errcheck
-        fdupes
-        ffmpeg
-        findutils
-        fly
-        fortune
-        fossil
-        fzf
-        getent
-        git
-        glooctl
-        gnugrep
-        gnumake
-        go
-        go-font
-        gopass
-        gotags
-        hey
-        htop
-        imagemagick
-        inconsolata
-        inkscape
-        iosevka
-        jq
-        k3d
-        kind
-        kubectl
-        kubectx
-        kubernetes-helm
-        lastpass-cli
-        lsof
-        mkcert
-        mpv
-        mtr
-        neovim
-        nethack
-        nix-bash-completions
-        nixops
-        nodejs
-        pandoc
-        pdfcpu
-        python38
-        python38Packages.ipython
-        #python38Packages.notebook
-        python37Packages.pandas
-        python38Packages.pip
-        python38Packages.poetry
-        qemu
-        rclone
-        rdesktop
-        renameutils
-        restic
-        ripgrep
-        rsync
-        #sox
-        skaffold
-        skopeo
-        stdenv
-        #streamripper
-        syncthing
-        tig
-        tmux
-        tree
-        universal-ctags
-        unzip
-        upx
-        vault-bin
-        vscodium
-        wtf
-        xonsh
-        youtube-dl
-    ];
-
     container = [
       curl
       file
@@ -457,13 +368,6 @@ in
         super.lib.lists.flatten (super.lib.attrsets.collect builtins.isList pkgGroups.CLI) ++
         super.lib.lists.flatten (super.lib.attrsets.collect builtins.isList pkgGroups.GUI)
         ;
-    };
-
-    # A workstation environment for MacOS.
-    env-mac = super.pkgs.buildEnv {
-      name = "env-mac";
-      meta.priority = 0;
-      paths = pkgGroups.mac;
     };
 
     # A workstation / development environment in a Docker container.
