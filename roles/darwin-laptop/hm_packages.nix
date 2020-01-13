@@ -103,5 +103,5 @@
       vscodium
       wtf
       youtube-dl
-    ]
+    ];
 }
