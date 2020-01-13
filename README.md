@@ -81,6 +81,8 @@ Interesting and useful links on a variety of nix-related topics.
 - [Nix by example Part 1: The Nix expression language](https://medium.com/@MrJamesFisher/nix-by-example-a0063a1a4c55)
 - [Learn X in Y Minutes: nix](https://learnxinyminutes.com/docs/nix/)
 - [Your Home in Nix (dotfile management)](https://hugoreeves.com/posts/2019/nix-home/)
+- [Create a custom NixOS Live CD](https://nixos.org/nixos/manual/index.html#sec-building-cd)
+	- [Related Wiki article](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD))
 
 ## Packaging
 
