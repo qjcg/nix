@@ -7,9 +7,6 @@
 }:
 
 {
-  fonts.fontconfig.enable = true;
-  manual.html.enable = true;
-
   home = {
     language = {
       base = "en_US.utf8";

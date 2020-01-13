@@ -1,0 +1,3 @@
+{
+  manual.html.enable = true;
+}
