@@ -1,5 +1,7 @@
 xontrib load bashisms coreutils
 
+$PATH = [p'~/.nix-profile/bin', p'/run/current-system/sw/bin', p'/usr/local/bin'] + $PATH
+
 $XONSH_COLOR_STYLE = 'paraiso-dark'
 
 # PROMPT
