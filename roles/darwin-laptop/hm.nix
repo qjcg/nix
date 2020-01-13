@@ -7,6 +7,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    <home-manager/nix-darwin>
+  ];
+
   # Users should be defined in secrets.nix.
   home-manager.users.jgosset = {
     imports = [
