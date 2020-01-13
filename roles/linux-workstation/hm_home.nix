@@ -10,11 +10,6 @@
   fonts.fontconfig.enable = true;
   manual.html.enable = true;
 
-  gtk = {
-    enable = true;
-  };
-
-
   home = {
     language = {
       base = "en_US.utf8";
