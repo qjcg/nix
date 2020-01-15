@@ -28,7 +28,7 @@ self: super:
       mupen64plus
       nestopia
       prboom
-      #snes9x-next
+      snes9x2010
       stella
     ];
   };
