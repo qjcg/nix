@@ -159,9 +159,9 @@ let
 
         # Python
         pypy3
-        python38Packages.cookiecutter
+        #python38Packages.cookiecutter
         python38Packages.ipython
-        python38Packages.poetry
+        #python38Packages.poetry
 
         # Lisp / Scheme
         janet
@@ -249,7 +249,8 @@ let
 
       office = [
         bluejeans-gui
-        bookworm
+        # FIXME: uncomment bookworm when build is fixed
+        #bookworm
         calibre
         evince
         libreoffice-fresh
@@ -297,7 +298,8 @@ let
         blender
         digikam
         feh
-        flashplayer-standalone
+        # FIXME: uncomment flashplayer-standalone when build is fixed
+        #flashplayer-standalone
         freetube
         gimp
         imagemagick
@@ -316,7 +318,9 @@ let
         baresip
         cool-retro-term
         glxinfo
-        zoom-us
+
+        # FIXME: uncomment zoom-us when build is fixed
+        #zoom-us
       ];
 
     };
