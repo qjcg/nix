@@ -51,6 +51,7 @@ nix-env -i env-mac
 	- [x] Consider refactoring to follow layout of [Your Home in Nix (dotfile management)](https://hugoreeves.com/posts/2019/nix-home/)
 - [ ] Consider adding custom [NixOS modules](https://nixos.org/nixos/manual/index.html#sec-writing-modules)
 - [ ] Create a custom NixOS ISO (instructions: [manual](https://nixos.org/nixos/manual/index.html#sec-building-cd), [wiki](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD))
+- [ ] Use system pinning via Git as described [here](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
 
 
 # References
@@ -83,6 +84,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [Your Home in Nix (dotfile management)](https://hugoreeves.com/posts/2019/nix-home/)
 - [Create a custom NixOS Live CD](https://nixos.org/nixos/manual/index.html#sec-building-cd)
 	- [Related Wiki article](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD))
+- [Intro to Nix Channels and Reproducible NixOS Environment](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
 
 ## Packaging
 
