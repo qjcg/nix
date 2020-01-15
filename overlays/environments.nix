@@ -64,6 +64,7 @@ let
         neovim
         pandoc
         pdfcpu
+        pup
         pv
         renameutils
         ripgrep
