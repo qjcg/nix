@@ -25,7 +25,7 @@ let
       ];
 
       nix = [
-        #cachix
+        cachix
         nix-index
         nixops
         nix-bash-completions
@@ -34,7 +34,8 @@ let
       shell = [
         bash_5
         bash-completion
-        xonsh
+        # FIXME: Re-enable xonsh when build is fixed!
+        #xonsh
       ];
 
       utilities = [
@@ -256,7 +257,6 @@ let
         libreoffice-fresh
         rdesktop
         slack
-        thunderbird-bin
         tectonic
         texlive.combined.scheme-basic
         zathura
@@ -300,7 +300,6 @@ let
         feh
         # FIXME: uncomment flashplayer-standalone when build is fixed
         #flashplayer-standalone
-        freetube
         gimp
         imagemagick
         inkscape
@@ -318,9 +317,7 @@ let
         baresip
         cool-retro-term
         glxinfo
-
-        # FIXME: uncomment zoom-us when build is fixed
-        #zoom-us
+        zoom-us
       ];
 
     };
