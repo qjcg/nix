@@ -57,17 +57,20 @@
         export LC_COLLATE=C
         export PAGER=less
 
-        # nodejs
-        export npm_config_prefix=~/.node_modules
-        export PATH=$npm_config_prefix/bin:$PATH
-
         # go
         export GOPATH=~/go
         export GOBIN=$GOPATH/bin
         export PATH=$GOBIN:$PATH
 
+        # nodejs
+        export npm_config_prefix=~/.node_modules
+        export PATH=$npm_config_prefix/bin:$PATH
+
         # nix
-        if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+        if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi
+
+        # Python
+        export PYTHONPATH=~/.nix-profile/lib/python3.8/site-packages:$PYTHONPATH
       '';
 
       shellAliases = rec {
