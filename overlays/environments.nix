@@ -161,8 +161,13 @@ let
         # Python
         pypy3
         #python38Packages.cookiecutter
-        python38Packages.ipython
         #python38Packages.poetry
+
+        (python38.withPackages (ps: with ps; [
+          beautifulsoup4
+          ipython
+          requests
+        ]))
 
         # Lisp / Scheme
         janet
