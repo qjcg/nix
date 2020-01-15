@@ -9,7 +9,11 @@ self: super:
 let
   extensions = (with super.vscode-extensions; [
     bbenoist.Nix
+    ms-kubernetes-tools.vscode-kubernetes-tools
+    ms-vscode.Go
     #ms-python.python
+    redhat.vscode-yaml
+    vscodevim.vim
   ]) ++ super.vscode-utils.extensionsFromVscodeMarketplace [
   ];
 
