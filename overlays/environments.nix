@@ -238,6 +238,7 @@ let
 
       dev = [
         emacs
+        vscodium-with-extensions
       ];
 
       # NOTE: Screen locker is configured via system config.
