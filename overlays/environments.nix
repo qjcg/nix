@@ -238,6 +238,7 @@ let
 
       dev = [
         emacs
+        #vscodium
         vscodium-with-extensions
       ];
 
