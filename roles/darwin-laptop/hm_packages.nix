@@ -79,7 +79,7 @@
       #python38Packages.notebook
       python37Packages.pandas
       python38Packages.pip
-      python38Packages.poetry
+      #python38Packages.poetry
       qemu
       rclone
       rdesktop
