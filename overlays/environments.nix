@@ -160,12 +160,14 @@ let
 
         # Python
         pypy3
-        #python38Packages.cookiecutter
-        #python38Packages.poetry
 
         (python38.withPackages (ps: with ps; [
           beautifulsoup4
+          #black
+          #cookiecutter
           ipython
+          isort
+          #poetry
           pylint
           requests
         ]))
