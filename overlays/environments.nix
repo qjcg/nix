@@ -167,6 +167,7 @@ let
           #cookiecutter
           ipython
           isort
+          mypy
           #poetry
           pylint
           python-dotenv
