@@ -169,6 +169,7 @@ let
           isort
           #poetry
           pylint
+          python-dotenv
           requests
         ]))
 
