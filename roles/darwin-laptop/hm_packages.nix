@@ -28,7 +28,7 @@
 
       alacritty
       caddy
-      #cmus
+      cmus
       coreutils
       delve
       docker-compose
@@ -87,11 +87,11 @@
       restic
       ripgrep
       rsync
-      #sox
+      sox
       skaffold
       skopeo
       stdenv
-      #streamripper
+      streamripper
       syncthing
       tig
       tmux
