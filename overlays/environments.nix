@@ -174,6 +174,7 @@ let
         ]))
 
         # Lisp / Scheme
+        guile
         janet
         racket
         sbcl
