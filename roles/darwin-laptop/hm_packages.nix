@@ -74,12 +74,21 @@
       pandoc
       pdfcpu
       pstree
-      python38
-      python38Packages.ipython
-      #python38Packages.notebook
-      python37Packages.pandas
-      python38Packages.pip
-      #python38Packages.poetry
+
+      (python38.withPackages (ps: with ps; [
+        beautifulsoup4
+        ipython
+        isort
+        mypy
+        #notebook
+        #pandas
+        pip
+        #poetry
+        pylint
+        python-dotenv
+        requests
+      ]))
+
       qemu
       rclone
       rdesktop
