@@ -77,6 +77,8 @@
 
       (python38.withPackages (ps: with ps; [
         beautifulsoup4
+        #black
+        flake8
         ipython
         isort
         mypy
