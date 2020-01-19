@@ -26,6 +26,17 @@ git clone https://github.com/qjcg/nix-config ~/.config/nixpkgs
 nix-env -i env-mac
 ```
 
+## Raspberry Pi
+
+From a NixOS base image:
+
+```sh
+git clone https://github.com/qjcg/nix-config ~/.config/nixpkgs
+cd ~/.config/nixpkgs
+nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rpi3/configuration.nix
+
+```
+
 
 # Layout
 
