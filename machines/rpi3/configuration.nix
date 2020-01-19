@@ -37,6 +37,7 @@
     neofetch
     psmisc
     raspberrypi-tools
+    tig
     tmux
     tree
     vim
