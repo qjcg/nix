@@ -18,6 +18,7 @@ self: super:
     kompose = super.callPackage ./kompose {};
     loccount = super.callPackage ./loccount {};
     ludo = super.callPackage ./ludo {};
+    mtlcam = super.callPackage ./mtlcam {};
 
     #neovim = super.callPackage ./neovim {inherit self super; };
 
