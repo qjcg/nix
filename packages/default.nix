@@ -24,7 +24,4 @@ self: super:
 
     skaffold = super.callPackage ./skaffold {};
     s-nail = super.callPackage ./s-nail {};
-    st = super.callPackage ./st {};
-    sxiv = super.callPackage ./sxiv {};
-    vscodium-with-extensions = super.callPackage ./vscodium-with-extensions {};
 }
