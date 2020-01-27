@@ -312,7 +312,7 @@ let
         digikam
         feh
         # FIXME: uncomment flashplayer-standalone when build is fixed
-        #flashplayer-standalone
+        flashplayer-standalone
         gimp
         imagemagick
         inkscape
