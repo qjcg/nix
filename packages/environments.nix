@@ -15,6 +15,7 @@ let
         battery
         goplot
         hey
+        k3c
         k3d
         loccount
         s-nail

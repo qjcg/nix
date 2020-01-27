@@ -14,6 +14,7 @@ self: super:
     goplot = super.callPackage ./goplot {};
     hey = super.callPackage ./hey {};
     horeb = super.callPackage ./horeb {};
+    k3c = super.callPackage ./k3c {};
     k3d = super.callPackage ./k3d {};
     kompose = super.callPackage ./kompose {};
     loccount = super.callPackage ./loccount {};
