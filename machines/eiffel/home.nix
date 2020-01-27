@@ -314,7 +314,7 @@
     let
       modifier = "Mod4";
 
-      cmd_term = "${pkgs.st}/bin/st -f 'monospace-11'";
+      cmd_term = "st -f 'monospace-11'";
       cmd_term_tmux = "${cmd_term} -t 'tmux-main' -e sh -c 'tmux new -ADs main'";
 
       cmd_menu = "${pkgs.dmenu}/bin/dmenu_run -fn 'Iosevka:size=20' -nb '#000000' -sb '#00fcff' -sf '#000000'";
@@ -322,7 +322,7 @@
       cmd_slack = "${pkgs.slack}/bin/slack";
 
       wpdir = "/home/jgosset/Sync/Pictures/Wallpapers" ;
-      cmd_browse_wallpaper = "${pkgs.sxiv}/bin/sxiv -artos f ${wpdir}";
+      cmd_browse_wallpaper = "sxiv -artos f ${wpdir}";
       cmd_set_wallpaper = "${pkgs.feh}/bin/feh --bg-fill ${wpdir}/gtgraphics.de/infinitus.jpg ${wpdir}/wallpaperfx.com/white-tiger-in-jungle-2560x1440-wallpaper-2916.jpg --geometry -550";
 
       left = "h";
@@ -425,7 +425,7 @@
               urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
             };
 
-            statusCommand = "while ${pkgs.barr}/bin/barr; do sleep 5; done";
+            statusCommand = "while barr; do sleep 5; done";
             extraConfig = ''
               output DP-6
             '';
