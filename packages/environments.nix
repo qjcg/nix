@@ -35,8 +35,15 @@ let
       shell = [
         bash_5
         bash-completion
-        # FIXME: Re-enable xonsh when build is fixed!
-        #xonsh
+
+        # Last known working xonsh build.
+        # See https://hydra.nixos.org/job/nixos/trunk-combined/nixpkgs.xonsh.x86_64-linux
+        (import (builtins.fetchGit {
+          # Descriptive name to make the store path easier to identify
+          name = "nixpkgs-last-working-xonsh";
+          url = https://github.com/nixos/nixpkgs/;
+          rev = "1736affb91d60ca49952c68821d8f6f06078f4f5";
+        }) {}).xonsh
       ];
 
       utilities = [
