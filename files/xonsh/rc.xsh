@@ -1,4 +1,4 @@
-xontrib load bashisms coreutils
+xontrib load bashisms coreutils vox
 
 $PATH = [p'~/.nix-profile/bin', p'/run/current-system/sw/bin', p'/usr/local/bin'] + $PATH
 
