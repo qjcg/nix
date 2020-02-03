@@ -181,6 +181,12 @@ let
           python-dotenv
           requests
         ]))
+        (import (builtins.fetchGit {
+            # Descriptive name to make the store path easier to identify
+            name = "nixpkgs-staging-next-poetry";
+            url = https://github.com/nixos/nixpkgs/;
+            rev = "5cc0468a206c93ff246605a18eff562619d5a3b7";
+          }) {}).poetry
 
         # Lisp / Scheme
         guile
@@ -319,7 +325,6 @@ let
         blender
         digikam
         feh
-        # FIXME: uncomment flashplayer-standalone when build is fixed
         flashplayer-standalone
         gimp
         imagemagick
