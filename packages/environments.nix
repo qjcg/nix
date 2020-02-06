@@ -2,6 +2,47 @@ self: super:
 
 let
 
+  # Nixpkgs for last known working xonsh build.
+  # See https://hydra.nixos.org/job/nixos/trunk-combined/nixpkgs.xonsh.x86_64-linux
+  nixpkgs_xonsh =
+    (import (builtins.fetchGit {
+      # Descriptive name to make the store path easier to identify
+      name = "nixpkgs_xonsh";
+      url = https://github.com/nixos/nixpkgs/;
+      rev = "1736affb91d60ca49952c68821d8f6f06078f4f5";
+    }) {});
+
+  # Nixpkgs for staging-next version of poetry.
+  # See https://hydra.nixos.org/job/nixpkgs/staging-next/poetry.x86_64-linux
+  nixpkgs_poetry =
+    (import (builtins.fetchGit {
+      # Descriptive name to make the store path easier to identify
+      name = "nixpkgs_poetry";
+      url = https://github.com/nixos/nixpkgs/;
+      rev = "76a439239eb310d9ad76d998b34d5d3bc0e37acb";
+    }) {});
+
+  # Nixpkgs for black.
+  # See https://hydra.nixos.org/job/nixpkgs/python3/nixpkgs.python38Packages.black.x86_64-linux
+  nixpkgs_black =
+    (import (builtins.fetchGit {
+      # Descriptive name to make the store path easier to identify
+      name = "nixpkgs_black";
+      url = https://github.com/nixos/nixpkgs/;
+      rev = "b53e237ef679ee8f4dd366750ef01f5ac83de80a";
+    }) {});
+
+  # Nixpkgs for cookiecutter.
+  # See https://hydra.nixos.org/job/nixos/trunk-combined/nixpkgs.cookiecutter.x86_64-linux
+  nixpkgs_cookiecutter =
+    (import (builtins.fetchGit {
+      # Descriptive name to make the store path easier to identify
+      name = "nixpkgs_cookiecutter";
+      url = https://github.com/nixos/nixpkgs/;
+      rev = "31bcf8d363b26db0061099e4df314d6769b77b8f";
+    }) {});
+
+
   pkgGroups = with super.pkgs; {
 
     CLI = {
@@ -35,15 +76,7 @@ let
       shell = [
         bash_5
         bash-completion
-
-        # Last known working xonsh build.
-        # See https://hydra.nixos.org/job/nixos/trunk-combined/nixpkgs.xonsh.x86_64-linux
-        (import (builtins.fetchGit {
-          # Descriptive name to make the store path easier to identify
-          name = "nixpkgs-last-working-xonsh";
-          url = https://github.com/nixos/nixpkgs/;
-          rev = "1736affb91d60ca49952c68821d8f6f06078f4f5";
-        }) {}).xonsh
+        nixpkgs_xonsh.xonsh
       ];
 
       utilities = [
@@ -171,22 +204,18 @@ let
 
         (python38.withPackages (ps: with ps; [
           beautifulsoup4
-          #black
-          #cookiecutter
           ipython
           isort
           mypy
-          #poetry
           pylint
           python-dotenv
           requests
         ]))
-        (import (builtins.fetchGit {
-            # Descriptive name to make the store path easier to identify
-            name = "nixpkgs-staging-next-poetry";
-            url = https://github.com/nixos/nixpkgs/;
-            rev = "5cc0468a206c93ff246605a18eff562619d5a3b7";
-          }) {}).poetry
+
+        nixpkgs_cookiecutter.cookiecutter
+        nixpkgs_black.python37Packages.black
+        nixpkgs_poetry.poetry
+
 
         # Lisp / Scheme
         guile
@@ -368,7 +397,7 @@ let
       tig
       tmux
       tree
-      xonsh
+      nixpkgs_xonsh.xonsh
     ];
 
   };
