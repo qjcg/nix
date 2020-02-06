@@ -80,6 +80,7 @@ let
         cachix
         nix-index
         nixops
+        nixpkgs-fmt
         nix-bash-completions
       ];
 
