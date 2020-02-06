@@ -42,6 +42,16 @@ let
       rev = "31bcf8d363b26db0061099e4df314d6769b77b8f";
     }) {});
 
+  # Nixpkgs for bookworm.
+  # See https://hydra.nixos.org/job/nixpkgs/trunk/bookworm.x86_64-linux
+  nixpkgs_bookworm =
+    (import (builtins.fetchGit {
+      # Descriptive name to make the store path easier to identify
+      name = "nixpkgs_bookworm";
+      url = https://github.com/nixos/nixpkgs/;
+      rev = "c636a45e67568398ae4795b7b084ec65878da3a4";
+    }) {});
+
 
   pkgGroups = with super.pkgs; {
 
@@ -306,8 +316,7 @@ let
 
       office = [
         bluejeans-gui
-        # FIXME: uncomment bookworm when build is fixed
-        #bookworm
+        nixpkgs_bookworm.bookworm
         calibre
         evince
         libreoffice-fresh
