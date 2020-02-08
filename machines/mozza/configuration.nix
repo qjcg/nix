@@ -14,13 +14,11 @@ in
     ];
 
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [];
 
   hardware.cpu.intel.updateMicrocode = true;
 
-  nixpkgs.overlays = [];
-
   boot.plymouth.enable = true;
-
   boot.kernelPackages = pkgs.linuxPackages_latest ;
   boot.extraModulePackages = with config.boot.kernelPackages ; [
     bcc
@@ -76,6 +74,7 @@ in
   #programs.xonsh.enable = true;
 
   # List services that you want to enable:
+  services.gpm.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
