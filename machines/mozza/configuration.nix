@@ -80,6 +80,7 @@ in
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  networking.networkmanager.wifi.backend = "iwd";
   networking.dhcpcd.enable = false;
   networking.firewall.allowedTCPPorts = [  ];
   networking.firewall.allowedUDPPorts = [  ];
@@ -137,15 +138,17 @@ in
   #services.xserver.displayManager.lightdm.greeters.pantheon.enable = true;
 
   services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.defaultSession = "xfce";
+  services.xserver.displayManager.defaultSession = "gnome";
 
   services.xserver.desktopManager.lumina.enable = true;
+  services.xserver.desktopManager.gnome3.enable = true;
   #services.xserver.desktopManager.lxqt.enable = true;
   services.xserver.desktopManager.maxx.enable = true;
   #services.xserver.desktopManager.pantheon.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
+  #services.xserver.desktopManager.plasma5.enable = true;
 
+  services.xserver.windowManager.dwm.enable = true;
+  services.xserver.windowManager.fluxbox.enable = true;
   services.xserver.windowManager.i3.enable = true;
   services.xserver.windowManager.i3.package = pkgs.i3-gaps;
 
