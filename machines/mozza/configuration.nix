@@ -58,6 +58,7 @@ in
     iw
     pciutils
     psmisc
+    tig
     tmux
     tree
     vim
