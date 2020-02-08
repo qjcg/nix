@@ -13,6 +13,8 @@ in
       ./hardware-configuration.nix
     ];
 
+  nixpkgs.config.allowUnfree = true;
+
   hardware.cpu.intel.updateMicrocode = true;
 
   nixpkgs.overlays = [];
@@ -127,11 +129,23 @@ in
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
 
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.lightdm.greeters.enso.enable = true;
+  #services.xserver.displayManager.lightdm.enable = true;
+  #services.xserver.displayManager.lightdm.greeters.enso.enable = true;
+  #services.xserver.displayManager.lightdm.greeters.gtk.enable = true;
+  #services.xserver.displayManager.lightdm.greeters.mini.enable = true;
+  #services.xserver.displayManager.lightdm.greeters.mini.user = "john";
+  #services.xserver.displayManager.lightdm.greeters.pantheon.enable = true;
 
-  # FIXME: Re-enable i3 via home-manager, not system-wide config.
-  # The following i3 config was added in 2019-09 to avoid an issue where lightdm hangs after successful auth, starting NO window manager.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.defaultSession = "xfce";
+
+  services.xserver.desktopManager.lumina.enable = true;
+  #services.xserver.desktopManager.lxqt.enable = true;
+  services.xserver.desktopManager.maxx.enable = true;
+  #services.xserver.desktopManager.pantheon.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.xfce.enable = true;
+
   services.xserver.windowManager.i3.enable = true;
   services.xserver.windowManager.i3.package = pkgs.i3-gaps;
 
