@@ -141,15 +141,11 @@ in
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.defaultSession = "gnome";
 
-  services.xserver.desktopManager.lumina.enable = true;
   services.xserver.desktopManager.gnome3.enable = true;
-  #services.xserver.desktopManager.lxqt.enable = true;
-  services.xserver.desktopManager.maxx.enable = true;
   #services.xserver.desktopManager.pantheon.enable = true;
   #services.xserver.desktopManager.plasma5.enable = true;
 
   services.xserver.windowManager.dwm.enable = true;
-  services.xserver.windowManager.fluxbox.enable = true;
   services.xserver.windowManager.i3.enable = true;
   services.xserver.windowManager.i3.package = pkgs.i3-gaps;
 
