@@ -63,6 +63,7 @@ in
     elinks
     file
     git
+    gnome3.gnome-tweak-tool
     htop
     iw
     openvpn
