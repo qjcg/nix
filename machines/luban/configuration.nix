@@ -13,10 +13,12 @@ in
       ./hardware-configuration.nix
     ];
 
-  hardware.cpu.intel.updateMicrocode = true;
-
+  nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [];
 
+  hardware.cpu.intel.updateMicrocode = true;
+
+  boot.plymouth.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest ;
   boot.extraModulePackages = with config.boot.kernelPackages ; [
     bcc
@@ -42,18 +44,8 @@ in
     }
   ];
 
-  networking.hostName = "luban";
-
-  # wpa_supplicant
-  networking.wireless.enable = true;
-  networking.wireless.userControlled.enable = true;
-
-  # iwd
-  # NOTE: Disabled due to DRW EAP-PEAP not being usable without a certificate (that doesn't seem to be provided).
-  #networking.wireless.iwd.enable = true;
-
   console = {
-    font = "iso01-12x22";
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
     keyMap = "us";
   };
 
@@ -68,11 +60,16 @@ in
   environment.systemPackages = with pkgs; [
     acpi
     curl
+    elinks
+    file
     git
+    htop
     iw
     openvpn
     pciutils
     psmisc
+    tig
+    tmux
     tree
     vim
     wget
@@ -89,14 +86,39 @@ in
   #programs.xonsh.enable = true;
 
   # List services that you want to enable:
+  services.gpm.enable = true;
+  services.gnome3.games.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Open ports in the firewall.
-  networking.firewall.enable = true;
+  # wpa_supplicant
+  # NOTE: wpa_supplicant was enabled due to DRW EAP-PEAP not being usable without a certificate (that doesn't seem to be provided).
+  #networking.wireless.enable = true;
+  #networking.wireless.userControlled.enable = true;
+
+  networking.networkmanager.wifi.backend = "iwd";
+  networking.dhcpcd.enable = false;
   networking.firewall.allowedTCPPorts = [  ];
   networking.firewall.allowedUDPPorts = [  ];
+  networking.firewall.enable = true;
+  networking.hostName = "luban";
+  networking.interfaces.wlan0.useDHCP = true;
+  networking.interfaces.wlp4s0.useDHCP = true;
+  networking.useDHCP = false;
+  networking.useNetworkd = true;
+  networking.usePredictableInterfaceNames = true;
+  networking.wireless.iwd.enable = true;
+
+  systemd.network.enable = true;
+  systemd.network.links = {
+    wlp4s0 = {
+      enable = true;
+    };
+    wlan0 = {
+      enable = true;
+    };
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -126,11 +148,12 @@ in
   # Enable touchpad support.
   services.xserver.libinput.enable = true;
 
-  services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.displayManager.lightdm.greeters.enso.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.defaultSession = "gnome";
 
-  # FIXME: Re-enable i3 via home-manager, not system-wide config.
-  # The following i3 config was added in 2019-09 to avoid an issue where lightdm hangs after successful auth, starting NO window manager.
+  services.xserver.desktopManager.gnome3.enable = true;
+
+  services.xserver.windowManager.dwm.enable = true;
   services.xserver.windowManager.i3.enable = true;
   services.xserver.windowManager.i3.package = pkgs.i3-gaps;
 
@@ -145,7 +168,9 @@ in
   # };
 
   virtualisation.docker.enable = true;
-  virtualisation.virtualbox.host.enable = true;
+  #virtualisation.virtualbox.host.enable = true;
+
+  systemd.defaultUnit = "graphical.target";
 
   security.sudo = secrets.sudo;
 
