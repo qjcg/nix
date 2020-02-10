@@ -94,20 +94,15 @@ in
 
   # wpa_supplicant
   # NOTE: wpa_supplicant was enabled due to DRW EAP-PEAP not being usable without a certificate (that doesn't seem to be provided).
-  #networking.wireless.enable = true;
-  #networking.wireless.userControlled.enable = true;
-
-  networking.networkmanager.wifi.backend = "iwd";
   networking.dhcpcd.enable = false;
   networking.firewall.allowedTCPPorts = [  ];
   networking.firewall.allowedUDPPorts = [  ];
   networking.firewall.enable = true;
   networking.hostName = "luban";
-  networking.interfaces.wlan0.useDHCP = true;
+  networking.interfaces.wlp4s0.useDHCP = true;
   networking.useDHCP = false;
   networking.useNetworkd = true;
   networking.usePredictableInterfaceNames = true;
-  networking.wireless.iwd.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
