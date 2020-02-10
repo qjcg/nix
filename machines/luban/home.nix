@@ -74,8 +74,6 @@
       };
     };
 
-    autorandr.enable = true;
-
     bash = {
       enable = true;
       profileExtra = ''
@@ -204,58 +202,16 @@
 
   services = {
 
-    compton = {
-      enable = true;
-      fade = true;
-      fadeExclude = [
-        "class_g ~= 'dmenu'"
-      ];
-      activeOpacity = "1.0";
-      inactiveOpacity = "1.0";
-    };
-
-    dunst = {
-      enable = true;
-
-      # Docs: https://github.com/dunst-project/dunst/blob/master/docs/dunst.pod
-      settings = {
-
-        global = {
-          alignment = "center";
-          browser = "${pkgs.firefox}/bin/firefox -new-tab";
-          dmenu = "${pkgs.dmenu}/bin/dmenu -fn 'Iosevka:size=35' -nb '#000000' -sb '#a10094' -sf '#ffffff'";
-          font = "Iosevka Heavy 18";
-          frame_width = "3";
-          padding = "10";
-        };
-
-        shortcuts = {
-          close = "ctrl+space";
-          close_all = "ctrl+shift+space";
-          history = "ctrl+apostrophe";
-          context = "ctrl+shift+apostrophe";
-        };
-
-        urgency_normal = {
-          background = "#000000";
-          foreground = "#a2ffa2";
-          frame_color = "#a2ffa2";
-          separator_color = "#a2ffa2";
-        };
-
-      };
-    };
-
-    gpg-agent = {
-      enable = true;
-      defaultCacheTtl = 3600;
-      defaultCacheTtlSsh = 3600;
-      enableScDaemon = false;
-      enableSshSupport = true;
-      extraConfig = ''
-        allow-emacs-pinentry
-      '';
-    };
+    #gpg-agent = {
+    #  enable = true;
+    #  defaultCacheTtl = 3600;
+    #  defaultCacheTtlSsh = 3600;
+    #  enableScDaemon = false;
+    #  enableSshSupport = true;
+    #  extraConfig = ''
+    #    allow-emacs-pinentry
+    #  '';
+    #};
 
     # FIXME: i3lock does NOT unlock with correct password!
     #services.screen-locker = {
@@ -269,7 +225,6 @@
     #};
 
     syncthing.enable = true;
-    xscreensaver.enable = true;
 
   };
 
