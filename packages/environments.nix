@@ -310,6 +310,7 @@ let
       # NOTE: Screen locker is configured via system config.
       window_manager = [
         albert
+        gnome3.dconf-editor
         dmenu
         i3lock
         st
