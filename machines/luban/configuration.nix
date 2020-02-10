@@ -35,14 +35,13 @@ in
   boot.loader.systemd-boot.consoleMode = "0";
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices = [
-    {
-      name = "root";
+  boot.initrd.luks.devices = {
+    root = {
       device = "/dev/disk/by-uuid/8a54628e-f640-4fa8-9825-e346d132de08";
       preLVM = true;
       allowDiscards = true;
-    }
-  ];
+    };
+  };
 
   console = {
     font = "${pkgs.terminus_font}/share/consolefonts/ter-u28n.psf.gz";
@@ -105,21 +104,10 @@ in
   networking.firewall.enable = true;
   networking.hostName = "luban";
   networking.interfaces.wlan0.useDHCP = true;
-  networking.interfaces.wlp4s0.useDHCP = true;
   networking.useDHCP = false;
   networking.useNetworkd = true;
   networking.usePredictableInterfaceNames = true;
   networking.wireless.iwd.enable = true;
-
-  systemd.network.enable = true;
-  systemd.network.links = {
-    wlp4s0 = {
-      enable = true;
-    };
-    wlan0 = {
-      enable = true;
-    };
-  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
