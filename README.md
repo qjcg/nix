@@ -5,8 +5,8 @@ My personal [nix](https://nixos.org/nix/) configuration.
 
 # Features
 
+- [Modular](https://nixos.org/nixos/manual/index.html#sec-modularity) and composable (machines, roles, users, packages)
 - Uses [home-manager](https://github.com/rycee/home-manager) to manage user settings
-- Per-machine configurations with common core
 - Templating via the [nix expression language](https://nixos.org/nix/manual/#ch-expression-language)
 - Get secrets from [gopass](https://www.gopass.pw/) / [password-store](https://www.passwordstore.org/)
 - Multi-platform (NixOS, Ubuntu, macOS)
