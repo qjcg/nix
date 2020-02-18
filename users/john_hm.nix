@@ -32,7 +32,7 @@
       PAGER = "less";
       VISUAL = "nvim";
 
-      NIX_PATH = "nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs:nixos-config=/etc/nixos/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
+      NIX_PATH = "nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs:nixos-config=$HOME/.config/nixpkgs/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
 
       QT_PLATFORMTHEME = "qt5ct";
       QT_PLATFORM_PLUGIN = "qt5ct";
@@ -212,8 +212,6 @@
     #  enable = true;
     #  lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 000000";
     #};
-
-    # TODO: Configure and enable polybar as i3 statusbar.
     #polybar = {
     #  enable = true;
     #};
