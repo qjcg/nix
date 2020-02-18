@@ -36,7 +36,6 @@ in
     environment.systemPackages = with pkgs; [
       # other compositors/window-managers
       waybox   # An openbox clone on Wayland
-      wcm
       bspwc    # Wayland compositor based on BSPWM
       cage     # A Wayland kiosk (runs a single app fullscreen)
 
