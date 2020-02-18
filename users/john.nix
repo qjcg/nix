@@ -1,3 +1,5 @@
+{ config, pkgs, secrets, ... }:
+
 {
 
   imports = [
@@ -17,6 +19,6 @@
     ];
   };
 
-  #home-manager.users.john = import ./john_hm.nix {} ;
+  home-manager.users.john = import ./john_hm.nix { inherit config pkgs secrets; };
 
 }
