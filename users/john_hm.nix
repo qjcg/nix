@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-
-  secrets,
-  ...
-}:
+{ pkgs, secrets, ... }:
 
 {
   fonts.fontconfig.enable = true;
@@ -229,38 +223,38 @@
   };
 
   xdg.configFile = {
-    "albert/albert.conf".source = ../../files/albert.conf ;
-    "cmus/rc".source = ../../files/cmusrc ;
-    "emacs/init.el".source = ../../files/emacs/init.el;
-    "fontconfig/conf.d/50-user-font-preferences.conf".source = ../../files/50-user-font-preferences.conf;
-    "gtk-3.0/settings.ini".source = ../../files/gtk-3.0_settings.ini ;
-    "i3/workspace1.json".source = ../../files/workspace1_luban.json ;
-    "nvim/coc-settings-example.json".source = ../../files/coc-settings.json ;
-    "s-nail/mailrc".text = pkgs.callPackage ../../files/mailrc.nix { inherit secrets; };
+    "albert/albert.conf".source = ../files/albert.conf ;
+    "cmus/rc".source = ../files/cmusrc ;
+    "emacs/init.el".source = ../files/emacs/init.el;
+    "fontconfig/conf.d/50-user-font-preferences.conf".source = ../files/50-user-font-preferences.conf;
+    "gtk-3.0/settings.ini".source = ../files/gtk-3.0_settings.ini ;
+    "i3/workspace1.json".source = ../files/workspace1_luban.json ;
+    "nvim/coc-settings-example.json".source = ../files/coc-settings.json ;
+    "s-nail/mailrc".text = pkgs.callPackage ../files/mailrc.nix { inherit secrets; };
     "sxiv/exec/key-handler" = {
       executable = true;
       source = ../../files/sxiv-key-handler.sh ;
     };
-    "VSCodium/User/settings_example.json".source = ../../files/vscodium_settings_example.json ;
+    "VSCodium/User/settings_example.json".source = ../files/vscodium_settings_example.json ;
     "xonsh/".source = ../../files/xonsh ;
   };
 
   xdg.dataFile = {
     "fonts/Apl385.ttf" = {
-      source = ../../files/fonts/Apl385.ttf;
+      source = ../files/fonts/Apl385.ttf;
       onChange = "fc-cache -f";
     };
   };
 
-  xresources.properties = {
-    "Xft.dpi" = 96;
-    "Xft.autohint" = 0;
-    "Xft.lcdfilter" = "lcddefault";
-    "Xft.hintstyle" = "hintfull";
-    "Xft.hinting" = 1;
-    "Xft.antialias" = 1;
-    "Xft.rgba" = "rgb";
-  };
+  #xresources.properties = {
+  #  "Xft.dpi" = 96;
+  #  "Xft.autohint" = 0;
+  #  "Xft.lcdfilter" = "lcddefault";
+  #  "Xft.hintstyle" = "hintfull";
+  #  "Xft.hinting" = 1;
+  #  "Xft.antialias" = 1;
+  #  "Xft.rgba" = "rgb";
+  #};
 
   xsession = {
     enable = true;
@@ -274,137 +268,6 @@
     initExtra = ''
       xrdb -merge ~/.Xresources
     '';
-
-    windowManager.i3 = 
-    let
-      modifier = "Mod4";
-
-      cmd_term = "${pkgs.st}/bin/st -f 'monospace-22'";
-      cmd_term_tmux = "${cmd_term} -t 'tmux-main' -e sh -c 'tmux new -ADs main'";
-
-      cmd_menu = "${pkgs.dmenu}/bin/dmenu_run -fn 'Iosevka:size=20' -nb '#000000' -sb '#00fcff' -sf '#000000'";
-      cmd_browser = "${pkgs.firefox}/bin/firefox";
-      cmd_slack = "${pkgs.slack}/bin/slack";
-
-      wpdir = "/home/john/Sync/Pictures/wallpapers" ;
-      cmd_browse_wallpaper = "${pkgs.sxiv}/bin/sxiv -artos f ${wpdir}";
-
-      left = "h";
-      down = "j";
-      up = "k";
-      right = "l";
-    in {
-      enable = true;
-
-      extraConfig = ''
-        default_border  pixel 4
-        title_align     center
-      '';
-
-      config = {
-        fonts = [
-          "Iosevka Medium 13"
-        ];
-
-        modifier = "${modifier}";
-
-        gaps = {
-          inner = 10;
-          outer = 10;
-        };
-
-        keybindings =
-          lib.mkOptionDefault {
-
-            # Start apps
-            "${modifier}+Return" = "exec ${cmd_term}";
-            "${modifier}+d"      = "exec ${cmd_menu}";
-            "${modifier}+Shift+b" = "exec ${cmd_browse_wallpaper}";
-
-            # Focus windows
-            "${modifier}+${left}"  = "focus left";
-            "${modifier}+${down}"  = "focus down";
-            "${modifier}+${up}"    = "focus up";
-            "${modifier}+${right}" = "focus right";
-
-            # Move windows
-            "${modifier}+Shift+${left}"  = "move left";
-            "${modifier}+Shift+${down}"  = "move down";
-            "${modifier}+Shift+${up}"    = "move up";
-            "${modifier}+Shift+${right}" = "move right";
-
-            # Switch workspaces
-            "${modifier}+n"       = "workspace next_on_output";
-            "${modifier}+p"       = "workspace prev_on_output";
-            "${modifier}+Tab"     = "workspace back_and_forth";
-
-            # Move containers accross outputs.
-            "${modifier}+Shift+period"       = "move container to output right";
-            "${modifier}+Shift+comma"        = "move container to output left";
-
-            # Use scratchpad
-            "${modifier}+minus"       = "scratchpad show";
-            "${modifier}+Shift+minus" = "move scratchpad";
-
-            "${modifier}+Shift+e" = "exit";
-            "${modifier}+Shift+x" = "kill";
-
-            # Control pulseaudio volume for default sink.
-            # Ref: https://wiki.archlinux.org/index.php/PulseAudio#Keyboard_volume_control
-            "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
-            "XF86AudioMicMute" = "exec pactl set-source-mute @DEFAULT_SOURCE@ toggle";
-            "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
-            "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-
-            # Control brightness.
-            "XF86MonBrightnessDown" = "exec sudo brightness -5";
-            "XF86MonBrightnessUp" = "exec sudo brightness +5";
-	  };
-
-        # NOTE: Border of i3-gaps windows is set via childBorder.
-        colors = {
-          focused         = { border = "#0000ff"; background = "#000000"; text = "#00ffed"; indicator = "#ffffff"; childBorder = "#0000ff"; };
-          focusedInactive = { border = "#000000"; background = "#000000"; text = "#ffffff"; indicator = "#ffffff"; childBorder = "#000000"; };
-          unfocused       = { border = "#000000"; background = "#222222"; text = "#999999"; indicator = "#ffffff"; childBorder = "#000000"; };
-        };
-
-        bars = [{
-          position = "top";
-          mode = "dock";
-
-          fonts = [
-            "Iosevka Medium 15"
-          ];
-
-          colors = {
-            background = "#000000";
-            statusline = "#cccccc";
-            separator  = "#00ffea";
-
-            focusedWorkspace   = {border = "#000000"; background = "#000000"; text = "#00fcff"; };
-            activeWorkspace    = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
-            inactiveWorkspace  = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
-            urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
-          };
-
-          statusCommand = "while barr; do sleep 5 ; done";
-        }];
-
-        startup = [
-          { notification = false; command = "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace1.json'"; }
-          { notification = false; command = "~/.fehbg"; }
-          { notification = false; command = "${pkgs.albert}/bin/albert"; }
-
-          { notification = false; command = "${cmd_term_tmux}"; }
-          { notification = false; command = "${cmd_browser}"; }
-
-          # Set faster key repeat rate, inspired by EXWM.
-          # Results in snappier Emacs usage.
-          # See https://github.com/ch11ng/exwm/blob/master/xinitrc
-          { notification = false; command = "xset r rate 200 60"; }
-        ];
-
-      };
-    };
   };
+
 }
