@@ -62,7 +62,9 @@ nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rp
 	- [x] Consider refactoring to follow layout of [Your Home in Nix (dotfile management)](https://hugoreeves.com/posts/2019/nix-home/)
 - [ ] Consider adding custom [NixOS modules](https://nixos.org/nixos/manual/index.html#sec-writing-modules)
 - [ ] Create a custom NixOS ISO (instructions: [manual](https://nixos.org/nixos/manual/index.html#sec-building-cd), [wiki](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD))
-- [ ] Use system pinning via Git as described [here](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
+- [ ] Use version pinning
+	- [NixOS Wiki: FAQ/Pinning Nixpkgs](https://nixos.wiki/wiki/FAQ/Pinning_Nixpkgs)
+	- [Intro to Nix Channels & Reproducible NixOS Environment](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
 
 
 # References
