@@ -61,9 +61,9 @@ nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rp
 - [x] Consider using [home-manager](https://github.com/rycee/home-manager) on macOS
 	- [x] Consider refactoring to follow layout of [Your Home in Nix (dotfile management)](https://hugoreeves.com/posts/2019/nix-home/)
 - [ ] Consider adding custom [NixOS modules](https://nixos.org/nixos/manual/index.html#sec-writing-modules)
-- [ ] Create custom NixOS LiveCD
+- [ ] Create custom NixOS LiveUSB / install media
 	- [manual](https://nixos.org/nixos/manual/index.html#sec-building-cd)
-	- [wiki](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD))
+	- [wiki](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD)
 - [ ] Create custom Rasbperry Pi SD card
 	- [Build your own image](https://nixos.wiki/wiki/NixOS_on_ARM#Build_your_own_image)
 	- [Compiling through QEMU](https://nixos.wiki/wiki/NixOS_on_ARM#Compiling_through_QEMU)
