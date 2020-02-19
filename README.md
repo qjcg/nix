@@ -103,7 +103,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [Learn X in Y Minutes: nix](https://learnxinyminutes.com/docs/nix/)
 - [Your Home in Nix (dotfile management)](https://hugoreeves.com/posts/2019/nix-home/)
 - [Create a custom NixOS Live CD](https://nixos.org/nixos/manual/index.html#sec-building-cd)
-	- [Related Wiki article](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD))
+	- [Related Wiki article](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD)
 - [Intro to Nix Channels and Reproducible NixOS Environment](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
 
 ## Packaging
