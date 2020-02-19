@@ -365,7 +365,7 @@ let
         blender
         digikam
         feh
-        flashplayer-standalone
+        #flashplayer-standalone
         gimp
         imagemagick
         inkscape

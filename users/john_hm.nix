@@ -231,10 +231,10 @@
     "s-nail/mailrc".text = pkgs.callPackage ../files/mailrc.nix { inherit secrets; };
     "sxiv/exec/key-handler" = {
       executable = true;
-      source = ../../files/sxiv-key-handler.sh ;
+      source = ../files/sxiv-key-handler.sh ;
     };
     "VSCodium/User/settings_example.json".source = ../files/vscodium_settings_example.json ;
-    "xonsh/".source = ../../files/xonsh ;
+    "xonsh/".source = ../files/xonsh ;
   };
 
   xdg.dataFile = {
@@ -254,18 +254,18 @@
   #  "Xft.rgba" = "rgb";
   #};
 
-  xsession = {
-    enable = true;
+  #xsession = {
+  #  enable = true;
 
-    pointerCursor = with pkgs; {
-      name = "Vanilla-DMZ";
-      package = vanilla-dmz;
-      size = 64;
-    };
+  #  pointerCursor = with pkgs; {
+  #    name = "Vanilla-DMZ";
+  #    package = vanilla-dmz;
+  #    size = 64;
+  #  };
 
-    initExtra = ''
-      xrdb -merge ~/.Xresources
-    '';
-  };
+  #  initExtra = ''
+  #    xrdb -merge ~/.Xresources
+  #  '';
+  #};
 
 }
