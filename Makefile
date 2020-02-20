@@ -11,16 +11,16 @@ upgrade:
 	$(CMD_SWITCH) --upgrade
 
 
-.PHONY: container-build
-container-build:
+.PHONY: docker-build
+docker-build:
 	docker build -t $(IMG_NAME) .
 
 # Run the container with:
 # - ~/.ssh mounted at /root/.ssh for access to SSH keys.
 # - ~/src mounted at /src for persistence.
 # - All ports mapped to random high ports on the host
-.PHONY: container-run
-container-run:
+.PHONY: docker-run
+docker-run:
 	docker run \
 		--name workstation -it -P --rm \
 		-v ~/.ssh:/root/.ssh \
@@ -29,7 +29,7 @@ container-run:
 		-w /src \
 		$(IMG_NAME)
 
-.PHONY: container-clean
-container-clean:
+.PHONY: docker-prune
+docker-prune:
 	-docker container prune -f
 	-docker image prune -f
