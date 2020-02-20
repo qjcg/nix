@@ -108,8 +108,6 @@
       };
     };
 
-    firefox.enable = true;
-
     git = {
       enable = true;
       userName = "${secrets.git-name}";
