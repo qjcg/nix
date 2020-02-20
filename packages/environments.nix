@@ -354,6 +354,7 @@ let
       ];
 
       themes = [
+        arc-theme
         arc-icon-theme
         lxappearance
         qt5ct
