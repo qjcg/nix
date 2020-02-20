@@ -22,4 +22,5 @@ self: super:
   mtlcam = super.callPackage ./mtlcam {};
   skaffold = super.callPackage ./skaffold {};
   s-nail = super.callPackage ./s-nail {};
+  wayfire = super.callPackage ./wayfire {};
 }
