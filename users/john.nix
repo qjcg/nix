@@ -1,5 +1,21 @@
-{ config, pkgs, secrets, ... }:
+{ config, secrets, ... }:
 
+let
+  pkgs = import <nixpkgs> {
+    overlays = [
+      (import ../packages)
+
+      # TODO: Clearly distinguish/separate overlays (below) from packages.
+      (import ../packages/neovim)
+      (import ../packages/st)
+      (import ../packages/sxiv)
+      (import ../packages/vscodium-with-extensions)
+
+      (import ../packages/overrides.nix)
+      (import ../packages/environments.nix)
+    ];
+  };
+in
 {
 
   imports = [
