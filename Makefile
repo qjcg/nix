@@ -1,6 +1,7 @@
 IMG_NAME := nix-workstation
-CMD_SWITCH := sudo NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch -I nixos-config=configuration.nix
-CMD_SWITCH_HM := home-manager switch -f configuration.nix
+CFG_FILE := configuration.nix
+CMD_SWITCH := sudo NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch -I nixos-config=$(CFG_FILE)
+CMD_SWITCH_HM := home-manager switch -f $(CFG_FILE)
 
 
 .PHONY: switch
