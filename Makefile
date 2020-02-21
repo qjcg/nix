@@ -1,14 +1,24 @@
 IMG_NAME := nix-workstation
 CMD_SWITCH := sudo NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch -I nixos-config=configuration.nix
+CMD_SWITCH_HM := home-manager switch -f configuration.nix
 
 
 .PHONY: switch
 switch:
 	$(CMD_SWITCH)
 
+.PHONY: switch-hm
+switch-hm:
+	$(CMD_SWITCH_HM)
+
 .PHONY: upgrade
 upgrade:
 	$(CMD_SWITCH) --upgrade
+
+.PHONY: upgrade-hm
+upgrade-hm:
+	nix-channel --update
+	$(CMD_SWITCH_HM)
 
 
 .PHONY: docker-build

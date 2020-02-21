@@ -6,6 +6,21 @@
   ...
 }:
 
+let
+  myPkgs = import <nixpkgs> { overlays = [
+    (import ../../packages)
+
+    # TODO: Clearly distinguish/separate overlays (below) from packages.
+    (import ../../packages/neovim)
+    (import ../../packages/st)
+    (import ../../packages/sxiv)
+    (import ../../packages/vscodium-with-extensions)
+
+    (import ../../packages/overrides.nix)
+    (import ../../packages/environments.nix)
+  ];
+};
+in
 {
   fonts.fontconfig.enable = true;
   manual.html.enable = true;
@@ -41,7 +56,9 @@
       options = ["grp:shifts_toggle"];
     };
 
-    packages = with pkgs; [ env-workstation ];
+    packages = [
+      myPkgs.env-workstation
+    ];
 
   };
 
