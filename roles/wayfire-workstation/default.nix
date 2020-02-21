@@ -14,7 +14,7 @@ in
       swaylock # used for locking Wayland sessions
 
       waybar        # polybar-alike
-      i3status-rust # simpler bar written in Rust
+      #i3status-rust # simpler bar written in Rust
 
       gebaar-libinput  # libinput gestures utility
       glpaper          # GL shaders as wallpaper
