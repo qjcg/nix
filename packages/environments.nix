@@ -114,7 +114,7 @@ let
         lsof
         mkpasswd
         neofetch
-        #neovim
+        neovim
         pandoc
         pdfcpu
         pup
