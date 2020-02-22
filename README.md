@@ -72,6 +72,14 @@ nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rp
 - [ ] Use version pinning
 	- [NixOS Wiki: FAQ/Pinning Nixpkgs](https://nixos.wiki/wiki/FAQ/Pinning_Nixpkgs)
 	- [Intro to Nix Channels & Reproducible NixOS Environment](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
+- [ ] Pilot a small refactor of the current configuration into Nix Flakes
+
+
+# Using Flakes
+
+```sh
+nix-shell -p nixFlakes
+```
 
 
 # References
