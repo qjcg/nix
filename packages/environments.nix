@@ -177,7 +177,7 @@ let
         strawberry
         streamripper
 
-        python38Packages.mps-youtube
+        mps-youtube
         youtube-dl
         youtube-viewer
       ];
@@ -303,6 +303,8 @@ let
       ];
 
       dev = [
+        #jmigpin-editor
+        plan9port
         #vscodium
         vscodium-with-extensions
       ];

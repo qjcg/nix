@@ -9,6 +9,7 @@
     elinks
     file
     git
+    gnome3.gitg
     gnome3.gnome-tweak-tool
     htop
     iw

@@ -5,11 +5,13 @@ let
   waylandOverlay = (import (builtins.fetchTarball url));
 in
 {
-    wayfire = waylandOverlay.wayfire.overrideAttrs (oldAttrs: rec {
+  wayfire = waylandOverlay.wayfire.overrideAttrs (
+    oldAttrs: rec {
 
       # Install desktop file to provide GDM menu option.
       postInstall = ''
         install -Dt $out/share/applications wayfire.desktop
       '';
-    });
+    }
+  );
 }
