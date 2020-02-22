@@ -1,7 +1,6 @@
 { config, pkgs, secrets, ... }:
 
 {
-  #fonts.fontconfig.enable = true;
   manual.html.enable = true;
 
   # FIXME: Not working (settings.ini is *empty*), so creating manual config file below.
