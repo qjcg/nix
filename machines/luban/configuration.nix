@@ -15,7 +15,12 @@
 
   boot.plymouth.enable = true;
   boot.kernelPackages = pkgs.linuxPackages_latest ;
-  boot.extraModulePackages = with config.boot.kernelPackages ; [ bcc sysdig wireguard ]; # TODO: Re-add `bpftrace` when working again!
+  boot.extraModulePackages = with config.boot.kernelPackages ; [
+    bcc
+    #bpftrace
+    sysdig
+    wireguard
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 5;
