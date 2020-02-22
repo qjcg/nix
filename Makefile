@@ -21,6 +21,10 @@ upgrade-hm:
 	nix-channel --update
 	$(CMD_SWITCH_HM)
 
+.PHONY: repl
+repl:
+	sudo nix repl '<nixpkgs/nixos>'
+
 
 .PHONY: docker-build
 docker-build:
