@@ -28,6 +28,7 @@ in
     uid = 7777;
     extraGroups = [
       "audio"
+      "disk"
       "docker"
       "networkmanager"
       "vboxusers"
