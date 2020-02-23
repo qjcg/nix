@@ -175,7 +175,6 @@ let
         pms
         pulseaudio
         sox
-        strawberry
         streamripper
 
         mps-youtube
@@ -378,6 +377,7 @@ let
         picard
         pulseeffects
         qt5.qtbase
+        strawberry
         sxiv
         vlc
       ];
