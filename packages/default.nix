@@ -22,6 +22,7 @@ self: super:
   ludo = super.callPackage ./ludo {};
   mtlcam = super.callPackage ./mtlcam {};
   plan9port = super.callPackage ./plan9port {};
+  pms = super.callPackage ./pms {};
   skaffold = super.callPackage ./skaffold {};
   s-nail = super.callPackage ./s-nail {};
   wayfire = super.callPackage ./wayfire {};

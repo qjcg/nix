@@ -172,6 +172,7 @@ let
 
         mpv
         opusTools
+        pms
         pulseaudio
         sox
         strawberry
