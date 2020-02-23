@@ -213,6 +213,12 @@
     #  enable = true;
     #};
 
+    #mpd = {
+    #  enable = true;
+    #  musicDirectory = /home/john/Sync/Music ;
+    #  network.listenAddress = "any";
+    #};
+
     syncthing.enable = true;
 
   };
