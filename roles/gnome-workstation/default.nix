@@ -13,6 +13,8 @@
     gnome3.gitg
     gnome3.gnome-tweak-tool
     gnome3.rhythmbox
+    lollypop
+    vocal
 
     htop
     iw
