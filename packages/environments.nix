@@ -270,7 +270,7 @@ let
       browsers = [
         browserpass
         chromium
-        firefox-wayland
+        firefox
         qutebrowser
         surf
         tor-browser-bundle-bin
