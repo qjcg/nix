@@ -13,6 +13,7 @@
     gnome3.gitg
     gnome3.gnome-tweak-tool
     gnome3.rhythmbox
+    gnome3.shotwell
     lollypop
     vocal
 
