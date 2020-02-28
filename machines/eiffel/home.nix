@@ -340,6 +340,7 @@ in
 
       wpdir = "/home/jgosset/Sync/Pictures/Wallpapers" ;
       cmd_browse_wallpaper = "sxiv -artos f ${wpdir}";
+      # Looks like we first set primary, then move right and wrap around.
       cmd_set_wallpaper = "${pkgs.feh}/bin/feh --bg-fill ${wpdir}/gtgraphics.de/infinitus.jpg ${wpdir}/wallpaperfx.com/white-tiger-in-jungle-2560x1440-wallpaper-2916.jpg --geometry -550";
 
       left = "h";
@@ -472,13 +473,39 @@ in
               output DP-4
             '';
           }
+
+          {
+            position = "top";
+            mode = "dock";
+
+            fonts = [
+              "Iosevka Medium 10"
+            ];
+
+            colors = {
+              background = "#000000";
+              statusline = "#cccccc";
+              separator  = "#00ffea";
+
+              focusedWorkspace   = {border = "#000000"; background = "#000000"; text = "#00fcff"; };
+              activeWorkspace    = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
+              inactiveWorkspace  = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
+              urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
+            };
+
+            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/i3/i3status-rust_smallscreen.toml";
+            extraConfig = ''
+              output DP-0
+            '';
+          }
         ];
 
         startup = [
+          # FIXME: Redo for new 3-monitor setup.
           { notification = false; command = "${pkgs.autorandr}/bin/autorandr -l eiffel"; }
-          { notification = false; command = "i3-msg 'workspace 1; append_layout ~/.config/i3/workspace1.json'"; }
-
+          #{ notification = false; command = "i3-msg 'workspace 2; append_layout ~/.config/i3/workspace1.json'"; }
           { notification = false; command = "${cmd_set_wallpaper}"; }
+
           { notification = false; command = "${cmd_term_tmux}"; }
           { notification = false; command = "${cmd_browser}"; }
           { notification = false; command = "${cmd_slack}"; }
