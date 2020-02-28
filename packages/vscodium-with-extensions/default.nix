@@ -4,6 +4,9 @@
 # FIXME: The "codium" binary for vscode-with-extensions uses the wrong extensions path (s/share.vscodium/share\/vscode/)
 # See `nix edit nixpkgs.vscodium-with-extensions` -> with-extensions.nix /wrappedPkgName..extensions
 
+# NOTE: To work around the fixme issue above, investigating DevContainers as an alternative.
+# See https://code.visualstudio.com/docs/remote/containers
+
 self: super:
 
 let

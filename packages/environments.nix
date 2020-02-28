@@ -305,8 +305,8 @@ let
       dev = [
         #jmigpin-editor
         plan9port
-        #vscodium
-        vscodium-with-extensions
+        vscodium
+        #vscodium-with-extensions
       ];
 
       # NOTE: Screen locker is configured via system config.
