@@ -2,13 +2,13 @@
 
 buildGoModule rec {
   name = "hey";
-  version = "0.1.2";
+  version = "0.1.3";
 
   src = fetchFromGitHub {
     rev = "v${version}";
     owner = "rakyll";
     repo = "hey";
-    sha256 = "02p0gaf28gbfg7kixm35yn1bbzv6pr28bhjbp4iz9qd5221hfpbj";
+    sha256 = "06w5hf0np0ayvjnfy8zgy605yrs5j326nk2gm0fy7amhwx1fzkwv";
   };
 
   # First, provide a fake hash via the value: lib.fakeSha256
