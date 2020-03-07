@@ -36,13 +36,10 @@
     defaultLocale = "en_CA.UTF-8";
   };
 
-  networking.dhcpcd.enable = false;
   networking.hostName = "luban";
-  networking.interfaces.wlp4s0.useDHCP = true;
-  networking.useDHCP = false;
+  networking.networkmanager.enable = true;
+  networking.networkmanager.dns = "systemd-resolved";
   networking.useNetworkd = true;
-  networking.usePredictableInterfaceNames = true;
-
   services.resolved.enable = true;
 
   sound.enable = true;
