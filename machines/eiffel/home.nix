@@ -103,6 +103,8 @@ in
         hms = "${hm} switch -A eiffel";
         hmRemoveAllBut3 = "${hm} generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
 
+        codium = "codium --enable-proposed-api ms-vscode-remote.remote-containers --enable-proposed-api ms-vscode-remote.remote-ssh --enable-proposed-api ms-vscode-remote.remote-ssh-edit";
+
         # Print all Active Directory groups. It seems they have GID >= 10000.
         drwADGroups = "id | sed -e 's/,/\\n/g' -e 's/(/: /g' -e 's/)//g' | sort -n | awk -F: '/^[1-9]/ && $1 > 10000'";
         drwHomeUsage = "shopt -s dotglob && du --threshold 1M --exclude={G,H,W,X} -s ~/* | sort -n | sed 's/.home.jgosset.//' | awk '{print $2,$1}' | goplot bar";
