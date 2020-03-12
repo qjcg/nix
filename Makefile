@@ -1,6 +1,7 @@
 IMG_NAME := nix-workstation
 CFG_FILE := configuration.nix
 CMD_SWITCH := sudo NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch -I nixos-config=$(CFG_FILE)
+CMD_SWITCH_DARWIN := darwin-rebuild switch
 CMD_SWITCH_HM := home-manager switch -f $(CFG_FILE)
 
 
@@ -13,6 +14,11 @@ help: Makefile
 .PHONY: switch
 switch:
 	$(CMD_SWITCH)
+
+## switch-darwin: Run darwin-rebuild switch.
+.PHONY: switch-darwin
+switch-darwin:
+	$(CMD_SWITCH_DARWIN)
 
 ## switch-hm: Run home-manager switch.
 .PHONY: switch-hm
