@@ -7,7 +7,7 @@ CMD_SWITCH_HM := home-manager switch -f $(CFG_FILE)
 ## help: Print usage message for this Makefile.
 .PHONY: help
 help: Makefile
-	@awk -F: '/^## / { gsub("#", ""); printf "%20s : %s\n", $$1, $$2 }' $<
+	@awk -F: '/^## / { gsub("#", ""); printf "%16s : %s\n", $$1, $$2 }' $<
 
 ## switch: Run nixos-rebuild switch.
 .PHONY: switch
@@ -41,6 +41,7 @@ repl:
 docker-build:
 	docker build -t $(IMG_NAME) .
 
+## docker-run: Run container with SSH key, port mapping, and persistence mounts.
 # Run the container with:
 # - ~/.ssh mounted at /root/.ssh for access to SSH keys.
 # - ~/src mounted at /src for persistence.
