@@ -4,28 +4,39 @@ CMD_SWITCH := sudo NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch -I nixos-config=$
 CMD_SWITCH_HM := home-manager switch -f $(CFG_FILE)
 
 
+## help: Print usage message for this Makefile.
+.PHONY: help
+help: Makefile
+	@awk -F: '/^## / { gsub("#", ""); printf "%20s : %s\n", $$1, $$2 }' $<
+
+## switch: Run nixos-rebuild switch.
 .PHONY: switch
 switch:
 	$(CMD_SWITCH)
 
+## switch-hm: Run home-manager switch.
 .PHONY: switch-hm
 switch-hm:
 	$(CMD_SWITCH_HM)
 
+## upgrade: Run nixos-rebuild switch --upgrade.
 .PHONY: upgrade
 upgrade:
 	$(CMD_SWITCH) --upgrade
 
+## upgrade-hm: Run nix-channel --update, then home-manager switch.
 .PHONY: upgrade-hm
 upgrade-hm:
 	nix-channel --update
 	$(CMD_SWITCH_HM)
 
+## repl: Run nix repl and load nixpkgs for debugging.
 .PHONY: repl
 repl:
 	sudo nix repl '<nixpkgs/nixos>'
 
 
+## docker-build: Build a container image using the Dockerfile.
 .PHONY: docker-build
 docker-build:
 	docker build -t $(IMG_NAME) .
@@ -44,6 +55,7 @@ docker-run:
 		-w /src \
 		$(IMG_NAME)
 
+## docker-prune: Prune docker containers and images.
 .PHONY: docker-prune
 docker-prune:
 	-docker container prune -f
