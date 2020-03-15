@@ -1,7 +1,13 @@
 IMG_NAME := nix-workstation
 CFG_FILE := configuration.nix
+
 CMD_SWITCH := sudo NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch -I nixos-config=$(CFG_FILE)
-CMD_SWITCH_DARWIN := darwin-rebuild switch
+# NOTE: darwin-rebuild should NOT be run as root!
+CMD_SWITCH_DARWIN := darwin-rebuild switch \
+	-I darwin=$(HOME)/.nix-defexpr/channels/darwin \
+	-I darwin-config=$(CFG_FILE) \
+	-I nixpkgs=$(HOME)/.nix-defexpr/channels/nixpkgs \
+	-I home-manager=$(HOME)/.nix-defexpr/channels/home-manager
 CMD_SWITCH_HM := home-manager switch -f $(CFG_FILE)
 
 
@@ -16,6 +22,7 @@ switch:
 	$(CMD_SWITCH)
 
 ## switch-darwin: Run darwin-rebuild switch.
+# NOTE: These commands should NOT be run as root!
 .PHONY: switch-darwin
 switch-darwin:
 	$(CMD_SWITCH_DARWIN)
@@ -35,6 +42,13 @@ upgrade:
 upgrade-hm:
 	nix-channel --update
 	$(CMD_SWITCH_HM)
+
+## upgrade-darwin: Run nix-channel --update, then darwin-rebuild switch.
+# NOTE: These commands should NOT be run as root!
+.PHONY: upgrade-darwin
+upgrade-darwin:
+	nix-channel --update
+	$(CMD_SWITCH_DARWIN)
 
 ## repl: Run nix repl and load nixpkgs for debugging.
 .PHONY: repl

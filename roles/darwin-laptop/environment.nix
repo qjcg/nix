@@ -4,8 +4,8 @@
   environment = {
 
     # Use a custom configuration.nix location.
-    # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin/configuration.nix
-    darwinConfig = "$HOME/.config/nixpkgs/machines/lmp-mtjgosset/configuration.nix";
+    # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/configuration.nix
+    darwinConfig = "$HOME/.config/nixpkgs/configuration.nix";
 
     shellAliases = {
       ls = "ls --color --group-directories-first";
