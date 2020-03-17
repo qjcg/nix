@@ -8,6 +8,7 @@
     darwinConfig = "$HOME/.config/nixpkgs/configuration.nix";
 
     shellAliases = {
+      codium = "codium --enable-proposed-api ms-vscode-remote.remote-containers";
       ls = "ls --color --group-directories-first";
       k = "kubectl";
     };

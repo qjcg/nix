@@ -111,7 +111,7 @@
       unzip
       upx
       vault-bin
-      vscodium
+      #vscodium
       wtf
       youtube-dl
     ];
