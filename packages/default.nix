@@ -10,6 +10,7 @@ self: super:
   emacs = super.callPackage ./emacs {};
   emacs-nox = super.callPackage ./emacs-nox {};
   freetube = super.callPackage ./freetube {};
+  gled = super.callPackage ./gled {};
   glooctl = super.callPackage ./glooctl {};
   goplot = super.callPackage ./goplot {};
   hey = super.callPackage ./hey {};

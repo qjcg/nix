@@ -64,6 +64,7 @@ let
         mtlcam
 
         battery
+        gled
         goplot
         hey
         k3c
