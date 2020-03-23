@@ -304,6 +304,11 @@ let
         retroarch
       ];
 
+      #big-games = [
+      #  openarena
+      #  urbanterror
+      #];
+
       dev = [
         #jmigpin-editor
         #plan9port
