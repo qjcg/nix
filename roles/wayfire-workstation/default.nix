@@ -30,7 +30,7 @@ in
       wtype            # xdotool, but for wayland
 
       # TODO: more steps required to use this?
-      xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
+      #xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
     ];
 
     environment.systemPackages = with pkgs; [
