@@ -146,6 +146,7 @@ let
         iw
         mtr
         nmap
+        tailscale
         wireguard-tools
       ];
 
