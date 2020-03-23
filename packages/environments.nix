@@ -245,7 +245,7 @@ let
         conmon
         dive
         docker-compose
-        glooctl
+        #glooctl
         k3d
         kind
         kompose
@@ -305,7 +305,7 @@ let
 
       dev = [
         #jmigpin-editor
-        plan9port
+        #plan9port
         vscodium
         #vscodium-with-extensions
       ];
@@ -341,7 +341,7 @@ let
         gentium-book-basic
         go-font
         gtk2fontsel
-        gucharmap
+        #gucharmap
         inconsolata
         iosevka
         libertine
