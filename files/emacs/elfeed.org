@@ -1,0 +1,178 @@
+* Blogs                                                              :elfeed:
+  See http://pragmaticemacs.com/emacs/read-your-rss-feeds-in-emacs-with-elfeed/
+
+
+** Simplicity                                                    :simplicity:
+**** [[https://zenhabits.net/feed/][Zen Habits]]
+
+** Tech                                                                :tech:
+**** [[https://www.phoronix.com/rss.php][Phoronix]]                                                       :preview:
+**** [[https://www.oreilly.com/feed/four-short-links/feed.atom][Four Short Links]]
+**** [[https://hnrss.org/frontpage][Hacker News (Front Page Firehose)]]                             :firehose:
+
+*** OS                                                                   :os:
+**** [[http://planet.nixos.org/atom.xml][Planet NixOS]]                                                     :nixos:
+**** https://guix.info/feeds/blog.atom                               :guixsd:
+
+**** ArchLinux                                                    :archlinux:
+***** [[https://www.archlinux.org/feeds/news/][ArchLinux News]]
+***** [[https://planet.archlinux.org/rss20.xml][Planet ArchLinux]]
+
+** Programming                                                  :programming:
+**** http://lambda-the-ultimate.org/rss.xml
+**** https://developers.redhat.com/blog/feed/atom/
+**** http://syndication.thedailywtf.com/TheDailyWtf                   :humor:
+
+*** Go                                                                   :go:
+**** [[https://www.ardanlabs.com/blog/index.xml][Ardan Labs Blog]]
+**** https://golangcode.com/index.xml
+**** https://appliedgo.net/index.xml
+**** https://www.linxlabs.com/category/golang/atom
+**** http://goz.hexacosa.net/index.rss
+**** https://dave.cheney.net/category/golang/atom                  :personal:
+     Dave Cheney
+**** https://research.swtch.com/feed.atom                          :personal:
+     Russ Cox (Go project lead)
+**** [[https://mariadesouza.com/category/golang/atom][All Things Tech / Maria DeSouza]]
+     Maria DeSouza
+**** https://blog.gopheracademy.com/index.xml
+
+*** Python                                                           :python:
+**** [[https://planetpython.org/rss20.xml][Planet Python]]                                                 :firehose:
+**** http://love-python.blogspot.com/feeds/posts/default
+**** https://realpython.com/atom.xml
+
+*** Lisp                                                               :lisp:
+**** http://planet.lisp.org/rss20.xml
+
+*** Emacs                                                             :emacs:
+**** http://pragmaticemacs.com/feed/
+**** [[https://emacsredux.com/feed.xml][Emacs Redux]]
+**** https://planet.emacslife.com/atom.xml
+**** http://www.howardabrams.com/index.xml
+**** [[https://irreal.org/blog/?feed=rss2][Irreal]]
+
+*** Machine Learning                                        :machinelearning:
+**** [[https://machinelearningmastery.com/feed/][Machine Learning Mastery / Jason Brownlee]]
+
+*** Personal                                                       :personal:
+**** [[http://esr.ibiblio.org/?feed=rss][Armed and Dangerous / Eric S. Raymond]]
+     Eric S. Raymond's blog
+**** https://martinfowler.com/feed.atom
+     Martin Fowler
+**** [[https://utcc.utoronto.ca/~cks/space/blog/][Wandering Thoughts / Chris Siebenmann]]
+     Chris Siebenmann
+**** [[http://0pointer.net/blog/index.atom][Pid Eins / Lennart Poettering]]
+     Lennart Poettering's blog
+**** http://www.michaelburge.us/feed.xml        :lisp:machinelearning:BROKEN:
+     Michael Burge
+     - machine learning, lisp, emulators
+**** [[https://nullprogram.com/feed/][Null Program / Chris Wellons]]                         :emacs:programming:
+     Author of elfeed
+**** [[http://www.daemonology.net/blog/index.rss][Daemonic Dispatches / Colin Percival]]                           :freebsd:
+**** [[https://christine.website/blog.rss][Blog / Christine Dodrill]]
+**** [[http://feeds.feedburner.com/catonmat][catonmat.net – less is more / Peteris Krumins]]
+**** [[http://john.ankarstrom.se/feed.php][John Ankarström]]
+     This guy writes his blog in pure HTML via Mozilla
+     Seamonkey.
+     
+     He considers himself a non-programmer but has a
+[[http://john.ankarstrom.se/software/][     software page]] on his website, and has [[https://github.com/jocap][intriguing
+     repos on GitHub]].
+**** [[https://drewdevault.com/feed.xml][Drew DeVault]]
+     Behind [[https://sr.ht/][sourcehut]] and the sway Wayland compositor. Thoughtful blog posts.
+
+** Comics                                                            :comics:
+**** [[https://xkcd.com/atom.xml][XKCD]]
+
+** Podcasts                                                        :podcasts:
+**** [[https://feeds.megaphone.fm/thehabitat][The Habitat]]
+On a remote mountain in Hawaii, there's a fake
+planet Mars. Six volunteers are secluded in an
+imitation Mars habitat where they will work as
+imitation astronauts for one very real year. The
+goal: to help NASA understand what life might be
+like on the red planet—and plan for the day when
+the dress rehearsals are over, and we blast off
+for real. Host Lynn Levy has been chronicling this
+experiment from the moment the crew set foot in
+their habitat, communicating with them through
+audio diaries that detail their discoveries, their
+frustrations, and their evolving and devolving
+relationships with each other. From those diaries,
+Gimlet Media has crafted an addictive serialized
+documentary: the true story of a fake planet.
+
+**** http://feeds.everythingisalive.com/everythingisalive
+
+**** https://feeds.castfire.com/abc-news-radio/the_dropout
+
+*** Christian                                                     :christian:
+**** https://itunes.apple.com/us/podcast/knowing-faith/id1274228164?mt=2
+**** https://www.thegospelcoalition.org/podcasts/help-me-teach-the-bible/feed/?feed=podcast
+
+** Music                                                              :music:
+*** Youtube                                                         :youtube:
+**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC-sM_PLqzgktdUcW2LEKKkQ][The Midnight]]
+
+* Imported Feeds                                                     :elfeed:
+** YouTube Subscriptions                                            :youtube:
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC-tRVvDyvlu8IFImNQ4baiQ][Scott’s Cheap Flights]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCvVWCrxq_aZr7fN_KpaGGTA][The Guild of Ambience]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCk9NvmsPBC3lTn_L9kFaylA][iBSD]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCJLMboBYME_CLEfwsduI0wQ][Tony Robbins]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC-sM_PLqzgktdUcW2LEKKkQ][The Midnight]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCeO-eBlro0uGuh53-KJq2QA][The Bad Dreamers]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC6107grRI4m0o2-emgoDnAA][SmarterEveryDay]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCB0XYqBHnsSg-CR-qHF7pGg][Family Policy Institute of Washington]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwobzUc3z-0PrFpoRxNszXQ][YellowBrickCinema - Relaxing Music]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCugb_j1Et8HRUpGiboLsPCw][Study Music Project]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC3P6PrEBAVH1UaiPOzZ-u-w][Russ Cox]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC4SlCAeLGLONquLmwYBkttA][Andy McKee]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCXuqSBlHAE6Xw-yeJA0Tunw][Linus Tech Tips]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC69uYUqvx-vw4luuX7aHNLQ][True Crime Daily]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC5zJwsFtEs9WYe3A76p7xIA][Professor Live]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA][Luke Smith]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UClOeGHFiUlegRJFGhkMxoHg][DENYZEE]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCmUuqTP5qgPwwfVPAK7TLGQ][Je parle québécois]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCYO_jab_esuFRV4b17AJtAw][3Blue1Brown]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCs4aHmggTfFrpkPcWSaBN9g][PBS Infinite Series]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCV8WJoztiK65lJMtVS01qJA][JustAcoustic]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCc-lKM4_OHLDDtvC1KFUIAQ][E40TV]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCIsbLox_y9dCIMLd8tdC6qg][Vanity Fair]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCNR0Y0XkNXnLewvXNuaiuNQ][Smoove Vault]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCmmPgObSUPw1HL2lq6H4ffA][Geography Now]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCwdo8-3UrfZ9scHPl0m4Ysg][What Would You Do?]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCaCE5pzy49M8nQ59plgmFOA][Relax Cafe Music]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC8uT9cgJorJPWu7ITLGo9Ww][The 8-Bit Guy]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCL_f53ZEJxp8TtlOkHwMV9Q][Jordan B Peterson]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC4YlOr-VjLrAgqxmp24hwJQ][Mariana Flores Peintre et Créations]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCX4_brT9iZ1eYN--9o1PY9A][ParcXtrio]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCB2b-zS9S3Qp795MKrjcN9A][The Jukebox Music Club]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCJ12g697wIHzmadWe2wxnjA][Unstoppable]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCLue5AhDOIpePYzlc3rOVVQ][Jazz and Blues Experience]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCR08pzzBqyIzZHGEfJygsTQ][Joseph Jacobs]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCOxqgCwgOqC2lMqC5PYz_Dg][Chillhop Music]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCv_Eqfj91XeKaoTXyB4zJyQ][RELAX CHANNEL]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCT29agck_w-w87oQc6Ur09g][Sylver Screen]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCeAK9h9DUH-5e5o7J71gqSQ][Tracker Beats Official]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCDfB0n_aAczEKVbALHmqYNg][ameriDroid]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCof4chntycdHluzGy5akQ8Q][dbsdb]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCURh3ia3U-kRbWQit7y3MqQ][Tim and Eric]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCTAgbu2l6_rBKdbTvEodEDw][Nerdist]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCpNCKzjwZUCte3t_bHgLecw][Rhythm Weapon]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCJPV6CezhtFDV4pf0DHULgg][MrNobbyNobbsjr]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC3XTzVzaHQEd30rQbuvCtTQ][LastWeekTonight]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCO3LEtymiLrgvpb59cNsb8A][The Go Programming Language]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCv2CW0nzBTZNif_1yo6be3g][Maniac Synth]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCZaT_X_mc0BI-djXOlfhqWQ][VICE News]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCombFwRes-IzI4g34oZfdJg][TheWWYDShow]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC51_awyLXl2nxCduuzzmw4w][LibertyPen]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCoh68F2940Dyn4ZHRoZ-O5g][BrookeMillerMusic]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCRd5EO6FvhIrqQnk0cscSDA][Don Ross]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC6MvbqzzXu9E6SWM2Jf-g_Q][Calum Graham Music]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCExs4fpYZTEJe3LaAOsOXrA][Antoine Dufour]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCMJecdKUslHToOEpeuRGwXg][Candyrat Records]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC5fMPK64r0GUj8pIF0H-ODQ][Tom Winter]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC61WvgRpe-whU-1j4hvhdFw][Savoir-faire Linux]]
+*** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCzoVCacndDCfGDf41P-z0iA][JSConf]]
