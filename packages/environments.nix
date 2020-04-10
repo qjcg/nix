@@ -224,7 +224,7 @@ let
         firefox
         qutebrowser
         surf
-        tor-browser-bundle-bin
+        #torbrowser
       ];
 
       utilities = [
