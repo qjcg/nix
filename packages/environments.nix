@@ -41,10 +41,8 @@ let
       ];
 
       utilities = [
-        ansible
         aria2
         binutils
-        davmail
         ed
         elinks
         fdupes
@@ -56,7 +54,6 @@ let
         pinentry
         gopass
         htop
-        influxdb
         iotop
         jq
         lastpass-cli
@@ -73,13 +70,11 @@ let
         ripgrep
         rlwrap
         sqlite
-        telegraf
         tesseract
         toilet
         tree
         unzip
         utillinux
-        weechat
         wtf
       ];
 
@@ -139,7 +134,6 @@ let
         fossil
         gnumake
         hugo
-        vault-bin
 
         # Go
         delve
@@ -275,7 +269,6 @@ let
       ];
 
       office = [
-        bluejeans-gui
         bookworm
         calibre
         evince
