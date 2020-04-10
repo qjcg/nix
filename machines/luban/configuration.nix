@@ -18,12 +18,11 @@
   boot.extraModulePackages = with config.boot.kernelPackages ; [
     bcc
     #bpftrace
-    sysdig
-    wireguard
+    #sysdig
   ];
 
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 5;
+  boot.loader.systemd-boot.configurationLimit = 2;
   boot.loader.systemd-boot.consoleMode = "0";
   boot.loader.efi.canTouchEfiVariables = true;
 
