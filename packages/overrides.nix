@@ -21,7 +21,7 @@ self: super:
       beetle-lynx
       beetle-vb
       dosbox
-      fba
+      fbalpha2012
       fceumm
       genesis-plus-gx
       mame
