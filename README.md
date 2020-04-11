@@ -45,7 +45,6 @@ nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rp
 ├── README.md   - this README file
 ├── config.nix  - nix configuration
 ├── files/      - application files and templates
-├── home.nix    - home-manager configuration
 ├── machines/   - per-machine configuration
 ├── nixops/     - nixops configurations
 ├── packages/   - overlay packages and environments
