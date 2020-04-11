@@ -189,6 +189,7 @@ let
       virt = [
         buildah
         conmon
+        cri-tools
         dive
         docker-compose
         #glooctl
