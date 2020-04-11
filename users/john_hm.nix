@@ -187,16 +187,16 @@
 
   services = {
 
-    #gpg-agent = {
-    #  enable = true;
-    #  defaultCacheTtl = 3600;
-    #  defaultCacheTtlSsh = 3600;
-    #  enableScDaemon = false;
-    #  enableSshSupport = true;
-    #  extraConfig = ''
-    #    allow-emacs-pinentry
-    #  '';
-    #};
+    gpg-agent = {
+      enable = true;
+      defaultCacheTtl = 3600;
+      defaultCacheTtlSsh = 3600;
+      enableScDaemon = false;
+      enableSshSupport = true;
+      extraConfig = ''
+        allow-emacs-pinentry
+      '';
+    };
 
     # FIXME: i3lock does NOT unlock with correct password!
     #services.screen-locker = {
