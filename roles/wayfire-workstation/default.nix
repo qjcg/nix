@@ -1,8 +1,8 @@
 { pkgs, ... }:
 
 let
-  cksum = "2fc9c014772551a6c5fe64839dfd7e4e60b24d2e";
-  url = "https://github.com/colemickens/nixpkgs-wayland/archive/master.tar.gz";
+  gitRef = "2fc9c014772551a6c5fe64839dfd7e4e60b24d2e";
+  url = "https://github.com/colemickens/nixpkgs-wayland/archive/${gitRef}.tar.gz";
   waylandOverlay = (import (builtins.fetchTarball url));
 in
   {
