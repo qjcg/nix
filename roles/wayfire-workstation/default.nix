@@ -1,6 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let
+  cksum = "2fc9c014772551a6c5fe64839dfd7e4e60b24d2e";
   url = "https://github.com/colemickens/nixpkgs-wayland/archive/master.tar.gz";
   waylandOverlay = (import (builtins.fetchTarball url));
 in
@@ -13,7 +14,7 @@ in
       swayidle # used for controlling idle timeouts and triggers (screen locking, etc)
       swaylock # used for locking Wayland sessions
 
-      waybar        # polybar-alike
+      waybar         # polybar-alike
       #i3status-rust # simpler bar written in Rust
 
       gebaar-libinput  # libinput gestures utility
@@ -35,10 +36,9 @@ in
 
     environment.systemPackages = with pkgs; [
       # other compositors/window-managers
-      waybox   # An openbox clone on Wayland
-      bspwc    # Wayland compositor based on BSPWM
-      cage     # A Wayland kiosk (runs a single app fullscreen)
-
+      #waybox   # An openbox clone on Wayland
+      #bspwc    # Wayland compositor based on BSPWM
+      cage      # A Wayland kiosk (runs a single app fullscreen)
       wayfire   # 3D wayland compositor
       wdisplays
       wf-config # wayfire config manager
