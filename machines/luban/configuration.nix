@@ -39,6 +39,9 @@
   networking.networkmanager.enable = true;
   networking.networkmanager.dns = "systemd-resolved";
   networking.useNetworkd = true;
+
+  # https://nixos.wiki/wiki/Wireguard
+  # https://nixos.wiki/wiki/Wireguard#Setting_up_Wireguard_with_systemd-networkd
   networking.wireguard = secrets.wireguard;
 
   services.resolved.enable = true;
