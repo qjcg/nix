@@ -60,7 +60,7 @@
       settings = {
         font.family = "monospace";
         font.style = "Regular";
-        font.size = 22.0;
+        font.size = 12.0;
 
         cursor.text = "0x000000";
         cursor.color = "0xffffff";
