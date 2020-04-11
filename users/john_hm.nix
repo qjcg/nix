@@ -142,12 +142,6 @@
       };
     };
 
-    go = rec {
-      enable = true;
-      goPath = "go";
-      goBin = "${goPath}/bin";
-    };
-
     tmux = {
       enable = true;
       escapeTime = 10;

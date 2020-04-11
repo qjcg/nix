@@ -136,6 +136,8 @@ let
         hugo
 
         # Go
+        go
+
         delve
         errcheck
         gocode
