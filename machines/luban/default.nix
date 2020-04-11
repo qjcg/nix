@@ -1,6 +1,8 @@
+{config, pkgs, secrets, ...}:
+
 {
   imports = [
-      ./configuration.nix
+      (import ./configuration.nix {inherit config pkgs secrets;})
       ./hardware-configuration.nix
   ];
 }

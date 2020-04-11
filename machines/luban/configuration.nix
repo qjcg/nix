@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, secrets, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
@@ -39,6 +39,8 @@
   networking.networkmanager.enable = true;
   networking.networkmanager.dns = "systemd-resolved";
   networking.useNetworkd = true;
+  networking.wireguard = secrets.wireguard;
+
   services.resolved.enable = true;
 
   sound.enable = true;
