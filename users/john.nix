@@ -1,4 +1,4 @@
-{ config, secrets, ... }:
+{ secrets, ... }:
 
 let
   pkgs = import <nixpkgs> {
@@ -36,6 +36,6 @@ in
     ];
   };
 
-  home-manager.users.john = import ./john_hm.nix { inherit config pkgs secrets; };
+  home-manager.users.john = import ./john_hm.nix { inherit pkgs secrets; };
 
 }
