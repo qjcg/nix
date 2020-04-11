@@ -19,6 +19,7 @@ self: super:
   k3c = super.callPackage ./k3c {};
   k3d = super.callPackage ./k3d {};
   kompose = super.callPackage ./kompose {};
+  kubeseal = super.callPackage ./kubeseal {};
   loccount = super.callPackage ./loccount {};
   ludo = super.callPackage ./ludo {};
   mtlcam = super.callPackage ./mtlcam {};
