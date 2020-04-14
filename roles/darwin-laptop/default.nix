@@ -3,7 +3,7 @@
 {
   imports = [
     ./environment.nix
-    ./hm.nix
+    (import ./hm.nix {inherit pkgs;})
     ./nix.nix
     ./nixpkgs.nix
     ./programs.nix

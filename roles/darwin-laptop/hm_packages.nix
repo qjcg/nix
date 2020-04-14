@@ -3,9 +3,12 @@
 {
   home.packages = with pkgs; [
       # personal
-      go-4d
-      horeb
-      mtlcam
+      #go-4d
+
+      # Go packages NOT building on macos.
+      # TODO: Re-enable!
+      #horeb
+      #mtlcam
 
       # nix
       nixops
@@ -26,31 +29,47 @@
       fava
 
 
+      # Go programs, NOT building.
+      # Ref: https://github.com/NixOS/nixpkgs/pull/83099
+      # TODO: re-enable!
+      #caddy
+      delve
+      errcheck
+      #fly
+      gopass
+      gotags
+      #hey
+      #k3d
+      kind
+      kubectl
+      kubectx
+      kubernetes-helm
+      #mkcert
+      pdfcpu
+      skaffold
+      skopeo
+      #syncthing
+      vault-bin
+      #wtf
+
+
       alacritty
-      caddy
       cmus
       coreutils
-      delve
-      docker-compose
-      emacsMacport
-      errcheck
+      #docker-compose
+      #emacsMacport
       ffmpeg
       findutils
-      fly
       fortune
       fossil
       fzf
       getent
       git
-      glooctl
       gnugrep
       gnumake
       gnupg
       go
       go-font
-      gopass
-      gotags
-      hey
       home-manager
       htop
       imagemagick
@@ -58,21 +77,14 @@
       inkscape
       iosevka
       jq
-      k3d
-      kind
-      kubectl
-      kubectx
-      kubernetes-helm
       lastpass-cli
       lsof
-      mkcert
       mpv
       mtr
       neovim
       nethack
       nodejs
       pandoc
-      pdfcpu
       pstree
 
       (python38.withPackages (ps: with ps; [
@@ -99,20 +111,15 @@
       ripgrep
       rsync
       sox
-      skaffold
-      skopeo
       stdenv
       streamripper
-      syncthing
       tig
       tmux
       tree
       universal-ctags
       unzip
       upx
-      vault-bin
       #vscodium
-      wtf
       youtube-dl
     ];
 }

@@ -49,7 +49,8 @@ in
             vim-bazel
             vim-beancount
             vim-cue
-            vim-go
+            # NOT building because installs go-tools, and those are broken currently on macos.
+            #vim-go
             vim-jsx-pretty
             vim-mdx-js
             vim-nix

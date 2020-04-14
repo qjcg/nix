@@ -7,7 +7,7 @@
     bash.enable = true;
 
     # Completion does NOT work with default version of bash (v3) on macOS.
-    #bash.enableCompletion = true;
+    bash.enableCompletion = true;
 
     gnupg.agent = {
       enable = true;
@@ -17,7 +17,7 @@
     tmux = {
       enable = true;
       defaultCommand = "xonsh -l";
-      tmuxConfig = builtins.readFile ../../files/tmux.conf ;
+      extraConfig = builtins.readFile ../../files/tmux.conf ;
     };
   };
 }

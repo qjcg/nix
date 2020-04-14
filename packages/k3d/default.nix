@@ -3,6 +3,8 @@
   lib,
   fetchFromGitHub,
   buildGoModule,
+  stdenv,
+  darwin,
 }:
 
 buildGoModule rec {
@@ -18,6 +20,12 @@ buildGoModule rec {
     #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
     sha256 = "0aij2l7zmg4cxbw7pwf7ddc64di25hpjvbmp1madhz9q28rwfa9w";
   };
+
+  # Ref: https://github.com/tsaeger/nixpkgs/commit/39386e9f81552720468acd0eb35becec863c0e37
+  buildInputs = []
+  ++ stdenv.lib.optionals stdenv.isDarwin [
+    darwin.apple_sdk.frameworks.Security
+  ];
 
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.
