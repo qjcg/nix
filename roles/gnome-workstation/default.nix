@@ -4,7 +4,6 @@
 
   environment.systemPackages = with pkgs; [
     acpi
-    arc-theme
     curl
     elinks
     file
