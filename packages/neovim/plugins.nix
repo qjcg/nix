@@ -1,6 +1,16 @@
 { self, super }:
 
 {
+  janet.vim = super.pkgs.vimUtils.buildVimPlugin {
+    name = "janet.vim";
+    src = super.pkgs.fetchFromGitHub {
+      owner = "janet-lang";
+      repo = "janet.vim";
+      rev = "60926ca06bda6e4c8fa7daccd5c224d504ab4afe";
+      sha256 = "04y6q8wyax5m8kvibqlrymv6k0f25gcihrrn6vx35akg7mvjkdg0";
+    };
+  };
+
   vim-cue = super.pkgs.vimUtils.buildVimPlugin {
     name = "vim-cue";
     src = super.pkgs.fetchFromGitHub {
