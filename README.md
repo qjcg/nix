@@ -134,6 +134,11 @@ Interesting and useful links on a variety of nix-related topics.
 - [Nix, the purely functional build system](http://www.boronine.com/2018/02/02/Nix/)
 - [Nix + Bazel = Fully Reproducible, Incremental Builds](https://www.tweag.io/posts/2018-03-15-bazel-nix.html)
 
+### Shell Environments
+
+- [Easy reproducible dev environments with nix and direnv](https://medium.com/better-programming/easily-reproducible-development-environments-with-nix-and-direnv-e8753f456110)
+- [Introducing lorri](https://www.tweag.io/posts/2019-03-28-introducing-lorri.html)
+
 
 ## Config Examples
 
