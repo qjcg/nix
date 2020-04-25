@@ -32,28 +32,36 @@ in
             awesome-vim-colorschemes
             changeColorScheme-vim
 
-            ## FIXME: These COC plugins are DISABLED for now, pending resolution of: https://github.com/NixOS/nixpkgs/issues/64560
-            ## For now, my workaround has been to install each of these individually via ex: `:CocInstall coc-css`.
             ## Extentions are installed into ~/.config/coc/extensions/package.json
             ## To review available extensions, do:
             ## - `:CocInstall coc-marketplace`
             ## - `:CocList marketplace`
-            #coc-css
-            #coc-git
-            #coc-go
-            #coc-highlight
-            #coc-html
-            #coc-json
+            ##
+            ## NOTE: The coc-nvim plugin MUST come before other coc- plugins!
+            ## See https://github.com/NixOS/nixpkgs/issues/64560#issuecomment-613968827
             coc-nvim
-            #coc-prettier
-            #coc-python
-            #coc-snippets
-            #coc-tslint-plugin
-            #coc-tsserver
-            #coc-yaml
+            coc-css
+            coc-git
+
+            # FIXME: Error on startup about missing main file "lib/extension.js" (see package.json).
+            #coc-go
+
+            coc-highlight
+            coc-html
+            coc-json
+            coc-prettier
+            coc-python
+            coc-snippets
+            coc-tslint-plugin
+            coc-tsserver
+            coc-yaml
 
             fzf-vim
             goyo
+
+            # FIXME: Seems to need janet executable as a buildInput.
+            #janet.vim
+
             limelight-vim
             nerdtree
             vim-bazel
