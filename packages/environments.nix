@@ -130,6 +130,7 @@ let
 
       devtools = [
         cue
+        direnv
         fly
         fossil
         gnumake

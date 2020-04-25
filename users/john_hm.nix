@@ -69,6 +69,11 @@
 
     bash = {
       enable = true;
+
+      initExtra = ''
+        eval "$(direnv hook bash)"
+      '';
+
       profileExtra = ''
         export LC_COLLATE=C
         export PAGER=less
