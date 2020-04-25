@@ -82,6 +82,11 @@
         export GOBIN=$GOPATH/bin
         export PATH=$GOBIN:$PATH
 
+        # janet
+        export JANET_PATH=${pkgs.janet}
+        export JANET_MODPATH=~/.janet_modules
+        export PATH=$PATH:$JANET_MODPATH/bin
+
         # nix
         if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
       '';
