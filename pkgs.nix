@@ -10,7 +10,7 @@ let
 
   # nixpkgs-wayland
   # https://github.com/colemickens/nixpkgs-wayland/branches/all
-  ref-wayland = "2fc9c014772551a6c5fe64839dfd7e4e60b24d2e";
+  ref-wayland = "724ac75779a1d411e89ebe0ab4aab721e0af525b";
 in
 
 (import (builtins.fetchTarball {
