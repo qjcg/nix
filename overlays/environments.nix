@@ -177,6 +177,7 @@ let
 
 
         # Lisp / Scheme
+        emacs
         guile
         janet
         racket
@@ -222,7 +223,7 @@ let
         firefox
         qutebrowser
         surf
-        torbrowser
+        #torbrowser
       ];
 
       utilities = [

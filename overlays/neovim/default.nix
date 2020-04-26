@@ -3,13 +3,13 @@ self: super:
 let
   # Nixpkgs for neovim.
   # See https://hydra.nixos.org/job/nixos/trunk-combined/nixpkgs.neovim-unwrapped.x86_64-linux
-  nixpkgs_neovim =
-    (import (builtins.fetchGit {
-      # Descriptive name to make the store path easier to identify
-      name = "nixpkgs_neovim";
-      url = https://github.com/nixos/nixpkgs/;
-      rev = "91fb0f2e4710d6a2f5e5cc55197afcddbd490c33";
-    }) {});
+  #nixpkgs_neovim =
+  #  (import (builtins.fetchGit {
+  #    # Descriptive name to make the store path easier to identify
+  #    name = "nixpkgs_neovim";
+  #    url = https://github.com/nixos/nixpkgs/;
+  #    rev = "91fb0f2e4710d6a2f5e5cc55197afcddbd490c33";
+  #  }) { inherit self super; });
 
   customPlugins = import ./plugins.nix { inherit self super; };
   allPlugins = super.pkgs.vimPlugins // customPlugins;
@@ -19,7 +19,7 @@ let
   nvimConfig = super.lib.concatStrings (map(f: builtins.readFile (./init.vim.d + f)) nvimConfigPaths);
 in
   {
-    neovim = nixpkgs_neovim.neovim.override {
+    neovim = super.neovim.override {
       viAlias = true;
       vimAlias = true;
 
