@@ -2,11 +2,11 @@
 # It should be imported and passed down to other modules via configuration.nix.
 
 let
-  # nixpkgs-unstable
+  # nixos / nixpkgs-unstable
   # https://github.com/NixOS/nixpkgs/branches/all
   # https://github.com/NixOS/nixpkgs/tree/nixos-unstable
   # https://github.com/NixOS/nixpkgs/tree/nixpkgs-unstable
-  ref-nixpkgs = "9b0d2f3fd153167b0c8ce84bb71e766a39ed4c9d";
+  ref-nixpkgs = "22a3bf9fb9edad917fb6cd1066d58b5e426ee975"; # nixos-unstable branch
 
   # nixpkgs-wayland
   # https://github.com/colemickens/nixpkgs-wayland/branches/all
