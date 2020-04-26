@@ -223,7 +223,7 @@ let
         firefox
         qutebrowser
         surf
-        #torbrowser
+        torbrowser
       ];
 
       utilities = [
