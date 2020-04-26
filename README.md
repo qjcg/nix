@@ -68,7 +68,7 @@ nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rp
 	- [Compiling through QEMU](https://nixos.wiki/wiki/NixOS_on_ARM#Compiling_through_QEMU)
 	- [Wiki Cross-compile packages](https://nixos.wiki/wiki/Cheatsheet#Cross-compile_packages)
 	- [Wiki: Raspberry Pi](https://nixos.wiki/wiki/NixOS_on_ARM/Raspberry_Pi)
-- [ ] Use version pinning
+- [x] Use version pinning
 	- [NixOS Wiki: FAQ/Pinning Nixpkgs](https://nixos.wiki/wiki/FAQ/Pinning_Nixpkgs)
 	- [Intro to Nix Channels & Reproducible NixOS Environment](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
 - [ ] Pilot a small refactor of the current configuration into Nix Flakes
