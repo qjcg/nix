@@ -27,8 +27,8 @@ self: super:
   mtlcam = super.callPackage ../packages/mtlcam {};
   plan9port = super.callPackage ../packages/plan9port {};
   pms = super.callPackage ../packages/pms {};
-  skaffold = super.callPackage ../packages/skaffold {};
   s-nail = super.callPackage ../packages/s-nail {};
+  skaffold = super.callPackage ../packages/skaffold {};
 
 
   # Overrides
