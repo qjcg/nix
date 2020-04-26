@@ -1,11 +1,6 @@
 self: super:
 
 {
-  # FIXME: Import these another way
-  #neovim = import ./neovim { inherit self super; };
-  #st = import ./st { inherit self super; };
-  #sxiv = import ./sxiv { inherit self super; };
-  #wayfire = import ./wayfire { inherit self super; };
 
   # Custom Packages
 
