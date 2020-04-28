@@ -1,8 +1,8 @@
-CFG_FILE := configuration.nix
+CFG_FILE := $(HOME)/.config/nixpkgs/configuration.nix
 
 CMD_SWITCH := sudo NIXPKGS_ALLOW_UNFREE=1 nixos-rebuild switch -I nixos-config=$(CFG_FILE)
 # NOTE: darwin-rebuild should NOT be run as root!
-CMD_SWITCH_DARWIN := darwin-rebuild switch
+CMD_SWITCH_DARWIN := NIX_PATH=darwin-config=$(CFG_FILE):$(HOME)/.nix-defexpr/channels:$(NIX_PATH) darwin-rebuild switch
 CMD_SWITCH_HM := home-manager switch -f $(CFG_FILE)
 
 
