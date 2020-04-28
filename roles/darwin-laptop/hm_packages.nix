@@ -92,7 +92,7 @@
         #black
         flake8
         ipython
-        isort
+        #isort
         mypy
         #notebook
         #pandas

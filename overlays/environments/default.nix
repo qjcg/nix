@@ -166,7 +166,7 @@ let
         (python38.withPackages (ps: with ps; [
           beautifulsoup4
           ipython
-          isort
+          #isort
           mypy
           pylint
           #python-dotenv
