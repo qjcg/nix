@@ -1,4 +1,4 @@
-self: super:
+super:
 
 {
   janet.vim = super.pkgs.vimUtils.buildVimPlugin {

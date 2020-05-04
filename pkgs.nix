@@ -23,7 +23,7 @@ in
     (import ./overlays/st)
     (import ./overlays/sxiv)
     (import ./overlays/environments.nix)
-    #(import ./overlays/neovim)
+    (import ./overlays/neovim)
 
     (import (builtins.fetchTarball {
       name = "nixpkgs-wayland";
