@@ -168,7 +168,7 @@ let
           isort
           mypy
           pylint
-          python-dotenv
+          #python-dotenv
           requests
         ]))
 
@@ -329,7 +329,7 @@ let
         obs-studio
         pavucontrol
         picard
-        pulseeffects
+        #pulseeffects
         qt5.qtbase
         strawberry
         sxiv
