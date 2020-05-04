@@ -11,6 +11,10 @@ let
   # nixpkgs-wayland
   # https://github.com/colemickens/nixpkgs-wayland/branches/all
   ref-wayland = "724ac75779a1d411e89ebe0ab4aab721e0af525b";
+
+  # emacs overlay
+  # https://github.com/nix-community/emacs-overlay/commits/master
+  ref-emacs = "7a9694ef831a848fd423bbbd60e807b236647bb8";
 in
 
 (import (builtins.fetchTarball {
