@@ -6,7 +6,7 @@ let
   # https://github.com/NixOS/nixpkgs/branches/all
   # https://github.com/NixOS/nixpkgs/tree/nixos-unstable
   # https://github.com/NixOS/nixpkgs/tree/nixpkgs-unstable
-  ref-nixpkgs = "22a3bf9fb9edad917fb6cd1066d58b5e426ee975"; # nixos-unstable branch
+  ref-nixpkgs = "fce7562cf46727fdaf801b232116bc9ce0512049"; # nixos-unstable branch
 
   # nixpkgs-wayland
   # https://github.com/colemickens/nixpkgs-wayland/branches/all
@@ -14,7 +14,7 @@ let
 in
 
 (import (builtins.fetchTarball {
-  name = "nixpkgs-unstable";
+  name = "nixos-unstable";
   url = "https://github.com/NixOS/nixpkgs/archive/${ref-nixpkgs}.tar.gz";
 }) {
 
