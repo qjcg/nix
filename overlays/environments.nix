@@ -76,6 +76,7 @@ let
         unzip
         utillinux
         wtf
+        ytop
       ];
 
       financial = [
