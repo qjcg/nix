@@ -22,6 +22,7 @@
     waypipe          # network transparency for Wayland
     wf-recorder      # wayland screenrecorder
     wl-clipboard     # clipboard CLI utilities
+    wofi             # dmenu replacement for wayland
     wtype            # xdotool, but for wayland
 
     # TODO: more steps required to use this?
