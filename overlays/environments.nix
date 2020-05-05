@@ -154,7 +154,7 @@ let
         mr
 
         # Node
-        nodejs
+        nodejs-12_x
         now-cli
 
         postgresql_12
