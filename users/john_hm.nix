@@ -26,16 +26,11 @@
     };
 
     sessionVariables = {
-      BROWSER = "firefox";
       EDITOR = "nvim";
       PAGER = "less";
       VISUAL = "nvim";
 
       NIX_PATH = "nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs:nixos-config=$HOME/.config/nixpkgs/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
-
-      QT_PLATFORMTHEME = "qt5ct";
-      QT_PLATFORM_PLUGIN = "qt5ct";
-      QT_QPA_PLATFORMTHEME = "qt5ct";
 
       MAILRC = "$HOME/.config/s-nail/mailrc";
     };
@@ -227,64 +222,34 @@
 
   };
 
-  xdg.configFile = {
-    "albert/albert.conf".source = ../files/albert.conf ;
-    "cmus/rc".source = ../files/cmusrc ;
-    "emacs/init.el".source = ../files/emacs/init.el;
-    "fontconfig/conf.d/50-user-font-preferences.conf".source = ../files/50-user-font-preferences.conf;
-    "gtk-3.0/settings.ini".source = ../files/gtk-3.0_settings.ini ;
-    "i3/workspace1.json".source = ../files/workspace1_luban.json ;
-    "nvim/coc-settings-example.json".source = ../files/coc-settings.json ;
-    "s-nail/mailrc".text = pkgs.callPackage ../files/mailrc.nix { inherit secrets; };
-    "sway/i3status-rust.toml".text = pkgs.callPackage ../files/i3status-rust_luban.toml.nix { inherit secrets; };
-    "sxiv/exec/key-handler" = {
-      executable = true;
-      source = ../files/sxiv-key-handler.sh ;
-    };
-    "VSCodium/User/settings_example.json".source = ../files/vscodium_settings_example.json ;
-    "xonsh/".source = ../files/xonsh ;
-    "wayfire.ini".source = ../files/wayfire.ini ;
-  };
+  systemd.user = {
 
-  xdg.dataFile = {
-    "fonts/Apl385.ttf" = {
-      source = ../files/fonts/Apl385.ttf;
-      onChange = "fc-cache -f";
+    # These are read by Wayland.
+    # See https://wiki.archlinux.org/index.php/Systemd/User#Environment_variables
+    sessionVariables = {
+
+      BROWSER = "firefox";
+
+      # Enable wayland with Firefox.
+      # See https://wiki.archlinux.org/index.php/Firefox#Wayland
+      # Verify via about:support -> "Window Protocol"
+      MOZ_ENABLE_WAYLAND = "1";
+
+      QT_PLATFORMTHEME = "qt5ct";
+      QT_PLATFORM_PLUGIN = "qt5ct";
+      QT_QPA_PLATFORMTHEME = "qt5ct";
+
     };
   };
-
-  #xresources.properties = {
-  #  "Xft.dpi" = 96;
-  #  "Xft.autohint" = 0;
-  #  "Xft.lcdfilter" = "lcddefault";
-  #  "Xft.hintstyle" = "hintfull";
-  #  "Xft.hinting" = 1;
-  #  "Xft.antialias" = 1;
-  #  "Xft.rgba" = "rgb";
-  #};
-
-  #xsession = {
-  #  enable = true;
-
-  #  pointerCursor = with pkgs; {
-  #    name = "Vanilla-DMZ";
-  #    package = vanilla-dmz;
-  #    size = 64;
-  #  };
-
-  #  initExtra = ''
-  #    xrdb -merge ~/.Xresources
-  #  '';
-  #};
 
   wayland.windowManager.sway =
     let
       modifier = "Mod4";
 
-      cmd_term = "${pkgs.st}/bin/st -f 'monospace-11'";
+      cmd_term = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
       cmd_term_tmux = "${cmd_term} -t 'tmux-main' -e sh -c 'tmux new -ADs main'";
 
-      cmd_menu = "${pkgs.dmenu}/bin/dmenu_run -fn 'Iosevka:size=20' -nb '#000000' -sb '#00fcff' -sf '#000000'";
+      cmd_menu = "${pkgs.dmenu}/bin/dmenu_run -fn 'Fira Code:size=8' -nb '#000000' -sb '#00fcff' -sf '#000000'";
       cmd_browser = "${pkgs.firefox}/bin/firefox";
       cmd_slack = "${pkgs.slack}/bin/slack";
 
@@ -302,6 +267,10 @@
       extraConfig = ''
         default_border  pixel 8
         title_align     center
+
+        # HiDPI
+        # See https://wiki.archlinux.org/index.php/Sway#HiDPI
+        output eDP-1 scale 1
       '';
 
       config = {
@@ -407,5 +376,56 @@
 
       };
     };
+
+  xdg.configFile = {
+    "albert/albert.conf".source = ../files/albert.conf ;
+    "cmus/rc".source = ../files/cmusrc ;
+    "emacs/init.el".source = ../files/emacs/init.el;
+    "fontconfig/conf.d/50-user-font-preferences.conf".source = ../files/50-user-font-preferences.conf;
+    "gtk-3.0/settings.ini".source = ../files/gtk-3.0_settings.ini ;
+    "i3/workspace1.json".source = ../files/workspace1_luban.json ;
+    "nvim/coc-settings-example.json".source = ../files/coc-settings.json ;
+    "s-nail/mailrc".text = pkgs.callPackage ../files/mailrc.nix { inherit secrets; };
+    "sway/i3status-rust.toml".text = pkgs.callPackage ../files/i3status-rust_luban.toml.nix { inherit secrets; };
+    "sxiv/exec/key-handler" = {
+      executable = true;
+      source = ../files/sxiv-key-handler.sh ;
+    };
+    "VSCodium/User/settings_example.json".source = ../files/vscodium_settings_example.json ;
+    "xonsh/".source = ../files/xonsh ;
+    "wayfire.ini".source = ../files/wayfire.ini ;
+  };
+
+  xdg.dataFile = {
+    "fonts/Apl385.ttf" = {
+      source = ../files/fonts/Apl385.ttf;
+      onChange = "fc-cache -f";
+    };
+  };
+
+  #xresources.properties = {
+  #  "Xft.dpi" = 96;
+  #  "Xft.autohint" = 0;
+  #  "Xft.lcdfilter" = "lcddefault";
+  #  "Xft.hintstyle" = "hintfull";
+  #  "Xft.hinting" = 1;
+  #  "Xft.antialias" = 1;
+  #  "Xft.rgba" = "rgb";
+  #};
+
+  #xsession = {
+  #  enable = true;
+
+  #  pointerCursor = with pkgs; {
+  #    name = "Vanilla-DMZ";
+  #    package = vanilla-dmz;
+  #    size = 64;
+  #  };
+
+  #  initExtra = ''
+  #    xrdb -merge ~/.Xresources
+  #  '';
+  #};
+
 
 }
