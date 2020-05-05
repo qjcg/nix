@@ -368,11 +368,13 @@
           }
         ];
 
-        #startup = [
-        #  #{ notification = false; command = "${cmd_set_wallpaper}"; }
-        #  { notification = false; command = "${cmd_term_tmux}"; }
-        #  { notification = false; command = "${cmd_browser}"; }
-        #];
+        startup = [
+          #{ notification = false; command = "${cmd_set_wallpaper}"; }
+          { command = "${cmd_term_tmux}"; }
+          { command = "${cmd_browser}"; }
+        ];
+
+        terminal = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
 
       };
     };
