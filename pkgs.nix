@@ -26,7 +26,7 @@ in
     (import ./overlays)
     (import ./overlays/st)
     (import ./overlays/sxiv)
-    (import ./overlays/environments.nix)
+    (import ./overlays/environments)
     (import ./overlays/neovim)
 
     (import (builtins.fetchTarball {
