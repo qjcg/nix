@@ -1,4 +1,4 @@
-{ pkgs, secrets, ... }:
+{ lib, pkgs, secrets, ... }:
 
 {
 
@@ -20,6 +20,6 @@
     ];
   };
 
-  home-manager.users.john = import ./john_hm.nix { inherit pkgs secrets; };
+  home-manager.users.john = import ./john_hm.nix { inherit lib pkgs secrets; };
 
 }
