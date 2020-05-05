@@ -12,7 +12,7 @@ name = "awesome"
 [[block]]
 block = "custom"
 command = "echo LOCK"
-on_click = "xscreensaver-command -lock"
+on_click = "swaylock"
 interval = 3600
 
 [[block]]
