@@ -312,8 +312,8 @@
         modifier = "${modifier}";
 
         gaps = {
-          inner = 50;
-          outer = 10;
+          inner = 5;
+          outer = 5;
         };
 
         keybindings =
