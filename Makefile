@@ -44,4 +44,4 @@ upgrade-darwin:
 
 ## repl: Run nix repl and load nixpkgs for debugging.
 repl:
-	sudo nix repl '<nixpkgs/nixos>'
+	nix repl '<nixpkgs>'
