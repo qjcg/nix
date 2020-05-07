@@ -21,6 +21,7 @@ in
             ansible-vim
             awesome-vim-colorschemes
             changeColorScheme-vim
+            direnv-vim
 
             ## Extentions are installed into ~/.config/coc/extensions/package.json
             ## To review available extensions, do:
