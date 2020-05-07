@@ -74,11 +74,24 @@ self: super:
       bbenoist.Nix
       ms-kubernetes-tools.vscode-kubernetes-tools
       ms-azuretools.vscode-docker
-      ms-vscode.Go
       #ms-python.python
+      ms-vscode.Go
+      ms-vscode-remote.remote-ssh
       redhat.vscode-yaml
       #vscodevim.vim
     ]) ++ super.vscode-utils.extensionsFromVscodeMarketplace [
+      {
+        name = "remote-containers";
+        publisher = "ms-vscode-remote";
+        version = "0.116.0";
+        sha256 = "1x7fwcajsgp790b5z9f24a7dk169b5b5wn75cybd5w8kk9w8qvxk";
+      }
+      {
+        name = "winteriscoming";
+        publisher = "johnpapa";
+        version = "1.4.2";
+        sha256 = "0rqmzr6bbaga45idnxbwggb9w578ky4ljx9slvkbc6yibqfskvpl";
+      }
     ];
   };
 
