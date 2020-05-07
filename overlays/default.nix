@@ -1,6 +1,10 @@
 self: super:
 
 {
+  # Overlays from this directory
+  neovim = (import ./neovim self super).neovim;
+  st = (import ./st self super).st;
+  sxiv = (import ./sxiv self super).sxiv;
 
   # Custom Packages
 
