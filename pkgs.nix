@@ -6,7 +6,8 @@ let
   # https://github.com/NixOS/nixpkgs/branches/all
   # https://github.com/NixOS/nixpkgs/tree/nixos-unstable
   # https://github.com/NixOS/nixpkgs/tree/nixpkgs-unstable
-  ref-nixpkgs = "fce7562cf46727fdaf801b232116bc9ce0512049"; # nixos-unstable branch
+  ref-nixpkgs =
+    "fce7562cf46727fdaf801b232116bc9ce0512049"; # nixos-unstable branch
 
   # nixpkgs-wayland
   # https://github.com/colemickens/nixpkgs-wayland/branches/all
@@ -15,9 +16,8 @@ let
   # emacs overlay
   # https://github.com/nix-community/emacs-overlay/commits/master
   ref-emacs = "7a9694ef831a848fd423bbbd60e807b236647bb8";
-in
 
-(import (builtins.fetchTarball {
+in (import (builtins.fetchTarball {
   name = "nixos-unstable";
   url = "https://github.com/NixOS/nixpkgs/archive/${ref-nixpkgs}.tar.gz";
 }) {
@@ -31,7 +31,8 @@ in
 
     (import (builtins.fetchTarball {
       name = "nixpkgs-wayland";
-      url = "https://github.com/colemickens/nixpkgs-wayland/archive/${ref-wayland}.tar.gz";
+      url =
+        "https://github.com/colemickens/nixpkgs-wayland/archive/${ref-wayland}.tar.gz";
     }))
   ];
 
