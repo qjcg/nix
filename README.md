@@ -2,8 +2,7 @@
 
 My personal [nix](https://nixos.org/nix/) configuration.
 
-
-# Features
+## Features
 
 - [Modular](https://nixos.org/nixos/manual/index.html#sec-modularity) and composable (machines, roles, users, packages) [configuration](https://nixos.org/nixos/manual/index.html#ch-configuration)
 - Uses [home-manager](https://github.com/rycee/home-manager) to manage user settings
@@ -11,19 +10,16 @@ My personal [nix](https://nixos.org/nix/) configuration.
 - Get secrets from [gopass](https://www.gopass.pw/) / [password-store](https://www.passwordstore.org/)
 - Multi-platform (NixOS, Ubuntu, macOS)
 
+## Use
 
-# Use
+## macOS
 
 ```sh
 # Install the nix package manager.
-curl https://nixos.org/nix/install | sh
+curl -L https://nixos.org/nix/install | sh
 
-# Clone this repo.
-mkdir -p ~/.config
-git clone https://github.com/qjcg/nix-config ~/.config/nixpkgs
-
-# Install the mac environment.
-nix-env -i env-mac
+# Install a package from this overlay.
+nix-env -f https://github.com/qjcg/nix-config/archive/master.tar.gz -iA env-hello
 ```
 
 ## Raspberry Pi
@@ -37,10 +33,9 @@ nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rp
 
 ```
 
+## Layout
 
-# Layout
-
-```
+```sh
 .
 ├── README.md   - this README file
 ├── config.nix  - nix configuration
@@ -52,8 +47,7 @@ nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rp
 └── secrets.nix - secrets file (gitignored, do e.g.: `gopass nix-secrets > secrets.nix`)
 ```
 
-
-# TODO
+## TODO
 
 - [x] Add NixOS system configuration(s)
 - [x] Consider using [nix-darwin](https://github.com/LnL7/nix-darwin) on macOS
@@ -74,19 +68,17 @@ nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rp
 - [ ] Pilot a small refactor of the current configuration into Nix Flakes
 - [ ] Refactor configuration.nix to include package environments (env-workstation, etc)
 
-
-# Using Flakes
+## Using Flakes
 
 ```sh
 nix-shell -p nixFlakes
 ```
 
-
-# References
+## References
 
 Interesting and useful links on a variety of nix-related topics.
 
-## Manuals
+### Manuals
 
 - [NixOS manual](https://nixos.org/nixos/manual/)
 - [nixpkgs manual](https://nixos.org/nixpkgs/manual/)
@@ -95,7 +87,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [Nix Pills](https://nixos.org/nixos/nix-pills/)
 - [Home Manager manual](https://rycee.gitlab.io/home-manager/index.html)
 
-## Guides
+### Guides
 
 - [nix-1p: A one page introduction to Nix, the language](https://github.com/tazjin/nix-1p)
 - [A Gentle Introduction to the Nix Family](https://ebzzry.io/en/nix/)
@@ -114,7 +106,7 @@ Interesting and useful links on a variety of nix-related topics.
 	- [Related Wiki article](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD)
 - [Intro to Nix Channels and Reproducible NixOS Environment](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
 
-## Packaging
+### Packaging
 
 - [Announcing the new Golang infrastructure: buildGoModule](https://kalbas.it/2019/03/17/announcing-the-new-golang-infrastructure-buildgomodule/)
 - [Nixpkgs Manual: Go modules](https://nixos.org/nixpkgs/manual/#ssec-go-modules)
@@ -139,8 +131,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [Easy reproducible dev environments with nix and direnv](https://medium.com/better-programming/easily-reproducible-development-environments-with-nix-and-direnv-e8753f456110)
 - [Introducing lorri](https://www.tweag.io/posts/2019-03-28-introducing-lorri.html)
 
-
-## Config Examples
+### Config Examples
 
 - [grahamc: nixos-config](https://github.com/grahamc/nixos-config)
 	- [grahamc: network (personal servers & router config)](https://github.com/grahamc/network)
@@ -150,12 +141,12 @@ Interesting and useful links on a variety of nix-related topics.
 - [rummik (with system configurations, custom NixOS modules, nix-darwin, and home-manager)](https://github.com/rummik/nixos-config)
 - [HugoReeves (with machine / role / user structure)](https://github.com/HugoReeves/nix-home/)
 
-## Community Resources
+### Community Resources
 
 - [NixOS Wiki](https://nixos.wiki/)
 - [NixOS Weekly](https://weekly.nixos.org/)
 
-## Tools & Services
+### Tools & Services
 
 - [nixery](https://nixery.dev/)
 - [`nixfmt`](https://github.com/serokell/nixfmt)
