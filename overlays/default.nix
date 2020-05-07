@@ -34,12 +34,12 @@ self: super:
   # Overrides
 
   delve = super.delve.overrideAttrs (oldAttrs: rec {
-    version = "1.3.2";
+    version = "1.4.0";
     src = self.fetchFromGitHub {
       owner = "go-delve";
       repo = "delve";
       rev = "v${version}";
-      sha256 = "0i2sxr5d4ylakn93lmp65xwhaalbv01q4dih6viwnb9d0gq7p26x";
+      sha256 = "1db74zw6a5kfjda1mcxqhvs4qcj5cvki2w66f6y0nvw3qgi4c4m4";
     };
   });
 
