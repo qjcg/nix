@@ -364,6 +364,30 @@
               output eDP-1
             '';
           }
+          {
+            position = "top";
+            mode = "dock";
+
+            fonts = [
+              "Iosevka Medium 13"
+            ];
+
+            colors = {
+              background = "#000000";
+              statusline = "#cccccc";
+              separator  = "#00ffea";
+
+              focusedWorkspace   = {border = "#000000"; background = "#000000"; text = "#00fcff"; };
+              activeWorkspace    = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
+              inactiveWorkspace  = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
+              urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
+            };
+
+            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/sway/i3status-rust.toml";
+            extraConfig = ''
+              output HDMI-A-2
+            '';
+          }
         ];
 
         startup = [
