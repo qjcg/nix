@@ -247,7 +247,7 @@
       modifier = "Mod4";
 
       cmd_term = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
-      cmd_term_tmux = "${cmd_term} -t 'tmux-main' -e sh -c 'tmux new -ADs main'";
+      cmd_term_tmux = "${cmd_term} -t tmux-main -- sh -c 'tmux new -ADs main'";
 
       cmd_menu = "${pkgs.dmenu}/bin/dmenu_run -fn 'Fira Code:size=16' -nb '#000000' -sb '#00fcff' -sf '#000000'";
       cmd_browser = "${pkgs.firefox}/bin/firefox";
