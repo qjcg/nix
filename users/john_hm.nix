@@ -251,7 +251,6 @@
 
       cmd_menu = "${pkgs.dmenu}/bin/dmenu_run -fn 'Fira Code:size=16' -nb '#000000' -sb '#00fcff' -sf '#000000'";
       cmd_browser = "${pkgs.firefox}/bin/firefox";
-      cmd_slack = "${pkgs.slack}/bin/slack";
 
       wpdir = "/home/jgosset/Sync/Pictures/Wallpapers" ;
       cmd_browse_wallpaper = "${pkgs.sxiv}/bin/sxiv -artos f ${wpdir}";
@@ -268,9 +267,8 @@
         default_border  pixel 8
         title_align     center
 
-        # HiDPI
-        # See https://wiki.archlinux.org/index.php/Sway#HiDPI
-        output eDP-1 scale 1
+        output eDP-1    bg #000000 solid_color scale 1 pos 0 0
+        output HDMI-A-2 bg #000000 solid_color scale 1 pos 2560 0
       '';
 
       config = {
