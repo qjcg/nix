@@ -145,6 +145,7 @@ let
         gocode
         gogetdoc
         gomodifytags
+        gopls
         gotags
         gotools
         protobuf
