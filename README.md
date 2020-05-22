@@ -106,6 +106,10 @@ Interesting and useful links on a variety of nix-related topics.
 	- [Related Wiki article](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD)
 - [Intro to Nix Channels and Reproducible NixOS Environment](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
 
+### Concepts
+
+- [What Is Nix](https://engineering.shopify.com/blogs/engineering/what-is-nix)
+
 ### Packaging
 
 - [Announcing the new Golang infrastructure: buildGoModule](https://kalbas.it/2019/03/17/announcing-the-new-golang-infrastructure-buildgomodule/)
