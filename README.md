@@ -110,6 +110,10 @@ Interesting and useful links on a variety of nix-related topics.
 
 - [What Is Nix](https://engineering.shopify.com/blogs/engineering/what-is-nix)
 
+#### Videos
+
+- [Nixology](https://www.youtube.com/playlist?list=PLRGI9KQ3_HP_OFRG6R-p4iFgMSK1t5BHs) (playlist by [Burke Libby](https://www.youtube.com/channel/UCSW5DqTyfOI9sUvnFoCjBlQ))
+
 ### Packaging
 
 - [Announcing the new Golang infrastructure: buildGoModule](https://kalbas.it/2019/03/17/announcing-the-new-golang-infrastructure-buildgomodule/)
