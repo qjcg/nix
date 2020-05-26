@@ -345,7 +345,7 @@
             mode = "dock";
 
             fonts = [
-              "Iosevka Medium 13"
+              "Iosevka Medium 16"
             ];
 
             colors = {
