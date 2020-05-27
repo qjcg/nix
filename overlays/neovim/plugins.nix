@@ -31,6 +31,16 @@ super:
     };
   };
 
+  vim-prisma = super.pkgs.vimUtils.buildVimPlugin {
+    name = "vim-prisma";
+    src = super.pkgs.fetchFromGitHub {
+      owner = "pantharshit00";
+      repo = "vim-prisma";
+      rev = "17179d7f2a73172af5f9a8d65b01a3acf12d9990";
+      sha256 = "05j2wd1374328x93ymwfzlcqc9z8sc9qbl6999y62m291yzh5xn1";
+    };
+  };
+
   vista.vim = super.pkgs.vimUtils.buildVimPlugin {
     name = "vista.vim";
     src = super.pkgs.fetchFromGitHub {
