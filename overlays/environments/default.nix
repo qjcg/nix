@@ -145,6 +145,7 @@ let
         gocode
         gogetdoc
         gomodifytags
+        gopls
         gotags
         gotools
         protobuf
@@ -261,8 +262,7 @@ let
       dev = [
         #jmigpin-editor
         #plan9port
-        vscodium
-        #vscodium-with-extensions
+        vscodium-with-extensions
       ];
 
       # NOTE: Screen locker is configured via system config.

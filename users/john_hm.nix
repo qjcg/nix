@@ -247,11 +247,10 @@
       modifier = "Mod4";
 
       cmd_term = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
-      cmd_term_tmux = "${cmd_term} -t 'tmux-main' -e sh -c 'tmux new -ADs main'";
+      cmd_term_tmux = "${cmd_term} -t tmux-main -- sh -c 'tmux new -ADs main'";
 
-      cmd_menu = "${pkgs.dmenu}/bin/dmenu_run -fn 'Fira Code:size=16' -nb '#000000' -sb '#00fcff' -sf '#000000'";
+      cmd_menu = "${pkgs.dmenu}/bin/dmenu_run -fn 'Fira Code:size=13' -nb '#000000' -sb '#00fcff' -sf '#000000'";
       cmd_browser = "${pkgs.firefox}/bin/firefox";
-      cmd_slack = "${pkgs.slack}/bin/slack";
 
       wpdir = "/home/jgosset/Sync/Pictures/Wallpapers" ;
       cmd_browse_wallpaper = "${pkgs.sxiv}/bin/sxiv -artos f ${wpdir}";
@@ -268,9 +267,8 @@
         default_border  pixel 8
         title_align     center
 
-        # HiDPI
-        # See https://wiki.archlinux.org/index.php/Sway#HiDPI
-        output eDP-1 scale 1
+        output eDP-1    bg #000000 solid_color scale 1 pos 0 0
+        output HDMI-A-2 bg #000000 solid_color scale 1 pos 2560 0
       '';
 
       config = {
@@ -347,7 +345,7 @@
             mode = "dock";
 
             fonts = [
-              "Iosevka Medium 13"
+              "Iosevka Medium 16"
             ];
 
             colors = {
@@ -364,6 +362,30 @@
             statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/sway/i3status-rust.toml";
             extraConfig = ''
               output eDP-1
+            '';
+          }
+          {
+            position = "top";
+            mode = "dock";
+
+            fonts = [
+              "Iosevka Medium 13"
+            ];
+
+            colors = {
+              background = "#000000";
+              statusline = "#cccccc";
+              separator  = "#00ffea";
+
+              focusedWorkspace   = {border = "#000000"; background = "#000000"; text = "#00fcff"; };
+              activeWorkspace    = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
+              inactiveWorkspace  = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
+              urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
+            };
+
+            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/sway/i3status-rust.toml";
+            extraConfig = ''
+              output HDMI-A-2
             '';
           }
         ];
