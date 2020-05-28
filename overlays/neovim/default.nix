@@ -64,6 +64,7 @@ in
             vim-nix
             vim-orgmode
             vim-pandoc-syntax
+            vim-prisma
             vim-toml
             vista.vim
             xonsh-vim

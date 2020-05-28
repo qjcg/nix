@@ -36,8 +36,8 @@ super:
     src = super.pkgs.fetchFromGitHub {
       owner = "pantharshit00";
       repo = "vim-prisma";
-      rev = "17179d7f2a73172af5f9a8d65b01a3acf12d9990";
-      sha256 = "05j2wd1374328x93ymwfzlcqc9z8sc9qbl6999y62m291yzh5xn1";
+      rev = "e91ac5011232e1bd8ea53204db8d01203d5d0f3c";
+      sha256 = "0pc203n70g1b0qfvrnfi5sxg2vr9zfw274s9lpgpxmribknpxi86";
     };
   };
 
