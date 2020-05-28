@@ -109,6 +109,7 @@ Interesting and useful links on a variety of nix-related topics.
 ### Concepts
 
 - [What Is Nix](https://engineering.shopify.com/blogs/engineering/what-is-nix)
+- [Nix Flakes, Part 1: An introduction and tutorial(https://www.tweag.io/posts/2020-05-25-flakes.html)
 
 #### Videos
 
