@@ -31,21 +31,13 @@ in
             ## NOTE: The coc-nvim plugin MUST come before other coc- plugins!
             ## See https://github.com/NixOS/nixpkgs/issues/64560#issuecomment-613968827
             coc-nvim
-            #coc-css
-            #coc-git
 
             # FIXME: Error on startup about missing main file "lib/extension.js" (see package.json).
             #coc-go
 
             coc-highlight
-            #coc-html
-            #coc-json
             coc-prettier
-            #coc-python
             coc-snippets
-            #coc-tslint-plugin
-            #coc-tsserver
-            coc-yaml
 
             fzf-vim
             goyo
