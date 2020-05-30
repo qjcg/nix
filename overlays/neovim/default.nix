@@ -40,7 +40,7 @@ in
             coc-highlight
             #coc-html
             #coc-json
-            #coc-prettier
+            coc-prettier
             #coc-python
             coc-snippets
             #coc-tslint-plugin
