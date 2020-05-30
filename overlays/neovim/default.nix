@@ -23,18 +23,15 @@ in
             changeColorScheme-vim
             direnv-vim
 
-            ## Extentions are installed into ~/.config/coc/extensions/package.json
-            ## To review available extensions, do:
+            ## Non-nix-installed extentions are installed into ~/.config/coc/extensions/package.json
+            ## To review these, do:
             ## - `:CocInstall coc-marketplace`
             ## - `:CocList marketplace`
             ##
             ## NOTE: The coc-nvim plugin MUST come before other coc- plugins!
             ## See https://github.com/NixOS/nixpkgs/issues/64560#issuecomment-613968827
             coc-nvim
-
-            # FIXME: Error on startup about missing main file "lib/extension.js" (see package.json).
-            #coc-go
-
+            #coc-go  # FIXME: Error on startup about missing main file "lib/extension.js" (see package.json).
             coc-prettier
             coc-snippets
 
@@ -46,11 +43,9 @@ in
 
             limelight-vim
             nerdtree
-            vim-bazel
             vim-beancount
             vim-cue
-            # NOT building because installs go-tools, and those are broken currently on macos.
-            #vim-go
+            vim-go
             vim-jsx-pretty
             vim-mdx-js
             vim-nix
@@ -58,7 +53,6 @@ in
             vim-pandoc-syntax
             vim-prisma
             vim-toml
-            vista.vim
             xonsh-vim
             yats-vim
           ];
