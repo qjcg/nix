@@ -35,7 +35,6 @@ in
             # FIXME: Error on startup about missing main file "lib/extension.js" (see package.json).
             #coc-go
 
-            coc-highlight
             coc-prettier
             coc-snippets
 
