@@ -7,7 +7,7 @@
 
 buildGoModule rec {
   name = "barr-${version}";
-  version = "1.14.11-alpha";
+  version = "1.14.12-alpha";
 
   src = fetchFromGitHub {
     owner = "qjcg";
@@ -16,7 +16,7 @@ buildGoModule rec {
 
     # To get this value, use "nix-prefetch-url --unpack" with the release tarball, eg:
     #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
-    sha256 = "18rpjcbw6w35hgjsih8gd1g5bf452w79bvfcaiqm1n81jl6zj95z" ;
+    sha256 = "0wzkhvvvx6dk1adgxngxvjmm5slmm0ydvd4zngmyz8apfxjbr016" ;
   };
 
   subPackages = [ "cmd/barr" ];
