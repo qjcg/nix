@@ -385,7 +385,7 @@
               urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
             };
 
-            statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ~/.config/sway/i3status-rust.toml";
+            statusCommand = "${pkgs.barr}/bin/barr";
             extraConfig = ''
               output HDMI-A-2
             '';
