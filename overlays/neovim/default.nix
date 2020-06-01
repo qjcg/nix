@@ -34,6 +34,7 @@ in
             #coc-go  # FIXME: Error on startup about missing main file "lib/extension.js" (see package.json).
             coc-prettier
             coc-snippets
+            coc-tsserver
 
             fzf-vim
             goyo
