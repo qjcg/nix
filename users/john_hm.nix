@@ -194,12 +194,14 @@
 
     gpg-agent = {
       enable = true;
+      pinentryFlavor = "tty";
       defaultCacheTtl = 3600;
       defaultCacheTtlSsh = 3600;
       enableScDaemon = false;
       enableSshSupport = true;
       extraConfig = ''
         allow-emacs-pinentry
+        allow-loopback-pinentry
       '';
     };
 
