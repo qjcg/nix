@@ -42,6 +42,7 @@ let
 
       utilities = [
         aria2
+        benthos
         binutils
         ed
         elinks
