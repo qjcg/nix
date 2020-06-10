@@ -22,7 +22,7 @@ buildGoModule rec {
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
-  modSha256 = "1yfziw4z4yjr9qzyp3vbxzzfkc7gzjn8fd5zfysqhxhsrn00q9rs";
+  vendorSha256 = "1yfziw4z4yjr9qzyp3vbxzzfkc7gzjn8fd5zfysqhxhsrn00q9rs";
 
   meta = with lib; {
     description = "Logitech G102 and G203 Prodigy Mouse LED control";

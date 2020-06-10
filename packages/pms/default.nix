@@ -22,7 +22,7 @@ buildGoModule rec {
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
-  modSha256 = "19wc5q7009j8h7sasvm9jvql9zbhjxgdpjwsay99jlbzsm23dkcn";
+  vendorSha256 = "19wc5q7009j8h7sasvm9jvql9zbhjxgdpjwsay99jlbzsm23dkcn";
 
   meta = with lib; {
     description = "Practical Music Search is an interactive Vim-like console client for the Music Player Daemon."; 
