@@ -11,6 +11,7 @@ self: super:
   go-4d = super.callPackage ../packages/4d {};
   barr = super.callPackage ../packages/barr {};
   battery = super.callPackage ../packages/battery {};
+  benthos = super.callPackage ../packages/benthos {};
   brightness = super.callPackage ../packages/brightness {};
   cassowary = super.callPackage ../packages/cassowary {};
   emacs = super.callPackage ../packages/emacs {};
