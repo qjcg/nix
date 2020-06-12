@@ -32,6 +32,7 @@ self: super:
   mtlcam = super.callPackage ../packages/mtlcam {};
   plan9port = super.callPackage ../packages/plan9port {};
   pms = super.callPackage ../packages/pms {};
+  rancher-cli = super.callPackage ../packages/rancher-cli {};
   s-nail = super.callPackage ../packages/s-nail {};
   skaffold = super.callPackage ../packages/skaffold {};
 
