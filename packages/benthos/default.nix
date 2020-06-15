@@ -6,7 +6,7 @@
 }:
 
 buildGoModule rec {
-  name = "benthos-${version}";
+  pname = "benthos";
   version = "3.18.0";
 
   src = fetchFromGitHub {
@@ -19,6 +19,8 @@ buildGoModule rec {
     sha256 = "1nh1n5h1mvzpbvqgza45pgzh2rc96g7jj75scglzvzxq62syv9jl";
   };
 
+  buildFlagsArray = [ "-ldflags=-s -w -X github.com/Jeffail/benthos/v3/lib/service.Version=${src.rev}" ];
+
   subPackages = ["cmd/benthos"];
 
   # First, provide a fake hash via the value: lib.fakeSha256
@@ -28,7 +30,7 @@ buildGoModule rec {
 
   meta = with lib; {
     description = "A stream processor for mundane tasks written in Go";
-    homepage = https://github.com/Jeffail/benthos;
+    homepage = "https://github.com/Jeffail/benthos";
     license = licenses.mit;
   };
 }
