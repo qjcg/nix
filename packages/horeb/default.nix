@@ -6,7 +6,7 @@
 }:
 
 buildGoModule rec {
-  name = "horeb-${version}";
+  pname = "horeb";
   version = "0.11.1";
 
   src = fetchFromGitHub {
@@ -19,19 +19,16 @@ buildGoModule rec {
     sha256 = "0h08fmaf90i5arl8maxhffzh2xm3cd55xq58ym55zvba9yrjks0i";
   };
 
-  # FIXME: Evaluate whether `go build` can be used here instead.
-  buildPhase = ''
-    CGO_ENABLED=0 go install -ldflags='-s -w -X github.com/qjcg/horeb/pkg/horeb.Version=${src.rev}' ./...
-  '';
+  buildFlagsArray = [ "-ldflags=-s -w -X github.com/qjcg/horeb/pkg/horeb.Version=${version}" ];
 
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
-  vendorSha256 = "0b9ys37d62w5pwjlkbazswmqvswkqksq7z0az16vwlb2psd0k3kb";
+  vendorSha256 = "1dgczgl8i1cpxmm0pws9258xnycwvksvpwvdkccmx4v5civ9ydlx";
 
   meta = with lib; {
-    description = "Speaking in tongues via stdout.";
-    homepage = https://github.com/qjcg/horeb;
+    description = "Speaking in tongues via stdout";
+    homepage = "https://github.com/qjcg/horeb";
     license = licenses.mit;
   };
 }
