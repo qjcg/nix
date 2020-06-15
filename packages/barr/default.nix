@@ -6,7 +6,7 @@
 }:
 
 buildGoModule rec {
-  name = "barr-${version}";
+  pname = "barr";
   version = "1.14.17-alpha";
 
   src = fetchFromGitHub {
@@ -19,16 +19,18 @@ buildGoModule rec {
     sha256 = "195fs1khh9q588qgzd4j11frl5irh3092chqiz437ydwfpbgxy7h" ;
   };
 
+  buildFlagsArray = [ "-ldflags=-s -w -X main.Version=${src.rev}" ];
+
   subPackages = [ "cmd/barr" ];
 
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
-  vendorSha256 = "085m3ypkkyav143mhw31fyvbwn8x00f27ypzmdg1k1qjggh40zy6" ;
+  vendorSha256 = "0sy9q0nimmlripnv8848gizkh594k8hq0yqxiampmkr8xgdh4wdc" ;
 
   meta = with lib; {
-    description = "A simple statusbar.";
-    homepage = https://github.com/qjcg/barr;
+    description = "A simple statusbar";
+    homepage = "https://github.com/qjcg/barr";
     license = licenses.mit;
   };
 }

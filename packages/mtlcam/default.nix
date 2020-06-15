@@ -6,7 +6,7 @@
 }:
 
 buildGoModule rec {
-  name = "mtlcam-${version}";
+  pname = "mtlcam";
   version = "0.3.0";
 
   src = fetchFromGitHub {
@@ -22,11 +22,11 @@ buildGoModule rec {
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
-  vendorSha256 = "11scb4mg8y8p0sldxdascngbc1w5v9hnpch54hjifcglf2hhi0fc";
+  vendorSha256 = "0s091a30jyyk9ch53jd07fn4yl0f6ggyalhdh8xlrq6nsn5rns1m";
 
   meta = with lib; {
-    description = "Download Montreal traffic camera images.";
-    homepage = https://github.com/qjcg/mtlcam;
+    description = "Download Montreal traffic camera images";
+    homepage = "https://github.com/qjcg/mtlcam";
     license = licenses.mit;
   };
 }

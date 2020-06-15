@@ -6,7 +6,7 @@
 }:
 
 buildGoModule rec {
-  name = "4d-${version}";
+  pname = "4d";
   version = "0.5.5";
 
   src = fetchFromGitHub {
@@ -26,7 +26,7 @@ buildGoModule rec {
 
   meta = with lib; {
     description = "A simple CLI stopwatch.";
-    homepage = https://github.com/qjcg/4d;
+    homepage = "https://github.com/qjcg/4d";
     license = licenses.mit;
   };
 }
