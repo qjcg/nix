@@ -10,7 +10,7 @@
 }:
 
 stdenv.mkDerivation rec {
-  name = "ludo-bin-${version}";
+  pname = "ludo-bin";
   version = "0.9.12";
 
   src = fetchurl {
@@ -35,9 +35,9 @@ stdenv.mkDerivation rec {
     ln -s $out/opt/ludo/ludo $out/bin/ludo
   '';
 
-  meta = {
+  meta = with stdenv.lib; {
     description = "A minimalist libretro frontend written in golang";
-    homepage = https://github.com/libretro/ludo ;
-    license = lib.licenses.gpl3;
+    homepage = "https://github.com/libretro/ludo";
+    license = licenses.gpl3;
   };
 }

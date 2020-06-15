@@ -1,4 +1,8 @@
-{ stdenv, buildGoPackage, fetchFromGitHub }:
+{
+  stdenv,
+  buildGoPackage,
+  fetchFromGitHub
+}:
 
 buildGoPackage rec {
   pname = "kompose";
@@ -15,7 +19,7 @@ buildGoPackage rec {
 
   meta = with stdenv.lib; {
     description = "A tool to help users who are familiar with docker-compose move to Kubernetes";
-    homepage = https://github.com/kubernetes/kompose;
+    homepage = "https://github.com/kubernetes/kompose";
     license = licenses.asl20;
     maintainers = with maintainers; [ thpham vdemeester ];
     platforms = platforms.unix;

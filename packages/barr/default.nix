@@ -1,6 +1,5 @@
 {
-  pkgs,
-  lib,
+  stdenv,
   fetchFromGitHub,
   buildGoModule,
 }:
@@ -28,7 +27,7 @@ buildGoModule rec {
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
   vendorSha256 = "0sy9q0nimmlripnv8848gizkh594k8hq0yqxiampmkr8xgdh4wdc" ;
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "A simple statusbar";
     homepage = "https://github.com/qjcg/barr";
     license = licenses.mit;

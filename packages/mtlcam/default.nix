@@ -1,6 +1,5 @@
 {
-  pkgs,
-  lib,
+  stdenv,
   fetchFromGitHub,
   buildGoModule,
 }:
@@ -24,7 +23,7 @@ buildGoModule rec {
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
   vendorSha256 = "0s091a30jyyk9ch53jd07fn4yl0f6ggyalhdh8xlrq6nsn5rns1m";
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "Download Montreal traffic camera images";
     homepage = "https://github.com/qjcg/mtlcam";
     license = licenses.mit;

@@ -1,12 +1,11 @@
 {
-  pkgs,
-  lib,
+  stdenv,
   fetchFromGitHub,
   buildGoPackage,
 }:
 
 buildGoPackage rec {
-  name = "goplot-${version}";
+  pname = "goplot";
   # No tags, no releases, no go.mod file --- so just using latest hash from 2017.
   version = "9aef86e00152e2faec4e3b27aeed676fb8213c90";
 
@@ -23,8 +22,8 @@ buildGoPackage rec {
     sha256 = "1d154nzg7srj3wnxgcmyrjbjpm9rihic38yf4rjs0l14sqm8fx7y";
   };
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "Terminal-based stream plotting";
-    homepage = https://github.com/lebinh/goplot ;
+    homepage = "https://github.com/lebinh/goplot";
   };
 }

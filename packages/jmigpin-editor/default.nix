@@ -1,12 +1,11 @@
 {
-  pkgs,
-  lib,
+  stdenv,
   fetchFromGitHub,
   buildGoModule,
 }:
 
 buildGoModule rec {
-  name = "jmigpin-editor-${version}";
+  pname = "jmigpin-editor";
   version = "2.0.7";
 
   src = fetchFromGitHub {
@@ -28,8 +27,8 @@ buildGoModule rec {
   modRoot = "v2";
 
   meta = with lib; {
-    description = "Source code editor in pure Go.";
-    homepage = https://github.com/jmigpin/editor;
+    description = "Source code editor in pure Go";
+    homepage = "https://github.com/jmigpin/editor";
     license = licenses.mit;
   };
 }

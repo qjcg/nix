@@ -1,7 +1,11 @@
-{ stdenv, buildGoModule, fetchFromGitHub }:
+{
+  stdenv,
+  buildGoModule,
+  fetchFromGitHub,
+}:
 
 buildGoModule rec {
-  name = "hey";
+  pname = "hey";
   version = "0.1.3";
 
   src = fetchFromGitHub {
@@ -18,7 +22,7 @@ buildGoModule rec {
 
   meta = with stdenv.lib; {
     description = "HTTP load generator";
-    homepage = https://github.com/rakyll/hey;
+    homepage = "https://github.com/rakyll/hey";
     license = licenses.asl20;
   };
 }

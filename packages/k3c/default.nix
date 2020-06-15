@@ -1,12 +1,11 @@
 {
-  pkgs,
-  lib,
+  stdenv,
   fetchFromGitHub,
   buildGoModule,
 }:
 
 buildGoModule rec {
-  name = "k3c-${version}";
+  pname = "k3c";
   version = "0.0.1";
 
   src = fetchFromGitHub {
@@ -25,9 +24,9 @@ buildGoModule rec {
   #vendorSha256 = lib.fakeSha256;
   vendorSha256 = "0wgx3jlw92bzwcbwqbq3hrv4q1z2mzrvxnld6bj5rgkwym1f8zvs";
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "Lightweight local container engine for container development";
-    homepage = https://github.com/ibuildthecloud/k3c ;
+    homepage = "https://github.com/ibuildthecloud/k3c";
     license = licenses.asl20;
   };
 }

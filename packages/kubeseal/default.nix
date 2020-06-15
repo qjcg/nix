@@ -1,4 +1,8 @@
-{ lib, buildGoModule, fetchFromGitHub }:
+{
+  stdenv,
+  buildGoModule,
+  fetchFromGitHub
+}:
 
 buildGoModule rec {
   pname = "kubeseal";
@@ -15,7 +19,7 @@ buildGoModule rec {
 
   subPackages = [ "cmd/kubeseal" ];
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "A Kubernetes controller and tool for one-way encrypted Secrets";
     homepage = "https://github.com/bitnami-labs/sealed-secrets";
     license = licenses.asl20;

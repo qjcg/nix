@@ -1,4 +1,8 @@
-{ pkgs, lib, fetchFromGitHub, buildGoModule }:
+{
+  stdenv,
+  fetchFromGitHub,
+  buildGoModule,
+}:
 
 buildGoModule rec {
   pname = "k3d";
@@ -20,7 +24,7 @@ buildGoModule rec {
 
   meta = with lib; {
     description = "A lightweight wrapper to run k3s (Rancher Lab’s minimal Kubernetes distribution) in docker";
-    homepage = "https://github.com/rancher/k3d" ;
+    homepage = "https://github.com/rancher/k3d";
     license = licenses.mit;
   };
 }

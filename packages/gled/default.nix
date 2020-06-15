@@ -1,12 +1,11 @@
 {
-  pkgs,
-  lib,
+  stdenv,
   fetchFromGitHub,
   buildGoModule,
 }:
 
 buildGoModule rec {
-  name = "gled-${version}";
+  pname = "gled";
   version = "0.1.0";
 
   src = fetchFromGitHub {
@@ -24,9 +23,9 @@ buildGoModule rec {
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
   vendorSha256 = "1yfziw4z4yjr9qzyp3vbxzzfkc7gzjn8fd5zfysqhxhsrn00q9rs";
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "Logitech G102 and G203 Prodigy Mouse LED control";
-    homepage = https://github.com/karlovskiy/gled;
+    homepage = "https://github.com/karlovskiy/gled";
     license = licenses.mit;
   };
 }

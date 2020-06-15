@@ -1,6 +1,5 @@
 {
-  pkgs,
-  lib,
+  stdenv,
   fetchFromGitHub,
   buildGoModule,
 }:
@@ -24,7 +23,7 @@ buildGoModule rec {
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
   vendorSha256 = "0sjjj9z1dhilhpc8pq4154czrb79z9cm044jvn75kxcjv6v5l2m5";
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "A simple CLI stopwatch.";
     homepage = "https://github.com/qjcg/4d";
     license = licenses.mit;

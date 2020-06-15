@@ -1,12 +1,11 @@
 {
-  pkgs,
-  lib,
+  stdenv,
   fetchFromGitHub,
   buildGoModule,
 }:
 
 buildGoModule rec {
-  name = "glooctl-${version}";
+  pname = "glooctl";
   version = "1.3.1";
 
   src = fetchFromGitHub {
@@ -31,9 +30,9 @@ buildGoModule rec {
   #vendorSha256 = lib.fakeSha256;
   vendorSha256 = "0ww5c5ykjkrici68r6mkrpk18ljpp6l01x9916w2fr1kl1vwpb6c";
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "An Envoy-Powered API Gateway";
-    homepage = https://github.com/solo-io/gloo ;
+    homepage = "https://github.com/solo-io/gloo";
     license = licenses.asl20;
   };
 }

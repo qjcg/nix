@@ -1,6 +1,5 @@
 {
-  pkgs,
-  lib,
+  stdenv,
   buildGoModule,
   fetchgit,
 }:
@@ -23,9 +22,9 @@ buildGoModule rec {
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
   vendorSha256 = "0000000000000000000000000000000000000000000000000000";
 
-  meta = with lib; {
-    description = "A CLI tool for adjusting screen brightness.";
-    homepage = https://github.com/qjcg/brightness;
+  meta = with stdenv.lib; {
+    description = "A CLI tool for adjusting screen brightness";
+    homepage = "https://github.com/qjcg/brightness";
     license = licenses.mit;
   };
 }

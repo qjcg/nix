@@ -1,4 +1,8 @@
-{ lib, buildGoPackage, fetchFromGitHub }:
+{
+  lib,
+  buildGoPackage,
+  fetchFromGitHub,
+}:
 
 buildGoPackage rec {
   pname = "skaffold";
@@ -23,10 +27,10 @@ buildGoPackage rec {
     sha256 = "1a4gkr0g620d4hxfxzk2aasic91assgwf0flms8av2nm2pkcv7yw";
   };
 
-  meta = {
+  meta = with stdenv.lib; {
     description = "Easy and Repeatable Kubernetes Development";
-    homepage = https://github.com/GoogleContainerTools/skaffold;
-    license = lib.licenses.asl20;
-    maintainers = with lib.maintainers; [ vdemeester ];
+    homepage = "https://github.com/GoogleContainerTools/skaffold";
+    license = licenses.asl20;
+    maintainers = with maintainers; [ vdemeester ];
   };
 }

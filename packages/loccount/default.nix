@@ -1,15 +1,12 @@
 {
   stdenv,
-  pkgs,
-  lib,
   fetchFromGitLab,
-
   go,
   python27,
 }:
 
 stdenv.mkDerivation rec {
-  name = "loccount-${version}";
+  pname = "loccount";
   version = "2.8";
 
   depsBuildBuild = [ go ];
@@ -46,9 +43,9 @@ stdenv.mkDerivation rec {
     sha256 = "0iva662fppzhqv75sc8rkjk75wnn26qk4s8vdh68nvvqjsd2sm4r";
   };
 
-  meta = with lib; {
-    description = "Count source lines of code in a project.";
-    homepage = https://gitlab.com/esr/loccount;
+  meta = with stdenv.lib; {
+    description = "Count source lines of code in a project";
+    homepage = "https://gitlab.com/esr/loccount";
     license = licenses.bsd3;
   };
 }

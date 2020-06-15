@@ -1,8 +1,7 @@
 {
-  pkgs ? import <nixpkgs> {},
-  lib ? pkgs.lib,
-  fetchFromGitHub ? pkgs.fetchFromGitHub,
-  buildGoModule ? pkgs.buildGoModule,
+  stdenv,
+  fetchFromGitHub,
+  buildGoModule,
 }:
 
 buildGoModule rec {
@@ -28,7 +27,7 @@ buildGoModule rec {
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
   vendorSha256 = "1s0p3glszr81wxk0h38n55zcpzchacrnwr725jk4jqdpfifrn1qk";
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "A stream processor for mundane tasks written in Go";
     homepage = "https://github.com/Jeffail/benthos";
     license = licenses.mit;

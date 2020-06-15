@@ -14,7 +14,7 @@
 }:
 
 stdenv.mkDerivation rec {
-  name = "freetube";
+  pname = "freetube";
   version = "0.7.1";
   
   src = fetchurl {

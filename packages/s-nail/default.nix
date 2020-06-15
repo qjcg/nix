@@ -1,7 +1,5 @@
 {
   stdenv,
-  pkgs,
-  lib,
   fetchurl,
 
   openssl,
@@ -26,9 +24,9 @@ stdenv.mkDerivation rec {
     make VAL_PREFIX=$out CONFIG=maximal all
   '';
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "Simple mail reader.";
-    homepage = https://www.sdaoden.eu/code.html ;
+    homepage = "https://www.sdaoden.eu/code.html";
     platforms = platforms.unix ;
   };
 }

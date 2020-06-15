@@ -1,8 +1,7 @@
 { 
-  pkgs ? import <nixpkgs> {},
-  lib ? pkgs.lib,
-  buildGoModule ? pkgs.buildGoModule,
-  fetchFromGitHub ? pkgs.fetchFromGitHub,
+  stdenv,
+  buildGoModule,
+  fetchFromGitHub,
 }:
 
 buildGoModule rec {
@@ -22,7 +21,7 @@ buildGoModule rec {
     mv "$out"/bin/cli "$out"/bin/rancher
   '';
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "The Rancher Command Line Interface (CLI) is a unified tool for interacting with your Rancher Server.";
     homepage = "https://github.com/rancher/cli";
     license = licenses.asl20;
