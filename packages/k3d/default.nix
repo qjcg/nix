@@ -22,7 +22,7 @@ buildGoModule rec {
 
   deleteVendor = true;
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "A lightweight wrapper to run k3s (Rancher Lab’s minimal Kubernetes distribution) in docker";
     homepage = "https://github.com/rancher/k3d";
     license = licenses.mit;

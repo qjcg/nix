@@ -25,7 +25,7 @@ buildGoModule rec {
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
   vendorSha256 = "1dgczgl8i1cpxmm0pws9258xnycwvksvpwvdkccmx4v5civ9ydlx";
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "Speaking in tongues via stdout";
     homepage = "https://github.com/qjcg/horeb";
     license = licenses.mit;

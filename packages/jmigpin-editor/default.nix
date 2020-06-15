@@ -26,7 +26,7 @@ buildGoModule rec {
   vendorSha256 = "1vg1x2jbdg8b8qi3rnyxsb3cqp02qzh5y9lz4ml7bln47808wd0f";
   modRoot = "v2";
 
-  meta = with lib; {
+  meta = with stdenv.lib; {
     description = "Source code editor in pure Go";
     homepage = "https://github.com/jmigpin/editor";
     license = licenses.mit;
