@@ -27,6 +27,13 @@ switch-hm:
 upgrade:
 	$(CMD_SWITCH) --upgrade
 
+SKIP_REGEX := "nodejs"
+
+# Upgrade nix-env environment.
+upgrade-env:
+	nix-channel --update
+	nix-env -q --json | jq -Mr '.[] .pname' | grep -v $(SKIP_REGEX) | xargs nix-env -u
+
 ## upgrade-hm: Run nix-channel --update, then home-manager switch.
 upgrade-hm:
 	nix-channel --update
