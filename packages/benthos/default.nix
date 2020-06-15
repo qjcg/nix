@@ -7,7 +7,7 @@
 
 buildGoModule rec {
   name = "benthos-${version}";
-  version = "3.17.0";
+  version = "3.18.0";
 
   src = fetchFromGitHub {
     owner = "Jeffail";
@@ -16,8 +16,10 @@ buildGoModule rec {
 
     # To get this value, use "nix-prefetch-url --unpack" with the release tarball, eg:
     #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
-    sha256 = "1ygf5crv5sp9sr30qhqnbxc65s36xfx1c721sp7xhw3r9qja6d05";
+    sha256 = "1nh1n5h1mvzpbvqgza45pgzh2rc96g7jj75scglzvzxq62syv9jl";
   };
+
+  subPackages = ["cmd/benthos"];
 
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.
