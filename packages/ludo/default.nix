@@ -1,30 +1,41 @@
-# FIXME: WORK IN PROGRESS. This ludo package currently produces a BROKEN binary that does nothing!
 {
   stdenv,
-  lib,
   fetchurl,
 
   glfw, openal,
   libX11, libXcursor, libXrandr, libXinerama,
   libXi, libXxf86vm,
+  undmg,
 }:
 
+let
+  version = "0.11.1";
+
+  releaseFile =
+    if stdenv.isDarwin then
+    "Ludo-OSX-x86_64-${version}.dmg" else
+    "Ludo-Linux-x86_64-${version}.tar.gz";
+
+  releaseFileSha256 =
+    if stdenv.isDarwin then
+    "0xhbdd4ba2d27xkys31fww721ihsmhsbdryl9w53qnh143hs7slp" else
+    "0blmf11111111jsfd1vy6d65fwpic8zvs88z40l5462pqd6d0bp8";
+in
 stdenv.mkDerivation rec {
+  inherit version;
+
   pname = "ludo-bin";
-  version = "0.9.12";
 
   src = fetchurl {
-    url = "https://github.com/libretro/ludo/releases/download/v${version}/Ludo-Linux-x86_64-${version}.tar.gz";
-
-    # To get this value, use "nix-prefetch-url --unpack" with the release tarball, eg:
-    #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
-    sha256 = "0blmfj35phdr3jsfd1vy6d65fwpic8zvs88z40l5462pqd6d0bp8";
+    url = "https://github.com/libretro/ludo/releases/download/v${version}/${releaseFile}";
+    sha256 = "${releaseFileSha256}";
   };
 
   buildInputs = [ 
     glfw openal
     libX11 libXcursor libXrandr libXinerama
     libXi libXxf86vm
+    undmg
   ];
 
   #phases = [ "installPhase" ];
