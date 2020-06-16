@@ -17,6 +17,8 @@ buildGoModule rec {
 
   deleteVendor = true;
 
+  buildFlagsArray = [ "-ldflags=-s -w -X main.VERSION=${version}" ];
+
   subPackages = [ "cmd/kubeseal" ];
 
   meta = with stdenv.lib; {
