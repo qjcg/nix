@@ -29,7 +29,7 @@ upgrade:
 
 SKIP_REGEX := "nodejs"
 
-# Upgrade nix-env environment.
+## upgrade-env: Upgrade nix-env environment.
 upgrade-env:
 	nix-channel --update
 	nix-env -q --json | jq -Mr '.[] .pname' | grep -v $(SKIP_REGEX) | xargs nix-env -u
