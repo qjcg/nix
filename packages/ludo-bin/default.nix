@@ -20,6 +20,13 @@ let
     if stdenv.isDarwin then
     "0xhbdd4ba2d27xkys31fww721ihsmhsbdryl9w53qnh143hs7slp" else
     "0blmf11111111jsfd1vy6d65fwpic8zvs88z40l5462pqd6d0bp8";
+
+  installPhaseScript =
+    if stdenv.isDarwin then
+    ''
+    '' else
+    ''
+    '';
 in
 stdenv.mkDerivation rec {
   inherit version;

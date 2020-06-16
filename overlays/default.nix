@@ -28,7 +28,7 @@ self: super:
   kompose = super.callPackage ../packages/kompose {};
   kubeseal = super.callPackage ../packages/kubeseal {};
   loccount = super.callPackage ../packages/loccount {};
-  ludo = super.callPackage ../packages/ludo {};
+  ludo-bin = super.callPackage ../packages/ludo-bin {};
   mtlcam = super.callPackage ../packages/mtlcam {};
   plan9port = super.callPackage ../packages/plan9port {};
   pms = super.callPackage ../packages/pms {};
