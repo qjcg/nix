@@ -33,6 +33,7 @@ self: super:
   plan9port = super.callPackage ../packages/plan9port { };
   pms = super.callPackage ../packages/pms { };
   rancher-cli = super.callPackage ../packages/rancher-cli { };
+  ruffle = super.callPackage ../packages/ruffle { };
   s-nail = super.callPackage ../packages/s-nail { };
   skaffold = super.callPackage ../packages/skaffold { };
 
