@@ -1,8 +1,4 @@
-{
-  stdenv,
-  fetchFromGitHub,
-  buildGoModule,
-}:
+{ stdenv, fetchFromGitHub, buildGoModule, }:
 
 buildGoModule rec {
   pname = "horeb";
@@ -18,7 +14,8 @@ buildGoModule rec {
     sha256 = "0h08fmaf90i5arl8maxhffzh2xm3cd55xq58ym55zvba9yrjks0i";
   };
 
-  buildFlagsArray = [ "-ldflags=-s -w -X github.com/qjcg/horeb/pkg/horeb.Version=${version}" ];
+  buildFlagsArray =
+    [ "-ldflags=-s -w -X github.com/qjcg/horeb/pkg/horeb.Version=${version}" ];
 
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.

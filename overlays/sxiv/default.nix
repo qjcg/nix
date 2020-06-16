@@ -1,7 +1,5 @@
 self: super:
 
 {
-    sxiv = super.sxiv.override {
-      conf = builtins.readFile ./sxiv-config.h;
-    };
+  sxiv = super.sxiv.override { conf = builtins.readFile ./sxiv-config.h; };
 }

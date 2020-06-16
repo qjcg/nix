@@ -1,24 +1,22 @@
 # Adapted from: https://github.com/JorelAli/nixos/blob/master/extrapackages/freetube.nix
-{
-  pkgs, lib, stdenv, fetchurl, makeWrapper,
+{ pkgs, lib, stdenv, fetchurl, makeWrapper,
 
-  libpulseaudio, gtk3,
+libpulseaudio, gtk3,
 
-  glibc, libuuid,
+glibc, libuuid,
 
-  alsaLib, atk, cairo, cups, dbus, expat, fontconfig, gdk_pixbuf,
-  glib, gnome2, gtk2, nspr,
-  nss, systemd, xlibs,
+alsaLib, atk, cairo, cups, dbus, expat, fontconfig, gdk_pixbuf, glib, gnome2
+, gtk2, nspr, nss, systemd, xlibs,
 
-  gtk3-x11, at_spi2_atk, at_spi2_core,
-}:
+gtk3-x11, at_spi2_atk, at_spi2_core, }:
 
 stdenv.mkDerivation rec {
   pname = "freetube";
   version = "0.7.1";
-  
+
   src = fetchurl {
-    url = "https://github.com/FreeTubeApp/FreeTube/releases/download/v0.7.1-beta/FreeTube-0.7.1-linux.tar.xz";
+    url =
+      "https://github.com/FreeTubeApp/FreeTube/releases/download/v0.7.1-beta/FreeTube-0.7.1-linux.tar.xz";
     sha256 = "06zn624wvffpl5a7dh8c5dx6aml5dd1rlnazba86xcjc0vkagjw6";
   };
 
@@ -27,9 +25,7 @@ stdenv.mkDerivation rec {
   buildInputs = [ gtk3 ];
   nativeBuildInputs = [ makeWrapper ];
 
-  mclibPath = stdenv.lib.makeLibraryPath [
-    libpulseaudio
-  ];
+  mclibPath = stdenv.lib.makeLibraryPath [ libpulseaudio ];
 
   installPhase = ''
     mkdir -p $out/bin
@@ -47,27 +43,27 @@ stdenv.mkDerivation rec {
 
   # TODO: Clean up this list
   preFixup = let
-    libPath = lib.makeLibraryPath [ 
-      glibc 
-      stdenv.cc.cc.lib 
+    libPath = lib.makeLibraryPath [
+      glibc
+      stdenv.cc.cc.lib
       libuuid
 
-      alsaLib 
+      alsaLib
       atk
       cairo
       cups
-      dbus 
-      expat 
+      dbus
+      expat
       fontconfig
-      gdk_pixbuf 
-      glib 
+      gdk_pixbuf
+      glib
       gnome2.pango
       gnome2.GConf
-      gtk2 
+      gtk2
       libpulseaudio
-      nspr 
-      nss 
-      systemd 
+      nspr
+      nss
+      systemd
       xlibs.libX11
       xlibs.libxcb
       xlibs.libXcomposite
@@ -87,24 +83,24 @@ stdenv.mkDerivation rec {
 
     ];
 
-    in ''
-      patchelf \
-        --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
-        --set-rpath "${libPath}:$out/opt/freetube" \
-        $out/opt/freetube/freetube
+  in ''
+    patchelf \
+      --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
+      --set-rpath "${libPath}:$out/opt/freetube" \
+      $out/opt/freetube/freetube
 
-    '';
-      #patchelf \
-      #  --set-rpath "${libcefPath}" \
-      #  $out/opt/freetube/libcef.so
+  '';
+  #patchelf \
+  #  --set-rpath "${libcefPath}" \
+  #  $out/opt/freetube/libcef.so
 
-      #patchelf \
-      #  --set-rpath "${liblauncherPath}:$out/opt/freetube" \
-      #  $out/opt/freetube/liblauncher.so
+  #patchelf \
+  #  --set-rpath "${liblauncherPath}:$out/opt/freetube" \
+  #  $out/opt/freetube/liblauncher.so
 
   meta = with stdenv.lib; {
     description = "The private YouTube client";
-    homepage = https://freetubeapp.io/;
+    homepage = "https://freetubeapp.io/";
     platforms = platforms.linux;
     license = licenses.gpl3;
   };

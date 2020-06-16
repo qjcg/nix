@@ -1,8 +1,4 @@
-{
-  stdenv,
-  fetchFromGitHub,
-  buildGoPackage,
-}:
+{ stdenv, fetchFromGitHub, buildGoPackage, }:
 
 buildGoPackage rec {
   pname = "goplot";

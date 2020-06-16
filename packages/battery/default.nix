@@ -1,9 +1,4 @@
-{
-  pkgs,
-  lib,
-  fetchFromGitHub,
-  buildGoPackage,
-}:
+{ pkgs, lib, fetchFromGitHub, buildGoPackage, }:
 
 buildGoPackage rec {
   name = "battery-${version}";
@@ -23,8 +18,8 @@ buildGoPackage rec {
   };
 
   meta = with lib; {
-    description = "Cross-platform, normalized battery information tool" ;
-    homepage = https://github.com/distatus/battery ;
+    description = "Cross-platform, normalized battery information tool";
+    homepage = "https://github.com/distatus/battery";
     license = licenses.mit;
   };
 }

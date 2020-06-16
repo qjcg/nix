@@ -1,8 +1,4 @@
-{
-  stdenv,
-  buildGoPackage,
-  fetchFromGitHub,
-}:
+{ stdenv, buildGoPackage, fetchFromGitHub, }:
 
 buildGoPackage rec {
   pname = "skaffold";
@@ -11,9 +7,10 @@ buildGoPackage rec {
   rev = "2f14d99fc5f81e3a52dd76d43cad8d014f150327";
 
   goPackagePath = "github.com/GoogleContainerTools/skaffold";
-  subPackages = ["cmd/skaffold"];
+  subPackages = [ "cmd/skaffold" ];
 
-  buildFlagsArray = let t = "${goPackagePath}/pkg/skaffold"; in  ''
+  buildFlagsArray = let t = "${goPackagePath}/pkg/skaffold";
+  in ''
     -ldflags=
       -X ${t}/version.version=v${version}
       -X ${t}/version.gitCommit=${rev}

@@ -1,19 +1,13 @@
-{ stdenv, fetchFromGitHub, which
-, darwin ? null
-, xorgproto ? null
-, libX11
-, libXext ? null
-, libXt ? null
-, fontconfig ? null
-, freetype ? null
-, perl ? null  # For building web manuals
+{ stdenv, fetchFromGitHub, which, darwin ? null, xorgproto ? null, libX11
+, libXext ? null, libXt ? null, fontconfig ? null, freetype ? null
+, perl ? null # For building web manuals
 }:
 
 stdenv.mkDerivation {
   pname = "plan9port";
   version = "2020-02-22";
 
-  src =  fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "9fans";
     repo = "plan9port";
     rev = "0237dec768a4ee36ae9e18ce8566d2c999d78410";
@@ -47,14 +41,15 @@ stdenv.mkDerivation {
       --replace "case Kcmd+'v':" "case 0x16: case Kcmd+'v':"
   '';
 
-  buildInputs = [
-    perl
-  ] ++ stdenv.lib.optionals (!stdenv.isDarwin) [
-    xorgproto libX11 libXext libXt fontconfig
+  buildInputs = [ perl ] ++ stdenv.lib.optionals (!stdenv.isDarwin) [
+    xorgproto
+    libX11
+    libXext
+    libXt
+    fontconfig
     freetype # fontsrv wants ft2build.h provides system fonts for acme and sam.
-  ] ++ stdenv.lib.optionals stdenv.isDarwin (with darwin.apple_sdk.frameworks; [
-    Carbon Cocoa IOKit Metal QuartzCore
-  ]);
+  ] ++ stdenv.lib.optionals stdenv.isDarwin
+    (with darwin.apple_sdk.frameworks; [ Carbon Cocoa IOKit Metal QuartzCore ]);
 
   builder = ./builder.sh;
   libXt_dev = libXt.dev;
@@ -88,8 +83,12 @@ stdenv.mkDerivation {
       from their native Plan 9 environment to Unix-like operating systems.
     '';
     license = licenses.lpl-102;
-    maintainers = with maintainers; [ AndersonTorres bbarker
-                                      ftrvxmtrx kovirobi ];
+    maintainers = with maintainers; [
+      AndersonTorres
+      bbarker
+      ftrvxmtrx
+      kovirobi
+    ];
     platforms = platforms.unix;
   };
 }

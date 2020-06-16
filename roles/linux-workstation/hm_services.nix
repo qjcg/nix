@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{ pkgs, ... }:
 
 {
   services = {
@@ -14,7 +14,8 @@
           alignment = "center";
           geometry = "600x600+25+50";
           browser = "${pkgs.firefox}/bin/firefox -new-tab";
-          dmenu = "${pkgs.dmenu}/bin/dmenu -fn 'Victor Mono:size=14' -nb '#000000' -sb '#a10094' -sf '#ffffff'";
+          dmenu =
+            "${pkgs.dmenu}/bin/dmenu -fn 'Victor Mono:size=14' -nb '#000000' -sb '#a10094' -sf '#ffffff'";
           font = "Victor Mono Medium 15";
           frame_width = "2";
           padding = "20";

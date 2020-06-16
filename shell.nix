@@ -1,10 +1,3 @@
-with import <nixpkgs> {};
+with import <nixpkgs> { };
 
-mkShell {
-  buildInputs = [
-    fd
-    fzf
-    neovim
-    nixfmt
-  ];
-}
+mkShell { buildInputs = [ fd fzf neovim nixfmt ]; }

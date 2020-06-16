@@ -26,19 +26,9 @@ let
         #brightness
       ];
 
-      nix = [
-        cachix
-        nix-index
-        nixops
-        nixpkgs-fmt
-        nix-bash-completions
-      ];
+      nix = [ cachix nix-index nixops nixpkgs-fmt nix-bash-completions ];
 
-      shell = [
-        bash_5
-        bash-completion
-        xonsh
-      ];
+      shell = [ bash_5 bash-completion xonsh ];
 
       utilities = [
         aria2
@@ -80,29 +70,12 @@ let
         ytop
       ];
 
-      financial = [
-        beancount
-        fava
-      ];
+      financial = [ beancount fava ];
 
-      network = [
-        bettercap
-        caddy
-        dnsutils
-        iw
-        mtr
-        nmap
-        tailscale
-        wireguard-tools
-      ];
+      network =
+        [ bettercap caddy dnsutils iw mtr nmap tailscale wireguard-tools ];
 
-      backup = [
-        adb-sync
-        rclone
-        restic
-        rsync
-        syncthing
-      ];
+      backup = [ adb-sync rclone restic rsync syncthing ];
 
       multimedia = [
         alsaLib
@@ -164,20 +137,20 @@ let
         # Python
         pypy3
 
-        (python38.withPackages (ps: with ps; [
-          beautifulsoup4
-          ipython
-          #isort
-          mypy
-          pylint
-          #python-dotenv
-          requests
-        ]))
+        (python38.withPackages (ps:
+          with ps; [
+            beautifulsoup4
+            ipython
+            #isort
+            mypy
+            pylint
+            #python-dotenv
+            requests
+          ]))
 
         cookiecutter
         python37Packages.black
         poetry
-
 
         # Lisp / Scheme
         emacs
@@ -220,14 +193,7 @@ let
 
     GUI = {
 
-      browsers = [
-        browserpass
-        chromium
-        firefox
-        qutebrowser
-        surf
-        torbrowser
-      ];
+      browsers = [ browserpass chromium firefox qutebrowser surf torbrowser ];
 
       utilities = [
         gcolor3
@@ -248,12 +214,7 @@ let
         xwinwrap
       ];
 
-      games = [
-        dosbox
-        nethack
-        pokerth
-        retroarch
-      ];
+      games = [ dosbox nethack pokerth retroarch ];
 
       #big-games = [
       #  openarena
@@ -267,13 +228,7 @@ let
       ];
 
       # NOTE: Screen locker is configured via system config.
-      window_manager = [
-        albert
-        gnome3.dconf-editor
-        dmenu
-        i3lock
-        st
-      ];
+      window_manager = [ albert gnome3.dconf-editor dmenu i3lock st ];
 
       office = [
         bookworm
@@ -310,13 +265,7 @@ let
         victor-mono
       ];
 
-      themes = [
-        arc-icon-theme
-        lxappearance
-        qt5ct
-        qogir-theme
-        vanilla-dmz
-      ];
+      themes = [ arc-icon-theme lxappearance qt5ct qogir-theme vanilla-dmz ];
 
       multimedia = [
         audacity
@@ -338,12 +287,7 @@ let
       ];
 
       # FIXME: These apps close immediately on startup (eiffel only?), complaining about GLX.
-      broken = [
-        baresip
-        cool-retro-term
-        glxinfo
-        zoom-us
-      ];
+      broken = [ baresip cool-retro-term glxinfo zoom-us ];
 
     };
 
@@ -371,37 +315,37 @@ let
     ];
 
   };
-in
-  {
+in {
 
-    # A test environment containing only the hello package.
-    env-hello = super.pkgs.buildEnv {
-      name = "env-hello";
-      meta.priority = 0;
-      paths = with super.pkgs; [ hello ];
-    };
+  # A test environment containing only the hello package.
+  env-hello = super.pkgs.buildEnv {
+    name = "env-hello";
+    meta.priority = 0;
+    paths = with super.pkgs; [ hello ];
+  };
 
-    env-cli = super.pkgs.buildEnv {
-      name = "env-cli";
-      meta.priority = 0;
-      paths = super.lib.lists.flatten (super.lib.attrsets.collect builtins.isList pkgGroups.CLI) ;
-    };
+  env-cli = super.pkgs.buildEnv {
+    name = "env-cli";
+    meta.priority = 0;
+    paths = super.lib.lists.flatten
+      (super.lib.attrsets.collect builtins.isList pkgGroups.CLI);
+  };
 
-    # A workstation environment for Linux.
-    env-workstation = super.pkgs.buildEnv {
-      name = "env-workstation";
-      meta.priority = 0;
-      paths =
-        super.lib.lists.flatten (super.lib.attrsets.collect builtins.isList pkgGroups.CLI) ++
-        super.lib.lists.flatten (super.lib.attrsets.collect builtins.isList pkgGroups.GUI)
-        ;
-    };
+  # A workstation environment for Linux.
+  env-workstation = super.pkgs.buildEnv {
+    name = "env-workstation";
+    meta.priority = 0;
+    paths = super.lib.lists.flatten
+      (super.lib.attrsets.collect builtins.isList pkgGroups.CLI)
+      ++ super.lib.lists.flatten
+      (super.lib.attrsets.collect builtins.isList pkgGroups.GUI);
+  };
 
-    # A workstation / development environment in a Docker container.
-    env-container = super.pkgs.buildEnv {
-      name = "env-container";
-      meta.priority = 0;
-      paths = pkgGroups.container;
-    };
+  # A workstation / development environment in a Docker container.
+  env-container = super.pkgs.buildEnv {
+    name = "env-container";
+    meta.priority = 0;
+    paths = pkgGroups.container;
+  };
 
-  }
+}

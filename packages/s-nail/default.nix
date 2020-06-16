@@ -1,10 +1,6 @@
-{
-  stdenv,
-  fetchurl,
+{ stdenv, fetchurl,
 
-  openssl,
-  ncurses,
-}:
+openssl, ncurses, }:
 
 stdenv.mkDerivation rec {
   name = "s-nail-${version}";
@@ -27,6 +23,6 @@ stdenv.mkDerivation rec {
   meta = with stdenv.lib; {
     description = "Simple mail reader.";
     homepage = "https://www.sdaoden.eu/code.html";
-    platforms = platforms.unix ;
+    platforms = platforms.unix;
   };
 }

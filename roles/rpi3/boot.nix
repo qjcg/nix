@@ -9,13 +9,16 @@
     };
   };
 
-  swapDevices = [ { device = "/swapfile"; size = 4096; } ];
+  swapDevices = [{
+    device = "/swapfile";
+    size = 4096;
+  }];
 
   hardware.enableRedistributableFirmware = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # A bunch of boot parameters needed for optimal runtime on RPi 3b+
-  boot.kernelParams = ["cma=256M"];
+  boot.kernelParams = [ "cma=256M" ];
   boot.loader.raspberryPi.enable = true;
   boot.loader.raspberryPi.version = 3;
   boot.loader.raspberryPi.uboot.enable = true;

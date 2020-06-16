@@ -14,12 +14,13 @@
   };
 
   boot.plymouth.enable = true;
-  boot.kernelPackages = pkgs.linuxPackages_latest ;
-  boot.extraModulePackages = with config.boot.kernelPackages ; [
-    bcc
-    #bpftrace
-    #sysdig
-  ];
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.extraModulePackages = with config.boot.kernelPackages;
+    [
+      bcc
+      #bpftrace
+      #sysdig
+    ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 2;
@@ -31,9 +32,7 @@
     keyMap = "us";
   };
 
-  i18n = {
-    defaultLocale = "en_CA.UTF-8";
-  };
+  i18n = { defaultLocale = "en_CA.UTF-8"; };
 
   networking.hostName = "luban";
   networking.networkmanager.enable = true;

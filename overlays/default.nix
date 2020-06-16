@@ -8,34 +8,33 @@ self: super:
 
   # Custom Packages
 
-  go-4d = super.callPackage ../packages/4d {};
-  barr = super.callPackage ../packages/barr {};
-  battery = super.callPackage ../packages/battery {};
-  benthos = super.callPackage ../packages/benthos {};
-  brightness = super.callPackage ../packages/brightness {};
-  cassowary = super.callPackage ../packages/cassowary {};
-  emacs = super.callPackage ../packages/emacs {};
-  emacs-nox = super.callPackage ../packages/emacs-nox {};
-  freetube = super.callPackage ../packages/freetube {};
-  gled = super.callPackage ../packages/gled {};
-  glooctl = super.callPackage ../packages/glooctl {};
-  goplot = super.callPackage ../packages/goplot {};
-  hey = super.callPackage ../packages/hey {};
-  horeb = super.callPackage ../packages/horeb {};
-  jmigpin-editor = super.callPackage ../packages/jmigpin-editor {};
-  k3c = super.callPackage ../packages/k3c {};
-  k3d = super.callPackage ../packages/k3d {};
-  kompose = super.callPackage ../packages/kompose {};
-  kubeseal = super.callPackage ../packages/kubeseal {};
-  loccount = super.callPackage ../packages/loccount {};
-  ludo-bin = super.callPackage ../packages/ludo-bin {};
-  mtlcam = super.callPackage ../packages/mtlcam {};
-  plan9port = super.callPackage ../packages/plan9port {};
-  pms = super.callPackage ../packages/pms {};
-  rancher-cli = super.callPackage ../packages/rancher-cli {};
-  s-nail = super.callPackage ../packages/s-nail {};
-  skaffold = super.callPackage ../packages/skaffold {};
-
+  go-4d = super.callPackage ../packages/4d { };
+  barr = super.callPackage ../packages/barr { };
+  battery = super.callPackage ../packages/battery { };
+  benthos = super.callPackage ../packages/benthos { };
+  brightness = super.callPackage ../packages/brightness { };
+  cassowary = super.callPackage ../packages/cassowary { };
+  emacs = super.callPackage ../packages/emacs { };
+  emacs-nox = super.callPackage ../packages/emacs-nox { };
+  freetube = super.callPackage ../packages/freetube { };
+  gled = super.callPackage ../packages/gled { };
+  glooctl = super.callPackage ../packages/glooctl { };
+  goplot = super.callPackage ../packages/goplot { };
+  hey = super.callPackage ../packages/hey { };
+  horeb = super.callPackage ../packages/horeb { };
+  jmigpin-editor = super.callPackage ../packages/jmigpin-editor { };
+  k3c = super.callPackage ../packages/k3c { };
+  k3d = super.callPackage ../packages/k3d { };
+  kompose = super.callPackage ../packages/kompose { };
+  kubeseal = super.callPackage ../packages/kubeseal { };
+  loccount = super.callPackage ../packages/loccount { };
+  ludo-bin = super.callPackage ../packages/ludo-bin { };
+  mtlcam = super.callPackage ../packages/mtlcam { };
+  plan9port = super.callPackage ../packages/plan9port { };
+  pms = super.callPackage ../packages/pms { };
+  rancher-cli = super.callPackage ../packages/rancher-cli { };
+  s-nail = super.callPackage ../packages/s-nail { };
+  skaffold = super.callPackage ../packages/skaffold { };
 
   # Overrides
 
@@ -49,9 +48,7 @@ self: super:
     };
   });
 
-  dunst = super.dunst.override {
-    dunstify = true;
-  };
+  dunst = super.dunst.override { dunstify = true; };
 
   retroarch = super.retroarch.override {
     cores = with self.libretro; [

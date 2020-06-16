@@ -1,9 +1,4 @@
-{
-  stdenv,
-  fetchFromGitLab,
-  go,
-  python27,
-}:
+{ stdenv, fetchFromGitLab, go, python27, }:
 
 stdenv.mkDerivation rec {
   pname = "loccount";
@@ -12,9 +7,7 @@ stdenv.mkDerivation rec {
   depsBuildBuild = [ go ];
   nativeBuildInputs = [ python27 ];
 
-  patches = [
-    ./01_fix-generate.patch
-  ];
+  patches = [ ./01_fix-generate.patch ];
 
   configurePhase = ''
     substituteAllInPlace ./loccount.go

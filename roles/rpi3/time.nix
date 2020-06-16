@@ -1,3 +1,1 @@
-{
-  time.timeZone = "America/Montreal";
-}
+{ time.timeZone = "America/Montreal"; }

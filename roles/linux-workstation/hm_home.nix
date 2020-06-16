@@ -1,16 +1,10 @@
-{
-  pkgs,
-  lib,
+{ pkgs, lib,
 
-  secrets,
-  ...
-}:
+secrets, ... }:
 
 {
   home = {
-    language = {
-      base = "en_US.utf8";
-    };
+    language = { base = "en_US.utf8"; };
 
     sessionVariables = {
       BROWSER = "firefox";
@@ -30,7 +24,7 @@
     keyboard = {
       layout = "us,ca";
       model = "pc105";
-      options = ["grp:shifts_toggle"];
+      options = [ "grp:shifts_toggle" ];
     };
 
     packages = with pkgs; [ env-workstation ];

@@ -1,8 +1,4 @@
-{
-  stdenv,
-  fetchFromGitHub,
-  buildGoModule,
-}:
+{ stdenv, fetchFromGitHub, buildGoModule, }:
 
 buildGoModule rec {
   pname = "4d";

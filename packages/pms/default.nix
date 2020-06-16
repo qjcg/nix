@@ -1,8 +1,4 @@
-{
-  stdenv,
-  fetchFromGitHub,
-  buildGoModule,
-}:
+{ stdenv, fetchFromGitHub, buildGoModule, }:
 
 buildGoModule rec {
   pname = "pms";
@@ -24,7 +20,8 @@ buildGoModule rec {
   vendorSha256 = "19wc5q7009j8h7sasvm9jvql9zbhjxgdpjwsay99jlbzsm23dkcn";
 
   meta = with stdenv.lib; {
-    description = "Practical Music Search is an interactive Vim-like console client for the Music Player Daemon."; 
+    description =
+      "Practical Music Search is an interactive Vim-like console client for the Music Player Daemon.";
     homepage = "https://ambientsound.github.io/pms/";
     license = licenses.mit;
   };

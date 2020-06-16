@@ -2,12 +2,10 @@
 # See https://nixos.org/nixos/manual/#sec-writing-modules
 { config, lib, pkgs, ... }:
 
-
 let
   pkgs = import ./pkgs.nix;
   secrets = import ./secrets.nix;
-in
-{
+in {
 
   imports = [
     (import ./machines/luban { inherit config pkgs secrets; })

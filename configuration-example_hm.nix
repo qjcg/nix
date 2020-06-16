@@ -7,8 +7,7 @@
 # Ref: home-manager(1)
 
 let
-  pkgs = (import <nixpkgs> {});
+  pkgs = (import <nixpkgs> { });
   lib = pkgs.lib;
   secrets = import ./secrets.nix;
-in
-  (import ./machines/eiffel/home.nix { inherit pkgs lib secrets; })
+in (import ./machines/eiffel/home.nix { inherit pkgs lib secrets; })

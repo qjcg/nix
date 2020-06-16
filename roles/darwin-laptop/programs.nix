@@ -17,7 +17,7 @@
     tmux = {
       enable = true;
       defaultCommand = "xonsh -l";
-      extraConfig = builtins.readFile ../../files/tmux.conf ;
+      extraConfig = builtins.readFile ../../files/tmux.conf;
     };
   };
 }

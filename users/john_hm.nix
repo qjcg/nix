@@ -19,18 +19,16 @@
 
   #};
 
-
   home = {
-    language = {
-      base = "en_US.utf8";
-    };
+    language = { base = "en_US.utf8"; };
 
     sessionVariables = {
       EDITOR = "nvim";
       PAGER = "less";
       VISUAL = "nvim";
 
-      NIX_PATH = "nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs:nixos-config=$HOME/.config/nixpkgs/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
+      NIX_PATH =
+        "nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs:nixos-config=$HOME/.config/nixpkgs/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
 
       MAILRC = "$HOME/.config/s-nail/mailrc";
     };
@@ -38,15 +36,12 @@
     keyboard = {
       layout = "us,ca";
       model = "pc105";
-      options = ["grp:shifts_toggle"];
+      options = [ "grp:shifts_toggle" ];
     };
 
-    packages = with pkgs; [
-      env-workstation
-    ];
+    packages = with pkgs; [ env-workstation ];
 
   };
-
 
   programs = {
 
@@ -98,17 +93,20 @@
         grep = "grep -E";
         tree = "tree -A -C";
 
-      # NOTE: Home manager ALWAYS uses <nixpkgs> for the package set.
-      # Ref: https://github.com/rycee/home-manager/issues/376#issuecomment-419666167
+        # NOTE: Home manager ALWAYS uses <nixpkgs> for the package set.
+        # Ref: https://github.com/rycee/home-manager/issues/376#issuecomment-419666167
         hm = "home-manager";
         hms = "${hm} switch -A luban";
-        hmRemoveAllBut3 = "${hm} generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
+        hmRemoveAllBut3 =
+          "${hm} generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
 
         # Aliases for downloading audio via youtube-dl.
-        ytj = "youtube-dl --dump-single-json" ;
-        yta = "youtube-dl --add-metadata --embed-thumbnail --ignore-errors -o '%(playlist)s/%(playlist_index)02d. %(uploader)s - %(title)s.mp3'";
+        ytj = "youtube-dl --dump-single-json";
+        yta =
+          "youtube-dl --add-metadata --embed-thumbnail --ignore-errors -o '%(playlist)s/%(playlist_index)02d. %(uploader)s - %(title)s.mp3'";
 
-        drwWinVM = "rdesktop -u ${secrets.work-user} -p - -g 1680x1050 -K mt1n-${secrets.work-user}";
+        drwWinVM =
+          "rdesktop -u ${secrets.work-user} -p - -g 1680x1050 -K mt1n-${secrets.work-user}";
       };
     };
 
@@ -116,13 +114,7 @@
       enable = true;
       userName = "${secrets.git-name}";
       userEmail = "${secrets.git-email}";
-      ignores = [
-        "node_modules"
-        "__pycache__"
-        "*.pyc"
-        "*.iso"
-        ".netrwhist"
-      ];
+      ignores = [ "node_modules" "__pycache__" "*.pyc" "*.iso" ".netrwhist" ];
 
       aliases = {
         br = "branch -avv";
@@ -132,18 +124,22 @@
         dl = "diff HEAD^ HEAD";
         ds = "diff --staged";
         lasttag = "describe --tags --abbrev=0";
-        lg = "log --pretty=format:'%C(yellow)%h%Creset %s  %C(red)<%cn> %Cgreen[%cr] %Creset%d' --graph";
-        lga = "log --pretty=format:'%C(yellow)%h%Creset %s  %C(red)<%cn> %Cgreen[%cr] %Creset%d' --graph --all";
+        lg =
+          "log --pretty=format:'%C(yellow)%h%Creset %s  %C(red)<%cn> %Cgreen[%cr] %Creset%d' --graph";
+        lga =
+          "log --pretty=format:'%C(yellow)%h%Creset %s  %C(red)<%cn> %Cgreen[%cr] %Creset%d' --graph --all";
         re = "remote -v";
         reu = "remote set-url";
         st = "status --column";
 
         # Via https://git.wiki.kernel.org/index.php/Aliases#Use_graphviz_for_display
-        graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f";
+        graphviz = ''
+          !f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' "$@" | sed 's/[0-9a-f][0-9a-f]*/"&"/g' ; echo '}'; }; f'';
 
-	# find fat git files
-	# via: https://stackoverflow.com/questions/9456550/how-to-find-the-n-largest-files-in-a-git-repository#comment59168142_28783843
-	fatfiles = "!f() { git ls-tree -r -l --abbrev --full-name HEAD | sort -rnk4 | head -20; }; f";
+        # find fat git files
+        # via: https://stackoverflow.com/questions/9456550/how-to-find-the-n-largest-files-in-a-git-repository#comment59168142_28783843
+        fatfiles =
+          "!f() { git ls-tree -r -l --abbrev --full-name HEAD | sort -rnk4 | head -20; }; f";
       };
     };
 
@@ -188,7 +184,6 @@
     };
 
   };
-
 
   services = {
 
@@ -244,182 +239,234 @@
     };
   };
 
-  wayland.windowManager.sway =
-    let
-      modifier = "Mod4";
+  wayland.windowManager.sway = let
+    modifier = "Mod4";
 
-      cmd_term = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
-      cmd_term_tmux = "${cmd_term} -t tmux-main -- sh -c 'tmux new -ADs main'";
+    cmd_term = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
+    cmd_term_tmux = "${cmd_term} -t tmux-main -- sh -c 'tmux new -ADs main'";
 
-      cmd_menu = "${pkgs.dmenu}/bin/dmenu_run -fn 'Fira Code:size=13' -nb '#000000' -sb '#00fcff' -sf '#000000'";
-      cmd_browser = "${pkgs.firefox}/bin/firefox";
+    cmd_menu =
+      "${pkgs.dmenu}/bin/dmenu_run -fn 'Fira Code:size=13' -nb '#000000' -sb '#00fcff' -sf '#000000'";
+    cmd_browser = "${pkgs.firefox}/bin/firefox";
 
-      wpdir = "/home/jgosset/Sync/Pictures/Wallpapers" ;
-      cmd_browse_wallpaper = "${pkgs.sxiv}/bin/sxiv -artos f ${wpdir}";
-      cmd_set_wallpaper = "${pkgs.feh}/bin/feh --bg-fill ${wpdir}/gtgraphics.de/infinitus.jpg ${wpdir}/wallpaperfx.com/white-tiger-in-jungle-2560x1440-wallpaper-2916.jpg --geometry -550";
+    wpdir = "/home/jgosset/Sync/Pictures/Wallpapers";
+    cmd_browse_wallpaper = "${pkgs.sxiv}/bin/sxiv -artos f ${wpdir}";
+    cmd_set_wallpaper =
+      "${pkgs.feh}/bin/feh --bg-fill ${wpdir}/gtgraphics.de/infinitus.jpg ${wpdir}/wallpaperfx.com/white-tiger-in-jungle-2560x1440-wallpaper-2916.jpg --geometry -550";
 
-      left = "h";
-      down = "j";
-      up = "k";
-      right = "l";
-    in {
-      enable = true;
+    left = "h";
+    down = "j";
+    up = "k";
+    right = "l";
+  in {
+    enable = true;
 
-      extraConfig = ''
-        default_border  pixel 8
-        title_align     center
+    extraConfig = ''
+      default_border  pixel 8
+      title_align     center
 
-        output eDP-1    bg #000000 solid_color scale 1 pos 0 0
-        output HDMI-A-2 bg #000000 solid_color scale 1 pos 2560 0
-      '';
+      output eDP-1    bg #000000 solid_color scale 1 pos 0 0
+      output HDMI-A-2 bg #000000 solid_color scale 1 pos 2560 0
+    '';
 
-      config = {
-        fonts = [
-          "Iosevka Medium 13"
-        ];
+    config = {
+      fonts = [ "Iosevka Medium 13" ];
 
-        modifier = "${modifier}";
+      modifier = "${modifier}";
 
-        gaps = {
-          inner = 5;
-          outer = 5;
-        };
-
-        keybindings =
-          lib.mkOptionDefault {
-
-            # Start apps
-            "${modifier}+Return" = "exec ${cmd_term}";
-            "${modifier}+d"      = "exec ${cmd_menu}";
-            "${modifier}+Shift+b" = "exec ${cmd_browse_wallpaper}";
-
-            # Focus windows
-            "${modifier}+${left}"  = "focus left";
-            "${modifier}+${down}"  = "focus down";
-            "${modifier}+${up}"    = "focus up";
-            "${modifier}+${right}" = "focus right";
-
-            # Move windows
-            "${modifier}+Shift+${left}"  = "move left";
-            "${modifier}+Shift+${down}"  = "move down";
-            "${modifier}+Shift+${up}"    = "move up";
-            "${modifier}+Shift+${right}" = "move right";
-
-            # Switch workspaces
-            "${modifier}+n"       = "workspace next_on_output";
-            "${modifier}+p"       = "workspace prev_on_output";
-            "${modifier}+Tab"     = "workspace back_and_forth";
-
-            # Move containers accross outputs.
-            "${modifier}+Shift+period"       = "move container to output right";
-            "${modifier}+Shift+comma"        = "move container to output left";
-
-            # Use scratchpad
-            "${modifier}+minus"       = "scratchpad show";
-            "${modifier}+Shift+minus" = "move scratchpad";
-
-            "${modifier}+Shift+e" = "exit";
-            "${modifier}+Shift+x" = "kill";
-
-            # Control cmus(1) music playback.
-            "XF86AudioPlay" = "exec cmus-remote --pause";
-            "XF86AudioPrev" = "exec cmus-remote --prev";
-            "XF86AudioNext" = "exec cmus-remote --next";
-            "XF86AudioStop" = "exec cmus-remote --stop";
-
-            # Control pulseaudio volume for default sink.
-            # Ref: https://wiki.archlinux.org/index.php/PulseAudio#Keyboard_volume_control
-            "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
-            "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
-            "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-	  };
-
-        # NOTE: Border of i3-gaps windows is set via childBorder.
-        colors = {
-          focused         = { border = "#0000ff"; background = "#000000"; text = "#00ffed"; indicator = "#ffffff"; childBorder = "#0000ff"; };
-          focusedInactive = { border = "#000000"; background = "#000000"; text = "#ffffff"; indicator = "#ffffff"; childBorder = "#000000"; };
-          unfocused       = { border = "#000000"; background = "#222222"; text = "#999999"; indicator = "#ffffff"; childBorder = "#000000"; };
-        };
-
-        bars = [
-          {
-            position = "top";
-            mode = "dock";
-
-            fonts = [
-              "Iosevka Medium 16"
-            ];
-
-            colors = {
-              background = "#000000";
-              statusline = "#cccccc";
-              separator  = "#00ffea";
-
-              focusedWorkspace   = {border = "#000000"; background = "#000000"; text = "#00fcff"; };
-              activeWorkspace    = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
-              inactiveWorkspace  = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
-              urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
-            };
-
-            statusCommand = "${pkgs.barr}/bin/barr";
-            extraConfig = ''
-              output eDP-1
-            '';
-          }
-          {
-            position = "top";
-            mode = "dock";
-
-            fonts = [
-              "Iosevka Medium 13"
-            ];
-
-            colors = {
-              background = "#000000";
-              statusline = "#cccccc";
-              separator  = "#00ffea";
-
-              focusedWorkspace   = {border = "#000000"; background = "#000000"; text = "#00fcff"; };
-              activeWorkspace    = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
-              inactiveWorkspace  = {border = "#000000"; background = "#000000"; text = "#cccccc"; };
-              urgentWorkspace    = {border = "#00ff00"; background = "#000000"; text = "#ffffff"; };
-            };
-
-            statusCommand = "${pkgs.barr}/bin/barr";
-            extraConfig = ''
-              output HDMI-A-2
-            '';
-          }
-        ];
-
-        startup = [
-          #{ notification = false; command = "${cmd_set_wallpaper}"; }
-          { command = "${cmd_term_tmux}"; }
-          { command = "${cmd_browser}"; }
-        ];
-
-        terminal = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
-
+      gaps = {
+        inner = 5;
+        outer = 5;
       };
+
+      keybindings = lib.mkOptionDefault {
+
+        # Start apps
+        "${modifier}+Return" = "exec ${cmd_term}";
+        "${modifier}+d" = "exec ${cmd_menu}";
+        "${modifier}+Shift+b" = "exec ${cmd_browse_wallpaper}";
+
+        # Focus windows
+        "${modifier}+${left}" = "focus left";
+        "${modifier}+${down}" = "focus down";
+        "${modifier}+${up}" = "focus up";
+        "${modifier}+${right}" = "focus right";
+
+        # Move windows
+        "${modifier}+Shift+${left}" = "move left";
+        "${modifier}+Shift+${down}" = "move down";
+        "${modifier}+Shift+${up}" = "move up";
+        "${modifier}+Shift+${right}" = "move right";
+
+        # Switch workspaces
+        "${modifier}+n" = "workspace next_on_output";
+        "${modifier}+p" = "workspace prev_on_output";
+        "${modifier}+Tab" = "workspace back_and_forth";
+
+        # Move containers accross outputs.
+        "${modifier}+Shift+period" = "move container to output right";
+        "${modifier}+Shift+comma" = "move container to output left";
+
+        # Use scratchpad
+        "${modifier}+minus" = "scratchpad show";
+        "${modifier}+Shift+minus" = "move scratchpad";
+
+        "${modifier}+Shift+e" = "exit";
+        "${modifier}+Shift+x" = "kill";
+
+        # Control cmus(1) music playback.
+        "XF86AudioPlay" = "exec cmus-remote --pause";
+        "XF86AudioPrev" = "exec cmus-remote --prev";
+        "XF86AudioNext" = "exec cmus-remote --next";
+        "XF86AudioStop" = "exec cmus-remote --stop";
+
+        # Control pulseaudio volume for default sink.
+        # Ref: https://wiki.archlinux.org/index.php/PulseAudio#Keyboard_volume_control
+        "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioLowerVolume" =
+          "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+        "XF86AudioRaiseVolume" =
+          "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+      };
+
+      # NOTE: Border of i3-gaps windows is set via childBorder.
+      colors = {
+        focused = {
+          border = "#0000ff";
+          background = "#000000";
+          text = "#00ffed";
+          indicator = "#ffffff";
+          childBorder = "#0000ff";
+        };
+        focusedInactive = {
+          border = "#000000";
+          background = "#000000";
+          text = "#ffffff";
+          indicator = "#ffffff";
+          childBorder = "#000000";
+        };
+        unfocused = {
+          border = "#000000";
+          background = "#222222";
+          text = "#999999";
+          indicator = "#ffffff";
+          childBorder = "#000000";
+        };
+      };
+
+      bars = [
+        {
+          position = "top";
+          mode = "dock";
+
+          fonts = [ "Iosevka Medium 16" ];
+
+          colors = {
+            background = "#000000";
+            statusline = "#cccccc";
+            separator = "#00ffea";
+
+            focusedWorkspace = {
+              border = "#000000";
+              background = "#000000";
+              text = "#00fcff";
+            };
+            activeWorkspace = {
+              border = "#000000";
+              background = "#000000";
+              text = "#cccccc";
+            };
+            inactiveWorkspace = {
+              border = "#000000";
+              background = "#000000";
+              text = "#cccccc";
+            };
+            urgentWorkspace = {
+              border = "#00ff00";
+              background = "#000000";
+              text = "#ffffff";
+            };
+          };
+
+          statusCommand = "${pkgs.barr}/bin/barr";
+          extraConfig = ''
+            output eDP-1
+          '';
+        }
+        {
+          position = "top";
+          mode = "dock";
+
+          fonts = [ "Iosevka Medium 13" ];
+
+          colors = {
+            background = "#000000";
+            statusline = "#cccccc";
+            separator = "#00ffea";
+
+            focusedWorkspace = {
+              border = "#000000";
+              background = "#000000";
+              text = "#00fcff";
+            };
+            activeWorkspace = {
+              border = "#000000";
+              background = "#000000";
+              text = "#cccccc";
+            };
+            inactiveWorkspace = {
+              border = "#000000";
+              background = "#000000";
+              text = "#cccccc";
+            };
+            urgentWorkspace = {
+              border = "#00ff00";
+              background = "#000000";
+              text = "#ffffff";
+            };
+          };
+
+          statusCommand = "${pkgs.barr}/bin/barr";
+          extraConfig = ''
+            output HDMI-A-2
+          '';
+        }
+      ];
+
+      startup = [
+        #{ notification = false; command = "${cmd_set_wallpaper}"; }
+        { command = "${cmd_term_tmux}"; }
+        { command = "${cmd_browser}"; }
+      ];
+
+      terminal = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
+
     };
+  };
 
   xdg.configFile = {
-    "albert/albert.conf".source = ../files/albert.conf ;
-    "cmus/rc".source = ../files/cmusrc ;
+    "albert/albert.conf".source = ../files/albert.conf;
+    "cmus/rc".source = ../files/cmusrc;
     "emacs/init.el".source = ../files/emacs/init.el;
-    "fontconfig/conf.d/50-user-font-preferences.conf".source = ../files/50-user-font-preferences.conf;
-    "gtk-3.0/settings.ini".source = ../files/gtk-3.0_settings.ini ;
-    "i3/workspace1.json".source = ../files/workspace1_luban.json ;
-    "nvim/coc-settings-example.json".source = ../files/coc-settings.json ;
-    "s-nail/mailrc".text = pkgs.callPackage ../files/mailrc.nix { inherit secrets; };
-    "sway/i3status-rust.toml".text = pkgs.callPackage ../files/i3status-rust_luban.toml.nix { inherit secrets; };
+    "fontconfig/conf.d/50-user-font-preferences.conf".source =
+      ../files/50-user-font-preferences.conf;
+    "gtk-3.0/settings.ini".source = ../files/gtk-3.0_settings.ini;
+    "i3/workspace1.json".source = ../files/workspace1_luban.json;
+    "nvim/coc-settings-example.json".source = ../files/coc-settings.json;
+    "s-nail/mailrc".text =
+      pkgs.callPackage ../files/mailrc.nix { inherit secrets; };
+    "sway/i3status-rust.toml".text =
+      pkgs.callPackage ../files/i3status-rust_luban.toml.nix {
+        inherit secrets;
+      };
     "sxiv/exec/key-handler" = {
       executable = true;
-      source = ../files/sxiv-key-handler.sh ;
+      source = ../files/sxiv-key-handler.sh;
     };
-    "VSCodium/User/settings_example.json".source = ../files/vscodium_settings_example.json ;
-    "xonsh/".source = ../files/xonsh ;
-    "wayfire.ini".source = ../files/wayfire.ini ;
+    "VSCodium/User/settings_example.json".source =
+      ../files/vscodium_settings_example.json;
+    "xonsh/".source = ../files/xonsh;
+    "wayfire.ini".source = ../files/wayfire.ini;
   };
 
   xdg.dataFile = {
@@ -452,6 +499,5 @@
   #    xrdb -merge ~/.Xresources
   #  '';
   #};
-
 
 }

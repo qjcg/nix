@@ -1,24 +1,15 @@
-{
-  pkgs,
-  lib,
+{ pkgs, lib,
 
-  secrets,
-  ...
-}:
+secrets, ... }:
 
 {
   fonts.fontconfig.enable = true;
   manual.html.enable = true;
 
-  gtk = {
-    enable = true;
-  };
-
+  gtk = { enable = true; };
 
   home = {
-    language = {
-      base = "en_US.utf8";
-    };
+    language = { base = "en_US.utf8"; };
 
     sessionVariables = {
       BROWSER = "firefox";
@@ -38,15 +29,12 @@
     keyboard = {
       layout = "us,ca";
       model = "pc105";
-      options = ["grp:shifts_toggle"];
+      options = [ "grp:shifts_toggle" ];
     };
 
-    packages = with pkgs; [
-      env-workstation
-    ];
+    packages = with pkgs; [ env-workstation ];
 
   };
-
 
   programs = {
 
@@ -82,18 +70,23 @@
         grep = "grep -E";
         tree = "tree -A -C";
 
-      # NOTE: Home manager ALWAYS uses <nixpkgs> for the package set.
-      # Ref: https://github.com/rycee/home-manager/issues/376#issuecomment-419666167
+        # NOTE: Home manager ALWAYS uses <nixpkgs> for the package set.
+        # Ref: https://github.com/rycee/home-manager/issues/376#issuecomment-419666167
         hm = "home-manager";
         hms = "${hm} switch -A eiffel";
-        hmRemoveAllBut3 = "${hm} generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
+        hmRemoveAllBut3 =
+          "${hm} generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
 
-        codium = "codium --enable-proposed-api ms-vscode-remote.remote-containers --enable-proposed-api ms-vscode-remote.remote-ssh --enable-proposed-api ms-vscode-remote.remote-ssh-edit";
+        codium =
+          "codium --enable-proposed-api ms-vscode-remote.remote-containers --enable-proposed-api ms-vscode-remote.remote-ssh --enable-proposed-api ms-vscode-remote.remote-ssh-edit";
 
         # Print all Active Directory groups. It seems they have GID >= 10000.
-        drwADGroups = "id | sed -e 's/,/\\n/g' -e 's/(/: /g' -e 's/)//g' | sort -n | awk -F: '/^[1-9]/ && $1 > 10000'";
-        drwHomeUsage = "shopt -s dotglob && du --threshold 1M --exclude={G,H,W,X} -s ~/* | sort -n | sed 's/.home.jgosset.//' | awk '{print $2,$1}' | goplot bar";
-        drwWinVM = "rdesktop -u ${secrets.work-user} -p - -g 1680x1050 -K mt1n-${secrets.work-user}";
+        drwADGroups =
+          "id | sed -e 's/,/\\n/g' -e 's/(/: /g' -e 's/)//g' | sort -n | awk -F: '/^[1-9]/ && $1 > 10000'";
+        drwHomeUsage =
+          "shopt -s dotglob && du --threshold 1M --exclude={G,H,W,X} -s ~/* | sort -n | sed 's/.home.jgosset.//' | awk '{print $2,$1}' | goplot bar";
+        drwWinVM =
+          "rdesktop -u ${secrets.work-user} -p - -g 1680x1050 -K mt1n-${secrets.work-user}";
       };
     };
 
@@ -103,13 +96,7 @@
       enable = true;
       userName = "${secrets.git-name}";
       userEmail = "${secrets.git-email}";
-      ignores = [
-        "node_modules"
-        "__pycache__"
-        "*.pyc"
-        "*.iso"
-        ".netrwhist"
-      ];
+      ignores = [ "node_modules" "__pycache__" "*.pyc" "*.iso" ".netrwhist" ];
 
       aliases = {
         br = "branch -avv";
@@ -119,18 +106,22 @@
         dl = "diff HEAD^ HEAD";
         ds = "diff --staged";
         lasttag = "describe --tags --abbrev=0";
-        lg = "log --pretty=format:'%C(yellow)%h%Creset %s  %C(red)<%cn> %Cgreen[%cr] %Creset%d' --graph";
-        lga = "log --pretty=format:'%C(yellow)%h%Creset %s  %C(red)<%cn> %Cgreen[%cr] %Creset%d' --graph --all";
+        lg =
+          "log --pretty=format:'%C(yellow)%h%Creset %s  %C(red)<%cn> %Cgreen[%cr] %Creset%d' --graph";
+        lga =
+          "log --pretty=format:'%C(yellow)%h%Creset %s  %C(red)<%cn> %Cgreen[%cr] %Creset%d' --graph --all";
         re = "remote -v";
         reu = "remote set-url";
         st = "status --column";
 
         # Via https://git.wiki.kernel.org/index.php/Aliases#Use_graphviz_for_display
-        graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f";
+        graphviz = ''
+          !f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' "$@" | sed 's/[0-9a-f][0-9a-f]*/"&"/g' ; echo '}'; }; f'';
 
-	# find fat git files
-	# via: https://stackoverflow.com/questions/9456550/how-to-find-the-n-largest-files-in-a-git-repository#comment59168142_28783843
-	fatfiles = "!f() { git ls-tree -r -l --abbrev --full-name HEAD | sort -rnk4 | head -20; }; f";
+        # find fat git files
+        # via: https://stackoverflow.com/questions/9456550/how-to-find-the-n-largest-files-in-a-git-repository#comment59168142_28783843
+        fatfiles =
+          "!f() { git ls-tree -r -l --abbrev --full-name HEAD | sort -rnk4 | head -20; }; f";
       };
     };
 
@@ -182,7 +173,6 @@
 
   };
 
-
   services = {
 
     dunst = {
@@ -196,7 +186,8 @@
           alignment = "center";
           geometry = "600x600+25+50";
           browser = "${pkgs.firefox}/bin/firefox -new-tab";
-          dmenu = "${pkgs.dmenu}/bin/dmenu -fn 'Victor Mono:size=14' -nb '#000000' -sb '#a10094' -sf '#ffffff'";
+          dmenu =
+            "${pkgs.dmenu}/bin/dmenu -fn 'Victor Mono:size=14' -nb '#000000' -sb '#a10094' -sf '#ffffff'";
           font = "Victor Mono Medium 15";
           frame_width = "2";
           padding = "20";
@@ -266,31 +257,39 @@
   xdg.configFile = {
     "cmus/rc".source = ../../files/cmusrc;
     "emacs/init.el".source = ../../files/emacs/init.el;
-    "fontconfig/conf.d/50-user-font-preferences.conf".source = ../../files/50-user-font-preferences.conf;
+    "fontconfig/conf.d/50-user-font-preferences.conf".source =
+      ../../files/50-user-font-preferences.conf;
     "i3/workspace1.json".source = ../../files/workspace1.json;
 
     "i3/i3status-rust.toml" = {
 
       # Using pkgs.callPackage allows antiquotations to be expanded.
-      text = pkgs.callPackage ../../files/i3status-rust_eiffel.toml.nix { inherit secrets; };
+      text = pkgs.callPackage ../../files/i3status-rust_eiffel.toml.nix {
+        inherit secrets;
+      };
       onChange = "i3-msg restart";
     };
     "i3/i3status-rust_smallscreen.toml" = {
 
       # Using pkgs.callPackage allows antiquotations to be expanded.
-      text = pkgs.callPackage ../../files/i3status-rust_eiffel-smallscreen.toml.nix { inherit secrets; };
+      text =
+        pkgs.callPackage ../../files/i3status-rust_eiffel-smallscreen.toml.nix {
+          inherit secrets;
+        };
       onChange = "i3-msg restart";
     };
 
-    "nvim/coc-settings-example.json".source = ../../files/coc-settings.json ;
-    "s-nail/mailrc".text = pkgs.callPackage ../../files/mailrc.nix { inherit secrets; };
+    "nvim/coc-settings-example.json".source = ../../files/coc-settings.json;
+    "s-nail/mailrc".text =
+      pkgs.callPackage ../../files/mailrc.nix { inherit secrets; };
     "sxiv/exec/key-handler" = {
       executable = true;
-      source = ../../files/sxiv-key-handler.sh ;
+      source = ../../files/sxiv-key-handler.sh;
     };
-    "wtf/config.yml".source = ../../files/wtf-config.yml ;
-    "VSCodium/User/settings_example.json".source = ../../files/vscodium_settings_example.json ;
-    "xonsh/".source = ../../files/xonsh ;
+    "wtf/config.yml".source = ../../files/wtf-config.yml;
+    "VSCodium/User/settings_example.json".source =
+      ../../files/vscodium_settings_example.json;
+    "xonsh/".source = ../../files/xonsh;
   };
 
   xdg.dataFile = {

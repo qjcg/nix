@@ -32,8 +32,8 @@
   ];
 
   networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [  ];
-  networking.firewall.allowedUDPPorts = [  ];
+  networking.firewall.allowedTCPPorts = [ ];
+  networking.firewall.allowedUDPPorts = [ ];
 
   programs.mtr.enable = true;
 

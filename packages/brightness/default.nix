@@ -1,8 +1,4 @@
-{
-  stdenv,
-  buildGoModule,
-  fetchgit,
-}:
+{ stdenv, buildGoModule, fetchgit, }:
 
 buildGoModule rec {
   name = "brightness-${version}";

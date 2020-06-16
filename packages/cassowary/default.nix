@@ -1,8 +1,4 @@
-{
-  stdenv,
-  buildGoModule,
-  fetchFromGitHub,
-}:
+{ stdenv, buildGoModule, fetchFromGitHub, }:
 
 buildGoModule rec {
   pname = "cassowary";
@@ -22,7 +18,7 @@ buildGoModule rec {
 
   meta = with stdenv.lib; {
     description = "Modern cross-platform HTTP load-testing tool";
-    homepage = "https://github.com/rogerwelin/cassowary" ;
+    homepage = "https://github.com/rogerwelin/cassowary";
     license = licenses.mit;
   };
 }

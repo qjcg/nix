@@ -1,8 +1,4 @@
-{
-  stdenv,
-  fetchFromGitHub,
-  buildGoModule,
-}:
+{ stdenv, fetchFromGitHub, buildGoModule, }:
 
 buildGoModule rec {
   pname = "benthos";
@@ -18,9 +14,11 @@ buildGoModule rec {
     sha256 = "1nh1n5h1mvzpbvqgza45pgzh2rc96g7jj75scglzvzxq62syv9jl";
   };
 
-  buildFlagsArray = [ "-ldflags=-s -w -X github.com/Jeffail/benthos/v3/lib/service.Version=${src.rev}" ];
+  buildFlagsArray = [
+    "-ldflags=-s -w -X github.com/Jeffail/benthos/v3/lib/service.Version=${src.rev}"
+  ];
 
-  subPackages = ["cmd/benthos"];
+  subPackages = [ "cmd/benthos" ];
 
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.

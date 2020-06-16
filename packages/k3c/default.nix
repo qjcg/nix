@@ -1,8 +1,4 @@
-{
-  stdenv,
-  fetchFromGitHub,
-  buildGoModule,
-}:
+{ stdenv, fetchFromGitHub, buildGoModule, }:
 
 buildGoModule rec {
   pname = "k3c";
@@ -25,7 +21,8 @@ buildGoModule rec {
   vendorSha256 = "0wgx3jlw92bzwcbwqbq3hrv4q1z2mzrvxnld6bj5rgkwym1f8zvs";
 
   meta = with stdenv.lib; {
-    description = "Lightweight local container engine for container development";
+    description =
+      "Lightweight local container engine for container development";
     homepage = "https://github.com/ibuildthecloud/k3c";
     license = licenses.asl20;
   };

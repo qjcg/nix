@@ -8,22 +8,15 @@
     darwinConfig = "$HOME/.config/nixpkgs/configuration.nix";
 
     shellAliases = {
-      codium = "codium --enable-proposed-api ms-vscode-remote.remote-containers";
+      codium =
+        "codium --enable-proposed-api ms-vscode-remote.remote-containers";
       ls = "ls --color --group-directories-first";
       k = "kubectl";
     };
 
-    shells = with pkgs; [
-      bashInteractive_5
-      xonsh
-    ];
+    shells = with pkgs; [ bashInteractive_5 xonsh ];
 
-    systemPackages = with pkgs; [
-      bashInteractive_5
-      getent
-      neovim
-      xonsh
-    ];
+    systemPackages = with pkgs; [ bashInteractive_5 getent neovim xonsh ];
 
     variables = {
       BROWSER = "firefox";

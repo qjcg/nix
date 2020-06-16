@@ -2,8 +2,7 @@
 {
   network.description = "Workstation Network";
 
-  workstation =
-    { config, pkgs, ... }:
+  workstation = { config, pkgs, ... }:
 
     {
       deployment = {
@@ -11,9 +10,7 @@
         virtualbox = {
           memorySize = 2048;
           vcpu = 2;
-          vmFlags = [
-            "--vram" "256"
-          ];
+          vmFlags = [ "--vram" "256" ];
         };
       };
 
@@ -35,9 +32,7 @@
         layout = "us,ca";
         xkbOptions = "grp:shifts_toggle";
 
-        displayManager.lightdm = {
-          enable = true;
-        };
+        displayManager.lightdm = { enable = true; };
 
         windowManager.i3 = {
           enable = true;
@@ -48,16 +43,14 @@
       time.timeZone = "America/Montreal";
 
       users = {
-        groups = {
-          dev = { gid = 7777; };
-        };
+        groups = { dev = { gid = 7777; }; };
 
         users = {
           dev = {
             createHome = true;
             home = "/home/dev";
             group = "dev";
-            extraGroups = ["wheel"];
+            extraGroups = [ "wheel" ];
             description = "Developer";
           };
         };
