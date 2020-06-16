@@ -83,9 +83,9 @@ self: super:
     ]) ++ super.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "Go";
-        publisher = "ms-vscode";
-        version = "0.14.1";
-        sha256 = "1zj87m0swjnr7k9nwxj2db96h90fs1cny7w9c0q4kqnrrysh8ala";
+        publisher = "golang";
+        version = "0.14.4";
+        sha256 = "1rid3vxm4j64kixlm65jibwgm4gimi9mry04lrgv0pa96q5ya4pi";
       }
       {
         name = "trailing-spaces";
