@@ -20,6 +20,7 @@ self: super:
   gled = super.callPackage ../packages/gled { };
   glooctl = super.callPackage ../packages/glooctl { };
   goplot = super.callPackage ../packages/goplot { };
+  helm = super.callPackage ../packages/helm { };
   hey = super.callPackage ../packages/hey { };
   horeb = super.callPackage ../packages/horeb { };
   jmigpin-editor = super.callPackage ../packages/jmigpin-editor { };
