@@ -28,8 +28,8 @@ buildGoModule rec {
   '';
 
   meta = with stdenv.lib; {
-    homepage = "https://github.com/kubernetes/helm";
-    description = "A package manager for kubernetes";
+    homepage = "https://github.com/helm/helm";
+    description = "The Kubernetes Package Manager";
     license = licenses.asl20;
     maintainers = with maintainers; [
       rlupton20
