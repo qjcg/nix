@@ -454,6 +454,8 @@
       ../files/50-user-font-preferences.conf;
     "gtk-3.0/settings.ini".source = ../files/gtk-3.0_settings.ini;
     "i3/workspace1.json".source = ../files/workspace1_luban.json;
+    "nix/nix.conf".text =
+      "experimental-features = nix-command flakes"; # See https://www.tweag.io/blog/2020-05-25-flakes/
     "nvim/coc-settings-example.json".source = ../files/coc-settings.json;
     "s-nail/mailrc".text =
       pkgs.callPackage ../files/mailrc.nix { inherit secrets; };
