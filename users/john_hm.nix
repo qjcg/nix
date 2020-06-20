@@ -279,6 +279,15 @@
         outer = 5;
       };
 
+      # FIXME: NOT working to change repeat_ delay or rate.
+      # See sway-input(5).
+      #input = {
+      #  "1:1:AT_Translated_Set_2_keyboard" = {
+      #    repeat_delay = "2000"; # (ms) Sets the amount of time a key must be held before it starts repeating.
+      #    repeat_rate = "60";  # (chars per sec) Sets the frequency of key repeats once the repeat_delay has passed.
+      #  };
+      #};
+
       keybindings = lib.mkOptionDefault {
 
         # Start apps
