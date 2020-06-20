@@ -13,6 +13,7 @@ buildGoModule rec {
 
   subPackages = [ "." ];
   deleteVendor = true;
+  vendorSha256 = stdenv.lib.fakeSha256;
   postFixup = ''
     mv "$out"/bin/cli "$out"/bin/rancher
   '';

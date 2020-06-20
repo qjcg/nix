@@ -18,6 +18,7 @@ buildGoModule rec {
     [ "-ldflags=-s -w -X github.com/rancher/k3d/version.Version=${version}" ];
 
   deleteVendor = true;
+  vendorSha256 = stdenv.lib.fakeSha256;
 
   meta = with stdenv.lib; {
     description =
