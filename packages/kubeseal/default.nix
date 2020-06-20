@@ -12,7 +12,7 @@ buildGoModule rec {
   };
 
   deleteVendor = true;
-  vendorSha256 = stdenv.lib.fakeSha256;
+  vendorSha256 = "1sd453mbaxr575i7dpimxkxzdhy29jdlac0hg9a39yq27mrjzpqm";
 
   buildFlagsArray = [ "-ldflags=-s -w -X main.VERSION=${version}" ];
 
