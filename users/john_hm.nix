@@ -93,13 +93,6 @@
         grep = "grep -E";
         tree = "tree -A -C";
 
-        # NOTE: Home manager ALWAYS uses <nixpkgs> for the package set.
-        # Ref: https://github.com/rycee/home-manager/issues/376#issuecomment-419666167
-        hm = "home-manager";
-        hms = "${hm} switch -A luban";
-        hmRemoveAllBut3 =
-          "${hm} generations | awk 'NR > 3 {print $5}' | xargs home-manager remove-generations && nix-collect-garbage";
-
         # Aliases for downloading audio via youtube-dl.
         ytj = "youtube-dl --dump-single-json";
         yta =
