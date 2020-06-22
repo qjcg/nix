@@ -37,6 +37,7 @@ self: super:
   ruffle = super.callPackage ../packages/ruffle { };
   s-nail = super.callPackage ../packages/s-nail { };
   skaffold = super.callPackage ../packages/skaffold { };
+  tekton-cli = super.callPackage ../packages/tekton-cli { };
 
   # Overrides
 
