@@ -2,18 +2,20 @@
 
 buildGoModule rec {
   pname = "rancher-cli";
-  version = "2.4.3";
+  version = "2.4.5";
 
   src = fetchFromGitHub {
     owner = "rancher";
     repo = "cli";
     rev = "v${version}";
-    sha256 = "0m2d2b2ddmg1q4whg5nvgss05q5dyv1xkqbm1xpgc4939hrz8kff";
+    sha256 = "0a6is23bsxijcxklrxnq1l9fa23mkwypli5jaxwrcpp7zwxd5ihg";
   };
 
   subPackages = [ "." ];
   deleteVendor = true;
-  vendorSha256 = stdenv.lib.fakeSha256;
+  vendorSha256 = "0gf7jaw9nzfkxdrl9k6v1mypqcsk3nrymj9x12d6d5b218k8kcgv";
+  buildFlagsArray = [ "-ldflags=-s -w -X main.VERSION=v${version}" ];
+
   postFixup = ''
     mv "$out"/bin/cli "$out"/bin/rancher
   '';
