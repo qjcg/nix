@@ -316,6 +316,7 @@ let
 
   };
 in {
+  env-cli-darwin = (import ./cli-darwin.nix self super).env-cli-darwin;
 
   # A test environment containing only the hello package.
   env-hello = super.pkgs.buildEnv {
