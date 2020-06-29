@@ -15,7 +15,7 @@ let
         battery
         #gled
         goplot
-        hey
+        #hey
         k3c
         k3d
         loccount
@@ -98,7 +98,7 @@ let
         sox
         streamripper
 
-        mps-youtube
+        #mps-youtube
         youtube-dl
         youtube-viewer
       ];
@@ -119,7 +119,7 @@ let
         gocode
         gogetdoc
         gomodifytags
-        gopls
+        #gopls
         gotags
         gotools
         protobuf
