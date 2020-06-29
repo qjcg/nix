@@ -4,6 +4,8 @@
 
   imports = [ <home-manager/nixos> ];
 
+  nix.trustedUsers = [ "root" "@wheel" ];
+
   users.users.john = {
     description = "John Gosset";
     isNormalUser = true;
