@@ -26,7 +26,7 @@ let
         #brightness
       ];
 
-      nix = [ cachix nix-index nixops nixpkgs-fmt nix-bash-completions ];
+      nix = [ cachix nix-index nixFlakes nixops nixpkgs-fmt nix-bash-completions ];
 
       shell = [ bash_5 bash-completion xonsh ];
 
