@@ -6,8 +6,7 @@ let
   # https://github.com/NixOS/nixpkgs/branches/all
   # https://github.com/NixOS/nixpkgs/tree/nixos-unstable
   # https://github.com/NixOS/nixpkgs/tree/nixpkgs-unstable
-  ref-nixpkgs =
-    "fce7562cf46727fdaf801b232116bc9ce0512049"; # nixos-unstable branch
+  ref-nixpkgs = "release-20.03";
 
   # nixpkgs-wayland
   # https://github.com/colemickens/nixpkgs-wayland/branches/all
