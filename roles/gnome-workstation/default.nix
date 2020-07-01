@@ -43,6 +43,7 @@
   services.gpm.enable = true;
   services.printing.enable = true;
   services.openssh.enable = true;
+  services.resolved.dnssec = "false";
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.displayManager.defaultSession = "gnome";
