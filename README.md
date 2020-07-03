@@ -120,6 +120,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [Announcing the new Golang infrastructure: buildGoModule](https://kalbas.it/2019/03/17/announcing-the-new-golang-infrastructure-buildgomodule/)
 - [Nixpkgs Manual: Go modules](https://nixos.org/nixpkgs/manual/#ssec-go-modules)
 - [Python: poetry2nix](https://github.com/nix-community/poetry2nix)
+- [Nix Package Versions](https://lazamar.co.uk/nix-versions/)
 
 ### Containers
 
