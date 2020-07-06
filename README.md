@@ -121,6 +121,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [Nixpkgs Manual: Go modules](https://nixos.org/nixpkgs/manual/#ssec-go-modules)
 - [Python: poetry2nix](https://github.com/nix-community/poetry2nix)
 - [Nix Package Versions](https://lazamar.co.uk/nix-versions/)
+- [Declarative User Package Management in NixOS](https://www.thedroneely.com/posts/declarative-user-package-management-in-nixos/)
 
 ### Containers
 
