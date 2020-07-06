@@ -2,16 +2,13 @@
 
 buildGoModule rec {
   pname = "benthos";
-  version = "3.19.0";
+  version = "3.20.0";
 
   src = fetchFromGitHub {
     owner = "Jeffail";
     repo = "benthos";
     rev = "v${version}";
-
-    # To get this value, use "nix-prefetch-url --unpack" with the release tarball, eg:
-    #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
-    sha256 = "0qjlm4r3hh2268w5g4b8z1158wpbiffrwqw2ifs6ib8bwjknd85q";
+    sha256 = "0scdi3kxzb1mzxnndxbw9dbgxc0fvscg7jrmvyjfrqa6x1m71all";
   };
 
   buildFlagsArray = [
