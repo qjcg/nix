@@ -317,13 +317,15 @@ let
 
   };
 in {
-  env-cli-darwin = (import ./cli-darwin.nix self super).env-cli-darwin;
   env-financial = (import ./financial.nix self super).env-financial;
+  env-go = (import ./go.nix self super).env-go;
   env-k8s = (import ./k8s.nix self super).env-k8s;
   env-neovim = (import ./neovim.nix self super).env-neovim;
   env-nix = (import ./nix.nix self super).env-nix;
   env-personal = (import ./personal.nix self super).env-personal;
+  env-python = (import ./python.nix self super).env-python;
   env-tools = (import ./tools.nix self super).env-tools;
+  env-vscodium = (import ./vscodium.nix self super).env-vscodium;
 
   # A test environment containing only the hello package.
   env-hello = super.pkgs.buildEnv {
