@@ -24,6 +24,7 @@ self: super:
       loccount
       lorri
       ludo-bin
+      mdbook
       mkcert
       neofetch
       neovim
@@ -33,6 +34,7 @@ self: super:
       rancher-cli
       ripgrep
       skaffold
+      sqlite
       tekton-cli
       tig
       tmux
