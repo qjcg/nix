@@ -26,7 +26,8 @@ let
         #brightness
       ];
 
-      nix = [ cachix nix-index nixFlakes nixops nixpkgs-fmt nix-bash-completions ];
+      nix =
+        [ cachix nix-index nixFlakes nixops nixpkgs-fmt nix-bash-completions ];
 
       shell = [ bash_5 bash-completion xonsh ];
 
@@ -317,6 +318,12 @@ let
   };
 in {
   env-cli-darwin = (import ./cli-darwin.nix self super).env-cli-darwin;
+  env-financial = (import ./financial.nix self super).env-financial;
+  env-k8s = (import ./k8s.nix self super).env-k8s;
+  env-neovim = (import ./neovim.nix self super).env-neovim;
+  env-nix = (import ./nix.nix self super).env-nix;
+  env-personal = (import ./personal.nix self super).env-personal;
+  env-tools = (import ./tools.nix self super).env-tools;
 
   # A test environment containing only the hello package.
   env-hello = super.pkgs.buildEnv {
