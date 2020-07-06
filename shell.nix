@@ -3,7 +3,7 @@ with import <nixpkgs> { };
 mkShell {
   pname = "shell-nixpkgs";
 
-  buildInputs = [ fd fzf neovim nixfmt ];
+  buildInputs = [ env-neovim env-nix ];
 
   shellHook = let
     base_url = "https://api.github.com";
