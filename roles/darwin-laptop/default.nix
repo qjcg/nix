@@ -14,7 +14,7 @@
       k = "kubectl";
     };
 
-    shells = with pkgs; [ bash_5 xonsh ];
+    shells = with pkgs; [ bash xonsh ];
 
     systemPackages = with pkgs; [
       env-go
