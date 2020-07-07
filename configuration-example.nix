@@ -1,6 +1,6 @@
 # Top-level module.
 # See https://nixos.org/nixos/manual/#sec-writing-modules
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   secrets = import ./secrets.nix;
@@ -10,29 +10,34 @@ let
   overlay-emacs = import (fetchGit {
     url = "https://github.com/nix-community/emacs-overlay";
     ref = "master";
-    rev = "7a9694ef831a848fd423bbbd60e807b236647bb8";
+    rev = "4838aeeab959711120f8901b3fcda391f39f4e9b";
   });
 
-  # https://github.com/nix-community/emacs-overlay/commits/master
+  # https://github.com/colemickens/nixpkgs-wayland/commits/master
   overlay-wayland = import (fetchGit {
     url = "https://github.com/colemickens/nixpkgs-wayland";
     ref = "master";
-    rev = "724ac75779a1d411e89ebe0ab4aab721e0af525b";
+    rev = "81c6c3601b80cfdd5b9af24db3065023c77a2e36";
   });
 
   pkgs = import (fetchGit {
     url = "https://github.com/NixOS/nixpkgs-channels";
-    ref = "nixpkgs-20.03-darwin";
+    ref = "nixos-20.03";
 
     # If `rev` is assigned a value, the channel will be pinned to this revision.
     # If not, the latest commit relative to the `ref` above will be used.
-    rev = "02203c195495aeb5fa1eeffea6cfa8a291de05a8";
+    rev = "c9d124e39dbeefc53c7b3e09fbfc2c26bcbd4845";
+    #}) { overlays = [ overlay-emacs overlay-wayland overlay-mine ]; };
   }) { overlays = [ overlay-emacs overlay-wayland overlay-mine ]; };
 in {
+
   imports = [
-    (import ./roles/darwin-laptop { inherit pkgs; })
-    (import ./users/hm-darwin_jgosset.nix { inherit pkgs secrets; })
+    (import ./machines/luban { inherit config pkgs secrets; })
+
+    (import ./roles/gnome-workstation { inherit pkgs; })
+    (import ./roles/wayland { inherit pkgs; })
+
+    (import ./users/john.nix { inherit lib pkgs secrets; })
   ];
 
-  inherit (secrets) users;
 }
