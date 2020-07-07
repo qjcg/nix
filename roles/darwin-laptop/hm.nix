@@ -8,7 +8,7 @@
 
 let
   hm_config = (import ./hm_packages.nix { inherit pkgs; })
-    // (import ./hm_programs.nix) // (import ./hm_xdg.nix);
+    // (import ./hm_xdg.nix);
 in {
   imports = [ <home-manager/nix-darwin> ];
 
