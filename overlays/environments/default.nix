@@ -78,32 +78,6 @@ let
 
       backup = [ adb-sync rclone restic rsync syncthing ];
 
-      multimedia = [
-        alsaLib
-        alsaPluginWrapper
-        alsaPlugins
-        alsaTools
-        alsaUtils
-
-        beets
-        cmus
-
-        ffmpeg
-        fluidsynth
-        soundfont-fluid
-
-        mpv
-        opusTools
-        pms
-        pulseaudio
-        sox
-        streamripper
-
-        #mps-youtube
-        youtube-dl
-        youtube-viewer
-      ];
-
       devtools = [
         cue
         direnv
@@ -322,6 +296,7 @@ in {
   env-k8s = (import ./k8s.nix self super).env-k8s;
   env-neovim = (import ./neovim.nix self super).env-neovim;
   env-nix = (import ./nix.nix self super).env-nix;
+  env-multimedia = (import ./multimedia.nix self super).env-multimedia;
   env-personal = (import ./personal.nix self super).env-personal;
   env-python = (import ./python.nix self super).env-python;
   env-shell = (import ./shell.nix self super).env-shell;
