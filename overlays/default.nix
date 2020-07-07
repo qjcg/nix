@@ -1,11 +1,11 @@
 self: super:
 
-{
+let
   # Overlays from this directory
-  neovim = (import ./neovim self super).neovim;
-  st = (import ./st self super).st;
-  sxiv = (import ./sxiv self super).sxiv;
-
+  myOverlays = (import ./environments self super)
+    // (import ./neovim self super) // (import ./st self super)
+    // (import ./sxiv self super);
+in {
   # Custom Packages
 
   go-4d = super.callPackage ../packages/4d { };
@@ -130,4 +130,4 @@ self: super:
     ];
   };
 
-}
+} // myOverlays
