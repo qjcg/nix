@@ -1,8 +1,6 @@
 { pkgs, ... }:
 
 {
-  imports = [ (import ./hm.nix { inherit pkgs; }) ];
-
   environment = {
 
     # Use a custom configuration.nix location.

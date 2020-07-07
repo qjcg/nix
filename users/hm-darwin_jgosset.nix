@@ -7,8 +7,8 @@
 { pkgs, ... }:
 
 let
-  hm_config = (import ./hm_packages.nix { inherit pkgs; })
-    // (import ./hm_xdg.nix);
+  hm_config = (import ./hm-darwin_jgosset_packages.nix { inherit pkgs; })
+    // (import ./hm-darwin_jgosset_xdg.nix);
 in {
   imports = [ <home-manager/nix-darwin> ];
 
