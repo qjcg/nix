@@ -13,19 +13,23 @@ self: super:
         coreutils
         dnsutils
         ed
-        elinks
+        #elinks
         fd
         fdupes
         figlet
         file
+        findutils
         fortune
         fzf
+        getent
         git
         gitAndTools.hub
+        gnugrep
         gnumake
         gnupg
         gopass
         htop
+        imagemagick
         jq
         lastpass-cli
         lefthook
@@ -40,6 +44,7 @@ self: super:
         pandoc
         pdfcpu
         pup
+        pstree
         pv
         rclone
         renameutils
