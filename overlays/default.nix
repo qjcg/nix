@@ -14,8 +14,8 @@ in {
   benthos = super.callPackage ../packages/benthos { };
   brightness = super.callPackage ../packages/brightness { };
   cassowary = super.callPackage ../packages/cassowary { };
-  emacs = super.callPackage ../packages/emacs { };
-  emacs-nox = super.callPackage ../packages/emacs-nox { };
+  #emacs = super.callPackage ../packages/emacs { };
+  #emacs-nox = super.callPackage ../packages/emacs-nox { };
   freetube = super.callPackage ../packages/freetube { };
   gled = super.callPackage ../packages/gled { };
   glooctl = super.callPackage ../packages/glooctl { };
