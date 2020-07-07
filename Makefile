@@ -14,3 +14,7 @@ endif
 
 switch:
 	$(CMD_SWITCH)
+
+update-switch:
+	nix-channel --update
+	$(CMD_SWITCH)
