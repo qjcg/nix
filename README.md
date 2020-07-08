@@ -153,6 +153,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [j0xaf (with i3 config)](https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix)
 - [rummik (with system configurations, custom NixOS modules, nix-darwin, and home-manager)](https://github.com/rummik/nixos-config)
 - [HugoReeves (with machine / role / user structure)](https://github.com/HugoReeves/nix-home/)
+- [vyorkin/nixos-config](https://github.com/vyorkin/nixos-config/): flake-based configuration
 
 ### Community Resources
 
