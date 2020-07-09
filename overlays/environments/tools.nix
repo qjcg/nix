@@ -64,7 +64,7 @@ self: super:
         wireguard-tools
         youtube-dl
         ytop
-      ] ++ lib.optional (stdenv.isLinux) [
+      ] ++ lib.optional stdenv.isLinux [
         bettercap
         iotop
         iw
