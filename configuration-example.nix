@@ -34,8 +34,9 @@ in {
   imports = [
     (import ./machines/luban { inherit config pkgs secrets; })
 
-    (import ./roles/gnome-workstation { inherit pkgs; })
-    (import ./roles/wayland { inherit pkgs; })
+    (import ./roles/workstation-base { inherit pkgs; })
+    (import ./roles/workstation-gnome { inherit pkgs; })
+    (import ./roles/workstation-wayland { inherit pkgs; })
 
     (import ./users/john.nix { inherit lib pkgs secrets; })
   ];
