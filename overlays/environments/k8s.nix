@@ -8,6 +8,7 @@ self: super:
       argo
       #argocd
       benthos
+      conftest
       dive
       helm
       k3c
@@ -15,6 +16,7 @@ self: super:
       kubectl
       kubectx
       kubeseal
+      open-policy-agent
       rancher-cli
       skaffold
       stern
