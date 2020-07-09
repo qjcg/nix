@@ -1,16 +1,50 @@
 { pkgs, ... }:
 
+with pkgs;
 {
+  environment = {
+    systemPackages =
+      [ env-k8s env-neovim env-nix env-personal env-shell env-tools ];
 
-  environment.systemPackages = with pkgs; [
-    env-k8s
-    env-neovim
-    env-nix
-    env-personal
-    env-shell
-    env-tools
-  ];
+    shellAliases = {
+      codium =
+        "codium --enable-proposed-api ms-vscode-remote.remote-containers";
+      ls = "ls --color --group-directories-first";
+      k = "kubectl";
+    };
 
+    shells = [ bash xonsh ];
+
+    variables = {
+      BROWSER = "firefox";
+      EDITOR = "nvim";
+    };
+  };
+
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
+
+  programs = {
+    bash = {
+      enable = true;
+      enableCompletion = true;
+    };
+
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+
+    tmux = {
+      enable = true;
+      extraConfig = builtins.readFile ../../files/tmux.conf;
+    };
+  };
+
+  time.timeZone = "America/Montreal";
+
+  # LINUX-SPECIFIC CONFIG.
+} // lib.attrsets.optionalAttrs stdenv.isLinux {
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [ ];
   networking.firewall.allowedUDPPorts = [ ];
@@ -27,4 +61,23 @@
   virtualisation.docker.enable = true;
   #virtualisation.virtualbox.host.enable = true;
 
+  # DARWIN-SPECIFIC CONFIG.
+} // lib.attrsets.optionalAttrs stdenv.isDarwin {
+
+  # Use a custom configuration.nix location.
+  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/configuration.nix
+  darwinConfig = "$HOME/.config/nixpkgs/configuration.nix";
+
+  environment.systemPackages = [
+    env-go
+    env-k8s
+    env-multimedia
+    env-neovim
+    env-nix
+    env-personal
+    env-python
+    env-shell
+    env-tools
+    env-vscodium
+  ];
 }
