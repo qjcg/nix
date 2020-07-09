@@ -64,20 +64,23 @@ with pkgs;
   # DARWIN-SPECIFIC CONFIG.
 } // lib.attrsets.optionalAttrs stdenv.isDarwin {
 
-  # Use a custom configuration.nix location.
-  # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/configuration.nix
-  darwinConfig = "$HOME/.config/nixpkgs/configuration.nix";
+  environment = {
 
-  environment.systemPackages = [
-    env-go
-    env-k8s
-    env-multimedia
-    env-neovim
-    env-nix
-    env-personal
-    env-python
-    env-shell
-    env-tools
-    env-vscodium
-  ];
+    # Use a custom configuration.nix location.
+    # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/configuration.nix
+    darwinConfig = "$HOME/.config/nixpkgs/configuration.nix";
+
+    systemPackages = [
+      env-go
+      env-k8s
+      env-multimedia
+      env-neovim
+      env-nix
+      env-personal
+      env-python
+      env-shell
+      env-tools
+      env-vscodium
+    ];
+  };
 }
