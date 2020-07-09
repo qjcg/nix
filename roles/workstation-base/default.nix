@@ -13,8 +13,6 @@ with pkgs;
       k = "kubectl";
     };
 
-    shells = [ bash xonsh ];
-
     variables = {
       BROWSER = "firefox";
       EDITOR = "nvim";
@@ -40,8 +38,6 @@ with pkgs;
       extraConfig = builtins.readFile ../../files/tmux.conf;
     };
   };
-
-  time.timeZone = "America/Montreal";
 
   # LINUX-SPECIFIC CONFIG.
 } // lib.attrsets.optionalAttrs stdenv.isLinux {
