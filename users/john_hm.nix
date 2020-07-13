@@ -1,4 +1,4 @@
-{ pkgs, lib, secrets, ... }:
+{ pkgs, secrets, ... }:
 
 {
   manual.html.enable = true;
@@ -281,7 +281,7 @@
       #  };
       #};
 
-      keybindings = lib.mkOptionDefault {
+      keybindings = pkgs.lib.mkOptionDefault {
 
         # Start apps
         "${modifier}+Return" = "exec ${cmd_term}";
