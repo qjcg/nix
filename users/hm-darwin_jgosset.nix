@@ -39,7 +39,37 @@
 
           # nix
           #if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-        '';
+        '' +
+
+          # fzf functions
+          # See https://bluz71.github.io/2018/11/26/fuzzy-finding-in-bash-with-fzf.html
+          ''
+
+            fzf_find_edit() {
+              local file=$(
+                fzf --query="$1" --no-multi --select-1 --exit-0 \
+                    --preview 'bat --color=always --line-range :500 {}'
+                )
+              if [[ -n $file ]]; then
+                  $EDITOR "$file"
+              fi
+            }
+
+            alias ffe='fzf_find_edit'
+
+            fzf_change_directory() {
+              local directory=$(
+                fd --type d | \
+                fzf --query="$1" --no-multi --select-1 --exit-0 \
+                    --preview 'tree -C {} | head -100'
+                )
+              if [[ -n $directory ]]; then
+                  cd "$directory"
+              fi
+            }
+
+            alias fcd='fzf_change_directory'
+          '';
 
         initExtra = ''
           command -v direnv >/dev/null && eval "$(direnv hook bash)"
@@ -52,9 +82,13 @@
           PAGER = "less";
           PS1 = "\\u@\\h \\W \\$ ";
 
+          # See https://bluz71.github.io/2018/11/26/fuzzy-finding-in-bash-with-fzf.html
           FZF_DEFAULT_COMMAND = "fd --type f --color=never";
           FZF_CTRL_T_COMMAND = "${FZF_DEFAULT_COMMAND}";
+          FZF_CTRL_T_OPTS =
+            "--preview 'bat --color=always --line-range :500 {}'";
           FZF_ALT_C_COMMAND = "fd --type d . --color=never";
+          FZF_ALT_C_OPTS = "--preview 'tree -C {} | head -100'";
           FZF_DEFAULT_OPTS =
             " --height 75% --multi --reverse --bind ctrl-f:page-down,ctrl-b:page-up ";
         };
