@@ -5,18 +5,6 @@ with pkgs;
   environment = {
     systemPackages =
       [ env-k8s env-neovim env-nix env-personal env-shell env-tools ];
-
-    shellAliases = {
-      codium =
-        "codium --enable-proposed-api ms-vscode-remote.remote-containers";
-      ls = "ls --color --group-directories-first";
-      k = "kubectl";
-    };
-
-    variables = {
-      BROWSER = "firefox";
-      EDITOR = "nvim";
-    };
   };
 
   nixpkgs.config.allowUnfree = true;
