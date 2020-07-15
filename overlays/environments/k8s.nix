@@ -16,6 +16,7 @@ self: super:
       kubectl
       kubectx
       kubeseal
+      minio-client
       open-policy-agent
       rancher-cli
       skaffold
