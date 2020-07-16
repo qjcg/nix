@@ -10,8 +10,6 @@ mkShell {
     repos =
       toString [ "rancher/k3c" "rancher/k3d" "bitnami-labs/sealed-secrets" ];
   in ''
-    alias ls='ls --color --group-directories-first'
-
     releases() {
       for r in ${repos}; do
         url=${base_url}/repos/$r/releases/latest
