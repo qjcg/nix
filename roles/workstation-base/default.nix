@@ -61,7 +61,6 @@ with pkgs;
       env-nix
       env-personal
       env-python
-      env-shell
       env-tools
       env-vscodium
     ];
