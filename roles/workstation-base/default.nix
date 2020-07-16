@@ -3,8 +3,7 @@
 with pkgs;
 {
   environment = {
-    systemPackages =
-      [ env-k8s env-neovim env-nix env-personal env-shell env-tools ];
+    systemPackages = [ env-k8s env-neovim env-nix env-personal env-tools ];
   };
 
   nixpkgs.config.allowUnfree = true;
