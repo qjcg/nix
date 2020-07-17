@@ -1,4 +1,4 @@
-{ stdenv, buildGoModule, fetchFromGitHub, }:
+{ stdenv, buildGoModule, fetchFromGitHub, installShellFiles }:
 
 buildGoModule rec {
   pname = "tekton-cli";
@@ -20,6 +20,13 @@ buildGoModule rec {
     in ''
       -ldflags= -s -w -X ${t}=v${version}
     '';
+
+  nativeBuildInputs = [ installShellFiles ];
+  postInstall = ''
+    $out/bin/tkn completion bash > tkn.bash
+    $out/bin/tkn completion zsh > tkn.zsh
+    installShellCompletion tkn.{bash,zsh}
+  '';
 
   meta = with stdenv.lib; {
     description = "A CLI for interacting with Tekton";
