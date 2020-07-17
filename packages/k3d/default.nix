@@ -1,8 +1,9 @@
-{ stdenv, fetchFromGitHub, buildGoModule, }:
+{ stdenv, fetchFromGitHub, buildGoModule, installShellFiles
+, k3sVersion ? "v1.18.6-k3s1" }:
 
 buildGoModule rec {
   pname = "k3d";
-  version = "1.7.0";
+  version = "3.0.0";
 
   src = fetchFromGitHub {
     owner = "rancher";
@@ -11,14 +12,26 @@ buildGoModule rec {
 
     # To get this value, use "nix-prefetch-url --unpack" with the release tarball, eg:
     #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
-    sha256 = "0aij2l7zmg4cxbw7pwf7ddc64di25hpjvbmp1madhz9q28rwfa9w";
+    sha256 = "1p4rqzi67cr8vf1ih7zqxkpssqq0vy4pb5crvkxbbf5ad5mwrjri";
   };
 
-  buildFlagsArray =
-    [ "-ldflags=-s -w -X github.com/rancher/k3d/version.Version=${version}" ];
+  subPackages = [ "." ];
+
+  buildFlagsArray = [
+    "-ldflags=-s -w"
+    "-X github.com/rancher/k3d/v3/version.Version=${src.rev}"
+    "-X github.com/rancher/k3d/v3/version.K3sVersion=${k3sVersion}"
+  ];
+
+  nativeBuildInputs = [ installShellFiles ];
+  postInstall = ''
+    $out/bin/k3d completion bash > k3d.bash
+    $out/bin/k3d completion zsh > k3d.zsh
+    installShellCompletion k3d.{bash,zsh}
+  '';
 
   deleteVendor = true;
-  vendorSha256 = "0s2aw446mikyp3rr22km8gw2g3aqd3k6jxqxfj34pm7ida755s60";
+  vendorSha256 = "14y3kr7dn1jzbfapjl3msz0kvahjfi5w9v0kqd0d81idrwj7b82s";
 
   meta = with stdenv.lib; {
     description =
