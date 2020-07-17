@@ -1,4 +1,4 @@
-{ stdenv, buildGoModule, fetchFromGitHub }:
+{ stdenv, buildGoModule, fetchFromGitHub, installShellFiles }:
 
 buildGoModule rec {
   pname = "skaffold";
@@ -20,6 +20,13 @@ buildGoModule rec {
     in ''
       -ldflags= -s -w -X ${t}.version=v${version}
     '';
+
+  nativeBuildInputs = [ installShellFiles ];
+  postInstall = ''
+    $out/bin/skaffold completion bash > skaffold.bash
+    $out/bin/skaffold completion zsh > skaffold.zsh
+    installShellCompletion skaffold.{bash,zsh}
+  '';
 
   meta = with stdenv.lib; {
     description = "Easy and Repeatable Kubernetes Development";
