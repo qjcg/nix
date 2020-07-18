@@ -4,6 +4,11 @@ with pkgs;
 {
   environment = {
     systemPackages = [ env-k8s env-neovim env-nix env-personal env-tools ];
+    variables = {
+      EDITOR = "nvim";
+      PAGER = "less";
+      VISUAL = "nvim";
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
