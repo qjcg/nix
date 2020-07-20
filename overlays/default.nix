@@ -34,6 +34,9 @@ in {
   plan9port = super.callPackage ../packages/plan9port { };
   pms = super.callPackage ../packages/pms { };
   rancher-cli = super.callPackage ../packages/rancher-cli { };
+  revel = super.callPackage ../packages/revel {
+    inherit (super.darwin.apple_sdk.frameworks) Security;
+  };
   ruffle = super.callPackage ../packages/ruffle { };
   s-nail = super.callPackage ../packages/s-nail { };
   skaffold = super.callPackage ../packages/skaffold { };
