@@ -299,6 +299,7 @@ in {
   env-multimedia = (import ./multimedia.nix self super).env-multimedia;
   env-personal = (import ./personal.nix self super).env-personal;
   env-python = (import ./python.nix self super).env-python;
+  env-ruby = (import ./ruby.nix self super).env-ruby;
   env-shell = (import ./shell.nix self super).env-shell;
   env-tools = (import ./tools.nix self super).env-tools;
   env-vscodium = (import ./vscodium.nix self super).env-vscodium;
