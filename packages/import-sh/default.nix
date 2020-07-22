@@ -16,10 +16,6 @@ stdenv.mkDerivation rec {
     cp import.sh $out/bin/import.sh
   '';
 
-  fixupPhase = ''
-    sed -i '195s/\./source/' $out/bin/import.sh
-  '';
-
   meta = with stdenv.lib; {
     description =
       "A simple and fast module system for Bash and other Unix shells";
