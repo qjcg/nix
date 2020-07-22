@@ -23,6 +23,7 @@ in {
   helm = super.callPackage ../packages/helm { };
   hey = super.callPackage ../packages/hey { };
   horeb = super.callPackage ../packages/horeb { };
+  import-sh = super.callPackage ../packages/import-sh { };
   jmigpin-editor = super.callPackage ../packages/jmigpin-editor { };
   k3c = super.callPackage ../packages/k3c { };
   k3d = super.callPackage ../packages/k3d { };
