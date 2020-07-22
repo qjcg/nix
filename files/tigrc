@@ -152,6 +152,7 @@ bind main       F               :toggle commit-title-refs
 bind main       H               :goto HEAD
 # External commands:
 bind main       C               ?git cherry-pick %(commit)
+bind main       B               ?git rebase -i %(commit)
 # Option toggling:
 bind diff       [               :toggle diff-context -1
 bind diff       ]               :toggle diff-context +1
