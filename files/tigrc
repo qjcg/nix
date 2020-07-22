@@ -58,6 +58,9 @@ set wrap-search               = yes
 
 ## Keybindings
 
+# NOTE: Consider using contrib vim keybindings in future:
+#   - https://github.com/jonas/tig/blob/master/contrib/vim.tigrc
+
 # View switching
 bind generic    m               view-main
 bind generic    d               view-diff
