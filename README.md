@@ -70,9 +70,8 @@ nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rp
 
 ## Using Flakes
 
-```sh
-nix-shell -p nixFlakes
-```
+See [Wiki: Flakes](https://nixos.wiki/wiki/Flakes).
+
 
 ## References
 
