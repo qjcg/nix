@@ -15,13 +15,12 @@
       alacritty = {
         enable = true;
         settings = {
-          font.normal.family = "Fira Code";
-          font.normal.style = "Retina";
-          font.size = 16.0;
+          font.normal.family = "Andale Mono";
+          font.normal.style = "Regular";
+          font.size = 20.0;
 
           colors.cursor.text = "#000000";
           colors.cursor.cursor = "#ef02f7";
-          draw_bold_text_with_bright_colors = true;
         };
       };
 
