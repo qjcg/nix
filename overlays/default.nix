@@ -32,6 +32,7 @@ in {
   loccount = super.callPackage ../packages/loccount { };
   ludo-bin = super.callPackage ../packages/ludo-bin { };
   mtlcam = super.callPackage ../packages/mtlcam { };
+  micro = super.callPackage ../packages/micro { };
   plan9port = super.callPackage ../packages/plan9port { };
   pms = super.callPackage ../packages/pms { };
   rancher-cli = super.callPackage ../packages/rancher-cli { };
