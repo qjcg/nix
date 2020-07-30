@@ -8,7 +8,7 @@ buildGoModule rec {
     owner = "tektoncd";
     repo = "cli";
     rev = "v${version}";
-    sha256 = "1p0vjbfd8nrbdfh22g2yv8cljkzyamaphryf76i94cfi4245d9d7";
+    sha256 = "1jdhd11g7kvq2c0cda888gvdpqhzi8srf4si2v951madr7dai2cl";
   };
 
   subPackages = [ "cmd/tkn" ];
