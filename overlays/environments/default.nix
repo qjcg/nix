@@ -116,10 +116,10 @@ let
           with ps; [
             beautifulsoup4
             ipython
-            #isort
+            isort
             mypy
             pylint
-            #python-dotenv
+            python-dotenv
             requests
           ]))
 
@@ -226,7 +226,7 @@ let
         gentium-book-basic
         go-font
         gtk2fontsel
-        #gucharmap
+        gucharmap
         inconsolata
         iosevka
         libertine
@@ -254,7 +254,7 @@ let
         obs-studio
         pavucontrol
         picard
-        #pulseeffects
+        pulseeffects
         qt5.qtbase
         strawberry
         sxiv
