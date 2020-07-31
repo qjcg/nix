@@ -37,6 +37,7 @@ let
         binutils
         ed
         elinks
+        fd
         fdupes
         figlet
         file
@@ -148,12 +149,12 @@ let
         dive
         docker-compose
         #glooctl
+        helm
         k3d
         kind
         kompose
         kubectl
         kubectx
-        kubernetes-helm
         kubeseal
         minikube
         packer
@@ -174,6 +175,7 @@ let
 
       utilities = [
         gcolor3
+        graphviz
         libnotify
         mesa
         qrencode
@@ -274,11 +276,11 @@ let
       git
       go
       gotools
+      helm
       horeb
       jq
       kubectl
       kubectx
-      kubernetes-helm
       less
       gnumake
       neovim
