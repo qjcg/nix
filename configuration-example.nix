@@ -25,10 +25,7 @@ let
     url = "https://github.com/NixOS/nixpkgs-channels";
     ref = "nixos-20.03";
 
-    # If `rev` is assigned a value, the channel will be pinned to this revision.
-    # If not, the latest commit relative to the `ref` above will be used.
     rev = "add5529b3ee2df5035d7fb06120b74363a373be4";
-    #}) { overlays = [ overlay-emacs overlay-wayland overlay-mine ]; };
   }) { overlays = [ overlay-emacs overlay-wayland overlay-mine ]; };
 in {
 
