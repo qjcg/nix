@@ -48,12 +48,12 @@
     alacritty = {
       enable = true;
       settings = {
-        font.family = "monospace";
-        font.style = "Regular";
-        font.size = 12.0;
+        font.normal.family = "monospace";
+        font.normal.style = "Regular";
+        font.normal.size = 26.0;
 
-        cursor.text = "0x000000";
-        cursor.color = "0xffffff";
+        colors.cursor.text = "#000000";
+        colors.cursor.cursor = "#ef02f7";
       };
     };
 
@@ -454,8 +454,9 @@
       ../files/50-user-font-preferences.conf;
     "gtk-3.0/settings.ini".source = ../files/gtk-3.0_settings.ini;
     "i3/workspace1.json".source = ../files/workspace1_luban.json;
-    "nix/nix.conf".text =
-      "experimental-features = nix-command flakes"; # See https://www.tweag.io/blog/2020-05-25-flakes/
+    "nix/nix.conf".text = ''
+      experimental-features = nix-command flakes # See https://www.tweag.io/blog/2020-05-25-flakes/
+    '';
     "nvim/coc-settings-example.json".source = ../files/coc-settings.json;
     "s-nail/mailrc".text =
       pkgs.callPackage ../files/mailrc.nix { inherit secrets; };
