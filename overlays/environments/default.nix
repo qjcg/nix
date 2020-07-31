@@ -106,6 +106,8 @@ let
         # Node
         nodejs-12_x
         now-cli
+        yarn
+        yarn2nix
 
         postgresql_12
 
