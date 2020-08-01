@@ -6,7 +6,6 @@ KERNEL := $(shell uname)
 ifeq ($(KERNEL),Linux)
   # NixOS
   CMD_SWITCH := sudo $(OPTS) nixos-rebuild switch -I nixos-config=$(CFG_FILE)
-
 else ifeq ($(KERNEL),Darwin)
   # NOTE: darwin-rebuild should NOT be run as root!
   CMD_SWITCH := $(OPTS) NIX_PATH=darwin-config=$(CFG_FILE):$(HOME)/.nix-defexpr/channels:$(NIX_PATH) darwin-rebuild switch
