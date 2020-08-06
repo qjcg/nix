@@ -11,15 +11,6 @@ with pkgs;
     };
   };
 
-  # Use experimental nix flakes.
-  # See https://nixos.wiki/wiki/Flakes#Installing_nix_flakes
-  nix = {
-    package = nixUnstable;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnsupportedSystem = true;
 
