@@ -13,7 +13,7 @@ self: super:
         coreutils
         dnsutils
         ed
-        #elinks
+        elinks
         fd
         fdupes
         figlet
@@ -44,7 +44,6 @@ self: super:
         pandoc
         pdfcpu
         pup
-        pstree
         pv
         rclone
         renameutils
@@ -70,9 +69,10 @@ self: super:
         iw
         mkpasswd
         pinentry
+        psmisc
         tailscale
         utillinux
         wtf
-      ];
+      ] ++ lib.optional stdenv.isDarwin [ pstree ];
   };
 }
