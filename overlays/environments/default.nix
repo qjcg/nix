@@ -2,6 +2,12 @@ self: super:
 
 let
 
+  pkgs-flashplayer = import (fetchGit {
+    url = "https://github.com/NixOS/nixpkgs-channels";
+    ref = "nixos-20.03";
+    rev = "add5529b3ee2df5035d7fb06120b74363a373be4";
+  }) { };
+
   pkgGroups = with super.pkgs; {
 
     CLI = {
@@ -234,7 +240,6 @@ let
         inconsolata
         iosevka
         libertine
-        monoid
         noto-fonts
         noto-fonts-emoji
         roboto
@@ -251,7 +256,7 @@ let
         blender
         digikam
         feh
-        flashplayer-standalone
+        pkgs-flashplayer.flashplayer-standalone
         gimp
         imagemagick
         inkscape
