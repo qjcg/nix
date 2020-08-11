@@ -68,9 +68,6 @@ nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rp
 - [ ] Pilot a small refactor of the current configuration into Nix Flakes
 - [ ] Refactor configuration.nix to include package environments (env-workstation, etc)
 
-## Using Flakes
-
-See [Wiki: Flakes](https://nixos.wiki/wiki/Flakes).
 
 
 ## References
@@ -95,8 +92,6 @@ Interesting and useful links on a variety of nix-related topics.
 - [Setting up a custom nix channel](https://savanni.luminescent-dreams.com/2019/09/13/nix-channel/)
 - [How to put your /nix directory on a separate device](https://cs-syd.eu/posts/2019-09-14-nix-on-seperate-device)
 - [Cheatsheet comparing Ubuntu & NixOS](https://nixos.wiki/wiki/Cheatsheet)
-- [Flakes RFC / proposal](https://github.com/tweag/rfcs/blob/flakes/rfcs/0049-flakes.md)
-	- [Flakes RFC GitHub PR (discussion)](https://github.com/NixOS/rfcs/pull/49)
 - [Secure, Declarative Key Management with NixOps, Pass, and nix-plugins](https://elvishjerricco.github.io/2018/06/24/secure-declarative-key-management.html)
 - [Nix by example Part 1: The Nix expression language](https://medium.com/@MrJamesFisher/nix-by-example-a0063a1a4c55)
 - [Learn X in Y Minutes: nix](https://learnxinyminutes.com/docs/nix/)
@@ -105,10 +100,18 @@ Interesting and useful links on a variety of nix-related topics.
 	- [Related Wiki article](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD)
 - [Intro to Nix Channels and Reproducible NixOS Environment](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
 
+### Flakes
+
+- [Nix Flakes, Part 1: An introduction and tutorial](https://www.tweag.io/blog/2020-05-25-flakes/)
+- [Nix Flakes, Part 2: Evaluation Caching](https://www.tweag.io/blog/2020-06-25-eval-cache/)
+- [Nix Flakes, Part 3: Managing NixOS Systems](https://www.tweag.io/blog/2020-07-31-nixos-flakes/)
+- [Wiki: Flakes](https://nixos.wiki/wiki/Flakes)
+- [Flakes RFC / proposal](https://github.com/tweag/rfcs/blob/flakes/rfcs/0049-flakes.md)
+	- [Flakes RFC GitHub PR (discussion)](https://github.com/NixOS/rfcs/pull/49)
+
 ### Concepts
 
 - [What Is Nix](https://engineering.shopify.com/blogs/engineering/what-is-nix)
-- [Nix Flakes, Part 1: An introduction and tutorial(https://www.tweag.io/blog/2020-05-25-flakes/)
 
 #### Videos
 
