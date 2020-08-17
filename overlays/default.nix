@@ -16,6 +16,7 @@ in {
   cassowary = super.callPackage ../packages/cassowary { };
   #emacs = super.callPackage ../packages/emacs { };
   #emacs-nox = super.callPackage ../packages/emacs-nox { };
+  daptin = super.callPackage ../packages/daptin { };
   freetube = super.callPackage ../packages/freetube { };
   gled = super.callPackage ../packages/gled { };
   glooctl = super.callPackage ../packages/glooctl { };
