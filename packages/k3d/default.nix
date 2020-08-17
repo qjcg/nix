@@ -3,7 +3,7 @@
 
 buildGoModule rec {
   pname = "k3d";
-  version = "3.0.0";
+  version = "3.0.1";
 
   src = fetchFromGitHub {
     owner = "rancher";
@@ -12,7 +12,7 @@ buildGoModule rec {
 
     # To get this value, use "nix-prefetch-url --unpack" with the release tarball, eg:
     #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
-    sha256 = "1p4rqzi67cr8vf1ih7zqxkpssqq0vy4pb5crvkxbbf5ad5mwrjri";
+    sha256 = "1l6mh0dpf2bw9sxpn14iivv3pr8mj4favzx2hhn8k1j71cm1w4rj";
   };
 
   subPackages = [ "." ];
