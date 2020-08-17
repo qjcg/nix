@@ -13,7 +13,6 @@ self: super:
         coreutils
         dnsutils
         ed
-        elinks
         fd
         fdupes
         figlet
@@ -65,6 +64,7 @@ self: super:
         ytop
       ] ++ lib.optional stdenv.isLinux [
         bettercap
+        elinks
         iotop
         iw
         mkpasswd
