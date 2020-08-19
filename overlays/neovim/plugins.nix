@@ -16,8 +16,8 @@ super:
     src = super.pkgs.fetchFromGitHub {
       owner = "jjo";
       repo = "vim-cue";
-      rev = "8338fb7642976ead40d3eec53e17ba025c67ed2e";
-      sha256 = "1rgw9drbwshj310azypf4wkvl2m4s5c79w3niygpgz6ysd70rq8v";
+      rev = "339edaf79ff1287ce6a23baaa421e68463cf1a2e";
+      sha256 = "0jr30plym17fdg90smb7g35yi9iz9b7s4md6cxj83zg4vj2hyjh1";
     };
   };
 
