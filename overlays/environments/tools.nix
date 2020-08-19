@@ -6,6 +6,7 @@ self: super:
     meta.priority = 1;
     paths = with super.pkgs;
       [
+        age
         aria2
         bat
         binutils
