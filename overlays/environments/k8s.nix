@@ -9,6 +9,7 @@ self: super:
       #argocd
       benthos
       conftest
+      cue
       dive
       helm
       k3c
