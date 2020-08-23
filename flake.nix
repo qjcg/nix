@@ -3,19 +3,32 @@
   description = "A flake for my nix configurations";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.03";
-    nixpkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-20.03-darwin";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    pkgs.url = "github:NixOS/nixpkgs/nixos-20.03";
+    pkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-20.03-darwin";
+    pkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     wayland.url = "github:colemickens/nixpkgs-wayland";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-darwin, nixpkgs-unstable, wayland }: {
+  outputs = { self, pkgs, pkgs-darwin, pkgs-unstable, wayland }:
 
-    nixosConfigurations.luban = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [ ./configuration.nix ];
+    let
+      # Overlays, see https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
+      overlay-unstable = final: prev: {
+        unstable = pkgs-unstable.legacyPackages."x86_64-linux";
+      };
+
+      overlay-wayland = final: prev: {
+        wayland = wayland.legacyPackages."x86_64-linux";
+      };
+    in {
+      nixosConfigurations.luban = pkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+
+        modules = [
+          ({ pkgs, ... }: {
+            nixpkgs.overlays = [ overlay-unstable overlay-wayland ];
+          })
+        ];
+      };
     };
-
-  };
-
 }
