@@ -28,6 +28,7 @@ self: super:
         gnumake
         gnupg
         gopass
+        got
         htop
         imagemagick
         jq

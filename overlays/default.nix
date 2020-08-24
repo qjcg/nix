@@ -18,6 +18,7 @@ in {
   #emacs-nox = super.callPackage ../packages/emacs-nox { };
   daptin = super.callPackage ../packages/daptin { };
   freetube = super.callPackage ../packages/freetube { };
+  got = super.callPackage ../packages/got { };
   gled = super.callPackage ../packages/gled { };
   glooctl = super.callPackage ../packages/glooctl { };
   goplot = super.callPackage ../packages/goplot { };
