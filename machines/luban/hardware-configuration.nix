@@ -4,7 +4,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix> ];
+  # See https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/installer/scan/not-detected.nix
+  #imports = [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix> ];
+  hardware.enableRedistributableFirmware = true;
 
   boot.initrd.availableKernelModules =
     [ "xhci_pci" "ahci" "sd_mod" "rtsx_pci_sdmmc" ];
