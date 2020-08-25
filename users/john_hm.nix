@@ -39,7 +39,7 @@
       options = [ "grp:shifts_toggle" ];
     };
 
-    packages = with pkgs; [ env-workstation ];
+    packages = with pkgs; [ env-multimedia env-workstation ];
 
   };
 
