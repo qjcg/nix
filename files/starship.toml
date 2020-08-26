@@ -45,7 +45,7 @@ prompt_order = [
 [kubernetes]
 symbol = "☸ "
 style = "dimmed green"
-disabled = false
+disabled = true
 
 [kubernetes.context_aliases]
 "dev.local.cluster.k8s" = "dev"
