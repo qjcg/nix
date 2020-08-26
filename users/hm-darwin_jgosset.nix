@@ -15,7 +15,9 @@
       alacritty = {
         enable = true;
         settings = {
-          font.normal.family = "Andale Mono";
+          # Interesting font families:
+          #   - "Andale Mono" (macOS)
+          font.normal.family = "Inconsolata Nerd Font Mono";
           font.normal.style = "Regular";
           font.size = 20.0;
 
