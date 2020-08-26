@@ -14,6 +14,7 @@ self: super:
         coreutils
         dnsutils
         ed
+        exa
         fd
         fdupes
         figlet
@@ -23,6 +24,8 @@ self: super:
         fzf
         getent
         git
+        gitAndTools.delta
+        #gitAndTools.gitui # NOT in 20.03
         gitAndTools.hub
         gnugrep
         gnumake
@@ -54,6 +57,7 @@ self: super:
         rsync
         s-nail
         sqlite
+        starship
         syncthing
         tig
         tmux
@@ -64,6 +68,7 @@ self: super:
         wireguard-tools
         youtube-dl
         ytop
+        #zoxide # NOT in 20.03
       ] ++ lib.optional stdenv.isLinux [
         bettercap
         elinks
