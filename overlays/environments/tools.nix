@@ -57,7 +57,7 @@ self: super:
         rsync
         s-nail
         sqlite
-        starship
+        #starship # use unstable
         syncthing
         tig
         tmux
