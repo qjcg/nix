@@ -21,6 +21,13 @@
           font.normal.style = "Regular";
           font.size = 20.0;
 
+          # Avoid having to manually switch from zsh -> bash.
+          # Manually specified here instead of /etc/passwd because this user's shell is centrally managed.
+          shell = {
+            program = "/bin/bash";
+            args = [ "--login" ];
+          };
+
           colors = {
             cursor = {
               text = "#000000";
