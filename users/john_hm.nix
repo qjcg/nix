@@ -61,7 +61,9 @@
       enable = true;
 
       initExtra = ''
-        eval "$(direnv hook bash)"
+        command -v direnv >/dev/null && eval "$(direnv hook bash)"
+        command -v starship >/dev/null && eval "$(starship init bash)"
+        command -v zoxide >/dev/null && eval "$(zoxide init bash)"
       '';
 
       profileExtra = ''
