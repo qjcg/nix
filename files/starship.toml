@@ -42,6 +42,9 @@ prompt_order = [
     "character",
 ]
 
+[golang]
+symbol = " "
+
 [kubernetes]
 symbol = "☸ "
 style = "dimmed green"
