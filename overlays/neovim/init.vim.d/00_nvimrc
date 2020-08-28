@@ -48,3 +48,4 @@ autocmd FileType markdown setlocal ai tw=80
 autocmd FileType nix setlocal cuc
 autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
 autocmd FileType python setlocal cursorcolumn
+autocmd FileType cue setlocal ai ts=2 cuc
