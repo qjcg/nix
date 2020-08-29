@@ -2,16 +2,16 @@
 
 buildGoModule rec {
   pname = "got";
-  version = "0.2.0";
+  version = "0.2.1";
 
   src = fetchFromGitHub {
     owner = "melbahja";
     repo = "got";
     rev = "v${version}";
-    sha256 = "sha256-FqUYFEBY6mJBwhsIxc0e2kSH1jRS24u8sUQbKPnplOY=";
+    sha256 = "0i4lsmi28lxrlwn6qiydx1l0ry89xlqvjqa1xdsvpzzfrcw9w82c";
   };
 
-  vendorSha256 = "sha256-7Sp1yxUlranpp4XSocCknEsbOZgvOG6kGAFWSI0mwF4=";
+  vendorSha256 = "1w1c19vlq2ab5sf5gxsh55w9lj16g377q0vw691rpx6wl0k0ifps";
   subPackages = [ "cmd/got" ];
 
   meta = with stdenv.lib; {
