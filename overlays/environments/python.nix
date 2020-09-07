@@ -4,13 +4,21 @@ self: super:
   env-python = super.pkgs.buildEnv {
     name = "env-python";
     meta.priority = 0;
-    paths = with super.pkgs; [
-      cookiecutter
-      poetry
-      python37Packages.black
-
-      (python38.withPackages
-        (ps: with ps; [ beautifulsoup4 ipython mypy pylint requests ]))
-    ];
+    paths = with super.pkgs;
+      [
+        (python38.withPackages (ps:
+          with ps; [
+            ansible
+            ansible-lint
+            beautifulsoup4
+            black
+            cookiecutter
+            ipython
+            mypy
+            poetry
+            pylint
+            requests
+          ]))
+      ];
   };
 }
