@@ -25,7 +25,7 @@ self: super:
         getent
         git
         gitAndTools.delta
-        #gitAndTools.gitui # NOT in 20.03
+        gitAndTools.gitui
         gitAndTools.hub
         gnugrep
         gnumake
@@ -57,7 +57,7 @@ self: super:
         rsync
         s-nail
         sqlite
-        #starship # use unstable
+        starship
         syncthing
         tig
         tmux
@@ -68,7 +68,7 @@ self: super:
         wireguard-tools
         youtube-dl
         ytop
-        #zoxide # NOT in 20.03
+        zoxide
       ] ++ lib.optional stdenv.isLinux [
         bettercap
         elinks
