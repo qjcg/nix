@@ -7,7 +7,8 @@ self: super:
     paths = with super.pkgs; [
       go
       delve
-      #gopls
+      golangci-lint
+      gopls
       gotools
       protobuf
       upx
