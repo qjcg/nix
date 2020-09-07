@@ -2,21 +2,21 @@
 
 buildGoModule rec {
   pname = "helm";
-  version = "3.2.4";
+  version = "3.3.1";
+  _version = "3.3"; # needed by helm's TestVersion unit test?
 
   src = fetchFromGitHub {
     owner = "helm";
     repo = "helm";
     rev = "v${version}";
-    sha256 = "1plpk8qnv11d47qz93h57abjchyp6ahgyazyp0c6rv24vb9fp9zi";
+    sha256 = "0y3ilvafzwizd9zqvp8jijkkd1c2yy7zyl5xfma1zv2x96p7xgqh";
   };
 
-  modSha256 = "000knqwsajlqika4abp3fh721mn1vykcsnv3c1qw0mzffkmzwsqd";
-  vendorSha256 = null;
+  vendorSha256 = "0f8a0psvic923rh13f5041p7hr6w8dy9qxdw3l195yky5cf3fj6w";
 
   subPackages = [ "cmd/helm" ];
   buildFlagsArray = [
-    "-ldflags=-w -s -X helm.sh/helm/v3/internal/version.version=v${version}"
+    "-ldflags=-w -s -X helm.sh/helm/v3/internal/version.version=v${_version}"
   ];
 
   nativeBuildInputs = [ installShellFiles ];
