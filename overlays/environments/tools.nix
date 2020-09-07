@@ -27,6 +27,7 @@ self: super:
         gitAndTools.delta
         gitAndTools.gitui
         gitAndTools.hub
+        gitAndTools.lefthook
         gnugrep
         gnumake
         gnupg
@@ -36,7 +37,6 @@ self: super:
         imagemagick
         jq
         lastpass-cli
-        lefthook
         libfaketime
         loccount
         lsof
