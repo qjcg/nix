@@ -6,7 +6,7 @@ self: super:
     meta.priority = 0;
     paths = with super.pkgs; [
       argo
-      #argocd
+      argocd
       benthos
       conftest
       cue
