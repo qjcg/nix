@@ -13,17 +13,21 @@ highlight Comment gui=italic cterm=italic ctermbg=230
 highlight Search ctermfg=236 ctermbg=229
 
 set autochdir
-set autoindent
-set hlsearch			" highlight search results
+set autoindent			" autoindent by default
+set hlsearch				" highlight search results
 set ignorecase			" case insensitive searches
 set laststatus=1		" only show statusbar if >1 windows open
 set listchars=tab:>-,eol:$
 set nowrap
 set shortmess+=I		" disable welcome screen
-set smartcase			" case-sensitive search only if specified
+set smartcase				" case-sensitive search only if specified
 set splitright			" vsplit window to the right by default
-set wildmenu			" dmenu-style menu
+set wildmenu				" dmenu-style menu
 set wildmode=full
+
+" Default indentation settings.
+" See https://tedlogan.com/techblog3.html
+set shiftwidth=2 tabstop=2 softtabstop=2
 
 
 "" MAPS
@@ -43,10 +47,9 @@ inoremap <F12> <C-o>:syntax sync fromstart<CR>
 
 
 " FIXME: This needs to be applied "after". Currently not working.
-autocmd FileType markdown setlocal ai tw=80
+autocmd FileType markdown setlocal textwidth=80
 
-autocmd FileType nix setlocal cuc
-autocmd FileType yaml setlocal ai et sw=2 ts=2 cuc
-autocmd FileType python setlocal cursorcolumn
-autocmd FileType cue setlocal ai ts=2 cuc
-autocmd FileType go setlocal sw=2 ts=2
+autocmd FileType cue setlocal cursorcolumn
+autocmd FileType nix setlocal cursorcolumn
+autocmd FileType python setlocal cursorcolumn expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd FileType yaml setlocal cursorcolumn expandtab
