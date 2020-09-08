@@ -7,6 +7,8 @@ autocmd BufWritePre *.go :GoImports
 let g:go_def_mode='gopls'
 let g:go_info_mode='gopls'
 
+let g:go_metalinter_autosave = 1
+
 " disable vim-go :GoDef short cut (gd)
 " this is handled by COC LanguageClient [LC]
 let g:go_def_mapping_enabled = 0
