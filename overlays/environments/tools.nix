@@ -35,6 +35,7 @@ self: super:
         got
         htop
         imagemagick
+        influxdb
         jq
         lastpass-cli
         libfaketime
@@ -59,6 +60,7 @@ self: super:
         sqlite
         starship
         syncthing
+        telegraf
         tig
         tmux
         toilet
@@ -74,6 +76,7 @@ self: super:
         elinks
         iotop
         iw
+        kapacitor
         mkpasswd
         pinentry
         psmisc
