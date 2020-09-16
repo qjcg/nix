@@ -47,8 +47,7 @@ symbol = " "
 
 [kubernetes]
 symbol = "☸ "
-style = "dimmed green"
-disabled = true
+disabled = false
 
 [kubernetes.context_aliases]
 "dev.local.cluster.k8s" = "dev"
