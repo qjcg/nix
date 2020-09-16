@@ -20,12 +20,11 @@ let
     rev = "762f7955bcbe16d2c8d0a11843240dca5ec30ede";
   });
 
-  # https://github.com/NixOS/nixpkgs-channels/commits/nixos-20.03
+  # https://github.com/NixOS/nixpkgs-channels/commits/nixos-unstable
   pkgs = import (fetchGit {
     url = "https://github.com/NixOS/nixpkgs-channels";
-    ref = "nixos-20.03";
-
-    rev = "add5529b3ee2df5035d7fb06120b74363a373be4";
+    ref = "nixos-unstable";
+    rev = "1c10ce66c5a19c766f0da7a8ee43ea4b8d60662f";
   }) { overlays = [ overlay-emacs overlay-wayland overlay-mine ]; };
 in {
 
