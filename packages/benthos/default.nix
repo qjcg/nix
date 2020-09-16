@@ -12,7 +12,9 @@ buildGoModule rec {
   };
 
   buildFlagsArray = [
-    "-ldflags=-s -w -X github.com/Jeffail/benthos/v3/lib/service.Version=${src.rev}"
+    "-ldflags="
+    "-X github.com/Jeffail/benthos/v3/lib/service.Version=${src.rev}"
+    "-X github.com/Jeffail/benthos/v3/lib/service.DateBuilt=TimelessBuild"
   ];
 
   subPackages = [ "cmd/benthos" ];
