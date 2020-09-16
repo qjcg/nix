@@ -3,7 +3,7 @@
 buildGoModule rec {
   pname = "helm";
   version = "3.3.1";
-  _version = "3.3"; # needed by helm's TestVersion unit test?
+  #_version = "3.3"; # needed by helm's TestVersion unit test?
 
   src = fetchFromGitHub {
     owner = "helm";
@@ -16,7 +16,7 @@ buildGoModule rec {
 
   subPackages = [ "cmd/helm" ];
   buildFlagsArray = [
-    "-ldflags=-w -s -X helm.sh/helm/v3/internal/version.version=v${_version}"
+    "-ldflags=-w -s -X helm.sh/helm/v3/internal/version.version=v${version}"
   ];
 
   nativeBuildInputs = [ installShellFiles ];

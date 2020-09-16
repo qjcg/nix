@@ -3,8 +3,9 @@ self: super:
 let
   # Overlays from this directory
   myOverlays = (import ./environments self super)
-    // (import ./neovim self super) // (import ./st self super)
-    // (import ./sxiv self super);
+  # FIXME: Disable st for now (broken build).
+  #// (import ./neovim self super) // (import ./st self super)
+    // (import ./neovim self super) // (import ./sxiv self super);
 in {
   # Custom Packages
 
@@ -22,7 +23,7 @@ in {
   gled = super.callPackage ../packages/gled { };
   glooctl = super.callPackage ../packages/glooctl { };
   goplot = super.callPackage ../packages/goplot { };
-  helm = super.callPackage ../packages/helm { };
+  #helm = super.callPackage ../packages/helm { };
   hey = super.callPackage ../packages/hey { };
   horeb = super.callPackage ../packages/horeb { };
   import-sh = super.callPackage ../packages/import-sh { };
