@@ -15,6 +15,7 @@ in {
   benthos = super.callPackage ../packages/benthos { };
   brightness = super.callPackage ../packages/brightness { };
   cassowary = super.callPackage ../packages/cassowary { };
+  cue = super.callPackage ../packages/cue { };
   #emacs = super.callPackage ../packages/emacs { };
   #emacs-nox = super.callPackage ../packages/emacs-nox { };
   daptin = super.callPackage ../packages/daptin { };
