@@ -11,7 +11,7 @@ self: super:
       conftest
       cue
       dive
-      helm
+      #helm
       k3c
       k3d
       kubectl
