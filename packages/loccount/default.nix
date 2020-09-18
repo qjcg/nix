@@ -1,17 +1,11 @@
-{ stdenv, fetchFromGitLab, go, python27, }:
+{ stdenv, fetchFromGitLab, go, python38, }:
 
 stdenv.mkDerivation rec {
   pname = "loccount";
-  version = "2.8";
+  version = "2.10";
 
   depsBuildBuild = [ go ];
-  nativeBuildInputs = [ python27 ];
-
-  patches = [ ./01_fix-generate.patch ];
-
-  configurePhase = ''
-    substituteAllInPlace ./loccount.go
-  '';
+  nativeBuildInputs = [ python38 ];
 
   buildPhase = ''
     export GOCACHE=/tmp/cache/go-build
@@ -33,7 +27,7 @@ stdenv.mkDerivation rec {
     owner = "esr";
     repo = "loccount";
     rev = "${version}";
-    sha256 = "0iva662fppzhqv75sc8rkjk75wnn26qk4s8vdh68nvvqjsd2sm4r";
+    sha256 = "1qw4zmgp1as52xl9ygn6jbla2vd5q2xab75kwfzf6w06g6psnab2";
   };
 
   meta = with stdenv.lib; {
