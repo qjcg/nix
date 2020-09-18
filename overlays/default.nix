@@ -20,10 +20,10 @@ in {
   #emacs-nox = super.callPackage ../packages/emacs-nox { };
   daptin = super.callPackage ../packages/daptin { };
   freetube = super.callPackage ../packages/freetube { };
-  got = super.callPackage ../packages/got { };
   gled = super.callPackage ../packages/gled { };
   glooctl = super.callPackage ../packages/glooctl { };
   goplot = super.callPackage ../packages/goplot { };
+  got = super.callPackage ../packages/got { };
   helm = super.callPackage ../packages/helm { };
   hey = super.callPackage ../packages/hey { };
   horeb = super.callPackage ../packages/horeb { };
