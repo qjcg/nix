@@ -198,6 +198,11 @@
         userEmail = "${secrets.git-email}";
         ignores = [ "node_modules" "__pycache__" "*.pyc" "*.iso" ".netrwhist" ];
 
+        delta = {
+          enable = true;
+          options = { features = "side-by-side line-numbers decorations"; };
+        };
+
         aliases = {
           br = "branch -avv";
           ci = "commit";
