@@ -12,6 +12,7 @@ self: super:
         binutils
         caddy
         coreutils
+        croc
         dnsutils
         ed
         exa
