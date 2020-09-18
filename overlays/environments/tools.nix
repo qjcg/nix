@@ -24,6 +24,7 @@ self: super:
         fzf
         getent
         git
+        github-cli
         gitAndTools.delta
         gitAndTools.gitui
         gitAndTools.hub

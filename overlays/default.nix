@@ -20,6 +20,7 @@ in {
   #emacs-nox = super.callPackage ../packages/emacs-nox { };
   daptin = super.callPackage ../packages/daptin { };
   freetube = super.callPackage ../packages/freetube { };
+  github-cli = super.callPackage ../packages/github-cli { };
   gled = super.callPackage ../packages/gled { };
   glooctl = super.callPackage ../packages/glooctl { };
   goplot = super.callPackage ../packages/goplot { };
