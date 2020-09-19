@@ -61,6 +61,8 @@ self: super:
         s-nail
         sqlite
         starship
+        step-ca
+        step-cli
         syncthing
         telegraf
         tig
