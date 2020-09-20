@@ -1,18 +1,14 @@
-{ stdenv, fetchFromGitHub, buildGoModule, installShellFiles
-, k3sVersion ? "v1.18.6-k3s1" }:
+{ stdenv, fetchFromGitHub, buildGoModule, installShellFiles }:
 
 buildGoModule rec {
   pname = "k3d";
-  version = "3.0.1";
+  version = "3.0.2";
 
   src = fetchFromGitHub {
     owner = "rancher";
     repo = "k3d";
     rev = "v${version}";
-
-    # To get this value, use "nix-prefetch-url --unpack" with the release tarball, eg:
-    #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
-    sha256 = "1l6mh0dpf2bw9sxpn14iivv3pr8mj4favzx2hhn8k1j71cm1w4rj";
+    sha256 = "182n4kggwr6z75vsagfd0rl89ixcw5h13whf56jh4cd38dj8is5l";
   };
 
   subPackages = [ "." ];
@@ -20,7 +16,9 @@ buildGoModule rec {
   buildFlagsArray = [
     "-ldflags=-s -w"
     "-X github.com/rancher/k3d/v3/version.Version=${src.rev}"
-    "-X github.com/rancher/k3d/v3/version.K3sVersion=${k3sVersion}"
+
+    # Get this from https://update.k3s.io/v1-release/channels/stable
+    "-X github.com/rancher/k3d/v3/version.K3sVersion=v1.18.8-k3s1"
   ];
 
   nativeBuildInputs = [ installShellFiles ];
