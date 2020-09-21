@@ -2,13 +2,13 @@
 
 buildGoModule rec {
   pname = "benthos";
-  version = "3.28.0";
+  version = "3.29.0";
 
   src = fetchFromGitHub {
     owner = "Jeffail";
     repo = "benthos";
     rev = "v${version}";
-    sha256 = "00mqzn71gz02hgpm64g3hdwhf7gs8nhdix344icadqfbamrd2v15";
+    sha256 = "1vndjw80p1r4aah2vvwi9n38pdkps8bshdqqn1dnq0qbzpncd09w";
   };
 
   buildFlagsArray = [
