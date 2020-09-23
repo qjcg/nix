@@ -11,6 +11,7 @@ self: super:
       conftest
       cue
       dive
+      fly
       #helm
       k3c
       k3d
