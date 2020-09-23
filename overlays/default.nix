@@ -23,6 +23,7 @@ in {
   github-cli = super.callPackage ../packages/github-cli { };
   gled = super.callPackage ../packages/gled { };
   glooctl = super.callPackage ../packages/glooctl { };
+  gohack = super.callPackage ../packages/gohack { };
   goplot = super.callPackage ../packages/goplot { };
   got = super.callPackage ../packages/got { };
   helm = super.callPackage ../packages/helm { };

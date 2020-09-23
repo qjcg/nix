@@ -6,6 +6,7 @@ self: super:
     meta.priority = 0;
     paths = with super.pkgs; [
       go
+      gohack
       delve
       golangci-lint
       gopls
