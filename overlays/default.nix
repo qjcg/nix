@@ -9,20 +9,20 @@ let
 in {
   # Custom Packages
 
-  go-4d = super.callPackage ../packages/4d { };
+  #emacs = super.callPackage ../packages/emacs { };
+  #emacs-nox = super.callPackage ../packages/emacs-nox { };
   barr = super.callPackage ../packages/barr { };
   battery = super.callPackage ../packages/battery { };
   benthos = super.callPackage ../packages/benthos { };
   brightness = super.callPackage ../packages/brightness { };
   cassowary = super.callPackage ../packages/cassowary { };
   cue = super.callPackage ../packages/cue { };
-  #emacs = super.callPackage ../packages/emacs { };
-  #emacs-nox = super.callPackage ../packages/emacs-nox { };
   daptin = super.callPackage ../packages/daptin { };
   freetube = super.callPackage ../packages/freetube { };
   github-cli = super.callPackage ../packages/github-cli { };
   gled = super.callPackage ../packages/gled { };
   glooctl = super.callPackage ../packages/glooctl { };
+  go-4d = super.callPackage ../packages/4d { };
   gohack = super.callPackage ../packages/gohack { };
   goplot = super.callPackage ../packages/goplot { };
   got = super.callPackage ../packages/got { };
@@ -37,14 +37,12 @@ in {
   kubeseal = super.callPackage ../packages/kubeseal { };
   loccount = super.callPackage ../packages/loccount { };
   ludo-bin = super.callPackage ../packages/ludo-bin { };
-  mtlcam = super.callPackage ../packages/mtlcam { };
   micro = super.callPackage ../packages/micro { };
+  mtlcam = super.callPackage ../packages/mtlcam { };
   plan9port = super.callPackage ../packages/plan9port { };
   pms = super.callPackage ../packages/pms { };
   rancher-cli = super.callPackage ../packages/rancher-cli { };
-  revel = super.callPackage ../packages/revel {
-    inherit (super.darwin.apple_sdk.frameworks) Security;
-  };
+  revel = super.callPackage ../packages/revel { };
   ruffle = super.callPackage ../packages/ruffle { };
   s-nail = super.callPackage ../packages/s-nail { };
   skaffold = super.callPackage ../packages/skaffold { };
