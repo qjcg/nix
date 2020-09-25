@@ -10,5 +10,11 @@
     }
   },
 
-  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "json", "yaml"]
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "json",
+    "vim",
+    "yaml"
+  ]
 }
