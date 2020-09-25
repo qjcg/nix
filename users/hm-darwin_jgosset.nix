@@ -234,7 +234,7 @@
     xdg.configFile = {
       "cmus/rc".source = ../files/cmusrc;
       "emacs/init.el".source = ../files/emacs/init.el;
-      "nvim/coc-settings-example.json".source = ../files/coc-settings.json;
+      "nvim/coc-settings.json".source = ../files/coc-settings.json;
       "starship.toml".source = ../files/starship.toml;
       "tig/config".source = ../files/tigrc;
       "xonsh/".source = ../files/xonsh;

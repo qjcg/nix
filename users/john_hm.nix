@@ -459,7 +459,7 @@
     "nix/nix.conf".text = ''
       experimental-features = nix-command flakes # See https://www.tweag.io/blog/2020-05-25-flakes/
     '';
-    "nvim/coc-settings-example.json".source = ../files/coc-settings.json;
+    "nvim/coc-settings.json".source = ../files/coc-settings.json;
     "s-nail/mailrc".text =
       pkgs.callPackage ../files/mailrc.nix { inherit secrets; };
     "sway/i3status-rust.toml".text =
