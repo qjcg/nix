@@ -11,6 +11,7 @@ self: super:
         bat
         binutils
         caddy
+        conform
         coreutils
         croc
         dnsutils

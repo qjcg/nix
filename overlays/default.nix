@@ -16,6 +16,7 @@ in {
   benthos = super.callPackage ../packages/benthos { };
   brightness = super.callPackage ../packages/brightness { };
   cassowary = super.callPackage ../packages/cassowary { };
+  conform = super.callPackage ../packages/conform { };
   cue = super.callPackage ../packages/cue { };
   daptin = super.callPackage ../packages/daptin { };
   freetube = super.callPackage ../packages/freetube { };
