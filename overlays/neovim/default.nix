@@ -24,6 +24,11 @@ in {
           changeColorScheme-vim
           direnv-vim
 
+          ## Uses coc-nvim.
+          ##
+          ## See:
+          ##   - http://blog.coolshark.xyz/2019/12/coc-plugin/
+          ##
           ## Non-nix-installed extentions are installed into ~/.config/coc/extensions/package.json
           ## To review these, do:
           ## - `:CocInstall coc-marketplace`
@@ -32,10 +37,17 @@ in {
           ## NOTE: The coc-nvim plugin MUST come before other coc- plugins!
           ## See https://github.com/NixOS/nixpkgs/issues/64560#issuecomment-613968827
           coc-nvim
+          coc-css
           coc-go
+          coc-html
+          coc-json
+          coc-markdownlint
           coc-prettier
+          coc-python
           coc-snippets
           coc-tsserver
+          coc-vimlsp
+          coc-yaml
 
           fzf-vim
           goyo
