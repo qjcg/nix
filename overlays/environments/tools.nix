@@ -50,6 +50,7 @@ self: super:
         nmap
         pandoc
         pdfcpu
+        postgresql_12
         pup
         pv
         rclone
