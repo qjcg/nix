@@ -185,7 +185,7 @@
           grep = "grep -E";
           k = "kubectl";
           ls =
-            "${pkgs.coreutils}/bin/ls --color --human-readable --group-directories-first";
+            "${pkgs.exa}/bin/exa --group --group-directories-first --git --sort Name";
           tree = "tree -A -C";
           vi = "nvim";
           vim = "nvim";
