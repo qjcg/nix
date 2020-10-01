@@ -36,6 +36,7 @@ self: super:
         gnupg
         gopass
         got
+        grpcurl
         htop
         imagemagick
         influxdb
