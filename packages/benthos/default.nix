@@ -2,13 +2,13 @@
 
 buildGoModule rec {
   pname = "benthos";
-  version = "3.29.0";
+  version = "3.30.0";
 
   src = fetchFromGitHub {
     owner = "Jeffail";
     repo = "benthos";
     rev = "v${version}";
-    sha256 = "1vndjw80p1r4aah2vvwi9n38pdkps8bshdqqn1dnq0qbzpncd09w";
+    sha256 = "1vlwjnf02z1dkf21j5ryd8i4jag6whpr55v1mrq6nv4g6wyvkjhc";
   };
 
   buildFlagsArray = [
@@ -22,7 +22,7 @@ buildGoModule rec {
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
-  vendorSha256 = "0z000bxr058i21d59yh9lw23hzf9yw5xshlsf550kgvvlkkrl366";
+  vendorSha256 = "1q35rw2rak8y94yggwwbgzdimvq38647d723d8s9i6hrvv057rvv";
 
   meta = with stdenv.lib; {
     description = "A stream processor for mundane tasks written in Go";
