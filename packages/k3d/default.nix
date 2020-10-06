@@ -21,7 +21,7 @@ buildGoModule rec {
     "-X github.com/rancher/k3d/v3/version.Version=${src.rev}"
 
     # Get this from https://update.k3s.io/v1-release/channels/stable
-    "-X github.com/rancher/k3d/v3/version.K3sVersion=v1.18.9+k3s1"
+    "-X github.com/rancher/k3d/v3/version.K3sVersion=v1.18.9-k3s1"
   ];
 
   nativeBuildInputs = [ installShellFiles ];
