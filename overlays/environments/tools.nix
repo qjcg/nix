@@ -62,6 +62,8 @@ self: super:
         rlwrap
         rsync
         s-nail
+        shellcheck
+        shfmt
         sqlite
         starship
         step-ca
