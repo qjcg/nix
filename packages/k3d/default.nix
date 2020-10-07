@@ -2,13 +2,13 @@
 
 buildGoModule rec {
   pname = "k3d";
-  version = "3.1.0";
+  version = "3.1.2";
 
   src = fetchFromGitHub {
     owner = "rancher";
     repo = "k3d";
     rev = "v${version}";
-    sha256 = "1a3xspyyjp4vgh461q2l30i04ln2l2f7h46dxjrf25ysmlddq2za";
+    sha256 = "1qfmmglx57yhrrainxfrmmba54sgxj4is9fgpc3p5sr2babxqgnp";
   };
 
   deleteVendor = true;
