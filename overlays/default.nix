@@ -36,7 +36,7 @@ in {
   k3d = super.callPackage ../packages/k3d { };
   kompose = super.callPackage ../packages/kompose { };
   kubeseal = super.callPackage ../packages/kubeseal { };
-  loccount = super.callPackage ../packages/loccount { };
+  #loccount = super.callPackage ../packages/loccount { };
   ludo-bin = super.callPackage ../packages/ludo-bin { };
   micro = super.callPackage ../packages/micro { };
   mtlcam = super.callPackage ../packages/mtlcam { };
