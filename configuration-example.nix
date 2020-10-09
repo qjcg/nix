@@ -10,21 +10,21 @@ let
   overlay-emacs = import (fetchGit {
     url = "https://github.com/nix-community/emacs-overlay";
     ref = "master";
-    rev = "6ab6350e595dec2c08778b6cb1d3ed2dcfeaa4e4";
+    rev = "aa199d5e708914d7cad2b5019b0d73d1adedb93d";
   });
 
   # https://github.com/colemickens/nixpkgs-wayland/commits/master
   overlay-wayland = import (fetchGit {
     url = "https://github.com/colemickens/nixpkgs-wayland";
     ref = "master";
-    rev = "762f7955bcbe16d2c8d0a11843240dca5ec30ede";
+    rev = "24d952f52170a7a2cb30920c47948ad44e85174c";
   });
 
   # https://github.com/NixOS/nixpkgs-channels/commits/nixos-unstable
   pkgs = import (fetchGit {
     url = "https://github.com/NixOS/nixpkgs-channels";
     ref = "nixos-unstable";
-    rev = "1c10ce66c5a19c766f0da7a8ee43ea4b8d60662f";
+    rev = "84d74ae9c9cbed73274b8e4e00be14688ffc93fe";
   }) { overlays = [ overlay-emacs overlay-wayland overlay-mine ]; };
 in {
 
