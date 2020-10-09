@@ -7,7 +7,6 @@ self: super:
     name = "env-shell";
     meta.priority = 0;
     paths = with super.pkgs;
-      [ bash bash-completion nerdfonts xonsh ]
-      ++ lib.optional stdenv.isLinux [ ];
+      [ bash bash-completion xonsh ] ++ lib.optional stdenv.isLinux [ ];
   };
 }
