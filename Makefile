@@ -18,4 +18,5 @@ switch:
 
 update-switch:
 	nix-channel --update
+	sudo nix-channel --update
 	$(CMD_SWITCH)
