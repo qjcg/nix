@@ -27,6 +27,7 @@ in {
   gohack = super.callPackage ../packages/gohack { };
   goplot = super.callPackage ../packages/goplot { };
   got = super.callPackage ../packages/got { };
+  grafterm = super.callPackage ../packages/grafterm { };
   helm = super.callPackage ../packages/helm { };
   hey = super.callPackage ../packages/hey { };
   horeb = super.callPackage ../packages/horeb { };
