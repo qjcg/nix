@@ -14,6 +14,8 @@
       [ "audio" "disk" "docker" "networkmanager" "vboxusers" "wheel" ];
   };
 
+  home-manager.useUserPackages = true;
+  home-manager.useGlobalPkgs = true;
   home-manager.users.john = import ./john_hm.nix { inherit pkgs secrets; };
 
 }
