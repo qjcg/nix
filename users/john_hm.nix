@@ -77,6 +77,7 @@
         export PATH=$npm_config_prefix/bin:$PATH
 
         # go
+        export GO111MODULE=on
         export GOPATH=~/go
         export GOBIN=$GOPATH/bin
         export PATH=$GOBIN:$PATH
