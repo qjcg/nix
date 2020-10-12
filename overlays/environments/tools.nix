@@ -36,6 +36,7 @@ self: super:
         gnupg
         gopass
         got
+        grafterm
         grpcurl
         htop
         imagemagick
