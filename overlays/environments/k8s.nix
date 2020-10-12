@@ -15,6 +15,7 @@ self: super:
       #helm
       k3c
       k3d
+      kompose
       kubectl
       kubectx
       kubeseal
