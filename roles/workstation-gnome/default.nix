@@ -14,7 +14,8 @@
     vocal
   ];
 
-  services.gnome3.games.enable = true;
+  # FIXME: Disabled, not building (2020-10-12).
+  #services.gnome3.games.enable = true;
   services.xserver.enable = true;
   services.xserver.layout = "us";
   services.xserver.displayManager.defaultSession = "gnome";
