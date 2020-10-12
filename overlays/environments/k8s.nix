@@ -23,6 +23,7 @@ self: super:
       open-policy-agent
       rancher-cli
       skaffold
+      sops
       stern
       tekton-cli
     ];
