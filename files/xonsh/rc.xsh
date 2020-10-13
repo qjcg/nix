@@ -1,12 +1,32 @@
 xontrib load bashisms coreutils vox
 
-$PATH = [p'~/.nix-profile/bin', p'/run/current-system/sw/bin', p'/usr/local/bin'] + $PATH
+$PATH.extend([
+	p'~/.nix-profile/bin',
+	p'/run/current-system/sw/bin',
+	p'/usr/local/bin'
+])
 
 $XONSH_COLOR_STYLE = 'paraiso-dark'
 
+def k8s_status():
+	"""Return current Kubernetes context and namespace.
+	"""
+	ctx = $(kubectl config view --minify --output 'jsonpath={.current-context}').rstrip()
+	ns = $(kubectl config view --minify --output 'jsonpath={..namespace}').rstrip()
+
+	if ctx and ns:
+		status = f"{ctx} ({ns})"
+	elif ctx and not ns:
+		status = f"{ctx}"
+	else:
+		status = ""
+
+	return status
+
 # PROMPT
-$PROMPT = '{env_name}{BOLD_GREEN}{user}@{hostname}{NO_COLOR} {CYAN}{cwd_base}{NO_COLOR} {BOLD_YELLOW}{prompt_end}{NO_COLOR} '
-$RIGHT_PROMPT = '{gitstatus}'
+$PROMPT_FIELDS['k8s'] = k8s_status
+$PROMPT = '{env_name}{BOLD_GREEN}{user}@{hostname}{NO_COLOR} {CYAN}{cwd_base}{NO_COLOR} {gitstatus} {BOLD_CYAN}{k8s}{NO_COLOR}\n{BOLD_YELLOW}❯{NO_COLOR} '
+$ENABLE_ASYNC_PROMPT = True
 
 $BROWSER = 'firefox'
 $PAGER = 'less'
