@@ -8,20 +8,20 @@
     swayidle # used for controlling idle timeouts and triggers (screen locking, etc)
     swaylock # used for locking Wayland sessions
 
-    #waybar # polybar-alike
-    #i3status-rust # simpler bar written in Rust
+    waybar # polybar-alike
+    i3status-rust # simpler bar written in Rust
 
     gebaar-libinput # libinput gestures utility
-    #glpaper # GL shaders as wallpaper
+    glpaper # GL shaders as wallpaper
     grim # screen image capture
     kanshi # dynamic display configuration helper
     mako # notification daemon
     oguri # animated background utility
-    #redshift-wayland # patched to work with wayland gamma protocol
     slurp # screen area selection tool
-    #waypipe # network transparency for Wayland
+    waypipe # network transparency for Wayland
     wf-recorder # wayland screenrecorder
     wl-clipboard # clipboard CLI utilities
+    wldash # wayland launcher/dashboard
     wofi # dmenu replacement for wayland
     wtype # xdotool, but for wayland
 
