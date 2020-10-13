@@ -33,7 +33,7 @@
     # other compositors/window-managers
     #waybox   # An openbox clone on Wayland
     #bspwc    # Wayland compositor based on BSPWM
-    #cage # A Wayland kiosk (runs a single app fullscreen)
+    cage # A Wayland kiosk (runs a single app fullscreen)
     wayfire # 3D wayland compositor
     wdisplays
   ];
