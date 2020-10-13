@@ -114,6 +114,8 @@
       userEmail = "${secrets.git-email}";
       ignores = [ "node_modules" "__pycache__" "*.pyc" "*.iso" ".netrwhist" ];
 
+      extraConfig = { pull.rebase = false; };
+
       aliases = {
         br = "branch -avv";
         ci = "commit";
