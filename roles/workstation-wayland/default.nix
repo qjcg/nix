@@ -36,6 +36,5 @@
     #cage # A Wayland kiosk (runs a single app fullscreen)
     wayfire # 3D wayland compositor
     wdisplays
-    #wf-config # wayfire config manager
   ];
 }
