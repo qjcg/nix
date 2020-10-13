@@ -52,7 +52,7 @@
       settings = {
         font.normal.family = "monospace";
         font.normal.style = "Regular";
-        font.normal.size = 26.0;
+        font.size = 20;
 
         colors.cursor.text = "#000000";
         colors.cursor.cursor = "#ef02f7";
