@@ -478,6 +478,7 @@
     "VSCodium/User/settings_example.json".source =
       ../files/vscodium_settings_example.json;
     "xonsh/".source = ../files/xonsh;
+    "waybar/".source = ../files/waybar;
     "wayfire.ini".source = ../files/wayfire.ini;
   };
 
