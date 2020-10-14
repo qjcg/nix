@@ -48,7 +48,7 @@
     "spacing": 10
   },
   "clock": {
-    "format": "{:%I:%M:%p}",
+    "format": "{:%I:%M %p}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "timezone": "America/Montreal",
     "format-alt": "{:%Y-%m-%d}"
