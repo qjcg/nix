@@ -19,9 +19,11 @@
     oguri # animated background utility
     slurp # screen area selection tool
     waypipe # network transparency for Wayland
+    wev # A tool for debugging events on a Wayland window, analagous to the X11 tool xev.
     wf-recorder # wayland screenrecorder
     wl-clipboard # clipboard CLI utilities
     wldash # wayland launcher/dashboard
+    wlogout # wayland-based logout menu
     wofi # dmenu replacement for wayland
     wtype # xdotool, but for wayland
 
