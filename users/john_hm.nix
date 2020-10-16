@@ -467,6 +467,7 @@
     "nvim/coc-settings.json".source = ../files/coc-settings.json;
     "s-nail/mailrc".text =
       pkgs.callPackage ../files/mailrc.nix { inherit secrets; };
+    "starship.toml".source = ../files/starship.toml;
     "sway/i3status-rust.toml".text =
       pkgs.callPackage ../files/i3status-rust_luban.toml.nix {
         inherit secrets;
