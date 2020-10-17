@@ -104,13 +104,13 @@
           ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ self.overlays.thirdParty ];
             imports = [
-              (import ./machines/luban { inherit config pkgs secrets; })
+              (import ./modules/machines/luban { inherit config pkgs secrets; })
 
-              (import ./roles/workstation-base { inherit pkgs; })
-              (import ./roles/workstation-gnome { inherit pkgs; })
-              (import ./roles/workstation-wayland { inherit pkgs; })
+              (import ./modules/roles/workstation-base { inherit pkgs; })
+              (import ./modules/roles/workstation-gnome { inherit pkgs; })
+              (import ./modules/roles/workstation-wayland { inherit pkgs; })
 
-              (import ./users/john.nix { inherit pkgs secrets; })
+              (import ./modules/users/john.nix { inherit pkgs secrets; })
             ];
           })
         ];
