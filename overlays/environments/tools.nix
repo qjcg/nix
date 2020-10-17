@@ -11,6 +11,7 @@ self: super:
         aria2
         bat
         binutils
+        bpytop
         caddy
         conform
         coreutils

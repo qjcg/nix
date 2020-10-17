@@ -6,7 +6,7 @@ self: super:
     meta.priority = 0;
     paths = with super.pkgs;
       [ cmus ffmpeg mpv sox streamripper youtube-dl ]
-      ++ lib.optional stdenv.isLinux [
+      ++ lib.optional super.stdenv.isLinux [
         alsaLib
         alsaPluginWrapper
         alsaPlugins
@@ -14,6 +14,7 @@ self: super:
         alsaUtils
         beets
         fluidsynth
+        gource
         soundfont-fluid
         opusTools
         pms
