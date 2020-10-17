@@ -42,6 +42,11 @@
       };
 
       # A container system for testing purposes.
+      #
+      # Features:
+      #   - overlays
+      #   - home-manager
+      #
       # Example usage (as root):
       #   nixos-container create foobar --flake '.#test'
       #   nixos-container start foobar
@@ -56,6 +61,11 @@
         modules = [
           ({ config, pkgs, ... }: {
             boot.isContainer = true;
+            # Let 'nixos-version --json' know about the Git revision
+            # of this flake.
+            system.configurationRevision = pkgs.lib.mkIf (self ? rev) self.rev;
+
+            networking.useDHCP = false;
 
             # Create a normal user for testing home-manager.
             users.users.jqhacker = {
