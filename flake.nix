@@ -10,6 +10,7 @@
 # - [Nixpkgs: Overlays](https://nixos.org/manual/nixpkgs/stable/#chap-overlays)
 # - [Wiki: Flakes > Input schema](https://nixos.wiki/wiki/Flakes#Input_schema)
 # - [Wiki: Flakes > Output schema](https://nixos.wiki/wiki/Flakes#Output_schema)
+# - [home-manager: Nix Flakes](https://github.com/nix-community/home-manager#nix-flakes)
 
 {
   description = "A flake for my nix configurations";
@@ -18,7 +19,7 @@
     pkgs-stable.url = "github:NixOS/nixpkgs/nixos-20.03";
     pkgs-stable-darwin.url = "github:NixOS/nixpkgs/nixpkgs-20.03-darwin";
     pkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    home-manager.url = "github:nix-community/home-manager/bqv-flakes";
+    home-manager.url = "github:nix-community/home-manager";
     nur.url = "github:nix-community/NUR";
     sops.url = "github:Mic92/sops-nix";
     wayland.url = "github:colemickens/nixpkgs-wayland";
@@ -44,7 +45,10 @@
       # Example usage (as root):
       #   nixos-container create foobar --flake '.#test'
       #   nixos-container start foobar
+      #   nixos-container update foobar --flake '.#test'
+      #   nixos-container login foobar
       #   nixos-container root-login foobar
+      #   nixos-container stop foobar
       #   nixos-container destroy foobar
       nixosConfigurations.test = inputs.pkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
@@ -52,6 +56,18 @@
         modules = [
           ({ config, pkgs, ... }: {
             boot.isContainer = true;
+
+            # Create a normal user for testing home-manager.
+            users.users.jqhacker = {
+              isNormalUser = true;
+              password = "terrible";
+            };
+
+            # Import and use home-manager.
+            imports = [ inputs.home-manager.nixosModules.home-manager ];
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.jqhacker = { home.packages = [ pkgs.htop ]; };
 
             nixpkgs.overlays =
               [ self.overlays.personal self.overlays.thirdParty ];
