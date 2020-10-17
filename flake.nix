@@ -96,7 +96,7 @@
         ];
       };
 
-      nixosConfigurations.luban = inputs.pkgs.lib.nixosSystem {
+      nixosConfigurations.luban = inputs.pkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
 
         modules = [
