@@ -54,7 +54,7 @@
       #   nixos-container create foobar --flake '.#test'
       #   nixos-container start foobar
       #   systemctl status container@foobar
-      #   machinectl list
+      #   machinectl -l
       #   nixos-container update foobar --flake '.#test'
       #   nixos-container login foobar
       #   nixos-container root-login foobar
