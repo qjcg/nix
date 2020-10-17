@@ -1,5 +1,20 @@
 {
   "nodes": {
+    "emacs": {
+      "locked": {
+        "lastModified": 1602967176,
+        "narHash": "sha256-GXmLAcknz9ivXmSym/f/WTWfnVvS+QJ4sA/8Imr01/g=",
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "rev": "a06e1bb586ab742ba02b212dfbf72d9de189ae34",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "emacs-overlay",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -127,6 +142,7 @@
     },
     "root": {
       "inputs": {
+        "emacs": "emacs",
         "home-manager": "home-manager",
         "nur": "nur",
         "pkgs-stable": "pkgs-stable",

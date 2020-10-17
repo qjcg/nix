@@ -19,8 +19,11 @@
     pkgs-stable.url = "github:NixOS/nixpkgs/nixos-20.03";
     pkgs-stable-darwin.url = "github:NixOS/nixpkgs/nixpkgs-20.03-darwin";
     pkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
     home-manager.url = "github:nix-community/home-manager";
+    emacs.url = "github:nix-community/emacs-overlay";
     nur.url = "github:nix-community/NUR";
+
     sops.url = "github:Mic92/sops-nix";
     wayland.url = "github:colemickens/nixpkgs-wayland";
   };
@@ -63,8 +66,7 @@
         modules = [
           ({ config, pkgs, ... }: {
             boot.isContainer = true;
-            # Let 'nixos-version --json' know about the Git revision
-            # of this flake.
+            # Let 'nixos-version --json' know about the Git revision of this flake.
             system.configurationRevision = pkgs.lib.mkIf (self ? rev) self.rev;
 
             networking.useDHCP = false;
