@@ -7,6 +7,7 @@ self: super:
     paths = with super.pkgs;
       [
         age
+        annie
         aria2
         bat
         binutils

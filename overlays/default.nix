@@ -11,6 +11,7 @@ in {
 
   #emacs = super.callPackage ../packages/emacs { };
   #emacs-nox = super.callPackage ../packages/emacs-nox { };
+  annie = super.callPackage ../packages/annie { };
   barr = super.callPackage ../packages/barr { };
   battery = super.callPackage ../packages/battery { };
   benthos = super.callPackage ../packages/benthos { };
