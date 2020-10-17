@@ -476,6 +476,7 @@
       executable = true;
       source = ../files/sxiv-key-handler.sh;
     };
+    "tig/config".source = ../files/tigrc;
     "VSCodium/User/settings_example.json".source =
       ../files/vscodium_settings_example.json;
     "xonsh/".source = ../files/xonsh;
