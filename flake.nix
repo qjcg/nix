@@ -70,6 +70,7 @@
             system.configurationRevision = pkgs.lib.mkIf (self ? rev) self.rev;
 
             # Not needed/used in systemd-nspawn container? (To confirm).
+            networking.hostName = "test";
             networking.useDHCP = false;
 
             # Create a normal user for testing home-manager.
