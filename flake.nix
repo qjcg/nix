@@ -69,8 +69,8 @@
             # Let 'nixos-version --json' know about the Git revision of this flake.
             system.configurationRevision = pkgs.lib.mkIf (self ? rev) self.rev;
 
-            # Not needed/used in systemd-nspawn container? (To confirm).
             networking.hostName = "test";
+            # DHCP not needed/used in systemd-nspawn container? (To confirm).
             networking.useDHCP = false;
 
             # Create a normal user for testing home-manager.
