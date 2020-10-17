@@ -6,7 +6,7 @@ self: super:
     meta.priority = 0;
     paths = with super.pkgs;
       [ cmus ffmpeg mpv sox streamripper youtube-dl ]
-      ++ lib.optional super.stdenv.isLinux [
+      ++ lib.lists.optionals stdenv.isLinux [
         alsaLib
         alsaPluginWrapper
         alsaPlugins

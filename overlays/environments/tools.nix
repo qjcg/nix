@@ -83,7 +83,7 @@ self: super:
         youtube-dl
         ytop
         zoxide
-      ] ++ lib.optional stdenv.isLinux [
+      ] ++ lib.lists.optionals stdenv.isLinux [
         bettercap
         elinks
         iotop
@@ -95,6 +95,6 @@ self: super:
         tailscale
         utillinux
         wtf
-      ] ++ lib.optional stdenv.isDarwin [ pstree ];
+      ] ++ lib.lists.optionals stdenv.isDarwin [ pstree ];
   };
 }
