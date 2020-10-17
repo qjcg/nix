@@ -1,7 +1,12 @@
+# nixos-containers are an abstraction on top of `systemd-nspawn`.
+# - [NixOS: Containers](https://nixos.org/manual/nixos/stable/#ch-containers)
+# - [Arch Wiki: systemd-nspawn](https://wiki.archlinux.org/index.php/Systemd-nspawn)
+# - [freedesktop.org: systemd-nspawn](https://www.freedesktop.org/software/systemd/man/systemd-nspawn.html)
+# - [freedesktop.org: machinectl](https://www.freedesktop.org/software/systemd/man/machinectl.html)
+
 # References:
 # - [Nix Flakes, Part 3: Managing NixOS Systems](https://www.tweag.io/blog/2020-07-31-nixos-flakes/)
 # - [NixOS: Modules](https://nixos.org/manual/nixos/stable/index.html#ex-module-syntax)
-# - [NixOS: Containers](https://nixos.org/manual/nixos/stable/#ch-containers)
 # - [Nixpkgs: Overlays](https://nixos.org/manual/nixpkgs/stable/#chap-overlays)
 # - [Wiki: Flakes > Input schema](https://nixos.wiki/wiki/Flakes#Input_schema)
 # - [Wiki: Flakes > Output schema](https://nixos.wiki/wiki/Flakes#Output_schema)
@@ -35,7 +40,13 @@
         };
       };
 
-      nixosConfigurations.containerTest = inputs.pkgs-unstable.lib.nixosSystem {
+      # A container system for testing purposes.
+      # Example usage (as root):
+      #   nixos-container create foobar --flake '.#test'
+      #   nixos-container start foobar
+      #   nixos-container root-login foobar
+      #   nixos-container destroy foobar
+      nixosConfigurations.test = inputs.pkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
 
         modules = [
@@ -44,7 +55,12 @@
 
             nixpkgs.overlays =
               [ self.overlays.personal self.overlays.thirdParty ];
-            environment.systemPackages = with pkgs; [ benthos neovim ];
+
+            environment.systemPackages = with pkgs; [
+              benthos
+              neovim
+              unstable.kubectl
+            ];
           })
         ];
       };
