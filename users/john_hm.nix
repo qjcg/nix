@@ -100,9 +100,6 @@
         ytj = "youtube-dl --dump-single-json";
         yta =
           "youtube-dl --add-metadata --embed-thumbnail --ignore-errors -o '%(playlist)s/%(playlist_index)02d. %(uploader)s - %(title)s.mp3'";
-
-        drwWinVM =
-          "rdesktop -u ${secrets.work-user} -p - -g 1680x1050 -K mt1n-${secrets.work-user}";
       };
     };
 
@@ -217,25 +214,17 @@
 
   };
 
-  systemd.user = {
+  # These are read by Wayland.
+  # See https://wiki.archlinux.org/index.php/Systemd/User#Environment_variables
+  systemd.user.sessionVariables.BROWSER = "firefox";
+  systemd.user.sessionVariables.QT_PLATFORMTHEME = "qt5ct";
+  systemd.user.sessionVariables.QT_PLATFORM_PLUGIN = "qt5ct";
+  systemd.user.sessionVariables.QT_QPA_PLATFORMTHEME = "qt5ct";
 
-    # These are read by Wayland.
-    # See https://wiki.archlinux.org/index.php/Systemd/User#Environment_variables
-    sessionVariables = {
-
-      BROWSER = "firefox";
-
-      # Enable wayland with Firefox.
-      # See https://wiki.archlinux.org/index.php/Firefox#Wayland
-      # Verify via about:support -> "Window Protocol"
-      MOZ_ENABLE_WAYLAND = "1";
-
-      QT_PLATFORMTHEME = "qt5ct";
-      QT_PLATFORM_PLUGIN = "qt5ct";
-      QT_QPA_PLATFORMTHEME = "qt5ct";
-
-    };
-  };
+  # Enable wayland with Firefox.
+  # See https://wiki.archlinux.org/index.php/Firefox#Wayland
+  # Verify via about:support -> "Window Protocol"
+  systemd.user.sessionVariables.MOZ_ENABLE_WAYLAND = "1";
 
   wayland.windowManager.sway = let
     modifier = "Mod4";
