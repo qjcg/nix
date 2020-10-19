@@ -40,6 +40,7 @@ in {
   kubeseal = super.callPackage ../packages/kubeseal { };
   #loccount = super.callPackage ../packages/loccount { };
   ludo-bin = super.callPackage ../packages/ludo-bin { };
+  mark = super.callPackage ../packages/mark { };
   micro = super.callPackage ../packages/micro { };
   mtlcam = super.callPackage ../packages/mtlcam { };
   plan9port = super.callPackage ../packages/plan9port { };
