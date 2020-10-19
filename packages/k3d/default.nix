@@ -1,27 +1,28 @@
 { stdenv, fetchFromGitHub, buildGoModule, installShellFiles }:
 
-buildGoModule rec {
+let
+  # Get this from https://update.k3s.io/v1-release/channels/stable
+  stableK3sVersionString = "v1.18.9-k3s1";
+in buildGoModule rec {
   pname = "k3d";
-  version = "3.1.3";
+  version = "3.1.4";
 
   src = fetchFromGitHub {
     owner = "rancher";
     repo = "k3d";
     rev = "v${version}";
-    sha256 = "1qwy5h2kgqmyffvnb6q4l4jbavj0lacp46mm2wxrixspadkxg3wm";
+    sha256 = "05895wgikjqs8myn6qachwjapxbra0n4h5n8a05519hvmniv7fnv";
   };
 
   deleteVendor = true;
-  vendorSha256 = "14y3kr7dn1jzbfapjl3msz0kvahjfi5w9v0kqd0d81idrwj7b82s";
+  vendorSha256 = "1sav3j2ha8wl58dzf510zs64rwv11k3vw184c243nvixs196xjd4";
 
   subPackages = [ "." ];
 
   buildFlagsArray = [
     "-ldflags=-s -w"
     "-X github.com/rancher/k3d/v3/version.Version=${src.rev}"
-
-    # Get this from https://update.k3s.io/v1-release/channels/stable
-    "-X github.com/rancher/k3d/v3/version.K3sVersion=v1.18.9-k3s1"
+    "-X github.com/rancher/k3d/v3/version.K3sVersion=${stableK3sVersionString}"
   ];
 
   nativeBuildInputs = [ installShellFiles ];
