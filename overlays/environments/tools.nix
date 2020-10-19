@@ -11,7 +11,6 @@ self: super:
         aria2
         bat
         binutils
-        bpytop
         caddy
         conform
         coreutils
@@ -86,6 +85,7 @@ self: super:
         zoxide
       ] ++ lib.lists.optionals stdenv.isLinux [
         bettercap
+        bpytop
         elinks
         iotop
         iw
