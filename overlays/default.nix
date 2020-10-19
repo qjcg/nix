@@ -34,6 +34,7 @@ in {
   horeb = super.callPackage ../packages/horeb { };
   import-sh = super.callPackage ../packages/import-sh { };
   jmigpin-editor = super.callPackage ../packages/jmigpin-editor { };
+  julia-mono = super.callPackage ../packages/julia-mono { };
   k3c = super.callPackage ../packages/k3c { };
   k3d = super.callPackage ../packages/k3d { };
   kompose = super.callPackage ../packages/kompose { };
