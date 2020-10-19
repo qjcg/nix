@@ -70,4 +70,18 @@ with pkgs;
       env-vscodium
     ];
   };
+
+  # nix-darwin font configuration.
+  # See https://github.com/LnL7/nix-darwin/blob/master/modules/fonts/default.nix
+  fonts = {
+    enableFontDir = true;
+    fonts = with pkgs; [
+      fira-code
+      go-font
+      inconsolata-nerdfont
+      iosevka
+      julia-mono
+    ];
+  };
+
 }

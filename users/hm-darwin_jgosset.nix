@@ -17,7 +17,8 @@
         settings = {
           # Interesting font families:
           #   - "Andale Mono" (macOS)
-          font.normal.family = "Inconsolata Nerd Font Mono";
+          #   - "Inconsolata Nerd Font Mono" (nixpkgs)
+          font.normal.family = "JuliaMono";
           font.normal.style = "Regular";
           font.size = 20.0;
 
