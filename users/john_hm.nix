@@ -1,8 +1,6 @@
 { pkgs, secrets, ... }:
 
 {
-  fonts.fontconfig.enable = true;
-
   manual.html.enable = true;
 
   # FIXME: Not working (settings.ini is *empty*), so creating manual config file below.
@@ -457,8 +455,6 @@
     "albert/albert.conf".source = ../files/albert.conf;
     "cmus/rc".source = ../files/cmusrc;
     "emacs/init.el".source = ../files/emacs/init.el;
-    "fontconfig/conf.d/50-user-font-preferences.conf".source =
-      ../files/50-user-font-preferences.conf;
     "gtk-3.0/settings.ini".source = ../files/gtk-3.0_settings.ini;
     "i3/workspace1.json".source = ../files/workspace1_luban.json;
     "nix/nix.conf".text = ''
