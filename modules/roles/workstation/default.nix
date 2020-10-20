@@ -5,6 +5,11 @@ let cfg = config.roles.workstation;
 in {
 
   options = {
+
+    # The workstation role uses the Facade Pattern to expose a small number of
+    # options that summarize the desired values for a larger number of options.
+    #
+    # See https://en.wikipedia.org/wiki/Facade_pattern
     roles.workstation = {
 
       enable = mkOption {
