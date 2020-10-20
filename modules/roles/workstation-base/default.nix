@@ -8,12 +8,13 @@ let
     inconsolata-nerdfont
     iosevka
     julia-mono
-    noto-fonts
-    noto-fonts-emoji
-    noto-fonts-extra
     roboto
     unifont
     victor-mono
+  ] ++ lib.lists.optionals stdenv.isLinux [
+    noto-fonts
+    noto-fonts-emoji
+    noto-fonts-extra
   ];
 in {
   environment = {
@@ -33,7 +34,7 @@ in {
   programs.gnupg.agent.enable = true;
   programs.gnupg.agent.enableSSHSupport = true;
   programs.tmux.enable = true;
-  programs.tmux.extraConfig = builtins.readFile ../../files/tmux.conf;
+  programs.tmux.extraConfig = builtins.readFile ../../../files/tmux.conf;
 
   # LINUX-SPECIFIC CONFIG.
 } // lib.attrsets.optionalAttrs stdenv.isLinux {
