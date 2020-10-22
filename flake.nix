@@ -16,29 +16,35 @@
   description = "A flake for my nix configurations";
 
   inputs = {
-    pkgs-stable.url = "github:NixOS/nixpkgs/nixos-20.03";
-    pkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    pkgs-stable.url = "github:nixos/nixpkgs/nixos-20.03";
+    pkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    darwin.url = "github:lnl7/nix-darwin/master";
-    darwin.inputs.nixpkgs.follows = "pkgs-unstable";
+    pkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-20.09-darwin";
+    darwin.url = "github:lnl7/nix-darwin";
+    darwin.inputs.nixpkgs.follows = "pkgs-darwin";
 
     home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "pkgs-unstable";
     emacs.url = "github:nix-community/emacs-overlay";
     nur.url = "github:nix-community/NUR";
 
-    sops.url = "github:Mic92/sops-nix";
+    sops.url = "github:mic92/sops-nix";
+    sops.inputs.nixpkgs.follows = "pkgs-unstable";
     wayland.url = "github:colemickens/nixpkgs-wayland";
+    wayland.inputs.nixpkgs.follows = "pkgs-unstable";
   };
 
   outputs = { self, ... }@inputs:
 
-    let secrets = import ./secrets.nix;
+    let
+      mySecrets = import ./secrets.nix;
+      myOverlay = import ./overlays;
     in {
 
       # See:
       #   - https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
       overlays = {
-        personal = import ./overlays;
+        personal = myOverlay;
 
         thirdParty = final: prev: {
           home-manager = inputs.home-manager.legacyPackages."x86_64-linux";
@@ -106,31 +112,28 @@
           ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ self.overlays.thirdParty ];
             imports = [
-              (import ./modules/machines/luban { inherit config pkgs secrets; })
+              (import ./modules/machines/luban { inherit config pkgs; })
 
               (import ./modules/roles/workstation-base { inherit pkgs; })
               (import ./modules/roles/workstation-gnome { inherit pkgs; })
               (import ./modules/roles/workstation-wayland { inherit pkgs; })
 
-              (import ./modules/users/john.nix { inherit pkgs secrets; })
+              (import ./modules/users/john.nix { inherit pkgs; })
             ];
           })
         ];
       };
 
       darwinConfigurations.mtlmp-jgosset1 = inputs.darwin.lib.darwinSystem {
-        inputs = {
-          inherit secrets;
-          inherit (inputs.home-manager.nixosModules) home-manager;
-        };
+        inputs = { inherit (inputs.home-manager.nixosModules) home-manager; };
 
         modules = [
           ./modules/roles/workstation-base
           ./modules/users/hm-darwin_jgosset.nix
 
-          ({ config, pkgs, secrets, ... }: {
+          ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ self.overlays.thirdParty ];
-            inherit (secrets) users;
+            users = mySecrets.users;
           })
 
         ];
