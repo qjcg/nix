@@ -53,6 +53,7 @@ self: super:
         mtr
         neofetch
         nmap
+        onefetch
         pandoc
         pdfcpu
         postgresql_12
