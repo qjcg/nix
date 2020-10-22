@@ -20,8 +20,7 @@
     pkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     darwin.url = "github:lnl7/nix-darwin/master";
-    pkgs-darwin.url = "github:NixOS/nixpkgs/nixpkgs-20.03-darwin";
-    darwin.inputs.nixpkgs.follows = "pkgs-darwin";
+    darwin.inputs.nixpkgs.follows = "pkgs-unstable";
 
     home-manager.url = "github:nix-community/home-manager";
     emacs.url = "github:nix-community/emacs-overlay";
@@ -123,15 +122,11 @@
         inputs = { inherit secrets; };
 
         modules = [
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ self.overlays.thirdParty ];
-            imports = [
-              (import ./modules/roles/workstation-base { inherit pkgs; })
-              (import ./modules/users/hm-darwin_jgosset.nix {
-                inherit config pkgs secrets;
-              })
-            ];
+          ./modules/roles/workstation-base
+          ./modules/users/hm-darwin_jgosset.nix
 
+          ({ config, pkgs, secrets, ... }: {
+            nixpkgs.overlays = [ self.overlays.thirdParty ];
             inherit (secrets) users;
           })
         ];
