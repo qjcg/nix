@@ -235,6 +235,9 @@
     xdg.configFile = {
       "cmus/rc".source = ../../files/cmusrc;
       "emacs/init.el".source = ../../files/emacs/init.el;
+      "nix/nix.conf".text = ''
+        experimental-features = nix-command flakes # See https://www.tweag.io/blog/2020-05-25-flakes/
+      '';
       "nvim/coc-settings.json".source = ../../files/coc-settings.json;
       "starship.toml".source = ../../files/starship.toml;
       "tig/config".source = ../../files/tigrc;
