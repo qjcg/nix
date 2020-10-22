@@ -6,6 +6,15 @@ let
   secrets = import ./secrets.nix;
   overlay-mine = import ./overlays;
 
+  # https://github.com/rycee/home-manager/commits/master
+  home-manager = import "${
+      fetchGit {
+        url = "https://github.com/nix-community/home-manager";
+        ref = "master";
+        rev = "249650a07ee2d949fa599f3177a8c234adbd1bee";
+      }
+    }/nix-darwin";
+
   # https://github.com/nix-community/emacs-overlay/commits/master
   overlay-emacs = import (fetchGit {
     url = "https://github.com/nix-community/emacs-overlay";
@@ -29,13 +38,15 @@ let
 in {
 
   imports = [
+    home-manager
+
     (import ./modules/machines/luban { inherit config pkgs secrets; })
 
     (import ./modules/roles/workstation-base { inherit pkgs; })
     (import ./modules/roles/workstation-gnome { inherit pkgs; })
     (import ./modules/roles/workstation-wayland { inherit pkgs; })
 
-    (import ./modules/users/john.nix { inherit pkgs secrets; })
+    (import ./modules/users/john.nix { inherit home-manager pkgs secrets; })
   ];
 
 }
