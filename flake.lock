@@ -1,5 +1,26 @@
 {
   "nodes": {
+    "darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "pkgs-darwin"
+        ]
+      },
+      "locked": {
+        "lastModified": 1603298864,
+        "narHash": "sha256-C8YWt2TIQPCQ/crFakk6BINxBllwAXim1foPIvy09Rs=",
+        "owner": "lnl7",
+        "repo": "nix-darwin",
+        "rev": "2a60ef1956ed7d000d3941d720e17a25450c6923",
+        "type": "github"
+      },
+      "original": {
+        "owner": "lnl7",
+        "ref": "master",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
     "emacs": {
       "locked": {
         "lastModified": 1602967176,
@@ -92,6 +113,22 @@
         "type": "github"
       }
     },
+    "pkgs-darwin": {
+      "locked": {
+        "lastModified": 1603179151,
+        "narHash": "sha256-RP88t8wxWPZjo4wm2AXlpxCNeOoj1rJbUlpB5ZvthD4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "7c2a362b58a1c2ba72d24aa3869da3b1a91d39e1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-20.03-darwin",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pkgs-stable": {
       "locked": {
         "lastModified": 1602412739,
@@ -104,22 +141,6 @@
       "original": {
         "owner": "NixOS",
         "ref": "nixos-20.03",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "pkgs-stable-darwin": {
-      "locked": {
-        "lastModified": 1602378253,
-        "narHash": "sha256-tMiZ9f7pIJHIW6Xo9AA75KEnK0mnOYa27epRYDF//l0=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "0fd4e3c87705d16a694b7feba0e3d593b8b0c3ac",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-20.03-darwin",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -142,11 +163,12 @@
     },
     "root": {
       "inputs": {
+        "darwin": "darwin",
         "emacs": "emacs",
         "home-manager": "home-manager",
         "nur": "nur",
+        "pkgs-darwin": "pkgs-darwin",
         "pkgs-stable": "pkgs-stable",
-        "pkgs-stable-darwin": "pkgs-stable-darwin",
         "pkgs-unstable": "pkgs-unstable",
         "sops": "sops",
         "wayland": "wayland"
