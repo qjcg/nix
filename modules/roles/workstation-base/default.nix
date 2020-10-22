@@ -26,6 +26,9 @@ in {
     };
   };
 
+  nix.extraOptions = "experimental-features = nix-command flakes";
+  nix.package = pkgs.nixUnstable;
+
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnsupportedSystem = true;
 
@@ -76,7 +79,7 @@ in {
 
     # Use a custom configuration.nix location.
     # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/configuration.nix
-    darwinConfig = "$HOME/.config/nixpkgs/configuration.nix";
+    #darwinConfig = "$HOME/.config/nixpkgs/configuration.nix";
 
     systemPackages = [
       env-go
