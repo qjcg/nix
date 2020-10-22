@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 with pkgs;
 let
@@ -8,14 +8,11 @@ let
     inconsolata-nerdfont
     iosevka
     julia-mono
+    noto-fonts
     roboto
     unifont
     victor-mono
-  ] ++ lib.lists.optionals stdenv.isLinux [
-    noto-fonts
-    noto-fonts-emoji
-    noto-fonts-extra
-  ];
+  ] ++ lib.lists.optionals stdenv.isLinux [ noto-fonts-emoji noto-fonts-extra ];
 in {
   environment = {
     systemPackages = [ env-k8s env-neovim env-nix env-personal env-tools ];
