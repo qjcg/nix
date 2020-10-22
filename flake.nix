@@ -119,7 +119,10 @@
       };
 
       darwinConfigurations.mtlmp-jgosset1 = inputs.darwin.lib.darwinSystem {
-        inputs = { inherit secrets; };
+        inputs = {
+          inherit secrets;
+          inherit (inputs.home-manager.nixosModules) home-manager;
+        };
 
         modules = [
           ./modules/roles/workstation-base
@@ -129,6 +132,7 @@
             nixpkgs.overlays = [ self.overlays.thirdParty ];
             inherit (secrets) users;
           })
+
         ];
       };
 
