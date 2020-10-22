@@ -1,10 +1,8 @@
-{ pkgs, secrets, ... }:
+{ config, home-manager, pkgs, secrets, ... }:
 
 {
 
-  imports = [ <home-manager/nixos> ];
-
-  nix.trustedUsers = [ "root" "@wheel" ];
+  imports = [ home-manager ];
 
   users.users.john = {
     description = "John Gosset";
@@ -16,6 +14,7 @@
 
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
-  home-manager.users.john = import ./john_hm.nix { inherit pkgs secrets; };
+  home-manager.users.john =
+    import ./john_hm.nix { inherit config pkgs secrets; };
 
 }
