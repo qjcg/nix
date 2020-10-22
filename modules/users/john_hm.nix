@@ -1,4 +1,4 @@
-{ pkgs, secrets, ... }:
+{ config, pkgs, secrets, ... }:
 
 {
   manual.html.enable = true;
@@ -441,37 +441,37 @@
   };
 
   xdg.configFile = {
-    "albert/albert.conf".source = ../files/albert.conf;
-    "cmus/rc".source = ../files/cmusrc;
-    "emacs/init.el".source = ../files/emacs/init.el;
-    "gtk-3.0/settings.ini".source = ../files/gtk-3.0_settings.ini;
-    "i3/workspace1.json".source = ../files/workspace1_luban.json;
+    "albert/albert.conf".source = ../../files/albert.conf;
+    "cmus/rc".source = ../../files/cmusrc;
+    "emacs/init.el".source = ../../files/emacs/init.el;
+    "gtk-3.0/settings.ini".source = ../../files/gtk-3.0_settings.ini;
+    "i3/workspace1.json".source = ../../files/workspace1_luban.json;
     "nix/nix.conf".text = ''
       experimental-features = nix-command flakes # See https://www.tweag.io/blog/2020-05-25-flakes/
     '';
-    "nvim/coc-settings.json".source = ../files/coc-settings.json;
+    "nvim/coc-settings.json".source = ../../files/coc-settings.json;
     "s-nail/mailrc".text =
-      pkgs.callPackage ../files/mailrc.nix { inherit secrets; };
-    "starship.toml".source = ../files/starship.toml;
+      pkgs.callPackage ../../files/mailrc.nix { inherit secrets; };
+    "starship.toml".source = ../../files/starship.toml;
     "sway/i3status-rust.toml".text =
-      pkgs.callPackage ../files/i3status-rust_luban.toml.nix {
+      pkgs.callPackage ../../files/i3status-rust_luban.toml.nix {
         inherit secrets;
       };
     "sxiv/exec/key-handler" = {
       executable = true;
-      source = ../files/sxiv-key-handler.sh;
+      source = ../../files/sxiv-key-handler.sh;
     };
-    "tig/config".source = ../files/tigrc;
+    "tig/config".source = ../../files/tigrc;
     "VSCodium/User/settings_example.json".source =
-      ../files/vscodium_settings_example.json;
-    "xonsh/".source = ../files/xonsh;
-    "waybar/".source = ../files/waybar;
-    "wayfire.ini".source = ../files/wayfire.ini;
+      ../../files/vscodium_settings_example.json;
+    "xonsh/".source = ../../files/xonsh;
+    "waybar/".source = ../../files/waybar;
+    "wayfire.ini".source = ../../files/wayfire.ini;
   };
 
   xdg.dataFile = {
     "fonts/Apl385.ttf" = {
-      source = ../files/fonts/Apl385.ttf;
+      source = ../../files/fonts/Apl385.ttf;
       onChange = "fc-cache -f";
     };
   };
