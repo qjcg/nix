@@ -47,6 +47,7 @@ self: super:
         libfaketime
         loccount
         lsof
+        maddy
         mark
         mdbook
         mkcert
