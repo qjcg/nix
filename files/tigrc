@@ -27,7 +27,7 @@ set log-view                  = line-number:no,interval=5 text
 set reflog-view               = line-number:no,interval=5 id:yes,color=no date:no,local=no,format= author:no commit-title:yes,graph=no,refs=yes
 set mailmap                   = no
 set main-options              = 
-set main-view                 = line-number:no,interval=5 id:no,color=no date:relative,local=no,format= author:full commit-title:yes,graph=v2,refs=yes
+set main-view                 = line-number:no,interval=5 id:no,color=no date:relative-compact,local=no,format= author:full commit-title:yes,graph=v2,refs=yes
 set mouse                     = no
 set mouse-scroll              = 3
 set mouse-wheel-cursor        = no
