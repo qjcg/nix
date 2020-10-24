@@ -125,19 +125,30 @@
       };
 
       darwinConfigurations.mtlmp-jgosset1 = inputs.darwin.lib.darwinSystem {
-        inputs = { inherit (inputs.home-manager.nixosModules) home-manager; };
+        inputs = {
+          inherit (inputs.home-manager.nixosModules) home-manager;
+          secrets = mySecrets;
+        };
 
         modules = [
-          ./modules/roles/workstation-base
-          ./modules/users/hm-darwin_jgosset.nix
+          ({ config, home-manager, pkgs, secrets, ... }: {
 
-          ({ config, pkgs, ... }: {
+            imports = [
+              (import ./modules/roles/workstation { inherit pkgs; })
+              (import ./modules/users/hm-darwin_jgosset.nix {
+                inherit home-manager pkgs secrets;
+              })
+            ];
+
             nixpkgs.overlays = [ self.overlays.thirdParty ];
             users = mySecrets.users;
-          })
 
+            roles.workstation.enable = true;
+            roles.workstation.games = true;
+            roles.workstation.gnome = true;
+            roles.workstation.sway = true;
+          })
         ];
       };
-
     };
 }
