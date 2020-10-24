@@ -3,6 +3,8 @@
 with pkgs;
 let cfg = config.roles.workstation;
 in {
+  imports = [ ./fonts.nix ] ++ lib.lists.optionals cfg.gnome [ ./gnome.nix ]
+    ++ lib.lists.optionals cfg.sway [ ./sway.nix ];
 
   options = {
 
@@ -40,58 +42,8 @@ in {
     };
   };
 
-  config = { };
-
-  imports = [ ./fonts.nix ./gnome.nix ./sway.nix ];
-
-  environment = {
-    systemPackages = [ env-k8s env-neovim env-nix env-personal env-tools ];
-    variables = {
-      EDITOR = "nvim";
-      PAGER = "less";
-      VISUAL = "nvim";
-    };
-  };
-
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnsupportedSystem = true;
-
-  programs.bash.enable = true;
-  programs.bash.enableCompletion = true;
-  programs.gnupg.agent.enable = true;
-  programs.gnupg.agent.enableSSHSupport = true;
-  programs.tmux.enable = true;
-  programs.tmux.extraConfig = builtins.readFile ../../../files/tmux.conf;
-
-  # LINUX-SPECIFIC CONFIG.
-} // lib.attrsets.optionalAttrs stdenv.isLinux {
-
-  networking.firewall.enable = true;
-  networking.firewall.allowedTCPPorts = [ ];
-  networking.firewall.allowedUDPPorts = [ ];
-
-  programs.mtr.enable = true;
-
-  security.sudo.wheelNeedsPassword = false;
-
-  services.gpm.enable = true;
-  services.printing.enable = true;
-  services.openssh.enable = true;
-  services.resolved.dnssec = "false";
-
-  virtualisation.docker.enable = true;
-  #virtualisation.virtualbox.host.enable = true;
-
-  # DARWIN-SPECIFIC CONFIG.
-} // lib.attrsets.optionalAttrs stdenv.isDarwin {
-
-  environment = {
-
-    # Use a custom configuration.nix location.
-    # $ darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/configuration.nix
-    darwinConfig = "$HOME/.config/nixpkgs/configuration.nix";
-
-    systemPackages = [
+  config = {
+    environment.systemPackages = [
       env-go
       env-k8s
       env-multimedia
@@ -102,6 +54,38 @@ in {
       env-tools
       env-vscodium
     ];
-  };
 
+    environment.variables.EDITOR = "nvim";
+    environment.variables.PAGER = "less";
+    environment.variables.VISUAL = "nvim";
+
+    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config.allowUnsupportedSystem = true;
+
+    programs.bash.enable = true;
+    programs.bash.enableCompletion = true;
+    programs.gnupg.agent.enable = true;
+    programs.gnupg.agent.enableSSHSupport = true;
+    programs.tmux.enable = true;
+    programs.tmux.extraConfig = builtins.readFile ../../../files/tmux.conf;
+
+  } // lib.attrsets.optionalAttrs stdenv.isLinux {
+
+    networking.firewall.enable = true;
+    networking.firewall.allowedTCPPorts = [ ];
+    networking.firewall.allowedUDPPorts = [ ];
+
+    programs.mtr.enable = true;
+
+    security.sudo.wheelNeedsPassword = false;
+
+    services.gpm.enable = true;
+    services.printing.enable = true;
+    services.openssh.enable = true;
+    services.resolved.dnssec = "false";
+
+    virtualisation.docker.enable = true;
+    #virtualisation.virtualbox.host.enable = true;
+
+  };
 }
