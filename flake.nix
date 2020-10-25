@@ -98,7 +98,10 @@
             };
 
             # Import and use home-manager.
-            imports = [ inputs.home-manager.nixosModules.home-manager ];
+            imports = [
+              inputs.home-manager.nixosModules.home-manager
+              ./modules/simple.nix
+            ];
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.jqhacker = { home.packages = [ pkgs.htop ]; };
