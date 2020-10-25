@@ -74,7 +74,7 @@
         modules = [
           ./modules/container.nix
           ./modules/simple.nix
-          ./modules/workstation
+          ./modules/roles/workstation
           inputs.home-manager.nixosModules.home-manager
 
           ({ config, pkgs, ... }: {
@@ -91,8 +91,6 @@
             system.configurationRevision = pkgs.lib.mkIf (self ? rev) self.rev;
 
             networking.hostName = "test";
-            # DHCP not needed/used in systemd-nspawn container? (To confirm).
-            networking.useDHCP = false;
 
             # Create a normal user for testing home-manager.
             users.users.jqhacker = {
@@ -121,35 +119,32 @@
         system = "x86_64-linux";
 
         modules = [
+          ./modules/machines/luban
+          ./modules/users/john.nix
+          ./modules/roles/workstation
 
           ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ self.overlays.thirdParty ];
-            imports = [
-              (import ./modules/machines/luban { inherit config pkgs; })
 
-              (import ./modules/roles/workstation-base { inherit pkgs; })
-              (import ./modules/roles/workstation-gnome { inherit pkgs; })
-              (import ./modules/roles/workstation-wayland { inherit pkgs; })
-
-              (import ./modules/users/john.nix { inherit pkgs; })
-            ];
+            roles.workstation.enable = true;
+            roles.workstation.games = true;
+            roles.workstation.gnome = true;
+            roles.workstation.sway = true;
           })
 
         ];
       };
 
       darwinConfigurations.mtlmp-jgosset1 = inputs.darwin.lib.darwinSystem {
-        inputs = {
-          inherit (inputs.home-manager.nixosModules) home-manager;
-          secrets = mySecrets;
-        };
+        inputs = { secrets = mySecrets; };
 
         modules = [
+          ./modules/roles/workstation
+          inputs.home-manager.darwinModules.home-manager
 
           ({ config, home-manager, pkgs, secrets, ... }: {
 
             imports = [
-              (import ./modules/roles/workstation { inherit pkgs; })
               (import ./modules/users/hm-darwin_jgosset.nix {
                 inherit home-manager pkgs secrets;
               })
