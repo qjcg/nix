@@ -75,6 +75,7 @@
           ./modules/container.nix
           ./modules/simple.nix
           ./modules/workstation
+          inputs.home-manager.nixosModules.home-manager
 
           ({ config, pkgs, ... }: {
 
@@ -99,8 +100,6 @@
               password = "terrible";
             };
 
-            # Import and use home-manager.
-            imports = [ inputs.home-manager.nixosModules.home-manager ];
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.jqhacker = { home.packages = [ pkgs.htop ]; };
