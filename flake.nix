@@ -73,6 +73,7 @@
 
         modules = [
           ./modules/container.nix
+          ./modules/simple.nix
 
           ({ config, pkgs, ... }: {
 
@@ -98,10 +99,7 @@
             };
 
             # Import and use home-manager.
-            imports = [
-              inputs.home-manager.nixosModules.home-manager
-              ./modules/simple.nix
-            ];
+            imports = [ inputs.home-manager.nixosModules.home-manager ];
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.jqhacker = { home.packages = [ pkgs.htop ]; };
