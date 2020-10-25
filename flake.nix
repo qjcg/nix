@@ -74,6 +74,7 @@
         modules = [
           ./modules/container.nix
           ./modules/simple.nix
+          ./modules/workstation
 
           ({ config, pkgs, ... }: {
 
