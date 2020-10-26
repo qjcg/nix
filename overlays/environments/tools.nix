@@ -96,6 +96,7 @@ self: super:
         pinentry
         psmisc
         tailscale
+        usbutils
         utillinux
         wtf
       ] ++ lib.lists.optionals stdenv.isDarwin [ pstree ];
