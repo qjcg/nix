@@ -11,6 +11,7 @@ self: super:
         aria2
         bat
         binutils
+        bottom
         caddy
         conform
         coreutils
@@ -39,6 +40,7 @@ self: super:
         got
         grafterm
         grpcurl
+        gtop
         htop
         imagemagick
         influxdb
@@ -83,7 +85,6 @@ self: super:
         watch
         wireguard-tools
         youtube-dl
-        ytop
         zoxide
       ] ++ lib.lists.optionals stdenv.isLinux [
         bettercap
