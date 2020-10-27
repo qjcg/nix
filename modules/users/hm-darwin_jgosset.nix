@@ -206,6 +206,8 @@
           options = { features = "side-by-side line-numbers decorations"; };
         };
 
+        extraConfig = { pull.rebase = false; };
+
         aliases = {
           br = "branch -avv";
           ci = "commit";
