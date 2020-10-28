@@ -24,11 +24,14 @@ update-switch:
 
 # CONTAINER
 
+.PHONY: container container-login clean
 CONTAINER_NAME := test123
 
 container:
 	sudo nixos-container create $(CONTAINER_NAME) --flake '.#test'
 	sudo nixos-container start $(CONTAINER_NAME)
+
+container-login:
 	sudo nixos-container root-login $(CONTAINER_NAME)
 
 clean:
