@@ -72,8 +72,18 @@
         system = "x86_64-linux";
 
         modules = [
+          ./modules/container.nix
+
           ({ config, pkgs, ... }: {
-            boot.isContainer = true;
+
+            imports = [
+              (import ./modules/users/john.nix {
+                inherit config pkgs;
+                home-manager = inputs.home-manager.nixosModules.home-manager;
+                secrets = mySecrets;
+              })
+            ];
+
             # Let 'nixos-version --json' know about the Git revision of this flake.
             system.configurationRevision = pkgs.lib.mkIf (self ? rev) self.rev;
 
@@ -102,6 +112,7 @@
               unstable.kubectl
             ];
           })
+
         ];
       };
 
@@ -109,6 +120,7 @@
         system = "x86_64-linux";
 
         modules = [
+
           ({ config, pkgs, ... }: {
             nixpkgs.overlays = [ self.overlays.thirdParty ];
             imports = [
@@ -121,6 +133,7 @@
               (import ./modules/users/john.nix { inherit pkgs; })
             ];
           })
+
         ];
       };
 
@@ -131,6 +144,7 @@
         };
 
         modules = [
+
           ({ config, home-manager, pkgs, secrets, ... }: {
 
             imports = [
@@ -148,6 +162,7 @@
             roles.workstation.gnome = true;
             roles.workstation.sway = true;
           })
+
         ];
       };
     };
