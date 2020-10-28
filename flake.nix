@@ -97,7 +97,6 @@
               [ self.overlays.personal self.overlays.thirdParty ];
 
             environment.systemPackages = with pkgs; [
-              env-tools
               benthos
               neovim
               unstable.kubectl
