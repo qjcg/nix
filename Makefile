@@ -20,3 +20,16 @@ update-switch:
 	nix-channel --update
 	sudo nix-channel --update
 	$(CMD_SWITCH)
+
+
+# CONTAINER
+
+CONTAINER_NAME := test123
+
+container:
+	sudo nixos-container create $(CONTAINER_NAME) --flake '.#test'
+	sudo nixos-container start $(CONTAINER_NAME)
+	sudo nixos-container root-shell $(CONTAINER_NAME)
+
+clean:
+	sudo nixos-container destroy test123
