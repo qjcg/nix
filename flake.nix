@@ -74,18 +74,9 @@
         modules = [
           ./modules/container.nix
           ./modules/simple.nix
-          ./modules/roles/workstation
           inputs.home-manager.nixosModules.home-manager
 
           ({ config, pkgs, ... }: {
-
-            imports = [
-              (import ./modules/users/john.nix {
-                inherit config pkgs;
-                home-manager = inputs.home-manager.nixosModules.home-manager;
-                secrets = mySecrets;
-              })
-            ];
 
             # Let 'nixos-version --json' know about the Git revision of this flake.
             system.configurationRevision = pkgs.lib.mkIf (self ? rev) self.rev;
