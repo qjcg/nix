@@ -10,7 +10,6 @@ self: super:
       lorri
       nix-bash-completions
       nix-index
-      nixfmt
       #nixops # NOTE: Broken build 2020-07-06
       nixpkgs-fmt
     ];
