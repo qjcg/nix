@@ -4,9 +4,11 @@
 # home-manager.users.<user> options below.
 # Ref: https://rycee.gitlab.io/home-manager/index.html#sec-install-nix-darwin-module
 
-{ pkgs, home-manager, secrets, ... }:
+{ config, pkgs, home-manager, secrets, ... }:
 
 {
+  imports = [ home-manager ];
+
   inherit (secrets) users;
 
   home-manager.useGlobalPkgs = true;
