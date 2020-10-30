@@ -35,11 +35,11 @@
   };
 
   outputs = { self, ... }@inputs:
-
     let
       mySecrets = import ./secrets.nix;
       myOverlay = import ./overlays;
-    in {
+    in
+    {
 
       # See:
       #   - https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
