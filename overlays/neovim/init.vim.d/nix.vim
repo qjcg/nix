@@ -1,10 +1,10 @@
 func! NixFmt()
 	let view = winsaveview()
 
-	:%!nixfmt
+	:%!nixpkgs-fmt
 	if v:shell_error
 		undo " Undo avoids replacing the buffer with the shell error message.
-		echom "Undo after shell error executing nixfmt!"
+		echom "Undo after shell error executing nixpkgs-fmt!"
 	endif
 
 	call winrestview(view)
