@@ -10,7 +10,7 @@ self: super:
       delve
       golangci-lint
       gopls
-      gotools
+      #gotools
       protobuf
       upx
     ];
