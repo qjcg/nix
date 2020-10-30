@@ -30,7 +30,6 @@ self: super:
         git
         github-cli
         gitAndTools.delta
-        gitAndTools.gitui
         gitAndTools.hub
         gitAndTools.lefthook
         gnugrep
