@@ -32,14 +32,18 @@
     sops.inputs.nixpkgs.follows = "pkgs-unstable";
     wayland.url = "github:colemickens/nixpkgs-wayland";
     wayland.inputs.nixpkgs.follows = "pkgs-unstable";
+
+    mySecrets.url = import ./secrets.nix;
   };
 
   outputs = { self, ... }@inputs:
     let
-      mySecrets = import ./secrets.nix;
+      #mySecrets = import ./secrets.nix;
       myOverlay = import ./overlays;
     in
     {
+
+      # OVERLAYS
 
       # See:
       #   - https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
@@ -52,11 +56,7 @@
         };
       };
 
-      # A container system for testing purposes.
-      #
-      # Features:
-      #   - overlays
-      #   - home-manager
+      # A container using Overlays and Home-Manager (ohm).
       #
       # Example usage (as root):
       #   nixos-container create foobar --flake '.#test'
@@ -68,19 +68,19 @@
       #   nixos-container root-login foobar
       #   nixos-container stop foobar
       #   nixos-container destroy foobar
-      nixosConfigurations.test = inputs.pkgs-unstable.lib.nixosSystem {
+      nixosConfigurations.ohm = inputs.pkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
 
         modules = [
           ./modules/container.nix
-          ./modules/simple.nix
 
           ({ config, pkgs, ... }: {
 
+            # Use overlays defined in this flake.
+            nixpkgs.overlays = [ self.overlays.personal self.overlays.thirdParty ];
+
             # Let 'nixos-version --json' know about the Git revision of this flake.
             system.configurationRevision = pkgs.lib.mkIf (self ? rev) self.rev;
-
-            networking.hostName = "test";
 
             # Create a normal user for testing home-manager.
             users.users.jqhacker = {
@@ -88,14 +88,20 @@
               password = "terrible";
             };
 
+            # Import the home-manager NixOS module.
             imports = [ inputs.home-manager.nixosModules.home-manager ];
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+
+            # Add home-manager configuration for our previously created user.
+            # NOTE: The htop package should ONLY be available to jqhacker.
             home-manager.users.jqhacker = { home.packages = [ pkgs.htop ]; };
 
-            nixpkgs.overlays =
-              [ self.overlays.personal self.overlays.thirdParty ];
+            # Set the container hostname.
+            networking.hostName = "test";
 
+            # Add some system packages.
+            # NOTE: These packages should be available to all users.
             environment.systemPackages = with pkgs; [
               benthos
               neovim
@@ -103,6 +109,19 @@
             ];
           })
 
+        ];
+      };
+
+      nixosConfigurations.workstation = inputs.pkgs-unstable.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./modules/container.nix
+          ./modules/roles/workstation
+
+          ({ config, pkgs, ... }: {
+            nixpkgs.overlays = [ self.overlays.personal self.overlays.thirdParty ];
+            imports = [ inputs.home-manager.nixosModules.home-manager ];
+          })
         ];
       };
 
@@ -126,31 +145,32 @@
         ];
       };
 
-      darwinConfigurations.mtlmp-jgosset1 = inputs.darwin.lib.darwinSystem {
-        inputs = { secrets = mySecrets; };
+      darwinConfigurations.mtlmp-jgosset1 = inputs.darwin.lib.darwinSystem
+        {
+          inputs = { secrets = mySecrets; };
 
-        modules = [
-          ./modules/roles/workstation
-          inputs.home-manager.darwinModules.home-manager
+          modules = [
+            ./modules/roles/workstation
+            inputs.home-manager.darwinModules.home-manager
 
-          ({ config, home-manager, pkgs, secrets, ... }: {
+            ({ config, home-manager, pkgs, secrets, ... }: {
 
-            imports = [
-              (import ./modules/users/hm-darwin_jgosset.nix {
-                inherit home-manager pkgs secrets;
-              })
-            ];
+              imports = [
+                (import ./modules/users/hm-darwin_jgosset.nix {
+                  inherit home-manager pkgs secrets;
+                })
+              ];
 
-            nixpkgs.overlays = [ self.overlays.thirdParty ];
-            users = mySecrets.users;
+              nixpkgs.overlays = [ self.overlays.thirdParty ];
+              users = mySecrets.users;
 
-            roles.workstation.enable = true;
-            roles.workstation.games = true;
-            roles.workstation.gnome = true;
-            roles.workstation.sway = true;
-          })
+              roles.workstation.enable = true;
+              roles.workstation.games = true;
+              roles.workstation.gnome = true;
+              roles.workstation.sway = true;
+            })
 
-        ];
-      };
+          ];
+        };
     };
 }
