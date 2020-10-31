@@ -8,7 +8,7 @@
     gnome3.rhythmbox
     gnome3.shotwell
     lollypop
-    olive-editor
+    #olive-editor
     pitivi
     shotcut
     vocal
