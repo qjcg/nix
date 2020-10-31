@@ -5,9 +5,9 @@
     pkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   };
 
-  outputs = { self, ... }: {
+  outputs = { self, ... }@inputs: {
 
-    nixosConfigurations.mvp = pkgs.lib.nixosSystem {
+    nixosConfigurations.mvp = inputs.pkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ({ config, pkgs, ... }: {
