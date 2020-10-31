@@ -1,7 +1,7 @@
 NAME := mvp
 
 container:
-	sudo nixos-container create $(NAME)
+	$(shell sudo nixos-container create $(NAME) --flake '.#$(NAME)' || sudo nixos-container update $(NAME) --flake '.#$(NAME)')
 	sudo nixos-container start $(NAME)
 	sudo nixos-container root-login $(NAME)
 
