@@ -13,6 +13,7 @@
           ({ config, pkgs, ... }: {
 
             boot.isContainer = true;
+            networking.hostName = "nixos-from-flake";
             networking.useDHCP = false;
             environment.systemPackages = with pkgs; [ htop ];
           })
