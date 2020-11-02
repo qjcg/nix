@@ -1,3 +1,9 @@
+usernames = [
+	"John",
+	"Frank",
+	"Mark",
+]
+
 [defaults]
 foo = 42
 bar = 99
