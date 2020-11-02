@@ -1,0 +1,16 @@
+[defaults]
+foo = 42
+bar = 99
+baz = 107
+
+[[app]]
+name = "techne"
+language = "Go"
+
+[[app]]
+name = "hydra"
+language = "ruby"
+
+[[app]]
+name = "hydra"
+language = "ruby"
