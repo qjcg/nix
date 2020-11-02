@@ -176,6 +176,12 @@
           path = ./templates/container;
           description = "A flake providing a NixOS system container.";
         };
+
+        shell = {
+          path = ./templates/devshell;
+          description = "A flake providing a development shell.";
+        };
+
       };
     };
 }
