@@ -5,17 +5,17 @@
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   outputs = { self, ... }@inputs:
-    inputs.flake-utils.lib.eachSystem [
-      "x86_64-linux"
-      "x86_64-darwin"
-    ]
-      (system:
-        let
-          pkgs = inputs.unstable.legacyPackages.${system};
-        in
-        {
-          devShell = pkgs.mkShell {
-            buildInputs = [ pkgs.hello pkgs.htop ];
+    inputs.flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = inputs.unstable.legacyPackages.${system};
+      in
+      {
+        devShell = (
+
+          with pkgs;
+
+          mkShell {
+            buildInputs = [ hello htop ];
             shellHook = ''
               cat << END
 
@@ -24,7 +24,8 @@
               END
             '';
             AWESOME = "Yes indeed!";
-          };
-        }
-      );
+          }
+        );
+      }
+    );
 }
