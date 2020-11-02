@@ -1,11 +1,13 @@
 {
-  description = "A flake providing an MVP container via module imports.";
+  description = "A flake providing a NixOS system container MVP via module imports.";
 
-  inputs.pkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+  inputs = {
+    pkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+  };
 
   outputs = { self, ... }@inputs: {
 
-    nixosConfigurations.mvp-imports = inputs.pkgs.lib.nixosSystem {
+    nixosConfigurations.flakeimp = inputs.pkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         ../../modules/container.nix
