@@ -16,10 +16,12 @@ rec {
 
     # FLAKES
     ## Interact with Flakes.
-    flakes = {
+    flakes = rec {
       pkgs = (builtins.getFlake "github:nixos/nixpkgs/nixpkgs-unstable");
       jg = (builtins.getFlake "github:qjcg/nix-config");
-      fromFile = (builtins.getFlake (toString ./testdata));
+      testData = (builtins.getFlake (toString ./testdata));
+      topLevel = (builtins.getFlake "flake:jg");
+      devShell = testData.devShell;
     };
 
     # CUSTOM FUNCTIONS
