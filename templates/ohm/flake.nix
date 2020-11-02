@@ -33,13 +33,13 @@
     wayland.url = "github:colemickens/nixpkgs-wayland";
     wayland.inputs.nixpkgs.follows = "pkgs-unstable";
 
-    mySecrets.url = import ./secrets.nix;
+    mySecrets.url = import ../../secrets.nix;
   };
 
   outputs = { self, ... }@inputs:
     let
       #mySecrets = import ./secrets.nix;
-      myOverlay = import ./overlays;
+      myOverlay = import ../../overlays;
     in
     {
 
