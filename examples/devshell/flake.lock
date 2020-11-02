@@ -15,13 +15,19 @@
         "type": "github"
       }
     },
-    "pkgs": {
+    "root": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "unstable": "unstable"
+      }
+    },
+    "unstable": {
       "locked": {
-        "lastModified": 1604139290,
-        "narHash": "sha256-tO1EFXN74/qMq7l+CnzemB1hhFNMlk9DuGuWaqqPoA0=",
+        "lastModified": 1604203245,
+        "narHash": "sha256-INzgEmAovelmUdBPat4V/LxU7aTntTah9x4Yz63bsCM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2da96f3f9c44cf87e07387321f4ca406c1a8bb7e",
+        "rev": "26d3fbf21563c52f124551eb60dec5ea17ade8fa",
         "type": "github"
       },
       "original": {
@@ -29,12 +35,6 @@
         "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
-      }
-    },
-    "root": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "pkgs": "pkgs"
       }
     }
   },

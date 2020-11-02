@@ -1,35 +1,30 @@
 {
   description = "A flake providing a development shell.";
 
-  inputs.pkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+  inputs.unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   outputs = { self, ... }@inputs:
-    with inputs.pkgs.legacyPackages;
-    {
-      devShell.x86_64-linux = with x86_64-linux; mkShell {
-        buildInputs = [ hello htop ];
-        shellHook = ''
-          cat << END
+    inputs.flake-utils.lib.eachSystem [
+      "x86_64-linux"
+      "x86_64-darwin"
+    ]
+      (system:
+        let
+          pkgs = inputs.unstable.legacyPackages.${system};
+        in
+        {
+          devShell = pkgs.mkShell {
+            buildInputs = [ pkgs.hello pkgs.htop ];
+            shellHook = ''
+              cat << END
 
-          Nix shell from a flake! To use, run "nix develop"
+              Nix shell from a flake! To use, run "nix develop"
 
-          END
-        '';
-        AWESOME = "Yes indeed!";
-      };
-
-      devShell.x86_64-darwin = with x86_64-darwin; mkShell {
-        buildInputs = [ hello htop ];
-        shellHook = ''
-          cat << END
-
-          Nix shell from a flake! To use, run "nix develop"
-
-          END
-        '';
-        AWESOME = "Yes indeed!";
-      };
-
-    };
+              END
+            '';
+            AWESOME = "Yes indeed!";
+          };
+        }
+      );
 }
