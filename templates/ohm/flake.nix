@@ -16,29 +16,14 @@
   description = "A flake for my nix configurations";
 
   inputs = {
-    pkgs-stable.url = "github:nixos/nixpkgs/nixos-20.03";
     pkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-
-    pkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-20.09-darwin";
-    darwin.url = "github:lnl7/nix-darwin";
-    darwin.inputs.nixpkgs.follows = "pkgs-darwin";
-
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "pkgs-unstable";
-    emacs.url = "github:nix-community/emacs-overlay";
-    nur.url = "github:nix-community/NUR";
-
-    sops.url = "github:mic92/sops-nix";
-    sops.inputs.nixpkgs.follows = "pkgs-unstable";
-    wayland.url = "github:colemickens/nixpkgs-wayland";
-    wayland.inputs.nixpkgs.follows = "pkgs-unstable";
-
-    mySecrets.url = import ../../secrets.nix;
   };
 
   outputs = { self, ... }@inputs:
     let
-      #mySecrets = import ./secrets.nix;
+      mySecrets = import ../../secrets.nix;
       myOverlay = import ../../overlays;
     in
     {
@@ -72,7 +57,7 @@
         system = "x86_64-linux";
 
         modules = [
-          ./modules/container.nix
+          ../../modules/container.nix
 
           ({ config, pkgs, ... }: {
 
