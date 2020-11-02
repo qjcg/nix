@@ -32,13 +32,11 @@
     sops.inputs.nixpkgs.follows = "pkgs-unstable";
     wayland.url = "github:colemickens/nixpkgs-wayland";
     wayland.inputs.nixpkgs.follows = "pkgs-unstable";
-
-    mySecrets.url = import ./secrets.nix;
   };
 
   outputs = { self, ... }@inputs:
     let
-      #mySecrets = import ./secrets.nix;
+      mySecrets = import ./secrets.nix;
       myOverlay = import ./overlays;
     in
     {
@@ -172,5 +170,12 @@
 
           ];
         };
+
+      templates = {
+        container = {
+          path = ./templates/container;
+          description = "A flake providing a NixOS system container.";
+        };
+      };
     };
 }
