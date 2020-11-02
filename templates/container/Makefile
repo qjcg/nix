@@ -1,4 +1,4 @@
-NAME := mvp
+NAME := nixos
 
 container:
 	$(shell sudo nixos-container create $(NAME) --flake '.#$(NAME)' || sudo nixos-container update $(NAME) --flake '.#$(NAME)')
