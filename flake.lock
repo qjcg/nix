@@ -86,22 +86,6 @@
         "type": "github"
       }
     },
-    "pkgs-stable": {
-      "locked": {
-        "lastModified": 1603179151,
-        "narHash": "sha256-RP88t8wxWPZjo4wm2AXlpxCNeOoj1rJbUlpB5ZvthD4=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "7c2a362b58a1c2ba72d24aa3869da3b1a91d39e1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-20.03",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "pkgs-unstable": {
       "locked": {
         "lastModified": 1602473909,
@@ -125,7 +109,6 @@
         "home-manager": "home-manager",
         "nur": "nur",
         "pkgs-darwin": "pkgs-darwin",
-        "pkgs-stable": "pkgs-stable",
         "pkgs-unstable": "pkgs-unstable",
         "sops": "sops",
         "wayland": "wayland"

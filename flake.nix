@@ -16,7 +16,6 @@
   description = "A flake for my nix configurations";
 
   inputs = {
-    pkgs-stable.url = "github:nixos/nixpkgs/nixos-20.03";
     pkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     pkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-20.09-darwin";
@@ -52,62 +51,6 @@
           home-manager = inputs.home-manager.legacyPackages."x86_64-linux";
           unstable = inputs.pkgs-unstable.legacyPackages."x86_64-linux";
         };
-      };
-
-      # A container using Overlays and Home-Manager (ohm).
-      #
-      # Example usage (as root):
-      #   nixos-container create foobar --flake '.#test'
-      #   nixos-container start foobar
-      #   systemctl status container@foobar
-      #   machinectl -l
-      #   nixos-container update foobar --flake '.#test'
-      #   nixos-container login foobar
-      #   nixos-container root-login foobar
-      #   nixos-container stop foobar
-      #   nixos-container destroy foobar
-      nixosConfigurations.ohm = inputs.pkgs-unstable.lib.nixosSystem {
-        system = "x86_64-linux";
-
-        modules = [
-          ./modules/container.nix
-
-          ({ config, pkgs, ... }: {
-
-            # Use overlays defined in this flake.
-            nixpkgs.overlays = [ self.overlays.personal self.overlays.thirdParty ];
-
-            # Let 'nixos-version --json' know about the Git revision of this flake.
-            system.configurationRevision = pkgs.lib.mkIf (self ? rev) self.rev;
-
-            # Create a normal user for testing home-manager.
-            users.users.jqhacker = {
-              isNormalUser = true;
-              password = "terrible";
-            };
-
-            # Import the home-manager NixOS module.
-            imports = [ inputs.home-manager.nixosModules.home-manager ];
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            # Add home-manager configuration for our previously created user.
-            # NOTE: The htop package should ONLY be available to jqhacker.
-            home-manager.users.jqhacker = { home.packages = [ pkgs.htop ]; };
-
-            # Set the container hostname.
-            networking.hostName = "test";
-
-            # Add some system packages.
-            # NOTE: These packages should be available to all users.
-            environment.systemPackages = with pkgs; [
-              benthos
-              neovim
-              unstable.kubectl
-            ];
-          })
-
-        ];
       };
 
       nixosConfigurations.workstation = inputs.pkgs-unstable.lib.nixosSystem {
