@@ -7,7 +7,7 @@
 
   outputs = { self, ... }@inputs:
     {
-      nixosConfigurations.nixos = inputs.unstable.lib.nixosSystem {
+      nixosConfigurations.flake = inputs.unstable.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           ({ config, pkgs, ... }: {

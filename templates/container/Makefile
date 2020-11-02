@@ -1,4 +1,4 @@
-NAME := nixos
+NAME := flake
 
 container:
 	$(shell sudo nixos-container create $(NAME) --flake '.#$(NAME)' || sudo nixos-container update $(NAME) --flake '.#$(NAME)')
