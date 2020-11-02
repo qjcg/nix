@@ -15,8 +15,8 @@ language = "Go"
 
 [[app]]
 name = "hydra"
-language = "ruby"
+language = "Ruby"
 
 [[app]]
-name = "hydra"
-language = "ruby"
+name = "techne-portal"
+language = "TypeScript"

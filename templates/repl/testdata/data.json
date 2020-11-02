@@ -1,0 +1,15 @@
+{
+  "usernames": ["John", "Frank", "Mark"],
+
+  "defaults": {
+    "foo": 42,
+    "bar": 99,
+    "baz": 107
+  },
+
+  "app": [
+    { "name": "techne", "language": "Go" },
+    { "name": "hydra", "language": "Ruby" },
+    { "name": "techne-portal", "language": "TypeScript" }
+  ]
+}
