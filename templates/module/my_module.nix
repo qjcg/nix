@@ -1,5 +1,16 @@
-{ pkgs, ... }:
+{ pkgs ? "flake:nixpkgs", ... }:
 
+with pkgs.lib;
 {
-  environment.systemPackages = with pkgs; [ htop ];
+  options = {
+    roles.demo.enable = mkOption {
+      type = tpyes.bool;
+      default = false;
+      description = "Enable demo mode";
+    };
+  };
+
+  config = {
+    environment.systemPackages = with pkgs; [ htop ];
+  };
 }
