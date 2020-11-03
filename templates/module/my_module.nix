@@ -1,4 +1,4 @@
-{ pkgs ? "flake:nixpkgs", ... }:
+{ pkgs ? "github:nixos/nixpkgs/nixpkgs-unstable", ... }:
 
 with pkgs.lib;
 {
