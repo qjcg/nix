@@ -1,26 +1,28 @@
-{ stdenv, buildGoModule, fetchFromGitHub, }:
+{ lib, buildGoModule, fetchFromGitHub, }:
+
+with lib;
 
 buildGoModule rec {
   pname = "rancher-cli";
-  version = "2.4.5";
+  version = "2.4.7";
 
   src = fetchFromGitHub {
     owner = "rancher";
     repo = "cli";
     rev = "v${version}";
-    sha256 = "0a6is23bsxijcxklrxnq1l9fa23mkwypli5jaxwrcpp7zwxd5ihg";
+    sha256 = "sha256-eKRgI/7F/YPa2qy9sddHGF5CKfcGpshUL7xhcw54x7Y=";
   };
 
   subPackages = [ "." ];
   deleteVendor = true;
-  vendorSha256 = "0gf7jaw9nzfkxdrl9k6v1mypqcsk3nrymj9x12d6d5b218k8kcgv";
+  vendorSha256 = "sha256-PNR1kK+Ad6nz2hVgB3SSyztSVhTkGfzdysevXe2M0ko=";
   buildFlagsArray = [ "-ldflags=-s -w -X main.VERSION=v${version}" ];
 
   postFixup = ''
     mv "$out"/bin/cli "$out"/bin/rancher
   '';
 
-  meta = with stdenv.lib; {
+  meta = {
     description =
       "The Rancher Command Line Interface (CLI) is a unified tool for interacting with your Rancher Server.";
     homepage = "https://github.com/rancher/cli";
