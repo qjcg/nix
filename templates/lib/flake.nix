@@ -1,9 +1,11 @@
 {
-  description = "A flake providing a Nix library.";
+  description = "A flake providing a NixOS module.";
 
   inputs = { };
 
   outputs = { self, ... }@inputs: {
-    lib = import ./lib { };
+    nixosModules = {
+      fooModule = import ./modules { };
+    };
   };
 }

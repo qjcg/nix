@@ -18,7 +18,7 @@ rec {
     pkgs = (builtins.getFlake "github:nixos/nixpkgs/nixpkgs-unstable");
     jg = (builtins.getFlake "github:qjcg/nix-config");
     testData = (builtins.getFlake (toString ../testdata));
-    topLevel = (builtins.getFlake "flake:jg");
+    topLevel = (builtins.getFlake (toString ../../..));
     devShell = testData.devShell;
   };
 
