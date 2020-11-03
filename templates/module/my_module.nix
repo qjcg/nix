@@ -4,7 +4,7 @@ with pkgs.lib;
 {
   options = {
     roles.demo.enable = mkOption {
-      type = tpyes.bool;
+      type = types.bool;
       default = false;
       description = "Enable demo mode";
     };
