@@ -1,4 +1,4 @@
-# nix-config
+# nix
 
 My personal [nix](https://nixos.org/nix/) configuration.
 
@@ -52,23 +52,21 @@ nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rp
 - [x] Add NixOS system configuration(s)
 - [x] Consider using [nix-darwin](https://github.com/LnL7/nix-darwin) on macOS
 - [x] Consider using [home-manager](https://github.com/rycee/home-manager) on macOS
-	- [x] Consider refactoring to follow layout of [Your Home in Nix (dotfile management)](https://hugoreeves.com/posts/2019/nix-home/)
+  - [x] Consider refactoring to follow layout of [Your Home in Nix (dotfile management)](https://hugoreeves.com/posts/2019/nix-home/)
 - [ ] Consider adding custom [NixOS modules](https://nixos.org/nixos/manual/index.html#sec-writing-modules)
 - [ ] Create custom NixOS LiveUSB / install media
-	- [manual](https://nixos.org/nixos/manual/index.html#sec-building-cd)
-	- [wiki](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD)
+  - [manual](https://nixos.org/nixos/manual/index.html#sec-building-cd)
+  - [wiki](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD)
 - [ ] Create custom Rasbperry Pi SD card
-	- [Build your own image](https://nixos.wiki/wiki/NixOS_on_ARM#Build_your_own_image)
-	- [Compiling through QEMU](https://nixos.wiki/wiki/NixOS_on_ARM#Compiling_through_QEMU)
-	- [Wiki Cross-compile packages](https://nixos.wiki/wiki/Cheatsheet#Cross-compile_packages)
-	- [Wiki: Raspberry Pi](https://nixos.wiki/wiki/NixOS_on_ARM/Raspberry_Pi)
+  - [Build your own image](https://nixos.wiki/wiki/NixOS_on_ARM#Build_your_own_image)
+  - [Compiling through QEMU](https://nixos.wiki/wiki/NixOS_on_ARM#Compiling_through_QEMU)
+  - [Wiki Cross-compile packages](https://nixos.wiki/wiki/Cheatsheet#Cross-compile_packages)
+  - [Wiki: Raspberry Pi](https://nixos.wiki/wiki/NixOS_on_ARM/Raspberry_Pi)
 - [x] Use version pinning
-	- [NixOS Wiki: FAQ/Pinning Nixpkgs](https://nixos.wiki/wiki/FAQ/Pinning_Nixpkgs)
-	- [Intro to Nix Channels & Reproducible NixOS Environment](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
+  - [NixOS Wiki: FAQ/Pinning Nixpkgs](https://nixos.wiki/wiki/FAQ/Pinning_Nixpkgs)
+  - [Intro to Nix Channels & Reproducible NixOS Environment](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
 - [ ] Pilot a small refactor of the current configuration into Nix Flakes
 - [ ] Refactor configuration.nix to include package environments (env-workstation, etc)
-
-
 
 ## References
 
@@ -88,7 +86,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [nix-1p: A one page introduction to Nix, the language](https://github.com/tazjin/nix-1p)
 - [A Gentle Introduction to the Nix Family](https://ebzzry.io/en/nix/)
 - [(neo)vim overlay configuration example](https://nixos.wiki/wiki/Vim#Custom_setup_without_using_Home_Manager)
-	- [Example of adding new custom (neo)vim plugin](https://nixos.wiki/wiki/Vim#Add_a_new_custom_plugin_to_the_users_packages)
+  - [Example of adding new custom (neo)vim plugin](https://nixos.wiki/wiki/Vim#Add_a_new_custom_plugin_to_the_users_packages)
 - [Setting up a custom nix channel](https://savanni.luminescent-dreams.com/2019/09/13/nix-channel/)
 - [How to put your /nix directory on a separate device](https://cs-syd.eu/posts/2019-09-14-nix-on-seperate-device)
 - [Cheatsheet comparing Ubuntu & NixOS](https://nixos.wiki/wiki/Cheatsheet)
@@ -97,7 +95,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [Learn X in Y Minutes: nix](https://learnxinyminutes.com/docs/nix/)
 - [Your Home in Nix (dotfile management)](https://hugoreeves.com/posts/2019/nix-home/)
 - [Create a custom NixOS Live CD](https://nixos.org/nixos/manual/index.html#sec-building-cd)
-	- [Related Wiki article](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD)
+  - [Related Wiki article](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD)
 - [Intro to Nix Channels and Reproducible NixOS Environment](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
 
 ### Flakes
@@ -107,7 +105,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [Nix Flakes, Part 3: Managing NixOS Systems](https://www.tweag.io/blog/2020-07-31-nixos-flakes/)
 - [Wiki: Flakes](https://nixos.wiki/wiki/Flakes)
 - [Flakes RFC / proposal](https://github.com/tweag/rfcs/blob/flakes/rfcs/0049-flakes.md)
-	- [Flakes RFC GitHub PR (discussion)](https://github.com/NixOS/rfcs/pull/49)
+  - [Flakes RFC GitHub PR (discussion)](https://github.com/NixOS/rfcs/pull/49)
 
 ### Concepts
 
@@ -132,7 +130,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [Deploying k8s apps with kubenix](https://zimbatm.com/deploying-k8s-apps-with-kubenix/)
 - [Optimising Docker Layers for Better Caching with Nix](https://grahamc.com/blog/nix-and-layered-docker-images)
 - [arion: Run docker-compose with help from Nix/NixOS](https://github.com/hercules-ci/arion)
-	- [Arion Docs](https://docs.hercules-ci.com/arion/)
+  - [Arion Docs](https://docs.hercules-ci.com/arion/)
 
 ### Build System
 
@@ -149,9 +147,9 @@ Interesting and useful links on a variety of nix-related topics.
 ### Config Examples
 
 - [grahamc: nixos-config](https://github.com/grahamc/nixos-config)
-	- [grahamc: network (personal servers & router config)](https://github.com/grahamc/network)
-	- [grahamc: NixOS 2019 Talks](https://github.com/grahamc/talks) (overrides, overlays, ...)
-	- [grahamc: Erase Your Darlings](https://grahamc.com/blog/erase-your-darlings)
+  - [grahamc: network (personal servers & router config)](https://github.com/grahamc/network)
+  - [grahamc: NixOS 2019 Talks](https://github.com/grahamc/talks) (overrides, overlays, ...)
+  - [grahamc: Erase Your Darlings](https://grahamc.com/blog/erase-your-darlings)
 - [j0xaf (with i3 config)](https://github.com/j0xaf/dotfiles/blob/master/.config/nixpkgs/home.nix)
 - [rummik (with system configurations, custom NixOS modules, nix-darwin, and home-manager)](https://github.com/rummik/nixos-config)
 - [HugoReeves (with machine / role / user structure)](https://github.com/HugoReeves/nix-home/)
