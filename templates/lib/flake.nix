@@ -1,9 +1,9 @@
 {
-  description = "A flake providing a library.";
+  description = "A flake providing a Nix library.";
 
   inputs = { };
 
   outputs = { self, ... }@inputs: {
-    lib = import ./repl.nix { };
+    lib = import ./lib.nix { };
   };
 }

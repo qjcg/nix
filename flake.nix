@@ -120,6 +120,11 @@
           description = "A flake providing a NixOS system container.";
         };
 
+        lib = {
+          path = ./templates/lib;
+          description = "A flake providing a Nix library.";
+        };
+
         shell = {
           path = ./templates/devshell;
           description = "A flake providing a development shell.";
