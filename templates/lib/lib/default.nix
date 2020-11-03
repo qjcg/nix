@@ -17,7 +17,7 @@ rec {
   flakes = rec {
     pkgs = (builtins.getFlake "github:nixos/nixpkgs/nixpkgs-unstable");
     jg = (builtins.getFlake "github:qjcg/nix-config");
-    testData = (builtins.getFlake (toString ./testdata));
+    testData = (builtins.getFlake (toString ../testdata));
     topLevel = (builtins.getFlake "flake:jg");
     devShell = testData.devShell;
   };
@@ -27,13 +27,13 @@ rec {
   ## From the repl, call `:p users` to review the result.
   functions = {
     mkUser = user: { name = "${user}"; age = 42; };
-    users = with repl.functions; map (u: mkUser u) userNames;
+    users = with functions; map (u: mkUser u) userNames;
   };
 
   # EXTERNAL DATA
   data = {
-    toml = builtins.fromTOML (builtins.readFile ./testdata/data.toml);
-    json = builtins.fromJSON (builtins.readFile ./testdata/data.json);
-    equal = with repl; data.toml == data.json;
+    toml = builtins.fromTOML (builtins.readFile ../testdata/data.toml);
+    json = builtins.fromJSON (builtins.readFile ../testdata/data.json);
+    equal = data.toml == data.json;
   };
 }

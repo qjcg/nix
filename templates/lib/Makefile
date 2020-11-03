@@ -1,7 +1,9 @@
+LIB := ./lib/default.nix
+
 .PHONY: repl
 repl:
-	nix repl repl.nix
+	nix repl $(LIB)
 
 .PHONY: repl-with-args
 repl-with-args:
-	nix repl --arg userNames '[ "Oprah" "Jerry" "Phil" ]' repl.nix
+	nix repl --arg userNames '[ "Oprah" "Jerry" "Phil" ]' $(LIB)

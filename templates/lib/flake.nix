@@ -4,6 +4,6 @@
   inputs = { };
 
   outputs = { self, ... }@inputs: {
-    lib = import ./lib.nix { };
+    lib = import ./lib { };
   };
 }
