@@ -36,16 +36,13 @@
   outputs = { self, ... }@inputs:
     let
       mySecrets = import ./secrets.nix;
-      myOverlay = import ./overlays;
     in
     {
 
-      # OVERLAYS
+      overlay = import ./overlays;
 
-      # See:
-      #   - https://nixos.wiki/wiki/Flakes#Importing_packages_from_multiple_channels
       overlays = {
-        personal = myOverlay;
+        personal = self.overlay;
 
         thirdParty = final: prev: {
           home-manager = inputs.home-manager.legacyPackages."x86_64-linux";
