@@ -1,21 +1,23 @@
-{ stdenv, fetchFromGitHub, buildGoModule, installShellFiles }:
+{ lib, fetchFromGitHub, buildGoModule, installShellFiles }:
 
+with lib;
 let
   # Get this from https://update.k3s.io/v1-release/channels/stable
   stableK3sVersionString = "v1.18.9-k3s1";
-in buildGoModule rec {
+in
+buildGoModule rec {
   pname = "k3d";
-  version = "3.1.5";
+  version = "3.2.0";
 
   src = fetchFromGitHub {
     owner = "rancher";
     repo = "k3d";
     rev = "v${version}";
-    sha256 = "0aspkar9im323d8117k48fvh1yylyspi2p2l2f5rdg1ilpa6hm53";
+    sha256 = "sha256-kEsOToIxuWr7JdiuKvkS7E5HQdkn7W3txyDyujOiwEs=";
   };
 
   deleteVendor = true;
-  vendorSha256 = "1sav3j2ha8wl58dzf510zs64rwv11k3vw184c243nvixs196xjd4";
+  vendorSha256 = "sha256-wjZT5cR5I/xLMA9z7TGKh0YFhUUMKrPU2RrGAoV6Omc=";
 
   subPackages = [ "." ];
 
@@ -32,7 +34,7 @@ in buildGoModule rec {
     installShellCompletion k3d.{bash,zsh}
   '';
 
-  meta = with stdenv.lib; {
+  meta = {
     description =
       "A lightweight wrapper to run k3s (Rancher Lab’s minimal Kubernetes distribution) in docker";
     homepage = "https://github.com/rancher/k3d";
