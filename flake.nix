@@ -122,6 +122,11 @@
           description = "A flake providing a Nix library.";
         };
 
+        package = {
+          path = ./templates/package;
+          description = "A flake providing a nix package.";
+        };
+
         shell = {
           path = ./templates/devshell;
           description = "A flake providing a development shell.";
