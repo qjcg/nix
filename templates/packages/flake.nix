@@ -11,7 +11,7 @@
         with import pkgs { system = "x86_64-linux"; };
         stdenv.mkDerivation {
           name = "hello";
-          src = ./src;
+          src = self;
           buildPhase = "gcc -o hello ./hello.c";
           installPhase = "mkdir -p $out/bin; install -t $out/bin hello";
         };
