@@ -1,12 +1,19 @@
 {
   description = "A flake providing single package (and setting defaultPackage).";
 
-  inputs.pkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+  inputs = {
+    pkgs.url = "github:nixos/nixpkgs/nixos-20.03";
+  };
 
-  outputs = { self, ... }@inputs:
+  outputs = { self, pkgs }:
     {
-      overlay = final: prev: { horeb = prev.callPackage ../../packages/horeb; };
-      packages.x86_64-linux = import inputs.pkgs.legacyPackages.x86_64-linux { overlays = [ self.overlay ]; };
-      defaultPackage.x86_64-linux = self.packages.x86_64-linux.horeb;
+      defaultPackage.x86_64-linux =
+        with import pkgs { system = "x86_64-linux"; };
+        stdenv.mkDerivation {
+          name = "hello";
+          src = self;
+          buildPhase = "gcc -o hello ./hello.c";
+          installPhase = "mkdir -p $out/bin; install -t $out/bin hello";
+        };
     };
 }
