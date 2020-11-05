@@ -1,3 +1,4 @@
+# Example from: https://www.tweag.io/blog/2020-05-25-flakes/
 {
   description = "A flake providing single package (and setting defaultPackage).";
 
