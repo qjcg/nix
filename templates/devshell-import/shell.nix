@@ -1,8 +1,9 @@
-{ pkgs, ... }:
+{ pkgs ? <nixpkgs>, ... }:
 
 with pkgs;
 mkShell {
-  buildInputs = [ hello htop ];
+  name = "devshell-myapp";
+  buildInputs = [ hello ];
   shellHook = ''
     cat << END
 
