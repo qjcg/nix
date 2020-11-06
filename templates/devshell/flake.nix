@@ -7,15 +7,14 @@
   };
 
   outputs = { self, ... }@inputs:
+    # Define our shell as cross-platform (x86_64-{linux,darwin}, aarch64-linux).
     inputs.flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
       in
       {
         devShell = (
-
           with pkgs;
-
           mkShell {
             name = "devshell-myapp";
             buildInputs = [ hello ];
