@@ -2,14 +2,14 @@
   description = "A flake providing a development shell.";
 
   inputs = {
-    unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
   outputs = { self, ... }@inputs:
     inputs.flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = inputs.unstable.legacyPackages.${system};
+        pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
       in
       {
         devShell = (
@@ -17,7 +17,8 @@
           with pkgs;
 
           mkShell {
-            buildInputs = [ hello htop ];
+            name = "devshell-myapp";
+            buildInputs = [ hello ];
             shellHook = ''
               cat << END
 
