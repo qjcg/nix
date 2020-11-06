@@ -1,18 +1,35 @@
-# NOTE: WIP, does not build yet!
-{ stdenv, fetchFromGitHub, rustPlatform }:
+{ stdenv
+, fetchFromGitHub
+, rustPlatform
+
+, xorg
+, autoconf
+, automake
+, bison
+, pkgconfig
+, libtool
+, alsaLib
+, python38
+, openssl
+, ...
+}:
 
 rustPlatform.buildRustPackage rec {
   pname = "ruffle";
-  version = "0.1.0";
+  version = "nightly-2020-11-05";
 
   src = fetchFromGitHub {
     owner = "ruffle-rs";
     repo = pname;
-    rev = "a472005f1be668a79f74a25ef86b893523797b6d";
-    sha256 = "1kdn4v6jpwmdfai8sk6ylk7nhjvldrvczs910ncjijr7kg7b895w";
+    rev = "master";
+    sha256 = "sha256-C+ZeHtJDqnoUyzP9o9ZhkCyJKXjVgMDfc+jv6DUzyCU=";
   };
 
-  cargoSha256 = "0z9v7j5pw3l8gfsgbky0f0g4lzx49yxki88fg228lsz9vigs8p2b";
+  nativeBuildInputs = [ alsaLib autoconf automake bison pkgconfig libtool python38 ];
+
+  buildInputs = with xorg; [ alsaLib libX11 openssl python38 ];
+
+  cargoSha256 = "sha256-McSE1Enn33JWO5ovHeunWSAVXXSFRSq7+4lmzIE+ZRc=";
 
   meta = with stdenv.lib; {
     description = "A Flash Player emulator written in Rust";
