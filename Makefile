@@ -20,3 +20,12 @@ update-switch:
 	nix-channel --update
 	sudo nix-channel --update
 	$(CMD_SWITCH)
+
+
+# DOCKER
+
+DC_SVC := nix
+
+docker:
+	docker-compose up -d
+	docker-compose exec $(DC_SVC) bash
