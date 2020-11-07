@@ -3,7 +3,7 @@
 {
 
   environment.systemPackages = with pkgs; [
-    go-4d
+    d4
     git
     home-manager
     htop
