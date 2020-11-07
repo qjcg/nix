@@ -80,6 +80,8 @@
         }
       ) // {
 
+      lib = import ./lib;
+
       overlay = final: prev:
         let
           customPackages = builtins.attrNames (builtins.readDir ./packages/custom);
