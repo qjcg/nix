@@ -73,6 +73,10 @@
               unstable = inputs.nixpkgs.legacyPackages.${system};
             };
           };
+
+          checks = {
+            build = self.defaultPackage.${system};
+          };
         }
       ) // {
 
