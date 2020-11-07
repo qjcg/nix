@@ -50,6 +50,29 @@
         };
       };
 
+      templates = {
+        container = {
+          path = ./templates/container;
+          description = "A flake providing a NixOS system container.";
+        };
+
+        lib = {
+          path = ./templates/lib;
+          description = "A flake providing a Nix library.";
+        };
+
+        package = {
+          path = ./templates/package;
+          description = "A flake providing a nix package.";
+        };
+
+        shell = {
+          path = ./templates/devshell;
+          description = "A flake providing a development shell.";
+        };
+
+      };
+
       nixosConfigurations.workstation = inputs.pkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
@@ -111,27 +134,5 @@
           ];
         };
 
-      templates = {
-        container = {
-          path = ./templates/container;
-          description = "A flake providing a NixOS system container.";
-        };
-
-        lib = {
-          path = ./templates/lib;
-          description = "A flake providing a Nix library.";
-        };
-
-        package = {
-          path = ./templates/package;
-          description = "A flake providing a nix package.";
-        };
-
-        shell = {
-          path = ./templates/devshell;
-          description = "A flake providing a development shell.";
-        };
-
-      };
     };
 }
