@@ -66,8 +66,6 @@
             };
 
           overlays = {
-            personal = self.overlay;
-
             thirdParty = final: prev: {
               home-manager = inputs.home-manager.legacyPackages.${system};
               unstable = inputs.nixpkgs.legacyPackages.${system};
@@ -134,7 +132,7 @@
               ./modules/roles/workstation
 
               ({ config, pkgs, ... }: {
-                nixpkgs.overlays = [ self.overlays.personal self.overlays.thirdParty ];
+                nixpkgs.overlays = [ self.overlay self.overlays.thirdParty ];
                 imports = [ inputs.home-manager.nixosModules.home-manager ];
               })
             ];
