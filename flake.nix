@@ -54,6 +54,14 @@
 
           defaultPackage = self.packages.${system}.mtlcam;
 
+          devShell = with pkgs;
+            mkShell {
+              name = "devshell-nix-qjcg";
+              buildInputs = [
+                hello
+              ];
+            };
+
           overlays = {
             personal = self.overlay;
 
