@@ -42,9 +42,11 @@
           pkgs = import inputs.nixpkgs {
             system = "${system}";
             overlays = [
-              inputs.emacs.overlay
+              self.overlay
+              inputs.emacs.overlay # Needed by ./packages/custom/emacs*
             ];
           };
+
           customPackages = builtins.attrNames (builtins.readDir ./packages/custom);
         in
         {
@@ -58,6 +60,7 @@
             mkShell {
               name = "devshell-nix-qjcg";
               buildInputs = [
+                packages.d4
                 hello
               ];
             };
