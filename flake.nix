@@ -132,7 +132,10 @@
               ./modules/roles/workstation
 
               ({ config, pkgs, ... }: {
-                nixpkgs.overlays = [ self.overlay self.overlays.thirdParty ];
+                nixpkgs.overlays = [
+                  self.overlay
+                  (import inputs.home-manager { system = "x86_64-linux"; })
+                ];
                 imports = [ inputs.home-manager.nixosModules.home-manager ];
               })
             ];
