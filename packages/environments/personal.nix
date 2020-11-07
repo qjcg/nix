@@ -1,10 +1,10 @@
-self: super:
+{ pkgs }:
 
 {
-  env-personal = super.pkgs.buildEnv {
+  env-personal = pkgs.buildEnv {
     name = "env-personal";
     meta.priority = 0;
-    paths = with super.pkgs;
-      [ go-4d horeb mtlcam ] ++ lib.lists.optionals stdenv.isLinux [ barr ];
+    paths = with pkgs;
+      [ d4 horeb mtlcam ] ++ lib.lists.optionals stdenv.isLinux [ barr ];
   };
 }

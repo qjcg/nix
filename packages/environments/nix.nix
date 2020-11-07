@@ -1,10 +1,10 @@
-self: super:
+{ pkgs }:
 
 {
-  env-nix = super.pkgs.buildEnv {
+  env-nix = pkgs.buildEnv {
     name = "env-nix";
     meta.priority = 0;
-    paths = with super.pkgs; [
+    paths = with pkgs; [
       #cachix # NOTE: Requires a RIDICULOUSLY long ghc compilation.
       direnv
       lorri

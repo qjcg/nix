@@ -1,10 +1,10 @@
-self: super:
+{ pkgs }:
 
 {
-  env-go = super.pkgs.buildEnv {
+  env-go = pkgs.buildEnv {
     name = "env-go";
     meta.priority = 0;
-    paths = with super.pkgs; [
+    paths = with pkgs; [
       go
       gohack
       delve

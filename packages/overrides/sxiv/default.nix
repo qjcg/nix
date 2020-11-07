@@ -1,5 +1,5 @@
-self: super:
+{ pkgs }:
 
 {
-  sxiv = super.sxiv.override { conf = builtins.readFile ./sxiv-config.h; };
+  sxiv = pkgs.sxiv.override { conf = builtins.readFile ./sxiv-config.h; };
 }

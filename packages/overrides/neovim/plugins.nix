@@ -1,9 +1,9 @@
-super:
+{ pkgs }:
 
 {
-  janet.vim = super.pkgs.vimUtils.buildVimPlugin {
+  janet.vim = pkgs.vimUtils.buildVimPlugin {
     name = "janet.vim";
-    src = super.pkgs.fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "janet-lang";
       repo = "janet.vim";
       rev = "60926ca06bda6e4c8fa7daccd5c224d504ab4afe";
@@ -11,9 +11,9 @@ super:
     };
   };
 
-  vim-cue = super.pkgs.vimUtils.buildVimPlugin {
+  vim-cue = pkgs.vimUtils.buildVimPlugin {
     name = "vim-cue";
-    src = super.pkgs.fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "jjo";
       repo = "vim-cue";
       rev = "1c802d17f86c775d879b2cdebe84efd40dc4bbfd";
@@ -21,9 +21,9 @@ super:
     };
   };
 
-  vim-mdx-js = super.pkgs.vimUtils.buildVimPlugin {
+  vim-mdx-js = pkgs.vimUtils.buildVimPlugin {
     name = "vim-mdx-js";
-    src = super.pkgs.fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "jxnblk";
       repo = "vim-mdx-js";
       rev = "17179d7f2a73172af5f9a8d65b01a3acf12ddd50";
@@ -31,9 +31,9 @@ super:
     };
   };
 
-  vim-prisma = super.pkgs.vimUtils.buildVimPlugin {
+  vim-prisma = pkgs.vimUtils.buildVimPlugin {
     name = "vim-prisma";
-    src = super.pkgs.fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "pantharshit00";
       repo = "vim-prisma";
       rev = "e91ac5011232e1bd8ea53204db8d01203d5d0f3c";
@@ -41,9 +41,9 @@ super:
     };
   };
 
-  xonsh-vim = super.pkgs.vimUtils.buildVimPlugin {
+  xonsh-vim = pkgs.vimUtils.buildVimPlugin {
     name = "xonsh-vim";
-    src = super.pkgs.fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "linkinpark342";
       repo = "xonsh-vim";
       rev = "984a7e8cf5f2516976667c34d6cb61bd01f93be0";

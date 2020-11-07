@@ -1,10 +1,10 @@
-self: super:
+{ pkgs }:
 
 {
-  env-k8s = super.pkgs.buildEnv {
+  env-k8s = pkgs.buildEnv {
     name = "env-k8s";
     meta.priority = 0;
-    paths = with super.pkgs;
+    paths = with pkgs;
       [
         argo
         argocd

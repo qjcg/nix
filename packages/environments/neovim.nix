@@ -1,9 +1,9 @@
-self: super:
+{ pkgs }:
 
 {
-  env-neovim = super.pkgs.buildEnv {
+  env-neovim = pkgs.buildEnv {
     name = "env-neovim";
     meta.priority = 0;
-    paths = with super.pkgs; [ neovim nodejs ];
+    paths = with pkgs; [ neovim nodejs ];
   };
 }

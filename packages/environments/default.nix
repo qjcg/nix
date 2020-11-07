@@ -1,20 +1,20 @@
 self: super:
-
 let
-
-  pkgs-flashplayer = import (fetchGit {
-    url = "https://github.com/NixOS/nixpkgs-channels";
-    ref = "nixos-20.03";
-    rev = "add5529b3ee2df5035d7fb06120b74363a373be4";
-  }) { };
+  pkgs-flashplayer = import
+    (fetchGit {
+      url = "https://github.com/NixOS/nixpkgs-channels";
+      ref = "nixos-20.03";
+      rev = "add5529b3ee2df5035d7fb06120b74363a373be4";
+    })
+    { };
 
   pkgGroups = with super.pkgs; {
 
     CLI = {
 
       personal = [
-        go-4d
         barr
+        d4
         horeb
         mtlcam
 
@@ -298,7 +298,8 @@ let
     ];
 
   };
-in {
+in
+{
   env-financial = (import ./financial.nix self super).env-financial;
   env-go = (import ./go.nix self super).env-go;
   env-k8s = (import ./k8s.nix self super).env-k8s;
@@ -332,7 +333,7 @@ in {
     meta.priority = 0;
     paths = super.lib.lists.flatten
       (super.lib.attrsets.collect builtins.isList pkgGroups.CLI)
-      ++ super.lib.lists.flatten
+    ++ super.lib.lists.flatten
       (super.lib.attrsets.collect builtins.isList pkgGroups.GUI);
   };
 

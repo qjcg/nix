@@ -1,10 +1,7 @@
-self: super:
+{ pkgs ? import (builtins.fetchTarball "https://github.com/colemickens/nixpkgs-wayland/archive/master.tar.gz") }:
 
-let
-  url = "https://github.com/colemickens/nixpkgs-wayland/archive/master.tar.gz";
-  waylandOverlay = (import (builtins.fetchTarball url));
-in {
-  wayfire = waylandOverlay.wayfire.overrideAttrs (oldAttrs: rec {
+{
+  wayfire = pkgs.wayfire.overrideAttrs (oldAttrs: rec {
 
     # Install desktop file to provide GDM menu option.
     postInstall = ''

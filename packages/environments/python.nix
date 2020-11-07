@@ -1,10 +1,10 @@
-self: super:
+{ pkgs }:
 
 {
-  env-python = super.pkgs.buildEnv {
+  env-python = pkgs.buildEnv {
     name = "env-python";
     meta.priority = 0;
-    paths = with super.pkgs;
+    paths = with pkgs;
       [
         (python38.withPackages (ps:
           with ps; [

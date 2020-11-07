@@ -1,5 +1,5 @@
-self: super:
+{ pkgs }:
 
 {
-  st = super.st.override { conf = builtins.readFile ./st-config.h; };
+  st = pkgs.st.override { conf = builtins.readFile ./st-config.h; };
 }

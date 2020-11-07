@@ -1,89 +1,24 @@
 self: super:
-
 let
+  customPackageNames = builtins.attrNames (builtins.readDir ../packages/custom);
+  customPackages = super.lib.attrsets.genAttrs customPackageNames (name:
+    super.callPackage (../packages/custom + "/${name}") { }
+  );
+
   # Overlays from this directory
-  myOverlays = (import ./environments self super)
-  # FIXME: Disable st for now (broken build).
-  #// (import ./neovim self super) // (import ./st self super)
-    // (import ./neovim self super) // (import ./sxiv self super);
-in {
+  myOverlays = (import ../packages/environments self super)
+    # FIXME: Disable st for now (broken build).
+    #// (import ./st self super)
+    // (import ./neovim self super) // (import ./sxiv self super) // customPackages;
+in
+{
   # Custom Packages
 
   #emacs = super.callPackage ../packages/emacs { };
   #emacs-nox = super.callPackage ../packages/emacs-nox { };
-  annie = super.callPackage ../packages/annie { };
-  barr = super.callPackage ../packages/barr { };
-  battery = super.callPackage ../packages/battery { };
-  benthos = super.callPackage ../packages/benthos { };
-  brightness = super.callPackage ../packages/brightness { };
-  cassowary = super.callPackage ../packages/cassowary { };
-  conform = super.callPackage ../packages/conform { };
-  cue = super.callPackage ../packages/cue { };
-  daptin = super.callPackage ../packages/daptin { };
-  freetube = super.callPackage ../packages/freetube { };
-  github-cli = super.callPackage ../packages/github-cli { };
-  gled = super.callPackage ../packages/gled { };
-  glooctl = super.callPackage ../packages/glooctl { };
-  go-4d = super.callPackage ../packages/4d { };
-  gohack = super.callPackage ../packages/gohack { };
-  goplot = super.callPackage ../packages/goplot { };
-  got = super.callPackage ../packages/got { };
-  grafterm = super.callPackage ../packages/grafterm { };
-  helm = super.callPackage ../packages/helm { };
-  hey = super.callPackage ../packages/hey { };
-  horeb = super.callPackage ../packages/horeb { };
-  import-sh = super.callPackage ../packages/import-sh { };
-  jmigpin-editor = super.callPackage ../packages/jmigpin-editor { };
-  julia-mono = super.callPackage ../packages/julia-mono { };
-  k3c = super.callPackage ../packages/k3c { };
-  k3d = super.callPackage ../packages/k3d { };
-  kompose = super.callPackage ../packages/kompose { };
-  kubeseal = super.callPackage ../packages/kubeseal { };
-  #loccount = super.callPackage ../packages/loccount { };
-  ludo-bin = super.callPackage ../packages/ludo-bin { };
-  maddy = super.callPackage ../packages/maddy { };
-  mark = super.callPackage ../packages/mark { };
-  micro = super.callPackage ../packages/micro { };
-  mtlcam = super.callPackage ../packages/mtlcam { };
-  plan9port = super.callPackage ../packages/plan9port { };
-  pms = super.callPackage ../packages/pms { };
-  rancher-cli = super.callPackage ../packages/rancher-cli { };
-  revel = super.callPackage ../packages/revel { };
-  ruffle = super.callPackage ../packages/ruffle { };
-  s-nail = super.callPackage ../packages/s-nail { };
-  skaffold = super.callPackage ../packages/skaffold { };
-  tekton-cli = super.callPackage ../packages/tekton-cli { };
 
   # Overrides
 
-  delve = super.delve.overrideAttrs (oldAttrs: rec {
-    version = "1.5.0";
-    src = self.fetchFromGitHub {
-      owner = "go-delve";
-      repo = "delve";
-      rev = "v${version}";
-      sha256 = "0m7fryclrj0qzqzcjn0xc9vl43srijyfahfkqdbm59xgpws67anp";
-    };
-  });
-
-  dunst = super.dunst.override { dunstify = true; };
-
-  retroarch = super.retroarch.override {
-    cores = with self.libretro; [
-      beetle-lynx
-      beetle-vb
-      dosbox
-      #fbalpha2012
-      fceumm
-      genesis-plus-gx
-      mame
-      mupen64plus
-      nestopia
-      prboom
-      snes9x2010
-      stella
-    ];
-  };
 
   vscodium-with-extensions = super.vscode-with-extensions.override {
     vscode = super.vscodium;

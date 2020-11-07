@@ -1,10 +1,10 @@
-self: super:
+{ pkgs }:
 
 {
-  env-tools = super.pkgs.buildEnv {
+  env-tools = pkgs.buildEnv {
     name = "env-tools";
     meta.priority = 1;
-    paths = with super.pkgs;
+    paths = with pkgs;
       [
         age
         annie
