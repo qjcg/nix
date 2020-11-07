@@ -3,7 +3,7 @@
 { pkgs, }:
 
 pkgs.emacsWithPackagesFromUsePackage {
-  config = builtins.readFile ../../files/emacs/init.el;
+  config = builtins.readFile ../../../files/emacs/init.el;
 
   # TODO: Figure out how to deploy my personal init.el via this overlay (i.e. avoiding home-manager).
   #override = epkgs: epkgs // {
