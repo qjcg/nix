@@ -39,7 +39,12 @@
     inputs.flake-utils.lib.eachDefaultSystem
       (system:
         let
-          pkgs = inputs.nixpkgs.legacyPackages.${system};
+          pkgs = import inputs.nixpkgs {
+            system = "${system}";
+            overlays = [
+              inputs.emacs.overlay
+            ];
+          };
           customPackages = builtins.attrNames (builtins.readDir ./packages/custom);
         in
         {
@@ -63,12 +68,14 @@
       overlay = final: prev:
         let
           customPackages = builtins.attrNames (builtins.readDir ./packages/custom);
+          # FIXME
           customEnvs = builtins.attrNames (builtins.readDir ./packages/environments);
         in
         {
           packages = prev.lib.attrsets.genAttrs customPackages (name:
             prev.callPackage (./packages/custom + "/${name}") { }
           );
+          # FIXME
           envs = prev.lib.attrsets.genAttrs customEnvs (name:
             prev.callPackage (./packages/environments + "/${name}") { }
           );
