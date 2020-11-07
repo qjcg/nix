@@ -16,39 +16,63 @@
   description = "A flake for my nix configurations";
 
   inputs = {
-    pkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     pkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-20.09-darwin";
     darwin.url = "github:lnl7/nix-darwin";
     darwin.inputs.nixpkgs.follows = "pkgs-darwin";
 
     home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "pkgs-unstable";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     emacs.url = "github:nix-community/emacs-overlay";
     nur.url = "github:nix-community/NUR";
 
     sops.url = "github:mic92/sops-nix";
-    sops.inputs.nixpkgs.follows = "pkgs-unstable";
+    sops.inputs.nixpkgs.follows = "nixpkgs";
     wayland.url = "github:colemickens/nixpkgs-wayland";
-    wayland.inputs.nixpkgs.follows = "pkgs-unstable";
+    wayland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, ... }@inputs:
-    let
-      mySecrets = import ./secrets.nix;
-    in
-    {
+    inputs.flake-utils.lib.eachDefaultSystem
+      (system:
+        let
+          pkgs = inputs.nixpkgs.legacyPackages.${system};
+          customPackages = builtins.attrNames (builtins.readDir ./packages/custom);
+        in
+        {
+          packages = pkgs.lib.attrsets.genAttrs customPackages (name:
+            pkgs.callPackage (./packages/custom + "/${name}") { }
+          );
 
-      overlay = import ./overlays;
+          defaultPackage = self.packages.${system}.mtlcam;
 
-      overlays = {
-        personal = self.overlay;
+          overlays = {
+            personal = self.overlay;
 
-        thirdParty = final: prev: {
-          home-manager = inputs.home-manager.legacyPackages."x86_64-linux";
-          unstable = inputs.pkgs-unstable.legacyPackages."x86_64-linux";
+            thirdParty = final: prev: {
+              home-manager = inputs.home-manager.legacyPackages.${system};
+              unstable = inputs.nixpkgs.legacyPackages.${system};
+            };
+          };
+        }
+      ) // {
+
+      overlay = final: prev:
+        let
+          customPackages = builtins.attrNames (builtins.readDir ./packages/custom);
+          customEnvs = builtins.attrNames (builtins.readDir ./packages/environments);
+        in
+        {
+          packages = prev.lib.attrsets.genAttrs customPackages (name:
+            prev.callPackage (./packages/custom + "/${name}") { }
+          );
+          envs = prev.lib.attrsets.genAttrs customEnvs (name:
+            prev.callPackage (./packages/environments + "/${name}") { }
+          );
         };
-      };
 
       templates = {
         container = {
@@ -73,65 +97,78 @@
 
       };
 
-      nixosConfigurations.workstation = inputs.pkgs-unstable.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./modules/container.nix
-          ./modules/roles/workstation
-
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ self.overlays.personal self.overlays.thirdParty ];
-            imports = [ inputs.home-manager.nixosModules.home-manager ];
-          })
-        ];
-      };
-
-      nixosConfigurations.luban = inputs.pkgs-unstable.lib.nixosSystem {
-        system = "x86_64-linux";
-
-        modules = [
-          ./modules/machines/luban
-          ./modules/users/john.nix
-          ./modules/roles/workstation
-
-          ({ config, pkgs, ... }: {
-            nixpkgs.overlays = [ self.overlays.thirdParty ];
-
-            roles.workstation.enable = true;
-            roles.workstation.games = true;
-            roles.workstation.gnome = true;
-            roles.workstation.sway = true;
-          })
-
-        ];
-      };
-
-      darwinConfigurations.mtlmp-jgosset1 = inputs.darwin.lib.darwinSystem
+      nixosConfigurations =
+        let
+          mySecrets = import ./secrets.nix;
+        in
         {
-          inputs = { secrets = mySecrets; };
 
-          modules = [
-            ./modules/roles/workstation
-            inputs.home-manager.darwinModules.home-manager
+          workstation = inputs.nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+            modules = [
+              ./modules/container.nix
+              ./modules/roles/workstation
 
-            ({ config, home-manager, pkgs, secrets, ... }: {
+              ({ config, pkgs, ... }: {
+                nixpkgs.overlays = [ self.overlays.personal self.overlays.thirdParty ];
+                imports = [ inputs.home-manager.nixosModules.home-manager ];
+              })
+            ];
+          };
 
-              imports = [
-                (import ./modules/users/hm-darwin_jgosset.nix {
-                  inherit home-manager pkgs secrets;
+          luban = inputs.nixpkgs.lib.nixosSystem {
+            system = "x86_64-linux";
+
+            modules = [
+              ./modules/machines/luban
+              ./modules/users/john.nix
+              ./modules/roles/workstation
+
+              ({ config, pkgs, ... }: {
+                nixpkgs.overlays = [ self.overlays.thirdParty ];
+
+                roles.workstation.enable = true;
+                roles.workstation.games = true;
+                roles.workstation.gnome = true;
+                roles.workstation.sway = true;
+              })
+
+            ];
+          };
+        };
+
+      darwinConfigurations =
+        let
+          mySecrets = import ./secrets.nix;
+        in
+        {
+          mtlmp-jgosset1 = inputs.darwin.lib.darwinSystem
+            {
+              inputs = { secrets = mySecrets; };
+
+              modules = [
+                ./modules/roles/workstation
+                inputs.home-manager.darwinModules.home-manager
+
+                ({ config, home-manager, pkgs, secrets, ... }: {
+
+                  imports = [
+                    (import ./modules/users/hm-darwin_jgosset.nix {
+                      inherit home-manager pkgs secrets;
+                    })
+                  ];
+
+                  nixpkgs.overlays = [ self.overlays.thirdParty ];
+                  users = mySecrets.users;
+
+                  roles.workstation.enable = true;
+                  roles.workstation.games = true;
+                  roles.workstation.gnome = true;
+                  roles.workstation.sway = true;
                 })
+
               ];
-
-              nixpkgs.overlays = [ self.overlays.thirdParty ];
-              users = mySecrets.users;
-
-              roles.workstation.enable = true;
-              roles.workstation.games = true;
-              roles.workstation.gnome = true;
-              roles.workstation.sway = true;
-            })
-
-          ];
+            };
         };
 
     };

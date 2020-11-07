@@ -35,10 +35,25 @@
         "type": "github"
       }
     },
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1601282935,
+        "narHash": "sha256-WQAFV6sGGQxrRs3a+/Yj9xUYvhTpukQJIcMbIi7LCJ4=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "588973065fce51f4763287f0fda87a174d78bf48",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
-          "pkgs-unstable"
+          "nixpkgs"
         ]
       },
       "locked": {
@@ -52,6 +67,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1604350474,
+        "narHash": "sha256-zz0g0YmgJJqSd9032LWJAjHUeEIgvbXVoN2y8SCBQ9I=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "0da76dab4c2acce5ebf404c400d38ad95c52b152",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -86,30 +117,15 @@
         "type": "github"
       }
     },
-    "pkgs-unstable": {
-      "locked": {
-        "lastModified": 1602473909,
-        "narHash": "sha256-tZfZhmjYNX4UrUySEjbosJO7Bj3eiCGnjfX5DkVClQw=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "cfed29bfcb28259376713005d176a6f82951014a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "darwin": "darwin",
         "emacs": "emacs",
+        "flake-utils": "flake-utils",
         "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs",
         "nur": "nur",
         "pkgs-darwin": "pkgs-darwin",
-        "pkgs-unstable": "pkgs-unstable",
         "sops": "sops",
         "wayland": "wayland"
       }
@@ -117,7 +133,7 @@
     "sops": {
       "inputs": {
         "nixpkgs": [
-          "pkgs-unstable"
+          "nixpkgs"
         ]
       },
       "locked": {
@@ -137,7 +153,7 @@
     "wayland": {
       "inputs": {
         "nixpkgs": [
-          "pkgs-unstable"
+          "nixpkgs"
         ]
       },
       "locked": {
