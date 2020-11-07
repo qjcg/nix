@@ -35,5 +35,6 @@ rustPlatform.buildRustPackage rec {
     description = "A Flash Player emulator written in Rust";
     homepage = "https://github.com/ruffle-rs/ruffle";
     license = licenses.asl20;
+    platforms = platforms.linux;
   };
 }
