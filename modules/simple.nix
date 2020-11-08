@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [ gomuks ];
+  environment.systemPackages = with pkgs; [ hello ];
 }
