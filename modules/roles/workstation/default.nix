@@ -1,9 +1,13 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 with pkgs;
-let cfg = config.roles.workstation;
-in {
-  imports = [ ./fonts.nix ] ++ lib.lists.optionals cfg.gnome [ ./gnome.nix ]
+let
+  cfg = config.roles.workstation;
+in
+{
+  imports =
+    [ ./fonts.nix ]
+    ++ lib.lists.optionals cfg.gnome [ ./gnome.nix ]
     ++ lib.lists.optionals cfg.sway [ ./sway.nix ];
 
   options = {
@@ -52,7 +56,6 @@ in {
       env-personal
       env-python
       env-tools
-      env-vscodium
     ];
 
     environment.variables.EDITOR = "nvim";
