@@ -43,34 +43,38 @@
             system = "${system}";
             overlays = [
               self.overlay
-              inputs.emacs.overlay # Needed by ./packages/custom/emacs*
+              inputs.emacs.overlay
             ];
           };
 
-          customPackages = builtins.attrNames (builtins.readDir ./packages/custom);
+          unsupportedDarwin = "freetube|ruffle"; # Filter these names out on Darwin.
         in
         {
-          packages = pkgs.lib.attrsets.genAttrs customPackages (name:
-            pkgs.callPackage (./packages/custom + "/${name}") { }
-          );
+          packages =
+            pkgs.lib.attrsets.genAttrs
+
+              # Filter out packages that are unsupported when on darwin systems.
+              (builtins.filter
+                (name:
+                  !(
+                    !isNull (builtins.match unsupportedDarwin name) &&
+                    "${system}" == "x86_64-darwin"
+                  ))
+                (builtins.attrNames (builtins.readDir ./packages/custom))
+              )
+              (name: pkgs.callPackage (./packages/custom + "/${name}") { });
 
           defaultPackage = self.packages.${system}.mtlcam;
 
-          devShell = with pkgs;
+          devShell =
+            with pkgs;
             mkShell {
               name = "devshell-nix-qjcg";
               buildInputs = [
-                packages.d4
+                mtlcam
                 hello
               ];
             };
-
-          overlays = {
-            thirdParty = final: prev: {
-              home-manager = inputs.home-manager.legacyPackages.${system};
-              unstable = inputs.nixpkgs.legacyPackages.${system};
-            };
-          };
 
           checks = {
             build = self.defaultPackage.${system};
@@ -80,21 +84,7 @@
 
       lib = import ./lib;
 
-      overlay = final: prev:
-        let
-          customPackages = builtins.attrNames (builtins.readDir ./packages/custom);
-          # FIXME
-          customEnvs = builtins.attrNames (builtins.readDir ./packages/environments);
-        in
-        {
-          packages = prev.lib.attrsets.genAttrs customPackages (name:
-            prev.callPackage (./packages/custom + "/${name}") { }
-          );
-          # FIXME
-          envs = prev.lib.attrsets.genAttrs customEnvs (name:
-            prev.callPackage (./packages/environments + "/${name}") { }
-          );
-        };
+      overlay = import ./packages;
 
       templates = {
         container = {
@@ -150,7 +140,7 @@
               ./modules/roles/workstation
 
               ({ config, pkgs, ... }: {
-                nixpkgs.overlays = [ self.overlays.thirdParty ];
+                nixpkgs.overlays = [ self.overlay ];
 
                 roles.workstation.enable = true;
                 roles.workstation.games = true;
@@ -183,7 +173,7 @@
                     })
                   ];
 
-                  nixpkgs.overlays = [ self.overlays.thirdParty ];
+                  nixpkgs.overlays = [ self.overlay ];
                   users = mySecrets.users;
 
                   roles.workstation.enable = true;
