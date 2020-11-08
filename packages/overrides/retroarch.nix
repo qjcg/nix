@@ -1,8 +1,8 @@
-{ pkgs }:
+final: prev:
 
 {
-  retroarch = pkgs.retroarch.override {
-    cores = with pkgs.libretro; [
+  retroarch = prev.retroarch.override {
+    cores = with final.libretro; [
       beetle-lynx
       beetle-vb
       dosbox

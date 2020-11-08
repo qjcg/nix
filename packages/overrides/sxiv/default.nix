@@ -1,5 +1,5 @@
-{ pkgs }:
+final: prev:
 
 {
-  sxiv = pkgs.sxiv.override { conf = builtins.readFile ./sxiv-config.h; };
+  sxiv = prev.sxiv.override { conf = builtins.readFile ./sxiv-config.h; };
 }

@@ -1,9 +1,9 @@
-{ pkgs }:
+final: prev:
 
 {
-  vscodium-with-extensions = pkgs.vscode-with-extensions.override {
-    vscode = pkgs.vscodium;
-    vscodeExtensions = (with pkgs.vscode-extensions; [
+  vscodium-with-extensions = prev.vscode-with-extensions.override {
+    vscode = final.vscodium;
+    vscodeExtensions = (with final.vscode-extensions; [
       bbenoist.Nix
       ms-kubernetes-tools.vscode-kubernetes-tools
       ms-azuretools.vscode-docker
@@ -11,7 +11,7 @@
       ms-vscode-remote.remote-ssh
       redhat.vscode-yaml
       #vscodevim.vim
-    ]) ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
+    ]) ++ final.vscode-utils.extensionsFromVscodeMarketplace [
       {
         name = "Go";
         publisher = "golang";

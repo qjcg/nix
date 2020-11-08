@@ -1,9 +1,10 @@
-{ pkgs }:
+final: prev:
 
+with prev;
 {
-  env-financial = pkgs.buildEnv {
+  env-financial = buildEnv {
     name = "env-financial";
     meta.priority = 0;
-    paths = with pkgs; [ beancount fava ];
+    paths = [ beancount fava ];
   };
 }

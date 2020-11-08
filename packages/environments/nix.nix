@@ -1,10 +1,11 @@
-{ pkgs }:
+final: prev:
 
+with prev;
 {
-  env-nix = pkgs.buildEnv {
+  env-nix = buildEnv {
     name = "env-nix";
     meta.priority = 0;
-    paths = with pkgs; [
+    paths = [
       #cachix # NOTE: Requires a RIDICULOUSLY long ghc compilation.
       direnv
       lorri

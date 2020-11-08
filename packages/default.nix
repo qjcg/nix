@@ -25,12 +25,13 @@ let
   overrides = {
     delve = import ./overrides/delve.nix final prev;
     dunst = import ./overrides/dunst.nix final prev;
+    emacs = import ./overrides/emacs.nix final prev;
     neovim = import ./overrides/neovim final prev;
     retroarch = import ./overrides/retroarch.nix final prev;
     st = import ./overrides/st final prev;
     sxiv = import ./overrides/sxiv final prev;
     vscodium-with-extensions = import ./overrides/vscodium-with-extensions.nix final prev;
-    wayfire = import ./overrides/wayfire final prev;
+    #wayfire = import ./overrides/wayfire final prev;
   };
 in
 packages // environments // overrides

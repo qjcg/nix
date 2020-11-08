@@ -1,12 +1,16 @@
-{ pkgs }:
+final: prev:
 
+with prev;
 {
   # NOTE: Installing this environment along with the programs.bash.enable
   # option results in a glitchy-looking prompt!
-  env-shell = pkgs.buildEnv {
+  env-shell = buildEnv {
     name = "env-shell";
     meta.priority = 0;
-    paths = with pkgs;
-      [ bash bash-completion xonsh ] ++ lib.lists.optionals stdenv.isLinux [ ];
+    paths = [
+      bash
+      bash-completion
+      xonsh
+    ] ++ lib.lists.optionals stdenv.isLinux [ ];
   };
 }

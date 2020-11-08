@@ -1,10 +1,11 @@
-{ pkgs }:
+final: prev:
 
+with prev;
 {
-  env-go = pkgs.buildEnv {
+  env-go = buildEnv {
     name = "env-go";
     meta.priority = 0;
-    paths = with pkgs; [
+    paths = [
       go
       gohack
       delve

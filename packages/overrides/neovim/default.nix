@@ -1,16 +1,16 @@
-{ pkgs }:
+final: prev:
 let
-  customPlugins = import ./plugins.nix pkgs;
-  allPlugins = pkgs.vimPlugins // customPlugins;
+  customPlugins = import ./plugins.nix final prev;
+  allPlugins = prev.vimPlugins // customPlugins;
 
   # Concatenate all modular nvim config files from ./init.vim.d
   nvimConfigPaths =
     map (f: "/" + f) (builtins.attrNames (builtins.readDir ./init.vim.d));
-  nvimConfig = pkgs.lib.concatStrings
+  nvimConfig = prev.lib.concatStrings
     (map (f: builtins.readFile (./init.vim.d + f)) nvimConfigPaths);
 in
 {
-  neovim = pkgs.neovim.override {
+  neovim = prev.neovim.override {
     viAlias = true;
     vimAlias = true;
 

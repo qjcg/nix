@@ -1,9 +1,9 @@
-{ pkgs }:
+final: prev:
 
 {
-  delve = pkgs.delve.overrideAttrs (oldAttrs: rec {
+  delve = prev.delve.overrideAttrs (oldAttrs: rec {
     version = "1.5.0";
-    src = pkgs.fetchFromGitHub {
+    src = prev.fetchFromGitHub {
       owner = "go-delve";
       repo = "delve";
       rev = "v${version}";

@@ -1,5 +1,5 @@
-{ pkgs }:
+final: prev:
 
 {
-  dunst = pkgs.dunst.override { dunstify = true; };
+  dunst = prev.dunst.override { dunstify = true; };
 }

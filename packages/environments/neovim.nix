@@ -1,9 +1,10 @@
-{ pkgs }:
+final: prev:
 
+with prev;
 {
-  env-neovim = pkgs.buildEnv {
+  env-neovim = buildEnv {
     name = "env-neovim";
     meta.priority = 0;
-    paths = with pkgs; [ neovim nodejs ];
+    paths = [ neovim nodejs ];
   };
 }
