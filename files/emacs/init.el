@@ -1,68 +1,21 @@
 ;; When this is after the CUSTOMIZE section, the custom-enabled-themes theme is not loaded properly.
 (package-initialize)
 
-;; CUSTOMIZE (modularize this out eventually).
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default default default italic underline success warning error])
- '(ansi-color-names-vector
-   ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
- '(custom-enabled-themes (quote (doom-challenger-deep)))
- '(custom-safe-themes
-   (quote
-    ("bc99493670a29023f99e88054c9b8676332dda83a37adb583d6f1e4c13be62b8" "4b0b568d63b1c6f6dddb080b476cfba43a8bbc34187c3583165e8fb5bbfde3dc" "92d8a13d08e16c4d2c027990f4d69f0ce0833c844dcaad3c8226ae278181d5f3" default)))
- '(fci-rule-color "#505050")
- '(jdee-db-active-breakpoint-face-colors (cons "#1b1d1e" "#fc20bb"))
- '(jdee-db-requested-breakpoint-face-colors (cons "#1b1d1e" "#60aa00"))
- '(jdee-db-spec-breakpoint-face-colors (cons "#1b1d1e" "#505050"))
- '(objed-cursor-color "#d02b61")
- '(package-selected-packages
-   (quote
-    (projectile yaml-mode json-mode gitignore-mode jinja2-mode systemd doom-themes dockerfile-mode yasnippet company-lsp company lsp-ui go-mode go-rename lsp-mode)))
- '(paradox-github-token t)
- '(pdf-view-midnight-colors (cons "#dddddd" "#1b1d1e"))
- '(scroll-bar-mode nil)
- '(tool-bar-mode nil)
- '(vc-annotate-background "#1b1d1e")
- '(vc-annotate-color-map
-   (list
-    (cons 20 "#60aa00")
-    (cons 40 "#859f0d")
-    (cons 60 "#aa931a")
-    (cons 80 "#d08928")
-    (cons 100 "#d38732")
-    (cons 120 "#d6863d")
-    (cons 140 "#da8548")
-    (cons 160 "#ce8379")
-    (cons 180 "#c281aa")
-    (cons 200 "#b77fdb")
-    (cons 220 "#bf63b2")
-    (cons 240 "#c74789")
-    (cons 260 "#d02b61")
-    (cons 280 "#b0345c")
-    (cons 300 "#903d58")
-    (cons 320 "#704654")
-    (cons 340 "#505050")
-    (cons 360 "#505050")))
- '(vc-annotate-very-old-color nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Iosevka" :foundry "CYEL" :slant normal :weight normal :height 112 :width normal)))))
-
+;; Use a *separate* file for customizations.
+;; See M-x customize
+(setq custom-file "~/.config/emacs/custom.el")
+(unless (file-exists-p custom-file)
+  (make-directory
+(load custom-file)
 
 ;; IDO mode settings.
 ;; See https://masteringemacs.org/article/introduction-to-ido-mode
-(require 'ido)
-(setq ido-enable-flex-matching t
-      ido-everywhere t)
 (ido-mode t)
+(setq ido-enable-flex-matching t
+      ido-everywhere t
+      ido-create-new-buffer 'always
+)
+
 
 ;; Enable MELPA repo.
 ;; See https://github.com/melpa/melpa#usage
