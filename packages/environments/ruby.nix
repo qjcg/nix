@@ -1,15 +1,17 @@
-final: prev:
+{ pkgs, ... }:
 
-with prev;
-{
-  env-ruby = buildEnv {
-    name = "env-ruby";
-    meta.priority = 0;
-    paths = [
-      bundix
-      pry
-      rubyPackages.pry-doc
-      ruby
-    ];
+with pkgs;
+
+buildEnv {
+  name = "env-ruby";
+  paths = [
+    bundix
+    pry
+    rubyPackages.pry-doc
+    ruby
+  ];
+  meta = {
+    priority = 0;
+    description = "An environment for Ruby development";
   };
 }
