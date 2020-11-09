@@ -29,3 +29,16 @@ DC_SVC := nix
 docker:
 	docker-compose up -d
 	docker-compose exec $(DC_SVC) bash
+
+
+# NIXOS-CONTAINER
+
+CONTAINER_NAME := workstation
+
+container:
+	$(shell sudo nixos-container create $(CONTAINER_NAME) --flake '.#$(CONTAINER_NAME)' || sudo nixos-container update $(CONTAINER_NAME) --flake '.#$(CONTAINER_NAME)')
+	sudo nixos-container start $(CONTAINER_NAME)
+	sudo nixos-container root-login $(CONTAINER_NAME)
+
+clean:
+	sudo nixos-container destroy $(CONTAINER_NAME)
