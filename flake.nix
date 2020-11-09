@@ -74,6 +74,7 @@
                 in
                 {
                   emacs = pkgs.callPackage ./packages/overrides/emacs { };
+                  neovim = (pkgs.callPackage ./packages/overrides/neovim { }).neovim;
                 };
             in
             custom // overrides;
