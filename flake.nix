@@ -83,12 +83,22 @@
                 let
                   pkgs = import inputs.nixpkgs {
                     system = "${system}";
-                    overlays = [ inputs.emacs.overlay ];
+                    overlays = [
+                      inputs.emacs.overlay
+                      inputs.wayland.overlay
+                    ];
                   };
                 in
                 {
+                  delve = pkgs.callPackage ./packages/overrides/delve { };
+                  dunst = pkgs.callPackage ./packages/overrides/dunst { };
                   emacs = pkgs.callPackage ./packages/overrides/emacs { };
                   neovim = pkgs.callPackage ./packages/overrides/neovim { };
+                  retroarch = pkgs.callPackage ./packages/overrides/retroarch { };
+                  st = pkgs.callPackage ./packages/overrides/st { };
+                  sxiv = pkgs.callPackage ./packages/overrides/sxiv { };
+                  vscodium-with-extensions = pkgs.callPackage ./packages/overrides/vscodium-with-extensions { };
+                  wayfire = pkgs.callPackage ./packages/overrides/wayfire { };
                 };
             in
             custom // environments // overrides;

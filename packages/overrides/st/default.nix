@@ -1,5 +1,5 @@
-final: prev:
+{ pkgs, ... }:
 
-{
-  st = prev.st.override { conf = builtins.readFile ./st-config.h; };
+pkgs.st.override {
+  conf = builtins.readFile ./st-config.h;
 }
