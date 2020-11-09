@@ -70,7 +70,6 @@
                 env-go = pkgs.callPackage ./packages/environments/go.nix { };
                 env-k8s = pkgs.callPackage ./packages/environments/k8s.nix { };
                 env-multimedia = pkgs.callPackage ./packages/environments/multimedia.nix { };
-                env-neovim = pkgs.callPackage ./packages/environments/neovim.nix { };
                 env-nix = pkgs.callPackage ./packages/environments/nix.nix { };
                 env-personal = pkgs.callPackage ./packages/environments/personal.nix { };
                 env-python = pkgs.callPackage ./packages/environments/python.nix { };

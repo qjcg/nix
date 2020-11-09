@@ -7,7 +7,7 @@ buildEnv {
   paths = [
     go
     gohack
-    delve
+    #delve
     golangci-lint
     gopls
     #gotools

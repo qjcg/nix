@@ -12,7 +12,6 @@ let
     env-go = import ./environments/go.nix final prev;
     env-k8s = import ./environments/k8s.nix final prev;
     env-multimedia = import ./environments/multimedia.nix final prev;
-    env-neovim = import ./environments/neovim.nix final prev;
     env-nix = import ./environments/nix.nix final prev;
     env-personal = import ./environments/personal.nix final prev;
     env-python = import ./environments/python.nix final prev;
@@ -22,18 +21,16 @@ let
   };
 
   # TODO: Rewrite as a DRY function.
-  # TODO: Reorganize files (each package in a separate dir, for ease of DRY rewriting?)
   overrides = {
+    delve = prev.callPackage ./overrides/delve { };
+    dunst = prev.callPackage ./overrides/dunst { };
     emacs = prev.callPackage ./overrides/emacs { };
     neovim = prev.callPackage ./overrides/neovim { };
-
-    delve = import ./overrides/delve.nix final prev;
-    dunst = import ./overrides/dunst.nix final prev;
-    retroarch = import ./overrides/retroarch.nix final prev;
-    st = import ./overrides/st final prev;
-    sxiv = import ./overrides/sxiv final prev;
-    vscodium-with-extensions = import ./overrides/vscodium-with-extensions.nix final prev;
-    #wayfire = import ./overrides/wayfire final prev;
+    retroarch = prev.callPackage ./overrides/retroarch { };
+    st = prev.callPackage ./overrides/st { };
+    sxiv = prev.callPackage ./overrides/sxiv { };
+    vscodium-with-extensions = prev.callPackage ./overrides/vscodium-with-extensions { };
+    wayfire = prev.callPackage ./overrides/wayfire { };
   };
 in
 packages // environments // overrides
