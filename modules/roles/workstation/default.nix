@@ -51,7 +51,6 @@ in
       env-go
       env-k8s
       env-multimedia
-      env-neovim
       env-nix
       env-personal
       env-python
