@@ -8,16 +8,15 @@ let
   # TODO: Rewrite as a DRY function.
   environments = {
     env-financial = prev.callPackage ./environments/financial.nix { };
-
-    env-go = import ./environments/go.nix final prev;
-    env-k8s = import ./environments/k8s.nix final prev;
-    env-multimedia = import ./environments/multimedia.nix final prev;
-    env-nix = import ./environments/nix.nix final prev;
-    env-personal = import ./environments/personal.nix final prev;
-    env-python = import ./environments/python.nix final prev;
-    env-ruby = import ./environments/ruby.nix final prev;
-    env-shell = import ./environments/shell.nix final prev;
-    env-tools = import ./environments/tools.nix final prev;
+    env-go = prev.callPackage ./environments/go.nix { };
+    env-k8s = prev.callPackage ./environments/k8s.nix { };
+    env-multimedia = prev.callPackage ./environments/multimedia.nix { };
+    env-nix = prev.callPackage ./environments/nix.nix { };
+    env-personal = prev.callPackage ./environments/personal.nix { };
+    env-python = prev.callPackage ./environments/python.nix { };
+    env-ruby = prev.callPackage ./environments/ruby.nix { };
+    env-shell = prev.callPackage ./environments/shell.nix { };
+    env-tools = prev.callPackage ./environments/tools.nix { };
   };
 
   # TODO: Rewrite as a DRY function.

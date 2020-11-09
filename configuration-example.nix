@@ -1,10 +1,9 @@
 # Top-level module.
 # See https://nixos.org/nixos/manual/#sec-writing-modules
 { config, pkgs, ... }:
-
 let
   secrets = import ./secrets.nix;
-  overlay-mine = import ./overlays;
+  overlay-mine = import ./packages;
 
   # https://github.com/nix-community/home-manager/commits/master
   home-manager = import "${
@@ -30,12 +29,15 @@ let
   });
 
   # https://github.com/NixOS/nixpkgs/commits/nixos-unstable
-  pkgs = import (fetchGit {
-    url = "https://github.com/NixOS/nixpkgs";
-    ref = "nixos-unstable";
-    rev = "9085a724fdd7668f6e59abd9dfc7aef4e1dde3dd";
-  }) { overlays = [ overlay-emacs overlay-wayland overlay-mine ]; };
-in {
+  pkgs = import
+    (fetchGit {
+      url = "https://github.com/NixOS/nixpkgs";
+      ref = "nixos-unstable";
+      rev = "9085a724fdd7668f6e59abd9dfc7aef4e1dde3dd";
+    })
+    { overlays = [ overlay-emacs overlay-wayland overlay-mine ]; };
+in
+{
   nixpkgs.config.allowBroken = false;
 
   imports = [
