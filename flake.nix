@@ -65,6 +65,10 @@
                 )
                 (name: pkgs.callPackage (./packages/custom + "/${name}") { });
 
+              environments = {
+                env-financial = pkgs.callPackage ./packages/environments/financial.nix { };
+              };
+
               overrides =
                 let
                   pkgs = import inputs.nixpkgs {
@@ -74,10 +78,10 @@
                 in
                 {
                   emacs = pkgs.callPackage ./packages/overrides/emacs { };
-                  neovim = (pkgs.callPackage ./packages/overrides/neovim { }).neovim;
+                  neovim = pkgs.callPackage ./packages/overrides/neovim { };
                 };
             in
-            custom // overrides;
+            custom // environments // overrides;
 
           defaultPackage = self.packages.${system}.mtlcam;
 

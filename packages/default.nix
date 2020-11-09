@@ -7,7 +7,8 @@ let
 
   # TODO: Rewrite as a DRY function.
   environments = {
-    env-financial = import ./environments/financial.nix final prev;
+    env-financial = prev.callPackage ./environments/financial.nix { };
+
     env-go = import ./environments/go.nix final prev;
     env-k8s = import ./environments/k8s.nix final prev;
     env-multimedia = import ./environments/multimedia.nix final prev;
@@ -23,10 +24,11 @@ let
   # TODO: Rewrite as a DRY function.
   # TODO: Reorganize files (each package in a separate dir, for ease of DRY rewriting?)
   overrides = {
+    emacs = prev.callPackage ./overrides/emacs { };
+    neovim = prev.callPackage ./overrides/neovim { };
+
     delve = import ./overrides/delve.nix final prev;
     dunst = import ./overrides/dunst.nix final prev;
-    emacs = prev.callPackage ./overrides/emacs { };
-    neovim = import ./overrides/neovim final prev;
     retroarch = import ./overrides/retroarch.nix final prev;
     st = import ./overrides/st final prev;
     sxiv = import ./overrides/sxiv final prev;

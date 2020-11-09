@@ -1,10 +1,12 @@
-final: prev:
+{ pkgs, ... }:
 
-with prev;
-{
-  env-financial = buildEnv {
-    name = "env-financial";
-    meta.priority = 0;
-    paths = [ beancount fava ];
+with pkgs;
+
+buildEnv {
+  name = "env-financial";
+  paths = [ beancount fava ];
+  meta = {
+    priority = 0;
+    description = "An environment for personal financial work";
   };
 }
