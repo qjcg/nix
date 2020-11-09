@@ -105,12 +105,13 @@
           defaultPackage = self.packages.${system}.mtlcam;
 
           devShell =
-            with pkgs;
-            mkShell {
+            with inputs.nixpkgs.legacyPackages.${system};
+            with self.packages.${system};
+            pkgs.mkShell {
               name = "devshell-nix-qjcg";
               buildInputs = [
-                mtlcam
-                hello
+                emacs
+                nixpkgs-fmt
               ];
             };
 
