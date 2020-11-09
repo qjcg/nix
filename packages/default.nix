@@ -25,7 +25,7 @@ let
   overrides = {
     delve = import ./overrides/delve.nix final prev;
     dunst = import ./overrides/dunst.nix final prev;
-    emacs = import ./overrides/emacs.nix final prev;
+    emacs = prev.callPackage ./overrides/emacs { };
     neovim = import ./overrides/neovim final prev;
     retroarch = import ./overrides/retroarch.nix final prev;
     st = import ./overrides/st final prev;

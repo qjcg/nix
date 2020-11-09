@@ -51,18 +51,32 @@
         in
         {
           packages =
-            pkgs.lib.attrsets.genAttrs
+            let
+              custom = pkgs.lib.attrsets.genAttrs
 
-              # Filter out packages that are unsupported when on darwin systems.
-              (builtins.filter
-                (name:
-                  !(
-                    !isNull (builtins.match unsupportedDarwin name) &&
-                    "${system}" == "x86_64-darwin"
-                  ))
-                (builtins.attrNames (builtins.readDir ./packages/custom))
-              )
-              (name: pkgs.callPackage (./packages/custom + "/${name}") { });
+                # Filter out packages that are unsupported when on darwin systems.
+                (builtins.filter
+                  (name:
+                    !(
+                      !isNull (builtins.match unsupportedDarwin name) &&
+                      "${system}" == "x86_64-darwin"
+                    ))
+                  (builtins.attrNames (builtins.readDir ./packages/custom))
+                )
+                (name: pkgs.callPackage (./packages/custom + "/${name}") { });
+
+              overrides =
+                let
+                  pkgs = import inputs.nixpkgs {
+                    system = "${system}";
+                    overlays = [ inputs.emacs.overlay ];
+                  };
+                in
+                {
+                  emacs = pkgs.callPackage ./packages/overrides/emacs { };
+                };
+            in
+            custom // overrides;
 
           defaultPackage = self.packages.${system}.mtlcam;
 
