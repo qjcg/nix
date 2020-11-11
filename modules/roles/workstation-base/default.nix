@@ -16,7 +16,7 @@ let
 in
 {
   environment = {
-    systemPackages = [ env-k8s env-nix env-personal env-tools ];
+    systemPackages = [ env-k8s env-nix env-personal env-tools neovim ];
     variables = {
       EDITOR = "nvim";
       PAGER = "less";
@@ -88,6 +88,7 @@ in
       env-personal
       env-python
       env-tools
+      neovim
     ];
   };
 
