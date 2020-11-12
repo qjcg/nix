@@ -20,12 +20,13 @@ See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
     (make-directory
      (load custom-file)))
 
+  ; Load my preferred theme.
+  (load-theme doom-challenger-deep t nil)
 					  ; A few misc settings.
   (setq	echo-keystrokes 0.1          ; Show keystrokes ASAP
 	  inhibit-startup-message t    ; Disable the splash screen
 	  initial-scratch-message nil  ; Clean scratch buffer
 	  tool-bar-mode nil)           ; Disable toolbar.
-
 
 					  ; Web browsing
   (setq browse-url-browser-function 'eww-browse-url)
