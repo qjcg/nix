@@ -16,19 +16,15 @@ See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
    (setq custom-file "~/.config/emacs/custom.el")
    (unless (file-exists-p custom-file)
      (make-directory
-   (load custom-file)
+      (load custom-file)))
+
+   (setq
+    echo-keystrokes 0.1 ; Show keystrokes ASAP
+    inhibit-startup-message t    ; Disable the splash screen
+    initial-scratch-message nil  ; Clean scratch buffer
+    )
  #+end_src
  
-** Packages
- #+begin_src emacs-lisp
-
- ;; Enable MELPA repo.
- ;; See https://github.com/melpa/melpa#usage
- (require 'package)
- (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-
- #+end_src
-
 ** Basic Configuration
 
 #+BEGIN_SRC emacs-lisp
@@ -40,6 +36,16 @@ See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
 	ido-everywhere t
 	ido-create-new-buffer 'always)
 #+END_SRC
+
+** Packages
+ #+begin_src emacs-lisp
+
+ ;; Enable MELPA repo.
+ ;; See https://github.com/melpa/melpa#usage
+ (require 'package)
+ (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+
+ #+end_src
 
 ** Languages
 
