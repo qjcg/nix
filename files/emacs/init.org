@@ -15,7 +15,7 @@ See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
 
   ;; Use a *separate* file for customizations.
   ;; See M-x customize
-  (setq custom-file "~/.config/emacs/custom.el")
+  (setq custom-file (expand-file-name "~/.config/emacs/custom.el"))
   (unless (file-exists-p custom-file)
     (make-directory
      (load custom-file)))
