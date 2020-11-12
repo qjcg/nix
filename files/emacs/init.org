@@ -20,9 +20,6 @@ See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
     (make-directory
      (load custom-file)))
 
-  ; Load my preferred theme.
-  (load-theme doom-challenger-deep t nil)
-					  ; A few misc settings.
   (setq	echo-keystrokes 0.1          ; Show keystrokes ASAP
 	  inhibit-startup-message t    ; Disable the splash screen
 	  initial-scratch-message nil  ; Clean scratch buffer
@@ -32,6 +29,39 @@ See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
   (setq browse-url-browser-function 'eww-browse-url)
 #+end_src
  
+* Packages
+#+begin_src emacs-lisp
+  ;; Enable MELPA repo.
+  ;; See https://github.com/melpa/melpa#usage
+  ;(require 'package)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+#+end_src
+
+** Simple
+Miscellaneous packages
+
+#+begin_src emacs-lisp
+  (use-package all-the-icons :ensure)
+  (use-package bug-hunter :ensure)
+  (use-package discover-my-major :ensure)
+  (use-package dockerfile-mode :ensure)
+  (use-package doom-themes :ensure)
+  (use-package gitignore-mode :ensure)
+  (use-package hydra :ensure)
+  (use-package jinja2-mode :ensure)
+  (use-package json-mode :ensure)
+  (use-package nix-mode :ensure)
+  (use-package olivetti :ensure)
+  (use-package page-break-lines :ensure)
+  (use-package paradox :ensure)
+  (use-package systemd :ensure)
+  (use-package yaml-mode :ensure)
+  (use-package elfeed :ensure)
+
+					  ; Load my preferred theme.
+  (load-theme doom-challenger-deep t nil)
+#+end_src
+
 * Ido Mode
 
 #+BEGIN_SRC emacs-lisp
@@ -43,14 +73,6 @@ See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
 	ido-everywhere t
 	ido-create-new-buffer 'always)
 #+END_SRC
-
-* Packages
-#+begin_src emacs-lisp
-  ;; Enable MELPA repo.
-  ;; See https://github.com/melpa/melpa#usage
-  (require 'package)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-#+end_src
 
 * Languages
 
@@ -124,29 +146,6 @@ Configuration relating mainly to key binding.
     ("i" dumb-jump-go-prompt "Prompt")
     ("l" dumb-jump-quick-look "Quick look")
     ("b" dumb-jump-back "Back"))
-#+end_src
-
-* Misc Packages
-
-Miscellaneous packages
-
-#+begin_src emacs-lisp
-(use-package all-the-icons :ensure)
-(use-package bug-hunter :ensure)
-(use-package discover-my-major :ensure)
-(use-package dockerfile-mode :ensure)
-(use-package doom-themes :ensure)
-(use-package gitignore-mode :ensure)
-(use-package hydra :ensure)
-(use-package jinja2-mode :ensure)
-(use-package json-mode :ensure)
-(use-package nix-mode :ensure)
-(use-package olivetti :ensure)
-(use-package page-break-lines :ensure)
-(use-package paradox :ensure)
-(use-package systemd :ensure)
-(use-package yaml-mode :ensure)
-(use-package elfeed :ensure)
 #+end_src
 
 * Extra Stuff I don't know where to put
