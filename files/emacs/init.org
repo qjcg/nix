@@ -147,18 +147,6 @@ Miscellaneous packages
 (use-package yaml-mode :ensure)
 #+end_src
 
-* IDE style settings
-
-IDE-like settings. These are prime candidates for removal if not used!
-
-#+begin_src emacs-lisp
-(use-package neotree
-  :ensure
-  :config
-  (global-set-key [f8] 'neotree-toggle)
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
-#+end_src
-
 * Extra Stuff I don't know where to put
 
 #+BEGIN_SRC emacs-lisp
