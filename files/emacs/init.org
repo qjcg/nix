@@ -146,6 +146,7 @@ Miscellaneous packages
 (use-package paradox :ensure)
 (use-package systemd :ensure)
 (use-package yaml-mode :ensure)
+(use-package elfeed :ensure)
 #+end_src
 
 * Extra Stuff I don't know where to put
@@ -188,28 +189,6 @@ Miscellaneous packages
     :config
     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
     (projectile-mode +1))
-
-
-  ;; FIXME: Using the dashboard package results in a VERY slow startup on eiffel. Fix before re-enabling.
-  ;; (use-package dashboard
-  ;;   :ensure
-  ;;   :requires page-break-lines
-  ;;   :init
-  ;;   (setq	dashboard-center-content t
-  ;; 	dashboard-banner-logo-title "My Dashboard"
-  ;; 	dashboard-show-shortcuts t
-  ;; 	dashboard-items '((recents  . 5)
-  ;; 			  (bookmarks . 5)
-  ;; 			  (projects . 5)
-  ;; 			  (registers . 5))
-  ;; 	dashboard-set-navigator t
-  ;; 	dashboard-set-init-info t
-  ;; 	dashboard-set-heading-icons t
-  ;; 	dashboard-set-file-icons t
-  ;; 	)
-  ;;   :config
-  ;;   (dashboard-setup-startup-hook)
-  ;;   )
 #+END_SRC
 
 * References
