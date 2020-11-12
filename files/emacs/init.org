@@ -1,5 +1,6 @@
 #+TITLE: Literate Emacs config file using org-mode.
 #+PROPERTY: header-args:emacs-lisp :tangle yes
+#+OPTIONS: toc:2
 
 * Overview
 
@@ -94,66 +95,6 @@ Programming language-related settings.
 	   ("M-." . godef-jump)))
 #+end_src
 
-;; Company mode is a standard completion package that works well with lsp-mode.
-;; company-lsp integrates company mode completion with lsp-mode.
-;; completion-at-point also works out of the box but doesn't support snippets.
-(use-package company
-  :ensure
-  :config
-  (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 1))
-
-(use-package company-lsp
-  :ensure
-  :commands company-lsp)
-
-;; Optional - provides snippet support.
-(use-package yasnippet
-  :ensure
-  :commands yas-minor-mode
-  :hook (go-mode . yas-minor-mode))
-
-(setq compilation-window-height 14)
-(defun my-compilation-hook ()
-  (when (not (get-buffer-window "*compilation*"))
-    (save-selected-window
-      (save-excursion
-	(let* ((w (split-window-vertically))
-	       (h (window-height w)))
-	  (select-window w)
-	  (switch-to-buffer "*compilation*")
-	  (shrink-window (- h compilation-window-height)))))))
-(add-hook 'compilation-mode-hook 'my-compilation-hook)
-
-
-(use-package projectile
-  :ensure
-  :config
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (projectile-mode +1))
-
-
-;; FIXME: Using the dashboard package results in a VERY slow startup on eiffel. Fix before re-enabling.
-;; (use-package dashboard
-;;   :ensure
-;;   :requires page-break-lines
-;;   :init
-;;   (setq	dashboard-center-content t
-;; 	dashboard-banner-logo-title "My Dashboard"
-;; 	dashboard-show-shortcuts t
-;; 	dashboard-items '((recents  . 5)
-;; 			  (bookmarks . 5)
-;; 			  (projects . 5)
-;; 			  (registers . 5))
-;; 	dashboard-set-navigator t
-;; 	dashboard-set-init-info t
-;; 	dashboard-set-heading-icons t
-;; 	dashboard-set-file-icons t
-;; 	)
-;;   :config
-;;   (dashboard-setup-startup-hook)
-;;   )
-
 * Key Bindings
 
 Configuration relating mainly to key binding.
@@ -217,6 +158,70 @@ IDE-like settings. These are prime candidates for removal if not used!
   (global-set-key [f8] 'neotree-toggle)
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 #+end_src
+
+* Extra Stuff I don't know where to put
+
+#+BEGIN_SRC emacs-lisp
+  ;; Company mode is a standard completion package that works well with lsp-mode.
+  ;; company-lsp integrates company mode completion with lsp-mode.
+  ;; completion-at-point also works out of the box but doesn't support snippets.
+  (use-package company
+    :ensure
+    :config
+    (setq company-idle-delay 0)
+    (setq company-minimum-prefix-length 1))
+
+  (use-package company-lsp
+    :ensure
+    :commands company-lsp)
+
+  ;; Optional - provides snippet support.
+  (use-package yasnippet
+    :ensure
+    :commands yas-minor-mode
+    :hook (go-mode . yas-minor-mode))
+
+  (setq compilation-window-height 14)
+  (defun my-compilation-hook ()
+    (when (not (get-buffer-window "*compilation*"))
+      (save-selected-window
+	(save-excursion
+	  (let* ((w (split-window-vertically))
+		 (h (window-height w)))
+	    (select-window w)
+	    (switch-to-buffer "*compilation*")
+	    (shrink-window (- h compilation-window-height)))))))
+  (add-hook 'compilation-mode-hook 'my-compilation-hook)
+
+
+  (use-package projectile
+    :ensure
+    :config
+    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+    (projectile-mode +1))
+
+
+  ;; FIXME: Using the dashboard package results in a VERY slow startup on eiffel. Fix before re-enabling.
+  ;; (use-package dashboard
+  ;;   :ensure
+  ;;   :requires page-break-lines
+  ;;   :init
+  ;;   (setq	dashboard-center-content t
+  ;; 	dashboard-banner-logo-title "My Dashboard"
+  ;; 	dashboard-show-shortcuts t
+  ;; 	dashboard-items '((recents  . 5)
+  ;; 			  (bookmarks . 5)
+  ;; 			  (projects . 5)
+  ;; 			  (registers . 5))
+  ;; 	dashboard-set-navigator t
+  ;; 	dashboard-set-init-info t
+  ;; 	dashboard-set-heading-icons t
+  ;; 	dashboard-set-file-icons t
+  ;; 	)
+  ;;   :config
+  ;;   (dashboard-setup-startup-hook)
+  ;;   )
+#+END_SRC
 
 * References
 
