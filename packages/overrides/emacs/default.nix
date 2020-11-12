@@ -2,5 +2,6 @@
 
 # See https://github.com/nix-community/emacs-overlay/#extra-library-functionality
 pkgs.emacsWithPackagesFromUsePackage {
-  config = ../../../files/emacs/init.el;
+  config = ../../../files/emacs/init.org;
+  alwaysTangle = true;
 }
