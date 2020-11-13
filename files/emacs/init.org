@@ -1,6 +1,5 @@
 #+TITLE: Literate Emacs config file using org-mode.
-#+PROPERTY: header-args:emacs-lisp :tangle yes
-#+OPTIONS: toc:2
+#+PROPERTY: header-args:emacs-lisp :tangle ~/.config/emacs/init.el
 
 * Overview
 
@@ -15,10 +14,9 @@ See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
 
   ;; Use a *separate* file for customizations.
   ;; See M-x customize
-  (setq custom-file (expand-file-name "~/.config/emacs/custom.el"))
-  (unless (file-exists-p custom-file)
-    (make-directory
-     (load custom-file)))
+  ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations
+  (setq custom-file "~/.config/emacs/custom.el")
+  (load custom-file)
 
   (setq	echo-keystrokes 0.1          ; Show keystrokes ASAP
 	  inhibit-startup-message t    ; Disable the splash screen
@@ -33,7 +31,6 @@ See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
 #+begin_src emacs-lisp
   ;; Enable MELPA repo.
   ;; See https://github.com/melpa/melpa#usage
-  ;(require 'package)
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 #+end_src
 
@@ -45,7 +42,6 @@ Miscellaneous packages
   (use-package bug-hunter :ensure)
   (use-package discover-my-major :ensure)
   (use-package dockerfile-mode :ensure)
-  (use-package doom-themes :ensure)
   (use-package gitignore-mode :ensure)
   (use-package hydra :ensure)
   (use-package jinja2-mode :ensure)
@@ -56,10 +52,22 @@ Miscellaneous packages
   (use-package paradox :ensure)
   (use-package systemd :ensure)
   (use-package yaml-mode :ensure)
-  (use-package elfeed :ensure)
 
-					  ; Load my preferred theme.
-  (load-theme doom-challenger-deep t nil)
+  (use-package rainbow-delimiters
+    :ensure
+    :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+
+  ;; Themes
+  (use-package doom-themes :ensure)
+  (use-package modus-operandi-theme :ensure)
+  (use-package modus-vivendi-theme :ensure)
+
+  (use-package elfeed :ensure)
+  (use-package elfeed-org
+    :ensure
+    :config
+    (elfeed-org)
+    (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
 #+end_src
 
 * Ido Mode
@@ -201,3 +209,5 @@ Some other org-mode init files.
 - https://raw.githubusercontent.com/EgorDuplensky/emacs-init-org/master/my-init.org
 - https://raw.githubusercontent.com/gitten/.emacs.d/master/config.org
 - https://raw.githubusercontent.com/vhallac/literate.emacs.d/master/Startup.org
+- https://protesilaos.com/dotemacs/
+- https://gitlab.com/protesilaos/dotfiles/-/raw/master/emacs/.emacs.d/emacs-init.org
