@@ -240,6 +240,7 @@
 
     xdg.configFile = {
       "cmus/rc".source = ../../files/cmusrc;
+      "emacs/init.org".source = ../../files/emacs/init.org;
       "nix/nix.conf".text = ''
         experimental-features = nix-command flakes # See https://www.tweag.io/blog/2020-05-25-flakes/
       '';
