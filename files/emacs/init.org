@@ -38,6 +38,8 @@ See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
 Miscellaneous packages
 
 #+begin_src emacs-lisp
+  (use-package magit :ensure)
+
   (use-package all-the-icons :ensure)
   (use-package bug-hunter :ensure)
   (use-package discover-my-major :ensure)
