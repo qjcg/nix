@@ -3,17 +3,17 @@
 with lib;
 let
   # Get this from https://update.k3s.io/v1-release/channels/stable
-  stableK3sVersionString = "v1.18.9-k3s1";
+  stableK3sVersionString = "v1.19.3-k3s3";
 in
 buildGoModule rec {
   pname = "k3d";
-  version = "3.2.0";
+  version = "3.2.1";
 
   src = fetchFromGitHub {
     owner = "rancher";
     repo = "k3d";
     rev = "v${version}";
-    sha256 = "sha256-kEsOToIxuWr7JdiuKvkS7E5HQdkn7W3txyDyujOiwEs=";
+    sha256 = "sha256-g5UVZj6/2ZxFOb61R6aF3v7rrKQdGDHE2n0wn3LcIKQ=";
   };
 
   deleteVendor = true;
