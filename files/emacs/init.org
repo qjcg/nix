@@ -1,5 +1,7 @@
-#+TITLE: Literate Emacs config file using org-mode.
+#+TITLE: Literate Emacs configuration using org-mode
+#+SUBTITLE: A Emacs Lisp journey
 #+PROPERTY: header-args:emacs-lisp :tangle ~/.config/emacs/init.el
+#+TODO: TODO DOING BLOCKED | DONE
 
 * Overview
 
@@ -7,11 +9,62 @@
 
   See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
 
-* Preamble
+** Goals
+
+   What do I want from Emacs?
+   
+*** TODO The ultimate Developer Experience (DX) [1/10]
+     - [X] Git (melpa)
+     - [ ] Go (formatting, compiling, testing, debugging)
+     - [ ] Nix
+     - [ ] CUE
+     - [ ] NodeJS
+     - [ ] Python
+     - [ ] Fuzzy-find project files
+     - [ ] Fuzzy find function by name
+     - [ ] Snippets
+     - [ ] Completion
+*** TODO A great DevOps experience [100%]
+    - [X] Docker
+    - [X] Kubernetes
+*** TODO Ultimate Hackability [0/4]
+    - [ ] Write 10 custom functions
+    - [ ] Write a custom minor mode
+    - [ ] Write a custom major mode
+    - [ ] Add language support for an unsupported language (e.g. CUE)
+*** TODO Daily drivers [1/7]
+    - [ ] email
+    - [ ] RSS
+    - [ ] Slack
+    - [ ] music
+    - [X] web (eww)
+    - [ ] image viewer
+    - [ ] shell
+*** TODO Looks gorgeous [0/2]
+    - [ ] multi-font theme(s)
+    - [ ] awesome colorscheme
+** Comparison with alternatives
+
+   I used VIM as my primary text editor for ~15 years (although I also
+   dabbled in Emacs and Plan9's ACME during that period). I then
+   switched to Emacs full-time in 2020. This table describes some of
+   the reasons why.
+
+   #+NAME: VIM vs. Emacs
+   | Feature         | Emacs         | VIM       | VSCode     | Acme    |
+   |-----------------+---------------+-----------+------------+---------|
+   | language        | emacs-lisp    | vimscript | JavaScript | any     |
+   | system approach | comprehensive | minimal   | minimal    | minimal |
+   |                 |               |           |            |         |
+
+* Todo
+** TODO Add FZF integration and prot window
+** TODO Handle blogging
+** TODO Handle making art
+** TODO Handle snippets
+* Foundations
 
   #+begin_src emacs-lisp
-    (package-initialize)
-
     ;; Use a *separate* file for customizations.
     ;; See M-x customize
     ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations
@@ -21,31 +74,30 @@
     (setq	echo-keystrokes 0.1          ; Show keystrokes ASAP
 	    inhibit-startup-message t
 	    initial-scratch-message nil
-	    tool-bar-mode nil
-	    scroll-bar-mode nil)
+	    tool-bar-mode -1
+	    toggle-scroll-bar -1
+	    auto-fill-mode t)
 
     ;; Web browsing
     (setq browse-url-browser-function 'eww-browse-url)
   #+end_src
  
 * Packages
-  #+begin_src emacs-lisp
-    ;; Enable MELPA repo.
-    ;; See https://github.com/melpa/melpa#usage
-    (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-  #+end_src
+** Emacs Package Repos
+   #+begin_src emacs-lisp
+     ;; Enable MELPA repo.
+     ;; See https://github.com/melpa/melpa#usage
+     (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+   #+end_src
 
-** Simple
+** Misc
    Miscellaneous packages
 
    #+begin_src emacs-lisp
-     (use-package magit :ensure)
-
      (use-package all-the-icons :ensure)
      (use-package bug-hunter :ensure)
      (use-package discover-my-major :ensure)
-     (use-package dockerfile-mode :ensure)
-     (use-package gitignore-mode :ensure)
+
      (use-package hydra :ensure)
      (use-package jinja2-mode :ensure)
      (use-package json-mode :ensure)
@@ -55,40 +107,43 @@
      (use-package systemd :ensure)
      (use-package yaml-mode :ensure)
 
+     (use-package symon :ensure)
+
+
      (use-package rainbow-delimiters
        :ensure
        :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
-
-     ;; Themes
-     (use-package doom-themes :ensure)
-     (use-package modus-operandi-theme :ensure)
-     (use-package modus-vivendi-theme :ensure)
-
-     (use-package elfeed :ensure)
-     (use-package elfeed-org
-       :ensure
-       :config
-       (elfeed-org)
-       (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
    #+end_src
 
-* Ido Mode
+** Themes
 
-  #+BEGIN_SRC emacs-lisp
-    ;; IDO mode settings.
-    ;; See https://masteringemacs.org/article/introduction-to-ido-mode
-    (require 'ido)
-    (ido-mode t)
-    (setq ido-enable-flex-matching t
-	  ido-everywhere t
-	  ido-create-new-buffer 'always)
-  #+END_SRC
+   Emacs Themes.
 
-* Programming
+   See:
+   - [[https://emacsthemes.com/][emacsthemes.com]]
+   - [[https://peach-melpa.org/][peach-melpa.org]]
 
-  Programming language-related settings.
+   #+begin_src emacs-lisp
+     (use-package doom-themes :ensure)
+
+     ;; Apparently the modus- themes have been accepted into upstream
+     ;; emacs, so remove them here once released versions begin to include
+     ;; them.
+     (use-package modus-operandi-theme :ensure)
+     (use-package modus-vivendi-theme :ensure)
+   #+end_src
+
+** Git
+
+   #+begin_src emacs-lisp
+     (use-package magit :ensure)
+     (use-package gitignore-mode :ensure)
+   #+end_src
 
 ** LSP                                                                  :lsp:
+
+   [[https://microsoft.github.io/language-server-protocol/][Language Server Protocol (LSP)]].
+
    #+begin_src emacs-lisp
      (use-package lsp-mode
        :ensure
@@ -105,8 +160,10 @@
 	     lsp-ui-imenu-enable t
 	     lsp-ui-flycheck-enable t))
    #+end_src
-
 ** Go                                                                    :go:
+
+   Go programming.
+   
    #+begin_src emacs-lisp
      ;; Go Settings.
      ;; See: https://arenzana.org/2019/12/emacs-go-mode-revisited/
@@ -128,100 +185,159 @@
        :bind (("M-," . compile)
 	      ("M-." . godef-jump)))
    #+end_src
+
 ** Nix                                                                  :nix:
    #+begin_src emacs-lisp
      (use-package nix-mode :ensure)
    #+end_src
-
+** CUE                                                                  :cue:
+*** TODO Add CUE functionality
 ** Python
-   TODO
-** Ruby
    TODO
 ** Javascript / TypeScript
    TODO
-* Key Bindings
+** Ruby
+** Completion
 
-  Configuration relating mainly to key binding.
+   IDO mode settings.
 
-  #+begin_src emacs-lisp
-    (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
-    (setq compilation-scroll-output t)
+   See https://masteringemacs.org/article/introduction-to-ido-mode
 
-    (use-package dumb-jump
-      :ensure
-      :bind (("M-g o" . dumb-jump-go-other-window)
-	     ("M-g j" . dumb-jump-go)
-	     ("M-g b" . dumb-jump-back)
-	     ("M-g i" . dumb-jump-go-prompt)
-	     ("M-g x" . dumb-jump-go-prefer-external)
-	     ("M-g z" . dumb-jump-go-prefer-external-other-window))
-      :config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
-      )
+   #+BEGIN_SRC emacs-lisp
+     (require 'ido)
+     (ido-mode t)
+     (setq ido-enable-flex-matching t
+	   ido-everywhere t
+	   ido-create-new-buffer 'always)
+   #+END_SRC
+** RSS/Atom Feeds
 
-    (defhydra dumb-jump-hydra (:color blue :columns 3)
-      "Dumb Jump"
-      ("j" dumb-jump-go "Go")
-      ("o" dumb-jump-go-other-window "Other window")
-      ("e" dumb-jump-go-prefer-external "Go external")
-      ("x" dumb-jump-go-prefer-external-other-window "Go external other window")
-      ("i" dumb-jump-go-prompt "Prompt")
-      ("l" dumb-jump-quick-look "Quick look")
-      ("b" dumb-jump-back "Back"))
-  #+end_src
+   #+begin_src emacs-lisp
+     (use-package elfeed :ensure)
+     (use-package elfeed-org
+       :ensure
+       :config
+       (elfeed-org)
+       (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
+   #+end_src
+** Key Bindings
+
+   Configuration relating mainly to key binding.
+
+   #+begin_src emacs-lisp
+     (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
+     (setq compilation-scroll-output t)
+
+     (use-package dumb-jump
+       :ensure
+       :bind (("M-g o" . dumb-jump-go-other-window)
+	      ("M-g j" . dumb-jump-go)
+	      ("M-g b" . dumb-jump-back)
+	      ("M-g i" . dumb-jump-go-prompt)
+	      ("M-g x" . dumb-jump-go-prefer-external)
+	      ("M-g z" . dumb-jump-go-prefer-external-other-window))
+       :config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
+       )
+
+     (defhydra dumb-jump-hydra (:color blue :columns 3)
+       "Dumb Jump"
+       ("j" dumb-jump-go "Go")
+       ("o" dumb-jump-go-other-window "Other window")
+       ("e" dumb-jump-go-prefer-external "Go external")
+       ("x" dumb-jump-go-prefer-external-other-window "Go external other window")
+       ("i" dumb-jump-go-prompt "Prompt")
+       ("l" dumb-jump-quick-look "Quick look")
+       ("b" dumb-jump-back "Back"))
+   #+end_src
   
-* Extra Stuff I don't know where to put
+** DevOps
+*** Docker
 
-  #+BEGIN_SRC emacs-lisp
-    ;; Company mode is a standard completion package that works well with lsp-mode.
-    ;; company-lsp integrates company mode completion with lsp-mode.
-    ;; completion-at-point also works out of the box but doesn't support snippets.
-    (use-package company
-      :ensure
-      :config
-      (setq company-idle-delay 0)
-      (setq company-minimum-prefix-length 1))
+    #+begin_src emacs-lisp
+      (use-package docker
+	:ensure t
+	:bind ("C-c d" . docker))
 
-    (use-package company-lsp
-      :ensure
-      :commands company-lsp)
+      (use-package dockerfile-mode :ensure)
+    #+end_src
 
-    ;; Optional - provides snippet support.
-    (use-package yasnippet
-      :ensure
-      :commands yas-minor-mode
-      :hook (go-mode . yas-minor-mode))
+*** Kubernetes
 
-    (setq compilation-window-height 14)
-    (defun my-compilation-hook ()
-      (when (not (get-buffer-window "*compilation*"))
-	(save-selected-window
-	  (save-excursion
-	    (let* ((w (split-window-vertically))
-		   (h (window-height w)))
-	      (select-window w)
-	      (switch-to-buffer "*compilation*")
-	      (shrink-window (- h compilation-window-height)))))))
-    (add-hook 'compilation-mode-hook 'my-compilation-hook)
+    #+begin_src emacs-lisp
+      ;; See https://github.com/chrisbarrett/kubernetes-el
+      (use-package kubernetes
+	:ensure t
+	:commands (kubernetes-overview))
 
+      ;; See https://github.com/abrochard/kubel
+      (use-package kubel :ensure)
+    #+end_src
 
-    (use-package projectile
-      :ensure
-      :config
-      (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-      (projectile-mode +1))
-  #+END_SRC
+** Thin Ice!
 
-* References
+   This is an area for things I suspect I don't need, but am not
+   completely sure about deleting yet. On thin ice!
 
-  Some other org-mode init files.
+   #+BEGIN_SRC emacs-lisp
+     ;; Company mode is a standard completion package that works well with lsp-mode.
+     ;; company-lsp integrates company mode completion with lsp-mode.
+     ;; completion-at-point also works out of the box but doesn't support snippets.
+     (use-package company
+       :ensure
+       :config
+       (setq company-idle-delay 0)
+       (setq company-minimum-prefix-length 1))
 
-  - https://github.com/EgorDuplensky/emacs-init-org/blob/master/my-init.org
-  - https://github.com/dariushazimi/emacsdotfiles/blob/master/myinit-linux.org
-  - https://github.com/globz/emacs-conf/blob/master/init.org
-  - https://raw.githubusercontent.com/AlexStragies/EmacsConfig/master/emacs.org
-  - https://raw.githubusercontent.com/EgorDuplensky/emacs-init-org/master/my-init.org
-  - https://raw.githubusercontent.com/gitten/.emacs.d/master/config.org
-  - https://raw.githubusercontent.com/vhallac/literate.emacs.d/master/Startup.org
-  - https://protesilaos.com/dotemacs/
-  - https://gitlab.com/protesilaos/dotfiles/-/raw/master/emacs/.emacs.d/emacs-init.org
-    
+     (use-package company-lsp
+       :ensure
+       :commands company-lsp)
+
+     ;; Optional - provides snippet support.
+     (use-package yasnippet
+       :ensure
+       :commands yas-minor-mode
+       :hook (go-mode . yas-minor-mode))
+
+     (setq compilation-window-height 14)
+     (defun my-compilation-hook ()
+       (when (not (get-buffer-window "*compilation*"))
+	 (save-selected-window
+	   (save-excursion
+	     (let* ((w (split-window-vertically))
+		    (h (window-height w)))
+	       (select-window w)
+	       (switch-to-buffer "*compilation*")
+	       (shrink-window (- h compilation-window-height)))))))
+     (add-hook 'compilation-mode-hook 'my-compilation-hook)
+
+     (use-package projectile
+       :ensure
+       :config
+       (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+       (projectile-mode +1))
+   #+END_SRC
+
+* Resources
+** Learning
+
+   Useful Emacs learning resources.
+
+   - [[https://github.com/jtmoulia/elisp-koans][Elisp Koans]]
+   - [[https://github.com/chrisdone/elisp-guide][Elisp Guide]]
+   - [[https://www.youtube.com/watch?v=RiXK7NALgRs&list=PL8Bwba5vnQK14z96Gil86pLMDO2GnOhQ6][Emacs Videos by Protesilaos Stavrou]]
+   - [[https://github.com/emacs-tw/awesome-emacs][Awesome Emacs]]
+
+** Emacs Init Files
+
+   Some other org-mode init files.
+
+   - https://github.com/EgorDuplensky/emacs-init-org/blob/master/my-init.org
+   - https://github.com/dariushazimi/emacsdotfiles/blob/master/myinit-linux.org
+   - https://github.com/globz/emacs-conf/blob/master/init.org
+   - https://raw.githubusercontent.com/AlexStragies/EmacsConfig/master/emacs.org
+   - https://raw.githubusercontent.com/EgorDuplensky/emacs-init-org/master/my-init.org
+   - https://raw.githubusercontent.com/gitten/.emacs.d/master/config.org
+   - https://raw.githubusercontent.com/vhallac/literate.emacs.d/master/Startup.org
+   - https://protesilaos.com/dotemacs/
+   - https://gitlab.com/protesilaos/dotfiles/-/raw/master/emacs/.emacs.d/emacs-init.org
+
