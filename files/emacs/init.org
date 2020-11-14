@@ -21,8 +21,7 @@
     - [ ] CUE (format, highlight)
     - [ ] NodeJS
     - [ ] Python
-    - [ ] Fuzzy-find project files
-    - [ ] Fuzzy find function by name
+    - [ ] Fuzzy-find (rg/fzf integration, prot window)
     - [ ] Snippets
     - [ ] Completion
 *** DONE Excellent DevOps experience [2/2]
@@ -33,15 +32,19 @@
     - [ ] Write a custom minor mode
     - [ ] Write a custom major mode
     - [ ] Add language support for an unsupported language (e.g. CUE)
-*** TODO Integrated daily drivers [4/8]
+*** DOING Integrated daily drivers [4/10]
     - [X] web (eww BUT sometimes hangs? Performance mediocre)
     - [X] music (bongo w/ mpv backend)
+    - [-] videos (bongo w/ mpv backend)
+      - [X] local videos
+      - [ ] youtube etc.
     - [X] RSS (elfeed)
     - [X] shell (eshell + vterm)
     - [ ] Slack
     - [ ] email
     - [ ] image viewer
     - [ ] slides
+    - [ ] making art (drawing, music, writing/blogging, etc)
 *** TODO Looks stunning [0/2]
     - [ ] multi-font theme(s)
     - [ ] awesome colorscheme
@@ -52,18 +55,13 @@
    switched to Emacs full-time in 2020. This table describes some of
    the reasons why.
 
-   #+NAME: VIM vs. Emacs
-   | Feature         | Emacs         | VIM       | VSCode     | Acme    |
-   |-----------------+---------------+-----------+------------+---------|
-   | language        | Emacs Lisp    | VimScript | JavaScript | any     |
-   | system approach | comprehensive | minimal   | minimal    | minimal |
-   |                 |               |           |            |         |
+   #+NAME: Emacs vs. Alternatives
+   | Feature         | Emacs         | VIM       | Acme    | VSCode     |
+   |-----------------+---------------+-----------+---------+------------|
+   | language        | Emacs Lisp    | VimScript | any     | JavaScript |
+   | system approach | comprehensive | minimal   | minimal | minimal    |
+   |                 |               |           |         |            |
 
-* Todo
-** TODO Add FZF integration and prot window
-** TODO Handle blogging
-** TODO Handle making art
-** TODO Handle snippets
 * Foundations
 
 ** Customize
@@ -85,12 +83,13 @@
      (use-package emacs
        :init
        (tool-bar-mode -1)
-       (toggle-scroll-bar -1)
+       (scroll-bar-mode -1)
        (setq	echo-keystrokes 0.1          ; Show keystrokes ASAP
 	     inhibit-startup-message t
 	     initial-scratch-message nil
 	     auto-fill-mode t
-	     browse-url-browser-function 'eww-browse-url)) ; Browse with eww by default
+	     browse-url-browser-function 'eww-browse-url   ; Browse with eww by default
+	     backup-directory-alist '(("" . "~/.config/emacs/backup"))))
    #+end_src
    
 * Packages
@@ -105,8 +104,6 @@
    Miscellaneous packages
 
    #+begin_src emacs-lisp
-     (use-package all-the-icons :ensure)
-
      (use-package bug-hunter :ensure)
      (use-package discover-my-major :ensure)
      (use-package hydra :ensure)
@@ -135,6 +132,7 @@
    - [[https://peach-melpa.org/][peach-melpa.org]]
 
    #+begin_src emacs-lisp
+     (use-package all-the-icons :ensure)
      (use-package doom-themes :ensure)
 
      ;; Apparently the modus- themes have been accepted into upstream
@@ -144,70 +142,94 @@
      (use-package modus-vivendi-theme :ensure)
    #+end_src
 
-** Git
+** Programming
+*** Git
+    #+begin_src emacs-lisp
+      (use-package magit :ensure)
+      (use-package gitignore-mode :ensure)
+    #+end_src
+*** LSP                                                                 :lsp:
 
-   #+begin_src emacs-lisp
-     (use-package magit :ensure)
-     (use-package gitignore-mode :ensure)
-   #+end_src
+    [[https://microsoft.github.io/language-server-protocol/][Language Server Protocol (LSP)]].
 
-** LSP                                                                  :lsp:
+    #+begin_src emacs-lisp
+      (use-package lsp-mode
+	:ensure
+	:commands (lsp lsp-deferred)
+	:hook (go-mode . lsp-deferred))
 
-   [[https://microsoft.github.io/language-server-protocol/][Language Server Protocol (LSP)]].
+      (use-package lsp-ui
+	:ensure
+	:commands lsp-ui-mode
+	:init
+	(setq lsp-ui-doc-enable t
+	      lsp-ui-peek-enable t
+	      lsp-ui-sideline-enable t
+	      lsp-ui-imenu-enable t
+	      lsp-ui-flycheck-enable t))
+    #+end_src
+*** Go                                                                   :go:
 
-   #+begin_src emacs-lisp
-     (use-package lsp-mode
-       :ensure
-       :commands (lsp lsp-deferred)
-       :hook (go-mode . lsp-deferred))
-
-     (use-package lsp-ui
-       :ensure
-       :commands lsp-ui-mode
-       :init
-       (setq lsp-ui-doc-enable t
-	     lsp-ui-peek-enable t
-	     lsp-ui-sideline-enable t
-	     lsp-ui-imenu-enable t
-	     lsp-ui-flycheck-enable t))
-   #+end_src
-** Go                                                                    :go:
-
-   Go programming.
+    Go programming.
    
-   #+begin_src emacs-lisp
-     ;; Go Settings.
-     ;; See: https://arenzana.org/2019/12/emacs-go-mode-revisited/
+    #+begin_src emacs-lisp
+      ;; Go Settings.
+      ;; See: https://arenzana.org/2019/12/emacs-go-mode-revisited/
 
-     (defun custom-go-mode ()
-       "Custom settings for go-mode"
-       (display-line-numbers-mode 1)
-       (add-hook 'before-save-hook #'lsp-format-buffer t t)
-       (add-hook 'before-save-hook #'lsp-organize-imports t t))
+      (defun custom-go-mode ()
+	"Custom settings for go-mode"
+	(display-line-numbers-mode 1)
+	(add-hook 'before-save-hook #'lsp-format-buffer t t)
+	(add-hook 'before-save-hook #'lsp-organize-imports t t))
 
-     (use-package go-mode
-       :defer t
-       :ensure
-       :mode ("\\.go\\'" . go-mode)
-       :init
-       (setq compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linter... && golint")
-       (setq compilation-read-command nil)
-       :hook custom-go-mode
-       :bind (("M-," . compile)
-	      ("M-." . godef-jump)))
-   #+end_src
+      (use-package go-mode
+	:defer t
+	:ensure
+	:mode ("\\.go\\'" . go-mode)
+	:init
+	(setq compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linter... && golint")
+	(setq compilation-read-command nil)
+	:hook custom-go-mode
+	:bind (("M-," . compile)
+	       ("M-." . godef-jump)))
+    #+end_src
 
-** Nix                                                                  :nix:
-   #+begin_src emacs-lisp
-     (use-package nix-mode :ensure)
-   #+end_src
-** CUE                                                                  :cue:
-*** TODO Add CUE functionality
-** Python
-   TODO
-** Javascript / TypeScript
-   TODO
-** Ruby
+*** Nix                                                                 :nix:
+    #+begin_src emacs-lisp
+      (use-package nix-mode :ensure)
+    #+end_src
+*** CUE                                                                 :cue:
+    TODO
+*** Python
+    TODO
+*** Javascript / TypeScript
+    TODO
+*** Ruby
+** DevOps
+*** Docker
+
+    #+begin_src emacs-lisp
+      (use-package docker
+	:ensure t
+	:bind ("C-c d" . docker))
+
+      (use-package dockerfile-mode :ensure)
+    #+end_src
+
+*** Kubernetes
+
+    Packages for interacting with Kubernetes.
+    
+    #+begin_src emacs-lisp
+      ;; See https://github.com/chrisbarrett/kubernetes-el
+      (use-package kubernetes
+	:ensure t
+	:commands (kubernetes-overview))
+
+      ;; See https://github.com/abrochard/kubel
+      (use-package kubel :ensure)
+    #+end_src
+
 ** Completion
 
    IDO mode settings.
@@ -261,31 +283,6 @@
        ("b" dumb-jump-back "Back"))
    #+end_src
   
-** DevOps
-*** Docker
-
-    #+begin_src emacs-lisp
-      (use-package docker
-	:ensure t
-	:bind ("C-c d" . docker))
-
-      (use-package dockerfile-mode :ensure)
-    #+end_src
-
-*** Kubernetes
-
-    Packages for interacting with Kubernetes.
-    
-    #+begin_src emacs-lisp
-      ;; See https://github.com/chrisbarrett/kubernetes-el
-      (use-package kubernetes
-	:ensure t
-	:commands (kubernetes-overview))
-
-      ;; See https://github.com/abrochard/kubel
-      (use-package kubel :ensure)
-    #+end_src
-
 ** Multimedia
 
    Use bongo to play audio and video.
