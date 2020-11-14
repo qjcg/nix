@@ -3,213 +3,225 @@
 
 * Overview
 
-Literate Emacs configuration using org-mode.
+  Literate Emacs configuration using org-mode.
 
-See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
+  See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
 
 * Preamble
 
-#+begin_src emacs-lisp
-  (package-initialize)
+  #+begin_src emacs-lisp
+    (package-initialize)
 
-  ;; Use a *separate* file for customizations.
-  ;; See M-x customize
-  ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations
-  (setq custom-file "~/.config/emacs/custom.el")
-  (load custom-file)
+    ;; Use a *separate* file for customizations.
+    ;; See M-x customize
+    ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations
+    (setq custom-file "~/.config/emacs/custom.el")
+    (load custom-file)
 
-  (setq	echo-keystrokes 0.1          ; Show keystrokes ASAP
-	  inhibit-startup-message t    ; Disable the splash screen
-	  initial-scratch-message nil  ; Clean scratch buffer
-	  tool-bar-mode nil)           ; Disable toolbar.
+    (setq	echo-keystrokes 0.1          ; Show keystrokes ASAP
+	    inhibit-startup-message t
+	    initial-scratch-message nil
+	    tool-bar-mode nil
+	    scroll-bar-mode nil)
 
-					  ; Web browsing
-  (setq browse-url-browser-function 'eww-browse-url)
-#+end_src
+    ;; Web browsing
+    (setq browse-url-browser-function 'eww-browse-url)
+  #+end_src
  
 * Packages
-#+begin_src emacs-lisp
-  ;; Enable MELPA repo.
-  ;; See https://github.com/melpa/melpa#usage
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-#+end_src
+  #+begin_src emacs-lisp
+    ;; Enable MELPA repo.
+    ;; See https://github.com/melpa/melpa#usage
+    (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  #+end_src
 
 ** Simple
-Miscellaneous packages
+   Miscellaneous packages
 
-#+begin_src emacs-lisp
-  (use-package magit :ensure)
+   #+begin_src emacs-lisp
+     (use-package magit :ensure)
 
-  (use-package all-the-icons :ensure)
-  (use-package bug-hunter :ensure)
-  (use-package discover-my-major :ensure)
-  (use-package dockerfile-mode :ensure)
-  (use-package gitignore-mode :ensure)
-  (use-package hydra :ensure)
-  (use-package jinja2-mode :ensure)
-  (use-package json-mode :ensure)
-  (use-package nix-mode :ensure)
-  (use-package olivetti :ensure)
-  (use-package page-break-lines :ensure)
-  (use-package paradox :ensure)
-  (use-package systemd :ensure)
-  (use-package yaml-mode :ensure)
+     (use-package all-the-icons :ensure)
+     (use-package bug-hunter :ensure)
+     (use-package discover-my-major :ensure)
+     (use-package dockerfile-mode :ensure)
+     (use-package gitignore-mode :ensure)
+     (use-package hydra :ensure)
+     (use-package jinja2-mode :ensure)
+     (use-package json-mode :ensure)
+     (use-package olivetti :ensure)
+     (use-package page-break-lines :ensure)
+     (use-package paradox :ensure)
+     (use-package systemd :ensure)
+     (use-package yaml-mode :ensure)
 
-  (use-package rainbow-delimiters
-    :ensure
-    :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+     (use-package rainbow-delimiters
+       :ensure
+       :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
-  ;; Themes
-  (use-package doom-themes :ensure)
-  (use-package modus-operandi-theme :ensure)
-  (use-package modus-vivendi-theme :ensure)
+     ;; Themes
+     (use-package doom-themes :ensure)
+     (use-package modus-operandi-theme :ensure)
+     (use-package modus-vivendi-theme :ensure)
 
-  (use-package elfeed :ensure)
-  (use-package elfeed-org
-    :ensure
-    :config
-    (elfeed-org)
-    (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
-#+end_src
+     (use-package elfeed :ensure)
+     (use-package elfeed-org
+       :ensure
+       :config
+       (elfeed-org)
+       (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
+   #+end_src
 
 * Ido Mode
 
-#+BEGIN_SRC emacs-lisp
-  ;; IDO mode settings.
-  ;; See https://masteringemacs.org/article/introduction-to-ido-mode
-  (require 'ido)
-  (ido-mode t)
-  (setq ido-enable-flex-matching t
-	ido-everywhere t
-	ido-create-new-buffer 'always)
-#+END_SRC
+  #+BEGIN_SRC emacs-lisp
+    ;; IDO mode settings.
+    ;; See https://masteringemacs.org/article/introduction-to-ido-mode
+    (require 'ido)
+    (ido-mode t)
+    (setq ido-enable-flex-matching t
+	  ido-everywhere t
+	  ido-create-new-buffer 'always)
+  #+END_SRC
 
-* Languages
+* Programming
 
-Programming language-related settings.
+  Programming language-related settings.
 
-#+begin_src emacs-lisp
-  ;; Go Settings.
-  ;; See: https://arenzana.org/2019/12/emacs-go-mode-revisited/
-  (use-package lsp-mode
-    :ensure
-    :commands (lsp lsp-deferred)
-    :hook (go-mode . lsp-deferred))
+** LSP                                                                  :lsp:
+   #+begin_src emacs-lisp
+     (use-package lsp-mode
+       :ensure
+       :commands (lsp lsp-deferred)
+       :hook (go-mode . lsp-deferred))
 
-  ;; Set up before-save hooks to format buffer and add/delete imports.
-  ;; Make sure you don't have other gofmt/goimports hooks enabled.
-  (defun lsp-go-install-save-hooks ()
-    (add-hook 'before-save-hook #'lsp-format-buffer t t)
-    (add-hook 'before-save-hook #'lsp-organize-imports t t))
-  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+     (use-package lsp-ui
+       :ensure
+       :commands lsp-ui-mode
+       :init
+       (setq lsp-ui-doc-enable t
+	     lsp-ui-peek-enable t
+	     lsp-ui-sideline-enable t
+	     lsp-ui-imenu-enable t
+	     lsp-ui-flycheck-enable t))
+   #+end_src
 
-  (use-package lsp-ui
-    :ensure
-    :commands lsp-ui-mode
-    :init
-    (setq lsp-ui-doc-enable t
-	  lsp-ui-peek-enable t
-	  lsp-ui-sideline-enable t
-	  lsp-ui-imenu-enable t
-	  lsp-ui-flycheck-enable t))
+** Go                                                                    :go:
+   #+begin_src emacs-lisp
+     ;; Go Settings.
+     ;; See: https://arenzana.org/2019/12/emacs-go-mode-revisited/
 
-  (defun custom-go-mode ()
-    (display-line-numbers-mode 1))
+     (defun custom-go-mode ()
+       "Custom settings for go-mode"
+       (display-line-numbers-mode 1)
+       (add-hook 'before-save-hook #'lsp-format-buffer t t)
+       (add-hook 'before-save-hook #'lsp-organize-imports t t))
 
-  (use-package go-mode
-    :defer t
-    :ensure
-    :mode ("\\.go\\'" . go-mode)
-    :init
-    (setq compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linter... && golint")  
-    (setq compilation-read-command nil)
-    (add-hook 'go-mode-hook 'custom-go-mode)
-    :bind (("M-," . compile)
-	   ("M-." . godef-jump)))
-#+end_src
+     (use-package go-mode
+       :defer t
+       :ensure
+       :mode ("\\.go\\'" . go-mode)
+       :init
+       (setq compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linter... && golint")
+       (setq compilation-read-command nil)
+       :hook custom-go-mode
+       :bind (("M-," . compile)
+	      ("M-." . godef-jump)))
+   #+end_src
+** Nix                                                                  :nix:
+   #+begin_src emacs-lisp
+     (use-package nix-mode :ensure)
+   #+end_src
 
+** Python
+   TODO
+** Ruby
+   TODO
+** Javascript / TypeScript
+   TODO
 * Key Bindings
 
-Configuration relating mainly to key binding.
+  Configuration relating mainly to key binding.
 
-#+begin_src emacs-lisp
-  (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
-  (setq compilation-scroll-output t)
+  #+begin_src emacs-lisp
+    (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
+    (setq compilation-scroll-output t)
 
-  (use-package dumb-jump
-    :ensure
-    :bind (("M-g o" . dumb-jump-go-other-window)
-	   ("M-g j" . dumb-jump-go)
-	   ("M-g b" . dumb-jump-back)
-	   ("M-g i" . dumb-jump-go-prompt)
-	   ("M-g x" . dumb-jump-go-prefer-external)
-	   ("M-g z" . dumb-jump-go-prefer-external-other-window))
-    :config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
-    )
+    (use-package dumb-jump
+      :ensure
+      :bind (("M-g o" . dumb-jump-go-other-window)
+	     ("M-g j" . dumb-jump-go)
+	     ("M-g b" . dumb-jump-back)
+	     ("M-g i" . dumb-jump-go-prompt)
+	     ("M-g x" . dumb-jump-go-prefer-external)
+	     ("M-g z" . dumb-jump-go-prefer-external-other-window))
+      :config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
+      )
 
-  (defhydra dumb-jump-hydra (:color blue :columns 3)
-    "Dumb Jump"
-    ("j" dumb-jump-go "Go")
-    ("o" dumb-jump-go-other-window "Other window")
-    ("e" dumb-jump-go-prefer-external "Go external")
-    ("x" dumb-jump-go-prefer-external-other-window "Go external other window")
-    ("i" dumb-jump-go-prompt "Prompt")
-    ("l" dumb-jump-quick-look "Quick look")
-    ("b" dumb-jump-back "Back"))
-#+end_src
-
+    (defhydra dumb-jump-hydra (:color blue :columns 3)
+      "Dumb Jump"
+      ("j" dumb-jump-go "Go")
+      ("o" dumb-jump-go-other-window "Other window")
+      ("e" dumb-jump-go-prefer-external "Go external")
+      ("x" dumb-jump-go-prefer-external-other-window "Go external other window")
+      ("i" dumb-jump-go-prompt "Prompt")
+      ("l" dumb-jump-quick-look "Quick look")
+      ("b" dumb-jump-back "Back"))
+  #+end_src
+  
 * Extra Stuff I don't know where to put
 
-#+BEGIN_SRC emacs-lisp
-  ;; Company mode is a standard completion package that works well with lsp-mode.
-  ;; company-lsp integrates company mode completion with lsp-mode.
-  ;; completion-at-point also works out of the box but doesn't support snippets.
-  (use-package company
-    :ensure
-    :config
-    (setq company-idle-delay 0)
-    (setq company-minimum-prefix-length 1))
+  #+BEGIN_SRC emacs-lisp
+    ;; Company mode is a standard completion package that works well with lsp-mode.
+    ;; company-lsp integrates company mode completion with lsp-mode.
+    ;; completion-at-point also works out of the box but doesn't support snippets.
+    (use-package company
+      :ensure
+      :config
+      (setq company-idle-delay 0)
+      (setq company-minimum-prefix-length 1))
 
-  (use-package company-lsp
-    :ensure
-    :commands company-lsp)
+    (use-package company-lsp
+      :ensure
+      :commands company-lsp)
 
-  ;; Optional - provides snippet support.
-  (use-package yasnippet
-    :ensure
-    :commands yas-minor-mode
-    :hook (go-mode . yas-minor-mode))
+    ;; Optional - provides snippet support.
+    (use-package yasnippet
+      :ensure
+      :commands yas-minor-mode
+      :hook (go-mode . yas-minor-mode))
 
-  (setq compilation-window-height 14)
-  (defun my-compilation-hook ()
-    (when (not (get-buffer-window "*compilation*"))
-      (save-selected-window
-	(save-excursion
-	  (let* ((w (split-window-vertically))
-		 (h (window-height w)))
-	    (select-window w)
-	    (switch-to-buffer "*compilation*")
-	    (shrink-window (- h compilation-window-height)))))))
-  (add-hook 'compilation-mode-hook 'my-compilation-hook)
+    (setq compilation-window-height 14)
+    (defun my-compilation-hook ()
+      (when (not (get-buffer-window "*compilation*"))
+	(save-selected-window
+	  (save-excursion
+	    (let* ((w (split-window-vertically))
+		   (h (window-height w)))
+	      (select-window w)
+	      (switch-to-buffer "*compilation*")
+	      (shrink-window (- h compilation-window-height)))))))
+    (add-hook 'compilation-mode-hook 'my-compilation-hook)
 
 
-  (use-package projectile
-    :ensure
-    :config
-    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-    (projectile-mode +1))
-#+END_SRC
+    (use-package projectile
+      :ensure
+      :config
+      (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+      (projectile-mode +1))
+  #+END_SRC
 
 * References
 
-Some other org-mode init files.
+  Some other org-mode init files.
 
-- https://github.com/EgorDuplensky/emacs-init-org/blob/master/my-init.org
-- https://github.com/dariushazimi/emacsdotfiles/blob/master/myinit-linux.org
-- https://github.com/globz/emacs-conf/blob/master/init.org
-- https://raw.githubusercontent.com/AlexStragies/EmacsConfig/master/emacs.org
-- https://raw.githubusercontent.com/EgorDuplensky/emacs-init-org/master/my-init.org
-- https://raw.githubusercontent.com/gitten/.emacs.d/master/config.org
-- https://raw.githubusercontent.com/vhallac/literate.emacs.d/master/Startup.org
-- https://protesilaos.com/dotemacs/
-- https://gitlab.com/protesilaos/dotfiles/-/raw/master/emacs/.emacs.d/emacs-init.org
+  - https://github.com/EgorDuplensky/emacs-init-org/blob/master/my-init.org
+  - https://github.com/dariushazimi/emacsdotfiles/blob/master/myinit-linux.org
+  - https://github.com/globz/emacs-conf/blob/master/init.org
+  - https://raw.githubusercontent.com/AlexStragies/EmacsConfig/master/emacs.org
+  - https://raw.githubusercontent.com/EgorDuplensky/emacs-init-org/master/my-init.org
+  - https://raw.githubusercontent.com/gitten/.emacs.d/master/config.org
+  - https://raw.githubusercontent.com/vhallac/literate.emacs.d/master/Startup.org
+  - https://protesilaos.com/dotemacs/
+  - https://gitlab.com/protesilaos/dotfiles/-/raw/master/emacs/.emacs.d/emacs-init.org
+    
