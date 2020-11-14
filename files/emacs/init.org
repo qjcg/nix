@@ -14,16 +14,16 @@
    What do I want from Emacs?
    
 *** TODO Ultimate Developer Experience (DX) [1/10]
-     - [X] Git (magit)
-     - [ ] Go (format, compile, test, jump-to-definition, debug)
-     - [ ] Nix (format)
-     - [ ] CUE (format, highlight)
-     - [ ] NodeJS
-     - [ ] Python
-     - [ ] Fuzzy-find project files
-     - [ ] Fuzzy find function by name
-     - [ ] Snippets
-     - [ ] Completion
+    - [X] Git (magit)
+    - [ ] Go (format, compile, test, jump-to-definition, debug)
+    - [ ] Nix (format)
+    - [ ] CUE (format, highlight)
+    - [ ] NodeJS
+    - [ ] Python
+    - [ ] Fuzzy-find project files
+    - [ ] Fuzzy find function by name
+    - [ ] Snippets
+    - [ ] Completion
 *** TODO An excellent DevOps experience [100%]
     - [X] Docker (docker)
     - [X] Kubernetes (kubernetes-overview, kubel)
@@ -32,14 +32,15 @@
     - [ ] Write a custom minor mode
     - [ ] Write a custom major mode
     - [ ] Add language support for an unsupported language (e.g. CUE)
-*** TODO Integrated daily drivers [1/7]
+*** TODO Integrated daily drivers [2/8]
     - [X] web (eww)
+    - [X] music (bongo w/ mpv backend)
     - [ ] RSS
     - [ ] shell
     - [ ] Slack
     - [ ] email
-    - [ ] music
     - [ ] image viewer
+    - [ ] slides
 *** TODO Looks stunning [0/2]
     - [ ] multi-font theme(s)
     - [ ] awesome colorscheme
@@ -53,7 +54,7 @@
    #+NAME: VIM vs. Emacs
    | Feature         | Emacs         | VIM       | VSCode     | Acme    |
    |-----------------+---------------+-----------+------------+---------|
-   | language        | emacs-lisp    | vimscript | JavaScript | any     |
+   | language        | Emacs Lisp    | VimScript | JavaScript | any     |
    | system approach | comprehensive | minimal   | minimal    | minimal |
    |                 |               |           |            |         |
 
