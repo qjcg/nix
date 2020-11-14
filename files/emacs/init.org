@@ -107,9 +107,6 @@
      (use-package systemd :ensure)
      (use-package yaml-mode :ensure)
 
-     (use-package symon :ensure)
-
-
      (use-package rainbow-delimiters
        :ensure
        :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
