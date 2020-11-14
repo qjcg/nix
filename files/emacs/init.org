@@ -106,6 +106,7 @@
      (use-package paradox :ensure)
      (use-package systemd :ensure)
      (use-package yaml-mode :ensure)
+     (use-package undo-tree :ensure)
 
      (use-package rainbow-delimiters
        :ensure
