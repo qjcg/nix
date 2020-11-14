@@ -9,38 +9,38 @@
 
   See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
 
-** Goals
+** Goals [0/5]
 
    What do I want from Emacs?
    
-*** TODO The ultimate Developer Experience (DX) [1/10]
-     - [X] Git (melpa)
-     - [ ] Go (formatting, compiling, testing, debugging)
-     - [ ] Nix
-     - [ ] CUE
+*** TODO Ultimate Developer Experience (DX) [1/10]
+     - [X] Git (magit)
+     - [ ] Go (format, compile, test, jump-to-definition, debug)
+     - [ ] Nix (format)
+     - [ ] CUE (format, highlight)
      - [ ] NodeJS
      - [ ] Python
      - [ ] Fuzzy-find project files
      - [ ] Fuzzy find function by name
      - [ ] Snippets
      - [ ] Completion
-*** TODO A great DevOps experience [100%]
-    - [X] Docker
-    - [X] Kubernetes
+*** TODO An excellent DevOps experience [100%]
+    - [X] Docker (docker)
+    - [X] Kubernetes (kubernetes-overview, kubel)
 *** TODO Ultimate Hackability [0/4]
     - [ ] Write 10 custom functions
     - [ ] Write a custom minor mode
     - [ ] Write a custom major mode
     - [ ] Add language support for an unsupported language (e.g. CUE)
-*** TODO Daily drivers [1/7]
+*** TODO Integrated daily drivers [1/7]
     - [X] web (eww)
-    - [ ] email
     - [ ] RSS
     - [ ] shell
     - [ ] Slack
+    - [ ] email
     - [ ] music
     - [ ] image viewer
-*** TODO Looks gorgeous [0/2]
+*** TODO Looks stunning [0/2]
     - [ ] multi-font theme(s)
     - [ ] awesome colorscheme
 ** Comparison with alternatives
