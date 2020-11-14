@@ -9,7 +9,7 @@
 
   See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
 
-** Goals [0/5]
+** Goals [1/5]
 
    What do I want from Emacs?
    
@@ -24,7 +24,7 @@
     - [ ] Fuzzy find function by name
     - [ ] Snippets
     - [ ] Completion
-*** TODO An excellent DevOps experience [100%]
+*** DONE Excellent DevOps experience [2/2]
     - [X] Docker (docker)
     - [X] Kubernetes (kubernetes-overview, kubel)
 *** TODO Ultimate Hackability [0/4]
@@ -32,11 +32,11 @@
     - [ ] Write a custom minor mode
     - [ ] Write a custom major mode
     - [ ] Add language support for an unsupported language (e.g. CUE)
-*** TODO Integrated daily drivers [2/8]
-    - [X] web (eww)
+*** TODO Integrated daily drivers [4/8]
+    - [X] web (eww BUT sometimes hangs? Performance mediocre)
     - [X] music (bongo w/ mpv backend)
-    - [ ] RSS
-    - [ ] shell
+    - [X] RSS (elfeed)
+    - [X] shell (eshell + ansi-term)
     - [ ] Slack
     - [ ] email
     - [ ] image viewer
@@ -295,6 +295,8 @@
        (setq bongo-custom-backend-matchers
 	     `((mpv local-file "opus"))))
 
+     ;; Maybe remove this? Review pros/cons.
+     ;; youtube-dl on the CLI seems to download less (e.g. via "youtube-dl -x URL")
      (use-package ytdl :ensure)
    #+end_src
 
