@@ -243,16 +243,33 @@
 	   ido-everywhere t
 	   ido-create-new-buffer 'always)
    #+END_SRC
-** RSS/Atom Feeds
+** Daily Drivers
+*** RSS/Atom Feeds
 
-   #+begin_src emacs-lisp
-     (use-package elfeed :ensure)
-     (use-package elfeed-org
-       :ensure
-       :config
-       (elfeed-org)
-       (setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
-   #+end_src
+    #+begin_src emacs-lisp
+      (use-package elfeed :ensure)
+      (use-package elfeed-org
+	:ensure
+	:config
+	(elfeed-org)
+	(setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
+    #+end_src
+*** Multimedia
+
+    Use bongo to play audio and video.
+   
+    #+begin_src emacs-lisp
+      (use-package bongo
+	:ensure
+	:init
+	;; It seems bongo doesn't play opus files by default. Let's fix that!
+	(setq bongo-custom-backend-matchers
+	      `((mpv local-file "opus"))))
+
+      ;; Maybe remove this? Review pros/cons.
+      ;; youtube-dl on the CLI seems to download less (e.g. via "youtube-dl -x URL")
+      (use-package ytdl :ensure)
+    #+end_src
 ** Key Bindings
 
    Configuration relating mainly to key binding.
@@ -283,23 +300,6 @@
        ("b" dumb-jump-back "Back"))
    #+end_src
   
-** Multimedia
-
-   Use bongo to play audio and video.
-   
-   #+begin_src emacs-lisp
-     (use-package bongo
-       :ensure
-       :init
-       ;; It seems bongo doesn't play opus files by default. Let's fix that!
-       (setq bongo-custom-backend-matchers
-	     `((mpv local-file "opus"))))
-
-     ;; Maybe remove this? Review pros/cons.
-     ;; youtube-dl on the CLI seems to download less (e.g. via "youtube-dl -x URL")
-     (use-package ytdl :ensure)
-   #+end_src
-
 ** Thin Ice!
 
    This is an area for things I suspect I don't need, but am not
