@@ -36,7 +36,7 @@
     - [X] web (eww BUT sometimes hangs? Performance mediocre)
     - [X] music (bongo w/ mpv backend)
     - [X] RSS (elfeed)
-    - [X] shell (eshell + ansi-term)
+    - [X] shell (eshell + vterm)
     - [ ] Slack
     - [ ] email
     - [ ] image viewer
@@ -118,6 +118,7 @@
      (use-package undo-tree :ensure)
      (use-package yaml-mode :ensure)
      (use-package elpher :ensure)
+     (use-package vterm :ensure)
 
      (use-package rainbow-delimiters
        :ensure
