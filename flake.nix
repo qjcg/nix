@@ -89,7 +89,6 @@
                   };
                 in
                 {
-                  delve = pkgs.callPackage ./packages/overrides/delve { };
                   dunst = pkgs.callPackage ./packages/overrides/dunst { };
                   emacs = pkgs.callPackage ./packages/overrides/emacs { };
                   neovim = pkgs.callPackage ./packages/overrides/neovim { };

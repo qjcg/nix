@@ -21,7 +21,6 @@ let
 
   # TODO: Rewrite as a DRY function.
   overrides = {
-    delve = prev.callPackage ./overrides/delve { };
     dunst = prev.callPackage ./overrides/dunst { };
     emacs = prev.callPackage ./overrides/emacs { };
     neovim = prev.callPackage ./overrides/neovim { };
