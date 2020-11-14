@@ -65,24 +65,33 @@
 ** TODO Handle snippets
 * Foundations
 
-  #+begin_src emacs-lisp
-    ;; Use a *separate* file for customizations.
-    ;; See M-x customize
-    ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations
-    (setq custom-file "~/.config/emacs/custom.el")
-    (load custom-file)
+** Customize
 
-    (setq	echo-keystrokes 0.1          ; Show keystrokes ASAP
-	    inhibit-startup-message t
-	    initial-scratch-message nil
-	    tool-bar-mode -1
-	    toggle-scroll-bar -1
-	    auto-fill-mode t)
+   Settings having to do with emacs' customize facility (see 'M-x customize').
 
-    ;; Web browsing
-    (setq browse-url-browser-function 'eww-browse-url)
-  #+end_src
- 
+   Consider one day moving away from using customize altogether.
+   See for example: https://tech.toryanderson.com/2020/11/13/migrating-to-a-custom-file-less-setup/
+
+   #+begin_src emacs-lisp
+     ;; Use a *separate* file for customizations.
+     ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations
+     (setq custom-file "~/.config/emacs/custom.el")
+     (load custom-file)
+   #+end_src
+
+** Non-Customize
+   #+begin_src emacs-lisp
+     (setq	echo-keystrokes 0.1          ; Show keystrokes ASAP
+	     inhibit-startup-message t
+	     initial-scratch-message nil
+	     tool-bar-mode -1
+	     toggle-scroll-bar -1
+	     auto-fill-mode t)
+
+     ;; Web browsing
+     (setq browse-url-browser-function 'eww-browse-url)
+   #+end_src
+   
 * Packages
 ** Emacs Package Repos
    #+begin_src emacs-lisp
@@ -96,9 +105,9 @@
 
    #+begin_src emacs-lisp
      (use-package all-the-icons :ensure)
+
      (use-package bug-hunter :ensure)
      (use-package discover-my-major :ensure)
-
      (use-package hydra :ensure)
      (use-package jinja2-mode :ensure)
      (use-package json-mode :ensure)
@@ -106,8 +115,8 @@
      (use-package page-break-lines :ensure)
      (use-package paradox :ensure)
      (use-package systemd :ensure)
-     (use-package yaml-mode :ensure)
      (use-package undo-tree :ensure)
+     (use-package yaml-mode :ensure)
 
      (use-package rainbow-delimiters
        :ensure
@@ -262,6 +271,8 @@
 
 *** Kubernetes
 
+    Packages for interacting with Kubernetes.
+    
     #+begin_src emacs-lisp
       ;; See https://github.com/chrisbarrett/kubernetes-el
       (use-package kubernetes
@@ -271,6 +282,21 @@
       ;; See https://github.com/abrochard/kubel
       (use-package kubel :ensure)
     #+end_src
+
+** Multimedia
+
+   Use bongo to play audio and video.
+   
+   #+begin_src emacs-lisp
+     (use-package bongo
+       :ensure
+       :init
+       ;; It seems bongo doesn't play opus files by default. Let's fix that!
+       (setq bongo-custom-backend-matchers
+	     `((mpv local-file "opus"))))
+
+     (use-package ytdl :ensure)
+   #+end_src
 
 ** Thin Ice!
 
