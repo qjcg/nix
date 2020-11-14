@@ -117,6 +117,7 @@
      (use-package systemd :ensure)
      (use-package undo-tree :ensure)
      (use-package yaml-mode :ensure)
+     (use-package elpher :ensure)
 
      (use-package rainbow-delimiters
        :ensure
