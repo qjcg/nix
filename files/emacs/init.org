@@ -33,13 +33,13 @@
     - [ ] Write a custom major mode
     - [ ] Add language support for an unsupported language (e.g. CUE)
 *** TODO Daily drivers [1/7]
+    - [X] web (eww)
     - [ ] email
     - [ ] RSS
+    - [ ] shell
     - [ ] Slack
     - [ ] music
-    - [X] web (eww)
     - [ ] image viewer
-    - [ ] shell
 *** TODO Looks gorgeous [0/2]
     - [ ] multi-font theme(s)
     - [ ] awesome colorscheme
