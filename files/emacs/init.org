@@ -13,8 +13,9 @@
 
    What do I want from Emacs?
    
-*** TODO Ultimate Developer Experience (DX) [1/10]
+*** TODO Ultimate Developer Experience (DX) [2/11]
     - [X] Git (magit)
+    - [X] Reproducible editor package (via Nix)
     - [ ] Go (format, compile, test, jump-to-definition, debug)
     - [ ] Nix (format)
     - [ ] CUE (format, highlight)
@@ -81,15 +82,15 @@
 
 ** Non-Customize
    #+begin_src emacs-lisp
-     (setq	echo-keystrokes 0.1          ; Show keystrokes ASAP
+     (use-package emacs
+       :init
+       (tool-bar-mode -1)
+       (toggle-scroll-bar -1)
+       (setq	echo-keystrokes 0.1          ; Show keystrokes ASAP
 	     inhibit-startup-message t
 	     initial-scratch-message nil
-	     tool-bar-mode -1
-	     toggle-scroll-bar -1
-	     auto-fill-mode t)
-
-     ;; Web browsing
-     (setq browse-url-browser-function 'eww-browse-url)
+	     auto-fill-mode t
+	     browse-url-browser-function 'eww-browse-url)) ; Browse with eww by default
    #+end_src
    
 * Packages
