@@ -124,6 +124,7 @@
        :ensure
        :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
+     ;; Error at startup --- why? Check if properly installed by Nix.
      (use-package dired-subtree
        :config
        (bind-keys :map dired-mode-map
@@ -197,7 +198,7 @@
 	:ensure
 	:mode ("\\.go\\'" . go-mode)
 	:init
-	(setq compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linter... && golint")
+	(setq compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linter... && golangci-lint")
 	(setq compilation-read-command nil)
 	:hook custom-go-mode
 	:bind (("M-," . compile)
