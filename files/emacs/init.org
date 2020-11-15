@@ -39,6 +39,7 @@
       - [X] local videos
       - [ ] youtube etc.
     - [X] RSS (elfeed)
+      - [ ] Central elfeed file on server?
     - [X] shell (eshell + vterm)
     - [ ] Slack
     - [ ] email
@@ -48,6 +49,7 @@
 *** TODO Looks stunning [0/2]
     - [ ] multi-font theme(s)
     - [ ] awesome colorscheme
+    - [ ] Look into prot's bullet points, fonts, etc
 ** Comparison with alternatives
 
    I used VIM as my primary text editor for ~15 years (although I also
@@ -56,11 +58,11 @@
    the reasons why.
 
    #+NAME: Emacs vs. Alternatives
-   | Feature         | Emacs         | VIM       | Acme    | VSCode     |
-   |-----------------+---------------+-----------+---------+------------|
-   | language        | Emacs Lisp    | VimScript | any     | JavaScript |
-   | system approach | comprehensive | minimal   | minimal | minimal    |
-   |                 |               |           |         |            |
+   | Feature  | Emacs        | VIM              | Acme                                | VSCode     |
+   |----------+--------------+------------------+-------------------------------------+------------|
+   | language | Emacs Lisp   | VimScript        | any                                 | JavaScript |
+   | scope    | kitchen sink | text-editor plus | integrating development environment | minimal    |
+   |          |              |                  |                                     |            |
 
 * Foundations
 
@@ -121,6 +123,12 @@
      (use-package rainbow-delimiters
        :ensure
        :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+
+     (use-package dired-subtree
+       :config
+       (bind-keys :map dired-mode-map
+		  ("i" . dired-subtree-insert)
+		  (";" . dired-subtree-remove)))
    #+end_src
 
 ** Themes
@@ -132,6 +140,8 @@
    - [[https://peach-melpa.org/][peach-melpa.org]]
 
    #+begin_src emacs-lisp
+     (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
+
      (use-package all-the-icons :ensure)
      (use-package doom-themes :ensure)
 
@@ -353,6 +363,7 @@
    - [[https://github.com/chrisdone/elisp-guide][Elisp Guide]]
    - [[https://www.youtube.com/watch?v=RiXK7NALgRs&list=PL8Bwba5vnQK14z96Gil86pLMDO2GnOhQ6][Emacs Videos by Protesilaos Stavrou]]
    - [[https://github.com/emacs-tw/awesome-emacs][Awesome Emacs]]
+   - [[https://github.com/p3r7/awesome-elisp][Awesome Elisp]]
 
 ** Emacs Init Files
 
@@ -367,4 +378,4 @@
    - https://raw.githubusercontent.com/vhallac/literate.emacs.d/master/Startup.org
    - https://protesilaos.com/dotemacs/
    - https://gitlab.com/protesilaos/dotfiles/-/raw/master/emacs/.emacs.d/emacs-init.org
-
+   - https://justin.abrah.ms/dotfiles/emacs.html
