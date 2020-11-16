@@ -27,11 +27,12 @@
 *** DONE Excellent DevOps experience [2/2]
     - [X] Docker (docker)
     - [X] Kubernetes (kubernetes-overview, kubel)
-*** TODO Ultimate Hackability [0/4]
+*** TODO Ultimate Hackability [0/5]
     - [ ] Write 10 custom functions
     - [ ] Write a custom minor mode
     - [ ] Write a custom major mode
     - [ ] Add language support for an unsupported language (e.g. CUE)
+    - [ ] Create a custom theme (e.g. via `M-x customize-create-theme`)
 *** DOING Integrated daily drivers [4/10]
     - [X] web (eww BUT sometimes hangs? Performance mediocre)
     - [X] music (bongo w/ mpv backend)
@@ -67,8 +68,6 @@
 
    Emacs startup follows [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Startup-Summary.html][this approach]].
 
-   
-   
 * Foundations
 
 ** Customize
@@ -155,6 +154,7 @@
    #+begin_src emacs-lisp
      (use-package all-the-icons :ensure)
      (use-package doom-themes :ensure)
+     (use-package laguna-theme :ensure)
 
      ;; Apparently the modus- themes have been accepted into upstream
      ;; emacs, so remove them here once released versions begin to include
