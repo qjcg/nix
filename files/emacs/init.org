@@ -63,6 +63,12 @@
    | language | Emacs Lisp   | VimScript        | any                                 | JavaScript |
    | scope    | kitchen sink | text-editor plus | integrating development environment | minimal    |
    |          |              |                  |                                     |            |
+** Emacs Startup
+
+   Emacs startup follows [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Startup-Summary.html][this approach]].
+
+   
+   
 
 * Foundations
 
@@ -141,6 +147,7 @@
    - [[https://peach-melpa.org/][peach-melpa.org]]
 
    #+begin_src emacs-lisp
+     ;; Load custom theme(s) from here. Currently using solo-jazz.el.
      (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
 
      (use-package all-the-icons :ensure)
@@ -151,6 +158,10 @@
      ;; them.
      (use-package modus-operandi-theme :ensure)
      (use-package modus-vivendi-theme :ensure)
+
+     (use-package org-bullets
+       :ensure
+       :hook org-mode-hook)
    #+end_src
 
 ** Programming
