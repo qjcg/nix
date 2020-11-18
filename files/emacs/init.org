@@ -68,7 +68,32 @@
 
    Emacs startup follows [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Startup-Summary.html][this approach]].
 
-* Foundations
+** References
+*** Learning
+
+    Useful Emacs learning resources.
+
+    - [[https://github.com/jtmoulia/elisp-koans][Elisp Koans]]
+    - [[https://github.com/chrisdone/elisp-guide][Elisp Guide]]
+    - [[https://www.youtube.com/watch?v=RiXK7NALgRs&list=PL8Bwba5vnQK14z96Gil86pLMDO2GnOhQ6][Emacs Videos by Protesilaos Stavrou]]
+    - [[https://github.com/emacs-tw/awesome-emacs][Awesome Emacs]]
+    - [[https://github.com/p3r7/awesome-elisp][Awesome Elisp]]
+
+*** Emacs Init Files
+
+    Some other org-mode init files.
+
+    - https://github.com/EgorDuplensky/emacs-init-org/blob/master/my-init.org
+    - https://github.com/dariushazimi/emacsdotfiles/blob/master/myinit-linux.org
+    - https://github.com/globz/emacs-conf/blob/master/init.org
+    - https://raw.githubusercontent.com/AlexStragies/EmacsConfig/master/emacs.org
+    - https://raw.githubusercontent.com/EgorDuplensky/emacs-init-org/master/my-init.org
+    - https://raw.githubusercontent.com/gitten/.emacs.d/master/config.org
+    - https://raw.githubusercontent.com/vhallac/literate.emacs.d/master/Startup.org
+    - https://protesilaos.com/dotemacs/
+    - https://gitlab.com/protesilaos/dotfiles/-/raw/master/emacs/.emacs.d/emacs-init.org
+    - https://justin.abrah.ms/dotfiles/emacs.html
+* Configuration
 ** Customize
 
    Settings having to do with emacs' customize facility (see 'M-x customize').
@@ -86,7 +111,6 @@
 
      (load custom-file)
    #+end_src
-
 ** Non-Customize
    #+begin_src emacs-lisp
      (use-package emacs
@@ -105,7 +129,6 @@
 	 (org-mode)))
    #+end_src
    
-* Packages
 ** Emacs Package Repos
    #+begin_src emacs-lisp
      ;; Enable MELPA repo.
@@ -157,7 +180,7 @@
        (global-set-key (kbd "C-=") 'er/expand-region))
    #+end_src
 
-** Themes
+** Look & Feel
 
    Emacs Themes.
 
@@ -477,28 +500,3 @@
 
    #+END_SRC
 
-* Resources
-** Learning
-
-   Useful Emacs learning resources.
-
-   - [[https://github.com/jtmoulia/elisp-koans][Elisp Koans]]
-   - [[https://github.com/chrisdone/elisp-guide][Elisp Guide]]
-   - [[https://www.youtube.com/watch?v=RiXK7NALgRs&list=PL8Bwba5vnQK14z96Gil86pLMDO2GnOhQ6][Emacs Videos by Protesilaos Stavrou]]
-   - [[https://github.com/emacs-tw/awesome-emacs][Awesome Emacs]]
-   - [[https://github.com/p3r7/awesome-elisp][Awesome Elisp]]
-
-** Emacs Init Files
-
-   Some other org-mode init files.
-
-   - https://github.com/EgorDuplensky/emacs-init-org/blob/master/my-init.org
-   - https://github.com/dariushazimi/emacsdotfiles/blob/master/myinit-linux.org
-   - https://github.com/globz/emacs-conf/blob/master/init.org
-   - https://raw.githubusercontent.com/AlexStragies/EmacsConfig/master/emacs.org
-   - https://raw.githubusercontent.com/EgorDuplensky/emacs-init-org/master/my-init.org
-   - https://raw.githubusercontent.com/gitten/.emacs.d/master/config.org
-   - https://raw.githubusercontent.com/vhallac/literate.emacs.d/master/Startup.org
-   - https://protesilaos.com/dotemacs/
-   - https://gitlab.com/protesilaos/dotfiles/-/raw/master/emacs/.emacs.d/emacs-init.org
-   - https://justin.abrah.ms/dotfiles/emacs.html
