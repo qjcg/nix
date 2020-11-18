@@ -47,10 +47,10 @@
     - [ ] image viewer
     - [ ] slides
     - [ ] making art (drawing, music, writing/blogging, etc)
-*** TODO Looks stunning [0/2]
+*** TODO Looks stunning [1/3]
+    - [X] Look into prot's bullet points, fonts, etc
     - [ ] multi-font theme(s)
     - [ ] awesome colorscheme
-    - [ ] Look into prot's bullet points, fonts, etc
 ** Comparison with alternatives
 
    I used VIM as my primary text editor for ~15 years (although I also
@@ -69,7 +69,6 @@
    Emacs startup follows [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Startup-Summary.html][this approach]].
 
 * Foundations
-
 ** Customize
 
    Settings having to do with emacs' customize facility (see 'M-x customize').
@@ -234,6 +233,8 @@
 *** Snippets
 
     Snippets via YASnippet.
+
+    See http://joaotavora.github.io/yasnippet/index.html
     
     #+begin_src emacs-lisp
       (use-package yasnippet
@@ -273,10 +274,8 @@
       (use-package nix-mode :ensure)
     #+end_src
 *** CUE                                                           :cue:empty:
-
 *** Python                                                     :python:empty:
 *** Javascript / TypeScript                                :javascript:empty:
-    TODO
 *** Ruby                                                         :ruby:empty:
 ** DevOps
 *** Docker
@@ -358,8 +357,8 @@
        (global-set-key (kbd "C-c n") 'counsel-fzf)
        (global-set-key (kbd "C-x l") 'counsel-locate)
        (global-set-key (kbd "C-c J") 'counsel-file-jump)
-					     ;(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-					     ;(global-set-key (kbd "C-c w") 'counsel-wmctrl)
+       ;;(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+       ;;(global-set-key (kbd "C-c w") 'counsel-wmctrl)
 
        ;; Ivy-resume and other commands
        (global-set-key (kbd "C-c C-r") 'ivy-resume)
