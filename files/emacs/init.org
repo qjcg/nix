@@ -220,25 +220,25 @@
 *** Go                                                                   :go:
 
     Go programming.
+
+    See: https://arenzana.org/2019/12/emacs-go-mode-revisited/
    
     #+begin_src emacs-lisp
-      ;; Go Settings.
-      ;; See: https://arenzana.org/2019/12/emacs-go-mode-revisited/
-
-      (defun custom-go-mode ()
-	"Custom settings for go-mode"
-	(display-line-numbers-mode 1)
-	(add-hook 'before-save-hook #'lsp-format-buffer t t)
-	(add-hook 'before-save-hook #'lsp-organize-imports t t))
-
       (use-package go-mode
-	:defer t
 	:ensure
+	:defer t
+	:after lsp
 	:mode ("\\.go\\'" . go-mode)
+
 	:init
-	(setq compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linter... && golangci-lint")
+	(setq compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linting... && golangci-lint")
 	(setq compilation-read-command nil)
-	:hook custom-go-mode
+	(display-line-numbers-mode 1) ; FIXME: Only want this to apply for
+					      ; Go files, but as configured, applies
+					      ; to all files!
+	(add-hook 'before-save-hook #'lsp-format-buffer t t)
+	(add-hook 'before-save-hook #'lsp-organize-imports t t)
+
 	:bind (("M-," . compile)
 	       ("M-." . godef-jump)))
     #+end_src
