@@ -448,6 +448,7 @@
   xdg.configFile = {
     "albert/albert.conf".source = ../../files/albert.conf;
     "cmus/rc".source = ../../files/cmusrc;
+    "emacs/elfeed.org" = ../../files/emacs/elfeed.org;
     "gtk-3.0/settings.ini".source = ../../files/gtk-3.0_settings.ini;
     "i3/workspace1.json".source = ../../files/workspace1_luban.json;
     "nix/nix.conf".text = ''
