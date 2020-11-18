@@ -13,16 +13,16 @@
 
    What do I want from Emacs?
    
-*** TODO Ultimate Developer Experience (DX) [2/11]
+*** TODO Ultimate Developer Experience (DX) [4/10]
     - [X] Git (magit)
     - [X] Reproducible editor package (via Nix)
+    - [X] Snippets (yasnippets)
+    - [X] Fuzzy-find (rg/fzf integration, prot window)
     - [ ] Go (format, compile, test, jump-to-definition, debug)
     - [ ] Nix (format)
     - [ ] CUE (format, highlight)
     - [ ] NodeJS
     - [ ] Python
-    - [ ] Fuzzy-find (rg/fzf integration, prot window)
-    - [ ] Snippets
     - [ ] Completion
 *** DONE Excellent DevOps experience [2/2]
     - [X] Docker (docker)
@@ -99,9 +99,11 @@
 	     initial-scratch-message nil
 	     auto-fill-mode t
 	     browse-url-browser-function 'eww-browse-url   ; Browse with eww by default
-	     backup-directory-alist '(("" . "~/.config/emacs/backup"))))
+	     backup-directory-alist '(("." . "~/.config/emacs/backup")))
 
-
+       ;; Proof-of-concept: Open a buffer in a specific mode on emacs initialization.
+       (with-current-buffer (get-buffer-create "foobar-finkelstein")
+	 (org-mode)))
    #+end_src
    
 * Packages
@@ -113,6 +115,7 @@
    #+end_src
 
 ** Misc
+
    Miscellaneous packages
 
    #+begin_src emacs-lisp
@@ -141,6 +144,18 @@
        (bind-keys :map dired-mode-map
 		  ("i" . dired-subtree-insert)
 		  (";" . dired-subtree-remove)))
+
+     ;; Projects based on version control repo presence (e.g. git). Excellent!
+     (use-package projectile
+       :ensure
+       :config
+       (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+       (projectile-mode +1))
+
+     (use-package expand-region
+       :ensure
+       :config
+       (global-set-key (kbd "C-=") 'er/expand-region))
    #+end_src
 
 ** Themes
@@ -152,14 +167,14 @@
    - [[https://peach-melpa.org/][peach-melpa.org]]
 
    #+begin_src emacs-lisp
+     ;; Various theme and theme-related packages.
      (use-package all-the-icons :ensure)
-
-     ;; Theme packages
      (use-package doom-themes :ensure)
      (use-package laguna-theme :ensure)
      (use-package almost-mono-themes :ensure)
      (use-package monotropic-theme :ensure)
      (use-package exotica-theme :ensure)
+     (use-package organic-green-theme :ensure)
 
      ;; Apparently the modus- themes have been accepted into upstream
      ;; emacs, so remove them here once released versions begin to include
@@ -168,12 +183,13 @@
      (use-package modus-vivendi-theme :ensure)
 
      ;; Use unicode bullet characters in org-mode.
-     (use-package org-bullets
+     ;; To customize, see https://github.com/integral-dw/org-superstar-mode/blob/master/DEMO.org
+     (use-package org-superstar
        :ensure
        :init
-       (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+       (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1))))
 
-     ;; Theme-switching for Emacs based on daytime
+     ;; Theme-switching for Emacs based on daytime.
      ;; See https://github.com/guidoschmidt/circadian.el
      (use-package circadian
        :ensure
@@ -182,13 +198,11 @@
 				("19:00" . laguna)))
        (circadian-setup))
 
-
      (defadvice load-theme (before theme-dont-propagate activate)
        "Advise load-theme to disable all custom themes before loading (enabling) another one.
 
 	  See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
        (mapc #'disable-theme custom-enabled-themes))
-
    #+end_src
 
 ** Programming
@@ -217,6 +231,17 @@
 	      lsp-ui-imenu-enable t
 	      lsp-ui-flycheck-enable t))
     #+end_src
+*** Snippets
+
+    Snippets via YASnippet.
+    
+    #+begin_src emacs-lisp
+      (use-package yasnippet
+	:ensure
+	:commands yas-minor-mode
+	:hook (go-mode . yas-minor-mode))
+    #+end_src
+
 *** Go                                                                   :go:
 
     Go programming.
@@ -247,13 +272,12 @@
     #+begin_src emacs-lisp
       (use-package nix-mode :ensure)
     #+end_src
-*** CUE                                                                 :cue:
+*** CUE                                                           :cue:empty:
+
+*** Python                                                     :python:empty:
+*** Javascript / TypeScript                                :javascript:empty:
     TODO
-*** Python
-    TODO
-*** Javascript / TypeScript
-    TODO
-*** Ruby
+*** Ruby                                                         :ruby:empty:
 ** DevOps
 *** Docker
 
@@ -279,18 +303,88 @@
       (use-package kubel :ensure)
     #+end_src
 
+*** Ansible
+    
+    #+begin_src emacs-lisp
+      (use-package ansible
+	:ensure
+	:init
+	(add-hook 'yaml-mode-hook '(lambda () (ansible 1))))
+    #+end_src
+
 ** Completion
 
-   IDO mode settings.
-
-   See https://masteringemacs.org/article/introduction-to-ido-mode
+   Completion mode settings.
 
    #+BEGIN_SRC emacs-lisp
-     (require 'ido)
-     (ido-mode t)
-     (setq ido-enable-flex-matching t
-	   ido-everywhere t
-	   ido-create-new-buffer 'always)
+     ;; DISABLE ido-mode, pilot replacing it with Ivy (below).
+     ;; See https://masteringemacs.org/article/introduction-to-ido-mode
+     ;; (require 'ido)
+     ;; (ido-mode t)
+     ;; (setq ido-enable-flex-matching t
+     ;;       ido-everywhere t
+     ;;       ido-create-new-buffer 'always)
+
+     ;; See https://oremacs.com/swiper/#introduction
+     (use-package ivy
+       :ensure
+       :config
+       (setq ivy-use-virtual-buffers t)
+       (setq ivy-count-format "(%d/%d) ")
+
+       ;; Ivy-based interface to standard commands.
+       (global-set-key (kbd "C-s") 'swiper-isearch)
+       (global-set-key (kbd "M-x") 'counsel-M-x)
+       (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+       (global-set-key (kbd "M-y") 'counsel-yank-pop)
+       ;; NOTE: Look into replacing bindings to the function keys below.
+       (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+       (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+       (global-set-key (kbd "<f1> l") 'counsel-find-library)
+       (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+       (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+       (global-set-key (kbd "<f2> j") 'counsel-set-variable)
+       (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
+       (global-set-key (kbd "C-c v") 'ivy-push-view)
+       (global-set-key (kbd "C-c V") 'ivy-pop-view)
+
+       ;; Ivy-based interface to shell and system tools.
+       (global-set-key (kbd "C-c c") 'counsel-compile)
+       (global-set-key (kbd "C-c g") 'counsel-git)
+       (global-set-key (kbd "C-c j") 'counsel-git-grep)
+       (global-set-key (kbd "C-c L") 'counsel-git-log)
+       (global-set-key (kbd "C-c k") 'counsel-rg)
+       (global-set-key (kbd "C-c m") 'counsel-linux-app)
+       (global-set-key (kbd "C-c n") 'counsel-fzf)
+       (global-set-key (kbd "C-x l") 'counsel-locate)
+       (global-set-key (kbd "C-c J") 'counsel-file-jump)
+					     ;(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+					     ;(global-set-key (kbd "C-c w") 'counsel-wmctrl)
+
+       ;; Ivy-resume and other commands
+       (global-set-key (kbd "C-c C-r") 'ivy-resume)
+       (global-set-key (kbd "C-c b") 'counsel-bookmark)
+       (global-set-key (kbd "C-c d") 'counsel-descbinds)
+       (global-set-key (kbd "C-c g") 'counsel-git)
+       (global-set-key (kbd "C-c o") 'counsel-outline)
+       (global-set-key (kbd "C-c t") 'counsel-load-theme)
+       (global-set-key (kbd "C-c F") 'counsel-org-file)
+
+       (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+       :hook (after-init . ivy-mode))
+
+     (use-package ivy-posframe
+       :ensure
+       :init
+       (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+       (ivy-posframe-mode 1))
+
+     (use-package counsel :ensure)
+     (use-package counsel-projectile
+       :ensure
+       :init (counsel-projectile-mode))
+     (use-package swiper :ensure)
    #+END_SRC
 ** Media
 *** RSS/Atom Feeds
@@ -322,6 +416,8 @@
 ** Key Bindings
 
    Configuration relating mainly to key binding.
+
+   See `M-x describe-personal-keybindings`.
 
    #+begin_src emacs-lisp
      (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
@@ -368,12 +464,6 @@
        :ensure
        :commands company-lsp)
 
-     ;; Optional - provides snippet support.
-     (use-package yasnippet
-       :ensure
-       :commands yas-minor-mode
-       :hook (go-mode . yas-minor-mode))
-
      (setq compilation-window-height 14)
      (defun my-compilation-hook ()
        (when (not (get-buffer-window "*compilation*"))
@@ -386,11 +476,6 @@
 	       (shrink-window (- h compilation-window-height)))))))
      (add-hook 'compilation-mode-hook 'my-compilation-hook)
 
-     (use-package projectile
-       :ensure
-       :config
-       (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-       (projectile-mode +1))
    #+END_SRC
 
 * Resources
