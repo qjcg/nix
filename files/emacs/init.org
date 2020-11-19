@@ -396,11 +396,12 @@
 
        :hook (after-init . ivy-mode))
 
-     (use-package ivy-posframe
-       :ensure
-       :init
-       (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
-       (ivy-posframe-mode 1))
+     ;; Commenting out for now to see if causing strange colors --- remove?
+     ;; (use-package ivy-posframe
+     ;;   :ensure
+     ;;   :init
+     ;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+     ;;   (ivy-posframe-mode 1))
 
      (use-package counsel :ensure)
      (use-package counsel-projectile
