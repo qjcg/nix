@@ -7,13 +7,13 @@ let
 in
 buildGoModule rec {
   pname = "k3d";
-  version = "3.2.1";
+  version = "3.3.0";
 
   src = fetchFromGitHub {
     owner = "rancher";
     repo = "k3d";
     rev = "v${version}";
-    sha256 = "sha256-g5UVZj6/2ZxFOb61R6aF3v7rrKQdGDHE2n0wn3LcIKQ=";
+    sha256 = "sha256-qsYiUIRHzJw63IXhgtoPhiXRXxljS/drAA4l6x3pBd8=";
   };
 
   deleteVendor = true;
