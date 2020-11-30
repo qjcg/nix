@@ -26,6 +26,7 @@ pkgs.buildEnv {
     findutils
     fortune
     fzf
+    gallery-dl
     getent
     git
     github-cli
