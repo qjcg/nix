@@ -14,7 +14,7 @@ buildEnv {
         cookiecutter
         ipython
         mypy
-        poetry
+        #poetry
         pylint
         requests
       ]))
