@@ -338,6 +338,10 @@
 
    Completion mode settings.
 
+**** Videos
+     - [[https://www.youtube.com/watch?v=QcPenVmmQyM][Ivy tips and tricks]]
+     - [[https://www.youtube.com/watch?v=IDkx48JwDco][Emacs: fuzzy find files (fzf, ripgrep, Ivy+Counsel)]]
+
    #+BEGIN_SRC emacs-lisp
      ;; DISABLE ido-mode, pilot replacing it with Ivy (below).
      ;; See https://masteringemacs.org/article/introduction-to-ido-mode
