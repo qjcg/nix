@@ -66,7 +66,7 @@
    |          |              |                  |                                     |            |
 ** Emacs Startup
 
-   Emacs startup follows [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Startup-Summary.html][this approach]].
+   The Emacs startup process is described in detail [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Startup-Summary.html][here]].
 
 ** References
 *** Learning
@@ -78,6 +78,7 @@
     - [[https://www.youtube.com/watch?v=RiXK7NALgRs&list=PL8Bwba5vnQK14z96Gil86pLMDO2GnOhQ6][Emacs Videos by Protesilaos Stavrou]]
     - [[https://github.com/emacs-tw/awesome-emacs][Awesome Emacs]]
     - [[https://github.com/p3r7/awesome-elisp][Awesome Elisp]]
+    - [[http://caiorss.github.io/Emacs-Elisp-Programming/][Emacs in a Box]]
 
 *** Emacs Init Files
 
@@ -159,7 +160,6 @@
        :ensure
        :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
-     ;; Error at startup --- why? Check if properly installed by Nix.
      (use-package dired-subtree
        :ensure
        :config
@@ -195,8 +195,6 @@
      (use-package laguna-theme :ensure)
      (use-package almost-mono-themes :ensure)
      (use-package monotropic-theme :ensure)
-     (use-package exotica-theme :ensure)
-     (use-package organic-green-theme :ensure)
 
      ;; Apparently the modus- themes have been accepted into upstream
      ;; emacs, so remove them here once released versions begin to include
@@ -209,7 +207,11 @@
      (use-package org-superstar
        :ensure
        :init
-       (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1))))
+       (add-hook 'org-mode-hook (lambda () (progn
+					     (org-superstar-mode 1)
+					     ;; Set different bullets, with one getting a terminal fallback.
+					     (setq org-superstar-headline-bullets-list
+						   '("◉" ("🞛" ?◈) "○" "▷"))))))
 
      ;; Theme-switching for Emacs based on daytime.
      ;; See https://github.com/guidoschmidt/circadian.el
@@ -338,7 +340,7 @@
 
    Completion mode settings.
 
-**** Videos
+   See:
      - [[https://www.youtube.com/watch?v=QcPenVmmQyM][Ivy tips and tricks]]
      - [[https://www.youtube.com/watch?v=IDkx48JwDco][Emacs: fuzzy find files (fzf, ripgrep, Ivy+Counsel)]]
 
@@ -401,16 +403,17 @@
        :hook (after-init . ivy-mode))
 
      ;; Commenting out for now to see if causing strange colors --- remove?
-     ;; (use-package ivy-posframe
-     ;;   :ensure
-     ;;   :init
-     ;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
-     ;;   (ivy-posframe-mode 1))
+     (use-package ivy-posframe
+       :ensure
+       :init
+       (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+       (ivy-posframe-mode 1))
 
      (use-package counsel :ensure)
      (use-package counsel-projectile
        :ensure
        :init (counsel-projectile-mode))
+
      (use-package swiper :ensure)
    #+END_SRC
 ** Media
