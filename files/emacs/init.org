@@ -489,9 +489,12 @@
      ;; completion-at-point also works out of the box but doesn't support snippets.
      (use-package company
        :ensure
+
        :config
        (setq company-idle-delay 0)
-       (setq company-minimum-prefix-length 1))
+       (setq company-minimum-prefix-length 1)
+
+       :hook (after-init . global-company-mode))
 
      (use-package company-lsp
        :ensure
