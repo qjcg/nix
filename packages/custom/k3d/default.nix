@@ -1,5 +1,8 @@
 { lib, fetchFromGitHub, buildGoModule, installShellFiles,
-  k3sVersion ? "v1.18.12-k3s1", # Get this from https://update.k3s.io/v1-release/channels/stable
+
+  # NOTE: K3s docker images use a "-k3s" suffix, while the k3d repo uses a "+k3d" suffix in git tags.
+  # See also https://update.k3s.io/v1-release/channels/stable
+  k3sVersion ? "v1.18.12-k3s2",
 }:
 
 with lib;
