@@ -416,11 +416,19 @@
 
     #+begin_src emacs-lisp
       (use-package elfeed :ensure)
+
       (use-package elfeed-org
 	:ensure
 	:config
 	(elfeed-org)
 	(setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
+
+      (use-package elfeed-dashboard
+	:load-path "~/.config/emacs/lisp/elfeed-dashboard"
+	:config (progn
+		  (setq elfeed-dashboard-file "~/.config/emacs/lisp/elfeed-dashboard/elfeed-dashboard.org")
+		  ;; to update feed counts automatically
+		  (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links)))
     #+end_src
 *** Multimedia
 
