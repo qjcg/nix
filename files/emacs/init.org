@@ -214,7 +214,7 @@
 					     (org-superstar-mode 1)
 					     ;; Set different bullets, with one getting a terminal fallback.
 					     (setq org-superstar-headline-bullets-list
-						   '("◉" "🞛" "○" "▷"))))))
+						   '("◉" "○" "🞛" "▷"))))))
 
      ;; Theme-switching for Emacs based on daytime.
      ;; See https://github.com/guidoschmidt/circadian.el
