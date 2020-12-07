@@ -348,14 +348,6 @@
      - [[https://www.youtube.com/watch?v=IDkx48JwDco][Emacs: fuzzy find files (fzf, ripgrep, Ivy+Counsel)]]
 
    #+BEGIN_SRC emacs-lisp
-     ;; DISABLE ido-mode, pilot replacing it with Ivy (below).
-     ;; See https://masteringemacs.org/article/introduction-to-ido-mode
-     ;; (require 'ido)
-     ;; (ido-mode t)
-     ;; (setq ido-enable-flex-matching t
-     ;;       ido-everywhere t
-     ;;       ido-create-new-buffer 'always)
-
      ;; See https://oremacs.com/swiper/#introduction
      (use-package ivy
        :ensure
