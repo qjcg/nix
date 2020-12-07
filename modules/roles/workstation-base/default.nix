@@ -3,6 +3,7 @@
 with pkgs;
 let
   fonts = [
+    emacs-all-the-icons-fonts
     fira-code
     go-font
     inconsolata-nerdfont
