@@ -39,7 +39,7 @@
       options = [ "grp:shifts_toggle" ];
     };
 
-    packages = with pkgs; [ env-multimedia env-workstation ];
+    packages = with pkgs; [ env-multimedia env-tools ];
 
   };
 
@@ -163,7 +163,7 @@
         set -g status-justify left
         set -g message-style                 "fg=green bright"
         set -g status-style                  "fg=white dim"
-        setw -g window-status-style	     "fg=white dim"
+        setw -g window-status-style       "fg=white dim"
         setw -g window-status-current-style  "fg=cyan  dim"
 
         bind '"' split-window -c "#{pane_current_path}"
@@ -231,224 +231,226 @@
   # Verify via about:support -> "Window Protocol"
   systemd.user.sessionVariables.MOZ_ENABLE_WAYLAND = "1";
 
-  wayland.windowManager.sway = let
-    modifier = "Mod4";
+  wayland.windowManager.sway =
+    let
+      modifier = "Mod4";
 
-    cmd_term = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
-    cmd_term_tmux = "${cmd_term} -t tmux-main -- sh -c 'tmux new -ADs main'";
+      cmd_term = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
+      cmd_term_tmux = "${cmd_term} -t tmux-main -- sh -c 'tmux new -ADs main'";
 
-    cmd_menu =
-      "${pkgs.dmenu}/bin/dmenu_run -fn 'Fira Code:size=13' -nb '#000000' -sb '#00fcff' -sf '#000000'";
-    cmd_browser = "${pkgs.firefox}/bin/firefox";
+      cmd_menu =
+        "${pkgs.dmenu}/bin/dmenu_run -fn 'Fira Code:size=13' -nb '#000000' -sb '#00fcff' -sf '#000000'";
+      cmd_browser = "${pkgs.firefox}/bin/firefox";
 
-    wpdir = "/home/jgosset/Sync/Pictures/Wallpapers";
-    cmd_browse_wallpaper = "${pkgs.sxiv}/bin/sxiv -artos f ${wpdir}";
-    cmd_set_wallpaper =
-      "${pkgs.feh}/bin/feh --bg-fill ${wpdir}/gtgraphics.de/infinitus.jpg ${wpdir}/wallpaperfx.com/white-tiger-in-jungle-2560x1440-wallpaper-2916.jpg --geometry -550";
+      wpdir = "/home/jgosset/Sync/Pictures/Wallpapers";
+      cmd_browse_wallpaper = "${pkgs.sxiv}/bin/sxiv -artos f ${wpdir}";
+      cmd_set_wallpaper =
+        "${pkgs.feh}/bin/feh --bg-fill ${wpdir}/gtgraphics.de/infinitus.jpg ${wpdir}/wallpaperfx.com/white-tiger-in-jungle-2560x1440-wallpaper-2916.jpg --geometry -550";
 
-    left = "h";
-    down = "j";
-    up = "k";
-    right = "l";
-  in {
-    enable = true;
+      left = "h";
+      down = "j";
+      up = "k";
+      right = "l";
+    in
+    {
+      enable = true;
 
-    extraConfig = ''
-      default_border  pixel 8
-      title_align     center
+      extraConfig = ''
+        default_border  pixel 8
+        title_align     center
 
-      output eDP-1    bg #000000 solid_color scale 1 pos 0 0
-      output HDMI-A-2 bg #000000 solid_color scale 1 pos 2560 0
-    '';
+        output eDP-1    bg #000000 solid_color scale 1 pos 0 0
+        output HDMI-A-2 bg #000000 solid_color scale 1 pos 2560 0
+      '';
 
-    config = {
-      fonts = [ "Iosevka Medium 13" ];
+      config = {
+        fonts = [ "Iosevka Medium 13" ];
 
-      modifier = "${modifier}";
+        modifier = "${modifier}";
 
-      gaps = {
-        inner = 5;
-        outer = 5;
-      };
-
-      # FIXME: NOT working to change repeat_ delay or rate.
-      # See sway-input(5).
-      #input = {
-      #  "1:1:AT_Translated_Set_2_keyboard" = {
-      #    repeat_delay = "2000"; # (ms) Sets the amount of time a key must be held before it starts repeating.
-      #    repeat_rate = "60";  # (chars per sec) Sets the frequency of key repeats once the repeat_delay has passed.
-      #  };
-      #};
-
-      keybindings = pkgs.lib.mkOptionDefault {
-
-        # Start apps
-        "${modifier}+Return" = "exec ${cmd_term}";
-        "${modifier}+d" = "exec ${cmd_menu}";
-        "${modifier}+Shift+b" = "exec ${cmd_browse_wallpaper}";
-
-        # Focus windows
-        "${modifier}+${left}" = "focus left";
-        "${modifier}+${down}" = "focus down";
-        "${modifier}+${up}" = "focus up";
-        "${modifier}+${right}" = "focus right";
-
-        # Move windows
-        "${modifier}+Shift+${left}" = "move left";
-        "${modifier}+Shift+${down}" = "move down";
-        "${modifier}+Shift+${up}" = "move up";
-        "${modifier}+Shift+${right}" = "move right";
-
-        # Switch workspaces
-        "${modifier}+n" = "workspace next_on_output";
-        "${modifier}+p" = "workspace prev_on_output";
-        "${modifier}+Tab" = "workspace back_and_forth";
-
-        # Move containers accross outputs.
-        "${modifier}+Shift+period" = "move container to output right";
-        "${modifier}+Shift+comma" = "move container to output left";
-
-        # Use scratchpad
-        "${modifier}+minus" = "scratchpad show";
-        "${modifier}+Shift+minus" = "move scratchpad";
-
-        "${modifier}+Shift+e" = "exit";
-        "${modifier}+Shift+x" = "kill";
-
-        # Control cmus(1) music playback.
-        "XF86AudioPlay" = "exec cmus-remote --pause";
-        "XF86AudioPrev" = "exec cmus-remote --prev";
-        "XF86AudioNext" = "exec cmus-remote --next";
-        "XF86AudioStop" = "exec cmus-remote --stop";
-
-        # Control pulseaudio volume for default sink.
-        # Ref: https://wiki.archlinux.org/index.php/PulseAudio#Keyboard_volume_control
-        "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
-        "XF86AudioLowerVolume" =
-          "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
-        "XF86AudioRaiseVolume" =
-          "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-      };
-
-      # NOTE: Border of i3-gaps windows is set via childBorder.
-      colors = {
-        focused = {
-          border = "#0000ff";
-          background = "#000000";
-          text = "#00ffed";
-          indicator = "#ffffff";
-          childBorder = "#0000ff";
+        gaps = {
+          inner = 5;
+          outer = 5;
         };
-        focusedInactive = {
-          border = "#000000";
-          background = "#000000";
-          text = "#ffffff";
-          indicator = "#ffffff";
-          childBorder = "#000000";
+
+        # FIXME: NOT working to change repeat_ delay or rate.
+        # See sway-input(5).
+        #input = {
+        #  "1:1:AT_Translated_Set_2_keyboard" = {
+        #    repeat_delay = "2000"; # (ms) Sets the amount of time a key must be held before it starts repeating.
+        #    repeat_rate = "60";  # (chars per sec) Sets the frequency of key repeats once the repeat_delay has passed.
+        #  };
+        #};
+
+        keybindings = pkgs.lib.mkOptionDefault {
+
+          # Start apps
+          "${modifier}+Return" = "exec ${cmd_term}";
+          "${modifier}+d" = "exec ${cmd_menu}";
+          "${modifier}+Shift+b" = "exec ${cmd_browse_wallpaper}";
+
+          # Focus windows
+          "${modifier}+${left}" = "focus left";
+          "${modifier}+${down}" = "focus down";
+          "${modifier}+${up}" = "focus up";
+          "${modifier}+${right}" = "focus right";
+
+          # Move windows
+          "${modifier}+Shift+${left}" = "move left";
+          "${modifier}+Shift+${down}" = "move down";
+          "${modifier}+Shift+${up}" = "move up";
+          "${modifier}+Shift+${right}" = "move right";
+
+          # Switch workspaces
+          "${modifier}+n" = "workspace next_on_output";
+          "${modifier}+p" = "workspace prev_on_output";
+          "${modifier}+Tab" = "workspace back_and_forth";
+
+          # Move containers accross outputs.
+          "${modifier}+Shift+period" = "move container to output right";
+          "${modifier}+Shift+comma" = "move container to output left";
+
+          # Use scratchpad
+          "${modifier}+minus" = "scratchpad show";
+          "${modifier}+Shift+minus" = "move scratchpad";
+
+          "${modifier}+Shift+e" = "exit";
+          "${modifier}+Shift+x" = "kill";
+
+          # Control cmus(1) music playback.
+          "XF86AudioPlay" = "exec cmus-remote --pause";
+          "XF86AudioPrev" = "exec cmus-remote --prev";
+          "XF86AudioNext" = "exec cmus-remote --next";
+          "XF86AudioStop" = "exec cmus-remote --stop";
+
+          # Control pulseaudio volume for default sink.
+          # Ref: https://wiki.archlinux.org/index.php/PulseAudio#Keyboard_volume_control
+          "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+          "XF86AudioLowerVolume" =
+            "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+          "XF86AudioRaiseVolume" =
+            "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
         };
-        unfocused = {
-          border = "#000000";
-          background = "#222222";
-          text = "#999999";
-          indicator = "#ffffff";
-          childBorder = "#000000";
-        };
-      };
 
-      bars = [
-        {
-          position = "top";
-          mode = "dock";
-
-          fonts = [ "Iosevka Medium 16" ];
-
-          colors = {
+        # NOTE: Border of i3-gaps windows is set via childBorder.
+        colors = {
+          focused = {
+            border = "#0000ff";
             background = "#000000";
-            statusline = "#cccccc";
-            separator = "#00ffea";
-
-            focusedWorkspace = {
-              border = "#000000";
-              background = "#000000";
-              text = "#00fcff";
-            };
-            activeWorkspace = {
-              border = "#000000";
-              background = "#000000";
-              text = "#cccccc";
-            };
-            inactiveWorkspace = {
-              border = "#000000";
-              background = "#000000";
-              text = "#cccccc";
-            };
-            urgentWorkspace = {
-              border = "#00ff00";
-              background = "#000000";
-              text = "#ffffff";
-            };
+            text = "#00ffed";
+            indicator = "#ffffff";
+            childBorder = "#0000ff";
           };
-
-          statusCommand = "${pkgs.barr}/bin/barr";
-          extraConfig = ''
-            output eDP-1
-          '';
-        }
-        {
-          position = "top";
-          mode = "dock";
-
-          fonts = [ "Iosevka Medium 13" ];
-
-          colors = {
+          focusedInactive = {
+            border = "#000000";
             background = "#000000";
-            statusline = "#cccccc";
-            separator = "#00ffea";
-
-            focusedWorkspace = {
-              border = "#000000";
-              background = "#000000";
-              text = "#00fcff";
-            };
-            activeWorkspace = {
-              border = "#000000";
-              background = "#000000";
-              text = "#cccccc";
-            };
-            inactiveWorkspace = {
-              border = "#000000";
-              background = "#000000";
-              text = "#cccccc";
-            };
-            urgentWorkspace = {
-              border = "#00ff00";
-              background = "#000000";
-              text = "#ffffff";
-            };
+            text = "#ffffff";
+            indicator = "#ffffff";
+            childBorder = "#000000";
           };
+          unfocused = {
+            border = "#000000";
+            background = "#222222";
+            text = "#999999";
+            indicator = "#ffffff";
+            childBorder = "#000000";
+          };
+        };
 
-          statusCommand = "${pkgs.barr}/bin/barr";
-          extraConfig = ''
-            output HDMI-A-2
-          '';
-        }
-      ];
+        bars = [
+          {
+            position = "top";
+            mode = "dock";
 
-      startup = [
-        #{ notification = false; command = "${cmd_set_wallpaper}"; }
-        { command = "${cmd_term_tmux}"; }
-        { command = "${cmd_browser}"; }
-      ];
+            fonts = [ "Iosevka Medium 16" ];
 
-      terminal = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
+            colors = {
+              background = "#000000";
+              statusline = "#cccccc";
+              separator = "#00ffea";
 
+              focusedWorkspace = {
+                border = "#000000";
+                background = "#000000";
+                text = "#00fcff";
+              };
+              activeWorkspace = {
+                border = "#000000";
+                background = "#000000";
+                text = "#cccccc";
+              };
+              inactiveWorkspace = {
+                border = "#000000";
+                background = "#000000";
+                text = "#cccccc";
+              };
+              urgentWorkspace = {
+                border = "#00ff00";
+                background = "#000000";
+                text = "#ffffff";
+              };
+            };
+
+            statusCommand = "${pkgs.barr}/bin/barr";
+            extraConfig = ''
+              output eDP-1
+            '';
+          }
+          {
+            position = "top";
+            mode = "dock";
+
+            fonts = [ "Iosevka Medium 13" ];
+
+            colors = {
+              background = "#000000";
+              statusline = "#cccccc";
+              separator = "#00ffea";
+
+              focusedWorkspace = {
+                border = "#000000";
+                background = "#000000";
+                text = "#00fcff";
+              };
+              activeWorkspace = {
+                border = "#000000";
+                background = "#000000";
+                text = "#cccccc";
+              };
+              inactiveWorkspace = {
+                border = "#000000";
+                background = "#000000";
+                text = "#cccccc";
+              };
+              urgentWorkspace = {
+                border = "#00ff00";
+                background = "#000000";
+                text = "#ffffff";
+              };
+            };
+
+            statusCommand = "${pkgs.barr}/bin/barr";
+            extraConfig = ''
+              output HDMI-A-2
+            '';
+          }
+        ];
+
+        startup = [
+          #{ notification = false; command = "${cmd_set_wallpaper}"; }
+          { command = "${cmd_term_tmux}"; }
+          { command = "${cmd_browser}"; }
+        ];
+
+        terminal = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
+
+      };
     };
-  };
 
   xdg.configFile = {
     "albert/albert.conf".source = ../../files/albert.conf;
     "cmus/rc".source = ../../files/cmusrc;
-    "emacs/elfeed.org" = ../../files/emacs/elfeed.org;
+    "emacs/elfeed.org".source = ../../files/emacs/elfeed.org;
     "gtk-3.0/settings.ini".source = ../../files/gtk-3.0_settings.ini;
     "i3/workspace1.json".source = ../../files/workspace1_luban.json;
     "nix/nix.conf".text = ''
