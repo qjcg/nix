@@ -1,7 +1,7 @@
 #+TITLE: Literate Emacs configuration using org-mode
 #+SUBTITLE: A Emacs Lisp journey
 #+PROPERTY: header-args:emacs-lisp :tangle ~/.config/emacs/init.el
-#+TODO: TODO DOING BLOCKED | DONE
+#+TODO: TODO(t) BLOCKED(b) | DONE(d) CANCELLED(c)
 
 * Overview
 
@@ -9,31 +9,25 @@
 
   See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
 
-** Goals [1/5]
+** Goals [1/6]
 
    What do I want from Emacs?
    
-*** TODO Ultimate Developer Experience (DX) [4/10]
+*** TODO Provide ultimate Developer Experience (DX) [5/10]
     - [X] Git (magit)
     - [X] Reproducible editor package (via Nix)
     - [X] Snippets (yasnippets)
     - [X] Fuzzy-find (rg/fzf integration, prot window)
+    - [X] Completion
     - [ ] Go (format, compile, test, jump-to-definition, debug)
     - [ ] Nix (format)
     - [ ] CUE (format, highlight)
     - [ ] NodeJS
     - [ ] Python
-    - [ ] Completion
-*** DONE Excellent DevOps experience [2/2]
+*** DONE Provide excellent DevOps experience [2/2]
     - [X] Docker (docker)
     - [X] Kubernetes (kubernetes-overview, kubel)
-*** TODO Ultimate Hackability [0/5]
-    - [ ] Write 10 custom functions
-    - [ ] Write a custom minor mode
-    - [ ] Write a custom major mode
-    - [ ] Add language support for an unsupported language (e.g. CUE)
-    - [ ] Create a custom theme (e.g. via `M-x customize-create-theme`)
-*** DOING Integrated daily drivers [4/10]
+*** TODO Provide integrated daily drivers [4/10]
     - [X] web (eww BUT sometimes hangs? Performance mediocre)
     - [X] music (bongo w/ mpv backend)
     - [-] videos (bongo w/ mpv backend)
@@ -47,10 +41,37 @@
     - [ ] image viewer
     - [ ] slides
     - [ ] making art (drawing, music, writing/blogging, etc)
-*** TODO Looks stunning [1/3]
+*** TODO Provide stunning looks [1/3]
     - [X] Look into prot's bullet points, fonts, etc
     - [ ] multi-font theme(s)
     - [ ] awesome colorscheme
+*** TODO Provide ultimate hackability [0/5]
+    - [ ] Write 10 custom functions
+    - [ ] Write a custom minor mode
+    - [ ] Write a custom major mode
+    - [ ] Add language support for an unsupported language (e.g. CUE)
+    - [ ] Create a custom theme (e.g. via `M-x customize-create-theme`)
+*** TODO Provide OrgMode ExoBrain [0/6]
+
+    See [[https://github.com/JSmurf/awesome-org][awesome-org]].
+    
+    - [ ] Todo lists
+      - [ ] Personal
+      - [ ] Work
+    - [ ] Agenda
+    - [ ] Sync (via Syncthing etc)
+    - [ ] Capture
+    - [ ] Journal
+    - [ ] Evaluate related packages
+
+    |-------------+----------------------------------------------------+--------|
+    | PACKAGE     | DESCRIPTION                                        | RATING |
+    |-------------+----------------------------------------------------+--------|
+    | [[https://github.com/bastibe/org-journal][org-journal]] | A simple org-based journalling mode.               |        |
+    | [[https://www.orgroam.com/][org-roam]]    | A plain-text personal knowledge management system. |        |
+    | [[https://github.com/alphapapa/org-sidebar][org-sidebar]] | Helpful sidebars for Org buffers.                  |        |
+    | [[https://github.com/landakram/org-z][org-z]]       | Lightweight, Org-mode flavored zettelkasten links. |        |
+
 ** Comparison with alternatives
 
    I used VIM as my primary text editor for ~15 years (although I also
@@ -63,7 +84,7 @@
    |----------+--------------+------------------+-------------------------------------+------------|
    | language | Emacs Lisp   | VimScript        | any                                 | JavaScript |
    | scope    | kitchen sink | text-editor plus | integrating development environment | minimal    |
-   |          |              |                  |                                     |            |
+
 ** Emacs Startup
 
    The Emacs startup process is described in detail [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Startup-Summary.html][here]].
@@ -126,6 +147,7 @@
 	     backup-directory-alist '(("." . "~/.config/emacs/backup")))
 
        ;; Proof-of-concept: Open a buffer in a specific mode on emacs initialization.
+       ;; TODO: Delete lines below once concept has been applied in hooks.
        (with-current-buffer (get-buffer-create "foobar-finkelstein")
 	 (org-mode)))
    #+end_src
@@ -149,6 +171,7 @@
      (use-package json-mode :ensure)
      (use-package olivetti :ensure)
      (use-package page-break-lines :ensure)
+     (use-package pdf-tools :ensure)
      (use-package paradox :ensure)
      (use-package systemd :ensure)
      (use-package undo-tree :ensure)
@@ -205,17 +228,6 @@
      (use-package modus-operandi-theme :ensure)
      (use-package modus-vivendi-theme :ensure)
 
-     ;; Use unicode bullet characters in org-mode.
-     ;; To customize, see https://github.com/integral-dw/org-superstar-mode/blob/master/DEMO.org
-     (use-package org-superstar
-       :ensure
-       :init
-       (add-hook 'org-mode-hook (lambda () (progn
-					     (org-superstar-mode 1)
-					     ;; Set different bullets, with one getting a terminal fallback.
-					     (setq org-superstar-headline-bullets-list
-						   '("◉" "○" "🞛" "▷"))))))
-
      ;; Theme-switching for Emacs based on daytime.
      ;; See https://github.com/guidoschmidt/circadian.el
      (use-package circadian
@@ -228,8 +240,33 @@
      (defadvice load-theme (before theme-dont-propagate activate)
        "Advise load-theme to disable all custom themes before loading (enabling) another one.
 
-	  See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
+	       See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
        (mapc #'disable-theme custom-enabled-themes))
+   #+end_src
+
+** Org-Mode
+
+   See [[orgmode.org][orgmode.org]].
+
+   #+begin_src emacs-lisp
+     ;; NOTE: No need for :ensure, use version included with Emacs.
+     (use-package org
+       :config
+       ;; See https://orgmode.org/manual/Activation.html
+       (global-set-key (kbd "C-c l") 'org-store-link)
+       (global-set-key (kbd "C-c a") 'org-agenda)
+       (global-set-key (kbd "C-c c") 'org-capture))
+
+     ;; Use unicode bullet characters in org-mode.
+     ;; To customize, see https://github.com/integral-dw/org-superstar-mode/blob/master/DEMO.org
+     (use-package org-superstar
+       :ensure
+       :init
+       (add-hook 'org-mode-hook (lambda () (progn
+					     (org-superstar-mode 1)
+					     ;; Set different bullets, with one getting a terminal fallback.
+					     (setq org-superstar-headline-bullets-list
+						   '("◉" "○" "🞛" "▷"))))))
    #+end_src
 
 ** Programming
@@ -344,8 +381,8 @@
    Completion mode settings.
 
    See:
-     - [[https://www.youtube.com/watch?v=QcPenVmmQyM][Ivy tips and tricks]]
-     - [[https://www.youtube.com/watch?v=IDkx48JwDco][Emacs: fuzzy find files (fzf, ripgrep, Ivy+Counsel)]]
+   - [[https://www.youtube.com/watch?v=QcPenVmmQyM][Ivy tips and tricks]]
+   - [[https://www.youtube.com/watch?v=IDkx48JwDco][Emacs: fuzzy find files (fzf, ripgrep, Ivy+Counsel)]]
 
    #+BEGIN_SRC emacs-lisp
      ;; See https://oremacs.com/swiper/#introduction
