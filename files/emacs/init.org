@@ -1,6 +1,7 @@
 #+TITLE: Literate Emacs configuration using org-mode
-#+SUBTITLE: A Emacs Lisp journey
+#+SUBTITLE: An Emacs Lisp journey
 #+PROPERTY: header-args:emacs-lisp :tangle ~/.config/emacs/init.el
+#+FILETAGS: emacs
 #+TODO: TODO(t) BLOCKED(b) | DONE(d) CANCELLED(c)
 
 * Overview
@@ -51,7 +52,7 @@
     - [ ] Write a custom major mode
     - [ ] Add language support for an unsupported language (e.g. CUE)
     - [ ] Create a custom theme (e.g. via `M-x customize-create-theme`)
-*** TODO Provide OrgMode ExoBrain [0/6]
+*** TODO Provide OrgMode ExoBrain [0/7]
 
     See [[https://github.com/JSmurf/awesome-org][awesome-org]].
     
@@ -63,6 +64,7 @@
     - [ ] Capture
     - [ ] Journal
     - [ ] Evaluate related packages
+    - [ ] Add Wrike custom link type (e.g. "wrike:12345")
 
     |-------------+----------------------------------------------------+--------|
     | PACKAGE     | DESCRIPTION                                        | RATING |
@@ -150,6 +152,10 @@
        ;; TODO: Delete lines below once concept has been applied in hooks.
        (with-current-buffer (get-buffer-create "foobar-finkelstein")
 	 (org-mode)))
+
+     (use-package ibuffer
+       :init
+       (global-set-key (kbd "C-x C-b") 'ibuffer))
    #+end_src
    
 ** Emacs Package Repos
@@ -158,6 +164,18 @@
      ;; See https://github.com/melpa/melpa#usage
      (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
    #+end_src
+
+** Emacs Packages to Try
+
+   | Name             | Description          | Notes                                          | Rating |
+   |------------------+----------------------+------------------------------------------------+--------|
+   | perspective      | workspaces for emacs |                                                |        |
+   | persp-projectile |                      |                                                |        |
+   | org-projectile   |                      |                                                |        |
+   | [[https://github.com/countvajhula/rigpa/][rigpa]]            |                      | AKA "Epistemic Mode". See emacsconf 2020 talk. |        |
+   | dashboard        |                      |                                                |        |
+   | mu4e             |                      |                                                |        |
+   | notmuch          |                      |                                                |        |
 
 ** Misc
 
@@ -222,6 +240,14 @@
      (use-package almost-mono-themes :ensure)
      (use-package monotropic-theme :ensure)
 
+     ;; Pulse modified region
+     (use-package goggles
+       :ensure
+       :demand t
+       :config
+       (goggles-mode)
+       (setq-default goggles-pulse t)) ;; set to nil to disable pulsing
+
      ;; Apparently the modus- themes have been accepted into upstream
      ;; emacs, so remove them here once released versions begin to include
      ;; them.
@@ -234,7 +260,7 @@
        :ensure
        :config
        (setq circadian-themes '(("8:00" . solo-jazz)
-				("19:00" . laguna)))
+				("19:00" . modus-vivendi)))
        (circadian-setup))
 
      (defadvice load-theme (before theme-dont-propagate activate)
@@ -242,6 +268,17 @@
 
 	       See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
        (mapc #'disable-theme custom-enabled-themes))
+   #+end_src
+
+** UI/UX
+
+   #+begin_src emacs-lisp
+     ;; Provides multiple named workspaces (or "perspectives").
+     ;; See https://github.com/nex3/perspective-el
+     (use-package perspective
+       :ensure
+       :config
+       (persp-mode))
    #+end_src
 
 ** Org-Mode
@@ -447,6 +484,20 @@
        :init (counsel-projectile-mode))
 
      (use-package swiper :ensure)
+
+     ;; Company mode is a standard completion package that works well with lsp-mode.
+     ;; company-lsp integrates company mode completion with lsp-mode.
+     ;; completion-at-point also works out of the box but doesn't support snippets.
+     (use-package company
+       :ensure
+       :config
+       (setq company-idle-delay 0)
+       (setq company-minimum-prefix-length 1)
+       :hook (after-init . global-company-mode))
+
+     (use-package company-lsp
+       :ensure
+       :commands company-lsp)
    #+END_SRC
 ** Media
 *** RSS/Atom Feeds
@@ -521,23 +572,8 @@
    completely sure about deleting yet. On thin ice!
 
    #+BEGIN_SRC emacs-lisp
-     ;; Company mode is a standard completion package that works well with lsp-mode.
-     ;; company-lsp integrates company mode completion with lsp-mode.
-     ;; completion-at-point also works out of the box but doesn't support snippets.
-     (use-package company
-       :ensure
-
-       :config
-       (setq company-idle-delay 0)
-       (setq company-minimum-prefix-length 1)
-
-       :hook (after-init . global-company-mode))
-
-     (use-package company-lsp
-       :ensure
-       :commands company-lsp)
-
      (setq compilation-window-height 14)
+
      (defun my-compilation-hook ()
        (when (not (get-buffer-window "*compilation*"))
 	 (save-selected-window
@@ -547,7 +583,7 @@
 	       (select-window w)
 	       (switch-to-buffer "*compilation*")
 	       (shrink-window (- h compilation-window-height)))))))
-     (add-hook 'compilation-mode-hook 'my-compilation-hook)
 
+     (add-hook 'compilation-mode-hook 'my-compilation-hook)
    #+END_SRC
 
