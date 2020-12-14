@@ -3,6 +3,7 @@
 #+PROPERTY: header-args:emacs-lisp :tangle ~/.config/emacs/init.el
 #+FILETAGS: emacs
 #+TODO: TODO(t) BLOCKED(b) | DONE(d) CANCELLED(c)
+#+STARTUP: content
 
 * Overview
 
@@ -117,6 +118,7 @@
     - https://protesilaos.com/dotemacs/
     - https://gitlab.com/protesilaos/dotfiles/-/raw/master/emacs/.emacs.d/emacs-init.org
     - https://justin.abrah.ms/dotfiles/emacs.html
+
 * Configuration
 ** Customize
 
