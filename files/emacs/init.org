@@ -261,8 +261,11 @@
      (use-package circadian
        :ensure
        :config
-       (setq circadian-themes '(("8:00" . solo-jazz)
-				("19:00" . modus-vivendi)))
+       ;; Can get lat/lon from https://www.latlong.net/
+       (setq calendar-latitude 45.501690)
+       (setq calendar-longitude -73.567253)
+       (setq circadian-themes '((:sunrise . modus-vivendi)
+				(:sunset . modus-vivendi)))
        (circadian-setup))
 
      (defadvice load-theme (before theme-dont-propagate activate)
