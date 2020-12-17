@@ -189,8 +189,7 @@
             "shopt -s dotglob && du --threshold 1M --exclude={G,H,W,X} -s ~/* | sort -n | sed 's/.home.jgosset.//' | awk '{print $2,$1}' | goplot bar";
           grep = "grep -E";
           k = "kubectl";
-          ls =
-            "${pkgs.exa}/bin/exa --group --group-directories-first --git --sort Name";
+          ls = "${pkgs.lsd}/bin/lsd --group-dirs first";
           tree = "tree -A -C";
           vi = "nvim";
           vim = "nvim";

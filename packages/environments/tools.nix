@@ -48,6 +48,7 @@ pkgs.buildEnv {
     lastpass-cli
     libfaketime
     loccount
+    lsd
     lsof
     maddy
     mark
