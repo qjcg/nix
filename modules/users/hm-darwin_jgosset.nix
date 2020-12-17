@@ -187,6 +187,16 @@
             "id | sed -e 's/,/\\n/g' -e 's/(/: /g' -e 's/)//g' | sort -n | awk -F: '/^[1-9]/ && $1 > 10000'";
           drwHomeUsage =
             "shopt -s dotglob && du --threshold 1M --exclude={G,H,W,X} -s ~/* | sort -n | sed 's/.home.jgosset.//' | awk '{print $2,$1}' | goplot bar";
+
+          
+          # EMACS
+          e = "emacs";
+          em = "emacs -s /tmp/emacs503/server"; # emacs macos
+          ec = "emacsclient"; # emacs client
+          ecm = "emacsclient -s /tmp/emacs503/server"; # emacs client macos
+          ect = "emacsclient -t"; # emacs client terminal
+          ecmt = "emacsclient -ts /tmp/emacs503/server"; # emacs client macos terminal
+
           grep = "grep -E";
           k = "kubectl";
           ls = "${pkgs.lsd}/bin/lsd --group-dirs first";
