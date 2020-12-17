@@ -11,6 +11,9 @@
 *** [[https://www.oreilly.com/feed/four-short-links/feed.atom][Four Short Links]]
 *** [[https://hnrss.org/frontpage][Hacker News (Front Page Firehose)]]                              :firehose:
 
+*** FSF                                                                 :fsf:
+**** [[https://static.fsf.org/fsforg/rss/news.xml][FSF News]]
+**** [[https://static.fsf.org/fsforg/rss/blogs.xml][FSF Blogs]]
 
 *** OS                                                                   :os:
 **** [[http://planet.nixos.org/atom.xml][Planet NixOS]]                                                     :nixos:
