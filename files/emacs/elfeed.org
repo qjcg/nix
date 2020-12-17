@@ -1,74 +1,62 @@
 * Blogs                                                              :elfeed:
-  See http://pragmaticemacs.com/emacs/read-your-rss-feeds-in-emacs-with-elfeed/
+
+  See [[http://pragmaticemacs.com/emacs/read-your-rss-feeds-in-emacs-with-elfeed/][Read Your RSS Feeds in Emacs with ElFeed]]
 
 
-** Simplicity                                                    :simplicity:
-**** [[https://zenhabits.net/feed/][Zen Habits]]
+** [[https://zenhabits.net/feed/][Zen Habits]]                                                    :simplicity:
+** [[https://xkcd.com/atom.xml][XKCD]]                                                              :comics:
 
 ** Tech                                                                :tech:
-**** [[https://www.phoronix.com/rss.php][Phoronix]]                                                       :preview:
-**** [[https://www.oreilly.com/feed/four-short-links/feed.atom][Four Short Links]]
-**** [[https://hnrss.org/frontpage][Hacker News (Front Page Firehose)]]                             :firehose:
+*** [[https://www.phoronix.com/rss.php][Phoronix]]                                                        :preview:
+*** [[https://www.oreilly.com/feed/four-short-links/feed.atom][Four Short Links]]
+*** [[https://hnrss.org/frontpage][Hacker News (Front Page Firehose)]]                              :firehose:
+
 
 *** OS                                                                   :os:
 **** [[http://planet.nixos.org/atom.xml][Planet NixOS]]                                                     :nixos:
-**** https://guix.info/feeds/blog.atom                               :guixsd:
+**** [[https://guix.info/feeds/blog.atom][Guix Blog]]                                                         :guix:
 
-**** ArchLinux                                                    :archlinux:
-***** [[https://www.archlinux.org/feeds/news/][ArchLinux News]]
-***** [[https://planet.archlinux.org/rss20.xml][Planet ArchLinux]]
+*** Programming                                                 :programming:
 
-** Programming                                                  :programming:
-**** http://lambda-the-ultimate.org/rss.xml
-**** https://developers.redhat.com/blog/feed/atom/
-**** http://syndication.thedailywtf.com/TheDailyWtf                   :humor:
+**** [[http://lambda-the-ultimate.org/rss.xml][Lambda the Ultimate]]
+**** [[https://developers.redhat.com/blog/feed/atom/][RedHat Developers]]
+**** [[http://syndication.thedailywtf.com/TheDailyWtf][TheDailyWTF]]                   :humor:
 
-*** Go                                                                   :go:
-**** [[https://www.ardanlabs.com/blog/index.xml][Ardan Labs Blog]]
-**** https://golangcode.com/index.xml
-**** https://appliedgo.net/index.xml
-**** https://www.linxlabs.com/category/golang/atom
-**** http://goz.hexacosa.net/index.rss
-**** https://dave.cheney.net/category/golang/atom                  :personal:
-     Dave Cheney
-**** https://research.swtch.com/feed.atom                          :personal:
-     Russ Cox (Go project lead)
-**** [[https://mariadesouza.com/category/golang/atom][All Things Tech / Maria DeSouza]]
-     Maria DeSouza
-**** https://blog.gopheracademy.com/index.xml
+**** Go                                                                  :go:
+***** [[https://www.ardanlabs.com/blog/index.xml][Ardan Labs Blog]]
+***** https://golangcode.com/index.xml
+***** https://appliedgo.net/index.xml
+***** https://www.linxlabs.com/category/golang/atom
+***** http://goz.hexacosa.net/index.rss
+***** https://dave.cheney.net/category/golang/atom                 :personal:
+      Dave Cheney
+***** [[https://research.swtch.com/feed.atom][Russ Cox]]                         :personal:
+***** [[https://mariadesouza.com/category/golang/atom][All Things Tech / Maria DeSouza]]
+***** [[https://blog.gopheracademy.com/index.xml][Gopher Academy]]
 
-*** Python                                                           :python:
-**** [[https://planetpython.org/rss20.xml][Planet Python]]                                                 :firehose:
-**** http://love-python.blogspot.com/feeds/posts/default
-**** https://realpython.com/atom.xml
+**** Lisp                                                              :lisp:
+***** [[http://planet.lisp.org/rss20.xml][Planet Lisp]]
 
-*** Lisp                                                               :lisp:
-**** http://planet.lisp.org/rss20.xml
+**** Emacs                                                            :emacs:
+***** [[http://pragmaticemacs.com/feed/][Pragmatic Emacs]]
+***** [[https://emacsredux.com/feed.xml][Emacs Redux]]
+***** [[https://planet.emacslife.com/atom.xml][Planet Emacslife]]
+***** [[http://www.howardabrams.com/index.xml][Howard Abrams]]
+***** [[https://irreal.org/blog/?feed=rss2][Irreal]]
 
-*** Emacs                                                             :emacs:
-**** http://pragmaticemacs.com/feed/
-**** [[https://emacsredux.com/feed.xml][Emacs Redux]]
-**** https://planet.emacslife.com/atom.xml
-**** http://www.howardabrams.com/index.xml
-**** [[https://irreal.org/blog/?feed=rss2][Irreal]]
-
-*** Machine Learning                                        :machinelearning:
-**** [[https://machinelearningmastery.com/feed/][Machine Learning Mastery / Jason Brownlee]]
+**** Machine Learning                                       :machinelearning:
+***** [[https://machinelearningmastery.com/feed/][Machine Learning Mastery / Jason Brownlee]]
 
 *** Personal                                                       :personal:
 **** [[http://esr.ibiblio.org/?feed=rss][Armed and Dangerous / Eric S. Raymond]]
-     Eric S. Raymond's blog
-**** https://martinfowler.com/feed.atom
-     Martin Fowler
+**** [[https://martinfowler.com/feed.atom][Martin Fowler]]
 **** [[https://utcc.utoronto.ca/~cks/space/blog/][Wandering Thoughts / Chris Siebenmann]]
-     Chris Siebenmann
 **** [[http://0pointer.net/blog/index.atom][Pid Eins / Lennart Poettering]]
-     Lennart Poettering's blog
-**** http://www.michaelburge.us/feed.xml        :lisp:machinelearning:BROKEN:
-     Michael Burge
-     - machine learning, lisp, emulators
+**** [[http://www.michaelburge.us/feed.xml][Michael Burge]] :lisp:machinelearning:BROKEN:emulators:
 **** [[https://nullprogram.com/feed/][Null Program / Chris Wellons]]                         :emacs:programming:
+
      Author of elfeed
+
 **** [[http://www.daemonology.net/blog/index.rss][Daemonic Dispatches / Colin Percival]]                           :freebsd:
 **** [[https://christine.website/blog.rss][Blog / Christine Dodrill]]
 **** [[http://feeds.feedburner.com/catonmat][catonmat.net – less is more / Peteris Krumins]]
@@ -80,42 +68,22 @@
 [[http://john.ankarstrom.se/software/][     software page]] on his website, and has [[https://github.com/jocap][intriguing
      repos on GitHub]].
 **** [[https://drewdevault.com/feed.xml][Drew DeVault]]
+
      Behind [[https://sr.ht/][sourcehut]] and the sway Wayland compositor. Thoughtful blog posts.
-
-** Comics                                                            :comics:
-**** [[https://xkcd.com/atom.xml][XKCD]]
-
-** Podcasts                                                        :podcasts:
-**** [[https://feeds.megaphone.fm/thehabitat][The Habitat]]
-On a remote mountain in Hawaii, there's a fake
-planet Mars. Six volunteers are secluded in an
-imitation Mars habitat where they will work as
-imitation astronauts for one very real year. The
-goal: to help NASA understand what life might be
-like on the red planet—and plan for the day when
-the dress rehearsals are over, and we blast off
-for real. Host Lynn Levy has been chronicling this
-experiment from the moment the crew set foot in
-their habitat, communicating with them through
-audio diaries that detail their discoveries, their
-frustrations, and their evolving and devolving
-relationships with each other. From those diaries,
-Gimlet Media has crafted an addictive serialized
-documentary: the true story of a fake planet.
-
-**** http://feeds.everythingisalive.com/everythingisalive
-
-**** https://feeds.castfire.com/abc-news-radio/the_dropout
-
-*** Christian                                                     :christian:
-**** https://itunes.apple.com/us/podcast/knowing-faith/id1274228164?mt=2
-**** https://www.thegospelcoalition.org/podcasts/help-me-teach-the-bible/feed/?feed=podcast
 
 ** Music                                                              :music:
 *** Youtube                                                         :youtube:
-**** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC-sM_PLqzgktdUcW2LEKKkQ][The Midnight]]
+**** SynthWave / VaporWave                              :synthwave:vaporwave:
+***** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCZyXa4H06Ws3Pwom9cYEdDA][Aesthenic]]
+***** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCpbH_7H71IPKq4eH7CD5spg][Astral Throb]]
+***** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC-sM_PLqzgktdUcW2LEKKkQ][The Midnight]]
 
-* Imported Feeds                                                     :elfeed:
+** Podcasts                                                        :podcasts:
+
+   Empty for now. If and when you find some awesome podcasts, add them here!
+   
+
+* Imported Feeds
 ** YouTube Subscriptions                                            :youtube:
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC-tRVvDyvlu8IFImNQ4baiQ][Scott’s Cheap Flights]]
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCvVWCrxq_aZr7fN_KpaGGTA][The Guild of Ambience]]
