@@ -53,16 +53,18 @@
     - [ ] Write a custom major mode
     - [ ] Add language support for an unsupported language (e.g. CUE)
     - [ ] Create a custom theme (e.g. via `M-x customize-create-theme`)
-*** TODO Provide OrgMode ExoBrain [0/7]
+*** TODO Provide OrgMode ExoBrain [2/7]
 
     See [[https://github.com/JSmurf/awesome-org][awesome-org]].
     
-    - [ ] Todo lists
-      - [ ] Personal
-      - [ ] Work
-    - [ ] Agenda
+    - [X] Todo lists
+      - [X] Personal
+      - [X] Work
+    - [X] Agenda
     - [ ] Sync (via Syncthing etc)
     - [ ] Capture
+      - [ ] Todo items
+      - [ ] Web bookmarks (from browser)
     - [ ] Journal
     - [ ] Evaluate related packages
     - [ ] Add Wrike custom link type (e.g. "wrike:12345")
@@ -119,7 +121,38 @@
     - https://gitlab.com/protesilaos/dotfiles/-/raw/master/emacs/.emacs.d/emacs-init.org
     - https://justin.abrah.ms/dotfiles/emacs.html
 
+
 * Configuration
+** TODO Packages to review [0/4]
+*** TODO Create a "package for review" org-capture template!
+
+    Review should have 3 steps: research, pilot, review.
+
+    - [ ] strokes (see strokes-mode, strokes-help)
+    - [ ] rigpa
+    - [ ] burly
+    - [ ] persp-mode (like perspective, but across frames)
+    - [ ] org-projectile
+    - [ ] persp-projectile
+    - [ ] counsel-projectile
+    - [ ] projectile-speedbar
+    - [ ] [[https://github.com/emacsmirror/excorporate][excorporate]] (office 365 mail, calendar, ...)
+    - [ ] [[https://github.com/kljohann/mpv.el][mpv.el]]
+    - [ ] helm (why is ivy better?)
+    - [ ] ido-vertical-mode (why are helm/ivy better?)
+    - [ ] smex (smart "M-x")
+    - [ ] which-key
+
+    | Name             | Description          | Notes                                          | Rating |
+    |------------------+----------------------+------------------------------------------------+--------|
+    | perspective      | workspaces for emacs |                                                |        |
+    | persp-projectile |                      |                                                |        |
+    | org-projectile   |                      |                                                |        |
+    | [[https://github.com/countvajhula/rigpa/][rigpa]]            |                      | AKA "Epistemic Mode". See emacsconf 2020 talk. |        |
+    | dashboard        |                      |                                                |        |
+    | mu4e             |                      |                                                |        |
+    | notmuch          |                      |                                                |        |
+
 ** Customize
 
    Settings having to do with emacs' customize facility (see 'M-x customize').
@@ -135,25 +168,29 @@
      ;; Load custom theme(s) from here. Currently using solo-jazz.el.
      (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
 
-     (load custom-file)
+
+     ;; NOTE Check if this is done automatically vs really needed.
+     ;;(load custom-file)
    #+end_src
+
 ** Non-Customize
    #+begin_src emacs-lisp
      (use-package emacs
        :init
        (tool-bar-mode -1)
        (scroll-bar-mode -1)
-       (setq	echo-keystrokes 0.1          ; Show keystrokes ASAP
-	     inhibit-startup-message t
-	     initial-scratch-message nil
-	     auto-fill-mode t
-	     browse-url-browser-function 'eww-browse-url   ; Browse with eww by default
-	     backup-directory-alist '(("." . "~/.config/emacs/backup")))
+       (setq echo-keystrokes 0.1) ; Show keystrokes ASAP
+       (setq inhibit-startup-message t)
+       (setq initial-scratch-message nil)
+       (setq show-trailing-whitespace t)
+       (setq auto-fill-mode t)
+       (setq browse-url-browser-function 'eww-browse-url) ; Browse with eww by default
+       (setq backup-directory-alist '(("." . "~/.config/emacs/backup")))
 
-       ;; Proof-of-concept: Open a buffer in a specific mode on emacs initialization.
-       ;; TODO: Delete lines below once concept has been applied in hooks.
-       (with-current-buffer (get-buffer-create "foobar-finkelstein")
-	 (org-mode)))
+       ;; Specify default font without using Customize.
+       (when (member "JuliaMono" (font-family-list))
+	 (add-to-list 'default-frame-alist '(font . "JuliaMono-20"))))
+
 
      (use-package ibuffer
        :init
@@ -167,18 +204,6 @@
      (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
    #+end_src
 
-** Emacs Packages to Try
-
-   | Name             | Description          | Notes                                          | Rating |
-   |------------------+----------------------+------------------------------------------------+--------|
-   | perspective      | workspaces for emacs |                                                |        |
-   | persp-projectile |                      |                                                |        |
-   | org-projectile   |                      |                                                |        |
-   | [[https://github.com/countvajhula/rigpa/][rigpa]]            |                      | AKA "Epistemic Mode". See emacsconf 2020 talk. |        |
-   | dashboard        |                      |                                                |        |
-   | mu4e             |                      |                                                |        |
-   | notmuch          |                      |                                                |        |
-
 ** Misc
 
    Miscellaneous packages
@@ -189,7 +214,7 @@
      (use-package hydra :ensure)
      (use-package jinja2-mode :ensure)
      (use-package json-mode :ensure)
-     (use-package olivetti :ensure)
+
      (use-package page-break-lines :ensure)
      (use-package pdf-tools :ensure)
      (use-package paradox :ensure)
@@ -197,7 +222,15 @@
      (use-package undo-tree :ensure)
      (use-package yaml-mode :ensure)
      (use-package elpher :ensure)
-     (use-package vterm :ensure)
+
+     (use-package vterm
+       :ensure
+       :init
+       ;; Set vterm shell to bash even when OS default may be different.
+       (setq vterm-shell "/bin/bash"))
+
+     (use-package writeroom-mode :ensure)
+     (use-package olivetti :ensure)
 
      (use-package rainbow-delimiters
        :ensure
@@ -242,7 +275,7 @@
      (use-package almost-mono-themes :ensure)
      (use-package monotropic-theme :ensure)
 
-     ;; Pulse modified region
+     ;; Pulse modified region.
      (use-package goggles
        :ensure
        :demand t
@@ -256,7 +289,7 @@
      (use-package modus-operandi-theme :ensure)
      (use-package modus-vivendi-theme :ensure)
 
-     ;; Theme-switching for Emacs based on daytime.
+     ;; Automatic theme-switching based on time of day.
      ;; See https://github.com/guidoschmidt/circadian.el
      (use-package circadian
        :ensure
@@ -284,6 +317,15 @@
        :ensure
        :config
        (persp-mode))
+
+     ;; Save/restore layouts.
+     (use-package burly :ensure)
+
+     ;; Built-in package that handles binding arbitrary actions to mouse strokes.
+     (use-package strokes
+       :init
+       (strokes-mode)
+       (setq strokes-use-strokes-buffer t)) ; Draw strokes to the screen
    #+end_src
 
 ** Org-Mode
@@ -317,7 +359,7 @@
       (use-package magit :ensure)
       (use-package gitignore-mode :ensure)
     #+end_src
-*** LSP                                                                 :lsp:
+** LSP                                                                  :lsp:
 
     [[https://microsoft.github.io/language-server-protocol/][Language Server Protocol (LSP)]].
 
@@ -350,6 +392,16 @@
 	:hook (go-mode . yas-minor-mode))
     #+end_src
 
+*** Emacs Lisp                                                         :lisp:
+
+    #+begin_src emacs-lisp
+      ;; Enable jump-to-definition with M-. and M-,
+      (use-package elisp-slime-nav
+	:ensure
+	:after (elisp-mode ielm)
+	:hook (emacs-lisp-mode ielm-mode))
+    #+end_src
+      
 *** Go                                                                   :go:
 
     Go programming.
@@ -380,7 +432,10 @@
     #+begin_src emacs-lisp
       (use-package nix-mode :ensure)
     #+end_src
-*** CUE                                                           :cue:empty:
+*** CUE                                                                 :cue:
+
+    Consider using [[https://github.com/jdbaldry/cue-mode][cue-mode]].
+    
 *** Python                                                     :python:empty:
 *** Javascript / TypeScript                                :javascript:empty:
 *** Ruby                                                         :ruby:empty:
@@ -436,6 +491,7 @@
 
        ;; Ivy-based interface to standard commands.
        (global-set-key (kbd "C-s") 'swiper-isearch)
+       (global-set-key (kbd "C-r") 'swiper-isearch-backward)
        (global-set-key (kbd "M-x") 'counsel-M-x)
        (global-set-key (kbd "C-x C-f") 'counsel-find-file)
        (global-set-key (kbd "M-y") 'counsel-yank-pop)
@@ -476,11 +532,11 @@
        :hook (after-init . ivy-mode))
 
      ;; Commenting out for now to see if causing strange colors --- remove?
-     (use-package ivy-posframe
-       :ensure
-       :init
-       (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
-       (ivy-posframe-mode 1))
+     ;; (use-package ivy-posframe
+     ;;   :ensure
+     ;;   :init
+     ;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+     ;;   (ivy-posframe-mode 1))
 
      (use-package counsel :ensure)
      (use-package counsel-projectile
@@ -579,6 +635,96 @@
        ("i" dumb-jump-go-prompt "Prompt")
        ("l" dumb-jump-quick-look "Quick look")
        ("b" dumb-jump-back "Back"))
+
+     ;; NOTE: Rigpa is not yet in MELPA. Choose another way to install this.
+     ;; (use-package rigpa
+     ;;   :config
+     ;;   (setq rigpa-mode t)
+
+     ;;   ;; navigating meta modes
+     ;;   (global-set-key (kbd "s-m s-m") 'rigpa-flashback-to-last-tower)
+     ;;   (global-set-key (kbd "C-<escape>") 'my-enter-tower-mode)
+     ;;   (global-set-key (kbd "M-<escape>") 'my-enter-mode-mode)
+     ;;   (global-set-key (kbd "s-<escape>") 'my-enter-mode-mode)
+     ;;   (global-set-key (kbd "M-<return>")
+     ;; 		  (lambda ()
+     ;; 		    (interactive)
+     ;; 		    (rigpa-enter-selected-level)
+     ;; 		    (let ((ground (rigpa--get-ground-buffer)))
+     ;; 		      (my-exit-mode-mode)
+     ;; 		      (switch-to-buffer ground))))
+     ;;   (global-set-key (kbd "s-<return>")
+     ;; 		  (lambda ()
+     ;; 		    (interactive)
+     ;; 		    (rigpa-enter-selected-level)
+     ;; 		    (let ((ground (rigpa--get-ground-buffer)))
+     ;; 		      (my-exit-mode-mode)
+     ;; 		      (switch-to-buffer ground))))
+     ;;   (global-set-key (kbd "C-<return>")
+     ;; 		  (lambda ()
+     ;; 		    (interactive)
+     ;; 		    (my-exit-tower-mode)
+     ;; 		    (my-enter-mode-mode))))
+     ;;
+     ;; ;; indexed entry to various modes
+     ;; (global-set-key (kbd "s-n") 'evil-normal-state)
+     ;; (global-set-key (kbd "s-y")        ; symex mode
+     ;;                 (lambda ()
+     ;;                   (interactive)
+     ;;                   (rigpa-enter-mode "symex")))
+     ;; (global-set-key (kbd "s-;") (kbd "s-y"))
+     ;; (global-set-key (kbd "s-w")        ; window mode
+     ;;                 (lambda ()
+     ;;                   (interactive)
+     ;;                   (rigpa-enter-mode "window")))
+     ;; (global-set-key (kbd "s-v")        ; view mode
+     ;;                 (lambda ()
+     ;;                   (interactive)
+     ;;                   (rigpa-enter-mode "view")))
+     ;; (global-set-key (kbd "s-x")        ; char mode
+     ;;                 (lambda ()
+     ;;                   (interactive)
+     ;;                   (rigpa-enter-mode "char")))
+     ;; (global-set-key (kbd "s-a")        ; activity mode
+     ;;                 (lambda ()
+     ;;                   (interactive)
+     ;;                   (rigpa-enter-mode "activity")))
+     ;; (global-set-key (kbd "s-z")        ; text mode
+     ;;                 (lambda ()
+     ;;                   (interactive)
+     ;;                   (rigpa-enter-mode "text")))
+     ;; (global-set-key (kbd "s-g")        ; history mode
+     ;;                 (lambda ()
+     ;;                   (interactive)
+     ;;                   (rigpa-enter-mode "history")))
+     ;; (global-set-key (kbd "s-i")        ; system mode
+     ;;                 (lambda ()
+     ;;                   (interactive)
+     ;;                   (rigpa-enter-mode "system")))
+     ;; (global-set-key (kbd "s-b")        ; buffer mode
+     ;;                 (lambda ()
+     ;;                   (interactive)
+     ;;                   (rigpa-enter-mode "buffer")))
+     ;; (global-set-key (kbd "s-f")        ; file mode
+     ;;                 (lambda ()
+     ;;                   (interactive)
+     ;;                   (rigpa-enter-mode "file")))
+     ;; (global-set-key (kbd "s-t")        ; tab mode
+     ;;                 (lambda ()
+     ;;                   (interactive)
+     ;;                   (rigpa-enter-mode "tab")))
+     ;; (global-set-key (kbd "s-l")        ; line mode
+     ;;                 (lambda ()
+     ;;                   (interactive)
+     ;;                   (rigpa-enter-mode "line")))
+     ;; (global-set-key (kbd "s-e")        ; application mode
+     ;;                 (lambda ()
+     ;;                   (interactive)
+     ;;                   (rigpa-enter-mode "application")))
+     ;; (global-set-key (kbd "s-r")        ; word mode
+     ;;                 (lambda ()
+     ;;                   (interactive)
+     ;;                   (rigpa-enter-mode "word"))))
    #+end_src
   
 ** Thin Ice!
