@@ -57,6 +57,7 @@ pkgs.buildEnv {
     mtr
     neofetch
     nmap
+    nncp
     onefetch
     pandoc
     pdfcpu
