@@ -47,7 +47,7 @@ pkgs.buildEnv {
     jq
     lastpass-cli
     libfaketime
-    loccount
+    #loccount
     lsd
     lsof
     maddy
