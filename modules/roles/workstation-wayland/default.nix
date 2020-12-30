@@ -8,7 +8,7 @@
     swayidle # used for controlling idle timeouts and triggers (screen locking, etc)
     swaylock # used for locking Wayland sessions
 
-    waybar # polybar-alike
+    #waybar # polybar-alike
     i3status-rust # simpler bar written in Rust
 
     gebaar-libinput # libinput gestures utility
