@@ -10,7 +10,7 @@ let
       fetchGit {
         url = "https://github.com/nix-community/home-manager";
         ref = "master";
-        rev = "28eb093a1e6999d52e60811008b4bfc7e20cc591";
+        rev = "8e0c1c55fbb7f16f9fd313275ddf63c97b34394c";
       }
     }/nixos";
 
@@ -18,14 +18,14 @@ let
   overlay-emacs = import (fetchGit {
     url = "https://github.com/nix-community/emacs-overlay";
     ref = "master";
-    rev = "a69588a3f7de6d68f20cea21562ab7f6f91a400a";
+    rev = "05fb17fc6ef2b1c205a034b7aabbc463291a0fcb";
   });
 
   # https://github.com/colemickens/nixpkgs-wayland/commits/master
   overlay-wayland = import (fetchGit {
     url = "https://github.com/colemickens/nixpkgs-wayland";
     ref = "master";
-    rev = "cf33b87dafc85c8884b75daab30797355c6e7251";
+    rev = "f472abb3b7cf5d620f738f0c4e66d1d2d67e2641";
   });
 
   # https://github.com/NixOS/nixpkgs/commits/nixos-unstable
@@ -33,7 +33,7 @@ let
     (fetchGit {
       url = "https://github.com/NixOS/nixpkgs";
       ref = "nixos-unstable";
-      rev = "9085a724fdd7668f6e59abd9dfc7aef4e1dde3dd";
+      rev = "733e537a8ad76fd355b6f501127f7d0eb8861775";
     })
     { overlays = [ overlay-emacs overlay-wayland overlay-mine ]; };
 in
