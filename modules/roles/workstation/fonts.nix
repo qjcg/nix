@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
 let
+  inherit (pkgs.stdenv) isDarwin isLinux;
+
   fontPkgs = with pkgs; [
     fira-code
     go-font
@@ -14,9 +17,13 @@ let
     victor-mono
   ];
 in
-lib.attrsets.optionalAttrs stdenv.isLinux
-  {
 
+with lib;
+
+mkMerge [
+  
+  # Linux font configuration.
+  (mkIf isLinux {
     fonts = {
       fonts = fontPkgs;
       enableDefaultFonts = true;
@@ -30,12 +37,14 @@ lib.attrsets.optionalAttrs stdenv.isLinux
         serif = [ "Noto Serif" "Roboto Slab" "Unifont" ];
       };
     };
+  })
 
-  } // lib.attrsets.optionalAttrs stdenv.isDarwin {
+  # Darwin font configuration.
+  (mkIf isDarwin {
+    fonts = {
+      enableFontDir = true;
+      fonts = fontPkgs;
+    };
+  })
 
-  fonts = {
-    enableFontDir = true;
-    fonts = fontPkgs;
-  };
-
-}
+]

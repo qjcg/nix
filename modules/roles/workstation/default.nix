@@ -1,14 +1,15 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-with pkgs;
 let
   cfg = config.roles.workstation;
 in
+
+with lib;
+
 {
-  imports =
-    [ ./fonts.nix ]
-    ++ lib.lists.optionals cfg.gnome [ ./gnome.nix ]
-    ++ lib.lists.optionals cfg.sway [ ./sway.nix ];
+  imports = [
+    ./fonts.nix
+  ];
 
   options = {
 
@@ -46,48 +47,56 @@ in
     };
   };
 
-  config = {
-    environment.systemPackages = [
-      env-go
-      env-k8s
-      env-multimedia
-      env-nix
-      env-personal
-      env-python
-      env-tools
-    ];
+  config = mkMerge [
 
-    environment.variables.EDITOR = "nvim";
-    environment.variables.PAGER = "less";
-    environment.variables.VISUAL = "nvim";
+    # The following base config is always applied when this role is enabled.
+    {
+      environment.systemPackages = with pkgs; [
+        env-go
+        env-k8s
+        env-multimedia
+        env-nix
+        env-personal
+        env-python
+        env-tools
+      ];
 
-    nixpkgs.config.allowUnfree = true;
-    nixpkgs.config.allowUnsupportedSystem = true;
+      environment.variables.EDITOR = "nvim";
+      environment.variables.PAGER = "less";
+      environment.variables.VISUAL = "nvim";
 
-    programs.bash.enable = true;
-    programs.bash.enableCompletion = true;
-    programs.gnupg.agent.enable = true;
-    programs.gnupg.agent.enableSSHSupport = true;
-    programs.tmux.enable = true;
-    programs.tmux.extraConfig = builtins.readFile ../../../files/tmux.conf;
+      nixpkgs.config.allowUnfree = true;
+      nixpkgs.config.allowUnsupportedSystem = true;
 
-  } // lib.attrsets.optionalAttrs stdenv.isLinux {
+      programs.bash.enableCompletion = true;
+      programs.gnupg.agent.enable = true;
+      programs.gnupg.agent.enableSSHSupport = true;
+      programs.tmux.enable = true;
+      programs.tmux.extraConfig = builtins.readFile ../../../files/tmux.conf;
+    }
 
-    networking.firewall.enable = true;
-    networking.firewall.allowedTCPPorts = [ ];
-    networking.firewall.allowedUDPPorts = [ ];
+    # TODO: Implement this. For now, just install a single package when activated.
+    (mkIf cfg.games { environment.systemPackages = with pkgs; [ nethack ]; })
 
-    programs.mtr.enable = true;
+    (mkIf pkgs.stdenv.isLinux {
 
-    security.sudo.wheelNeedsPassword = false;
+      networking.firewall.enable = true;
+      networking.firewall.allowedTCPPorts = [ ];
+      networking.firewall.allowedUDPPorts = [ ];
 
-    services.gpm.enable = true;
-    services.printing.enable = true;
-    services.openssh.enable = true;
-    services.resolved.dnssec = "false";
+      programs.mtr.enable = true;
 
-    virtualisation.docker.enable = true;
-    #virtualisation.virtualbox.host.enable = true;
+      security.sudo.wheelNeedsPassword = false;
 
-  };
+      services.gpm.enable = true;
+      services.printing.enable = true;
+      services.openssh.enable = true;
+      services.resolved.dnssec = "false";
+
+      virtualisation.docker.enable = true;
+      #virtualisation.virtualbox.host.enable = true;
+
+    })
+
+  ];
 }

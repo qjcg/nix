@@ -159,11 +159,14 @@
               ./modules/container.nix
               ./modules/roles/workstation
 
-              ({ config, pkgs, ... }: {
+              ({ config, lib, pkgs, ... }: {
                 nixpkgs.overlays = [ self.overlay ];
                 imports = [ inputs.home-manager.nixosModules.home-manager ];
 
                 roles.workstation.enable = true;
+                roles.workstation.games = true;
+                roles.workstation.gnome = false;
+                roles.workstation.sway = false;
               })
             ];
           };
