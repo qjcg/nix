@@ -5,6 +5,8 @@
 #+TODO: TODO(t) BLOCKED(b) | DONE(d) CANCELLED(c)
 #+STARTUP: content
 
+[[./EmacsIcon.svg]]
+
 * Overview
 
   Literate Emacs configuration using org-mode.
@@ -142,6 +144,7 @@
     - [ ] ido-vertical-mode (why are helm/ivy better?)
     - [ ] smex (smart "M-x")
     - [ ] which-key
+    - [ ] paredit (see [[http://danmidwood.com/content/2014/11/21/animated-paredit.html][Structured Guide to Paredit]])
 
     | Name             | Description          | Notes                                          | Rating |
     |------------------+----------------------+------------------------------------------------+--------|
@@ -153,6 +156,13 @@
     | mu4e             |                      |                                                |        |
     | notmuch          |                      |                                                |        |
 
+** TODO Config changes to review [0/6]
+*** TODO [[http://www.nextpoint.se/?p=845][Byte compile the quickstart file]]
+*** TODO [[http://www.nextpoint.se/?p=834][Static generation for init file?]]
+*** TODO [[https://github.com/jjuliano/practical.org.el][Practical GTD and Zettelkasten workflow]]
+*** TODO [[https://takeonrules.com/2020/12/18/directory-structure-for-my-org-instance/][Directory structure for my org instance]]
+*** TODO [[https://yannherklotz.com/blog/2020-12-21-introduction-to-luhmanns-zettelkasten.html][Introduction to Luhmann's Zettelkasten]]
+*** TODO [[https://github.com/alhassy/org-special-block-extras][Use org-special-block-extras for generating HTML and/or LaTeX]]
 ** Customize
 
    Settings having to do with emacs' customize facility (see 'M-x customize').
@@ -177,6 +187,7 @@
    #+begin_src emacs-lisp
      (use-package emacs
        :init
+       (menu-bar-mode -1)
        (tool-bar-mode -1)
        (scroll-bar-mode -1)
        (setq echo-keystrokes 0.1) ; Show keystrokes ASAP
@@ -222,12 +233,6 @@
      (use-package undo-tree :ensure)
      (use-package yaml-mode :ensure)
      (use-package elpher :ensure)
-
-     (use-package vterm
-       :ensure
-       :init
-       ;; Set vterm shell to bash even when OS default may be different.
-       (setq vterm-shell "/bin/bash"))
 
      (use-package writeroom-mode :ensure)
      (use-package olivetti :ensure)
@@ -328,9 +333,30 @@
        (setq strokes-use-strokes-buffer t)) ; Draw strokes to the screen
    #+end_src
 
+** Shell
+
+   #+begin_src emacs-lisp
+     (use-package vterm
+       :ensure
+       :init
+       ;; Set vterm shell to bash even when OS default may be different.
+       (setq vterm-shell "/bin/bash"))
+
+     ;; Helps you to use shell easily on Emacs. Only one key action to work.
+     (use-package shell-pop
+       :ensure
+       :init
+       ;; Toggle shell-pop.
+       (setq shell-pop-universal-key "C-t")
+
+       ;; Workaround for annoying shell-pop layout issue.
+       ;; See https://github.com/kyagi/shell-pop-el/issues/51#issuecomment-297470855
+       (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist))
+   #+end_src
+
 ** Org-Mode
 
-   See [[orgmode.org][orgmode.org]].
+   See [[https://orgmode.org][orgmode.org]].
 
    #+begin_src emacs-lisp
      ;; NOTE: No need for :ensure, use version included with Emacs.
@@ -339,7 +365,10 @@
        ;; See https://orgmode.org/manual/Activation.html
        (global-set-key (kbd "C-c l") 'org-store-link)
        (global-set-key (kbd "C-c a") 'org-agenda)
-       (global-set-key (kbd "C-c c") 'org-capture))
+       (global-set-key (kbd "C-c c") 'org-capture)
+
+       (setq org-startup-with-inline-images t)
+       (setq org-image-actual-width nil))
 
      ;; Use unicode bullet characters in org-mode.
      ;; To customize, see https://github.com/integral-dw/org-superstar-mode/blob/master/DEMO.org
@@ -353,13 +382,14 @@
 						   '("◉" "○" "🞛" "▷"))))))
    #+end_src
 
-** Programming
+** Programming                                                  :programming:
 *** Git
     #+begin_src emacs-lisp
       (use-package magit :ensure)
       (use-package gitignore-mode :ensure)
     #+end_src
-** LSP                                                                  :lsp:
+
+*** LSP                                                                 :lsp:
 
     [[https://microsoft.github.io/language-server-protocol/][Language Server Protocol (LSP)]].
 
@@ -439,7 +469,7 @@
 *** Python                                                     :python:empty:
 *** Javascript / TypeScript                                :javascript:empty:
 *** Ruby                                                         :ruby:empty:
-** DevOps
+** DevOps                                                            :devops:
 *** Docker
 
     #+begin_src emacs-lisp
@@ -582,12 +612,12 @@
 	(elfeed-org)
 	(setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
 
-      (use-package elfeed-dashboard
-	:load-path "~/.config/emacs/lisp/elfeed-dashboard"
-	:config (progn
-		  (setq elfeed-dashboard-file "~/.config/emacs/lisp/elfeed-dashboard/elfeed-dashboard.org")
-		  ;; to update feed counts automatically
-		  (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links)))
+      ;; (use-package elfeed-dashboard
+      ;;   :load-path "~/.config/emacs/lisp/elfeed-dashboard"
+      ;;   :config (progn
+      ;; 	    (setq elfeed-dashboard-file "~/.config/emacs/lisp/elfeed-dashboard/elfeed-dashboard.org")
+      ;; 	    ;; to update feed counts automatically
+      ;; 	    (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links)))
     #+end_src
 *** Multimedia
 
