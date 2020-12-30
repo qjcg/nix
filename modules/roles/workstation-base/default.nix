@@ -17,7 +17,7 @@ let
 in
 {
   environment = {
-    systemPackages = [ env-k8s env-nix env-personal env-tools neovim ];
+    systemPackages = [ env-go env-k8s env-nix env-personal env-tools firefox neovim torbrowser ];
     variables = {
       EDITOR = "nvim";
       PAGER = "less";
