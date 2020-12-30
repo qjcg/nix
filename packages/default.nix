@@ -23,12 +23,12 @@ let
   overrides = {
     dunst = prev.callPackage ./overrides/dunst { };
     emacs = prev.callPackage ./overrides/emacs { };
-    neovim = prev.callPackage ./overrides/neovim { };
+    #neovim = prev.callPackage ./overrides/neovim { };  # FIXME: infinite recursion encountered
     retroarch = prev.callPackage ./overrides/retroarch { };
     st = prev.callPackage ./overrides/st { };
-    sxiv = prev.callPackage ./overrides/sxiv { };
+    #sxiv = prev.callPackage ./overrides/sxiv { };  # FIXME: infinite recursion encountered
     vscodium-with-extensions = prev.callPackage ./overrides/vscodium-with-extensions { };
-    wayfire = prev.callPackage ./overrides/wayfire { };
+    #wayfire = prev.callPackage ./overrides/wayfire { };  # FIXME: infinite recursion encountered
   };
 in
 packages // environments // overrides
