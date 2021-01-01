@@ -42,3 +42,12 @@ container:
 
 clean:
 	sudo nixos-container destroy $(CONTAINER_NAME)
+
+
+# NIXOS-VM
+vm:
+	nixos-rebuild build-vm --flake .#workstationVM
+	QEMU_OPTS="-enable-kvm -vga virtio -m 8G -smp 2" ./result/bin/run-nixos-vm
+
+clean-vm:
+	rm -f result *.qcow2
