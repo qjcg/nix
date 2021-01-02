@@ -27,6 +27,7 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     emacs.url = "github:nix-community/emacs-overlay";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
     nur.url = "github:nix-community/NUR";
 
     sops.url = "github:mic92/sops-nix";
@@ -147,50 +148,92 @@
 
       };
 
-      nixosConfigurations =
-        let
-          mySecrets = import ./secrets.nix;
-        in
-        {
+      # See:
+      #   - https://github.com/NixOS/nix/commit/343239fc8a1993f707a990c2cd54a41f1fa3de99
+      #   - https://github.com/NixOS/nix/blob/master/src/nix/develop.md#description
+      nixConfig = {
+        bash-prompt = "\u@\h \W \$ ";
+        bash-prompt-suffix = " _NIXY_ ";
+      };
 
-          workstation = inputs.nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            modules = [
-              ./modules/container.nix
-              ./modules/roles/workstation
+      nixosModules = {
+        container = import ./modules/container.nix;
+        workstation = import ./modules/roles/workstation;
+      };
 
-              ({ config, lib, pkgs, ... }: {
-                nixpkgs.overlays = [ self.overlay ];
-                imports = [ inputs.home-manager.nixosModules.home-manager ];
+      # TODO: Organize this better. See e.g.: https://github.com/Mic92/dotfiles/blob/master/nixos/configurations.nix
+      nixosConfigurations = {
 
-                roles.workstation.enable = true;
-                roles.workstation.games = true;
-                roles.workstation.gnome = false;
-                roles.workstation.sway = false;
-              })
-            ];
-          };
+        # Usage:
+        #   nixos-rebuild build-vm --flake .#workstationVM
+        workstationVM = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            inputs.home-manager.nixosModules.home-manager
+            inputs.sops.nixosModules.sops
 
-          luban = inputs.nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
+            self.nixosModules.workstation
+            ./modules/users/flakeuser.nix
 
-            modules = [
-              ./modules/machines/luban
-              ./modules/users/john.nix
-              ./modules/roles/workstation
+            {
+              nixpkgs.overlays = [ self.overlay ];
 
-              ({ config, pkgs, ... }: {
-                nixpkgs.overlays = [ self.overlay ];
+              home-manager.useUserPackages = true;
+              roles.workstation.enable = true;
+              roles.workstation.games = true;
+              roles.workstation.gnome = true;
+              roles.workstation.sway = false;
+            }
 
-                roles.workstation.enable = true;
-                roles.workstation.games = true;
-                roles.workstation.gnome = true;
-                roles.workstation.sway = true;
-              })
-
-            ];
-          };
+          ];
         };
+
+        # Usage:
+        #   nixos-container create myWorkstation --flake .#workstationContainer
+        #   nixos-container start myWorkstation
+        #   nixos-container root-login myWorkstation
+        #   nixos-container destroy myWorkstation
+        workstationContainer = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            inputs.home-manager.nixosModules.home-manager
+            inputs.sops.nixosModules.sops
+
+            self.nixosModules.container
+            self.nixosModules.workstation
+
+            ({ config, lib, pkgs, ... }: {
+              nixpkgs.overlays = [ self.overlay ];
+
+              roles.workstation.enable = true;
+              roles.workstation.games = true;
+              roles.workstation.gnome = true;
+              roles.workstation.sway = false;
+            })
+          ];
+        };
+
+        luban = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+
+          modules = [
+            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t460s
+
+            ./modules/machines/luban
+            ./modules/users/john.nix
+
+            ({ config, pkgs, ... }: {
+              nixpkgs.overlays = [ self.overlay ];
+
+              roles.workstation.enable = true;
+              roles.workstation.games = true;
+              roles.workstation.gnome = true;
+              roles.workstation.sway = true;
+            })
+
+          ];
+        };
+      };
 
       darwinConfigurations =
         let
@@ -218,8 +261,6 @@
 
                   roles.workstation.enable = true;
                   roles.workstation.games = true;
-                  roles.workstation.gnome = true;
-                  roles.workstation.sway = true;
                 })
 
               ];
