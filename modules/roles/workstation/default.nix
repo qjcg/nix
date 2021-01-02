@@ -9,6 +9,8 @@ with lib;
 {
   imports = [
     ./fonts.nix
+    ./gnome.nix
+    ./sway.nix
   ];
 
   options = {
