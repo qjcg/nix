@@ -159,6 +159,7 @@ Interesting and useful links on a variety of nix-related topics.
 - [rummik (with system configurations, custom NixOS modules, nix-darwin, and home-manager)](https://github.com/rummik/nixos-config)
 - [HugoReeves (with machine / role / user structure)](https://github.com/HugoReeves/nix-home/)
 - [vyorkin/nixos-config](https://github.com/vyorkin/nixos-config/): flake-based configuration
+- [Mic92/dotfiles](https://github.com/Mic92/dotfiles): Uses secrets via sops-nix, interesting layout
 
 ### Community Resources
 
