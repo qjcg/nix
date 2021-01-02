@@ -43,74 +43,43 @@
           pkgs = import inputs.nixpkgs {
             system = "${system}";
             overlays = [
-              self.overlay
+              self.overlays.main
               inputs.emacs.overlay
+              inputs.wayland.overlay
             ];
           };
 
           unsupportedDarwin = "freetube|ruffle"; # Filter these names out on Darwin.
         in
         {
-          packages =
-            let
-              custom = pkgs.lib.attrsets.genAttrs
+          #packages =
+          #  let
+          #    custom = pkgs.lib.attrsets.genAttrs
 
-                # Filter out packages that are unsupported when on darwin systems.
-                (builtins.filter
-                  (name:
-                    !(
-                      !isNull (builtins.match unsupportedDarwin name) &&
-                      "${system}" == "x86_64-darwin"
-                    ))
-                  (builtins.attrNames (builtins.readDir ./packages/custom))
-                )
-                (name: pkgs.callPackage (./packages/custom + "/${name}") { });
+          #      # Filter out packages that are unsupported when on darwin systems.
+          #      (builtins.filter
+          #        (name:
+          #          !(
+          #            !isNull (builtins.match unsupportedDarwin name) &&
+          #            "${system}" == "x86_64-darwin"
+          #          ))
+          #        (builtins.attrNames (builtins.readDir ./packages/custom))
+          #      )
+          #      (name: pkgs.callPackage (./packages/custom + "/${name}") { });
 
-              environments = {
-                env-financial = pkgs.callPackage ./packages/environments/financial.nix { };
-                env-go = pkgs.callPackage ./packages/environments/go.nix { };
-                env-k8s = pkgs.callPackage ./packages/environments/k8s.nix { };
-                env-multimedia = pkgs.callPackage ./packages/environments/multimedia.nix { };
-                env-nix = pkgs.callPackage ./packages/environments/nix.nix { };
-                env-personal = pkgs.callPackage ./packages/environments/personal.nix { };
-                env-python = pkgs.callPackage ./packages/environments/python.nix { };
-                env-ruby = pkgs.callPackage ./packages/environments/ruby.nix { };
-                env-shell = pkgs.callPackage ./packages/environments/shell.nix { };
-                env-tools = pkgs.callPackage ./packages/environments/tools.nix { };
-              };
+          #  in
+          #  custom // environments // overrides;
 
-              overrides =
-                let
-                  pkgs = import inputs.nixpkgs {
-                    system = "${system}";
-                    overlays = [
-                      inputs.emacs.overlay
-                      inputs.wayland.overlay
-                    ];
-                  };
-                in
-                {
-                  dunst = pkgs.callPackage ./packages/overrides/dunst { };
-                  emacs = pkgs.callPackage ./packages/overrides/emacs { };
-                  neovim = pkgs.callPackage ./packages/overrides/neovim { };
-                  retroarch = pkgs.callPackage ./packages/overrides/retroarch { };
-                  st = pkgs.callPackage ./packages/overrides/st { };
-                  sxiv = pkgs.callPackage ./packages/overrides/sxiv { };
-                  vscodium-with-extensions = pkgs.callPackage ./packages/overrides/vscodium-with-extensions { };
-                  wayfire = pkgs.callPackage ./packages/overrides/wayfire { };
-                };
-            in
-            custom // environments // overrides;
-
-          defaultPackage = self.packages.${system}.mtlcam;
+          packages = pkgs.jg;
+          defaultPackage = pkgs.jg.custom.mtlcam;
 
           devShell =
             with inputs.nixpkgs.legacyPackages.${system};
             with self.packages.${system};
-            pkgs.mkShell {
+            mkShell {
               name = "devshell-nix-qjcg";
               buildInputs = [
-                emacs
+                overrides.emacs
                 nixpkgs-fmt
               ];
             };
@@ -118,12 +87,33 @@
           checks = {
             build = self.defaultPackage.${system};
           };
+
         }
       ) // {
 
       lib = import ./lib;
 
       overlay = import ./packages;
+
+      overlays = {
+        main = final: prev:
+          let
+            # Given a directory name as input
+            pkgsFromDir = dir:
+              prev.lib.attrsets.genAttrs
+                (builtins.attrNames (builtins.readDir "${dir}"))
+                (name: prev.callPackage ("${dir}" + "/${name}") { });
+          in
+          {
+            # Put my packages in their own attrset to easily
+            # distinguish them from upstream packages.
+            jg = {
+              custom = pkgsFromDir ./packages/custom;
+              env = pkgsFromDir ./packages/environments;
+              overrides = pkgsFromDir ./packages/overrides;
+            };
+          };
+      };
 
       templates = {
         container = {
