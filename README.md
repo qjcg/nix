@@ -106,6 +106,11 @@ Interesting and useful links on a variety of nix-related topics.
 - [Wiki: Flakes](https://nixos.wiki/wiki/Flakes)
 - [Flakes RFC / proposal](https://github.com/tweag/rfcs/blob/flakes/rfcs/0049-flakes.md)
   - [Flakes RFC GitHub PR (discussion)](https://github.com/NixOS/rfcs/pull/49)
+- [Nix command docs](https://github.com/NixOS/nix/tree/master/src/nix) (e.g. .md files):
+	- [nix](https://github.com/NixOS/nix/blob/master/src/nix/nix.md)
+	- [flake](https://github.com/NixOS/nix/blob/master/src/nix/flake.md)
+	- [flake check](https://github.com/NixOS/nix/blob/master/src/nix/flake-check.md)
+	- [shell](https://github.com/NixOS/nix/blob/master/src/nix/shell.md)
 
 ### Concepts
 
