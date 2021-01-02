@@ -67,6 +67,7 @@ nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rp
   - [Intro to Nix Channels & Reproducible NixOS Environment](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
 - [x] Pilot a small refactor of the current configuration into Nix Flakes
 - [ ] Refactor configuration.nix to include package environments (env-workstation, etc)
+- [ ] Look into [devshell](https://github.com/numtide/devshell)
 
 ## References
 
