@@ -33,14 +33,14 @@ docker:
 
 # NIXOS-CONTAINER
 
-CONTAINER_NAME := workstation
+CONTAINER_NAME := workstationContainer
 
 container:
 	$(shell sudo nixos-container create $(CONTAINER_NAME) --flake '.#$(CONTAINER_NAME)' || sudo nixos-container update $(CONTAINER_NAME) --flake '.#$(CONTAINER_NAME)')
 	sudo nixos-container start $(CONTAINER_NAME)
 	sudo nixos-container root-login $(CONTAINER_NAME)
 
-clean:
+clean-container:
 	sudo nixos-container destroy $(CONTAINER_NAME)
 
 
