@@ -187,7 +187,7 @@
               roles.workstation.enable = true;
               roles.workstation.games = true;
               roles.workstation.gnome = true;
-              roles.workstation.sway = false;
+              roles.workstation.sway = true;
             }
 
           ];
