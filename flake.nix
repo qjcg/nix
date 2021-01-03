@@ -113,7 +113,7 @@
       overlay =
         final: prev:
         let
-          # pkgsFromDir creates a {pname: derivation} attrset given 
+          # pkgsFromDir creates a {pname: derivation} attrset given an input dir.
           pkgsFromDir = dir:
             # input: A directory path. The directory should contain nix package subdirs.
             # output: An attrset mapping package names to package derivations.
