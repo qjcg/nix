@@ -5,8 +5,6 @@ let
   cfg = config.roles.workstation;
 in
 
-with lib;
-
 mkMerge [
 	(mkIf cfg.sway {
 	  programs.sway.enable = true;
