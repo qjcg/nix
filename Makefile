@@ -31,7 +31,7 @@ docker:
 	docker-compose exec $(DC_SVC) bash
 
 
-# NIXOS-CONTAINER
+# NIXOS-CONTAINER (linux only)
 
 CONTAINER_NAME := wrkc
 
@@ -44,7 +44,7 @@ clean-container:
 	sudo nixos-container destroy $(CONTAINER_NAME)
 
 
-# NIXOS-VM
+# NIXOS-VM (linux only)
 vm:
 	nixos-rebuild build-vm --flake .#workstationVM
 	QEMU_OPTS="-vga virtio -display gtk,gl=on -m 8G -smp 2" ./result/bin/run-nixos-vm
