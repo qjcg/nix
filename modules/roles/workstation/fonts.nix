@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
-
 let
   inherit (pkgs.stdenv) isDarwin isLinux;
 
   fontPkgs = with pkgs; [
+    emacs-all-the-icons-fonts
     fira-code
     go-font
     inconsolata-nerdfont
@@ -17,11 +17,10 @@ let
     victor-mono
   ];
 in
-
 with lib;
 
 mkMerge [
-  
+
   # Linux font configuration.
   (mkIf isLinux {
     fonts = {
@@ -40,6 +39,7 @@ mkMerge [
   })
 
   # Darwin font configuration.
+  # See https://github.com/LnL7/nix-darwin/blob/master/modules/fonts/default.nix
   (mkIf isDarwin {
     fonts = {
       enableFontDir = true;
