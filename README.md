@@ -5,9 +5,9 @@ My personal [nix](https://nixos.org/nix/) configuration.
 ## Features
 
 - [Modular](https://nixos.org/nixos/manual/index.html#sec-modularity) and composable (machines, roles, users, packages) [configuration](https://nixos.org/nixos/manual/index.html#ch-configuration)
-- Uses [home-manager](https://github.com/rycee/home-manager) to manage user settings
+- User settings via [home-manager](https://github.com/nix-community/home-manager)
 - Templating via the [nix expression language](https://nixos.org/nix/manual/#ch-expression-language)
-- Get secrets from [gopass](https://www.gopass.pw/) / [password-store](https://www.passwordstore.org/)
+- Secrets via [gopass](https://www.gopass.pw/) / [password-store](https://www.passwordstore.org/)
 - Multi-platform (NixOS, Ubuntu, macOS)
 
 ## Use
@@ -19,7 +19,7 @@ My personal [nix](https://nixos.org/nix/) configuration.
 curl -L https://nixos.org/nix/install | sh
 
 # Install a package from this overlay.
-nix-env -f https://github.com/qjcg/nix-config/archive/master.tar.gz -iA env-hello
+nix-env -f https://github.com/qjcg/nix/archive/master.tar.gz -iA env-hello
 ```
 
 ## Raspberry Pi
@@ -27,7 +27,7 @@ nix-env -f https://github.com/qjcg/nix-config/archive/master.tar.gz -iA env-hell
 From a NixOS base image:
 
 ```sh
-git clone https://github.com/qjcg/nix-config ~/.config/nixpkgs
+git clone https://github.com/qjcg/nix ~/.config/nixpkgs
 cd ~/.config/nixpkgs
 nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rpi3/configuration.nix
 
