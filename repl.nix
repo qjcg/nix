@@ -17,11 +17,5 @@ in
       overlays = [ thisFlake.overlay ];
     };
 
-    # Demonstrate adding this flake's attrset overlays to upstream nixpkgs via flake import.
-    nixpkgsWithOverlays = {
-      main = import nixpkgs-unstable {
-        overlays = [ thisFlake.overlays.main ];
-      };
-    };
   };
 }
