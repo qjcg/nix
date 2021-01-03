@@ -1,9 +1,3 @@
-# nixos-containers are an abstraction on top of `systemd-nspawn`.
-# - [NixOS: Containers](https://nixos.org/manual/nixos/stable/#ch-containers)
-# - [Arch Wiki: systemd-nspawn](https://wiki.archlinux.org/index.php/Systemd-nspawn)
-# - [freedesktop.org: systemd-nspawn](https://www.freedesktop.org/software/systemd/man/systemd-nspawn.html)
-# - [freedesktop.org: machinectl](https://www.freedesktop.org/software/systemd/man/machinectl.html)
-
 # References:
 # - [Nix Flakes, Part 3: Managing NixOS Systems](https://www.tweag.io/blog/2020-07-31-nixos-flakes/)
 # - [NixOS: Modules](https://nixos.org/manual/nixos/stable/index.html#ex-module-syntax)
@@ -15,12 +9,13 @@
 {
   description = "A flake for my nix configurations";
 
+  # NOTE: nixConfig doesn't seem to be working yet (2021-01-03), but it should work eventually.
   # See:
   #   - https://github.com/NixOS/nix/commit/343239fc8a1993f707a990c2cd54a41f1fa3de99
   #   - https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-develop.html#description
   nixConfig = {
     bash-prompt = "\u@\h \W \$ ";
-    bash-prompt-suffix = " _NIXY_ ";
+    bash-prompt-suffix = " _NIX_ ";
   };
 
   inputs = {
@@ -193,6 +188,11 @@
           ];
         };
 
+        # nixos-containers are an abstraction on top of `systemd-nspawn`.
+        # - [NixOS: Containers](https://nixos.org/manual/nixos/stable/#ch-containers)
+        # - [Arch Wiki: systemd-nspawn](https://wiki.archlinux.org/index.php/Systemd-nspawn)
+        # - [freedesktop.org: systemd-nspawn](https://www.freedesktop.org/software/systemd/man/systemd-nspawn.html)
+        # - [freedesktop.org: machinectl](https://www.freedesktop.org/software/systemd/man/machinectl.html)
         # Usage:
         #   nixos-container create myWorkstation --flake .#wrkc
         #   nixos-container start myWorkstation
@@ -255,8 +255,8 @@
               inputs = { secrets = mySecrets; };
 
               modules = [
-                ./modules/roles/workstation
                 inputs.home-manager.darwinModules.home-manager
+                self.nixosModules.workstation
 
                 ({ config, home-manager, pkgs, secrets, ... }: {
 
