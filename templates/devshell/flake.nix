@@ -2,19 +2,16 @@
   description = "A flake providing a development shell.";
 
   inputs = {
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
   };
 
   outputs = { self, ... }@inputs:
-    # Define our shell as cross-platform (x86_64-{linux,darwin}, aarch64-linux).
-    inputs.flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
-      in
-      {
-        devShell = (
+    {
+      devShell.x86_64-linux = (
+        { pkgs, ... }:
+
           with pkgs;
+
           mkShell {
             name = "devshell-myapp";
             buildInputs = [ hello ];
@@ -23,11 +20,12 @@
 
               Nix shell from a flake! To use, run "nix develop"
 
+              Is this AWESOME? -> $AWESOME
+
               END
             '';
             AWESOME = "Yes indeed!";
           }
-        );
-      }
-    );
+      ) { pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux; };
+    };
 }
