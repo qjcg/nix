@@ -187,11 +187,11 @@
         };
 
         # Usage:
-        #   nixos-container create myWorkstation --flake .#workstationContainer
+        #   nixos-container create myWorkstation --flake .#workstationCT
         #   nixos-container start myWorkstation
         #   nixos-container root-login myWorkstation
         #   nixos-container destroy myWorkstation
-        workstationContainer = inputs.nixpkgs.lib.nixosSystem {
+        wrkc = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
             inputs.home-manager.nixosModules.home-manager

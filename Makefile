@@ -33,7 +33,7 @@ docker:
 
 # NIXOS-CONTAINER
 
-CONTAINER_NAME := workstationContainer
+CONTAINER_NAME := wrkc
 
 container:
 	$(shell sudo nixos-container create $(CONTAINER_NAME) --flake '.#$(CONTAINER_NAME)' || sudo nixos-container update $(CONTAINER_NAME) --flake '.#$(CONTAINER_NAME)')
