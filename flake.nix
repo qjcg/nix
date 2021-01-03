@@ -45,6 +45,14 @@
   };
 
   outputs = { self, ... }@inputs:
+    let
+      # Each attr key must be a system name.
+      # Each attr value must be a regex of UNsupported package names.
+      unsupportedOnSystem = {
+        "aarch64-linux" = "delve";
+        "x86_64-darwin" = "freetube|ruffle";
+      };
+    in
     inputs.flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -56,8 +64,6 @@
               self.overlay
             ];
           };
-
-          unsupportedDarwin = "freetube|ruffle"; # Filter these names out on Darwin.
         in
         {
           #packages =
@@ -79,18 +85,17 @@
           #  custom // environments // overrides;
 
           # NOTE: For "packages" output, top-level attr values MUST all be derivations to pass `nix flake check`.
-          packages = pkgs.jg.custom // pkgs.jg.env // pkgs.jg.overrides;
+          packages = pkgs.jg.custom // pkgs.jg.envs // pkgs.jg.overrides;
           defaultPackage = pkgs.jg.custom.mtlcam;
 
           devShell =
-            with inputs.nixpkgs.legacyPackages.${system};
-            with self.packages.${system};
+            with pkgs;
             mkShell {
               name = "devshell-nix-qjcg";
               buildInputs = [
-                #overrides.emacs
-                #env.nix
-                nixpkgs-fmt
+                jg.overrides.emacs
+                jg.overrides.neovim
+                jg.envs.env-nix
               ];
             };
 
@@ -119,7 +124,7 @@
           # distinguish them from upstream packages.
           jg = {
             custom = pkgsFromDir ./packages/custom;
-            env = pkgsFromDir ./packages/environments;
+            envs = pkgsFromDir ./packages/envs;
             overrides = pkgsFromDir ./packages/overrides;
           };
         };
