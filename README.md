@@ -6,7 +6,6 @@ My personal [nix](https://nixos.org/nix/) configuration.
 
 - [Modular](https://nixos.org/nixos/manual/index.html#sec-modularity) and composable (machines, roles, users, packages) [configuration](https://nixos.org/nixos/manual/index.html#ch-configuration)
 - User settings via [home-manager](https://github.com/nix-community/home-manager)
-- Templating via the [nix expression language](https://nixos.org/nix/manual/#ch-expression-language)
 - Secrets via [gopass](https://www.gopass.pw/) / [password-store](https://www.passwordstore.org/)
 - Multi-platform (NixOS, Ubuntu, macOS)
 
@@ -37,37 +36,28 @@ nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rp
 
 ```sh
 .
-├── README.md   - this README file
+├── README.md   - the very file you're reading!
 ├── config.nix  - nix configuration
 ├── files/      - application files and templates
 ├── machines/   - per-machine configuration
-├── nixops/     - nixops configurations
-├── packages/   - overlay packages and environments
+├── packages/   - custom packages, environments, and overrides
 ├── roles/      - system roles
 └── secrets.nix - secrets file (gitignored, do e.g.: `gopass nix-secrets > secrets.nix`)
 ```
 
 ## TODO
 
-- [x] Add NixOS system configuration(s)
-- [x] Consider using [nix-darwin](https://github.com/LnL7/nix-darwin) on macOS
-- [x] Consider using [home-manager](https://github.com/rycee/home-manager) on macOS
-  - [x] Consider refactoring to follow layout of [Your Home in Nix (dotfile management)](https://hugoreeves.com/posts/2019/nix-home/)
-- [ ] Consider adding custom [NixOS modules](https://nixos.org/nixos/manual/index.html#sec-writing-modules)
 - [ ] Create custom NixOS LiveUSB / install media
   - [manual](https://nixos.org/nixos/manual/index.html#sec-building-cd)
   - [wiki](https://nixos.wiki/wiki/Creating_a_NixOS_live_CD)
+  - [nixos-generators](https://github.com/nix-community/nixos-generators)
 - [ ] Create custom Rasbperry Pi SD card
   - [Build your own image](https://nixos.wiki/wiki/NixOS_on_ARM#Build_your_own_image)
   - [Compiling through QEMU](https://nixos.wiki/wiki/NixOS_on_ARM#Compiling_through_QEMU)
   - [Wiki Cross-compile packages](https://nixos.wiki/wiki/Cheatsheet#Cross-compile_packages)
   - [Wiki: Raspberry Pi](https://nixos.wiki/wiki/NixOS_on_ARM/Raspberry_Pi)
-- [x] Use version pinning
-  - [NixOS Wiki: FAQ/Pinning Nixpkgs](https://nixos.wiki/wiki/FAQ/Pinning_Nixpkgs)
-  - [Intro to Nix Channels & Reproducible NixOS Environment](https://matrix.ai/blog/intro-to-nix-channels-and-reproducible-nixos-environment/)
-- [x] Pilot a small refactor of the current configuration into Nix Flakes
-- [ ] Refactor configuration.nix to include package environments (env-workstation, etc)
 - [ ] Look into [devshell](https://github.com/numtide/devshell)
+- [ ] Test out [impermanence](https://github.com/nix-community/impermanence)
 
 ## References
 
@@ -108,10 +98,10 @@ Interesting and useful links on a variety of nix-related topics.
 - [Flakes RFC / proposal](https://github.com/tweag/rfcs/blob/flakes/rfcs/0049-flakes.md)
   - [Flakes RFC GitHub PR (discussion)](https://github.com/NixOS/rfcs/pull/49)
 - [Nix command docs](https://github.com/NixOS/nix/tree/master/src/nix) (e.g. .md files):
-	- [nix](https://github.com/NixOS/nix/blob/master/src/nix/nix.md)
-	- [flake](https://github.com/NixOS/nix/blob/master/src/nix/flake.md)
-	- [flake check](https://github.com/NixOS/nix/blob/master/src/nix/flake-check.md)
-	- [shell](https://github.com/NixOS/nix/blob/master/src/nix/shell.md)
+  - [nix](https://github.com/NixOS/nix/blob/master/src/nix/nix.md)
+  - [flake](https://github.com/NixOS/nix/blob/master/src/nix/flake.md)
+  - [flake check](https://github.com/NixOS/nix/blob/master/src/nix/flake-check.md)
+  - [shell](https://github.com/NixOS/nix/blob/master/src/nix/shell.md)
 
 ### Concepts
 
@@ -170,7 +160,6 @@ Interesting and useful links on a variety of nix-related topics.
 ### Tools & Services
 
 - [nixery](https://nixery.dev/)
-- [`nixfmt`](https://github.com/serokell/nixfmt)
 - [mobile nixos](https://github.com/samueldr/mobile-nixos/)
 - [nix-pre-commit-hooks](https://github.com/hercules-ci/nix-pre-commit-hooks)
 - [cachix: Nix binary cache hosting](https://cachix.org/)
