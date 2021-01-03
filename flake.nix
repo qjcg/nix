@@ -15,6 +15,14 @@
 {
   description = "A flake for my nix configurations";
 
+  # See:
+  #   - https://github.com/NixOS/nix/commit/343239fc8a1993f707a990c2cd54a41f1fa3de99
+  #   - https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-develop.html#description
+  nixConfig = {
+    bash-prompt = "\u@\h \W \$ ";
+    bash-prompt-suffix = " _NIXY_ ";
+  };
+
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
 
@@ -43,9 +51,9 @@
           pkgs = import inputs.nixpkgs {
             system = "${system}";
             overlays = [
-              self.overlays.main
               inputs.emacs.overlay
               inputs.wayland.overlay
+              self.overlay
             ];
           };
 
@@ -70,7 +78,8 @@
           #  in
           #  custom // environments // overrides;
 
-          packages = pkgs.jg;
+          # NOTE: For "packages" output, top-level attr values MUST all be derivations to pass `nix flake check`.
+          packages = pkgs.jg.custom // pkgs.jg.env // pkgs.jg.overrides;
           defaultPackage = pkgs.jg.custom.mtlcam;
 
           devShell =
@@ -79,7 +88,8 @@
             mkShell {
               name = "devshell-nix-qjcg";
               buildInputs = [
-                overrides.emacs
+                #overrides.emacs
+                #env.nix
                 nixpkgs-fmt
               ];
             };
@@ -93,27 +103,26 @@
 
       lib = import ./lib;
 
-      overlay = import ./packages;
-
-      overlays = {
-        main = final: prev:
-          let
-            # Given a directory name as input
-            pkgsFromDir = dir:
-              prev.lib.attrsets.genAttrs
-                (builtins.attrNames (builtins.readDir "${dir}"))
-                (name: prev.callPackage ("${dir}" + "/${name}") { });
-          in
-          {
-            # Put my packages in their own attrset to easily
-            # distinguish them from upstream packages.
-            jg = {
-              custom = pkgsFromDir ./packages/custom;
-              env = pkgsFromDir ./packages/environments;
-              overrides = pkgsFromDir ./packages/overrides;
-            };
+      overlay =
+        final: prev:
+        let
+          # pkgsFromDir creates a {pname: derivation} attrset given 
+          pkgsFromDir = dir:
+            # input: A directory path. The directory should contain nix package subdirs.
+            # output: An attrset mapping package names to package derivations.
+            prev.lib.attrsets.genAttrs
+              (builtins.attrNames (builtins.readDir dir))
+              (name: prev.callPackage (dir + "/${name}") { });
+        in
+        {
+          # Put my packages in their own attrset to easily
+          # distinguish them from upstream packages.
+          jg = {
+            custom = pkgsFromDir ./packages/custom;
+            env = pkgsFromDir ./packages/environments;
+            overrides = pkgsFromDir ./packages/overrides;
           };
-      };
+        };
 
       templates = {
         container = {
@@ -136,14 +145,6 @@
           description = "A flake providing a development shell.";
         };
 
-      };
-
-      # See:
-      #   - https://github.com/NixOS/nix/commit/343239fc8a1993f707a990c2cd54a41f1fa3de99
-      #   - https://github.com/NixOS/nix/blob/master/src/nix/develop.md#description
-      nixConfig = {
-        bash-prompt = "\u@\h \W \$ ";
-        bash-prompt-suffix = " _NIXY_ ";
       };
 
       nixosModules = {
