@@ -152,6 +152,9 @@
           description = "A flake providing a development shell.";
         };
 
+        # See https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-flake-init.html#template-definitions
+        defaultTemplate = self.templates.shell;
+
       };
 
       nixosModules = {
@@ -174,7 +177,11 @@
             ./modules/users/flakeuser.nix
 
             {
-              nixpkgs.overlays = [ self.overlay ];
+              nixpkgs.overlays = [
+                inputs.emacs.overlay
+                inputs.wayland.overlay
+                self.overlay
+              ];
 
               home-manager.useUserPackages = true;
               roles.workstation.enable = true;
@@ -187,7 +194,7 @@
         };
 
         # Usage:
-        #   nixos-container create myWorkstation --flake .#workstationCT
+        #   nixos-container create myWorkstation --flake .#wrkc
         #   nixos-container start myWorkstation
         #   nixos-container root-login myWorkstation
         #   nixos-container destroy myWorkstation
@@ -200,14 +207,18 @@
             self.nixosModules.container
             self.nixosModules.workstation
 
-            ({ config, lib, pkgs, ... }: {
-              nixpkgs.overlays = [ self.overlay ];
+            {
+              nixpkgs.overlays = [
+                inputs.emacs.overlay
+                inputs.wayland.overlay
+                self.overlay
+              ];
 
               roles.workstation.enable = true;
               roles.workstation.games = true;
               roles.workstation.gnome = true;
-              roles.workstation.sway = false;
-            })
+              roles.workstation.sway = true;
+            }
           ];
         };
 
@@ -216,6 +227,7 @@
 
           modules = [
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t460s
+            self.nixosModules.workstation
 
             ./modules/machines/luban
             ./modules/users/john.nix
