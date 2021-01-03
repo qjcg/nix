@@ -68,7 +68,7 @@ in
         options = [ "grp:shifts_toggle" ];
       };
 
-      packages = with pkgs; [ env-multimedia env-tools ];
+      packages = with pkgs.jg.envs; [ env-multimedia env-tools ];
 
     };
 
@@ -420,7 +420,7 @@ in
                 };
               };
 
-              statusCommand = "${pkgs.barr}/bin/barr";
+              statusCommand = "${pkgs.jg.custom.barr}/bin/barr";
               extraConfig = ''
                 output eDP-1
               '';
@@ -458,7 +458,7 @@ in
                 };
               };
 
-              statusCommand = "${pkgs.barr}/bin/barr";
+              statusCommand = "${pkgs.jg.custom.barr}/bin/barr";
               extraConfig = ''
                 output HDMI-A-2
               '';

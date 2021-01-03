@@ -7,13 +7,13 @@ pkgs.buildEnv {
   name = "env-tools";
   paths = [
     age
-    annie
+    jg.custom.annie
     aria2
     bat
     binutils
     bottom
     caddy
-    conform
+    jg.custom.conform
     coreutils
     croc
     dnsutils
@@ -37,8 +37,8 @@ pkgs.buildEnv {
     gnumake
     gnupg
     gopass
-    got
-    grafterm
+    jg.custom.got
+    jg.custom.grafterm
     grpcurl
     gtop
     htop
@@ -50,8 +50,8 @@ pkgs.buildEnv {
     #loccount
     lsd
     lsof
-    maddy
-    mark
+    jg.custom.maddy
+    jg.custom.mark
     mdbook
     mkcert
     mtr
@@ -70,7 +70,7 @@ pkgs.buildEnv {
     ripgrep
     rlwrap
     rsync
-    s-nail
+    jg.custom.s-nail
     shellcheck
     shfmt
     sqlite

@@ -7,7 +7,7 @@ buildEnv {
   paths = [
     go
     godef
-    gohack
+    jg.custom.gohack
     delve
     golangci-lint
     gopls

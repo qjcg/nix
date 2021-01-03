@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
-
 let
   cfg = config.roles.workstation;
 in
-
 with lib;
 
 {
@@ -53,7 +51,7 @@ with lib;
 
     # The following base config is always applied when this role is enabled.
     {
-      environment.systemPackages = with pkgs; [
+      environment.systemPackages = with pkgs.jg.envs; [
         env-go
         env-k8s
         env-multimedia

@@ -22,7 +22,7 @@ buildEnv {
     gource
     soundfont-fluid
     opusTools
-    pms
+    jg.custom.pms
     pulseaudio
     youtube-viewer
   ];

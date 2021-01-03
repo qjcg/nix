@@ -21,11 +21,11 @@ buildEnv {
     kubeseal
     #minio-client
     open-policy-agent
-    rancher-cli
+    jg.custom.rancher-cli
     skaffold
     sops
     stern
-    tekton-cli
+    jg.custom.tekton-cli
   ] ++ lib.lists.optionals stdenv.isLinux [ k3s ];
   meta = {
     description = "An environment for working with Kubernetes";
