@@ -7,13 +7,13 @@ buildEnv {
   paths = [
     argo
     argocd
-    benthos
+    jg.custom.benthos
     conftest
     cue
     dive
     fly
     #helm
-    k3c
+    jg.custom.k3c
     k3d
     kompose
     kubectl
