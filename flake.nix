@@ -96,6 +96,8 @@
                 jg.overrides.emacs
                 jg.overrides.neovim
                 jg.envs.env-nix
+
+                nodejs-14_x
               ];
             };
 
