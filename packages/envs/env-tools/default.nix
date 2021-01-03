@@ -18,6 +18,7 @@ pkgs.buildEnv {
     croc
     dnsutils
     ed
+    jg.overrides.emacs
     exa
     fd
     fdupes
@@ -56,6 +57,7 @@ pkgs.buildEnv {
     mkcert
     mtr
     neofetch
+    jg.overrides.neovim
     nmap
     nncp
     onefetch
