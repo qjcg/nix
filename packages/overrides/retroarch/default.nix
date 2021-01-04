@@ -5,7 +5,7 @@ pkgs.retroarch.override {
     beetle-lynx
     beetle-vb
     dosbox
-    #fbalpha2012
+    fbalpha2012
     fceumm
     genesis-plus-gx
     mame
