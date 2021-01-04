@@ -91,6 +91,7 @@
               name = "devshell-nix-qjcg";
 
               motd = ''
+
                 Welcome to the ${name} devshell!
               '';
 
