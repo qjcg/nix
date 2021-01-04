@@ -58,6 +58,10 @@ nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rp
   - [Wiki: Raspberry Pi](https://nixos.wiki/wiki/NixOS_on_ARM/Raspberry_Pi)
 - [ ] Look into [devshell](https://github.com/numtide/devshell)
 - [ ] Test out [impermanence](https://github.com/nix-community/impermanence)
+- [ ] Consider protocol for bootstrapping GPG keys on a new system
+  - One example via [lobre/nix-home](https://github.com/lobre/nix-home/blob/master/docs/gpg.md))
+  - [paperkey](https://github.com/dmshaw/paperkey)
+  - [paper-store](https://github.com/nurupo/paper-store)
 
 ## References
 
