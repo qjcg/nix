@@ -5,10 +5,10 @@ with pkgs;
 buildEnv {
   name = "env-nix";
   paths = [
-    #cachix # NOTE: Requires a RIDICULOUSLY long ghc compilation.
+    cachix
     direnv
-    lorri
     nix-bash-completions
+    nix-direnv
     nix-index
     nixpkgs-fmt
   ];
