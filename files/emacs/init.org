@@ -31,16 +31,18 @@
 *** DONE Provide excellent DevOps experience [2/2]
     - [X] Docker (docker)
     - [X] Kubernetes (kubernetes-overview, kubel)
-*** TODO Provide integrated daily drivers [4/10]
+*** TODO Provide integrated daily drivers [3/10]
     - [X] web (eww BUT sometimes hangs? Performance mediocre)
     - [X] music (bongo w/ mpv backend)
     - [-] videos (bongo w/ mpv backend)
       - [X] local videos
       - [ ] youtube etc.
-    - [X] RSS (elfeed)
+    - [ ] RSS (elfeed)
       - [ ] Central elfeed file on server?
     - [X] shell (eshell + vterm)
-    - [ ] Slack
+    - [-] Slack
+      - [X] Read channels
+      - [ ] Receive notifications
     - [ ] email
     - [ ] image viewer
     - [ ] slides
@@ -375,11 +377,12 @@
      (use-package org-superstar
        :ensure
        :init
-       (add-hook 'org-mode-hook (lambda () (progn
-					     (org-superstar-mode 1)
-					     ;; Set different bullets, with one getting a terminal fallback.
-					     (setq org-superstar-headline-bullets-list
-						   '("◉" "○" "🞛" "▷"))))))
+       (add-hook 'org-mode-hook
+		 (lambda () (progn
+			      (org-superstar-mode 1)
+			      ;; Set different bullets, with one getting a terminal fallback.
+			      (setq org-superstar-headline-bullets-list
+				    '("◉" "○" "🞛" "▷"))))))
    #+end_src
 
 ** Programming                                                  :programming:
