@@ -85,6 +85,8 @@
 
           devShell =
             with pkgs;
+
+            # See https://github.com/numtide/devshell/blob/master/devshell.toml
             mkDevShell rec {
               name = "devshell-nix-qjcg";
 
@@ -94,15 +96,15 @@
                 Now foo all the bars.
               '';
 
-	      bash.extra = ''
-	      	funky() {
-		  echo This is funky $*
-		}
-	      '';
+              bash.extra = ''
+                awesome() {
+                  echo This is awesome $*
+                }
+              '';
 
               packages = [
-                jg.overrides.neovim
                 jg.envs.env-nix
+                nodejs-14_x # installed as neovim dependency (avoids startup error message)
               ];
 
               commands = [
@@ -113,15 +115,15 @@
                   category = "formatters";
                 }
                 {
-                  help = "Jolly old node.js. Avoids ";
-                  name = "nodejs 14";
-                  package = "nodejs-14_x";
-                  category = "runtimes";
-                }
-                {
                   help = "A sort of hybrid between Windows Notepad, a monolithic-kernel operating system, and the International Space Station.";
                   name = "emacs";
                   package = "jg.overrides.emacs";
+                  category = "editors";
+                }
+                {
+                  help = "Vim, but newer";
+                  name = "neovim";
+                  package = "jg.overrides.neovim";
                   category = "editors";
                 }
               ];
