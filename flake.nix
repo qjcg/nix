@@ -92,11 +92,10 @@
 
               motd = ''
                 Welcome to the ${name} devshell!
-
-                Now foo all the bars.
               '';
 
               bash.extra = ''
+                # A simple bash function as a proof-of-concept with mkDevShell.
                 awesome() {
                   echo This is awesome $*
                 }
@@ -107,6 +106,7 @@
                 nodejs-14_x # installed as neovim dependency (avoids startup error message)
               ];
 
+              # Review what's installed in your devshell via the `menu` command.
               commands = [
                 {
                   help = "used to format nix code";
@@ -121,7 +121,7 @@
                   category = "editors";
                 }
                 {
-                  help = "Vim, but newer";
+                  help = "Vim, but new and stuff";
                   name = "neovim";
                   package = "jg.overrides.neovim";
                   category = "editors";
