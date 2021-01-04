@@ -10,11 +10,10 @@ buildEnv {
     lorri
     nix-bash-completions
     nix-index
-    #nixops # NOTE: Broken build 2020-07-06
     nixpkgs-fmt
   ];
   meta = {
     priority = 0;
-    description = "An environment for working with Nix";
+    description = "An environment for working with Nix and NixOS";
   };
 }
