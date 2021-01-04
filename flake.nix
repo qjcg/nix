@@ -19,23 +19,21 @@
   };
 
   inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
-
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-
-    pkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-20.09-darwin";
-    darwin.url = "github:lnl7/nix-darwin";
-    darwin.inputs.nixpkgs.follows = "pkgs-darwin";
-
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     emacs.url = "github:nix-community/emacs-overlay";
+    flake-utils.url = "github:numtide/flake-utils";
+    home-manager.url = "github:nix-community/home-manager";
+    nix-darwin.url = "github:lnl7/nix-darwin";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-20.09-darwin";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nur.url = "github:nix-community/NUR";
-
-    sops.url = "github:mic92/sops-nix";
-    sops.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix.url = "github:mic92/sops-nix";
     wayland.url = "github:colemickens/nixpkgs-wayland";
+
+    # Inputs should use the same "nixpkgs" as this flake itself does.
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
     wayland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -166,7 +164,7 @@
           system = "x86_64-linux";
           modules = [
             inputs.home-manager.nixosModules.home-manager
-            inputs.sops.nixosModules.sops
+            inputs.sops-nix.nixosModules.sops
 
             self.nixosModules.workstation
             ./modules/users/flakeuser.nix
@@ -202,7 +200,7 @@
           system = "x86_64-linux";
           modules = [
             inputs.home-manager.nixosModules.home-manager
-            inputs.sops.nixosModules.sops
+            inputs.sops-nix.nixosModules.sops
 
             self.nixosModules.container
             self.nixosModules.workstation
@@ -246,35 +244,22 @@
       };
 
       darwinConfigurations =
-        let
-          mySecrets = import ./secrets.nix;
-        in
         {
-          mtlmp-jgosset1 = inputs.darwin.lib.darwinSystem
-            {
-              inputs = { secrets = mySecrets; };
+          mtlmp-jgosset1 = inputs.nix-darwin.lib.darwinSystem {
+            modules = [
+              inputs.home-manager.darwinModules.home-manager
+              inputs.sops-nix.nixosModules.sops
 
-              modules = [
-                inputs.home-manager.darwinModules.home-manager
-                self.nixosModules.workstation
+              self.nixosModules.workstation
+              ./modules/users/hm-darwin_jgosset.nix
 
-                ({ config, home-manager, pkgs, secrets, ... }: {
+              {
+                nixpkgs.overlays = [ self.overlay ];
+                roles.workstation.enable = true;
+              }
 
-                  imports = [
-                    (import ./modules/users/hm-darwin_jgosset.nix {
-                      inherit home-manager pkgs secrets;
-                    })
-                  ];
-
-                  nixpkgs.overlays = [ self.overlay ];
-                  users = mySecrets.users;
-
-                  roles.workstation.enable = true;
-                  roles.workstation.games = true;
-                })
-
-              ];
-            };
+            ];
+          };
         };
 
     };
