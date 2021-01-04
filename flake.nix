@@ -19,6 +19,7 @@
   };
 
   inputs = {
+    devshell.url = "github:numtide/devshell";
     emacs.url = "github:nix-community/emacs-overlay";
     flake-utils.url = "github:numtide/flake-utils";
     home-manager.url = "github:nix-community/home-manager";
@@ -52,6 +53,7 @@
           pkgs = import inputs.nixpkgs {
             system = "${system}";
             overlays = [
+              inputs.devshell.overlay
               inputs.emacs.overlay
               inputs.wayland.overlay
               self.overlay
@@ -83,14 +85,45 @@
 
           devShell =
             with pkgs;
-            mkShell {
+            mkDevShell rec {
               name = "devshell-nix-qjcg";
-              buildInputs = [
-                jg.overrides.emacs
+
+              motd = ''
+                Welcome to the ${name} devshell!
+
+                Now foo all the bars.
+              '';
+
+	      bash.extra = ''
+	      	funky() {
+		  echo This is funky $*
+		}
+	      '';
+
+              packages = [
                 jg.overrides.neovim
                 jg.envs.env-nix
+              ];
 
-                nodejs-14_x
+              commands = [
+                {
+                  help = "used to format nix code";
+                  name = "nixpkgs-fmt";
+                  package = "nixpkgs-fmt";
+                  category = "formatters";
+                }
+                {
+                  help = "Jolly old node.js. Avoids ";
+                  name = "nodejs 14";
+                  package = "nodejs-14_x";
+                  category = "runtimes";
+                }
+                {
+                  help = "A sort of hybrid between Windows Notepad, a monolithic-kernel operating system, and the International Space Station.";
+                  name = "emacs";
+                  package = "jg.overrides.emacs";
+                  category = "editors";
+                }
               ];
             };
 
@@ -230,14 +263,14 @@
             ./modules/machines/luban
             ./modules/users/john.nix
 
-            ({ config, pkgs, ... }: {
+            {
               nixpkgs.overlays = [ self.overlay ];
 
               roles.workstation.enable = true;
               roles.workstation.games = true;
               roles.workstation.gnome = true;
               roles.workstation.sway = true;
-            })
+            }
 
           ];
         };

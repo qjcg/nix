@@ -16,6 +16,21 @@
         "type": "github"
       }
     },
+    "devshell": {
+      "locked": {
+        "lastModified": 1609678589,
+        "narHash": "sha256-Yol0Jb3wC3J0HWQy3QjBMeRN+epAM3bwIq7QhXTuhrw=",
+        "owner": "numtide",
+        "repo": "devshell",
+        "rev": "f18069890632110c70eaa9bf5ddcf99ea17ff9c2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "devshell",
+        "type": "github"
+      }
+    },
     "emacs": {
       "locked": {
         "lastModified": 1609691039,
@@ -150,6 +165,7 @@
     },
     "root": {
       "inputs": {
+        "devshell": "devshell",
         "emacs": "emacs",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
