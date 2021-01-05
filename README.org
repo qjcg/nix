@@ -147,15 +147,12 @@
 
     - [[https://engineering.shopify.com/blogs/engineering/what-is-nix][What Is Nix]]
 
-**** Videos
-     :PROPERTIES:
-     :CUSTOM_ID: videos
-     :END:
+*** Videos
+    :PROPERTIES:
+    :CUSTOM_ID: videos
+    :END:
 
-     - [[https://www.youtube.com/playlist?list=PLRGI9KQ3_HP_OFRG6R-p4iFgMSK1t5BHs][Nixology]]
-       (playlist by
-       [[https://www.youtube.com/channel/UCSW5DqTyfOI9sUvnFoCjBlQ][Burke
-       Libby]])
+    - [[https://www.youtube.com/playlist?list=PLRGI9KQ3_HP_OFRG6R-p4iFgMSK1t5BHs][Nixology]] (playlist by [[https://www.youtube.com/channel/UCSW5DqTyfOI9sUvnFoCjBlQ][Burke Libby]])
 
 *** Packaging
     :PROPERTIES:
