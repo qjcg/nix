@@ -111,7 +111,7 @@ in
       bash = {
         enable = true;
         profileExtra = ''
-	  # user's nix profile executables.
+          # user's nix profile executables.
           export PATH=~/.nix-profile/bin:$PATH
 
           # nodejs
