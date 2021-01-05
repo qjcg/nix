@@ -3,12 +3,12 @@
 # Uses the home-manager nix-darwin module, which provides the
 # home-manager.users.<user> options below.
 # Ref: https://rycee.gitlab.io/home-manager/index.html#sec-install-nix-darwin-module
-
-{ config, pkgs, home-manager, secrets, ... }:
+let
+  secrets = import ../../secrets.nix;
+in
+{ pkgs, ... }:
 
 {
-  imports = [ home-manager ];
-
   inherit (secrets) users;
 
   home-manager.useGlobalPkgs = true;
@@ -111,6 +111,9 @@
       bash = {
         enable = true;
         profileExtra = ''
+	  # user's nix profile executables.
+          export PATH=~/.nix-profile/bin:$PATH
+
           # nodejs
           export npm_config_prefix=~/.node_modules
           export PATH=$npm_config_prefix/bin:$PATH
@@ -119,14 +122,11 @@
           export GOPATH=~/go
           export GOBIN=$GOPATH/bin
           export PATH=$GOBIN:$PATH
-
-          # nix
-          #if [ -e ~/.nix-profile/etc/profile.d/nix.sh ]; then . ~/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
         '' +
 
-          # fzf functions
-          # See https://bluz71.github.io/2018/11/26/fuzzy-finding-in-bash-with-fzf.html
-          ''
+        # fzf functions
+        # See https://bluz71.github.io/2018/11/26/fuzzy-finding-in-bash-with-fzf.html
+        ''
 
             fzf_find_edit() {
               local file=$(
@@ -188,7 +188,7 @@
           drwHomeUsage =
             "shopt -s dotglob && du --threshold 1M --exclude={G,H,W,X} -s ~/* | sort -n | sed 's/.home.jgosset.//' | awk '{print $2,$1}' | goplot bar";
 
-          
+
           # EMACS
           e = "emacs";
           em = "emacs -s /tmp/emacs503/server"; # emacs macos
