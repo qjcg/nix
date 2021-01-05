@@ -30,12 +30,6 @@
     nur.url = "github:nix-community/NUR";
     sops-nix.url = "github:mic92/sops-nix";
     wayland.url = "github:colemickens/nixpkgs-wayland";
-
-    # Inputs should use the same "nixpkgs" as this flake itself does.
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs-darwin";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    wayland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, ... }@inputs:
