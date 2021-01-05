@@ -158,13 +158,14 @@
     | mu4e             |                      |                                                |        |
     | notmuch          |                      |                                                |        |
 
-** TODO Config changes to review [0/6]
+** TODO Config changes to review [0/7]
 *** TODO [[http://www.nextpoint.se/?p=845][Byte compile the quickstart file]]
 *** TODO [[http://www.nextpoint.se/?p=834][Static generation for init file?]]
 *** TODO [[https://github.com/jjuliano/practical.org.el][Practical GTD and Zettelkasten workflow]]
 *** TODO [[https://takeonrules.com/2020/12/18/directory-structure-for-my-org-instance/][Directory structure for my org instance]]
 *** TODO [[https://yannherklotz.com/blog/2020-12-21-introduction-to-luhmanns-zettelkasten.html][Introduction to Luhmann's Zettelkasten]]
 *** TODO [[https://github.com/alhassy/org-special-block-extras][Use org-special-block-extras for generating HTML and/or LaTeX]]
+*** TODO [[https://github.com/tecosaur/org-pandoc-import][Use org-pandoc-import (convert various file types to org)]]
 ** Customize
 
    Settings having to do with emacs' customize facility (see 'M-x customize').
