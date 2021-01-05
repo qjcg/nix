@@ -2,16 +2,16 @@
 
 buildGoModule rec {
   pname = "maddy";
-  version = "0.4.2";
+  version = "0.4.3";
 
   src = fetchFromGitHub {
     owner = "foxcpp";
     repo = "maddy";
     rev = "v${version}";
-    sha256 = "sha256-jtve6rgGD/vrh8K6bZ1R3FTynEGOMuQ3FcM7xbidqlA=";
+    sha256 = "sha256-Z4dO5lta51TnCeYo/DLNd/m7XYLc07J7Tz4xQuEBJtY=";
   };
 
-  vendorSha256 = "sha256-PomP5m5vmhYAETCW9dRRHduC2ymDbTw55EACQeo3XCo=";
+  vendorSha256 = "sha256-Z3MtcqRYRsZFIi5+vxqD4lr79PDNaLynij6hQwxyipo=";
   subPackages = [ "cmd/maddy" "cmd/maddyctl" ];
 
   nativeBuildInputs = [ getopt scdoc ];
