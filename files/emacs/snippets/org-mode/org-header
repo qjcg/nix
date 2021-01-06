@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: org-header
+# key: orgh
+# --
+* $1
+  :PROPERTIES:
+  :END:
+
+  $2
