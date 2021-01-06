@@ -72,6 +72,7 @@ pkgs.buildEnv {
     ripgrep
     rlwrap
     rsync
+    ruffle
     jg.custom.s-nail
     shellcheck
     shfmt
@@ -86,6 +87,7 @@ pkgs.buildEnv {
     toilet
     tree
     unzip
+    wasmer
     watch
     wireguard-tools
     youtube-dl

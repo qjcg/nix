@@ -25,7 +25,7 @@ buildEnv {
     skaffold
     sops
     stern
-    jg.custom.tekton-cli
+    tektoncd-cli
   ] ++ lib.lists.optionals stdenv.isLinux [ k3s ];
   meta = {
     description = "An environment for working with Kubernetes";
