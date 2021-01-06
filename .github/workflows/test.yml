@@ -32,5 +32,5 @@ jobs:
         run: nix run nixpkgs#nixpkgs-fmt -- --check .
       - name: Check `nix flake show`
         run: nix flake show
-      - name: Check build of env-tools
-        run: nix build .#env-tools
+      - name: Check build of mtlcam
+        run: nix build .#mtlcam
