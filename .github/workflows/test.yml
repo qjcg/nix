@@ -2,6 +2,8 @@ name: Test
 on:
   pull_request:
   push:
+    tags-ignore:
+      - v*
 jobs:
   tests:
     strategy:
