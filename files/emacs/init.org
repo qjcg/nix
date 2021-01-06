@@ -432,8 +432,9 @@
     #+begin_src emacs-lisp
       (use-package yasnippet
 	:ensure
-	:commands yas-minor-mode
-	:hook (go-mode . yas-minor-mode))
+	:init
+	(setq yas-snippet-dirs '("~/.config/nixpkgs/files/emacs/snippets"))
+	(yas-global-mode 1))
     #+end_src
 
 *** Emacs Lisp                                                         :lisp:
