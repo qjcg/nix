@@ -204,6 +204,17 @@
        (when (member "JuliaMono" (font-family-list))
 	 (add-to-list 'default-frame-alist '(font . "JuliaMono-20"))))
 
+     (use-package recentf
+       :init
+       (recentf-mode 1)
+       :bind (("C-x C-r" . jg/recentf-open-files))
+       :config
+       ;; See https://github.com/raxod502/selectrum/wiki/Useful-Commands#switch-to-recent-file
+       (defun jg/recentf-open-files ()
+	 "Use `completing-read' to open a recent file."
+	 (interactive)
+	 (let ((files (mapcar 'abbreviate-file-name recentf-list)))
+	   (find-file (completing-read "Find recent file: " files nil t)))))
 
      (use-package ibuffer
        :init
@@ -543,9 +554,6 @@
      ;; completion-at-point also works out of the box but doesn't support snippets.
      (use-package company
        :ensure
-       :config
-       (setq company-idle-delay 0)
-       (setq company-minimum-prefix-length 1)
        :hook (after-init . global-company-mode))
 
      (use-package company-lsp
