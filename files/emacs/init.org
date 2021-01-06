@@ -138,12 +138,9 @@
     - [ ] persp-mode (like perspective, but across frames)
     - [ ] org-projectile
     - [ ] persp-projectile
-    - [ ] counsel-projectile
     - [ ] projectile-speedbar
     - [ ] [[https://github.com/emacsmirror/excorporate][excorporate]] (office 365 mail, calendar, ...)
     - [ ] [[https://github.com/kljohann/mpv.el][mpv.el]]
-    - [ ] helm (why is ivy better?)
-    - [ ] ido-vertical-mode (why are helm/ivy better?)
     - [ ] smex (smart "M-x")
     - [ ] which-key
     - [ ] paredit (see [[http://danmidwood.com/content/2014/11/21/animated-paredit.html][Structured Guide to Paredit]])
@@ -197,6 +194,7 @@
        (setq echo-keystrokes 0.1) ; Show keystrokes ASAP
        (setq inhibit-startup-message t)
        (setq initial-scratch-message nil)
+       (setq mouse-yank-at-point t) ; Yank at point, NOT click (i.e. mouse cursor position).
        (setq show-trailing-whitespace t)
        (setq auto-fill-mode t)
        (setq browse-url-browser-function 'eww-browse-url) ; Browse with eww by default
@@ -513,72 +511,32 @@
    Completion mode settings.
 
    See:
-   - [[https://www.youtube.com/watch?v=QcPenVmmQyM][Ivy tips and tricks]]
    - [[https://www.youtube.com/watch?v=IDkx48JwDco][Emacs: fuzzy find files (fzf, ripgrep, Ivy+Counsel)]]
 
    #+BEGIN_SRC emacs-lisp
-     ;; See https://oremacs.com/swiper/#introduction
-     (use-package ivy
+     ;; Better solution for incremental narrowing in Emacs.
+     (use-package selectrum
        :ensure
-       :config
-       (setq ivy-use-virtual-buffers t)
-       (setq ivy-count-format "(%d/%d) ")
+       :init
+       (selectrum-mode +1))
 
-       ;; Ivy-based interface to standard commands.
-       (global-set-key (kbd "C-s") 'swiper-isearch)
-       (global-set-key (kbd "C-r") 'swiper-isearch-backward)
-       (global-set-key (kbd "M-x") 'counsel-M-x)
-       (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-       (global-set-key (kbd "M-y") 'counsel-yank-pop)
-       ;; NOTE: Look into replacing bindings to the function keys below.
-       (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-       (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-       (global-set-key (kbd "<f1> l") 'counsel-find-library)
-       (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-       (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-       (global-set-key (kbd "<f2> j") 'counsel-set-variable)
-       (global-set-key (kbd "C-x b") 'ivy-switch-buffer)
-       (global-set-key (kbd "C-c v") 'ivy-push-view)
-       (global-set-key (kbd "C-c V") 'ivy-pop-view)
-
-       ;; Ivy-based interface to shell and system tools.
-       (global-set-key (kbd "C-c g") 'counsel-git)
-       (global-set-key (kbd "C-c j") 'counsel-git-grep)
-       (global-set-key (kbd "C-c L") 'counsel-git-log)
-       (global-set-key (kbd "C-c k") 'counsel-rg)
-       (global-set-key (kbd "C-c m") 'counsel-linux-app)
-       (global-set-key (kbd "C-c n") 'counsel-fzf)
-       (global-set-key (kbd "C-x l") 'counsel-locate)
-       (global-set-key (kbd "C-c J") 'counsel-file-jump)
-       ;;(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-       ;;(global-set-key (kbd "C-c w") 'counsel-wmctrl)
-
-       ;; Ivy-resume and other commands
-       (global-set-key (kbd "C-c C-r") 'ivy-resume)
-       (global-set-key (kbd "C-c b") 'counsel-bookmark)
-       (global-set-key (kbd "C-c d") 'counsel-descbinds)
-       (global-set-key (kbd "C-c g") 'counsel-git)
-       (global-set-key (kbd "C-c o") 'counsel-outline)
-       (global-set-key (kbd "C-c t") 'counsel-load-theme)
-       (global-set-key (kbd "C-c F") 'counsel-org-file)
-
-       (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
-
-       :hook (after-init . ivy-mode))
-
-     ;; Commenting out for now to see if causing strange colors --- remove?
-     ;; (use-package ivy-posframe
-     ;;   :ensure
-     ;;   :init
-     ;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
-     ;;   (ivy-posframe-mode 1))
-
-     (use-package counsel :ensure)
-     (use-package counsel-projectile
+     ;; Simple but effective sorting and filtering for Emacs.
+     (use-package prescient
        :ensure
-       :init (counsel-projectile-mode))
+       :commands prescient-persist-mode
+       :init
+       ;; Save command history on disk, so that sorting gets more intelligent over time.
+       (prescient-persist-mode 1))
 
-     (use-package swiper :ensure)
+     ;; Use prescient sorting with Company.
+     (use-package company-prescient :ensure)
+
+     ;; Use prescient sorting with Selectrum.
+     (use-package selectrum-prescient
+       :ensure
+       :init
+       ;; Make sorting and filtering more intelligent.
+       (selectrum-prescient-mode +1))
 
      ;; Company mode is a standard completion package that works well with lsp-mode.
      ;; company-lsp integrates company mode completion with lsp-mode.
@@ -593,17 +551,6 @@
      (use-package company-lsp
        :ensure
        :commands company-lsp)
-
-     ;; Installed as dependency for of frecentf package.
-     (use-package persist :ensure)
-
-     ;; Access "frecently" visited files and directories.
-     ;; See https://github.com/emacsmirror/frecentf
-     (use-package frecentf
-       :ensure
-       :requires persist
-       :init
-       (frecentf-mode))
    #+END_SRC
 ** Media
 *** RSS/Atom Feeds
@@ -658,8 +605,7 @@
 	      ("M-g i" . dumb-jump-go-prompt)
 	      ("M-g x" . dumb-jump-go-prefer-external)
 	      ("M-g z" . dumb-jump-go-prefer-external-other-window))
-       :config (setq dumb-jump-selector 'ivy) ;; (setq dumb-jump-selector 'helm)
-       )
+       :config (setq dumb-jump-selector 'completing-read))
 
      (defhydra dumb-jump-hydra (:color blue :columns 3)
        "Dumb Jump"
