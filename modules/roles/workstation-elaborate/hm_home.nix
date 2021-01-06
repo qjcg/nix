@@ -1,6 +1,8 @@
-{ pkgs, lib,
-
-secrets, ... }:
+{ pkgs
+, lib
+, secrets
+, ...
+}:
 
 {
   home = {

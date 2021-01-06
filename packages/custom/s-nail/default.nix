@@ -1,6 +1,11 @@
-{ stdenv, fetchurl,
-
-getconf, libiconv, openssl, ncurses, }:
+{ stdenv
+, fetchurl
+, getconf
+, libiconv
+, openssl
+, ncurses
+,
+}:
 
 stdenv.mkDerivation rec {
   name = "s-nail-${version}";

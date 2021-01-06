@@ -12,8 +12,9 @@ buildGoModule rec {
   };
 
   subPackages = [ "." ];
-  buildFlagsArray = let pkg = "github.com/rancher/k3c";
-  in [ "-ldflags=-s -w -X ${pkg}/pkg/version.Version=v${version}" ];
+  buildFlagsArray =
+    let pkg = "github.com/rancher/k3c";
+    in [ "-ldflags=-s -w -X ${pkg}/pkg/version.Version=v${version}" ];
 
   # First, provide a fake hash via the value: lib.fakeSha256
   # Then, during build, copy "got" value in here.

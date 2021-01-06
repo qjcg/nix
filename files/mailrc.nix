@@ -8,7 +8,7 @@
   set noasksend
 
   define InboxHook {
-  	search :fu
+    search :fu
   }
   set folder-hook-+INBOX=InboxHook
 

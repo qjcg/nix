@@ -121,7 +121,7 @@
         set -g status-justify left
         set -g message-style                 "fg=green bright"
         set -g status-style                  "fg=white dim"
-        setw -g window-status-style	     "fg=white dim"
+        setw -g window-status-style       "fg=white dim"
         setw -g window-status-current-style  "fg=cyan  dim"
 
         bind '"' split-window -c "#{pane_current_path}"

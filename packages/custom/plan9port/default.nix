@@ -1,5 +1,13 @@
-{ stdenv, fetchFromGitHub, which, darwin ? null, xorgproto ? null, libX11
-, libXext ? null, libXt ? null, fontconfig ? null, freetype ? null
+{ stdenv
+, fetchFromGitHub
+, which
+, darwin ? null
+, xorgproto ? null
+, libX11
+, libXext ? null
+, libXt ? null
+, fontconfig ? null
+, freetype ? null
 , perl ? null # For building web manuals
 }:
 

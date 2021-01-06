@@ -1,14 +1,33 @@
 # Adapted from: https://github.com/JorelAli/nixos/blob/master/extrapackages/freetube.nix
-{ pkgs, lib, stdenv, fetchurl, makeWrapper,
-
-libpulseaudio, gtk3,
-
-glibc, libuuid,
-
-alsaLib, atk, cairo, cups, dbus, expat, fontconfig, gdk_pixbuf, glib, gnome2
-, gtk2, nspr, nss, systemd, xlibs,
-
-gtk3-x11, at_spi2_atk, at_spi2_core, }:
+{ pkgs
+, lib
+, stdenv
+, fetchurl
+, makeWrapper
+, libpulseaudio
+, gtk3
+, glibc
+, libuuid
+, alsaLib
+, atk
+, cairo
+, cups
+, dbus
+, expat
+, fontconfig
+, gdk_pixbuf
+, glib
+, gnome2
+, gtk2
+, nspr
+, nss
+, systemd
+, xlibs
+, gtk3-x11
+, at_spi2_atk
+, at_spi2_core
+,
+}:
 
 stdenv.mkDerivation rec {
   pname = "freetube";
@@ -42,54 +61,56 @@ stdenv.mkDerivation rec {
   dontPatchELF = true; # Needed for local libraries
 
   # TODO: Clean up this list
-  preFixup = let
-    libPath = lib.makeLibraryPath [
-      glibc
-      stdenv.cc.cc.lib
-      libuuid
+  preFixup =
+    let
+      libPath = lib.makeLibraryPath [
+        glibc
+        stdenv.cc.cc.lib
+        libuuid
 
-      alsaLib
-      atk
-      cairo
-      cups
-      dbus
-      expat
-      fontconfig
-      gdk_pixbuf
-      glib
-      gnome2.pango
-      gnome2.GConf
-      gtk2
-      libpulseaudio
-      nspr
-      nss
-      systemd
-      xlibs.libX11
-      xlibs.libxcb
-      xlibs.libXcomposite
-      xlibs.libXcursor
-      xlibs.libXdamage
-      xlibs.libXext
-      xlibs.libXfixes
-      xlibs.libXi
-      xlibs.libXrender
-      xlibs.libXtst
-      xlibs.libXScrnSaver
-      xlibs.libXrandr
+        alsaLib
+        atk
+        cairo
+        cups
+        dbus
+        expat
+        fontconfig
+        gdk_pixbuf
+        glib
+        gnome2.pango
+        gnome2.GConf
+        gtk2
+        libpulseaudio
+        nspr
+        nss
+        systemd
+        xlibs.libX11
+        xlibs.libxcb
+        xlibs.libXcomposite
+        xlibs.libXcursor
+        xlibs.libXdamage
+        xlibs.libXext
+        xlibs.libXfixes
+        xlibs.libXi
+        xlibs.libXrender
+        xlibs.libXtst
+        xlibs.libXScrnSaver
+        xlibs.libXrandr
 
-      gtk3-x11
-      at_spi2_atk
-      at_spi2_core
+        gtk3-x11
+        at_spi2_atk
+        at_spi2_core
 
-    ];
+      ];
 
-  in ''
-    patchelf \
-      --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
-      --set-rpath "${libPath}:$out/opt/freetube" \
-      $out/opt/freetube/freetube
+    in
+    ''
+      patchelf \
+        --set-interpreter "$(cat $NIX_CC/nix-support/dynamic-linker)" \
+        --set-rpath "${libPath}:$out/opt/freetube" \
+        $out/opt/freetube/freetube
 
-  '';
+    '';
   #patchelf \
   #  --set-rpath "${libcefPath}" \
   #  $out/opt/freetube/libcef.so
