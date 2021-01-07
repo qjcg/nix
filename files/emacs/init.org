@@ -165,6 +165,9 @@
 *** TODO [[https://github.com/tecosaur/org-pandoc-import][Use org-pandoc-import (convert various file types to org)]]
 *** TODO [[https://github.com/jixiuf/vterm-toggle][vterm-toggle]]
 ** Customize
+   :PROPERTIES:
+   :ID:       5c4003c0-fd64-44a5-a5c0-ed1146ff157d
+   :END:
 
    Settings having to do with emacs' customize facility (see 'M-x customize').
 
@@ -185,6 +188,9 @@
    #+end_src
 
 ** Non-Customize
+   :PROPERTIES:
+   :ID:       cd50c59c-387b-4c55-9b98-94dd93268980
+   :END:
    #+begin_src emacs-lisp
      (use-package emacs
        :init
@@ -222,6 +228,9 @@
    #+end_src
    
 ** Emacs Package Repos
+   :PROPERTIES:
+   :ID:       dce52bfd-6259-41d2-abe4-29e78e5f03af
+   :END:
    #+begin_src emacs-lisp
      ;; Enable MELPA repo.
      ;; See https://github.com/melpa/melpa#usage
@@ -229,6 +238,9 @@
    #+end_src
 
 ** Misc
+   :PROPERTIES:
+   :ID:       9ba89688-bb64-479d-88ac-703b1c7f7193
+   :END:
 
    Miscellaneous packages
 
@@ -275,6 +287,9 @@
    #+end_src
 
 ** Look & Feel
+   :PROPERTIES:
+   :ID:       fd62527e-3186-4f0d-b663-ff4728d5f6f2
+   :END:
 
    Emacs Themes.
 
@@ -292,6 +307,8 @@
      (use-package laguna-theme :ensure)
      (use-package almost-mono-themes :ensure)
      (use-package monotropic-theme :ensure)
+
+     (use-package solo-jazz-theme)
 
      ;; Pulse modified region.
      (use-package goggles
@@ -327,6 +344,9 @@
    #+end_src
 
 ** UI/UX
+   :PROPERTIES:
+   :ID:       b7339f82-aa91-4770-a62a-873aff27a6c5
+   :END:
 
    #+begin_src emacs-lisp
      ;; Provides multiple named workspaces (or "perspectives").
@@ -347,27 +367,33 @@
    #+end_src
 
 ** Shell
+   :PROPERTIES:
+   :ID:       2ecbc734-8793-48c8-8a6e-4a1ef14f19d3
+   :END:
 
    #+begin_src emacs-lisp
-     (use-package vterm
-       :ensure
-       :init
-       ;; Set vterm shell to bash even when OS default may be different.
-       (setq vterm-shell "/bin/bash"))
+     (use-package vterm :ensure)
 
      ;; Helps you to use shell easily on Emacs. Only one key action to work.
      (use-package shell-pop
        :ensure
        :init
        ;; Toggle shell-pop.
-       (setq shell-pop-universal-key "C-t")
-
+       (setq shell-pop-universal-key "C-;")
        ;; Workaround for annoying shell-pop layout issue.
        ;; See https://github.com/kyagi/shell-pop-el/issues/51#issuecomment-297470855
-       (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist))
+       (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
+
+       :custom
+       (shell-pop-shell-type (if (fboundp 'vterm)
+				 '("vterm" "*vterm*" #'vterm)
+			       '("eshell", "*eshell*", #'eshell))))
    #+end_src
 
 ** Org-Mode
+   :PROPERTIES:
+   :ID:       c2cb1498-f04a-4016-bc4e-31cefe1b9fc2
+   :END:
 
    See [[https://orgmode.org][orgmode.org]].
 
@@ -394,16 +420,44 @@
 			      ;; Set different bullets, with one getting a terminal fallback.
 			      (setq org-superstar-headline-bullets-list
 				    '("◉" "○" "🞛" "▷"))))))
+     (use-package org-sidebar
+       :ensure
+       :after (general)
+       :config
+       (leader-def :infix "o"
+		   "b" 'org-sidebar-backlinks))
    #+end_src
 
+*** Zettelkasten
+    :PROPERTIES:
+    :ID:       892f130d-0e3c-44a2-97c6-51851b2081d2
+    :END:
+
+    #+begin_src emacs-lisp
+      ;; FIXME: Enable when working. Review packaging / package installation.
+      (use-package org-z
+	:config
+	(org-z-mode 1))
+
+      ;; FIXME: Not available via method I've installed it.
+      (use-package org-z-selectrum)
+    #+end_src
+
+    
 ** Programming                                                  :programming:
 *** Git
+    :PROPERTIES:
+    :ID:       ce89f275-2463-4ca5-9d27-9325942bbcda
+    :END:
     #+begin_src emacs-lisp
       (use-package magit :ensure)
       (use-package gitignore-mode :ensure)
     #+end_src
 
 *** LSP                                                                 :lsp:
+    :PROPERTIES:
+    :ID:       fc767019-9579-4f0a-bfd5-df7bd656062a
+    :END:
 
     [[https://microsoft.github.io/language-server-protocol/][Language Server Protocol (LSP)]].
 
@@ -424,6 +478,9 @@
 	      lsp-ui-flycheck-enable t))
     #+end_src
 *** Snippets
+    :PROPERTIES:
+    :ID:       9edb71fc-4d13-442e-b7d2-7264a7fcdb5b
+    :END:
 
     Snippets via YASnippet.
 
@@ -438,6 +495,9 @@
     #+end_src
 
 *** Emacs Lisp                                                         :lisp:
+    :PROPERTIES:
+    :ID:       f4aaceb8-ddb4-49cd-aa63-32ce743d1b23
+    :END:
 
     #+begin_src emacs-lisp
       ;; Enable jump-to-definition with M-. and M-,
@@ -448,6 +508,9 @@
     #+end_src
       
 *** Go                                                                   :go:
+    :PROPERTIES:
+    :ID:       92ca2abc-410e-4ffb-b86d-c2e1d427ab78
+    :END:
 
     Go programming.
 
@@ -474,6 +537,9 @@
     #+end_src
 
 *** Nix                                                                 :nix:
+    :PROPERTIES:
+    :ID:       d5c7d0da-5d1e-4663-a85c-d63ae1085f3c
+    :END:
     #+begin_src emacs-lisp
       (use-package nix-mode :ensure)
     #+end_src
@@ -486,6 +552,9 @@
 *** Ruby                                                         :ruby:empty:
 ** DevOps                                                            :devops:
 *** Docker
+    :PROPERTIES:
+    :ID:       a97efd6c-7851-49cd-97c3-21b2ec9a1dea
+    :END:
 
     #+begin_src emacs-lisp
       (use-package docker
@@ -496,6 +565,9 @@
     #+end_src
 
 *** Kubernetes
+    :PROPERTIES:
+    :ID:       83ad06d1-a157-4a88-9a57-fce519e3ca1e
+    :END:
 
     Packages for interacting with Kubernetes.
     
@@ -510,6 +582,9 @@
     #+end_src
 
 *** Ansible
+    :PROPERTIES:
+    :ID:       d928baaf-7e3e-4cf0-b451-148db231adc1
+    :END:
     
     #+begin_src emacs-lisp
       (use-package ansible
@@ -519,6 +594,9 @@
     #+end_src
 
 ** Completion
+   :PROPERTIES:
+   :ID:       252fae67-6a95-447f-b529-054208c091f6
+   :END:
 
    Completion mode settings.
 
@@ -563,6 +641,9 @@
    #+END_SRC
 ** Media
 *** RSS/Atom Feeds
+    :PROPERTIES:
+    :ID:       52508cea-200d-41bd-8759-62ca74da1fd0
+    :END:
 
     #+begin_src emacs-lisp
       (use-package elfeed :ensure)
@@ -581,6 +662,9 @@
       ;; 	    (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links)))
     #+end_src
 *** Multimedia
+    :PROPERTIES:
+    :ID:       0e06b145-e172-4005-bef6-1bc3ea2de60f
+    :END:
 
     Use bongo to play audio and video.
    
@@ -597,6 +681,9 @@
       (use-package ytdl :ensure)
     #+end_src
 ** Key Bindings
+   :PROPERTIES:
+   :ID:       7ee3cd8e-26ad-4d13-983e-11d11a80edb5
+   :END:
 
    Configuration relating mainly to key binding.
 
@@ -718,6 +805,9 @@
    #+end_src
   
 ** Thin Ice!
+   :PROPERTIES:
+   :ID:       cc78bcc7-efbc-4243-a937-1de64fb84fa4
+   :END:
 
    This is an area for things I suspect I don't need, but am not
    completely sure about deleting yet. On thin ice!
