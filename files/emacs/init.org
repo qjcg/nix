@@ -16,7 +16,7 @@
 ** Goals [1/6]
 
    What do I want from Emacs?
-   
+
 *** TODO Provide ultimate Developer Experience (DX) [5/10]
     - [X] Git (magit)
     - [X] Reproducible editor package (via Nix)
@@ -60,7 +60,7 @@
 *** TODO Provide OrgMode ExoBrain [2/7]
 
     See [[https://github.com/JSmurf/awesome-org][awesome-org]].
-    
+
     - [X] Todo lists
       - [X] Personal
       - [X] Work
@@ -164,69 +164,57 @@
 *** TODO [[https://github.com/alhassy/org-special-block-extras][Use org-special-block-extras for generating HTML and/or LaTeX]]
 *** TODO [[https://github.com/tecosaur/org-pandoc-import][Use org-pandoc-import (convert various file types to org)]]
 *** TODO [[https://github.com/jixiuf/vterm-toggle][vterm-toggle]]
-** Customize
-   :PROPERTIES:
-   :ID:       5c4003c0-fd64-44a5-a5c0-ed1146ff157d
-   :END:
 
-   Settings having to do with emacs' customize facility (see 'M-x customize').
-
-   Consider one day moving away from using customize altogether.
-   See for example: https://tech.toryanderson.com/2020/11/13/migrating-to-a-custom-file-less-setup/
-
-   #+begin_src emacs-lisp
-     ;; Use a *separate* file for customizations.
-     ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations
-     (setq custom-file "~/.config/emacs/custom.el")
-
-     ;; Load custom theme(s) from here. Currently using solo-jazz.el.
-     (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
-
-
-     ;; NOTE Check if this is done automatically vs really needed.
-     ;;(load custom-file)
-   #+end_src
-
-** Non-Customize
+** Emacs Basics
    :PROPERTIES:
    :ID:       cd50c59c-387b-4c55-9b98-94dd93268980
    :END:
+
+   See: https://tech.toryanderson.com/2020/11/13/migrating-to-a-custom-file-less-setup/
+
    #+begin_src emacs-lisp
-     (use-package emacs
-       :init
-       (menu-bar-mode -1)
-       (tool-bar-mode -1)
-       (scroll-bar-mode -1)
-       (setq echo-keystrokes 0.1) ; Show keystrokes ASAP
-       (setq inhibit-startup-message t)
-       (setq initial-scratch-message nil)
-       (setq mouse-yank-at-point t) ; Yank at point, NOT click (i.e. mouse cursor position).
-       (setq show-trailing-whitespace t)
-       (setq auto-fill-mode t)
-       (setq browse-url-browser-function 'eww-browse-url) ; Browse with eww by default
-       (setq backup-directory-alist '(("." . "~/.config/emacs/backup")))
+	 (use-package emacs
+	   :init
+	   (menu-bar-mode -1)
+	   (tool-bar-mode -1)
+	   (scroll-bar-mode -1)
 
-       ;; Specify default font without using Customize.
-       (when (member "JuliaMono" (font-family-list))
-	 (add-to-list 'default-frame-alist '(font . "JuliaMono-20"))))
+	   ;; Load custom theme(s) from here.
+	   (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
 
-     (use-package recentf
-       :init
-       (recentf-mode 1)
-       :bind (("C-x C-r" . jg/recentf-open-files))
-       :config
-       ;; See https://github.com/raxod502/selectrum/wiki/Useful-Commands#switch-to-recent-file
-       (defun jg/recentf-open-files ()
-	 "Use `completing-read' to open a recent file."
-	 (interactive)
-	 (let ((files (mapcar 'abbreviate-file-name recentf-list)))
-	   (find-file (completing-read "Find recent file: " files nil t)))))
+	   ;; Specify default font without using Customize.
+	   (when (member "JuliaMono" (font-family-list))
+	     (add-to-list 'default-frame-alist '(font . "JuliaMono-20")))
 
-     (use-package ibuffer
-       :init
-       (global-set-key (kbd "C-x C-b") 'ibuffer))
+	   :custom
+	   ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations
+	   (custom-file "~/.config/emacs/custom.el" "Use a *separate* file for customizations")
+	   (echo-keystrokes 0.1 "Show keystrokes ASAP")
+	   (inhibit-startup-message t)
+	   (initial-scratch-message nil)
+	   (mouse-yank-at-point t "Yank at point, NOT click (i.e. mouse cursor position).")
+	   (show-trailing-whitespace t)
+	   (auto-fill-mode t)
+	   (browse-url-browser-function 'eww-browse-url "Browse with eww by default")
+	   (backup-directory-alist '(("." . "~/.config/emacs/backup"))))
+
+	 (use-package recentf
+	   :init
+	   (recentf-mode 1)
+	   :bind (("C-x C-r" . jg/recentf-open-files))
+	   :config
+	   ;; See https://github.com/raxod502/selectrum/wiki/Useful-Commands#switch-to-recent-file
+	   (defun jg/recentf-open-files ()
+	     "Use `completing-read' to open a recent file."
+	     (interactive)
+	     (let ((files (mapcar 'abbreviate-file-name recentf-list)))
+	       (find-file (completing-read "Find recent file: " files nil t)))))
+
+	 (use-package ibuffer
+	   :init
+	   (global-set-key (kbd "C-x C-b") 'ibuffer))
    #+end_src
-   
+
 ** Emacs Package Repos
    :PROPERTIES:
    :ID:       dce52bfd-6259-41d2-abe4-29e78e5f03af
@@ -329,17 +317,19 @@
      (use-package circadian
        :ensure
        :config
+       (circadian-setup)
+
+       :custom
        ;; Can get lat/lon from https://www.latlong.net/
-       (setq calendar-latitude 45.501690)
-       (setq calendar-longitude -73.567253)
-       (setq circadian-themes '((:sunrise . modus-vivendi)
-				(:sunset . modus-vivendi)))
-       (circadian-setup))
+       (calendar-latitude 45.501690)
+       (calendar-longitude -73.567253)
+       (circadian-themes
+	'((:sunrise . modus-vivendi)
+	  (:sunset . modus-vivendi))))
 
      (defadvice load-theme (before theme-dont-propagate activate)
        "Advise load-theme to disable all custom themes before loading (enabling) another one.
-
-	       See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
+	See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
        (mapc #'disable-theme custom-enabled-themes))
    #+end_src
 
@@ -378,16 +368,16 @@
      (use-package shell-pop
        :ensure
        :init
-       ;; Toggle shell-pop.
-       (setq shell-pop-universal-key "C-;")
        ;; Workaround for annoying shell-pop layout issue.
        ;; See https://github.com/kyagi/shell-pop-el/issues/51#issuecomment-297470855
        (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
 
        :custom
-       (shell-pop-shell-type (if (fboundp 'vterm)
-				 '("vterm" "*vterm*" #'vterm)
-			       '("eshell", "*eshell*", #'eshell))))
+       (shell-pop-universal-key "C-;" "Toggle a shell via shell-pop.")
+       (shell-pop-shell-type
+	(if (fboundp 'vterm)
+	    '("vterm" "*vterm*" #'vterm)
+	  '("eshell", "*eshell*", #'eshell))))
    #+end_src
 
 ** Org-Mode
@@ -400,26 +390,37 @@
    #+begin_src emacs-lisp
      ;; NOTE: No need for :ensure, use version included with Emacs.
      (use-package org
+       :init
+       (make-directory org-directory t) ; Ensure org-directory exists.
+
        :config
        ;; See https://orgmode.org/manual/Activation.html
        (global-set-key (kbd "C-c l") 'org-store-link)
        (global-set-key (kbd "C-c a") 'org-agenda)
        (global-set-key (kbd "C-c c") 'org-capture)
 
-       (setq org-startup-with-inline-images t)
-       (setq org-image-actual-width nil))
+       :custom
+       (org-startup-with-inline-images t)
+       (org-image-actual-width nil)
+       (org-default-notes-file "notes.org")
+
+       (org-capture-templates
+	'(("t" "Todo" entry (file+headline "todo.org" "Tasks")
+	   "* TODO %?\n  %i\n  %a")
+
+	  ("j" "Journal" entry (file+datetree "journal.org")
+	   "* %?\nEntered on %U\n  %i\n  %a"))))
 
      ;; Use unicode bullet characters in org-mode.
      ;; To customize, see https://github.com/integral-dw/org-superstar-mode/blob/master/DEMO.org
      (use-package org-superstar
        :ensure
        :init
-       (add-hook 'org-mode-hook
-		 (lambda () (progn
-			      (org-superstar-mode 1)
-			      ;; Set different bullets, with one getting a terminal fallback.
-			      (setq org-superstar-headline-bullets-list
-				    '("◉" "○" "🞛" "▷"))))))
+       (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+       :custom
+       ;; Set different bullets, with one getting a terminal fallback.
+       (org-superstar-headline-bullets-list '("◉" "○" "🞛" "▷")))
+
      (use-package org-sidebar
        :ensure
        :after (general)
@@ -434,16 +435,34 @@
     :END:
 
     #+begin_src emacs-lisp
-      ;; FIXME: Enable when working. Review packaging / package installation.
-      (use-package org-z
-	:config
-	(org-z-mode 1))
+      ;; DISABLE org-z for now (testing org-roam instead).
 
-      ;; FIXME: Not available via method I've installed it.
-      (use-package org-z-selectrum)
+      ;; FIXME: Enable when working. Review packaging / package installation.
+      ;; (use-package org-z
+      ;;   :config
+      ;;   (org-z-mode 1))
+
+      ;; ;; FIXME: Not available via method I've installed it.
+      ;; (use-package org-z-selectrum)
+
+      (use-package org-roam
+	:ensure
+	:hook
+	(after-init . org-roam-mode)
+	:init
+	(make-directory org-roam-directory t)
+	:custom
+	(org-roam-directory (concat org-directory "/roam"))
+	:bind (:map org-roam-mode-map
+		    (("C-c n l" . org-roam)
+		     ("C-c n f" . org-roam-find-file)
+		     ("C-c n g" . org-roam-graph))
+		    :map org-mode-map
+		    (("C-c n i" . org-roam-insert))
+		    (("C-c n I" . org-roam-insert-immediate))))
     #+end_src
 
-    
+
 ** Programming                                                  :programming:
 *** Git
     :PROPERTIES:
@@ -485,13 +504,14 @@
     Snippets via YASnippet.
 
     See http://joaotavora.github.io/yasnippet/index.html
-    
+
     #+begin_src emacs-lisp
       (use-package yasnippet
 	:ensure
 	:init
-	(setq yas-snippet-dirs '("~/.config/nixpkgs/files/emacs/snippets"))
-	(yas-global-mode 1))
+	(yas-global-mode 1)
+	:custom
+	(yas-snippet-dirs '("~/.config/nixpkgs/files/emacs/snippets")))
     #+end_src
 
 *** Emacs Lisp                                                         :lisp:
@@ -506,7 +526,7 @@
 	:after (elisp-mode ielm)
 	:hook (emacs-lisp-mode ielm-mode))
     #+end_src
-      
+
 *** Go                                                                   :go:
     :PROPERTIES:
     :ID:       92ca2abc-410e-4ffb-b86d-c2e1d427ab78
@@ -515,7 +535,7 @@
     Go programming.
 
     See: https://arenzana.org/2019/12/emacs-go-mode-revisited/
-   
+
     #+begin_src emacs-lisp
       (use-package go-mode
 	:ensure
@@ -524,8 +544,6 @@
 	:mode ("\\.go\\'" . go-mode)
 
 	:init
-	(setq compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linting... && golangci-lint")
-	(setq compilation-read-command nil)
 	(display-line-numbers-mode 1) ; FIXME: Only want this to apply for
 					      ; Go files, but as configured, applies
 					      ; to all files!
@@ -533,7 +551,11 @@
 	(add-hook 'before-save-hook #'lsp-organize-imports t t)
 
 	:bind (("M-," . compile)
-	       ("M-." . godef-jump)))
+	       ("M-." . godef-jump))
+
+	:custom
+	(compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linting... && golangci-lint")
+	(compilation-read-command nil))
     #+end_src
 
 *** Nix                                                                 :nix:
@@ -546,7 +568,7 @@
 *** CUE                                                                 :cue:
 
     Consider using [[https://github.com/jdbaldry/cue-mode][cue-mode]].
-    
+
 *** Python                                                     :python:empty:
 *** Javascript / TypeScript                                :javascript:empty:
 *** Ruby                                                         :ruby:empty:
@@ -570,7 +592,7 @@
     :END:
 
     Packages for interacting with Kubernetes.
-    
+
     #+begin_src emacs-lisp
       ;; See https://github.com/chrisbarrett/kubernetes-el
       (use-package kubernetes
@@ -585,7 +607,7 @@
     :PROPERTIES:
     :ID:       d928baaf-7e3e-4cf0-b451-148db231adc1
     :END:
-    
+
     #+begin_src emacs-lisp
       (use-package ansible
 	:ensure
@@ -616,7 +638,9 @@
        :commands prescient-persist-mode
        :init
        ;; Save command history on disk, so that sorting gets more intelligent over time.
-       (prescient-persist-mode 1))
+       (prescient-persist-mode 1)
+       :custom
+       (prescient-filter-method '(literal regexp initialism fuzzy)))
 
      ;; Use prescient sorting with Company.
      (use-package company-prescient :ensure)
@@ -652,7 +676,9 @@
 	:ensure
 	:config
 	(elfeed-org)
-	(setq rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
+
+	:custom
+	(rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
 
       ;; (use-package elfeed-dashboard
       ;;   :load-path "~/.config/emacs/lisp/elfeed-dashboard"
@@ -667,19 +693,29 @@
     :END:
 
     Use bongo to play audio and video.
-   
+
     #+begin_src emacs-lisp
       (use-package bongo
 	:ensure
-	:init
-	;; It seems bongo doesn't play opus files by default. Let's fix that!
-	(setq bongo-custom-backend-matchers
-	      `((mpv local-file "opus"))))
+	:custom
+	(bongo-custom-backend-matchers
+	 `((mpv local-file "opus"))
+	 "It seems bongo doesn't play opus files by default. Let's fix that!"))
 
       ;; Maybe remove this? Review pros/cons.
       ;; youtube-dl on the CLI seems to download less (e.g. via "youtube-dl -x URL")
       (use-package ytdl :ensure)
     #+end_src
+** Communication
+*** BBDB
+    :PROPERTIES:
+    :ID:       401E0A55-DCC7-452E-BB3F-27FC90D8D91A
+    :END:
+
+    #+begin_src emacs-lisp
+      (use-package bbdb :ensure)
+    #+end_src
+
 ** Key Bindings
    :PROPERTIES:
    :ID:       7ee3cd8e-26ad-4d13-983e-11d11a80edb5
@@ -701,7 +737,8 @@
 	      ("M-g i" . dumb-jump-go-prompt)
 	      ("M-g x" . dumb-jump-go-prefer-external)
 	      ("M-g z" . dumb-jump-go-prefer-external-other-window))
-       :config (setq dumb-jump-selector 'completing-read))
+       :custom
+       (dumb-jump-selector 'completing-read "completing-read is for use with selectrum"))
 
      (defhydra dumb-jump-hydra (:color blue :columns 3)
        "Dumb Jump"
@@ -713,10 +750,13 @@
        ("l" dumb-jump-quick-look "Quick look")
        ("b" dumb-jump-back "Back"))
 
-     ;; NOTE: Rigpa is not yet in MELPA. Choose another way to install this.
+
+     ;; NOTES:
+     ;;   - Not in (M)ELPA yet, do not :ensure.
+     ;;   - Watching for a first non-pre-release on GH, see https://github.com/countvajhula/rigpa/issues/1#issuecomment-743849934
      ;; (use-package rigpa
      ;;   :config
-     ;;   (setq rigpa-mode t)
+     ;;   (setq rigpa-mode t))
 
      ;;   ;; navigating meta modes
      ;;   (global-set-key (kbd "s-m s-m") 'rigpa-flashback-to-last-tower)
