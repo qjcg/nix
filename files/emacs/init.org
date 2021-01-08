@@ -463,6 +463,43 @@
 		    (("C-c n I" . org-roam-insert-immediate))))
     #+end_src
 
+*** Slides
+
+    #+name: org-present
+    | pros        | cons |
+    |-------------+------|
+    | very simple |      |
+
+    #+name: org-tree-slide
+    | pros        | cons |
+    |-------------+------|
+    | very simple |      |
+
+
+    #+name: org-mode slides
+    #+begin_src emacs-lisp
+      ;; A presentation tool for org-mode based on the visibility of outline trees
+      (use-package org-tree-slide :ensure)
+
+      ;; Good-lookinig Emacs presentations based on org files.
+      (use-package zpresent :ensure)
+
+      ;; Ultra-minimalist presentation minor-mode for Emacs org-mode.
+      (use-package org-present
+	:ensure
+	:init
+	(add-hook 'org-present-mode-hook
+		  (lambda ()
+		    (org-present-big)
+		    (org-present-hide-cursor)
+		    (org-present-read-only)))
+
+	(add-hook 'org-present-mode-quit-hook
+		  (lambda ()
+		    (org-present-small)
+		    (org-present-show-cursor)
+		    (org-present-read-write))))
+    #+end_src
 
 ** Programming                                                  :programming:
 *** Git
