@@ -173,46 +173,47 @@
    See: https://tech.toryanderson.com/2020/11/13/migrating-to-a-custom-file-less-setup/
 
    #+begin_src emacs-lisp
-	 (use-package emacs
-	   :init
-	   (menu-bar-mode -1)
-	   (tool-bar-mode -1)
-	   (scroll-bar-mode -1)
+     (use-package emacs
+       :init
+       (menu-bar-mode -1)
+       (tool-bar-mode -1)
+       (scroll-bar-mode -1)
 
-	   ;; Load custom theme(s) from here.
-	   (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
+       ;; Load custom theme(s) from here.
+       (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
 
-	   ;; Specify default font without using Customize.
-	   (when (member "JuliaMono" (font-family-list))
-	     (add-to-list 'default-frame-alist '(font . "JuliaMono-20")))
+       ;; Specify default font without using Customize.
+       (when (member "JuliaMono" (font-family-list))
+	 (add-to-list 'default-frame-alist '(font . "JuliaMono-20")))
 
-	   :custom
-	   ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations
-	   (custom-file "~/.config/emacs/custom.el" "Use a *separate* file for customizations")
-	   (echo-keystrokes 0.1 "Show keystrokes ASAP")
-	   (inhibit-startup-message t)
-	   (initial-scratch-message nil)
-	   (mouse-yank-at-point t "Yank at point, NOT click (i.e. mouse cursor position).")
-	   (show-trailing-whitespace t)
-	   (auto-fill-mode t)
-	   (browse-url-browser-function 'eww-browse-url "Browse with eww by default")
-	   (backup-directory-alist '(("." . "~/.config/emacs/backup"))))
+       :custom
+       (custom-file
+	"~/.config/emacs/custom.el"
+	"Use a *separate* file for customizations. See https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations")
+       (echo-keystrokes 0.1 "Show keystrokes ASAP")
+       (inhibit-startup-message t)
+       (initial-scratch-message nil)
+       (mouse-yank-at-point t "Yank at point, NOT click (i.e. mouse cursor position).")
+       (show-trailing-whitespace t)
+       (auto-fill-mode t)
+       (browse-url-browser-function 'eww-browse-url "Browse with eww by default")
+       (backup-directory-alist '(("." . "~/.config/emacs/backup"))))
 
-	 (use-package recentf
-	   :init
-	   (recentf-mode 1)
-	   :bind (("C-x C-r" . jg/recentf-open-files))
-	   :config
-	   ;; See https://github.com/raxod502/selectrum/wiki/Useful-Commands#switch-to-recent-file
-	   (defun jg/recentf-open-files ()
-	     "Use `completing-read' to open a recent file."
-	     (interactive)
-	     (let ((files (mapcar 'abbreviate-file-name recentf-list)))
-	       (find-file (completing-read "Find recent file: " files nil t)))))
+     (use-package recentf
+       :init
+       (recentf-mode 1)
+       :bind (("C-x C-r" . jg/recentf-open-files))
+       :config
+       ;; See https://github.com/raxod502/selectrum/wiki/Useful-Commands#switch-to-recent-file
+       (defun jg/recentf-open-files ()
+	 "Use `completing-read' to open a recent file."
+	 (interactive)
+	 (let ((files (mapcar 'abbreviate-file-name recentf-list)))
+	   (find-file (completing-read "Find recent file: " files nil t)))))
 
-	 (use-package ibuffer
-	   :init
-	   (global-set-key (kbd "C-x C-b") 'ibuffer))
+     (use-package ibuffer
+       :init
+       (global-set-key (kbd "C-x C-b") 'ibuffer))
    #+end_src
 
 ** Emacs Package Repos
