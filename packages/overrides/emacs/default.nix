@@ -23,13 +23,6 @@ pkgs.emacsWithPackagesFromUsePackage {
   # E.g. for packages not in ELPA, MELPA, etc.
   override = epkgs: epkgs // {
 
-    solo-jazz-theme = elisp (pkgs.fetchFromGitHub {
-      owner = "cstby";
-      repo = "solo-jazz-emacs-theme";
-      rev = "3a2d1a0b404ba7c765526a1b76e0f1148ed8d0f2";
-      sha256 = "sha256-Gk4kzKkHKUkzeJ0NfoTbc06l12pPHraxducm8ak32gE=";
-    }) "solo-jazz-theme";
-
     org-z = elisp (pkgs.fetchFromGitHub {
       owner = "landakram";
       repo = "org-z";
@@ -37,10 +30,25 @@ pkgs.emacsWithPackagesFromUsePackage {
       sha256 = "sha256-08zb8iBz5FI8ez70rfZ0eli+FrZDfIfGCI/JXgTPWTA=";
     }) "org-z";
 
+    rigpa = elisp (pkgs.fetchFromGitHub {
+      owner = "countvajhula";
+      repo = "rigpa";
+      rev = "932b83f12afb80f1ab2167c027c84a2b2aa45f17";
+      sha256 = "sha256-dpUJgJMOuOPG1vdJXMf7y6ld/gIFSsyxVzqC2hwKb8g=";
+    }) "rigpa";
+
+    solo-jazz-theme = elisp (pkgs.fetchFromGitHub {
+      owner = "cstby";
+      repo = "solo-jazz-emacs-theme";
+      rev = "3a2d1a0b404ba7c765526a1b76e0f1148ed8d0f2";
+      sha256 = "sha256-Gk4kzKkHKUkzeJ0NfoTbc06l12pPHraxducm8ak32gE=";
+    }) "solo-jazz-theme";
+
   };
 
   extraEmacsPackages = epkgs: with epkgs; [
     solo-jazz-theme
     org-z
+    rigpa
   ];
 }
