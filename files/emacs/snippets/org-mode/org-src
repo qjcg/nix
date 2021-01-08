@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: orgsrc
+# key: orgsrc
+# --
+
+#+name: $1
+#+begin_src $2
+$3
+#+end_src
