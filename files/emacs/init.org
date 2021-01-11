@@ -694,6 +694,15 @@
        ;; Make sorting and filtering more intelligent.
        (selectrum-prescient-mode +1))
 
+     ;; An Emacs mode for quickly browsing, filtering, and editing
+     ;; directories of plain text notes.
+     (use-package deft
+       :bind ("<f8>" . deft)
+       :commands (deft)
+       :config
+       (setq deft-directory org-directory)
+       (setq deft-extensions '("org" "md")))
+
      ;; Company mode is a standard completion package that works well with lsp-mode.
      ;; company-lsp integrates company mode completion with lsp-mode.
      ;; completion-at-point also works out of the box but doesn't support snippets.
