@@ -401,6 +401,14 @@
        (global-set-key (kbd "C-c a") 'org-agenda)
        (global-set-key (kbd "C-c c") 'org-capture)
 
+       ;; This is required, see here.
+       (org-babel-do-load-languages
+	'org-babel-load-languages
+	'((awk . t)
+	  (emacs-lisp . t)
+	  (shell . t)))
+
+
        :custom
        (org-startup-with-inline-images t)
        (org-image-actual-width nil)
