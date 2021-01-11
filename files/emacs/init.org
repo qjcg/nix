@@ -298,6 +298,9 @@
      (use-package almost-mono-themes :ensure)
      (use-package monotropic-theme :ensure)
 
+     ;; Show font at point on mode line.
+     (use-package show-font-mode :ensure)
+
      (use-package solo-jazz-theme)
 
      ;; Pulse modified region.

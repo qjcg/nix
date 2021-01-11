@@ -44,6 +44,14 @@ pkgs.emacsWithPackagesFromUsePackage {
       sha256 = "sha256-dpUJgJMOuOPG1vdJXMf7y6ld/gIFSsyxVzqC2hwKb8g=";
     }) "rigpa";
 
+    show-font-mode = elisp (pkgs.fetchFromGitHub {
+      owner = "melissaboiko";
+      repo = "show-font-mode";
+      rev = "8503be7966d3bd8316039b5f49d3c37c7b97d10c";
+      sha256 = "sha256-0Ifak9iRYT3a0vfksHYhwLi6etz7XUZhA5ozFK8zDaE=";
+    }) "show-font-mode";
+
+
     solo-jazz-theme = elisp (pkgs.fetchFromGitHub {
       owner = "cstby";
       repo = "solo-jazz-emacs-theme";
@@ -58,5 +66,6 @@ pkgs.emacsWithPackagesFromUsePackage {
     ob-go
     org-z
     rigpa
+    show-font-mode
   ];
 }
