@@ -22,6 +22,7 @@
     devshell.url = "github:numtide/devshell";
     emacs.url = "github:nix-community/emacs-overlay";
     flake-utils.url = "github:numtide/flake-utils";
+    guix.url = "github:emiller88/guix";
     home-manager.url = "github:nix-community/home-manager";
     nix-darwin.url = "github:lnl7/nix-darwin";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
