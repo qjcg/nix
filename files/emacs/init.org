@@ -744,9 +744,38 @@
 	 `((mpv local-file "opus"))
 	 "It seems bongo doesn't play opus files by default. Let's fix that!"))
 
-      ;; Maybe remove this? Review pros/cons.
-      ;; youtube-dl on the CLI seems to download less (e.g. via "youtube-dl -x URL")
-      (use-package ytdl :ensure)
+      ;; The Emacs Multi-Media System.
+      ;; See https://www.gnu.org/software/emms/
+      (use-package emms
+	:ensure
+
+	:bind (("C-c e p" . emms-pause)
+	       ("C-c e f" . emms-next)
+	       ("C-c e b" . emms-previous)
+	       ("C-c e s" . emms-stop)
+	       ("C-c e <right>" . (lambda () (interactive) (emms-seek 20)))
+	       ("C-c e <left>" . (lambda () (interactive) (emms-seek -20)))
+	       :map dired-mode-map
+	       ("C-c e SPC" . emms-play-dired))
+
+	:config
+	(require 'emms-mark)
+	(require 'emms-setup)
+  	(require 'emms-streams)
+
+	(emms-all)
+	(emms-default-players)
+
+	(setq emms-source-file-default-directory "~/Music/"))
+
+      ;; TODO: Re-enable later?
+      ;;(setq emms-player-list '(emms-player-mpv))
+
+      ;; (emms-player-set 'emms-player-simple-ipc-mpv 'regex
+      ;; 		   (emms-player-simple-regexp
+      ;; 		    "ogg" "opus" "mp3" "wav" "mpg" "mpeg" "wmv" "wma"
+      ;; 		    "mov" "avi" "divx" "ogm" "ogv" "asf" "mkv" "rm" "rmvb"
+      ;; 		    "mp4" "flac" "vob" "m4a" "ape" "flv" "webm" "aif")))
     #+end_src
 ** Communication
 *** BBDB
