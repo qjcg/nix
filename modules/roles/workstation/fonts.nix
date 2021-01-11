@@ -4,6 +4,7 @@ let
 
   fontPkgs = with pkgs; [
     emacs-all-the-icons-fonts
+    etBook
     fira-code
     go-font
     inconsolata-nerdfont
