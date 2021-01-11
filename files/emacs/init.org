@@ -112,7 +112,7 @@
 
 *** Emacs Init Files
 
-    Some other org-mode init files.
+    Some other init files.
 
     - https://github.com/EgorDuplensky/emacs-init-org/blob/master/my-init.org
     - https://github.com/dariushazimi/emacsdotfiles/blob/master/myinit-linux.org
@@ -124,6 +124,7 @@
     - https://protesilaos.com/dotemacs/
     - https://gitlab.com/protesilaos/dotfiles/-/raw/master/emacs/.emacs.d/emacs-init.org
     - https://justin.abrah.ms/dotfiles/emacs.html
+    - https://github.com/f1rstperson/dotfiles/tree/master/emacs/config/applications
 
 
 * Configuration
@@ -664,6 +665,7 @@
 
    See:
    - [[https://www.youtube.com/watch?v=IDkx48JwDco][Emacs: fuzzy find files (fzf, ripgrep, Ivy+Counsel)]]
+   - [[https://www.youtube.com/watch?v=43Dg5zYPHTU][Emacs: completion framework (Embark,Consult,Orderless,etc.)]]
 
    #+BEGIN_SRC emacs-lisp
      ;; Better solution for incremental narrowing in Emacs.
