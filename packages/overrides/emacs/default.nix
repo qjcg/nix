@@ -23,6 +23,13 @@ pkgs.emacsWithPackagesFromUsePackage {
   # E.g. for packages not in ELPA, MELPA, etc.
   override = epkgs: epkgs // {
 
+    ob-go = elisp (pkgs.fetchFromGitHub {
+      owner = "pope";
+      repo = "ob-go";
+      rev = "2067ed55f4c1d33a43cb3f6948609d240a8915f5";
+      sha256 = "sha256-fN3dFDUl9SF6CLJ8ikYmJ3BvRwpuqX/pZiftWH1LPBk=";
+    }) "ob-go";
+
     org-z = elisp (pkgs.fetchFromGitHub {
       owner = "landakram";
       repo = "org-z";
@@ -48,6 +55,7 @@ pkgs.emacsWithPackagesFromUsePackage {
 
   extraEmacsPackages = epkgs: with epkgs; [
     solo-jazz-theme
+    ob-go
     org-z
     rigpa
   ];

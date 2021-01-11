@@ -412,6 +412,8 @@
 	  ("j" "Journal" entry (file+datetree "journal.org")
 	   "* %?\nEntered on %U\n  %i\n  %a"))))
 
+     (use-package ob-go)
+
      ;; Use unicode bullet characters in org-mode.
      ;; To customize, see https://github.com/integral-dw/org-superstar-mode/blob/master/DEMO.org
      (use-package org-superstar
