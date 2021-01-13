@@ -181,7 +181,8 @@
        (scroll-bar-mode -1)
 
        ;; Load custom theme(s) from here.
-       (add-to-list 'custom-theme-load-path "~/.config/emacs/themes/")
+       (add-to-list 'custom-theme-load-path
+		    (concat user-emacs-directory "themes"))
 
        ;; Specify default font without using Customize.
        (when (member "JuliaMono" (font-family-list))
@@ -401,7 +402,8 @@
        ;;   - nix: https://github.com/nix-community/emacs-overlay/blob/de64025616606b92d4e082c2953310b1ca52d93e/repos/org/org-generated.nix#L18
        :ensure org-plus-contrib
        :init
-       (make-directory org-directory t) ; Ensure org-directory exists.
+       (setq org-directory "~/org")
+       (setq org-agenda-files '(org-directory))
 
        :config
        ;; See https://orgmode.org/manual/Activation.html
@@ -415,7 +417,6 @@
 	'((awk . t)
 	  (emacs-lisp . t)
 	  (shell . t)))
-
 
        :custom
        (org-startup-with-inline-images t)
@@ -479,22 +480,13 @@
     :END:
 
     #+begin_src emacs-lisp
-      ;; DISABLE org-z for now (testing org-roam instead).
-
-      ;; FIXME: Enable when working. Review packaging / package installation.
-      ;; (use-package org-z
-      ;;   :config
-      ;;   (org-z-mode 1))
-
-      ;; ;; FIXME: Not available via method I've installed it.
-      ;; (use-package org-z-selectrum)
-
       (use-package org-roam
 	:ensure
 	:hook
 	(after-init . org-roam-mode)
 	:init
 	(make-directory org-roam-directory t)
+	:after org
 	:custom
 	(org-roam-directory (concat org-directory "/roam"))
 	:bind (:map org-roam-mode-map
@@ -514,9 +506,9 @@
     | very simple |      |
 
     #+name: org-tree-slide
-    | pros        | cons |
-    |-------------+------|
-    | very simple |      |
+    | pros | cons |
+    |------+------|
+    |      |      |
 
 
     #+name: org-mode slides
@@ -737,10 +729,12 @@
      ;; An Emacs mode for quickly browsing, filtering, and editing
      ;; directories of plain text notes.
      (use-package deft
-       :bind ("<f8>" . deft)
+       :ensure
+       :bind ("<f12>" . deft)
        :commands (deft)
        :config
        (setq deft-directory org-directory)
+       (setq deft-recursive t)
        (setq deft-extensions '("org" "md")))
 
      ;; Company mode is a standard completion package that works well with lsp-mode.
