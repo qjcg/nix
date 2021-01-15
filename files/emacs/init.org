@@ -401,10 +401,6 @@
        ;;   - org: https://code.orgmode.org/bzg/org-mode/src/master/contrib
        ;;   - nix: https://github.com/nix-community/emacs-overlay/blob/de64025616606b92d4e082c2953310b1ca52d93e/repos/org/org-generated.nix#L18
        :ensure org-plus-contrib
-       :init
-       (setq org-directory "~/org")
-       (setq org-agenda-files '(org-directory))
-
        :config
        ;; See https://orgmode.org/manual/Activation.html
        (global-set-key (kbd "C-c l") 'org-store-link)
@@ -422,13 +418,11 @@
        (org-startup-with-inline-images t)
        (org-image-actual-width nil)
        (org-default-notes-file "notes.org")
+       (org-agenda-files (list org-directory))
 
        (org-capture-templates
 	'(("t" "Todo" entry (file+headline "todo.org" "Tasks")
-	   "* TODO %?\n  %i\n  %a")
-
-	  ("j" "Journal" entry (file+datetree "journal.org")
-	   "* %?\nEntered on %U\n  %i\n  %a"))))
+	   "* TODO %?\n  %i\n  %a"))))
 
      ;; Org-mode contact lists.
      ;; See reddit: https://www.reddit.com/r/emacs/comments/8toivy/tip_how_to_manage_your_contacts_with_orgcontacts/
@@ -491,12 +485,14 @@
 	(org-roam-directory (concat org-directory "/roam"))
 	:bind (:map org-roam-mode-map
 		    (("C-c n d" . org-roam-dailies-find-today)
-		      ("C-c n l" . org-roam)
-		      ("C-c n f" . org-roam-find-file)
-		      ("C-c n g" . org-roam-graph))
-		     :map org-mode-map
-		     (("C-c n i" . org-roam-insert))
-		     (("C-c n I" . org-roam-insert-immediate))))
+		     ("C-c n p" . org-roam-dailies-find-previous-note)
+		     ("C-c n n" . org-roam-dailies-find-next-note)
+		     ("C-c n l" . org-roam)
+		     ("C-c n f" . org-roam-find-file)
+		     ("C-c n g" . org-roam-graph))
+		    :map org-mode-map
+		    (("C-c n i" . org-roam-insert))
+		    (("C-c n I" . org-roam-insert-immediate))))
     #+end_src
 
 *** Slides
