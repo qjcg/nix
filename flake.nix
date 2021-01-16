@@ -162,6 +162,11 @@
           description = "A flake providing a docker container image.";
         };
 
+        oci = {
+          path = ./templates/oci;
+          description = "A flake providing an OCI container image.";
+        };
+
         container = {
           path = ./templates/container;
           description = "A flake providing a NixOS system container.";
