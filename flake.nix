@@ -157,6 +157,11 @@
         };
 
       templates = {
+        docker = {
+          path = ./templates/docker;
+          description = "A flake providing a docker container image.";
+        };
+
         container = {
           path = ./templates/container;
           description = "A flake providing a NixOS system container.";
