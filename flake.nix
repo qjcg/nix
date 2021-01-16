@@ -75,7 +75,7 @@
           #  custom // environments // overrides;
 
           # NOTE: For "packages" output, top-level attr values MUST all be derivations to pass `nix flake check`.
-          packages = pkgs.jg.custom // pkgs.jg.envs // pkgs.jg.newer // pkgs.jg.overrides;
+          packages = pkgs.jg.custom // pkgs.jg.docker // pkgs.jg.envs // pkgs.jg.newer // pkgs.jg.overrides;
           defaultPackage = pkgs.jg.custom.mtlcam;
 
           devShell =
@@ -150,6 +150,7 @@
           # distinguish them from upstream packages.
           jg = {
             custom = pkgsFromDir ./packages/custom;
+            docker = pkgsFromDir ./packages/docker;
             envs = pkgsFromDir ./packages/envs;
             newer = pkgsFromDir ./packages/newer;
             overrides = pkgsFromDir ./packages/overrides;
