@@ -16,27 +16,40 @@
 
   inputs = {
     pkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    qjcg.url = "github:qjcg/nix";
   };
 
   outputs = { self, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import inputs.pkgs { inherit system; };
+      pkgs = import inputs.pkgs {
+        inherit system;
+        overlays = [ inputs.qjcg.overlay ];
+      };
     in
       {
         defaultPackage.${system} = with pkgs; dockerTools.buildImage {
-          name = "hello";
+          name = "env-testing";
           tag = "latest";
           created = "now";
-          contents = hello;
 
-          config.cmd = [ "/bin/hello" ];
+          contents = [
+            busybox
+            cacert
+            file
+
+            jg.custom.mtlcam
+            jg.custom.horeb
+          ];
+
+          config = {
+            Cmd = [ "/bin/sh" ];
+            Env = [
+              "PATH=/bin"
+              "SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt"
+            ];
+          };
         };
 
-        checks.${system} = {
-          build = self.defaultPackage.${system};
-        };
       };
-
 }
-
