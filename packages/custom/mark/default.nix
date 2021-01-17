@@ -1,14 +1,17 @@
 { stdenv, buildGoModule, fetchFromGitHub, }:
 
+let
+  inherit (stdenv.lib) fakeSha256;
+in
 buildGoModule rec {
   pname = "mark";
-  version = "3.5";
+  version = "4.1";
 
   src = fetchFromGitHub {
     owner = "kovetskiy";
     repo = "mark";
     rev = "${version}";
-    sha256 = "sha256-SyzAnuTVti1rykdz0A8UJZ+HxGgNhtwddW9krJiwRH0=";
+    sha256 = "sha256-eyzLw6oJSKk8X7jOEpVEIldavQUX5qJ+xEhfLFkHous=";
   };
 
   subPackages = [ "." ];
