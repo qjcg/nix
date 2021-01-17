@@ -1,17 +1,20 @@
 { stdenv, fetchFromGitHub, buildGoModule, }:
 
+let
+	inherit (stdenv.lib) fakeSha256;
+in
 buildGoModule rec {
   pname = "benthos";
-  version = "3.36.0";
+  version = "3.37.0";
 
   src = fetchFromGitHub {
     owner = "Jeffail";
     repo = "benthos";
     rev = "v${version}";
-    sha256 = "sha256-QQRgcamvNvo/wXalrMltShyKFGChWJmLKsZ1taMudSk=";
+    sha256 = "sha256-TvMf+h8z5ZCXKUwtGK2nlnwsunO9yRV2X3OyIGDLMcg=";
   };
 
-  vendorSha256 = "sha256-6UszFj73dZwyoOvxgBiGfrXqjKDZPc1o7IKaDl4sk30=";
+  vendorSha256 = "sha256-GEi6Q3Y5h04B64u8iZZ2Tcna7xMLvXhMKlZPQkFRmJ4=";
 
   buildFlagsArray = [
     "-ldflags="
