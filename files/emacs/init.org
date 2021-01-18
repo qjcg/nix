@@ -812,7 +812,7 @@
 	:config
 	(require 'emms-mark)
 	(require 'emms-setup)
-  	(require 'emms-streams)
+	(require 'emms-streams)
 
 	(emms-all)
 	(emms-default-players)
