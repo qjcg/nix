@@ -313,6 +313,12 @@
        (goggles-mode)
        (setq-default goggles-pulse t)) ;; set to nil to disable pulsing
 
+     ;; A light that follows your cursor around so you don't lose it!
+     (use-package beacon
+       :ensure
+       :config
+       (beacon-mode 1))
+
      ;; Apparently the modus- themes have been accepted into upstream
      ;; emacs, so remove them here once released versions begin to include
      ;; them.
