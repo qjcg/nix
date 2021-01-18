@@ -431,30 +431,6 @@
 	'(("t" "Todo" entry (file+headline "todo.org" "Tasks")
 	   "* TODO %?\n  %i\n  %a"))))
 
-     ;; Org-mode contact lists.
-     ;; See reddit: https://www.reddit.com/r/emacs/comments/8toivy/tip_how_to_manage_your_contacts_with_orgcontacts/
-     (use-package org-contacts
-       :after org
-       :custom
-       (org-contacts-files '("contacts.org"))
-       :config
-       (progn
-	 (add-to-list 'org-capture-templates
-		      '("c" "Contact" entry (file "contacts.org")
-			"* %(org-contacts-template-name)
-     :PROPERTIES:
-     :EMAIL: %(org-contacts-template-email)
-     :PHONE:
-     :ALIAS:
-     :NICKNAME:
-     :IGNORE:
-     :ICON:
-     :NOTE: %^{NOTE}
-     :ADDRESS:
-     :BIRTHDAY: %^{yyyy-mm-dd}
-     :END:"))))
-
-
      (use-package ob-go)
 
      ;; Use unicode bullet characters in org-mode.
@@ -539,6 +515,34 @@
 		    (org-present-show-cursor)
 		    (org-present-read-write))))
     #+end_src
+
+*** Contacts
+
+    #+begin_src emacs-lisp
+      ;; Org-mode contact lists.
+      ;; See reddit: https://www.reddit.com/r/emacs/comments/8toivy/tip_how_to_manage_your_contacts_with_orgcontacts/
+      (use-package org-contacts
+	:after org
+	:custom
+	(org-contacts-files '("contacts.org"))
+	:config
+	(progn
+	  (add-to-list 'org-capture-templates
+		       '("c" "Contact" entry (file "contacts.org")
+			 "* %(org-contacts-template-name)
+      :PROPERTIES:
+      :EMAIL: %(org-contacts-template-email)
+      :PHONE:
+      :ALIAS:
+      :NICKNAME:
+      :IGNORE:
+      :ICON:
+      :NOTE: %^{NOTE}
+      :ADDRESS:
+      :BIRTHDAY: %^{yyyy-mm-dd}
+      :END:"))))
+    #+end_src
+
 
 ** Programming                                                  :programming:
 *** Git
@@ -824,16 +828,6 @@
       ;; 		    "mov" "avi" "divx" "ogm" "ogv" "asf" "mkv" "rm" "rmvb"
       ;; 		    "mp4" "flac" "vob" "m4a" "ape" "flv" "webm" "aif")))
     #+end_src
-** Communication
-*** BBDB
-    :PROPERTIES:
-    :ID:       401E0A55-DCC7-452E-BB3F-27FC90D8D91A
-    :END:
-
-    #+begin_src emacs-lisp
-      (use-package bbdb :ensure)
-    #+end_src
-
 ** Key Bindings
    :PROPERTIES:
    :ID:       7ee3cd8e-26ad-4d13-983e-11d11a80edb5
