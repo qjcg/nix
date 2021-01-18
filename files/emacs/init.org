@@ -128,7 +128,7 @@
 
 
 * Configuration
-** TODO Packages to review [0/4]
+** TODO Packages to review [0/1]
 *** TODO Create a "package for review" org-capture template!
 
     Review should have 3 steps: research, pilot, review.
@@ -145,6 +145,7 @@
     - [ ] smex (smart "M-x")
     - [ ] which-key
     - [ ] paredit (see [[http://danmidwood.com/content/2014/11/21/animated-paredit.html][Structured Guide to Paredit]])
+    - [ ] [[http://xelf.me/emacs-mosaic.html][EmacsMosaic]] for [[http://xelf.me/scheme-mosaic.html][SchemeMosaic]] (music creation)
 
     | Name             | Description          | Notes                                          | Rating |
     |------------------+----------------------+------------------------------------------------+--------|
