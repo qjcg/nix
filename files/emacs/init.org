@@ -134,7 +134,7 @@
     Review should have 3 steps: research, pilot, review.
 
     - [ ] strokes (see strokes-mode, strokes-help)
-    - [ ] rigpa
+    - [ ] [[https://github.com/countvajhula/rigpa/][rigpa]]
     - [ ] burly
     - [ ] persp-mode (like perspective, but across frames)
     - [ ] org-projectile
@@ -152,7 +152,7 @@
     | perspective      | workspaces for emacs |                                                |        |
     | persp-projectile |                      |                                                |        |
     | org-projectile   |                      |                                                |        |
-    | [[https://github.com/countvajhula/rigpa/][rigpa]]            |                      | AKA "Epistemic Mode". See emacsconf 2020 talk. |        |
+    | rigpa            |                      | AKA "Epistemic Mode". See emacsconf 2020 talk. |        |
     | dashboard        |                      |                                                |        |
     | mu4e             |                      |                                                |        |
     | notmuch          |                      |                                                |        |
@@ -381,7 +381,7 @@
      (use-package burly :ensure)
    #+end_src
 
-** Shell
+** Terminal
    :PROPERTIES:
    :ID:       2ecbc734-8793-48c8-8a6e-4a1ef14f19d3
    :END:
@@ -413,7 +413,6 @@
    See [[https://orgmode.org][orgmode.org]].
 
    #+begin_src emacs-lisp
-     ;; NOTE: No need for :ensure, use version included with Emacs.
      (use-package org
        ;; Use org-plus-contrib to get contrib packages as well.
        ;; See:
@@ -801,7 +800,7 @@
 	(advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links))
     #+end_src
 
-*** Multimedia
+*** Audio & Video
     :PROPERTIES:
     :ID:       0e06b145-e172-4005-bef6-1bc3ea2de60f
     :END:
