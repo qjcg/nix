@@ -405,7 +405,7 @@
 	  '("eshell", "*eshell*", #'eshell))))
    #+end_src
 
-** Org-Mode
+** Org
    :PROPERTIES:
    :ID:       c2cb1498-f04a-4016-bc4e-31cefe1b9fc2
    :END:
@@ -514,7 +514,7 @@
       (use-package org-tree-slide :ensure)
 
       ;; Good-lookinig Emacs presentations based on org files.
-p      (use-package zpresent :ensure)
+      (use-package zpresent :ensure)
 
       ;; Ultra-minimalist presentation minor-mode for Emacs org-mode.
       (use-package org-present
