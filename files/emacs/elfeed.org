@@ -1,3 +1,7 @@
+#+TITLE: RSS/Atom Feeds
+#+STARTUP: content
+
+
 * Blogs                                                              :elfeed:
 
   See [[http://pragmaticemacs.com/emacs/read-your-rss-feeds-in-emacs-with-elfeed/][Read Your RSS Feeds in Emacs with ElFeed]]
@@ -24,6 +28,7 @@
 **** [[http://lambda-the-ultimate.org/rss.xml][Lambda the Ultimate]]
 **** [[https://developers.redhat.com/blog/feed/atom/][RedHat Developers]]
 **** [[http://syndication.thedailywtf.com/TheDailyWtf][TheDailyWTF]]                   :humor:
+**** [[https://esoteric.codes/rss][esoteric.codes]]
 
 **** Go                                                                  :go:
 ***** [[https://www.ardanlabs.com/blog/index.xml][Ardan Labs Blog]]
@@ -75,7 +80,7 @@
      Behind [[https://sr.ht/][sourcehut]] and the sway Wayland compositor. Thoughtful blog posts.
 
 ** Music                                                              :music:
-*** Youtube                                                  :youtube:videos:
+*** Youtube                                                         :youtube:
 **** SynthWave / VaporWave                              :synthwave:vaporwave:
 ***** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCZyXa4H06Ws3Pwom9cYEdDA][Aesthenic]]
 ***** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCpbH_7H71IPKq4eH7CD5spg][Astral Throb]]
@@ -87,7 +92,7 @@
    
 
 * Imported Feeds
-** YouTube Subscriptions                                     :youtube:videos:
+** YouTube Subscriptions                                            :youtube:
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC-tRVvDyvlu8IFImNQ4baiQ][Scott’s Cheap Flights]]
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCvVWCrxq_aZr7fN_KpaGGTA][The Guild of Ambience]]
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCk9NvmsPBC3lTn_L9kFaylA][iBSD]]
