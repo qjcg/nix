@@ -57,7 +57,7 @@
     - [ ] Write a custom major mode
     - [ ] Add language support for an unsupported language (e.g. CUE)
     - [ ] Create a custom theme (e.g. via `M-x customize-create-theme`)
-*** TODO Provide OrgMode ExoBrain [2/7]
+*** TODO Provide OrgMode ExoBrain [3/7]
 
     See [[https://github.com/JSmurf/awesome-org][awesome-org]].
 
@@ -65,11 +65,11 @@
       - [X] Personal
       - [X] Work
     - [X] Agenda
+    - [X] Journal (via org-dailies)
     - [ ] Sync (via Syncthing etc)
     - [ ] Capture
       - [ ] Todo items
       - [ ] Web bookmarks (from browser)
-    - [ ] Journal
     - [ ] Evaluate related packages
     - [ ] Add Wrike custom link type (e.g. "wrike:12345")
 
@@ -278,75 +278,93 @@
        (global-set-key (kbd "C-=") 'er/expand-region))
    #+end_src
 
-** Look & Feel
+** Appearance
    :PROPERTIES:
    :ID:       fd62527e-3186-4f0d-b663-ff4728d5f6f2
    :END:
 
-   Emacs Themes.
+*** Themes
 
-   See:
-   - [[https://emacsthemes.com/][emacsthemes.com]]
-   - [[https://peach-melpa.org/][peach-melpa.org]]
+    Emacs Themes.
 
-   #+begin_src emacs-lisp
-     ;; Various theme and theme-related packages.
-     (use-package all-the-icons :ensure)
-     (use-package doom-modeline
-       :ensure
-       :init (doom-modeline-mode 1))
-     (use-package doom-themes :ensure)
-     (use-package laguna-theme :ensure)
-     (use-package almost-mono-themes :ensure)
-     (use-package monotropic-theme :ensure)
+    See:
+    - [[https://emacsthemes.com/][emacsthemes.com]]
+    - [[https://peach-melpa.org/][peach-melpa.org]]
 
-     ;; Show font at point on mode line.
-     (use-package show-font-mode :ensure)
+    #+begin_src emacs-lisp
+      ;; Themes and theme-related packages.
+      (use-package all-the-icons :ensure)
+      (use-package almost-mono-themes :ensure)
+      (use-package doom-modeline :ensure :init (doom-modeline-mode 1))
+      (use-package doom-themes :ensure)
+      (use-package laguna-theme :ensure)
+      (use-package modus-operandi-theme :ensure) ;; Delete once part of Emacs.
+      (use-package modus-vivendi-theme :ensure) ;; Delete once part of Emacs.
+      (use-package monotropic-theme :ensure)
+      (use-package solo-jazz-theme)
 
-     (use-package solo-jazz-theme)
+      ;; Don't "layer" themes on top of each other when calling load-theme.
+      (defadvice load-theme (before theme-dont-propagate activate)
+	"Advise load-theme to disable all custom themes before loading (enabling) another one.
+	      See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
+	(mapc #'disable-theme custom-enabled-themes))
 
-     ;; Pulse modified region.
-     (use-package goggles
-       :ensure
-       :demand t
-       :config
-       (goggles-mode)
-       (setq-default goggles-pulse t)) ;; set to nil to disable pulsing
+      ;; Automatic theme-switching based on time of day.
+      ;; See https://github.com/guidoschmidt/circadian.el
+      (use-package circadian
+	:ensure
+	:config
+	(circadian-setup)
 
-     ;; A light that follows your cursor around so you don't lose it!
-     (use-package beacon
-       :ensure
-       :config
-       (beacon-mode 1))
+	:custom
+	;; Can get lat/lon from https://www.latlong.net/
+	(calendar-latitude 45.501690)
+	(calendar-longitude -73.567253)
+	(circadian-themes
+	 '((:sunrise . modus-vivendi)
+	   (:sunset . modus-vivendi))))
+    #+end_src
 
-     ;; Apparently the modus- themes have been accepted into upstream
-     ;; emacs, so remove them here once released versions begin to include
-     ;; them.
-     (use-package modus-operandi-theme :ensure)
-     (use-package modus-vivendi-theme :ensure)
+*** Look & Feel
 
-     ;; Automatic theme-switching based on time of day.
-     ;; See https://github.com/guidoschmidt/circadian.el
-     (use-package circadian
-       :ensure
-       :config
-       (circadian-setup)
+    Non-theme appearance settings.
 
-       :custom
-       ;; Can get lat/lon from https://www.latlong.net/
-       (calendar-latitude 45.501690)
-       (calendar-longitude -73.567253)
-       (circadian-themes
-	'((:sunrise . modus-vivendi)
-	  (:sunset . modus-vivendi))))
+    #+begin_src emacs-lisp
+      ;; Show font at point on mode line.
+      (use-package show-font-mode :ensure)
 
-     (defadvice load-theme (before theme-dont-propagate activate)
-       "Advise load-theme to disable all custom themes before loading (enabling) another one.
-	     See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
-       (mapc #'disable-theme custom-enabled-themes))
-   #+end_src
+      ;; Pulse modified region.
+      (use-package goggles
+	:ensure
+	:demand t
+	:config
+	(goggles-mode)
+	(setq-default goggles-pulse t)) ;; set to nil to disable pulsing
 
-** UI/UX
+      ;; A light that follows your cursor around so you don't lose it!
+      (use-package beacon
+	:ensure
+	:config
+	(beacon-mode 1)
+	:custom
+	(beacon-blink-delay 0.5)
+	(beacon-blink-duration 0.5))
+
+      (use-package org-variable-pitch
+	:ensure
+	:after org
+	:config
+	(set-face-attribute 'org-variable-pitch-fixed-face nil :height 180)
+	(set-face-attribute 'org-variable-pitch-fixed-face nil :weight 'regular)
+
+	(add-hook 'org-mode-hook #'org-variable-pitch-minor-mode)
+
+	:custom
+	(org-variable-pitch-fontify-headline-prefix t)
+	(org-variable-pitch-fixed-font "Roboto"))
+    #+end_src
+
+** Workspaces & Layouts
    :PROPERTIES:
    :ID:       b7339f82-aa91-4770-a62a-873aff27a6c5
    :END:
@@ -361,12 +379,6 @@
 
      ;; Save/restore layouts.
      (use-package burly :ensure)
-
-     ;; Built-in package that handles binding arbitrary actions to mouse strokes.
-     (use-package strokes
-       :init
-       (strokes-mode)
-       (setq strokes-use-strokes-buffer t)) ; Draw strokes to the screen
    #+end_src
 
 ** Shell
@@ -425,6 +437,7 @@
        (org-startup-with-inline-images t)
        (org-image-actual-width nil)
        (org-default-notes-file "notes.org")
+       (org-directory "~/org")
        (org-agenda-files (list org-directory))
 
        (org-capture-templates
@@ -441,7 +454,11 @@
        (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
        :custom
        ;; Set different bullets, with one getting a terminal fallback.
-       (org-superstar-headline-bullets-list '("◉" "○" "🞛" "▷")))
+       (org-superstar-headline-bullets-list '("☰"
+					      "◉"
+					      "○"
+					      "▶"
+					      "▷")))
 
      (use-package org-sidebar
        :ensure
@@ -497,7 +514,7 @@
       (use-package org-tree-slide :ensure)
 
       ;; Good-lookinig Emacs presentations based on org files.
-      (use-package zpresent :ensure)
+p      (use-package zpresent :ensure)
 
       ;; Ultra-minimalist presentation minor-mode for Emacs org-mode.
       (use-package org-present
@@ -543,7 +560,6 @@
       :END:"))))
     #+end_src
 
-
 ** Programming                                                  :programming:
 *** Git
     :PROPERTIES:
@@ -551,6 +567,13 @@
     :END:
     #+begin_src emacs-lisp
       (use-package magit :ensure)
+
+      ;; Work with Git forges from the comfort of Magit.
+      ;; https://github.com/magit/forge
+      (use-package forge
+	:ensure
+	:after magit)
+
       (use-package gitignore-mode :ensure)
     #+end_src
 
@@ -773,19 +796,19 @@
 	:custom
 	(rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
 
-      ;; (use-package elfeed-dashboard
-      ;;   :load-path "~/.config/emacs/lisp/elfeed-dashboard"
-      ;;   :config (progn
-      ;; 	    (setq elfeed-dashboard-file "~/.config/emacs/lisp/elfeed-dashboard/elfeed-dashboard.org")
-      ;; 	    ;; to update feed counts automatically
-      ;; 	    (advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links)))
+      (use-package elfeed-dashboard
+	:config
+	(setq elfeed-dashboard-file "~/.config/emacs/lisp/elfeed-dashboard/elfeed-dashboard.org")
+	;; to update feed counts automatically
+	(advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links))
     #+end_src
+
 *** Multimedia
     :PROPERTIES:
     :ID:       0e06b145-e172-4005-bef6-1bc3ea2de60f
     :END:
 
-    Use bongo to play audio and video.
+    Use bongo and/or EMMS to play audio and video.
 
     #+begin_src emacs-lisp
       (use-package bongo
@@ -828,10 +851,12 @@
       ;; 		    "mov" "avi" "divx" "ogm" "ogv" "asf" "mkv" "rm" "rmvb"
       ;; 		    "mp4" "flac" "vob" "m4a" "ape" "flv" "webm" "aif")))
     #+end_src
-** Key Bindings
+** Bindings
    :PROPERTIES:
    :ID:       7ee3cd8e-26ad-4d13-983e-11d11a80edb5
    :END:
+
+*** Keyboard
 
    Configuration relating mainly to key binding.
 
@@ -956,6 +981,16 @@
      ;;                   (rigpa-enter-mode "word"))))
    #+end_src
   
+*** Mouse
+
+    #+begin_src emacs-lisp
+      ;; Built-in package that handles binding arbitrary actions to mouse strokes.
+      (use-package strokes
+	:init
+	(strokes-mode)
+	(setq strokes-use-strokes-buffer t)) ; Draw strokes to the screen
+    #+end_src
+
 ** Thin Ice!
    :PROPERTIES:
    :ID:       cc78bcc7-efbc-4243-a937-1de64fb84fa4
@@ -979,4 +1014,3 @@
 
      (add-hook 'compilation-mode-hook 'my-compilation-hook)
    #+END_SRC
-
