@@ -638,21 +638,19 @@
 
     Go programming.
 
-    See: https://arenzana.org/2019/12/emacs-go-mode-revisited/
+    See:
+    - https://arenzana.org/2019/12/emacs-go-mode-revisited/
+    - https://github.com/golang/tools/blob/master/gopls/doc/emacs.md
 
     #+begin_src emacs-lisp
       (use-package go-mode
 	:ensure
 	:defer t
 	:after lsp
-	:mode ("\\.go\\'" . go-mode)
-
+	:hook ((before-save-hook . lsp-format-buffer)
+	       (before-save-hook . lsp-organize-imports))
 	:init
-	(display-line-numbers-mode 1) ; FIXME: Only want this to apply for
-					      ; Go files, but as configured, applies
-					      ; to all files!
-	(add-hook 'before-save-hook #'lsp-format-buffer t t)
-	(add-hook 'before-save-hook #'lsp-organize-imports t t)
+	(display-line-numbers-mode 1)
 
 	:bind (("M-," . compile)
 	       ("M-." . godef-jump))
