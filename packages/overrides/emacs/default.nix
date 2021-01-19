@@ -23,19 +23,19 @@ pkgs.emacsWithPackagesFromUsePackage {
   # E.g. for packages not in ELPA, MELPA, etc.
   override = epkgs: epkgs // {
 
+    elfeed-dashboard = elisp (pkgs.fetchFromGitHub {
+      owner = "Manoj321";
+      repo = "elfeed-dashboard";
+      rev = "9e8e212da9ea471bdc58bc0a1f5932833029bb38";
+      sha256 = "sha256-wJC+m4G2Jy+YbL23UT6Y24eDTMUE0IXjpcHZjC3KU6A=";
+    }) "elfeed-dashboard";
+
     ob-go = elisp (pkgs.fetchFromGitHub {
       owner = "pope";
       repo = "ob-go";
       rev = "2067ed55f4c1d33a43cb3f6948609d240a8915f5";
       sha256 = "sha256-fN3dFDUl9SF6CLJ8ikYmJ3BvRwpuqX/pZiftWH1LPBk=";
     }) "ob-go";
-
-    org-z = elisp (pkgs.fetchFromGitHub {
-      owner = "landakram";
-      repo = "org-z";
-      rev = "4583b0617ae0a04e1d6a0a00da125e152f0a2f45";
-      sha256 = "sha256-08zb8iBz5FI8ez70rfZ0eli+FrZDfIfGCI/JXgTPWTA=";
-    }) "org-z";
 
     rigpa = elisp (pkgs.fetchFromGitHub {
       owner = "countvajhula";
@@ -51,7 +51,6 @@ pkgs.emacsWithPackagesFromUsePackage {
       sha256 = "sha256-0Ifak9iRYT3a0vfksHYhwLi6etz7XUZhA5ozFK8zDaE=";
     }) "show-font-mode";
 
-
     solo-jazz-theme = elisp (pkgs.fetchFromGitHub {
       owner = "cstby";
       repo = "solo-jazz-emacs-theme";
@@ -62,10 +61,10 @@ pkgs.emacsWithPackagesFromUsePackage {
   };
 
   extraEmacsPackages = epkgs: with epkgs; [
-    solo-jazz-theme
+    elfeed-dashboard
     ob-go
-    org-z
     rigpa
     show-font-mode
+    solo-jazz-theme
   ];
 }
