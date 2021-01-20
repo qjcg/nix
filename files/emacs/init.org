@@ -662,10 +662,21 @@
 *** Nix                                                                 :nix:
     :PROPERTIES:
     :ID:       d5c7d0da-5d1e-4663-a85c-d63ae1085f3c
+    :ORDERED:  t
     :END:
     #+begin_src emacs-lisp
+      ;; An Emacs major mode for editing Nix expressions.
+      ;; https://github.com/NixOS/nix-mode
       (use-package nix-mode :ensure)
+
+      ;; Reformat Nix code with nixpkgs-fmt
+      ;; https://github.com/purcell/emacs-nixpkgs-fmt
+      (use-package nixpkgs-fmt
+	:ensure
+	:config
+	(add-hook 'nix-mode-hook 'nixpkgs-fmt-on-save-mode))
     #+end_src
+
 *** CUE                                                                 :cue:
 
     Consider using [[https://github.com/jdbaldry/cue-mode][cue-mode]].
