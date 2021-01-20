@@ -17,14 +17,14 @@
 
    What do I want from Emacs?
 
-*** TODO Provide ultimate Developer Experience (DX) [5/10]
+*** TODO Provide ultimate Developer Experience (DX) [6/10]
     - [X] Git (magit)
     - [X] Reproducible editor package (via Nix)
     - [X] Snippets (yasnippets)
     - [X] Fuzzy-find (rg/fzf integration, prot window)
     - [X] Completion
+    - [X] Nix (format)
     - [ ] Go (format, compile, test, jump-to-definition, debug)
-    - [ ] Nix (format)
     - [ ] CUE (format, highlight)
     - [ ] NodeJS
     - [ ] Python
@@ -673,8 +673,7 @@
       ;; https://github.com/purcell/emacs-nixpkgs-fmt
       (use-package nixpkgs-fmt
 	:ensure
-	:config
-	(add-hook 'nix-mode-hook 'nixpkgs-fmt-on-save-mode))
+	:hook (nix-mode . nixpkgs-fmt-on-save-mode))
     #+end_src
 
 *** CUE                                                                 :cue:
