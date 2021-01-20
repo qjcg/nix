@@ -560,6 +560,14 @@
     #+end_src
 
 ** Programming                                                  :programming:
+*** General
+
+    #+begin_src emacs-lisp
+      ;; Define commands which run reformatters on the current Emacs buffer
+      ;; https://github.com/purcell/reformatter.el
+      (use-package reformatter :ensure)
+    #+end_src
+
 *** Git
     :PROPERTIES:
     :ID:       ce89f275-2463-4ca5-9d27-9325942bbcda
@@ -667,13 +675,14 @@
     #+begin_src emacs-lisp
       ;; An Emacs major mode for editing Nix expressions.
       ;; https://github.com/NixOS/nix-mode
-      (use-package nix-mode :ensure)
-
-      ;; Reformat Nix code with nixpkgs-fmt
-      ;; https://github.com/purcell/emacs-nixpkgs-fmt
-      (use-package nixpkgs-fmt
+      (use-package nix-mode
 	:ensure
-	:hook (nix-mode . nixpkgs-fmt-on-save-mode))
+	:hook (nix-mode . nixpkgs-fmt-on-save-mode)
+	:config
+	(reformatter-define nixpkgs-fmt :program "nixpkgs-fmt"))
+
+      ;; (reformatter-define nix-linter
+      ;;   :program "nix-linter"))
     #+end_src
 
 *** CUE                                                                 :cue:
@@ -865,128 +874,128 @@
 
 *** Keyboard
 
-   Configuration relating mainly to key binding.
+    Configuration relating mainly to key binding.
 
-   See `M-x describe-personal-keybindings`.
+    See `M-x describe-personal-keybindings`.
 
-   #+begin_src emacs-lisp
-     (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
-     (setq compilation-scroll-output t)
+    #+begin_src emacs-lisp
+      (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
+      (setq compilation-scroll-output t)
 
-     (use-package dumb-jump
-       :ensure
-       :bind (("M-g o" . dumb-jump-go-other-window)
-	      ("M-g j" . dumb-jump-go)
-	      ("M-g b" . dumb-jump-back)
-	      ("M-g i" . dumb-jump-go-prompt)
-	      ("M-g x" . dumb-jump-go-prefer-external)
-	      ("M-g z" . dumb-jump-go-prefer-external-other-window))
-       :custom
-       (dumb-jump-selector 'completing-read "completing-read is for use with selectrum"))
+      (use-package dumb-jump
+	:ensure
+	:bind (("M-g o" . dumb-jump-go-other-window)
+	       ("M-g j" . dumb-jump-go)
+	       ("M-g b" . dumb-jump-back)
+	       ("M-g i" . dumb-jump-go-prompt)
+	       ("M-g x" . dumb-jump-go-prefer-external)
+	       ("M-g z" . dumb-jump-go-prefer-external-other-window))
+	:custom
+	(dumb-jump-selector 'completing-read "completing-read is for use with selectrum"))
 
-     (defhydra dumb-jump-hydra (:color blue :columns 3)
-       "Dumb Jump"
-       ("j" dumb-jump-go "Go")
-       ("o" dumb-jump-go-other-window "Other window")
-       ("e" dumb-jump-go-prefer-external "Go external")
-       ("x" dumb-jump-go-prefer-external-other-window "Go external other window")
-       ("i" dumb-jump-go-prompt "Prompt")
-       ("l" dumb-jump-quick-look "Quick look")
-       ("b" dumb-jump-back "Back"))
+      (defhydra dumb-jump-hydra (:color blue :columns 3)
+	"Dumb Jump"
+	("j" dumb-jump-go "Go")
+	("o" dumb-jump-go-other-window "Other window")
+	("e" dumb-jump-go-prefer-external "Go external")
+	("x" dumb-jump-go-prefer-external-other-window "Go external other window")
+	("i" dumb-jump-go-prompt "Prompt")
+	("l" dumb-jump-quick-look "Quick look")
+	("b" dumb-jump-back "Back"))
 
 
-     ;; NOTES:
-     ;;   - Not in (M)ELPA yet, do not :ensure.
-     ;;   - Watching for a first non-pre-release on GH, see https://github.com/countvajhula/rigpa/issues/1#issuecomment-743849934
-     ;; (use-package rigpa
-     ;;   :config
-     ;;   (setq rigpa-mode t))
+      ;; NOTES:
+      ;;   - Not in (M)ELPA yet, do not :ensure.
+      ;;   - Watching for a first non-pre-release on GH, see https://github.com/countvajhula/rigpa/issues/1#issuecomment-743849934
+      ;; (use-package rigpa
+      ;;   :config
+      ;;   (setq rigpa-mode t))
 
-     ;;   ;; navigating meta modes
-     ;;   (global-set-key (kbd "s-m s-m") 'rigpa-flashback-to-last-tower)
-     ;;   (global-set-key (kbd "C-<escape>") 'my-enter-tower-mode)
-     ;;   (global-set-key (kbd "M-<escape>") 'my-enter-mode-mode)
-     ;;   (global-set-key (kbd "s-<escape>") 'my-enter-mode-mode)
-     ;;   (global-set-key (kbd "M-<return>")
-     ;; 		  (lambda ()
-     ;; 		    (interactive)
-     ;; 		    (rigpa-enter-selected-level)
-     ;; 		    (let ((ground (rigpa--get-ground-buffer)))
-     ;; 		      (my-exit-mode-mode)
-     ;; 		      (switch-to-buffer ground))))
-     ;;   (global-set-key (kbd "s-<return>")
-     ;; 		  (lambda ()
-     ;; 		    (interactive)
-     ;; 		    (rigpa-enter-selected-level)
-     ;; 		    (let ((ground (rigpa--get-ground-buffer)))
-     ;; 		      (my-exit-mode-mode)
-     ;; 		      (switch-to-buffer ground))))
-     ;;   (global-set-key (kbd "C-<return>")
-     ;; 		  (lambda ()
-     ;; 		    (interactive)
-     ;; 		    (my-exit-tower-mode)
-     ;; 		    (my-enter-mode-mode))))
-     ;;
-     ;; ;; indexed entry to various modes
-     ;; (global-set-key (kbd "s-n") 'evil-normal-state)
-     ;; (global-set-key (kbd "s-y")        ; symex mode
-     ;;                 (lambda ()
-     ;;                   (interactive)
-     ;;                   (rigpa-enter-mode "symex")))
-     ;; (global-set-key (kbd "s-;") (kbd "s-y"))
-     ;; (global-set-key (kbd "s-w")        ; window mode
-     ;;                 (lambda ()
-     ;;                   (interactive)
-     ;;                   (rigpa-enter-mode "window")))
-     ;; (global-set-key (kbd "s-v")        ; view mode
-     ;;                 (lambda ()
-     ;;                   (interactive)
-     ;;                   (rigpa-enter-mode "view")))
-     ;; (global-set-key (kbd "s-x")        ; char mode
-     ;;                 (lambda ()
-     ;;                   (interactive)
-     ;;                   (rigpa-enter-mode "char")))
-     ;; (global-set-key (kbd "s-a")        ; activity mode
-     ;;                 (lambda ()
-     ;;                   (interactive)
-     ;;                   (rigpa-enter-mode "activity")))
-     ;; (global-set-key (kbd "s-z")        ; text mode
-     ;;                 (lambda ()
-     ;;                   (interactive)
-     ;;                   (rigpa-enter-mode "text")))
-     ;; (global-set-key (kbd "s-g")        ; history mode
-     ;;                 (lambda ()
-     ;;                   (interactive)
-     ;;                   (rigpa-enter-mode "history")))
-     ;; (global-set-key (kbd "s-i")        ; system mode
-     ;;                 (lambda ()
-     ;;                   (interactive)
-     ;;                   (rigpa-enter-mode "system")))
-     ;; (global-set-key (kbd "s-b")        ; buffer mode
-     ;;                 (lambda ()
-     ;;                   (interactive)
-     ;;                   (rigpa-enter-mode "buffer")))
-     ;; (global-set-key (kbd "s-f")        ; file mode
-     ;;                 (lambda ()
-     ;;                   (interactive)
-     ;;                   (rigpa-enter-mode "file")))
-     ;; (global-set-key (kbd "s-t")        ; tab mode
-     ;;                 (lambda ()
-     ;;                   (interactive)
-     ;;                   (rigpa-enter-mode "tab")))
-     ;; (global-set-key (kbd "s-l")        ; line mode
-     ;;                 (lambda ()
-     ;;                   (interactive)
-     ;;                   (rigpa-enter-mode "line")))
-     ;; (global-set-key (kbd "s-e")        ; application mode
-     ;;                 (lambda ()
-     ;;                   (interactive)
-     ;;                   (rigpa-enter-mode "application")))
-     ;; (global-set-key (kbd "s-r")        ; word mode
-     ;;                 (lambda ()
-     ;;                   (interactive)
-     ;;                   (rigpa-enter-mode "word"))))
-   #+end_src
+      ;;   ;; navigating meta modes
+      ;;   (global-set-key (kbd "s-m s-m") 'rigpa-flashback-to-last-tower)
+      ;;   (global-set-key (kbd "C-<escape>") 'my-enter-tower-mode)
+      ;;   (global-set-key (kbd "M-<escape>") 'my-enter-mode-mode)
+      ;;   (global-set-key (kbd "s-<escape>") 'my-enter-mode-mode)
+      ;;   (global-set-key (kbd "M-<return>")
+      ;; 		  (lambda ()
+      ;; 		    (interactive)
+      ;; 		    (rigpa-enter-selected-level)
+      ;; 		    (let ((ground (rigpa--get-ground-buffer)))
+      ;; 		      (my-exit-mode-mode)
+      ;; 		      (switch-to-buffer ground))))
+      ;;   (global-set-key (kbd "s-<return>")
+      ;; 		  (lambda ()
+      ;; 		    (interactive)
+      ;; 		    (rigpa-enter-selected-level)
+      ;; 		    (let ((ground (rigpa--get-ground-buffer)))
+      ;; 		      (my-exit-mode-mode)
+      ;; 		      (switch-to-buffer ground))))
+      ;;   (global-set-key (kbd "C-<return>")
+      ;; 		  (lambda ()
+      ;; 		    (interactive)
+      ;; 		    (my-exit-tower-mode)
+      ;; 		    (my-enter-mode-mode))))
+      ;;
+      ;; ;; indexed entry to various modes
+      ;; (global-set-key (kbd "s-n") 'evil-normal-state)
+      ;; (global-set-key (kbd "s-y")        ; symex mode
+      ;;                 (lambda ()
+      ;;                   (interactive)
+      ;;                   (rigpa-enter-mode "symex")))
+      ;; (global-set-key (kbd "s-;") (kbd "s-y"))
+      ;; (global-set-key (kbd "s-w")        ; window mode
+      ;;                 (lambda ()
+      ;;                   (interactive)
+      ;;                   (rigpa-enter-mode "window")))
+      ;; (global-set-key (kbd "s-v")        ; view mode
+      ;;                 (lambda ()
+      ;;                   (interactive)
+      ;;                   (rigpa-enter-mode "view")))
+      ;; (global-set-key (kbd "s-x")        ; char mode
+      ;;                 (lambda ()
+      ;;                   (interactive)
+      ;;                   (rigpa-enter-mode "char")))
+      ;; (global-set-key (kbd "s-a")        ; activity mode
+      ;;                 (lambda ()
+      ;;                   (interactive)
+      ;;                   (rigpa-enter-mode "activity")))
+      ;; (global-set-key (kbd "s-z")        ; text mode
+      ;;                 (lambda ()
+      ;;                   (interactive)
+      ;;                   (rigpa-enter-mode "text")))
+      ;; (global-set-key (kbd "s-g")        ; history mode
+      ;;                 (lambda ()
+      ;;                   (interactive)
+      ;;                   (rigpa-enter-mode "history")))
+      ;; (global-set-key (kbd "s-i")        ; system mode
+      ;;                 (lambda ()
+      ;;                   (interactive)
+      ;;                   (rigpa-enter-mode "system")))
+      ;; (global-set-key (kbd "s-b")        ; buffer mode
+      ;;                 (lambda ()
+      ;;                   (interactive)
+      ;;                   (rigpa-enter-mode "buffer")))
+      ;; (global-set-key (kbd "s-f")        ; file mode
+      ;;                 (lambda ()
+      ;;                   (interactive)
+      ;;                   (rigpa-enter-mode "file")))
+      ;; (global-set-key (kbd "s-t")        ; tab mode
+      ;;                 (lambda ()
+      ;;                   (interactive)
+      ;;                   (rigpa-enter-mode "tab")))
+      ;; (global-set-key (kbd "s-l")        ; line mode
+      ;;                 (lambda ()
+      ;;                   (interactive)
+      ;;                   (rigpa-enter-mode "line")))
+      ;; (global-set-key (kbd "s-e")        ; application mode
+      ;;                 (lambda ()
+      ;;                   (interactive)
+      ;;                   (rigpa-enter-mode "application")))
+      ;; (global-set-key (kbd "s-r")        ; word mode
+      ;;                 (lambda ()
+      ;;                   (interactive)
+      ;;                   (rigpa-enter-mode "word"))))
+    #+end_src
   
 *** Mouse
 
