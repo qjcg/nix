@@ -8,28 +8,30 @@
   k3sVersion ? "v1.18.6-k3s1"
 ,
 }:
-
+let
+  inherit (lib) fakeSha256;
+  version = "4.0.0";
+in
 with lib;
-buildGoModule rec {
+
+buildGoModule {
   pname = "k3d";
-  version = "3.4.0";
+  version = "${version}";
 
   src = fetchFromGitHub {
     owner = "rancher";
     repo = "k3d";
     rev = "v${version}";
-    sha256 = "sha256-C4G4oWNgaKG/SrIAtGJ5YR5KrVr/+KduIMgadPZfOro=";
+    sha256 = "sha256-sHtPW9EaTycHh9d/vp28BvzhmbLUQYsu6yMfJlJYH+k=";
   };
 
-  deleteVendor = true;
-  vendorSha256 = "sha256-LR/elhBZ8vJR41TOYoXN5H+ZXMBu4WKLw8Y4yTWFZAc=";
-
+  vendorSha256 = null; # Use k3d's vendor directory.
   subPackages = [ "." ];
 
   buildFlagsArray = [
     "-ldflags=-s -w"
-    "-X github.com/rancher/k3d/v3/version.Version=${src.rev}"
-    "-X github.com/rancher/k3d/v3/version.K3sVersion=${k3sVersion}"
+    "-X github.com/rancher/k3d/v4/version.Version=v${version}"
+    "-X github.com/rancher/k3d/v4/version.K3sVersion=${k3sVersion}"
   ];
 
   nativeBuildInputs = [ installShellFiles ];
