@@ -369,6 +369,8 @@
    :ID:       b7339f82-aa91-4770-a62a-873aff27a6c5
    :END:
 
+   - This ~window-configuration-to-register~ based approach should handle most scenarios: [[https://www.reddit.com/r/emacs/comments/1m73gs/how_do_you_manage_multiple_workspaces/cc6g59z/][reddit: how do you manage multiple workspaces?]]
+
    #+begin_src emacs-lisp
      ;; Provides multiple named workspaces (or "perspectives").
      ;; See https://github.com/nex3/perspective-el
@@ -689,7 +691,12 @@
 
     Consider using [[https://github.com/jdbaldry/cue-mode][cue-mode]].
 
-*** Python                                                     :python:empty:
+*** Python                                                           :python:
+**** References
+
+     - https://realpython.com/emacs-the-best-python-editor/
+     - https://elpy.readthedocs.io/en/latest/index.html
+    
 *** Javascript / TypeScript                                :javascript:empty:
 *** Ruby                                                         :ruby:empty:
 ** DevOps                                                            :devops:
