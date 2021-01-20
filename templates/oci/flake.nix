@@ -1,17 +1,17 @@
 {
   description = ''
-  A flake providing an OCI container image.
+    A flake providing an OCI container image.
 
-  Usage:
+    Usage:
 
-    # Build the flake's defaultPackage.
-    nix build
+      # Build the flake's defaultPackage.
+      nix build
 
-    # Load the `nix build` result into the local docker cache.
-    docker load < result
+      # Load the `nix build` result into the local docker cache.
+      docker load < result
 
-    # (OPTIONAL) Check whether this flake's defaultPackage builds.
-    nix flake check
+      # (OPTIONAL) Check whether this flake's defaultPackage builds.
+      nix flake check
   '';
 
   inputs = {
@@ -23,18 +23,19 @@
       system = "x86_64-linux";
       pkgs = import inputs.pkgs { inherit system; };
     in
-      {
-        defaultPackage.${system} = with pkgs; ociTools.buildContainer {
-          args = [ (writeScript "run.sh" ''
-          #!${bash}/bin/bash
-          exec ${bash}/bin/bash --version
-          '').outPath ];
-        };
-
-        checks.${system} = {
-          build = self.defaultPackage.${system};
-        };
+    {
+      defaultPackage.${system} = with pkgs; ociTools.buildContainer {
+        args = [
+          (writeScript "run.sh" ''
+            #!${bash}/bin/bash
+            exec ${bash}/bin/bash --version
+          '').outPath
+        ];
       };
 
-}
+      checks.${system} = {
+        build = self.defaultPackage.${system};
+      };
+    };
 
+}

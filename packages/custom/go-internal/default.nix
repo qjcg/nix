@@ -1,5 +1,4 @@
 { stdenv, buildGoModule, fetchFromGitHub, }:
-
 let
   inherit (builtins) fetchurl readFile;
   # TODO: Add this to installed files.

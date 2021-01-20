@@ -1,7 +1,6 @@
 { stdenv, fetchFromGitHub, buildGoModule, }:
-
 let
-	inherit (stdenv.lib) fakeSha256;
+  inherit (stdenv.lib) fakeSha256;
 in
 buildGoModule rec {
   pname = "benthos";

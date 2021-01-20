@@ -1,5 +1,4 @@
 { stdenv, buildGoModule, fetchFromGitHub }:
-
 let
   inherit (stdenv.lib) fakeSha256;
 in
