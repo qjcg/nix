@@ -125,22 +125,19 @@
 
 
 * Configuration
-** TODO Packages to review [0/1]
-*** TODO Create a "package for review" org-capture template!
+** TODO Packages to review [2/11]
 
     Review should have 3 steps: research, pilot, review.
 
+    - [X] burly
+    - [X] which-key
     - [ ] strokes (see strokes-mode, strokes-help)
     - [ ] [[https://github.com/countvajhula/rigpa/][rigpa]]
-    - [X] burly
-    - [ ] persp-mode (like perspective, but across frames)
     - [ ] org-projectile
-    - [ ] persp-projectile
     - [ ] projectile-speedbar
     - [ ] [[https://github.com/emacsmirror/excorporate][excorporate]] (office 365 mail, calendar, ...)
     - [ ] [[https://github.com/kljohann/mpv.el][mpv.el]]
     - [ ] smex (smart "M-x")
-    - [ ] which-key
     - [ ] paredit (see [[http://danmidwood.com/content/2014/11/21/animated-paredit.html][Structured Guide to Paredit]])
     - [ ] [[http://xelf.me/emacs-mosaic.html][EmacsMosaic]] for [[http://xelf.me/scheme-mosaic.html][SchemeMosaic]] (music creation)
 
@@ -455,6 +452,8 @@
        (org-directory "~/org")
        (org-agenda-files (list org-directory))
 
+       ;; TODO Templates to create:
+       ;;   - emacs package to review
        (org-capture-templates
 	'(("t" "Todo" entry (file+headline "todo.org" "Tasks")
 	   "* TODO %?\n  %i\n  %a"))))
@@ -907,6 +906,7 @@
       ;; 		    "mov" "avi" "divx" "ogm" "ogv" "asf" "mkv" "rm" "rmvb"
       ;; 		    "mp4" "flac" "vob" "m4a" "ape" "flv" "webm" "aif")))
     #+end_src
+
 *** PDFs
 
     #+begin_src emacs-lisp
