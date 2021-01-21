@@ -214,6 +214,7 @@
 
             {
               nixpkgs.overlays = [
+                inputs.devshell.overlay
                 inputs.emacs.overlay
                 inputs.wayland.overlay
                 self.overlay
@@ -250,6 +251,7 @@
 
             {
               nixpkgs.overlays = [
+                inputs.devshell.overlay
                 inputs.emacs.overlay
                 inputs.wayland.overlay
                 self.overlay
@@ -274,7 +276,12 @@
             ./modules/users/john.nix
 
             {
-              nixpkgs.overlays = [ self.overlay ];
+              nixpkgs.overlays = [
+                inputs.devshell.overlay
+                inputs.emacs.overlay
+                inputs.wayland.overlay
+                self.overlay
+              ];
 
               roles.workstation.enable = true;
               roles.workstation.games = true;
@@ -297,7 +304,14 @@
               ./modules/users/hm-darwin_jgosset.nix
 
               {
-                nixpkgs.overlays = [ self.overlay ];
+
+                nixpkgs.overlays = [
+                  inputs.devshell.overlay
+                  inputs.emacs.overlay
+                  inputs.wayland.overlay
+                  self.overlay
+                ];
+
                 roles.workstation.enable = true;
               }
 
