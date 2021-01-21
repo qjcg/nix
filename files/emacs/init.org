@@ -94,10 +94,6 @@
    | language | Emacs Lisp   | VimScript        | any                                 | JavaScript |
    | scope    | kitchen sink | text-editor plus | integrating development environment | minimal    |
 
-** Emacs Startup
-
-   The Emacs startup process is described in detail [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Startup-Summary.html][here]].
-
 ** References
 *** Learning
 
@@ -109,6 +105,7 @@
     - [[https://github.com/emacs-tw/awesome-emacs][Awesome Emacs]]
     - [[https://github.com/p3r7/awesome-elisp][Awesome Elisp]]
     - [[http://caiorss.github.io/Emacs-Elisp-Programming/][Emacs in a Box]]
+    - [[https://www.gnu.org/software/emacs/manual/html_node/elisp/Startup-Summary.html][The Emacs startup process]]
 
 *** Emacs Init Files
 
@@ -158,14 +155,15 @@
     | notmuch          |                      |                                                |        |
 
 ** TODO Config changes to review [0/8]
-*** TODO [[http://www.nextpoint.se/?p=845][Byte compile the quickstart file]]
-*** TODO [[http://www.nextpoint.se/?p=834][Static generation for init file?]]
-*** TODO [[https://github.com/jjuliano/practical.org.el][Practical GTD and Zettelkasten workflow]]
-*** TODO [[https://takeonrules.com/2020/12/18/directory-structure-for-my-org-instance/][Directory structure for my org instance]]
-*** TODO [[https://yannherklotz.com/blog/2020-12-21-introduction-to-luhmanns-zettelkasten.html][Introduction to Luhmann's Zettelkasten]]
-*** TODO [[https://github.com/alhassy/org-special-block-extras][Use org-special-block-extras for generating HTML and/or LaTeX]]
-*** TODO [[https://github.com/tecosaur/org-pandoc-import][Use org-pandoc-import (convert various file types to org)]]
-*** TODO [[https://github.com/jixiuf/vterm-toggle][vterm-toggle]]
+   - [ ] [[https://github.com/terlar/emacs-config/blob/master/default.nix#L11-L27][Use Nix to manage emacs init file (tangle init.org, etc)]] (see also:  [[https://github.com/nix-community/emacs-overlay/issues/106][Provide tangled .el file from Org configs]])
+   - [ ] [[https://github.com/jjuliano/practical.org.el][Practical GTD and Zettelkasten workflow]]
+   - [ ] [[https://yannherklotz.com/blog/2020-12-21-introduction-to-luhmanns-zettelkasten.html][Introduction to Luhmann's Zettelkasten]]
+   - [ ] [[https://takeonrules.com/2020/12/18/directory-structure-for-my-org-instance/][Directory structure for my org instance]]
+   - [ ] [[http://www.nextpoint.se/?p=834][Static generation for init file?]]
+   - [ ] [[http://www.nextpoint.se/?p=845][Byte compile the quickstart file]]
+   - [ ] [[https://github.com/alhassy/org-special-block-extras][Use org-special-block-extras for generating HTML and/or LaTeX]]
+   - [ ] [[https://github.com/tecosaur/org-pandoc-import][Use org-pandoc-import (convert various file types to org)]]
+   - [ ] [[https://github.com/jixiuf/vterm-toggle][vterm-toggle]]
 
 ** Emacs Basics
    :PROPERTIES:
@@ -240,19 +238,14 @@
      (use-package bug-hunter :ensure)
      (use-package discover-my-major :ensure)
      (use-package hydra :ensure)
-     (use-package jinja2-mode :ensure)
-     (use-package json-mode :ensure)
 
      (use-package page-break-lines :ensure)
-     (use-package pdf-tools :ensure)
+
      (use-package paradox :ensure)
      (use-package systemd :ensure)
      (use-package undo-tree :ensure)
-     (use-package yaml-mode :ensure)
-     (use-package elpher :ensure)
 
-     (use-package writeroom-mode :ensure)
-     (use-package olivetti :ensure)
+     (use-package elpher :ensure)
 
      (use-package rainbow-delimiters
        :ensure
@@ -384,6 +377,15 @@
      | C-c r j 1 | Jump to window layout in register 1                   |
      | C-c r j 2 | Jump to window layout in register 2                   |
 
+*** Focus Modes
+
+    Modes for focus and eliminating distractions.
+
+    #+begin_src emacs-lisp
+      (use-package olivetti :ensure)
+      (use-package writeroom-mode :ensure)
+    #+end_src
+
 *** Other approaches
 
    #+begin_src emacs-lisp
@@ -402,6 +404,8 @@
    :PROPERTIES:
    :ID:       2ecbc734-8793-48c8-8a6e-4a1ef14f19d3
    :END:
+
+   Use a terminal emulator from within Emacs.
 
    #+begin_src emacs-lisp
      (use-package vterm :ensure)
@@ -585,6 +589,13 @@
       (use-package reformatter :ensure)
     #+end_src
 
+*** Structured Data
+
+     #+begin_src emacs-lisp
+       (use-package json-mode :ensure)
+       (use-package yaml-mode :ensure)
+     #+end_src
+
 *** Git
     :PROPERTIES:
     :ID:       ce89f275-2463-4ca5-9d27-9325942bbcda
@@ -648,11 +659,11 @@
     :END:
 
     #+begin_src emacs-lisp
-      ;; Enable jump-to-definition with M-. and M-,
+      ;; Slime-style navigation of Emacs Lisp source with M-. & M-,
+      ;; https://github.com/purcell/elisp-slime-nav
       (use-package elisp-slime-nav
 	:ensure
-	:after (elisp-mode ielm)
-	:hook (emacs-lisp-mode ielm-mode))
+	:hook ((emacs-lisp-mode ielm-mode) . elisp-slime-nav-mode))
     #+end_src
 
 *** Go                                                                   :go:
@@ -707,6 +718,12 @@
     Consider using [[https://github.com/jdbaldry/cue-mode][cue-mode]].
 
 *** Python                                                           :python:
+**** Jinja2
+
+     #+begin_src emacs-lisp
+       (use-package jinja2-mode :ensure)
+     #+end_src
+
 **** References
 
      - https://realpython.com/emacs-the-best-python-editor/
@@ -824,8 +841,12 @@
     :END:
 
     #+begin_src emacs-lisp
+      ;; An Emacs web feeds client
+      ;; https://github.com/skeeto/elfeed
       (use-package elfeed :ensure)
 
+      ;; Configure the Elfeed RSS reader with an Orgmode file
+      ;; https://github.com/remyhonig/elfeed-org
       (use-package elfeed-org
 	:ensure
 	:config
@@ -834,6 +855,8 @@
 	:custom
 	(rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
 
+      ;; A frontend for elfeed.
+      ;; https://github.com/Manoj321/elfeed-dashboard
       (use-package elfeed-dashboard
 	:config
 	(setq elfeed-dashboard-file "~/.config/emacs/lisp/elfeed-dashboard/elfeed-dashboard.org")
@@ -889,6 +912,12 @@
       ;; 		    "mov" "avi" "divx" "ogm" "ogv" "asf" "mkv" "rm" "rmvb"
       ;; 		    "mp4" "flac" "vob" "m4a" "ape" "flv" "webm" "aif")))
     #+end_src
+*** PDFs
+
+    #+begin_src emacs-lisp
+      (use-package pdf-tools :ensure)
+    #+end_src
+
 ** Bindings
    :PROPERTIES:
    :ID:       7ee3cd8e-26ad-4d13-983e-11d11a80edb5
@@ -925,6 +954,12 @@
 	("l" dumb-jump-quick-look "Quick look")
 	("b" dumb-jump-back "Back"))
 
+      ;; Emacs package that displays available keybindings in popup.
+      ;; https://github.com/justbur/emacs-which-key
+      (use-package which-key
+	:ensure
+	:config
+	(which-key-mode))
 
       ;; NOTES:
       ;;   - Not in (M)ELPA yet, do not :ensure.
@@ -1028,6 +1063,7 @@
 	(strokes-mode)
 	(setq strokes-use-strokes-buffer t)) ; Draw strokes to the screen
     #+end_src
+
 
 ** Thin Ice!
    :PROPERTIES:
