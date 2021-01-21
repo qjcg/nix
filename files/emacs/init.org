@@ -132,7 +132,7 @@
 
     - [ ] strokes (see strokes-mode, strokes-help)
     - [ ] [[https://github.com/countvajhula/rigpa/][rigpa]]
-    - [ ] burly
+    - [X] burly
     - [ ] persp-mode (like perspective, but across frames)
     - [ ] org-projectile
     - [ ] persp-projectile
@@ -362,20 +362,29 @@
    :ID:       b7339f82-aa91-4770-a62a-873aff27a6c5
    :END:
 
-*** Register-based approach
+*** Burly
 
-   - This ~window-configuration-to-register~ based approach should handle most scenarios: [[https://www.reddit.com/r/emacs/comments/1m73gs/how_do_you_manage_multiple_workspaces/cc6g59z/][reddit: how do you manage multiple workspaces?]]
+    Burly is a lightweight workspace manager that builds on top of Emacs' bookmark system.
 
-     #+name: Sample register-based window/buffer management workflow
-     | Keys      | Description                                           |
-     |-----------+-------------------------------------------------------|
-     |           | (Configure a first set of buffers and window layout)  |
-     | C-c r w 1 | Write current window layout to register 1             |
-     | C-x 1     | Clear all but currently selected buffer window        |
-     |           | (Configure a second set of buffers and window layout) |
-     | C-c r w 2 | Write current window layout to register 2             |
-     | C-c r j 1 | Jump to window layout in register 1                   |
-     | C-c r j 2 | Jump to window layout in register 2                   |
+    #+title: Example Burly Workflow
+    | Keys                       | Description                                                  |
+    |----------------------------+--------------------------------------------------------------|
+    | M-x burly-bookmark-frames  | Bookmark the current frames and their window configurations. |
+    | M-x burly-bookmark-windows | Bookmark the current frame’s window configuration.           |
+    | M-x burly-open-bookmark    | Select and open a Burly bookmark                             |
+    | M-x list-bookmarks         | Display a list of existing bookmarks                         |
+    | C-x r l                    | list-bookmarks                                               |
+
+   #+begin_src emacs-lisp
+     ;; Burly is a lightweight workspace manager that builds on top of
+     ;; Emacs' bookmark system.
+     ;; https://github.com/alphapapa/burly.el
+     (use-package burly
+       :ensure
+       :bind (("C-c b f" . burly-bookmark-frames)
+	      ("C-c b w" . burly-bookmark-windows)
+	      ("C-c b o" . burly-open-bookmark)))
+   #+end_src
 
 *** Focus Modes
 
@@ -385,20 +394,6 @@
       (use-package olivetti :ensure)
       (use-package writeroom-mode :ensure)
     #+end_src
-
-*** Other approaches
-
-   #+begin_src emacs-lisp
-     ;; Provides multiple named workspaces (or "perspectives").
-     ;; See https://github.com/nex3/perspective-el
-     (use-package perspective
-       :ensure
-       :config
-       (persp-mode))
-
-     ;; Save/restore layouts.
-     (use-package burly :ensure)
-   #+end_src
 
 ** Terminal
    :PROPERTIES:
