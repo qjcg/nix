@@ -141,15 +141,18 @@
     - [ ] paredit (see [[http://danmidwood.com/content/2014/11/21/animated-paredit.html][Structured Guide to Paredit]])
     - [ ] [[http://xelf.me/emacs-mosaic.html][EmacsMosaic]] for [[http://xelf.me/scheme-mosaic.html][SchemeMosaic]] (music creation)
 
-    | Name             | Description          | Notes                                          | Rating |
-    |------------------+----------------------+------------------------------------------------+--------|
-    | perspective      | workspaces for emacs |                                                |        |
-    | persp-projectile |                      |                                                |        |
-    | org-projectile   |                      |                                                |        |
-    | rigpa            |                      | AKA "Epistemic Mode". See emacsconf 2020 talk. |        |
-    | dashboard        |                      |                                                |        |
-    | mu4e             |                      |                                                |        |
-    | notmuch          |                      |                                                |        |
+    #+title: Emacs Packages to Review
+    | Name           | Description                                                          | URL                                            | Rating |
+    |----------------+----------------------------------------------------------------------+------------------------------------------------+--------|
+    | org-projectile |                                                                      |                                                |        |
+    | rigpa          |                                                                      | AKA "Epistemic Mode". See emacsconf 2020 talk. |        |
+    | dashboard      |                                                                      |                                                |        |
+    | mu4e           |                                                                      |                                                |        |
+    | notmuch        |                                                                      |                                                |        |
+    | orderless      | Emacs completion style that matches multiple regexps in any order    | https://github.com/oantolin/orderless          |        |
+    | consult        | Various commands to quickly select an item from a list of candidates | https://github.com/minad/consult               |        |
+    | embark         | Mini-Buffer Actions Rooted in Keymaps                                | https://github.com/oantolin/embark/            |        |
+    | marginalia     | Marginalia in the minibuffer                                         | https://github.com/minad/marginalia            |        |
 
 ** TODO Config changes to review [0/8]
    - [ ] [[https://github.com/terlar/emacs-config/blob/master/default.nix#L11-L27][Use Nix to manage emacs init file (tangle init.org, etc)]] (see also:  [[https://github.com/nix-community/emacs-overlay/issues/106][Provide tangled .el file from Org configs]])
@@ -452,11 +455,35 @@
        (org-directory "~/org")
        (org-agenda-files (list org-directory))
 
-       ;; TODO Templates to create:
-       ;;   - emacs package to review
-       (org-capture-templates
-	'(("t" "Todo" entry (file+headline "todo.org" "Tasks")
-	   "* TODO %?\n  %i\n  %a"))))
+       (org-capture-templates (doct '(("Todo"
+				       :keys "t"
+				       :file "todo.org"
+				       :headline "Tasks"
+				       :empty-lines-before 1
+				       :template ("* %{todo-state} %^{Description}"
+						  ":PROPERTIES:"
+						  ":Created: %U"
+						  ":END:"
+						  "%i"
+						  "%a")
+
+				       :children (("Emacs Package"
+						   :keys "e"
+						   :headline "Emacs Packages to Review"
+						   :todo-state "TODO"
+						   :template ("* %{todo-state} %^{Emacs Packaage Name} %^G"
+							      ":PROPERTIES:"
+							      ":CAPTURED: %U"
+							      ":URL: %^{URL}p"
+							      ":DESCRIPTION: %^{DESCRIPTION}p"
+							      ":END:"
+							      ""
+							      "%i"
+							      "%a"))))))))
+
+     (use-package doct
+       :ensure
+       :commands (doct))
 
      (use-package ob-go)
 
@@ -553,25 +580,28 @@
       ;; Org-mode contact lists.
       ;; See reddit: https://www.reddit.com/r/emacs/comments/8toivy/tip_how_to_manage_your_contacts_with_orgcontacts/
       (use-package org-contacts
-	:after org
+	:after (org doct)
 	:custom
 	(org-contacts-files '("contacts.org"))
 	:config
-	(progn
-	  (add-to-list 'org-capture-templates
-		       '("c" "Contact" entry (file "contacts.org")
-			 "* %(org-contacts-template-name)
-      :PROPERTIES:
-      :EMAIL: %(org-contacts-template-email)
-      :PHONE:
-      :ALIAS:
-      :NICKNAME:
-      :IGNORE:
-      :ICON:
-      :NOTE: %^{NOTE}
-      :ADDRESS:
-      :BIRTHDAY: %^{yyyy-mm-dd}
-      :END:"))))
+	(add-to-list 'org-capture-templates
+		     (doct '(("Contact"
+			      :keys "c"
+			      :file "contacts.org"
+			      :headline "Contacts"
+			      ;;:empty-lines-before 1
+			      :template ("* %^{Name}"
+					  ":PROPERTIES:"
+					  ":EMAIL: %^{Email}"
+					  ":PHONE:"
+					  ":ALIAS:"
+					  ":NICKNAME:"
+					  ":IGNORE:"
+					  ":ICON:"
+					  ":NOTE: %^{NOTE}"
+					  ":ADDRESS:"
+					  ":BIRTHDAY: %^{yyyy-mm-dd}"
+					  ":END:"))))))
     #+end_src
 
 ** Programming                                                  :programming:
