@@ -2,7 +2,7 @@
 let
   inherit (builtins) fetchurl readFile;
   # TODO: Add this to installed files.
-  testScriptREADME = readFile (fetchUrl "https://raw.githubusercontent.com/golang/go/master/src/cmd/go/testdata/script/README");
+  testScriptREADME = readFile (fetchurl "https://raw.githubusercontent.com/golang/go/master/src/cmd/go/testdata/script/README");
 in
 buildGoModule rec {
   pname = "go-internal";
