@@ -7,6 +7,7 @@ with lib;
 {
   imports = [
     ./fonts.nix
+    ./games.nix
     ./gnome.nix
     ./sway.nix
   ];
@@ -78,9 +79,6 @@ with lib;
       programs.tmux.enable = true;
       programs.tmux.extraConfig = builtins.readFile ../../../files/tmux.conf;
     }
-
-    # TODO: Implement this. For now, just install a single package when activated.
-    (mkIf cfg.games { environment.systemPackages = with pkgs; [ nethack ]; })
 
     (mkIf pkgs.stdenv.isLinux {
 
