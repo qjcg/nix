@@ -62,10 +62,12 @@
 
           devShell =
             with pkgs;
-
-            # See https://github.com/numtide/devshell/blob/master/devshell.toml
-            mkDevShell rec {
+            let
               name = "devshell-nix-qjcg";
+            in
+            # See https://github.com/numtide/devshell/blob/master/devshell.toml
+            devshell.mkShell {
+              inherit name;
 
               motd = ''
 
