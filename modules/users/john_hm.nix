@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 let
   secrets = {
     git-name = "John Gosset";
@@ -444,7 +443,7 @@ in
 
         startup = [
           #{ notification = false; command = "${cmd_set_wallpaper}"; }
-          { command = "${cmd_term_tmux}"; }
+          { command = "${pkgs.jg.overrides.emacs}/bin/emacs"; }
           { command = "${cmd_browser}"; }
         ];
 
