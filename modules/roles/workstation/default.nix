@@ -7,6 +7,7 @@ let
 in
 {
   imports = [
+    ./desktop.nix
     ./fonts.nix
     ./games.nix
     ./gnome.nix
@@ -25,6 +26,12 @@ in
         type = types.bool;
         default = false;
         description = "Enable the workstation role.";
+      };
+
+      desktop = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Install desktop packages.";
       };
 
       games = mkOption {

@@ -269,6 +269,7 @@
               ];
 
               roles.workstation.enable = true;
+              roles.workstation.desktop = true;
               roles.workstation.games = true;
               roles.workstation.gnome = true;
               roles.workstation.sway = true;
