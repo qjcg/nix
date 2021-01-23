@@ -1,4 +1,3 @@
-CFG_FILE := $(abspath configuration.nix)
 KERNEL := $(shell uname)
 
 # Set commands according to OS kernel.
@@ -7,22 +6,13 @@ ifeq ($(KERNEL),Linux)
   CMD_SWITCH := sudo nixos-rebuild switch --flake .
 else ifeq ($(KERNEL),Darwin)
   # NOTE: darwin-rebuild should NOT be run as root!
-  CMD_SWITCH := $(OPTS) darwin-rebuild switch --flake .
+  CMD_SWITCH := darwin-rebuild switch --flake .
 else
   $(error Unknown OS kernel, exiting!)
 endif
 
 switch:
 	$(CMD_SWITCH)
-
-
-# DOCKER
-
-DC_SVC := nix
-
-docker:
-	docker-compose up -d
-	docker-compose exec $(DC_SVC) bash
 
 
 # NIXOS-CONTAINER (linux only)
