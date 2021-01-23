@@ -176,7 +176,7 @@
       };
 
       nixosModules = {
-        container = import ./modules/container.nix;
+        container = import ./modules/container;
         workstation = import ./modules/roles/workstation;
       };
 

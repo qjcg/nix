@@ -57,7 +57,7 @@
         system = "x86_64-linux";
 
         modules = [
-          ../../modules/container.nix
+          ../../modules/container
 
           ({ config, pkgs, ... }: {
 

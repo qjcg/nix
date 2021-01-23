@@ -10,8 +10,8 @@
     nixosConfigurations.flakeimp = inputs.nixpkgs-unstable.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ../../modules/container.nix
-        ../../modules/simple.nix
+        ../../modules/container
+        ../../modules/simple
       ];
     };
 
