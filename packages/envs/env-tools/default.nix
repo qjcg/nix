@@ -13,6 +13,7 @@ pkgs.buildEnv {
     binutils
     bottom
     caddy
+    jg.custom.cm
     jg.custom.conform
     coreutils
     croc
