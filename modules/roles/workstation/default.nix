@@ -1,9 +1,10 @@
 { config, lib, pkgs, ... }:
 let
+  inherit (pkgs.stdenv) isDarwin isLinux;
+  inherit (lib) mkIf mkMerge mkOption types;
+
   cfg = config.roles.workstation;
 in
-with lib;
-
 {
   imports = [
     ./fonts.nix
@@ -80,7 +81,7 @@ with lib;
       programs.tmux.extraConfig = builtins.readFile ../../../files/tmux.conf;
     }
 
-    (mkIf pkgs.stdenv.isLinux {
+    (mkIf isLinux {
 
       networking.firewall.enable = true;
       networking.firewall.allowedTCPPorts = [ ];

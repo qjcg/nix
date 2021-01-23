@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 let
+  inherit (lib) mkIf mkMerge;
   cfg = config.roles.workstation;
 in
-with lib;
 mkMerge [
   (mkIf cfg.gnome {
     environment.systemPackages = with pkgs; [

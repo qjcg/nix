@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   inherit (pkgs.stdenv) isDarwin isLinux;
+  inherit (lib) mkIf mkMerge;
 
   fontPkgs = with pkgs; [
     emacs-all-the-icons-fonts
@@ -18,8 +19,6 @@ let
     victor-mono
   ];
 in
-with lib;
-
 mkMerge [
 
   # Linux font configuration.
