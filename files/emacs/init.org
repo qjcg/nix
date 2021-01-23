@@ -187,12 +187,13 @@
        (when (member "JuliaMono" (font-family-list))
 	 (add-to-list 'default-frame-alist '(font . "JuliaMono-20")))
 
+       ;; FIXME: Not being loaded since 2021-01-23!
        :custom
        (custom-file
 	"~/.config/emacs/custom.el"
 	"Use a *separate* file for customizations. See https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations")
        (echo-keystrokes 0.1 "Show keystrokes ASAP")
-       (inhibit-startup-message t)
+       (inhibit-startup-screen t)
        (initial-scratch-message nil)
        (mouse-yank-at-point t "Yank at point, NOT click (i.e. mouse cursor position).")
        (show-trailing-whitespace t)
@@ -519,11 +520,10 @@
 	:ensure
 	:hook
 	(after-init . org-roam-mode)
-	:init
-	(make-directory org-roam-directory t)
 	:after org
 	:custom
 	(org-roam-directory (concat org-directory "/roam"))
+	(make-directory org-roam-directory t)
 	:bind (:map org-roam-mode-map
 		    (("C-c n d" . org-roam-dailies-find-today)
 		     ("C-c n p" . org-roam-dailies-find-previous-note)
