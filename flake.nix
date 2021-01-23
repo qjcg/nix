@@ -56,24 +56,6 @@
           };
         in
         {
-          #packages =
-          #  let
-          #    custom = pkgs.lib.attrsets.genAttrs
-
-          #      # Filter out packages that are unsupported when on darwin systems.
-          #      (builtins.filter
-          #        (name:
-          #          !(
-          #            !isNull (builtins.match unsupportedDarwin name) &&
-          #            "${system}" == "x86_64-darwin"
-          #          ))
-          #        (builtins.attrNames (builtins.readDir ./packages/custom))
-          #      )
-          #      (name: pkgs.callPackage (./packages/custom + "/${name}") { });
-
-          #  in
-          #  custom // environments // overrides;
-
           # NOTE: For "packages" output, top-level attr values MUST all be derivations to pass `nix flake check`.
           packages = pkgs.jg.custom // pkgs.jg.docker // pkgs.jg.envs // pkgs.jg.newer // pkgs.jg.overrides;
           defaultPackage = pkgs.jg.custom.mtlcam;
@@ -269,6 +251,7 @@
           system = "x86_64-linux";
 
           modules = [
+            inputs.home-manager.nixosModules.home-manager
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t460s
             self.nixosModules.workstation
 

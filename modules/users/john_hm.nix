@@ -1,5 +1,11 @@
-{ config, pkgs, secrets, ... }:
+{ config, pkgs, ... }:
 
+let
+  secrets = {
+    git-name = "John Gosset";
+    git-email = "john@gossetx.com";
+  };
+in
 {
   manual.html.enable = true;
 
@@ -39,7 +45,7 @@
       options = [ "grp:shifts_toggle" ];
     };
 
-    packages = with pkgs; [ env-multimedia env-tools ];
+    packages = with pkgs.jg.envs; [ env-multimedia env-tools ];
 
   };
 
@@ -391,7 +397,7 @@
               };
             };
 
-            statusCommand = "${pkgs.barr}/bin/barr";
+            statusCommand = "${pkgs.jg.custom.barr}/bin/barr";
             extraConfig = ''
               output eDP-1
             '';
@@ -429,7 +435,7 @@
               };
             };
 
-            statusCommand = "${pkgs.barr}/bin/barr";
+            statusCommand = "${pkgs.jg.custom.barr}/bin/barr";
             extraConfig = ''
               output HDMI-A-2
             '';
@@ -457,13 +463,8 @@
       experimental-features = nix-command flakes # See https://www.tweag.io/blog/2020-05-25-flakes/
     '';
     "nvim/coc-settings.json".source = ../../files/coc-settings.json;
-    "s-nail/mailrc".text =
-      pkgs.callPackage ../../files/mailrc.nix { inherit secrets; };
     "starship.toml".source = ../../files/starship.toml;
-    "sway/i3status-rust.toml".text =
-      pkgs.callPackage ../../files/i3status-rust_luban.toml.nix {
-        inherit secrets;
-      };
+    "sway/i3status-rust.toml".source = ../../files/i3status-rust_luban.toml;
     "sxiv/exec/key-handler" = {
       executable = true;
       source = ../../files/sxiv-key-handler.sh;

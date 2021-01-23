@@ -1,8 +1,6 @@
-{ config, home-manager, pkgs, secrets, ... }:
+{ config, pkgs, secrets, ... }:
 
 {
-  imports = [ home-manager ];
-
   users.users.john = {
     description = "John Gosset";
     isNormalUser = true;
