@@ -1,7 +1,0 @@
-version: "3"
-
-services:
-  nix:
-    build: .
-    image: qjcg/nix
-    command: sleep infinity
