@@ -253,6 +253,7 @@
           modules = [
             inputs.home-manager.nixosModules.home-manager
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t460s
+            inputs.sops-nix.nixosModules.sops
             self.nixosModules.workstation
 
             ./modules/machines/luban
@@ -263,6 +264,7 @@
                 inputs.devshell.overlay
                 inputs.emacs.overlay
                 inputs.wayland.overlay
+
                 self.overlay
               ];
 
