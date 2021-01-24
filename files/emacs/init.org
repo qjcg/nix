@@ -455,6 +455,7 @@
        (org-default-notes-file "notes.org")
        (org-directory "~/org")
        (org-agenda-files (list org-directory))
+       (org-confirm-babel-evaluate nil "Don't ask for confirmation before executing code blocks")
 
        (org-capture-templates (doct '(("Todo"
 				       :keys "t"
