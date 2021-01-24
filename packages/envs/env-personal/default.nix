@@ -8,7 +8,10 @@ buildEnv {
     jg.custom.d4
     jg.custom.horeb
     jg.custom.mtlcam
-  ] ++ lib.lists.optionals stdenv.isLinux [ jg.custom.barr ];
+  ] ++ lib.lists.optionals stdenv.isLinux [
+    jg.custom.barr
+    jg.custom.brightness
+  ];
   meta = {
     priority = 0;
     description = "An environment for using apps I've written";

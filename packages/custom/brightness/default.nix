@@ -1,26 +1,26 @@
-{ stdenv, buildGoModule, fetchgit, }:
+{ pkgs, buildGoModule, fetchFromGitHub, ... }:
+let
+  inherit (pkgs.stdenv.lib) fakeSha256;
+  inherit (pkgs.stdenv.lib.licenses) mit;
 
-buildGoModule rec {
-  name = "brightness-${version}";
   version = "0.6.0";
+in
+buildGoModule {
+  pname = "brightness";
+  version = version;
 
-  src = fetchgit {
-    url = "git@git.jgosset.net:brightness";
+  src = fetchFromGitHub {
+    owner = "qjcg";
+    repo = "brightness";
     rev = "v${version}";
-
-    # To get this value, use "nix-prefetch-url --unpack" with the release tarball, eg:
-    #   nix-prefetch-url --unpack https://github.com/qjcg/4d/archive/v0.5.5.tar.gz
-    sha256 = "0000000000000000000000000000000000000000000000000000";
+    sha256 = "sha256-ptb/N8iF0RSEZb/q2G1PeWN/q3cS0frk7k6NFCUvCsw=";
   };
 
-  # First, provide a fake hash via the value: lib.fakeSha256
-  # Then, during build, copy "got" value in here.
-  # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
-  vendorSha256 = "0000000000000000000000000000000000000000000000000000";
+  vendorSha256 = "sha256-pQpattmS9VmO3ZIQUFn66az8GSmB4IvYhTTCFn6SUmo=";
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "A CLI tool for adjusting screen brightness";
     homepage = "https://github.com/qjcg/brightness";
-    license = licenses.mit;
+    license = mit;
   };
 }
