@@ -8,6 +8,7 @@ pkgs.buildEnv {
   paths = [
     age
     jg.custom.annie
+    jg.custom.battery
     aria2
     bat
     binutils
@@ -43,6 +44,7 @@ pkgs.buildEnv {
     jg.custom.grafterm
     grpcurl
     gtop
+    hey
     htop
     imagemagick
     influxdb

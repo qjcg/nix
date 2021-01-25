@@ -9,20 +9,21 @@ buildEnv {
     argocd
     jg.custom.benthos
     conftest
-    jg.custom.cue
+    jg.newer.cue
     dive
     fly
-    #helm
     jg.custom.k3c
     jg.custom.k3d
     kompose
     kubectl
     kubectx
+    kubernetes-helm
     kubeseal
-    #minio-client
+    minio-client
     open-policy-agent
     jg.custom.rancher-cli
     skaffold
+    skopeo
     sops
     stern
     tektoncd-cli
