@@ -57,6 +57,7 @@ pkgs.buildEnv {
     jg.custom.maddy
     jg.custom.mark
     mdbook
+    minisign
     mkcert
     mtr
     neofetch
