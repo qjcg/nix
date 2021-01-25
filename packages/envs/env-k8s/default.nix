@@ -9,12 +9,12 @@ buildEnv {
     argocd
     jg.custom.benthos
     conftest
-    cue
+    jg.custom.cue
     dive
     fly
     #helm
     jg.custom.k3c
-    k3d
+    jg.custom.k3d
     kompose
     kubectl
     kubectx
