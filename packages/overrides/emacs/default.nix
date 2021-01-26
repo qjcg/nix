@@ -54,6 +54,17 @@ pkgs.emacsWithPackagesFromUsePackage {
         sha256 = "sha256-0Ifak9iRYT3a0vfksHYhwLi6etz7XUZhA5ozFK8zDaE=";
       }) "show-font-mode";
 
+    # FIXME: Delete once a working version is in MELPA. At the time of
+    # writing, v2.6.1 in melpa does not have
+    # `shrface-default-keybindings`, while v2.6.3 (upstream) does.
+    shrface = elisp
+      (pkgs.fetchFromGitHub {
+        owner = "chenyanming";
+        repo = "shrface";
+        rev = "89e9354fbd69635d7ad6c32a43736af4d2e59650";
+        sha256 = "sha256-0OHD6dFZtqQpuWGn43q/U4BRF4dN/tyMQemCAkwED70=";
+      }) "shrface";
+
     solo-jazz-theme = elisp
       (pkgs.fetchFromGitHub {
         owner = "cstby";
@@ -69,6 +80,7 @@ pkgs.emacsWithPackagesFromUsePackage {
     ob-go
     rigpa
     show-font-mode
+    shrface
     solo-jazz-theme
   ];
 }

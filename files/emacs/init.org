@@ -843,6 +843,70 @@
        :commands company-lsp)
    #+END_SRC
 ** Media
+*** Web
+
+    #+name: 
+    #+begin_src emacs-lisp
+      ;; Extend shr/eww and other modes with org features and analytics capabilities. Also enables archiving web pages to org files with shr.
+      ;; https://github.com/chenyanming/shrface
+      ;; FIXME: Using custom version via nix. Once MELPA is updated (post 2.6.3?), revert back to MELPA version?
+      (use-package shrface
+	:config
+	(shrface-basic)
+	(shrface-trial)
+	(shrface-default-keybindings) ; setup default keybindings
+	(setq shrface-href-versatile t)
+
+	;; Convenience functions for archiving URLs as org files.
+	;; See also these functions that are part of shrface:
+	;;   - shrface-html-export-as-org
+	;;   - shrface-html-export-to-org
+	;; See https://github.com/chenyanming/shrface/blob/e3434259269e37cee6ff6c7e2300d7fd4c1df8d9/README.org#export-html-to-org
+	(defun request-url-as-org (url)
+	  (interactive "sRequest url: ")
+	  (require 'shrface)
+	  (let ((name "request-url")
+		(buf "*request-url*")
+		(cmd (format "curl -L %s" url)))
+	    (if (get-buffer buf)
+		(kill-buffer buf))
+	    (set-process-sentinel
+	     (start-process-shell-command name buf cmd)
+	     (lambda (p e)
+	       (when (= 0 (process-exit-status p))
+		 (with-current-buffer buf
+		   (shrface-html-export-as-org (buffer-string))))))))
+
+	(defun request-url-to-org (url)
+	  (interactive "sRequest url: ")
+	  (require 'shrface)
+	  (let ((name "request-url")
+		(buf "*request-url*")
+		(cmd (format "curl -L %s" url)))
+	    (if (get-buffer buf)
+		(kill-buffer buf))
+	    (set-process-sentinel
+	     (start-process-shell-command name buf cmd)
+	     (lambda (p e)
+	       (when (= 0 (process-exit-status p))
+		 (with-current-buffer buf
+		   (shrface-html-export-to-org (buffer-string) "request.org"))))))))
+
+      ;; Use shrface-mode with eww to browse/archive web pages as org files.
+      (use-package eww
+	:after shrface
+	:init
+	(add-hook 'eww-after-render-hook #'shrface-mode)
+	:config
+	(define-key eww-mode-map (kbd "<tab>") 'shrface-outline-cycle)
+	(define-key eww-mode-map (kbd "S-<tab>") 'shrface-outline-cycle-buffer)
+	(define-key eww-mode-map (kbd "C-t") 'shrface-toggle-bullets)
+	(define-key eww-mode-map (kbd "C-j") 'shrface-next-headline)
+	(define-key eww-mode-map (kbd "C-k") 'shrface-previous-headline)
+	(define-key eww-mode-map (kbd "M-l") 'shrface-links-counsel) ; or 'shrface-links-helm
+	(define-key eww-mode-map (kbd "M-h") 'shrface-headline-counsel)) ; or 'shrface-headline-helm)
+    #+end_src
+    
 *** RSS/Atom Feeds
     :PROPERTIES:
     :ID:       52508cea-200d-41bd-8759-62ca74da1fd0
@@ -1073,7 +1137,21 @@
 	(setq strokes-use-strokes-buffer t)) ; Draw strokes to the screen
     #+end_src
 
-
+** Creativity and Inspiration
+   
+   #+begin_src emacs-lisp
+     ;; FIXME: package not found via melpa?
+     ;; The I Ching, or Book of Changes
+     ;; https://github.com/zzkt/i-ching
+     ;; (use-package i-ching
+     ;;   :ensure
+     ;;   :config (setq i-ching-hexagram-size 18
+     ;; 		i-ching-hexagram-font "DejaVu Sans"
+     ;; 		i-ching-divination-method '3-coins
+     ;; 		i-ching-randomness-source 'pseudo)
+     ;;   :bind (("H-i h" . i-ching-insert-hexagram)))
+   #+end_src
+   
 ** Thin Ice!
    :PROPERTIES:
    :ID:       cc78bcc7-efbc-4243-a937-1de64fb84fa4
