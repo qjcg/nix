@@ -73,14 +73,6 @@
     - [ ] Evaluate related packages
     - [ ] Add Wrike custom link type (e.g. "wrike:12345")
 
-    |-------------+----------------------------------------------------+--------|
-    | PACKAGE     | DESCRIPTION                                        | RATING |
-    |-------------+----------------------------------------------------+--------|
-    | [[https://github.com/bastibe/org-journal][org-journal]] | A simple org-based journalling mode.               |        |
-    | [[https://www.orgroam.com/][org-roam]]    | A plain-text personal knowledge management system. |        |
-    | [[https://github.com/alphapapa/org-sidebar][org-sidebar]] | Helpful sidebars for Org buffers.                  |        |
-    | [[https://github.com/landakram/org-z][org-z]]       | Lightweight, Org-mode flavored zettelkasten links. |        |
-
 ** Comparison with alternatives
 
    I used VIM as my primary text editor for ~15 years (although I also
@@ -469,19 +461,21 @@
 						  "%i"
 						  "%a")
 
-				       :children (("Emacs Package"
-						   :keys "e"
-						   :headline "Emacs Packages to Review"
-						   :todo-state "TODO"
-						   :template ("* %{todo-state} %^{Emacs Packaage Name} %^G"
-							      ":PROPERTIES:"
-							      ":CAPTURED: %U"
-							      ":URL: %^{URL}p"
-							      ":DESCRIPTION: %^{DESCRIPTION}p"
-							      ":END:"
-							      ""
-							      "%i"
-							      "%a"))))))))
+				       (("Emacs Package"
+					 :keys "e"
+					 :file "todo.org"
+					 :headline "Emacs Packages to Review"
+					 :empty-lines-before 1
+					 :todo-state "TODO"
+					 :template ("* %{todo-state} %^{Emacs Packaage Name} %^G"
+						    ":PROPERTIES:"
+						    ":CAPTURED: %U"
+						    ":URL: %^{URL}p"
+						    ":DESCRIPTION: %^{DESCRIPTION}p"
+						    ":END:"
+						    ""
+						    "%i"
+						    "%a"))))))))
 
      (use-package doct
        :ensure
@@ -538,17 +532,6 @@
     #+end_src
 
 *** Slides
-
-    #+name: org-present
-    | pros        | cons |
-    |-------------+------|
-    | very simple |      |
-
-    #+name: org-tree-slide
-    | pros | cons |
-    |------+------|
-    |      |      |
-
 
     #+name: org-mode slides
     #+begin_src emacs-lisp
