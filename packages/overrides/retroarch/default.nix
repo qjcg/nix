@@ -8,7 +8,7 @@ pkgs.retroarch.override {
     fbalpha2012
     fceumm
     genesis-plus-gx
-    mame
+    #mame  # FIXME: Disable due to failed build 2021-01-26.
     mupen64plus
     nestopia
     prboom
