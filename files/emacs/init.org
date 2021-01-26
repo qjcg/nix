@@ -462,21 +462,37 @@
 						  "%i"
 						  "%a"))
 
-				       ("Emacs Package"
-					 :keys "e"
-					 :file "todo.org"
-					 :headline "Emacs Packages to Review"
-					 :empty-lines-before 1
-					 :todo-state "TODO"
-					 :template ("* %{todo-state} %^{Emacs Packaage Name} %^G"
-						    ":PROPERTIES:"
-						    ":CAPTURED: %U"
-						    ":URL: %^{URL}p"
-						    ":DESCRIPTION: %^{DESCRIPTION}p"
-						    ":END:"
-						    ""
-						    "%i"
-						    "%a"))))))
+				      ("Article"
+				       :keys "a"
+				       :file "todo.org"
+				       :headline "Articles"
+				       :empty-lines-before 1
+				       :todo-state "TODO"
+				       :template ("* %{todo-state} %^{Article Title} %^G"
+						  ":PROPERTIES:"
+						  ":CAPTURED: %U"
+						  ":URL: %^{URL}p"
+						  ":DESCRIPTION: %^{DESCRIPTION}p"
+						  ":END:"
+						  ""
+						  "%i"
+						  "%a"))
+
+				      ("Emacs Package"
+				       :keys "e"
+				       :file "todo.org"
+				       :headline "Emacs Packages to Review"
+				       :empty-lines-before 1
+				       :todo-state "TODO"
+				       :template ("* %{todo-state} %^{Emacs Packaage Name} %^G"
+						  ":PROPERTIES:"
+						  ":CAPTURED: %U"
+						  ":URL: %^{URL}p"
+						  ":DESCRIPTION: %^{DESCRIPTION}p"
+						  ":END:"
+						  ""
+						  "%i"
+						  "%a"))))))
 
      (use-package doct
        :ensure
