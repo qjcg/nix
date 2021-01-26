@@ -24,6 +24,7 @@ buildEnv {
     opusTools
     jg.custom.pms
     pulseaudio
+    jg.newer.sbagen
     youtube-viewer
   ];
   meta = {
