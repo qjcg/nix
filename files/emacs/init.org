@@ -170,6 +170,7 @@
        (menu-bar-mode -1)
        (tool-bar-mode -1)
        (scroll-bar-mode -1)
+       (display-time-mode)
 
        ;; Load custom theme(s) from here.
        (add-to-list 'custom-theme-load-path
