@@ -454,14 +454,15 @@
 				       :file "todo.org"
 				       :headline "Tasks"
 				       :empty-lines-before 1
+				       :todo-state "TODO"
 				       :template ("* %{todo-state} %^{Description}"
 						  ":PROPERTIES:"
 						  ":Created: %U"
 						  ":END:"
 						  "%i"
-						  "%a")
+						  "%a"))
 
-				       (("Emacs Package"
+				       ("Emacs Package"
 					 :keys "e"
 					 :file "todo.org"
 					 :headline "Emacs Packages to Review"
@@ -475,7 +476,7 @@
 						    ":END:"
 						    ""
 						    "%i"
-						    "%a"))))))))
+						    "%a"))))))
 
      (use-package doct
        :ensure
