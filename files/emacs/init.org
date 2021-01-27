@@ -469,15 +469,14 @@
 				       :headline "Articles"
 				       :empty-lines-before 1
 				       :todo-state "TODO"
-				       :template ("* %{todo-state} %^{Article Title} %^G"
+				       :template ("* %{todo-state} %a %^G"
 						  ":PROPERTIES:"
 						  ":CAPTURED: %U"
-						  ":URL: %^{URL}p"
+						  ":URL: %a"
 						  ":DESCRIPTION: %^{DESCRIPTION}p"
 						  ":END:"
 						  ""
-						  "%i"
-						  "%a"))
+						  "%i"))
 
 				      ("Emacs Package"
 				       :keys "e"
