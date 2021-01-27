@@ -447,7 +447,11 @@
        (org-image-actual-width nil)
        (org-default-notes-file "notes.org")
        (org-directory "~/org")
-       (org-agenda-files (list org-directory))
+       (org-agenda-files (list
+			  org-directory
+			  (concat org-directory "/roam")
+			  (concat org-directory "/roam/daily")))
+       (org-refile-targets '((org-agenda-files . (:maxlevel . 5))))
        (org-confirm-babel-evaluate nil "Don't ask for confirmation before executing code blocks")
 
        (org-capture-templates (doct '(("Todo"
