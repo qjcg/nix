@@ -981,8 +981,8 @@
 	       ("C-c e f" . emms-next)
 	       ("C-c e b" . emms-previous)
 	       ("C-c e s" . emms-stop)
-	       ("C-c e <right>" . (lambda () (interactive) (emms-seek 20)))
-	       ("C-c e <left>" . (lambda () (interactive) (emms-seek -20)))
+	       ("C-c e >" . (lambda () (interactive) (emms-seek 30)))
+	       ("C-c e <" . (lambda () (interactive) (emms-seek -30)))
 	       :map dired-mode-map
 	       ("C-c e SPC" . emms-play-dired))
 
