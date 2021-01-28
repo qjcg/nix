@@ -1,6 +1,16 @@
-{ pkgs, stdenv }:
+{ pkgs, stdenv, }:
 let
   inherit (stdenv.lib) fakeSha256;
+
+  # Non-elisp packages required for various emacs features and modes.
+  nonElispPackageDependencies = with pkgs; [
+    nodePackages.mermaid-cli
+    nodePackages.prettier
+    nodePackages.vega
+    nodePackages.vega-cli
+    nodePackages.vega-lite
+    tectonic
+  ];
 
   # See https://github.com/peel/dotfiles/blob/a75b18f887b5f4ddd987d8988a0bdecab8d92cd7/overlays/20-emacs/emacs/default.nix
   elisp = src: file:
@@ -82,5 +92,6 @@ pkgs.emacsWithPackagesFromUsePackage {
     show-font-mode
     shrface
     solo-jazz-theme
-  ];
+  ] ++ nonElispPackageDependencies;
+
 }

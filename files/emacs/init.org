@@ -760,6 +760,19 @@
     
 *** Javascript / TypeScript                                :javascript:empty:
 *** Ruby                                                         :ruby:empty:
+*** Visualizations
+
+    Data visualizations.
+
+    #+name: Data
+    #+begin_src emacs-lisp
+      (use-package mermaid-mode :ensure)
+      (use-package ob-mermaid :ensure)
+
+      (use-package vega-view :ensure)
+    #+end_src
+
+
 ** DevOps                                                            :devops:
 *** Docker
     :PROPERTIES:
