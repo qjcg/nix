@@ -6,7 +6,6 @@ let
   nonElispPackageDependencies = with pkgs; [
     nodePackages.mermaid-cli
     nodePackages.prettier
-    nodePackages.vega
     nodePackages.vega-cli
     nodePackages.vega-lite
     tectonic
