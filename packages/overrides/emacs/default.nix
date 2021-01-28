@@ -2,8 +2,10 @@
 let
   inherit (stdenv.lib) fakeSha256;
 
+  # FIXME: Not in path after emacs package is installed!
   # Non-elisp packages required for various emacs features and modes.
   nonElispPackageDependencies = with pkgs; [
+    graphviz
     nodePackages.mermaid-cli
     nodePackages.prettier
     nodePackages.vega-cli
