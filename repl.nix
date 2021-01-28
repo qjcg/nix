@@ -12,13 +12,14 @@ in
     # Upstream nixpkgs flake.
     nixpkgs-unstable = getFlake "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    # DevShell flake.
-    devshell = getFlake "github:numtide/devshell";
-
-
     # Demonstrate adding this flake's top-level "overlay" to upstream nixpkgs via flake import.
     nixpkgsWithOverlay = import nixpkgs-unstable {
-      overlays = [ thisFlake.overlay devshell.overlay ];
+      overlays = [
+        thisFlake.inputs.devshell.overlay
+        thisFlake.inputs.emacs.overlay
+
+        thisFlake.overlay
+      ];
     };
 
   };
