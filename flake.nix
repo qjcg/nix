@@ -19,7 +19,6 @@
   };
 
   inputs = {
-    agenix.url = "github:ryantm/agenix";
     devshell.url = "github:numtide/devshell";
     emacs.url = "github:nix-community/emacs-overlay";
     flake-utils.url = "github:numtide/flake-utils";
@@ -49,7 +48,6 @@
           pkgs = import inputs.nixpkgs {
             system = "${system}";
             overlays = [
-              inputs.agenix.overlay
               inputs.devshell.overlay
               inputs.emacs.overlay
               inputs.wayland.overlay
@@ -255,7 +253,6 @@
           system = "x86_64-linux";
 
           modules = [
-            inputs.agenix.nixosModules.age
             inputs.home-manager.nixosModules.home-manager
             inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t460s
             inputs.sops-nix.nixosModules.sops
@@ -266,7 +263,6 @@
 
             {
               nixpkgs.overlays = [
-                inputs.agenix.overlay
                 inputs.devshell.overlay
                 inputs.emacs.overlay
                 inputs.wayland.overlay

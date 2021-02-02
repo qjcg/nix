@@ -5,7 +5,6 @@ with pkgs;
 buildEnv {
   name = "env-nix";
   paths = [
-    agenix
     cachix
     direnv
     nix-bash-completions

@@ -15,7 +15,6 @@ in
     # Demonstrate adding this flake's top-level "overlay" to upstream nixpkgs via flake import.
     nixpkgsWithOverlay = import nixpkgs-unstable {
       overlays = [
-        thisFlake.inputs.agenix.overlay
         thisFlake.inputs.devshell.overlay
         thisFlake.inputs.emacs.overlay
 
