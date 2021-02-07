@@ -9,13 +9,13 @@
 {
   description = "A flake for my nix configurations";
 
-  # NOTE: nixConfig doesn't seem to be working yet (2021-01-03), but it should work eventually.
+  # NOTE: This works on nixos.
   # See:
   #   - https://github.com/NixOS/nix/commit/343239fc8a1993f707a990c2cd54a41f1fa3de99
   #   - https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-develop.html#description
   nixConfig = {
-    bash-prompt = "\u@\h \W \$ ";
-    bash-prompt-suffix = " _NIX_ ";
+    bash-prompt = "\\u@\\h \\W \\$ ";
+    bash-prompt-suffix = "(nix develop) ";
   };
 
   inputs = {
@@ -279,13 +279,13 @@
 
           ];
         };
-      };
 
-      gemini = inputs.nixpkgs.lib.nixosSystem {
+        gemini = inputs.nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
 
           modules = [
             inputs.home-manager.nixosModules.home-manager
+
             self.nixosModules.workstation
 
             ./modules/machines/gemini
@@ -310,31 +310,32 @@
           ];
         };
 
-      darwinConfigurations =
-        {
-          mtlmp-jgosset1 = inputs.nix-darwin.lib.darwinSystem {
-            modules = [
-              inputs.home-manager.darwinModules.home-manager
-              inputs.sops-nix.nixosModules.sops
+        darwinConfigurations =
+          {
+            mtlmp-jgosset1 = inputs.nix-darwin.lib.darwinSystem {
+              modules = [
+                inputs.home-manager.darwinModules.home-manager
+                inputs.sops-nix.nixosModules.sops
 
-              self.nixosModules.workstation
-              ./modules/users/hm-darwin_jgosset.nix
+                self.nixosModules.workstation
+                ./modules/users/hm-darwin_jgosset.nix
 
-              {
+                {
 
-                nixpkgs.overlays = [
-                  inputs.devshell.overlay
-                  inputs.emacs.overlay
-                  inputs.wayland.overlay
-                  self.overlay
-                ];
+                  nixpkgs.overlays = [
+                    inputs.devshell.overlay
+                    inputs.emacs.overlay
+                    inputs.wayland.overlay
+                    self.overlay
+                  ];
 
-                roles.workstation.enable = true;
-              }
+                  roles.workstation.enable = true;
+                }
 
-            ];
+              ];
+            };
           };
-        };
 
+      };
     };
 }

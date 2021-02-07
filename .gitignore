@@ -1,5 +1,4 @@
 secrets.nix
-configuration.nix
 .tmp
 *.qcow2
 *~
