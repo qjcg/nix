@@ -281,6 +281,35 @@
         };
       };
 
+      gemini = inputs.nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+
+          modules = [
+            inputs.home-manager.nixosModules.home-manager
+            self.nixosModules.workstation
+
+            ./modules/machines/gemini
+            ./modules/users/john.nix
+
+            {
+              nixpkgs.overlays = [
+                inputs.devshell.overlay
+                inputs.emacs.overlay
+                inputs.wayland.overlay
+
+                self.overlay
+              ];
+
+              roles.workstation.enable = true;
+              roles.workstation.desktop = true;
+              roles.workstation.games = true;
+              roles.workstation.gnome = true;
+              roles.workstation.sway = true;
+            }
+
+          ];
+        };
+
       darwinConfigurations =
         {
           mtlmp-jgosset1 = inputs.nix-darwin.lib.darwinSystem {
