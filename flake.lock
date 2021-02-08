@@ -206,22 +206,6 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1609214493,
-        "narHash": "sha256-lz8ROoxchhjoBd5phaM8t6EFAmRf+dU6clod2mdHOAg=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "ea3638a3fb262d3634be7e4c2aa3d4e9474ae157",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_6": {
-      "locked": {
         "lastModified": 1611219034,
         "narHash": "sha256-bgp8G3LcpvKs22/z5Cj4XQkmZq05Aa0vaP1bKl7X0zM=",
         "owner": "nixos",
@@ -263,26 +247,7 @@
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-darwin": "nixpkgs-darwin",
         "nur": "nur",
-        "sops-nix": "sops-nix",
         "wayland": "wayland"
-      }
-    },
-    "sops-nix": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_5"
-      },
-      "locked": {
-        "lastModified": 1610083436,
-        "narHash": "sha256-Hw7AitbnNq5XqDl6OKqqzB4xz7UqQqrA69BMsCu4Doo=",
-        "owner": "mic92",
-        "repo": "sops-nix",
-        "rev": "4a7bf1c67c987ea65806d0e21e15c747102caaac",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mic92",
-        "repo": "sops-nix",
-        "type": "github"
       }
     },
     "unstableSmall": {
@@ -304,7 +269,7 @@
     "wayland": {
       "inputs": {
         "cachix": "cachix",
-        "nixpkgs": "nixpkgs_6",
+        "nixpkgs": "nixpkgs_5",
         "unstableSmall": "unstableSmall"
       },
       "locked": {

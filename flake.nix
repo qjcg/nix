@@ -9,7 +9,7 @@
 {
   description = "A flake for my nix configurations";
 
-  # NOTE: This works on nixos.
+  # NOTE: This works with nix develop.
   # See:
   #   - https://github.com/NixOS/nix/commit/343239fc8a1993f707a990c2cd54a41f1fa3de99
   #   - https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-develop.html#description
@@ -29,7 +29,6 @@
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-20.09-darwin";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nur.url = "github:nix-community/NUR";
-    sops-nix.url = "github:mic92/sops-nix";
     wayland.url = "github:colemickens/nixpkgs-wayland";
   };
 
@@ -183,174 +182,115 @@
       };
 
       # TODO: Organize this better. See e.g.: https://github.com/Mic92/dotfiles/blob/master/nixos/configurations.nix
-      nixosConfigurations = {
+      nixosConfigurations =
+        let
+          inherit (inputs.home-manager.lib.hm) dag;
 
-        # Usage:
-        #   nixos-rebuild build-vm --flake .#workstationVM
-        workstationVM = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            inputs.home-manager.nixosModules.home-manager
-            inputs.sops-nix.nixosModules.sops
-
-            self.nixosModules.workstation
-            ./modules/users/flakeuser.nix
-
-            {
-              nixpkgs.overlays = [
-                inputs.devshell.overlay
-                inputs.emacs.overlay
-                inputs.wayland.overlay
-                self.overlay
-              ];
-
-              home-manager.useUserPackages = true;
-              roles.workstation.enable = true;
-              roles.workstation.games = true;
-              roles.workstation.gnome = true;
-              roles.workstation.sway = true;
-            }
-
+          defaultOverlays = [
+            inputs.devshell.overlay
+            inputs.emacs.overlay
+            inputs.wayland.overlay
+            self.overlay
           ];
-        };
 
-        # nixos-containers are an abstraction on top of `systemd-nspawn`.
-        # - [NixOS: Containers](https://nixos.org/manual/nixos/stable/#ch-containers)
-        # - [Arch Wiki: systemd-nspawn](https://wiki.archlinux.org/index.php/Systemd-nspawn)
-        # - [freedesktop.org: systemd-nspawn](https://www.freedesktop.org/software/systemd/man/systemd-nspawn.html)
-        # - [freedesktop.org: machinectl](https://www.freedesktop.org/software/systemd/man/machinectl.html)
-        # Usage:
-        #   nixos-container create myWorkstation --flake .#wrkc
-        #   nixos-container start myWorkstation
-        #   nixos-container root-login myWorkstation
-        #   nixos-container destroy myWorkstation
-        wrkc = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
+          defaultModules = [
             inputs.home-manager.nixosModules.home-manager
-            inputs.sops-nix.nixosModules.sops
-
-            self.nixosModules.container
             self.nixosModules.workstation
 
             {
-              nixpkgs.overlays = [
-                inputs.devshell.overlay
-                inputs.emacs.overlay
-                inputs.wayland.overlay
-                self.overlay
-              ];
-
-              roles.workstation.enable = true;
-              roles.workstation.games = true;
-              roles.workstation.gnome = true;
-              roles.workstation.sway = true;
-            }
-          ];
-        };
-
-        luban = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-
-          modules = [
-            inputs.home-manager.nixosModules.home-manager
-            inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t460s
-            inputs.sops-nix.nixosModules.sops
-            self.nixosModules.workstation
-
-            ./modules/machines/luban
-            ./modules/users/john.nix
-
-            {
-              nixpkgs.overlays = [
-                inputs.devshell.overlay
-                inputs.emacs.overlay
-                inputs.wayland.overlay
-
-                self.overlay
-              ];
-
               roles.workstation.enable = true;
               roles.workstation.desktop = true;
               roles.workstation.games = true;
               roles.workstation.gnome = true;
               roles.workstation.sway = true;
             }
-
           ];
+
+          myPkgs =
+            { system ? "x86_64-linux"
+            , overlays ? defaultOverlays
+            }:
+
+            import inputs.nixpkgs { inherit overlays system; };
+
+          workstation =
+            { system ? "x86_64-linux"
+            , modules ? defaultModules
+            , overlays ? defaultOverlays
+            }:
+
+            inputs.nixpkgs.lib.nixosSystem {
+              inherit system;
+              modules = modules ++ [{ nixpkgs.overlays = overlays; }];
+            };
+        in
+        {
+
+          # Usage:
+          #   nixos-rebuild build-vm --flake .#workstationVM
+          workstationVM = workstation {
+            modules = defaultModules ++ [
+              ./modules/users/flakeuser.nix
+            ];
+          };
+
+          # nixos-containers are an abstraction on top of `systemd-nspawn`.
+          # - [NixOS: Containers](https://nixos.org/manual/nixos/stable/#ch-containers)
+          # - [Arch Wiki: systemd-nspawn](https://wiki.archlinux.org/index.php/Systemd-nspawn)
+          # - [freedesktop.org: systemd-nspawn](https://www.freedesktop.org/software/systemd/man/systemd-nspawn.html)
+          # - [freedesktop.org: machinectl](https://www.freedesktop.org/software/systemd/man/machinectl.html)
+          # Usage:
+          #   nixos-container create myWorkstation --flake .#wrkc
+          #   nixos-container start myWorkstation
+          #   nixos-container root-login myWorkstation
+          #   nixos-container destroy myWorkstation
+          wrkc = workstation {
+            modules = defaultModules ++ [
+              self.nixosModules.container
+            ];
+          };
+
+          luban = workstation {
+            modules = defaultModules ++ [
+              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t460s
+              ./modules/machines/luban
+              (import ./modules/users/john.nix { inherit dag; pkgs = myPkgs; })
+            ];
+          };
+
+          gemini = workstation {
+            modules = defaultModules ++ [
+              ./modules/machines/gemini
+              (import ./modules/users/john.nix { inherit dag; pkgs = myPkgs; })
+            ];
+          };
+
         };
 
-        gemini =
-          let
-            inherit (inputs.home-manager.lib.hm) dag;
-            system = "x86_64-linux";
-            pkgs = import inputs.nixpkgs {
-              inherit system;
-              overlays = [
-                inputs.devshell.overlay
-                inputs.emacs.overlay
-                inputs.wayland.overlay
-
-                self.overlay
-              ];
-            };
-          in
-          inputs.nixpkgs.lib.nixosSystem {
-            inherit system;
-
+      darwinConfigurations =
+        {
+          mtlmp-jgosset1 = inputs.nix-darwin.lib.darwinSystem {
             modules = [
-              inputs.home-manager.nixosModules.home-manager
+              inputs.home-manager.darwinModules.home-manager
 
               self.nixosModules.workstation
-
-              ./modules/machines/gemini
-              (import ./modules/users/john.nix { inherit pkgs dag; })
+              ./modules/users/hm-darwin_jgosset.nix
 
               {
+
                 nixpkgs.overlays = [
                   inputs.devshell.overlay
                   inputs.emacs.overlay
                   inputs.wayland.overlay
-
                   self.overlay
                 ];
 
                 roles.workstation.enable = true;
-                roles.workstation.desktop = true;
-                roles.workstation.games = true;
-                roles.workstation.gnome = true;
-                roles.workstation.sway = true;
               }
 
             ];
           };
+        };
 
-        darwinConfigurations =
-          {
-            mtlmp-jgosset1 = inputs.nix-darwin.lib.darwinSystem {
-              modules = [
-                inputs.home-manager.darwinModules.home-manager
-                inputs.sops-nix.nixosModules.sops
-
-                self.nixosModules.workstation
-                ./modules/users/hm-darwin_jgosset.nix
-
-                {
-
-                  nixpkgs.overlays = [
-                    inputs.devshell.overlay
-                    inputs.emacs.overlay
-                    inputs.wayland.overlay
-                    self.overlay
-                  ];
-
-                  roles.workstation.enable = true;
-                }
-
-              ];
-            };
-          };
-
-      };
     };
 }
