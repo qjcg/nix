@@ -280,35 +280,50 @@
           ];
         };
 
-        gemini = inputs.nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-
-          modules = [
-            inputs.home-manager.nixosModules.home-manager
-
-            self.nixosModules.workstation
-
-            ./modules/machines/gemini
-            ./modules/users/john.nix
-
-            {
-              nixpkgs.overlays = [
+        gemini =
+          let
+            inherit (inputs.home-manager.lib.hm) dag;
+            system = "x86_64-linux";
+            pkgs = import inputs.nixpkgs {
+              inherit system;
+              overlays = [
                 inputs.devshell.overlay
                 inputs.emacs.overlay
                 inputs.wayland.overlay
 
                 self.overlay
               ];
+            };
+          in
+          inputs.nixpkgs.lib.nixosSystem {
+            inherit system;
 
-              roles.workstation.enable = true;
-              roles.workstation.desktop = true;
-              roles.workstation.games = true;
-              roles.workstation.gnome = true;
-              roles.workstation.sway = true;
-            }
+            modules = [
+              inputs.home-manager.nixosModules.home-manager
 
-          ];
-        };
+              self.nixosModules.workstation
+
+              ./modules/machines/gemini
+              (import ./modules/users/john.nix { inherit pkgs dag; })
+
+              {
+                nixpkgs.overlays = [
+                  inputs.devshell.overlay
+                  inputs.emacs.overlay
+                  inputs.wayland.overlay
+
+                  self.overlay
+                ];
+
+                roles.workstation.enable = true;
+                roles.workstation.desktop = true;
+                roles.workstation.games = true;
+                roles.workstation.gnome = true;
+                roles.workstation.sway = true;
+              }
+
+            ];
+          };
 
         darwinConfigurations =
           {

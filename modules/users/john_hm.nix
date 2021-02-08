@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, dag, ... }:
 let
   secrets = {
     git-name = "John Gosset";
@@ -25,6 +25,16 @@ in
   #};
 
   home = {
+    activation.cloneGitRepos = dag.entryAfter [ "writeBoundary" ] ''
+      # Ensure srcdir exists and cd into it for subsequent commands.
+      srcdir="$HOME/src"
+      mkdir -p $srcdir
+      cd $srcdir
+
+      # Check for presence of repo dirs, and clone if not found.
+      [ -d nix ] || git clone https://github.com/qjcg/nix
+    '';
+
     language = { base = "en_US.utf8"; };
 
     sessionVariables = {

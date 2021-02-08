@@ -1,4 +1,4 @@
-{ config, pkgs, secrets, ... }:
+{ pkgs, dag, ... }:
 
 {
   users.users.john = {
@@ -21,5 +21,5 @@
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
   home-manager.users.john =
-    import ./john_hm.nix { inherit config pkgs secrets; };
+    import ./john_hm.nix { inherit pkgs dag; };
 }
