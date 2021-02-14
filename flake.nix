@@ -33,14 +33,6 @@
   };
 
   outputs = { self, ... }@inputs:
-    let
-      # Each attr key must be a system name.
-      # Each attr value must be a regex of UNsupported package names.
-      unsupportedOnSystem = {
-        "aarch64-linux" = "delve";
-        "x86_64-darwin" = "freetube|ruffle";
-      };
-    in
     inputs.flake-utils.lib.eachDefaultSystem
       (system:
         let
