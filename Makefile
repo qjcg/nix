@@ -14,6 +14,10 @@ endif
 switch:
 	$(CMD_SWITCH)
 
+# Launch the nix REPL for troubleshooting & debugging.
+repl:
+	nix repl ./lib/default.nix
+
 
 # NIXOS-CONTAINER (linux only)
 

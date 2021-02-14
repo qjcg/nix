@@ -1,21 +1,43 @@
 let
   inherit (builtins) getFlake trace;
+
+  # This repo's main flake.
+  thisFlake = getFlake (toString ../.);
 in
 {
+  # Use the "repl" attrset for easy discoverability via tab-completion.
+  repl = {
+    flake = thisFlake;
 
-  # Namespace this "debugging session" inside a debug attr for easy
-  # discoverability via tab-completion.
-  # Use via `nix repl default.nix`.
-  debug = rec {
-    # The top-level flake in this repo.
-    thisFlake = getFlake (toString ../.);
+    README = trace ''
 
-    # Upstream nixpkgs flake.
-    nixpkgs-unstable = getFlake "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    # Demonstrate adding this flake's overlay to upstream nixpkgs via flake import.
-    nixpkgsWithOverlay = import nixpkgs-unstable {
-      overlays = [ thisFlake.overlay ];
+      # ABOUT
+
+      This file is for debugging and troubleshooting this repo's nix
+      expressions.  It contains a top-level "repl" attrset for easy
+      discoverability via tab-completion.
+
+
+      ## REPL ATTRIBUTES
+
+      - README: This attribute. Describes usage. (To reload, do `:r ; repl.README`).
+      - pkgs: imports this flake's inputs.nixpkgs with all overlays.
+
+
+      ## USAGE EXAMPLES
+    ''
+      true;
+
+    # Demonstrate adding this flake's top-level "overlay" to upstream nixpkgs via flake import.
+    pkgs = import thisFlake.inputs.nixpkgs {
+      overlays = [
+        thisFlake.inputs.devshell.overlay
+        thisFlake.inputs.emacs.overlay
+        thisFlake.inputs.wayland.overlay
+        thisFlake.overlay
+      ];
     };
+
   };
 }
