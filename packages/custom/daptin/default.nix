@@ -1,24 +1,29 @@
 { stdenv, fetchFromGitHub, buildGoModule }:
+let
+  inherit (stdenv.lib) fakeSha256 licenses;
 
-buildGoModule rec {
+  version = "0.9.4";
+in
+buildGoModule {
+  inherit version;
+
   pname = "daptin";
-  version = "0.9.2";
 
   src = fetchFromGitHub {
     owner = "daptin";
     repo = "daptin";
     rev = "v${version}";
-    sha256 = "0g7acbsgpvy96mp4gffsalcm2507nkg0s889psm4x12hqfv42j32";
+    sha256 = "sha256-yqhCDyMFngz6PGOXgN76t89yWQQEApMIFQeMddy3tp8=";
   };
 
   subPackages = [ "." ];
 
   buildFlagsArray =
-    [ "-ldflags=-s" "-X github.com/daptin/daptin/fs.Version=${src.rev}" ];
+    [ "-ldflags=-s" "-X github.com/daptin/daptin/fs.Version=v${version}" ];
 
-  vendorSha256 = "0ghka8gkikf3z3fdbsn4k1r4hy342qrhfpcw7lncmilpcdkkkl7a";
+  vendorSha256 = "sha256-Xg1TEwXceYqV2svnmhsJu8xuv8X8BqVrOGsMLkS8x+8=";
 
-  meta = with stdenv.lib; {
+  meta = {
     description =
       "The most powerful ready to use data and services API server.";
     homepage = "https://daptin.github.io/daptin/";
