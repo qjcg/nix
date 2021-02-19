@@ -1,7 +1,7 @@
 { stdenv, fetchFromGitHub, buildGoModule, }:
 let
   inherit (stdenv.lib) fakeSha256;
-  version = "3.40.0";
+  version = "3.41.1";
 in
 buildGoModule {
   inherit version;
@@ -12,7 +12,7 @@ buildGoModule {
     owner = "Jeffail";
     repo = "benthos";
     rev = "v${version}";
-    sha256 = "sha256-Blxzr6GgD492/w5zPm7iK9xfk327KxLjcKUprOrWIh0=";
+    sha256 = "sha256-JZ+G4I+2IimATbekqM16n1JULYjSyi5tSL0DNDY4zt0=";
   };
 
   vendorSha256 = "sha256-z+by4WX04aOwcINSAUsQuKd/EzQ4WXH64rs1Zgg43yw=";
@@ -20,7 +20,7 @@ buildGoModule {
   buildFlagsArray = [
     "-ldflags="
     "-X github.com/Jeffail/benthos/v3/lib/service.Version=v${version}"
-    "-X github.com/Jeffail/benthos/v3/lib/service.DateBuilt=TimelessBuild"
+    "-X github.com/Jeffail/benthos/v3/lib/service.DateBuilt=ReproduciblyTimeless"
   ];
 
   subPackages = [ "cmd/benthos" ];

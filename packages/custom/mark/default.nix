@@ -1,7 +1,7 @@
 { stdenv, buildGoModule, fetchFromGitHub, }:
 let
-  inherit (stdenv.lib) fakeSha256;
-  version = "5.1";
+  inherit (stdenv.lib) fakeSha256 licenses;
+  version = "5.2";
 in
 buildGoModule {
   inherit version;
@@ -11,13 +11,13 @@ buildGoModule {
     owner = "kovetskiy";
     repo = "mark";
     rev = "${version}";
-    sha256 = "sha256-g5O68XB+95Wg7kwYYyGCxINKlJoMbQ+IcucVbsNNhvw=";
+    sha256 = "sha256-bjDQwtIsY+Dvv270DACvyU+MNPyI7EZcob6F/aebVac=";
   };
 
   subPackages = [ "." ];
-  vendorSha256 = "sha256-1YQD+QwCOAPOsj946DNF92LYKfRgXZXcfhIADP8s2CY=";
+  vendorSha256 = "sha256-l6zHsis2fais5HQJQdfsSC0sPdcF4BeWoUznpl3Fh1g=";
 
-  meta = with stdenv.lib; {
+  meta = {
     description =
       "The solution for syncing your Markdown docs with Atlassian Confluence.";
     homepage = "https://github.com/kovetskiy/mark";

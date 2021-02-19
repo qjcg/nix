@@ -9,11 +9,9 @@
 ,
 }:
 let
-  inherit (lib) fakeSha256;
-  version = "4.1.1";
+  inherit (lib) fakeSha256 licenses;
+  version = "4.2.0";
 in
-with lib;
-
 buildGoModule {
   inherit version;
 
@@ -23,7 +21,7 @@ buildGoModule {
     owner = "rancher";
     repo = "k3d";
     rev = "v${version}";
-    sha256 = "sha256-ZdPBlGlrgSJQlp6sWUeXm34+O30WtXHy5hvye40qew0=";
+    sha256 = "sha256-R2RbQlceOD/uY3IdLLiM23gESh/oWnsiTWxHeH/Si18=";
   };
 
   vendorSha256 = null; # Use k3d's vendor directory.
