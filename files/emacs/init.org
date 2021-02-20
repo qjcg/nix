@@ -181,18 +181,18 @@
 	 (add-to-list 'default-frame-alist '(font . "JuliaMono-20")))
 
        ;; FIXME: Not being loaded since 2021-01-23!
-       :custom
-       (custom-file
+       :config
+       (setq custom-file
 	"~/.config/emacs/custom.el"
 	"Use a *separate* file for customizations. See https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations")
-       (echo-keystrokes 0.1 "Show keystrokes ASAP")
-       (inhibit-startup-screen t)
-       (initial-scratch-message nil)
-       (mouse-yank-at-point t "Yank at point, NOT click (i.e. mouse cursor position).")
-       ;;(show-trailing-whitespace t) ;; TODO: Enable on a per-mode basis.
-       (auto-fill-mode t)
-       (browse-url-browser-function 'eww-browse-url "Browse with eww by default")
-       (backup-directory-alist '(("." . "~/.config/emacs/backup"))))
+       (setq echo-keystrokes 0.1 "Show keystrokes ASAP")
+       (setq inhibit-startup-screen t)
+       (setq initial-scratch-message nil)
+       (setq mouse-yank-at-point t "Yank at point, NOT click (i.e. mouse cursor position).")
+       (setq show-trailing-whitespace t)
+       (setq auto-fill-mode t)
+       (setq browse-url-browser-function 'eww-browse-url "Browse with eww by default")
+       (setq backup-directory-alist '(("." . "~/.config/emacs/backup"))))
 
      (use-package recentf
        :init
@@ -259,6 +259,15 @@
        (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
        (projectile-mode +1))
 
+     (use-package org-projectile
+       :ensure
+       :bind (("C-c n p" . org-projectile-project-todo-completing-read))
+       :config
+       (progn
+	 (setq org-projectile-projects-file (concat org-directory "/projects.org"))
+	 (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+	 (push (org-projectile-project-todo-entry) org-capture-templates)))
+
      (use-package expand-region
        :ensure
        :config
@@ -290,16 +299,40 @@
       (use-package modus-vivendi-theme :ensure) ;; Delete once part of Emacs.
       (use-package monotropic-theme :ensure)
       (use-package solo-jazz-theme)
+      (use-package theme-looper
+	:ensure
+	:config
+	(theme-looper-set-favorite-themes '(modus-vivendi
+					    base16-icy
+					    base16-horizon-dark
+					    base16-outrun-dark
+					    base16-synth-midnight-dark
+					    laguna
+					    solo-jazz))
+
+	(global-set-key (kbd "C-}") 'theme-looper-enable-next-theme)
+	(global-set-key (kbd "C-{") 'theme-looper-enable-previous-theme)
+	(global-set-key (kbd "C-\\") 'theme-looper-enable-random-theme)
+
+	;; NOTE: The functions below rely on the "ivy" package.
+	;;(global-set-key (kbd "C-|") 'theme-looper-select-theme)
+	;;(global-set-key (kbd "C-M-|") 'theme-looper-select-theme-from-all)
+	)
+
 
       ;; Don't "layer" themes on top of each other when calling load-theme.
       (defadvice load-theme (before theme-dont-propagate activate)
 	"Advise load-theme to disable all custom themes before loading (enabling) another one.
-	      See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
+		    See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
 	(mapc #'disable-theme custom-enabled-themes))
+
+      ;; Load this theme at startup.
+      (load-theme 'modus-vivendi t)
 
       ;; Automatic theme-switching based on time of day.
       ;; See https://github.com/guidoschmidt/circadian.el
       (use-package circadian
+	:disabled
 	:ensure
 	:config
 	(circadian-setup)
@@ -351,6 +384,21 @@
 	(org-variable-pitch-fontify-headline-prefix t)
 	(org-variable-pitch-fixed-font "Roboto"))
     #+end_src
+
+** Auth
+
+   #+begin_src emacs-lisp
+     ;; Integrate Emacs' auth-source with password-store
+     ;; https://github.com/DamienCassou/auth-source-pass
+     (use-package auth-source-pass
+       :ensure
+       :config
+       (auth-source-pass-enable))
+
+     ;; A major mode for password-store
+     ;; https://github.com/NicolasPetton/pass
+     (use-package pass :ensure)
+   #+end_src
 
 ** Workspaces & Layouts
    :PROPERTIES:
@@ -543,8 +591,11 @@
 	(make-directory org-roam-directory t)
 	:bind (:map org-roam-mode-map
 		    (("C-c n d" . org-roam-dailies-find-today)
-		     ("C-c n p" . org-roam-dailies-find-previous-note)
-		     ("C-c n n" . org-roam-dailies-find-next-note)
+
+		     ;; FIXME: conflicts with org-projectile
+		     ;; ("C-c n p" . org-roam-dailies-find-previous-note)
+		     ;; ("C-c n n" . org-roam-dailies-find-next-note)
+
 		     ("C-c n l" . org-roam)
 		     ("C-c n f" . org-roam-find-file)
 		     ("C-c n g" . org-roam-graph))
@@ -1008,6 +1059,7 @@
 	(emms-all)
 	(emms-default-players)
 
+	(setq emms-playlist-default-major-mode 'emms-mark-mode)
 	(setq emms-source-file-default-directory "~/Music/"))
 
       ;; TODO: Re-enable later?
