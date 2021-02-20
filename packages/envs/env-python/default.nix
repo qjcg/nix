@@ -8,7 +8,7 @@ buildEnv {
     (python38.withPackages (ps:
       with ps; [
         ansible
-        ansible-lint
+        #ansible-lint
         beautifulsoup4
         black
         cookiecutter
