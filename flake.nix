@@ -198,12 +198,14 @@
             }
           ];
 
-          myPkgs =
+          myPkgsFunc =
             { system ? "x86_64-linux"
             , overlays ? defaultOverlays
             }:
 
             import inputs.nixpkgs { inherit overlays system; };
+
+          myPkgs = myPkgsFunc { };
 
           workstation =
             { system ? "x86_64-linux"
