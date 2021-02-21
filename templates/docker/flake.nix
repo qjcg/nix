@@ -15,41 +15,46 @@
   '';
 
   inputs = {
+    flake-utils.url = "github:numtide/flake-utils";
     pkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     qjcg.url = "github:qjcg/nix";
   };
 
   outputs = { self, ... }@inputs:
-    let
-      system = "x86_64-linux";
-      pkgs = import inputs.pkgs {
-        inherit system;
-        overlays = [ inputs.qjcg.overlay ];
-      };
-    in
-    {
-      defaultPackage.${system} = with pkgs; dockerTools.buildImage {
-        name = "env-testing";
-        tag = "latest";
-        created = "now";
+    inputs.flake-utils.lib.eachSystem [
+      "x86_64-linux"
+      "aarch64-linux"
+    ]
+      (system:
+        let
+          pkgs = import inputs.pkgs {
+            inherit system;
+            overlays = [ inputs.qjcg.overlay ];
+          };
+        in
+        {
+          defaultPackage = with pkgs; dockerTools.buildImage {
+            name = "nix-img";
+            tag = "latest";
+            created = "now";
 
-        contents = [
-          busybox
-          cacert
-          file
+            contents = [
+              busybox
+              cacert
+              file
 
-          jg.custom.mtlcam
-          jg.custom.horeb
-        ];
+              jg.custom.mtlcam
+              jg.custom.horeb
+            ];
 
-        config = {
-          Cmd = [ "/bin/sh" ];
-          Env = [
-            "PATH=/bin"
-            "SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt"
-          ];
-        };
-      };
+            config = {
+              Cmd = [ "/bin/sh" ];
+              Env = [
+                "PATH=/bin"
+                "SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt"
+              ];
+            };
 
-    };
+          };
+        });
 }
