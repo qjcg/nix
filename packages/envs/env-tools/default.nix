@@ -76,7 +76,6 @@ pkgs.buildEnv {
     ripgrep
     rlwrap
     rsync
-    ruffle
     jg.custom.s-nail
     shellcheck
     shfmt
@@ -106,6 +105,7 @@ pkgs.buildEnv {
     mkpasswd
     pinentry
     psmisc
+    ruffle
     tailscale
     usbutils
     utillinux
