@@ -33,7 +33,11 @@
   };
 
   outputs = { self, ... }@inputs:
-    inputs.flake-utils.lib.eachDefaultSystem
+    inputs.flake-utils.lib.eachSystem [
+      "x86_64-linux"
+      "x86_64-darwin"
+      "aarch64-linux"
+    ]
       (system:
         let
           pkgs = import inputs.nixpkgs {
@@ -45,6 +49,7 @@
               self.overlay
             ];
             config.allowUnfree = true;
+            config.allowUnsupportedSystem = true;
           };
 
           myPkgs =
@@ -55,12 +60,11 @@
             pkgs.jg.overrides;
 
           # Regex filters representing unsopported packages by system.
-          # To indicate no unsupported packages, use the empty string.
+          # To do no filtering (let everything through), set system value to null.
           filters = {
-            x86_64-linux = "";
-            x86_64-darwin = "sbagen|sxiv|wayfire|wayland";
-            aarch64-linux = "delve";
-            i686-linux = "";
+            x86_64-linux = null;
+            x86_64-darwin = "docker-.*|env-desktop|freetube|retroarch|sbagen|sxiv|wayfire";
+            aarch64-linux = "env-multimedia|sbagen";
           };
         in
         {
