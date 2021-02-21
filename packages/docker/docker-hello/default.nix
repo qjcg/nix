@@ -1,7 +1,7 @@
 { pkgs }:
-
-with pkgs;
-
+let
+  inherit (pkgs) dockerTools hello;
+in
 dockerTools.buildImage {
   name = "hello";
   tag = "latest";
