@@ -4,6 +4,7 @@ let
   version = "0.1.0";
 in
 buildGoModule {
+  inherit version;
   pname = "gled";
 
   src = fetchFromGitHub {

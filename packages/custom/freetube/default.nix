@@ -31,9 +31,10 @@
 let
   inherit (lib) licenses makeLibraryPath platforms;
   version = "0.7.1";
+  mclibPath = makeLibraryPath [ libpulseaudio ];
 in
 stdenv.mkDerivation {
-  inherit version;
+  inherit mclibPath version;
   pname = "freetube";
 
   src = fetchurl {
@@ -46,8 +47,6 @@ stdenv.mkDerivation {
 
   buildInputs = [ gtk3 ];
   nativeBuildInputs = [ makeWrapper ];
-
-  mclibPath = makeLibraryPath [ libpulseaudio ];
 
   installPhase = ''
     mkdir -p $out/bin

@@ -4,12 +4,13 @@ let
   version = "0.3.0";
 in
 buildGoModule {
+  inherit version;
   pname = "cassowary";
 
   src = fetchFromGitHub {
-    rev = "v${version}";
     owner = "rogerwelin";
     repo = "cassowary";
+    rev = "v${version}";
     sha256 = "01cdmh2v9rz8rna08hdsddllck6zp9wcrhxdy6hs77zfsbzyfflx";
   };
 

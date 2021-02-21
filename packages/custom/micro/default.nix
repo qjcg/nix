@@ -4,6 +4,7 @@ let
   version = "2.9.3";
 in
 buildGoModule {
+  inherit version;
   pname = "micro";
 
   src = fetchFromGitHub {

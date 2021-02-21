@@ -1,9 +1,10 @@
-{ licenses, buildGoModule, fetchFromGitHub }:
+{ lib, buildGoModule, fetchFromGitHub }:
 let
   inherit (lib) licenses;
   version = "1.0.0";
 in
 buildGoModule {
+  inherit version;
   pname = "revel";
 
   src = fetchFromGitHub {

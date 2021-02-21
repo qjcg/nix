@@ -4,6 +4,7 @@ let
   version = "3.0.0";
 in
 buildGoModule {
+  inherit version;
   pname = "jmigpin-editor";
 
   src = fetchFromGitHub {
