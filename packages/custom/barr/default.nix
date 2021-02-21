@@ -1,8 +1,11 @@
-{ stdenv, fetchFromGitHub, buildGoModule, }:
-
-buildGoModule rec {
-  pname = "barr";
+{ lib, fetchFromGitHub, buildGoModule, }:
+let
+  inherit (lib) licenses;
   version = "1.14.17-alpha";
+in
+buildGoModule {
+  inherit version;
+  pname = "barr";
 
   src = fetchFromGitHub {
     owner = "qjcg";
@@ -14,7 +17,7 @@ buildGoModule rec {
     sha256 = "195fs1khh9q588qgzd4j11frl5irh3092chqiz437ydwfpbgxy7h";
   };
 
-  buildFlagsArray = [ "-ldflags=-s -w -X main.Version=${src.rev}" ];
+  buildFlagsArray = [ "-ldflags=-s -w -X main.Version=v${version}" ];
 
   subPackages = [ "cmd/barr" ];
 
@@ -23,7 +26,7 @@ buildGoModule rec {
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
   vendorSha256 = "0sy9q0nimmlripnv8848gizkh594k8hq0yqxiampmkr8xgdh4wdc";
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "A simple statusbar";
     homepage = "https://github.com/qjcg/barr";
     license = licenses.mit;

@@ -1,8 +1,11 @@
-{ stdenv, fetchFromGitHub, buildGoModule, }:
-
-buildGoModule rec {
-  pname = "k3c";
+{ lib, fetchFromGitHub, buildGoModule, }:
+let
+  inherit (lib) licenses;
   version = "0.2.1";
+in
+buildGoModule {
+  inherit version;
+  pname = "k3c";
 
   src = fetchFromGitHub {
     owner = "rancher";
@@ -23,7 +26,7 @@ buildGoModule rec {
   deleteVendor = true;
   vendorSha256 = "0iiznjcx8r0v7mjbvry00cf4d4b52ngy036xm8fl3yx1kj0cqwfy";
 
-  meta = with stdenv.lib; {
+  meta = {
     description =
       "Lightweight local container engine for container development";
     homepage = "https://github.com/rancher/k3c";

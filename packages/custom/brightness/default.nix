@@ -1,8 +1,6 @@
 { pkgs, buildGoModule, fetchFromGitHub, ... }:
 let
-  inherit (pkgs.stdenv.lib) fakeSha256;
-  inherit (pkgs.stdenv.lib.licenses) mit;
-
+  inherit (pkgs.lib) fakeSha256 licenses;
   version = "0.6.0";
 in
 buildGoModule {
@@ -21,6 +19,6 @@ buildGoModule {
   meta = {
     description = "A CLI tool for adjusting screen brightness";
     homepage = "https://github.com/qjcg/brightness";
-    license = mit;
+    license = licenses.mit;
   };
 }

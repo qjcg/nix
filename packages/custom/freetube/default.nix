@@ -28,10 +28,13 @@
 , at_spi2_core
 ,
 }:
-
-stdenv.mkDerivation rec {
-  pname = "freetube";
+let
+  inherit (lib) licenses makeLibraryPath platforms;
   version = "0.7.1";
+in
+stdenv.mkDerivation {
+  inherit version;
+  pname = "freetube";
 
   src = fetchurl {
     url =
@@ -44,7 +47,7 @@ stdenv.mkDerivation rec {
   buildInputs = [ gtk3 ];
   nativeBuildInputs = [ makeWrapper ];
 
-  mclibPath = stdenv.lib.makeLibraryPath [ libpulseaudio ];
+  mclibPath = makeLibraryPath [ libpulseaudio ];
 
   installPhase = ''
     mkdir -p $out/bin
@@ -63,7 +66,7 @@ stdenv.mkDerivation rec {
   # TODO: Clean up this list
   preFixup =
     let
-      libPath = lib.makeLibraryPath [
+      libPath = makeLibraryPath [
         glibc
         stdenv.cc.cc.lib
         libuuid
@@ -119,7 +122,7 @@ stdenv.mkDerivation rec {
   #  --set-rpath "${liblauncherPath}:$out/opt/freetube" \
   #  $out/opt/freetube/liblauncher.so
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "The private YouTube client";
     homepage = "https://freetubeapp.io/";
     platforms = platforms.linux;

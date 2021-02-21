@@ -1,4 +1,5 @@
 { stdenv
+, lib
 , fetchurl
 , getconf
 , libiconv
@@ -6,10 +7,13 @@
 , ncurses
 ,
 }:
-
-stdenv.mkDerivation rec {
-  name = "s-nail-${version}";
+let
+  inherit (lib) platforms;
   version = "14.9.14";
+in
+stdenv.mkDerivation {
+  inherit version;
+  name = "s-nail-${version}";
 
   src = fetchurl {
     url = "https://ftp.sdaoden.eu/s-nail-${version}.tar.gz";
@@ -25,7 +29,7 @@ stdenv.mkDerivation rec {
     make VAL_PREFIX=$out CONFIG=maximal all
   '';
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "Simple mail reader.";
     homepage = "https://www.sdaoden.eu/code.html";
     platforms = platforms.unix;

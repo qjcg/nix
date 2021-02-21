@@ -1,10 +1,11 @@
 { lib, multiStdenv, fetchurl }:
 let
-  inherit (lib) fakeSha256;
-in
-multiStdenv.mkDerivation rec {
+  inherit (lib) fakeSha256 licenses;
   pname = "sbagen";
   version = "1.4.5";
+in
+multiStdenv.mkDerivation {
+  inherit pname version;
 
   src = fetchurl {
     url = "https://uazu.net/sbagen/${pname}-${version}.tgz";
@@ -27,7 +28,7 @@ multiStdenv.mkDerivation rec {
   meta = {
     description = "Binaural sound generator";
     homepage = "http://uazu.net/sbagen";
-    license = lib.licenses.gpl2;
+    license = licenses.gpl2;
     platforms = [ "i686-linux" "x86_64-linux" ];
   };
 }

@@ -1,8 +1,10 @@
-{ stdenv, buildGoModule, fetchFromGitHub }:
-
-buildGoModule rec {
-  pname = "revel";
+{ licenses, buildGoModule, fetchFromGitHub }:
+let
+  inherit (lib) licenses;
   version = "1.0.0";
+in
+buildGoModule {
+  pname = "revel";
 
   src = fetchFromGitHub {
     owner = "revel";
@@ -15,7 +17,7 @@ buildGoModule rec {
   vendorSha256 = "1iyvrjdz5p07c3yf8073szxwvd0g91pa6zflki3gfl1l6n2xg7rr";
   doCheck = false;
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "A high productivity, full-stack web framework";
     homepage = "http://revel.github.io/";
     license = licenses.mit;

@@ -1,8 +1,11 @@
-{ stdenv, buildGoModule, fetchFromGitHub, }:
-
-buildGoModule rec {
-  pname = "grafterm";
+{ lib, buildGoModule, fetchFromGitHub, }:
+let
+  inherit (lib) licenses;
   version = "0.2.0";
+in
+buildGoModule {
+  inherit version;
+  pname = "grafterm";
 
   src = fetchFromGitHub {
     owner = "slok";
@@ -18,7 +21,7 @@ buildGoModule rec {
     -ldflags= -s -w -X main.Version=${version}
   '';
 
-  meta = with stdenv.lib; {
+  meta = {
     description =
       "Metrics dashboards on terminal (a grafana inspired terminal version)";
     homepage = "https://github.com/slok/grafterm";

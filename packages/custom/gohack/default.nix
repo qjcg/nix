@@ -1,8 +1,11 @@
-{ stdenv, buildGoModule, fetchFromGitHub, }:
-
-buildGoModule rec {
-  pname = "gohack";
+{ lib, buildGoModule, fetchFromGitHub, }:
+let
+  inherit (lib) licenses;
   version = "1.0.2";
+in
+buildGoModule {
+  inherit version;
+  pname = "gohack";
 
   src = fetchFromGitHub {
     owner = "rogpeppe";
@@ -17,7 +20,7 @@ buildGoModule rec {
   # work fine regardless of the failing tests.
   doCheck = false;
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "Make temporary edits to your Go module dependencies";
     homepage = "https://github.com/rogpeppe/gohack";
     license = licenses.bsd3;

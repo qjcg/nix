@@ -1,12 +1,10 @@
-{ stdenv, fetchFromGitHub, buildGoModule }:
+{ lib, fetchFromGitHub, buildGoModule }:
 let
-  inherit (stdenv.lib) fakeSha256 licenses;
-
+  inherit (lib) fakeSha256 licenses;
   version = "0.9.4";
 in
 buildGoModule {
   inherit version;
-
   pname = "daptin";
 
   src = fetchFromGitHub {

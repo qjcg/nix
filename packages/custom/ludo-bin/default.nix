@@ -1,4 +1,5 @@
 { stdenv
+, lib
 , fetchurl
 , glfw
 , openal
@@ -12,25 +13,27 @@
 ,
 }:
 let
+  inherit (lib) licenses;
+  inherit (stdenv) isDarwin;
+
   version = "0.11.1";
 
   releaseFile =
-    if stdenv.isDarwin then
+    if isDarwin then
       "Ludo-OSX-x86_64-${version}.dmg"
     else
       "Ludo-Linux-x86_64-${version}.tar.gz";
 
   releaseFileSha256 =
-    if stdenv.isDarwin then
+    if isDarwin then
       "0xhbdd4ba2d27xkys31fww721ihsmhsbdryl9w53qnh143hs7slp"
     else
       "0blmf11111111jsfd1vy6d65fwpic8zvs88z40l5462pqd6d0bp8";
 
-  installPhaseScript = if stdenv.isDarwin then "" else "";
+  installPhaseScript = if isDarwin then "" else "";
 in
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   inherit version;
-
   pname = "ludo-bin";
 
   src = fetchurl {
@@ -59,7 +62,7 @@ stdenv.mkDerivation rec {
     ln -s $out/opt/ludo/ludo $out/bin/ludo
   '';
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "A minimalist libretro frontend written in golang";
     homepage = "https://github.com/libretro/ludo";
     license = licenses.gpl3;

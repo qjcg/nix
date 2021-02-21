@@ -1,8 +1,11 @@
-{ stdenv, fetchFromGitLab, go, python38, }:
-
-stdenv.mkDerivation rec {
-  pname = "loccount";
+{ lib, stdenv, fetchFromGitLab, go, python38, }:
+let
+  inherit (lib) licenses;
   version = "2.10";
+in
+stdenv.mkDerivation {
+  inherit version;
+  pname = "loccount";
 
   depsBuildBuild = [ go ];
   nativeBuildInputs = [ python38 ];
@@ -30,7 +33,7 @@ stdenv.mkDerivation rec {
     sha256 = "1qw4zmgp1as52xl9ygn6jbla2vd5q2xab75kwfzf6w06g6psnab2";
   };
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "Count source lines of code in a project";
     homepage = "https://gitlab.com/esr/loccount";
     license = licenses.bsd3;

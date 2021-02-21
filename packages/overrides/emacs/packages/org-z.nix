@@ -1,6 +1,6 @@
-{ stdenv, emacs, fetchFromGitHub }:
+{ lib, stdenv, emacs, fetchFromGitHub }:
 let
-  inherit (stdenv.lib) fakeSha256;
+  inherit (lib) fakeSha256 licenses;
 in
 stdenv.mkDerivation {
   pname = "org-z";
@@ -18,7 +18,7 @@ stdenv.mkDerivation {
     install *.el *.elc $out/share/emacs/site-lisp
   '';
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "Lightweight, Org-mode flavored zettelkasten links.";
     homepage = "https://github.com/landakram/org-z";
     license = licenses.gpl3;

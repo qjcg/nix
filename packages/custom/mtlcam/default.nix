@@ -1,8 +1,11 @@
-{ stdenv, fetchFromGitHub, buildGoModule, }:
-
-buildGoModule rec {
-  pname = "mtlcam";
+{ lib, fetchFromGitHub, buildGoModule, }:
+let
+  inherit (lib) licenses;
   version = "0.3.0";
+in
+buildGoModule {
+  inherit version;
+  pname = "mtlcam";
 
   src = fetchFromGitHub {
     owner = "qjcg";
@@ -19,7 +22,7 @@ buildGoModule rec {
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
   vendorSha256 = "0s091a30jyyk9ch53jd07fn4yl0f6ggyalhdh8xlrq6nsn5rns1m";
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "Download Montreal traffic camera images";
     homepage = "https://github.com/qjcg/mtlcam";
     license = licenses.mit;

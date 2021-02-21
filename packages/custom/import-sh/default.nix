@@ -1,8 +1,11 @@
-{ stdenv, fetchFromGitHub, }:
-
-stdenv.mkDerivation rec {
-  pname = "import-sh";
+{ stdenv, lib, fetchFromGitHub, }:
+let
+  inherit (lib) licenses platforms;
   version = "0.1.0";
+in
+stdenv.mkDerivation {
+  inherit version;
+  pname = "import-sh";
 
   src = fetchFromGitHub {
     owner = "importpw";
@@ -16,7 +19,7 @@ stdenv.mkDerivation rec {
     cp import.sh $out/bin/import.sh
   '';
 
-  meta = with stdenv.lib; {
+  meta = {
     description =
       "A simple and fast module system for Bash and other Unix shells";
     homepage = "https://import.pw";

@@ -1,8 +1,11 @@
-{ stdenv, buildGoModule, fetchFromGitHub, getopt, scdoc, }:
-
-buildGoModule rec {
-  pname = "maddy";
+{ lib, buildGoModule, fetchFromGitHub, getopt, scdoc, }:
+let
+  inherit (lib) licenses;
   version = "0.4.3";
+in
+buildGoModule {
+  inherit version;
+  pname = "maddy";
 
   src = fetchFromGitHub {
     owner = "foxcpp";
@@ -29,7 +32,7 @@ buildGoModule rec {
     install -Dm644 docs/man/*.5 -t $out/share/man/man5
   '';
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "Composable all-in-one mail server.";
     homepage = "https://github.com/foxcpp/maddy";
     license = licenses.gpl3;

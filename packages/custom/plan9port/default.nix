@@ -1,4 +1,5 @@
-{ stdenv
+{ lib
+, stdenv
 , fetchFromGitHub
 , which
 , darwin ? null
@@ -10,10 +11,14 @@
 , freetype ? null
 , perl ? null # For building web manuals
 }:
-
-stdenv.mkDerivation {
-  pname = "plan9port";
+let
+  inherit (lib) licenses maintainers optionals optionalString platforms;
+  inherit (stdenv) isDarwin mkDerivation;
   version = "2020-02-22";
+in
+mkDerivation {
+  inherit version;
+  pname = "plan9port";
 
   src = fetchFromGitHub {
     owner = "9fans";
@@ -40,7 +45,7 @@ stdenv.mkDerivation {
 
     substituteInPlace bin/9c \
       --replace 'which uniq' '${which}/bin/which uniq'
-  '' + stdenv.lib.optionalString (!stdenv.isDarwin) ''
+  '' + optionalString (!isDarwin) ''
     #add missing ctrl+c\z\x\v keybind for non-Darwin
     substituteInPlace src/cmd/acme/text.c \
       --replace "case Kcmd+'c':" "case 0x03: case Kcmd+'c':" \
@@ -49,14 +54,14 @@ stdenv.mkDerivation {
       --replace "case Kcmd+'v':" "case 0x16: case Kcmd+'v':"
   '';
 
-  buildInputs = [ perl ] ++ stdenv.lib.optionals (!stdenv.isDarwin) [
+  buildInputs = [ perl ] ++ optionals (!isDarwin) [
     xorgproto
     libX11
     libXext
     libXt
     fontconfig
     freetype # fontsrv wants ft2build.h provides system fonts for acme and sam.
-  ] ++ stdenv.lib.optionals stdenv.isDarwin
+  ] ++ optionals isDarwin
     (with darwin.apple_sdk.frameworks; [ Carbon Cocoa IOKit Metal QuartzCore ]);
 
   builder = ./builder.sh;
@@ -83,7 +88,7 @@ stdenv.mkDerivation {
     ./test
   '';
 
-  meta = with stdenv.lib; {
+  meta = {
     homepage = "https://9fans.github.io/plan9port/";
     description = "Plan 9 from User Space";
     longDescription = ''

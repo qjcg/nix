@@ -1,10 +1,11 @@
-{ stdenv, buildGoModule, fetchFromGitHub }:
+{ lib, buildGoModule, fetchFromGitHub }:
 let
-  inherit (stdenv.lib) fakeSha256;
-in
-buildGoModule rec {
-  pname = "rain";
+  inherit (lib) fakeSha256 licenses;
   version = "1.6.0";
+in
+buildGoModule {
+  inherit version;
+  pname = "rain";
 
   src = fetchFromGitHub {
     owner = "cenkalti";
@@ -17,7 +18,7 @@ buildGoModule rec {
   vendorSha256 = "sha256-TMGWvGZKvZ2tsLEZ20mYVu3tA8/ldXEKAKrCa/UTFQg=";
   doCheck = false; # Tests seem to need root, disable for now.
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "BitTorrent client and library in Go";
     homepage = "https://github.com/cenkalti/rain";
     license = licenses.mit;

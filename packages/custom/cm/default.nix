@@ -1,11 +1,11 @@
-{ stdenv, fetchFromGitHub, buildGoModule, }:
+{ lib, fetchFromGitHub, buildGoModule, }:
 let
-  inherit (stdenv.lib) fakeSha256;
+  inherit (lib) fakeSha256 licenses;
   version = "1.7.2";
 in
 buildGoModule {
+  inherit version;
   pname = "cm";
-  version = version;
 
   src = fetchFromGitHub {
     owner = "aerokube";
@@ -24,7 +24,7 @@ buildGoModule {
 
   subPackages = [ "." ];
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "Configuration manager for Aerokube products";
     homepage = "https://github.com/aerokube/cm";
     license = licenses.asl20;

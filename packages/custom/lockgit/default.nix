@@ -1,12 +1,11 @@
-{ stdenv, buildGoModule, fetchFromGitHub, }:
+{ lib, buildGoModule, fetchFromGitHub, }:
 let
-  inherit (stdenv.lib) fakeSha256;
-
+  inherit (lib) fakeSha256 licenses;
   version = "0.9.0";
 in
 buildGoModule {
+  inherit version;
   pname = "lockgit";
-  version = version;
 
   src = fetchFromGitHub {
     owner = "jswidler";
@@ -18,7 +17,7 @@ buildGoModule {
   subPackages = [ "." ];
   vendorSha256 = "sha256-iS23/qu0aMgW0EKSHjOUxnmmg1coMEKmC/2Q6tQ8EI0=";
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "A CLI tool for storing encrypted data in a git repo";
     homepage = "https://github.com/jswidler/lockgit";
     license = licenses.mit;

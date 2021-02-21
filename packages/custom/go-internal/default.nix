@@ -1,12 +1,14 @@
-{ stdenv, buildGoModule, fetchFromGitHub, }:
+{ lib, buildGoModule, fetchFromGitHub, }:
 let
   inherit (builtins) fetchurl readFile;
+  inherit (lib) licenses;
   # TODO: Add this to installed files.
   testScriptREADME = readFile (fetchurl "https://raw.githubusercontent.com/golang/go/master/src/cmd/go/testdata/script/README");
-in
-buildGoModule rec {
-  pname = "go-internal";
   version = "1.7.0";
+in
+buildGoModule {
+  inherit version;
+  pname = "go-internal";
 
   src = fetchFromGitHub {
     owner = "rogpeppe";
@@ -26,7 +28,7 @@ buildGoModule rec {
 
   doCheck = false;
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "Selected Go-internal packages factored out from the standard library";
     homepage = "https://github.com/rogpeppe/go-internal";
     license = licenses.bsd3;

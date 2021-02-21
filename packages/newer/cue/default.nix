@@ -1,12 +1,10 @@
-{ buildGoModule, fetchgit, stdenv }:
+{ buildGoModule, fetchgit, lib }:
 let
-  inherit (stdenv.lib) fakeSha256 licenses maintainers;
-
+  inherit (lib) fakeSha256 licenses maintainers;
   version = "0.3.0-beta.5";
 in
 buildGoModule {
   inherit version;
-
   pname = "cue";
 
   src = fetchgit {

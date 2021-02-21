@@ -1,8 +1,11 @@
-{ stdenv, buildGoModule, fetchFromGitHub, }:
-
-buildGoModule rec {
-  pname = "annie";
+{ lib, buildGoModule, fetchFromGitHub, }:
+let
+  inherit (lib) licenses;
   version = "0.10.3";
+in
+buildGoModule {
+  inherit version;
+  pname = "annie";
 
   src = fetchFromGitHub {
     owner = "iawia002";
@@ -14,7 +17,7 @@ buildGoModule rec {
   subPackages = [ "." ];
   vendorSha256 = "sha256-ovWBFCjrlQgf5Tdlbqj9ipsKAD/FRd/FChS4wefjAGU=";
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "Fast, simple and clean video downloader";
     homepage = "https://github.com/iawia002/annie";
     license = licenses.mit;

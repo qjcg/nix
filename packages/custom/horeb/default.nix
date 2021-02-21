@@ -1,8 +1,11 @@
-{ stdenv, fetchFromGitHub, buildGoModule, }:
-
-buildGoModule rec {
-  pname = "horeb";
+{ lib, fetchFromGitHub, buildGoModule, }:
+let
+  inherit (lib) licenses;
   version = "0.12.0";
+in
+buildGoModule {
+  inherit version;
+  pname = "horeb";
 
   src = fetchFromGitHub {
     owner = "qjcg";
@@ -22,7 +25,7 @@ buildGoModule rec {
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
   vendorSha256 = "sha256-rmZGr6TcdDPBkyNRMY0vfUyiwoHLuGXGw+XKlVMzuH0=";
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "Speaking in tongues via stdout";
     homepage = "https://github.com/qjcg/horeb";
     license = licenses.mit;

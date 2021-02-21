@@ -1,8 +1,10 @@
-{ stdenv, buildGoModule, fetchFromGitHub }:
-
-buildGoModule rec {
-  pname = "micro";
+{ lib, buildGoModule, fetchFromGitHub }:
+let
+  inherit (lib) licenses;
   version = "2.9.3";
+in
+buildGoModule {
+  pname = "micro";
 
   src = fetchFromGitHub {
     owner = "micro";
@@ -14,7 +16,7 @@ buildGoModule rec {
   subPackages = [ "." ];
   vendorSha256 = "0jm3shz027mqnn6xjxz55c1vxxzb7fjrdbbn0zqyx5bx3wpxyj57";
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "A framework for cloud-native development";
     homepage = "http://micro.mu";
     license = licenses.asl20;

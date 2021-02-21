@@ -1,8 +1,6 @@
-{ stdenv, fetchFromGitHub, buildGoModule, }:
+{ lib, fetchFromGitHub, buildGoModule, }:
 let
-  inherit (stdenv.lib) fakeSha256;
-  inherit (stdenv.lib.licenses) asl20;
-
+  inherit (lib) fakeSha256 licenses;
   version = "0.7.7";
 in
 buildGoModule {
@@ -26,6 +24,6 @@ buildGoModule {
   meta = {
     description = "An easy-to-use solution for multiple repositories";
     homepage = "https://github.com/alibaba/git-repo-go";
-    license = asl20;
+    license = licenses.asl20;
   };
 }

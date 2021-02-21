@@ -1,8 +1,11 @@
-{ stdenv, fetchFromGitHub, buildGoModule, }:
-
-buildGoModule rec {
-  pname = "pms";
+{ lib, fetchFromGitHub, buildGoModule, }:
+let
+  inherit (lib) licenses;
   version = "0.4.2";
+in
+buildGoModule {
+  inherit version;
+  pname = "pms";
 
   src = fetchFromGitHub {
     owner = "ambientsound";
@@ -19,7 +22,7 @@ buildGoModule rec {
   # Ref: https://discourse.nixos.org/t/how-to-create-modsha256-for-buildgomodule/3059/2
   vendorSha256 = "0sg6as9r2rlqbijcy1ib0s8v90hwwx8z56rpc8g3phcqqgvlxb5v";
 
-  meta = with stdenv.lib; {
+  meta = {
     description =
       "Practical Music Search is an interactive Vim-like console client for the Music Player Daemon.";
     homepage = "https://ambientsound.github.io/pms/";

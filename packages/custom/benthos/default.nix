@@ -1,11 +1,10 @@
-{ stdenv, fetchFromGitHub, buildGoModule, }:
+{ lib, fetchFromGitHub, buildGoModule, }:
 let
-  inherit (stdenv.lib) fakeSha256;
+  inherit (lib) fakeSha256 licenses;
   version = "3.41.1";
 in
 buildGoModule {
   inherit version;
-
   pname = "benthos";
 
   src = fetchFromGitHub {
@@ -25,7 +24,7 @@ buildGoModule {
 
   subPackages = [ "cmd/benthos" ];
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "A stream processor for mundane tasks written in Go";
     homepage = "https://github.com/Jeffail/benthos";
     license = licenses.mit;

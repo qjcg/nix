@@ -1,8 +1,11 @@
-{ stdenv, fetchFromGitHub, buildGoModule, }:
-
-buildGoModule rec {
-  pname = "glooctl";
+{ lib, fetchFromGitHub, buildGoModule, }:
+let
+  inherit (lib) licenses;
   version = "1.3.1";
+in
+buildGoModule {
+  inherit version;
+  pname = "glooctl";
 
   src = fetchFromGitHub {
     owner = "solo-io";
@@ -26,7 +29,7 @@ buildGoModule rec {
   #vendorSha256 = lib.fakeSha256;
   vendorSha256 = "0ww5c5ykjkrici68r6mkrpk18ljpp6l01x9916w2fr1kl1vwpb6c";
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "An Envoy-Powered API Gateway";
     homepage = "https://github.com/solo-io/gloo";
     license = licenses.asl20;

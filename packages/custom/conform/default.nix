@@ -1,5 +1,7 @@
-{ stdenv, buildGoModule, fetchFromGitHub, git }:
-
+{ lib, buildGoModule, fetchFromGitHub, git }:
+let
+  inherit (lib) licenses;
+in
 buildGoModule rec {
   pname = "conform";
   version = "0.1.0-alpha.20";
@@ -15,7 +17,7 @@ buildGoModule rec {
 
   nativeBuildInputs = [ git ];
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "Policy enforcement for your pipelines.";
     homepage = "https://github.com/talos-systems/conform";
     license = licenses.mpl20;

@@ -1,6 +1,6 @@
-{ pkgs, stdenv, }:
+{ pkgs, }:
 let
-  inherit (stdenv.lib) fakeSha256;
+  inherit (pkgs.lib) makeBinPath;
 
   # A quick and dirty function to download and use a non-(m)elpa emacs package.
   # See https://github.com/peel/dotfiles/blob/a75b18f887b5f4ddd987d8988a0bdecab8d92cd7/overlays/20-emacs/emacs/default.nix
@@ -106,6 +106,6 @@ myEmacs.overrideAttrs (old: rec {
   nativeBuildInputs = old.nativeBuildInputs or [ ] ++ [ pkgs.makeWrapper ];
   buildInputs = old.buildInputs or [ ] ++ myNonElispDeps;
   postInstall = old.postInstall or "" + ''
-    wrapProgram $out/bin/emacs --prefix PATH : "${stdenv.lib.makeBinPath myNonElispDeps}"
+    wrapProgram $out/bin/emacs --prefix PATH : "${makeBinPath myNonElispDeps}"
   '';
 })

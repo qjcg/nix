@@ -1,8 +1,10 @@
-{ stdenv, fetchFromGitHub, buildGoModule, }:
-
-buildGoModule rec {
-  pname = "jmigpin-editor";
+{ lib, fetchFromGitHub, buildGoModule, }:
+let
+  inherit (lib) licenses;
   version = "3.0.0";
+in
+buildGoModule {
+  pname = "jmigpin-editor";
 
   src = fetchFromGitHub {
     owner = "jmigpin";
@@ -14,7 +16,7 @@ buildGoModule rec {
   subPackages = [ "." ];
   vendorSha256 = "18aa508wsls8g6dqlxzr1qj9lvlbcrs14s2wngavdc5dh9ffkhr0";
 
-  meta = with stdenv.lib; {
+  meta = {
     description = "Source code editor in pure Go";
     homepage = "https://github.com/jmigpin/editor";
     license = licenses.mit;
