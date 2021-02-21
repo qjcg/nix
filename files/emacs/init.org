@@ -182,16 +182,16 @@
 
        ;; FIXME: Not being loaded since 2021-01-23!
        :config
-       (setq custom-file
-	"~/.config/emacs/custom.el"
-	"Use a *separate* file for customizations. See https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations")
-       (setq echo-keystrokes 0.1 "Show keystrokes ASAP")
+       ;; Use a *separate* file for customizations.
+       ;; See https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations
+       (setq custom-file "~/.config/emacs/custom.el")
+       (setq echo-keystrokes 0.1) ;; Show keystrokes ASAP
        (setq inhibit-startup-screen t)
        (setq initial-scratch-message nil)
-       (setq mouse-yank-at-point t "Yank at point, NOT click (i.e. mouse cursor position).")
+       (setq mouse-yank-at-point t) ;; Yank at point, NOT click (i.e. mouse cursor position).
        (setq show-trailing-whitespace t)
        (setq auto-fill-mode t)
-       (setq browse-url-browser-function 'eww-browse-url "Browse with eww by default")
+       (setq browse-url-browser-function 'eww-browse-url) ;; Browse with eww by default
        (setq backup-directory-alist '(("." . "~/.config/emacs/backup"))))
 
      (use-package recentf
