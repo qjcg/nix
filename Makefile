@@ -16,7 +16,7 @@ switch:
 
 # Launch the nix REPL for troubleshooting & debugging.
 repl:
-	nix repl ./lib/default.nix
+	nix repl ./lib/repl.nix
 
 
 # NIXOS-CONTAINER (linux only)

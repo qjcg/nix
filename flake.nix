@@ -37,18 +37,38 @@
       (system:
         let
           pkgs = import inputs.nixpkgs {
-            system = "${system}";
+            inherit system;
             overlays = [
               inputs.devshell.overlay
               inputs.emacs.overlay
               inputs.wayland.overlay
               self.overlay
             ];
+            config.allowUnfree = true;
+          };
+
+          myPkgs =
+            pkgs.jg.custom //
+            pkgs.jg.docker //
+            pkgs.jg.envs //
+            pkgs.jg.newer //
+            pkgs.jg.overrides;
+
+          # Regex filters representing unsopported packages by system.
+          # To indicate no unsupported packages, use the empty string.
+          filters = {
+            x86_64-linux = "";
+            x86_64-darwin = "sbagen|sxiv|wayfire|wayland";
+            aarch64-linux = "delve";
+            i686-linux = "";
           };
         in
         {
           # NOTE: For "packages" output, top-level attr values MUST all be derivations to pass `nix flake check`.
-          packages = pkgs.jg.custom // pkgs.jg.docker // pkgs.jg.envs // pkgs.jg.newer // pkgs.jg.overrides;
+          packages = self.lib.filterPackages {
+            attrs = myPkgs;
+            regex = filters.${system};
+          };
           defaultPackage = pkgs.jg.custom.mtlcam;
 
           devShell =
@@ -101,24 +121,28 @@
             };
 
           checks = {
-            build = self.defaultPackage.${system};
+            build = self.defaultPackage.${system}; # FIXME: Redundant. Add more interesting checks.
           };
 
         }
       ) // {
 
-      lib = import ./lib;
+      lib = import ./lib { pkgs = inputs.nixpkgs; };
 
       overlay =
         final: prev:
         let
+          inherit (builtins) attrNames readDir;
+          inherit (prev) callPackage;
+          inherit (prev.lib.attrsets) genAttrs;
+
           # pkgsFromDir creates a {pname: derivation} attrset given an input dir.
           pkgsFromDir = dir:
             # input: A directory path. The directory should contain nix package subdirs.
             # output: An attrset mapping package names to package derivations.
-            prev.lib.attrsets.genAttrs
-              (builtins.attrNames (builtins.readDir dir))
-              (name: prev.callPackage (dir + "/${name}") { });
+            genAttrs
+              (attrNames (readDir dir))
+              (name: callPackage (dir + "/${name}") { });
         in
         {
           # Put my packages in their own attrset to easily

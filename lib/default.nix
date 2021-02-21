@@ -1,43 +1,17 @@
+{ pkgs }:
 let
-  inherit (builtins) getFlake trace;
-
-  # This repo's main flake.
-  thisFlake = getFlake (toString ../.);
+  inherit (builtins) match;
+  inherit (pkgs.lib) filterAttrs;
 in
 {
-  # Use the "repl" attrset for easy discoverability via tab-completion.
-  repl = {
-    flake = thisFlake;
-
-    README = trace ''
-
-
-      # ABOUT
-
-      This file is for debugging and troubleshooting this repo's nix
-      expressions.  It contains a top-level "repl" attrset for easy
-      discoverability via tab-completion.
-
-
-      ## REPL ATTRIBUTES
-
-      - README: This attribute. Describes usage. (To reload, do `:r ; repl.README`).
-      - pkgs: imports this flake's inputs.nixpkgs with all overlays.
-
-
-      ## USAGE EXAMPLES
-    ''
-      true;
-
-    # Demonstrate adding this flake's top-level "overlay" to upstream nixpkgs via flake import.
-    pkgs = import thisFlake.inputs.nixpkgs {
-      overlays = [
-        thisFlake.inputs.devshell.overlay
-        thisFlake.inputs.emacs.overlay
-        thisFlake.inputs.wayland.overlay
-        thisFlake.overlay
-      ];
-    };
-
-  };
+  # Filter out packages by regex from an attrset.
+  # Returns an attrset containing only package names NOT matching regex.
+  # E.g.:
+  #   > pkgs = { aaa = 1; bbb = 2; ccc = 3; };
+  #   > filterPackages { attrs = pkgs; regex = "aaa|bbb"; }
+  #   { ccc = 3; }
+  filterPackages = { attrs, regex }:
+    filterAttrs
+      (k: v: (regex == "") || (match regex k) == null)
+      attrs;
 }
