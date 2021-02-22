@@ -161,6 +161,11 @@
         };
 
       templates = {
+        devshell = {
+          path = ./templates/devshell;
+          description = "A flake providing a development shell.";
+        };
+
         docker = {
           path = ./templates/docker;
           description = "A flake providing a docker container image.";
@@ -186,13 +191,8 @@
           description = "A flake providing a nix package.";
         };
 
-        shell = {
-          path = ./templates/devshell;
-          description = "A flake providing a development shell.";
-        };
-
         # See https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-flake-init.html#template-definitions
-        defaultTemplate = self.templates.shell;
+        defaultTemplate = self.templates.devshell;
 
       };
 
