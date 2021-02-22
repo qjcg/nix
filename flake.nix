@@ -76,12 +76,12 @@
           defaultPackage = pkgs.jg.custom.mtlcam;
 
           devShell =
-            with pkgs;
             let
+              inherit (pkgs.devshell) mkShell;
               name = "devshell-nix-qjcg";
             in
             # See https://github.com/numtide/devshell/blob/master/devshell.toml
-            devshell.mkShell {
+            mkShell {
               inherit name;
 
               motd = ''
@@ -90,13 +90,13 @@
               '';
 
               bash.extra = ''
-                # A simple bash function as a proof-of-concept with mkDevShell.
+                # A simple bash function as a proof-of-concept with mkShell.
                 awesome() {
                   echo This is awesome $*
                 }
               '';
 
-              packages = [
+              packages = with pkgs; [
                 jg.envs.env-nix
                 nodejs-14_x # installed as neovim dependency (avoids startup error message)
               ];
