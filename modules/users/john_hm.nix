@@ -145,6 +145,7 @@ in
           "log --pretty=format:'%C(yellow)%h%Creset %s  %C(red)<%cn> %Cgreen[%cr] %Creset%d' --graph --all";
         re = "remote -v";
         reu = "remote set-url";
+        sm = "submodule";
         st = "status --column";
 
         # Via https://git.wiki.kernel.org/index.php/Aliases#Use_graphviz_for_display
