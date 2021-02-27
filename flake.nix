@@ -84,10 +84,10 @@
             mkShell {
               inherit name;
 
-              motd = ''
+              #motd = ''
 
-                Welcome to the ${name} devshell!
-              '';
+              #  Welcome to the ${name} devshell!
+              #'';
 
               bash.extra = ''
                 # A simple bash function as a proof-of-concept with mkShell.
@@ -98,28 +98,22 @@
 
               packages = with pkgs; [
                 jg.envs.env-nix
-                nodejs-14_x # installed as neovim dependency (avoids startup error message)
+                nodejs # Installed as neovim dependency (avoids startup error message).
               ];
 
               # Review what's installed in your devshell via the `menu` command.
               commands = [
                 {
-                  help = "used to format nix code";
-                  name = "nixpkgs-fmt";
-                  package = "nixpkgs-fmt";
-                  category = "formatters";
-                }
-                {
-                  help = "A sort of hybrid between Windows Notepad, a monolithic-kernel operating system, and the International Space Station.";
                   name = "emacs";
                   package = "jg.overrides.emacs";
                   category = "editors";
+                  help = "A sort of hybrid between Windows Notepad, a monolithic-kernel operating system, and the International Space Station.";
                 }
                 {
-                  help = "Vim, but new and stuff";
                   name = "neovim";
                   package = "jg.overrides.neovim";
                   category = "editors";
+                  help = "Vim, but new and stuff";
                 }
               ];
             };
