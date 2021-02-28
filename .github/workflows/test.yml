@@ -1,9 +1,7 @@
 name: Test
 on:
   pull_request:
-  push:
-    #tags-ignore:
-    #  - v*
+    branches: [master]
 jobs:
   tests:
     strategy:
@@ -18,10 +16,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        # TODO: Commented to test whether subsequent steps are still working with a shallow clone (default fetch-depth is 1).
-        #with:
-        #  # Nix Flakes doesn't work on shallow clones
-        #  fetch-depth: 0
 
       - name: Install nix
         uses: cachix/install-nix-action@v12
