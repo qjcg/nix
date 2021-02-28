@@ -125,17 +125,8 @@
       overlay =
         final: prev:
         let
-          inherit (builtins) attrNames readDir;
-          inherit (prev) callPackage;
-          inherit (prev.lib.attrsets) genAttrs;
-
-          # pkgsFromDir creates a {pname: derivation} attrset given an input dir.
-          pkgsFromDir = dir:
-            # input: A directory path. The directory should contain nix package subdirs.
-            # output: An attrset mapping package names to package derivations.
-            genAttrs
-              (attrNames (readDir dir))
-              (name: callPackage (dir + "/${name}") { });
+          lib = import ./lib { pkgs = prev; };
+          inherit (lib) pkgsFromDir;
         in
         {
           # Put my packages in their own attrset to easily

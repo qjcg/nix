@@ -1,7 +1,14 @@
 { pkgs }:
 let
-  inherit (builtins) isNull match;
+  inherit (builtins)
+    attrNames
+    isNull
+    match
+    readDir
+    ;
+  inherit (pkgs) callPackage;
   inherit (pkgs.lib) filterAttrs;
+  inherit (pkgs.lib.attrsets) genAttrs;
 in
 {
   # Filter out packages by regex from an attrset.
@@ -17,4 +24,12 @@ in
         isNull regex || # No filtering when regex is null.
         isNull (match regex k))
       attrs;
+
+  # pkgsFromDir creates a {pname: derivation} attrset given an input dir.
+  # input: A directory path. The directory should contain nix package subdirs.
+  # output: An attrset mapping package names to package derivations.
+  pkgsFromDir = dir:
+    genAttrs
+      (attrNames (readDir dir))
+      (name: callPackage (dir + "/${name}") { });
 }
