@@ -293,11 +293,8 @@
               ./modules/users/hm-darwin_jgosset.nix
 
               {
-
                 nixpkgs.overlays = [
-                  inputs.devshell.overlay
                   inputs.emacs.overlay
-                  inputs.wayland.overlay
                   self.overlay
                 ];
 
