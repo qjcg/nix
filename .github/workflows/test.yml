@@ -32,7 +32,6 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTHTOKEN }}"
       - name: Check nix formatting
         run: nix run nixpkgs#nixpkgs-fmt -- --check .
-      - name: Check `nix flake show`
-        run: nix flake show
-      - name: Check build of mtlcam
-        run: nix build .#mtlcam
+
+      - name: Check flake (`nix flake check`)
+        run: nix flake check
