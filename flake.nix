@@ -25,7 +25,7 @@
     guix.url = "github:emiller88/guix";
     home-manager.url = "github:nix-community/home-manager";
     nix-darwin.url = "github:lnl7/nix-darwin";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-20.09-darwin";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nur.url = "github:nix-community/NUR";
