@@ -224,13 +224,15 @@
 
           myPkgs = myPkgsFunc { };
 
+          # The workstation function creates workstation systems DRYly.
           workstation =
             { system ? "x86_64-linux"
             , modules ? defaultModules
             , overlays ? defaultOverlays
+            , systemFunc ? inputs.nixpkgs.lib.nixosSystem
             }:
 
-            inputs.nixpkgs.lib.nixosSystem {
+            systemFunc {
               inherit system;
               modules = modules ++ [{ nixpkgs.overlays = overlays; }];
             };
