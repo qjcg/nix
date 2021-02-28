@@ -1,9 +1,8 @@
 { config, lib, pkgs, ... }:
 let
+  inherit (lib) mkEnableOption mkIf mkMerge mkOption types;
   cfg = config.roles.emacs;
 in
-with lib;
-
 {
   options = {
 
