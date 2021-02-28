@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [master]
 jobs:
-  tests:
+  main:
     strategy:
       matrix:
         # See https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
