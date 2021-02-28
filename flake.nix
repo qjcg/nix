@@ -59,7 +59,7 @@
             pkgs.jg.newer //
             pkgs.jg.overrides;
 
-          # Regex filters representing unsopported packages by system.
+          # Regex filters representing unsupported packages by system.
           # To do no filtering (let everything through), set system value to null.
           filters = {
             x86_64-linux = null;
@@ -83,11 +83,6 @@
             # See https://github.com/numtide/devshell/blob/master/devshell.toml
             mkShell {
               inherit name;
-
-              #motd = ''
-
-              #  Welcome to the ${name} devshell!
-              #'';
 
               bash.extra = ''
                 # A simple bash function as a proof-of-concept with mkShell.
@@ -288,7 +283,6 @@
           mtlmp-jgosset1 = inputs.nix-darwin.lib.darwinSystem {
             modules = [
               inputs.home-manager.darwinModules.home-manager
-
               self.nixosModules.workstation
               ./modules/users/hm-darwin_jgosset.nix
 
