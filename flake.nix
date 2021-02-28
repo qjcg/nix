@@ -247,10 +247,7 @@
 
               # Stub values set to avoid errors during `nix flake check`.
               {
-                fileSystems."/" = {
-                  device = "";
-                  fsType = "ext4";
-                };
+                fileSystems."/" = { device = ""; fsType = "ext4"; };
                 boot.loader.grub.devices = [ "/dev/disk/by-label/myboot" ];
               }
             ];
