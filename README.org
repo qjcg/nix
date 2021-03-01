@@ -58,35 +58,6 @@
      └── secrets.nix - secrets file (gitignored, do e.g.: `gopass nix-secrets > secrets.nix`)
    #+end_example
 
-** Todo List [1/7]
-   :PROPERTIES:
-   :CUSTOM_ID: todo
-   :END:
-
-   - [ ] Create custom NixOS LiveUSB / install media
-
-     - [[https://nixos.org/nixos/manual/index.html#sec-building-cd][manual]]
-     - [[https://nixos.wiki/wiki/Creating_a_NixOS_live_CD][wiki]]
-     - [[https://github.com/nix-community/nixos-generators][nixos-generators]]
-
-   - [ ] Create custom Rasbperry Pi SD card
-
-     - [[https://nixos.wiki/wiki/NixOS_on_ARM#Build_your_own_image][Build your own image]]
-     - [[https://nixos.wiki/wiki/NixOS_on_ARM#Compiling_through_QEMU][Compiling through QEMU]]
-     - [[https://nixos.wiki/wiki/Cheatsheet#Cross-compile_packages][Wiki: Cross-compile packages]]
-     - [[https://nixos.wiki/wiki/NixOS_on_ARM/Raspberry_Pi][Wiki: Raspberry Pi]]
-
-   - [X] Look into [[https://github.com/numtide/devshell][devshell]]
-   - [ ] Test out [[https://github.com/nix-community/impermanence][impermanence]]
-   - [ ] Consider protocol for bootstrapping GPG keys on a new system
-
-     - One example via [[https://github.com/lobre/nix-home/blob/master/docs/gpg.md][lobre/nix-home]]
-     - [[https://github.com/dmshaw/paperkey][paperkey]]
-     - [[https://github.com/nurupo/paper-store][paper-store]]
-
-   - [ ] Move References section out of README
-   - [ ] Update Use and Layout sections
-
 ** References
    :PROPERTIES:
    :CUSTOM_ID: references
