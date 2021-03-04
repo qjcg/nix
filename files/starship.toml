@@ -6,6 +6,7 @@ format = """\
     $git_commit\
     $git_state\
     $git_status\
+    ${custom.k8s}\
     $kubernetes\
     $hg_branch\
     $docker_context\
@@ -47,7 +48,15 @@ symbol = " "
 
 [kubernetes]
 symbol = "☸ "
-disabled = false
+disabled = true
 
 [kubernetes.context_aliases]
 "dev.local.cluster.k8s" = "dev"
+
+# Use this custom k8s module instead of built-in kubernetes module to
+# avoid "prompt pollution" by only showing k8s context when in a
+# relevant directory.
+[custom.k8s]
+command = "echo $(kubectl config current-context) ($(kubectl config view --minify --output 'jsonpath={..namespace}'))"
+symbol = "☸ "
+when = "[[ $PWD =~ k8s ]]"
