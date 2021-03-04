@@ -788,7 +788,17 @@
     :ID:       ce89f275-2463-4ca5-9d27-9325942bbcda
     :END:
     #+begin_src emacs-lisp
-      (use-package magit :ensure)
+      (use-package magit
+	:ensure
+	:config
+	;; Taken from https://idiomdrottning.org/magit-transients
+	(defun magit-display-buffer-same-window (buffer)
+	  "Display BUFFER in the selected window like God intended."
+	  (display-buffer
+	   buffer '(display-buffer-same-window)))
+
+	(setq magit-display-buffer-function 'magit-display-buffer-same-window)
+	(setq magit-popup-display-buffer-action '((display-buffer-same-window))))
 
       ;; Work with Git forges from the comfort of Magit.
       ;; https://github.com/magit/forge
