@@ -26,8 +26,7 @@ buildEnv {
     skopeo
     sops
     stern
-    tektoncd-cli
-  ] ++ lib.lists.optionals stdenv.isLinux [ k3s ];
+  ] ++ lib.lists.optionals stdenv.isLinux [ k3s tektoncd-cli ];
   meta = {
     description = "An environment for working with Kubernetes";
     priority = 0;
