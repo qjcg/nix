@@ -1,16 +1,13 @@
-{ lib
-, fetchFromGitHub
-, buildGoModule
-, installShellFiles
+{ pkgs
 , # NOTE: K3s docker images use a "-k3s" suffix, while the k3d repo uses a "+k3d" suffix in git tags.
   # See also https://update.k3s.io/v1-release/channels/stable
   # (version selected here should correspond to the k8s version used in prod)
   k3sVersion ? "v1.18.6-k3s1"
-,
 }:
 let
-  inherit (lib) fakeSha256 licenses;
-  version = "4.2.0";
+  inherit (pkgs) buildGoModule fetchFromGitHub installShellFiles;
+  inherit (pkgs.lib) fakeSha256 licenses;
+  version = "4.3.0";
 in
 buildGoModule {
   inherit version;
@@ -21,7 +18,7 @@ buildGoModule {
     owner = "rancher";
     repo = "k3d";
     rev = "v${version}";
-    sha256 = "sha256-R2RbQlceOD/uY3IdLLiM23gESh/oWnsiTWxHeH/Si18=";
+    sha256 = "sha256-ybEYKr0rQY8Qg74V1mXqShq5Z2d/Adf0bSSbEMIyo3I=";
   };
 
   vendorSha256 = null; # Use k3d's vendor directory.
