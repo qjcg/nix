@@ -1,7 +1,8 @@
-{ buildGoModule, fetchgit, lib }:
+{ pkgs }:
 let
-  inherit (lib) fakeSha256 licenses maintainers;
-  version = "0.3.0-beta.5";
+  inherit (pkgs) buildGoModule fetchgit;
+  inherit (pkgs.lib) fakeSha256 licenses maintainers;
+  version = "0.3.0-beta.6";
 in
 buildGoModule {
   inherit version;
@@ -10,7 +11,7 @@ buildGoModule {
   src = fetchgit {
     url = "https://cue.googlesource.com/cue";
     rev = "v${version}";
-    sha256 = "sha256-H3PCMM7oVsZx6pVveIEeZjv6KcevhSL9NOhh3j3mS0Q=";
+    sha256 = "sha256-2yEpYGqtvJPfZuHvX/4Ld/20IBqfqXIT63PnWah2ygk=";
   };
 
   vendorSha256 = "sha256-9ai1Wbk6ftcXHjVEWaL8drxZnhgAwF8+OXNI95CrNjc=";
