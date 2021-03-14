@@ -1,7 +1,8 @@
-{ lib, fetchFromGitHub, buildGoModule, }:
+{ pkgs }:
 let
-  inherit (lib) fakeSha256 licenses;
-  version = "3.41.1";
+  inherit (pkgs) buildGoModule fetchFromGitHub;
+  inherit (pkgs.lib) fakeSha256 licenses;
+  version = "3.42.0";
 in
 buildGoModule {
   inherit version;
@@ -11,7 +12,7 @@ buildGoModule {
     owner = "Jeffail";
     repo = "benthos";
     rev = "v${version}";
-    sha256 = "sha256-JZ+G4I+2IimATbekqM16n1JULYjSyi5tSL0DNDY4zt0=";
+    sha256 = "sha256-nX7KpEtHYM6UtZl+7Cb73glLeXoM2TuyDGmLxUaE8Cw=";
   };
 
   vendorSha256 = "sha256-z+by4WX04aOwcINSAUsQuKd/EzQ4WXH64rs1Zgg43yw=";

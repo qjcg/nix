@@ -35,7 +35,7 @@ pkgs.buildEnv {
     github-cli
     gitAndTools.delta
     gitAndTools.hub
-    gitAndTools.lefthook
+    jg.newer.lefthook
     gnugrep
     gnumake
     gnupg

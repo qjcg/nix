@@ -3,7 +3,7 @@
 with pkgs;
 
 mkShell {
-  buildInputs = [ age argo cue lefthook kubectl kubectx kubeseal sops tanka vault ]
+  buildInputs = [ age argo cue kubectl kubectx kubeseal sops tanka vault ]
     ++ lib.lists.optionals useVim [ vim ];
 
   shellHook = ''
