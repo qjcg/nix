@@ -3,7 +3,7 @@
 { config, pkgs, ... }:
 
 let
-  inherit (import ../common/fonts.nix) fontPkgs;
+  inherit (import ../vars/fonts.nix) fontPkgs;
 in
 {
   config = {
