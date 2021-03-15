@@ -2,6 +2,7 @@
 let
   inherit (pkgs.stdenv) isDarwin isLinux;
   inherit (lib) mkEnableOption mkIf mkMerge;
+  inherit (lib.attrsets) optionalAttrs;
 
   cfg = config.roles.workstation;
 in
