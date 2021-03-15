@@ -1,4 +1,4 @@
-# Module with settings appropriate for a nixos-container.
+# Nixos-container appropriate settings.
 # See https://www.tweag.io/blog/2020-07-31-nixos-flakes/
 { config, pkgs, ... }:
 
