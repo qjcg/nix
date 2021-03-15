@@ -1,14 +1,12 @@
-{ config, lib, pkgs, ... }:
-let
-  inherit (lib) mkIf mkMerge;
-  cfg = config.roles.workstation;
-in
-mkMerge [
-  (mkIf cfg.games {
+{ config, pkgs, ... }:
+
+{
+  config = {
     environment.systemPackages = with pkgs; [
       nethack
       jg.overrides.retroarch
     ];
+
     services.gnome3.games.enable = true;
-  })
-]
+  };
+}

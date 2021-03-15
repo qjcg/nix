@@ -1,10 +1,8 @@
-{ config, lib, pkgs, ... }:
-let
-  inherit (lib) mkIf mkMerge;
-  cfg = config.roles.workstation;
-in
-mkMerge [
-  (mkIf cfg.sway {
+# i3-compatible wayland compositor.
+{ config, pkgs, ... }:
+
+{
+  config = {
     programs.sway.enable = true;
     programs.sway.extraPackages = with pkgs; [
       xwayland
@@ -47,5 +45,5 @@ mkMerge [
       #cage # A Wayland kiosk (runs a single app fullscreen)
       #wdisplays
     ];
-  })
-]
+  };
+}

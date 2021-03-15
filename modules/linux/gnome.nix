@@ -1,10 +1,8 @@
-{ config, lib, pkgs, ... }:
-let
-  inherit (lib) mkIf mkMerge;
-  cfg = config.roles.workstation;
-in
-mkMerge [
-  (mkIf cfg.gnome {
+# GNOME desktop environment.
+{ config, pkgs, ... }:
+
+{
+  config = {
     environment.systemPackages = with pkgs; [
       gnome3.gitg
       gnome3.gnome-tweak-tool
@@ -22,5 +20,5 @@ mkMerge [
     services.xserver.displayManager.defaultSession = "gnome";
     services.xserver.displayManager.gdm.enable = true;
     services.xserver.desktopManager.gnome3.enable = true;
-  })
-]
+  };
+}
