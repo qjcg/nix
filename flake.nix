@@ -176,8 +176,8 @@
       };
 
       nixosModules = {
-        container = import ./modules/linux/container.nix;
-        workstation = import ./modules/roles/workstation;
+        darwin = import ./modules/darwin;
+        linux = import ./modules/linux;
       };
 
       # TODO: Organize this better. See e.g.: https://github.com/Mic92/dotfiles/blob/master/nixos/configurations.nix
@@ -194,16 +194,7 @@
 
           defaultModules = [
             inputs.home-manager.nixosModules.home-manager
-            self.nixosModules.workstation
-
-            ./modules/linux/games.nix
-            ./modules/linux/gnome.nix
-            ./modules/linux/sway.nix
-
-            {
-              roles.workstation.enable = true;
-              roles.workstation.desktop = true;
-            }
+            self.nixosModules.linux
           ];
 
           myPkgsFunc =
@@ -254,11 +245,11 @@
           #   nixos-container start myWorkstation
           #   nixos-container root-login myWorkstation
           #   nixos-container destroy myWorkstation
-          wrkc = workstation {
-            modules = defaultModules ++ [
-              self.nixosModules.container
-            ];
-          };
+          #wrkc = workstation {
+          #  modules = defaultModules ++ [
+          #    self.nixosModules.container  # FIXME: Update to use ./modules/linux/container.nix
+          #  ];
+          #};
 
           luban = workstation {
             modules = defaultModules ++ [
@@ -282,7 +273,7 @@
           mtlmp-jgosset1 = inputs.nix-darwin.lib.darwinSystem {
             modules = [
               inputs.home-manager.darwinModules.home-manager
-              self.nixosModules.workstation
+              self.nixosModules.darwin
               ./modules/users/hm-darwin_jgosset.nix
 
               {
