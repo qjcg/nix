@@ -7,14 +7,6 @@ let
   cfg = config.roles.workstation;
 in
 {
-  imports = [
-    ./desktop.nix
-    ./fonts.nix
-    ./games.nix
-    ./gnome.nix
-    ./sway.nix
-  ];
-
   options = {
 
     # The workstation role uses the Facade Pattern to expose a small number of
