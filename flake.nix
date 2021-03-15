@@ -176,7 +176,7 @@
       };
 
       nixosModules = {
-        container = import ./modules/container;
+        container = import ./modules/linux/container.nix;
         workstation = import ./modules/roles/workstation;
       };
 
@@ -196,12 +196,13 @@
             inputs.home-manager.nixosModules.home-manager
             self.nixosModules.workstation
 
+            ./modules/linux/games.nix
+            ./modules/linux/gnome.nix
+            ./modules/linux/sway.nix
+
             {
               roles.workstation.enable = true;
               roles.workstation.desktop = true;
-              roles.workstation.games = true;
-              roles.workstation.gnome = true;
-              roles.workstation.sway = true;
             }
           ];
 
