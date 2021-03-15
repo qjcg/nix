@@ -1,6 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ config, pkgs, ... }:
 let
-  inherit (lib) mkEnableOption mkIf mkMerge mkOption types;
+  inherit (pkgs.lib) mkEnableOption mkIf mkMerge mkOption types;
   cfg = config.roles.emacs;
 in
 {
