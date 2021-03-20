@@ -2,11 +2,11 @@
 { config, pkgs, ... }:
 
 let
-  inherit (import ../vars/fonts.nix) fontPkgs;
+  inherit (import ../vars/fonts.nix { inherit pkgs; }) fontPkgs;
 in
 {
   fonts = {
-    fonts = with pkgs; fontPkgs;
+    fonts = fontPkgs;
     enableDefaultFonts = true;
     fontDir.enable = true;
 
