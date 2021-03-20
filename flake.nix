@@ -185,46 +185,48 @@
         let
           inherit (inputs.home-manager.lib.hm) dag;
 
-          defaultOverlays = [
+          # Default overlays for Linux systems.
+          linuxOverlays = [
             inputs.devshell.overlay
             inputs.emacs.overlay
             inputs.wayland.overlay
             self.overlay
           ];
 
-          defaultModules = [
+          # Default modules for Linux systems.
+          linuxModules = [
             inputs.home-manager.nixosModules.home-manager
             self.nixosModules.linux
           ];
 
-          myPkgsFunc =
-            { system ? "x86_64-linux"
-            , overlays ? defaultOverlays
+          pkgsFunc = {
+            system ? "x86_64-linux",
+            overlays ? linuxOverlays,
+          }:
+
+          import inputs.nixpkgs { inherit overlays system; }
+
+          myPkgs = pkgsFunc { };
+
+          # A function wrapping nixosSystem with my preferred defaults.
+          mkLinux = {
+              system ? "x86_64-linux",
+              modules ? linuxModules,
+              overlays ? linuxOverlays,
+              extraModules ? [ ],
             }:
 
-            import inputs.nixpkgs { inherit overlays system; };
-
-          myPkgs = myPkgsFunc { };
-
-          # The workstation function creates workstation systems DRYly.
-          workstation =
-            { system ? "x86_64-linux"
-            , modules ? defaultModules
-            , overlays ? defaultOverlays
-            , systemFunc ? inputs.nixpkgs.lib.nixosSystem
-            }:
-
-            systemFunc {
+            inputs.nixpkgs.lib.nixosSystem {
               inherit system;
-              modules = modules ++ [{ nixpkgs.overlays = overlays; }];
+              modules = modules ++ extraModules ++ [{ nixpkgs.overlays = overlays; }];
             };
         in
         {
 
           # Usage:
           #   nixos-rebuild build-vm --flake .#workstationVM
-          workstationVM = workstation {
-            modules = defaultModules ++ [
+          workstationVM = mkLinux {
+            extraModules = [
               ./modules/users/flakeuser.nix
 
               # Stub values set to avoid errors during `nix flake check`.
@@ -251,16 +253,16 @@
           #  ];
           #};
 
-          luban = workstation {
-            modules = defaultModules ++ [
+          luban = mkLinux {
+            extraModules = [
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t460s
               ./modules/machines/luban
               (import ./modules/users/john.nix { inherit dag; pkgs = myPkgs; })
             ];
           };
 
-          gemini = workstation {
-            modules = defaultModules ++ [
+          gemini = mkLinux {
+            extraModules = [
               ./modules/machines/gemini
               (import ./modules/users/john.nix { inherit dag; pkgs = myPkgs; })
             ];
