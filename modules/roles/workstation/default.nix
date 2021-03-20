@@ -7,21 +7,6 @@ let
   cfg = config.roles.workstation;
 in
 {
-  options = {
-
-    # The workstation role uses the Facade Pattern to expose a small number of
-    # options that summarize the desired values for a larger number of options.
-    #
-    # See https://en.wikipedia.org/wiki/Facade_pattern
-    roles.workstation = {
-      enable = mkEnableOption "workstation role";
-      desktop = mkEnableOption "desktop packages";
-      games = mkEnableOption "games";
-      gnome = mkEnableOption "GNOME desktop environment and related packages";
-      sway = mkEnableOption "sway and related packages";
-    };
-  };
-
   config = mkMerge [
 
     # The following base config is always applied when this role is enabled.
