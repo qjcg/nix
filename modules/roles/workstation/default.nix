@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }:
 let
+  inherit (pkgs.stdenv) isDarwin isLinux;
   inherit (lib) mkEnableOption mkIf mkMerge;
 
   cfg = config.roles.workstation;
@@ -20,15 +21,11 @@ in
     #
     # See https://en.wikipedia.org/wiki/Facade_pattern
     roles.workstation = {
-
-      enable = mkEnableOption "Enable the workstation role.";
-      desktop = mkEnableOption "Install desktop packages.";
-      games = mkEnableOption "Install games.";
-      gnome = mkEnableOption "Install the GNOME desktop environment and related packages.";
-      sway = mkEnableOption "Install sway and related packages";
-      isDarwin = mkEnableOption "Target is a Darwin system.";
-      isLinux = mkEnableOption "Target is a Linux system.";
-
+      enable = mkEnableOption "workstation role";
+      desktop = mkEnableOption "desktop packages";
+      games = mkEnableOption "games";
+      gnome = mkEnableOption "GNOME desktop environment and related packages";
+      sway = mkEnableOption "sway and related packages";
     };
   };
 
@@ -64,7 +61,7 @@ in
       programs.tmux.extraConfig = builtins.readFile ../../../files/tmux.conf;
     }
 
-    (mkIf cfg.isLinux {
+    (mkIf isLinux {
 
       networking.firewall.enable = true;
       networking.firewall.allowedTCPPorts = [ ];
