@@ -23,13 +23,17 @@
     emacs.url = "github:nix-community/emacs-overlay";
     flake-utils.url = "github:numtide/flake-utils";
     guix.url = "github:emiller88/guix";
+    guix.inputs.nixpkgs.follows = "nixpkgs";
     home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nix-darwin.url = "github:lnl7/nix-darwin";
+    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-20.09-darwin";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nur.url = "github:nix-community/NUR";
     wayland.url = "github:colemickens/nixpkgs-wayland";
+    wayland.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, ... }@inputs:
