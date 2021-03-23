@@ -209,6 +209,27 @@
      (use-package ibuffer
        :init
        (global-set-key (kbd "C-x C-b") 'ibuffer))
+
+     ;; Group buffers in ibuffer list by VC project
+     ;; https://github.com/purcell/ibuffer-vc
+     (use-package ibuffer-vc
+       :ensure
+       :config
+       (setq ibuffer-formats
+	   '((mark modified read-only vc-status-mini " "
+		   (name 18 18 :left :elide)
+		   " "
+		   (size 9 -1 :right)
+		   " "
+		   (mode 16 16 :left :elide)
+		   " "
+		   (vc-status 16 16 :left)
+		   " "
+		   vc-relative-file)))
+       :hook (ibuffer . (lambda()
+			      (ibuffer-vc-set-filter-groups-by-vc-root)
+			      (unless (eq ibuffer-sorting-mode 'alphabetic)
+				(ibuffer-do-sort-by-alphabetic)))))
    #+end_src
 
 ** Emacs Package Repos
@@ -553,6 +574,10 @@
 
    #+begin_src emacs-lisp
      (use-package vterm :ensure)
+
+     ;; Manage multiple vterm buffers.
+     ;; https://github.com/suonlight/multi-vterm
+     (use-package multi-vterm :ensure)
 
      ;; Helps you to use shell easily on Emacs. Only one key action to work.
      (use-package shell-pop
