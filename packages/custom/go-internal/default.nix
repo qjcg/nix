@@ -1,10 +1,11 @@
-{ lib, buildGoModule, fetchFromGitHub, }:
+{ pkgs }:
 let
   inherit (builtins) fetchurl readFile;
-  inherit (lib) licenses;
+  inherit (pkgs) buildGoModule fetchFromGitHub;
+  inherit (pkgs.lib) fakeSha256 licenses;
   # TODO: Add this to installed files.
   testScriptREADME = readFile (fetchurl "https://raw.githubusercontent.com/golang/go/master/src/cmd/go/testdata/script/README");
-  version = "1.7.0";
+  version = "1.8.0";
 in
 buildGoModule {
   inherit version;
@@ -14,7 +15,7 @@ buildGoModule {
     owner = "rogpeppe";
     repo = "go-internal";
     rev = "v${version}";
-    sha256 = "sha256-F0/lpUvsvu2noqtrO05zQMkGOaN+6eS9w7JqY31bL1o=";
+    sha256 = "sha256-ze+/FkW3z3b+frAksjWPjDolP1UtSf6z0By6PGXTirM";
   };
 
   subPackages = [
@@ -24,7 +25,7 @@ buildGoModule {
     "cmd/txtar-goproxy"
     "cmd/txtar-x"
   ];
-  vendorSha256 = "sha256-Hbsi4Gsdql2conYjO3NvHRqNxNo7/1O05bsgw32VDDA=";
+  vendorSha256 = "sha256-8PtUfkboSAm5EFvWWbkf2uenITQTMrb4DTvF0F/NTDU=";
 
   doCheck = false;
 
