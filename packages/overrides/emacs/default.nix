@@ -1,6 +1,6 @@
 { pkgs, }:
 let
-  inherit (pkgs.lib) makeBinPath;
+  inherit (pkgs.lib) fakeSha256 makeBinPath;
 
   # A quick and dirty function to download and use a non-(m)elpa emacs package.
   # See https://github.com/peel/dotfiles/blob/a75b18f887b5f4ddd987d8988a0bdecab8d92cd7/overlays/20-emacs/emacs/default.nix
@@ -86,9 +86,18 @@ let
           sha256 = "sha256-Gk4kzKkHKUkzeJ0NfoTbc06l12pPHraxducm8ak32gE=";
         }) "solo-jazz-theme";
 
+      cue-mode = elisp
+        (pkgs.fetchFromGitHub {
+          owner = "jdbaldry";
+          repo = "cue-mode";
+          rev = "b942180bd4e725aa3b1861bf468804c7ad88360e";
+          sha256 = "sha256-xqTc9RtBv5b/YD+Xvj3pq2qKhtwZqu9tzRHEvz5/efM=";
+        }) "cue-mode";
+
     };
 
     extraEmacsPackages = epkgs: with epkgs; [
+      cue-mode
       elfeed-dashboard
       ob-go
       rigpa
