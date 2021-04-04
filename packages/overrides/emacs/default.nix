@@ -1,22 +1,24 @@
 { pkgs, }:
 let
+  inherit (pkgs) makeWrapper runCommand;
   inherit (pkgs.lib) fakeSha256 makeBinPath;
 
   # A quick and dirty function to download and use a non-(m)elpa emacs package.
   # See https://github.com/peel/dotfiles/blob/a75b18f887b5f4ddd987d8988a0bdecab8d92cd7/overlays/20-emacs/emacs/default.nix
   elisp = src: file:
-    pkgs.runCommand "${file}.el" { } ''
+    runCommand "${file}.el" { } ''
       mkdir -p $out/share/emacs/site-lisp
       cp -r ${src}/* $out/share/emacs/site-lisp/
     '';
 
-  # My non-elisp packages required for various emacs features and modes.
-  myNonElispDeps = with pkgs; [
+  # Non-elisp app packages required for various emacs features and modes.
+  apps = with pkgs; [
     graphviz
     nodePackages.mermaid-cli
     nodePackages.prettier
     nodePackages.vega-cli
     nodePackages.vega-lite
+    plantuml
     tectonic
   ];
 
@@ -112,9 +114,8 @@ in
   #  - https://nixos.org/manual/nixpkgs/unstable/#ssec-stdenv-functions
   #  - https://github.com/apeyroux/nixpkgs-config/blob/5f235af4f478082e9c79c6d468d2a7dba90323ab/emacs.nix#L84
 myEmacs.overrideAttrs (old: rec {
-  nativeBuildInputs = old.nativeBuildInputs or [ ] ++ [ pkgs.makeWrapper ];
-  buildInputs = old.buildInputs or [ ] ++ myNonElispDeps;
+  nativeBuildInputs = [ makeWrapper ];
   postInstall = old.postInstall or "" + ''
-    wrapProgram $out/bin/emacs --prefix PATH : "${makeBinPath myNonElispDeps}"
+    wrapProgram $out/bin/emacs --prefix PATH : ${makeBinPath apps}
   '';
 })
