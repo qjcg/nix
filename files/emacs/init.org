@@ -316,10 +316,26 @@
       (use-package doom-modeline :ensure :init (doom-modeline-mode 1))
       (use-package doom-themes :ensure)
       (use-package laguna-theme :ensure)
-      (use-package modus-operandi-theme :ensure) ;; Delete once part of Emacs.
-      (use-package modus-vivendi-theme :ensure) ;; Delete once part of Emacs.
       (use-package monotropic-theme :ensure)
       (use-package solo-jazz-theme)
+
+
+      ;; Modus Themes
+      ;; https://protesilaos.com/modus-themes/
+      (use-package modus-themes
+	:ensure ;; TODO: Remove ensure once part of Emacs.
+	:init
+	;; Add all your customizations prior to loading the themes
+	(setq modus-themes-slanted-constructs t
+	      modus-themes-bold-constructs t)
+
+	;; Load the theme files before enabling a theme
+	(modus-themes-load-themes)
+	:config
+	;; Load the theme of your choice:
+	(modus-themes-load-vivendi)
+	:bind ("<f5>" . modus-themes-toggle))
+
       (use-package theme-looper
 	:ensure
 	:config
@@ -346,9 +362,6 @@
 	"Advise load-theme to disable all custom themes before loading (enabling) another one.
 		    See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
 	(mapc #'disable-theme custom-enabled-themes))
-
-      ;; Load this theme at startup.
-      (load-theme 'modus-vivendi t)
 
       ;; Automatic theme-switching based on time of day.
       ;; See https://github.com/guidoschmidt/circadian.el
