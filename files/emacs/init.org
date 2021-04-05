@@ -119,32 +119,32 @@
 * Configuration
 ** TODO Packages to review [2/11]
 
-    Review should have 3 steps: research, pilot, review.
+   Review should have 3 steps: research, pilot, review.
 
-    - [X] burly
-    - [X] which-key
-    - [ ] strokes (see strokes-mode, strokes-help)
-    - [ ] [[https://github.com/countvajhula/rigpa/][rigpa]]
-    - [ ] org-projectile
-    - [ ] projectile-speedbar
-    - [ ] [[https://github.com/emacsmirror/excorporate][excorporate]] (office 365 mail, calendar, ...)
-    - [ ] [[https://github.com/kljohann/mpv.el][mpv.el]]
-    - [ ] smex (smart "M-x")
-    - [ ] paredit (see [[http://danmidwood.com/content/2014/11/21/animated-paredit.html][Structured Guide to Paredit]])
-    - [ ] [[http://xelf.me/emacs-mosaic.html][EmacsMosaic]] for [[http://xelf.me/scheme-mosaic.html][SchemeMosaic]] (music creation)
+   - [X] burly
+   - [X] which-key
+   - [ ] strokes (see strokes-mode, strokes-help)
+   - [ ] [[https://github.com/countvajhula/rigpa/][rigpa]]
+   - [ ] org-projectile
+   - [ ] projectile-speedbar
+   - [ ] [[https://github.com/emacsmirror/excorporate][excorporate]] (office 365 mail, calendar, ...)
+   - [ ] [[https://github.com/kljohann/mpv.el][mpv.el]]
+   - [ ] smex (smart "M-x")
+   - [ ] paredit (see [[http://danmidwood.com/content/2014/11/21/animated-paredit.html][Structured Guide to Paredit]])
+   - [ ] [[http://xelf.me/emacs-mosaic.html][EmacsMosaic]] for [[http://xelf.me/scheme-mosaic.html][SchemeMosaic]] (music creation)
 
-    #+title: Emacs Packages to Review
-    | Name           | Description                                                          | URL                                            | Rating |
-    |----------------+----------------------------------------------------------------------+------------------------------------------------+--------|
-    | org-projectile |                                                                      |                                                |        |
-    | rigpa          |                                                                      | AKA "Epistemic Mode". See emacsconf 2020 talk. |        |
-    | dashboard      |                                                                      |                                                |        |
-    | mu4e           |                                                                      |                                                |        |
-    | notmuch        |                                                                      |                                                |        |
-    | orderless      | Emacs completion style that matches multiple regexps in any order    | https://github.com/oantolin/orderless          |        |
-    | consult        | Various commands to quickly select an item from a list of candidates | https://github.com/minad/consult               |        |
-    | embark         | Mini-Buffer Actions Rooted in Keymaps                                | https://github.com/oantolin/embark/            |        |
-    | marginalia     | Marginalia in the minibuffer                                         | https://github.com/minad/marginalia            |        |
+     #+title: Emacs Packages to Review
+     | Name           | Description                                                          | URL                                            | Rating |
+     |----------------+----------------------------------------------------------------------+------------------------------------------------+--------|
+     | org-projectile |                                                                      |                                                |        |
+     | rigpa          |                                                                      | AKA "Epistemic Mode". See emacsconf 2020 talk. |        |
+     | dashboard      |                                                                      |                                                |        |
+     | mu4e           |                                                                      |                                                |        |
+     | notmuch        |                                                                      |                                                |        |
+     | orderless      | Emacs completion style that matches multiple regexps in any order    | https://github.com/oantolin/orderless          |        |
+     | consult        | Various commands to quickly select an item from a list of candidates | https://github.com/minad/consult               |        |
+     | embark         | Mini-Buffer Actions Rooted in Keymaps                                | https://github.com/oantolin/embark/            |        |
+     | marginalia     | Marginalia in the minibuffer                                         | https://github.com/minad/marginalia            |        |
 
 ** TODO Config changes to review [0/8]
    - [ ] [[https://github.com/terlar/emacs-config/blob/master/default.nix#L11-L27][Use Nix to manage emacs init file (tangle init.org, etc)]] (see also:  [[https://github.com/nix-community/emacs-overlay/issues/106][Provide tangled .el file from Org configs]])
@@ -216,20 +216,20 @@
        :ensure
        :config
        (setq ibuffer-formats
-	   '((mark modified read-only vc-status-mini " "
-		   (name 18 18 :left :elide)
-		   " "
-		   (size 9 -1 :right)
-		   " "
-		   (mode 16 16 :left :elide)
-		   " "
-		   (vc-status 16 16 :left)
-		   " "
-		   vc-relative-file)))
+	     '((mark modified read-only vc-status-mini " "
+		     (name 18 18 :left :elide)
+		     " "
+		     (size 9 -1 :right)
+		     " "
+		     (mode 16 16 :left :elide)
+		     " "
+		     (vc-status 16 16 :left)
+		     " "
+		     vc-relative-file)))
        :hook (ibuffer . (lambda()
-			      (ibuffer-vc-set-filter-groups-by-vc-root)
-			      (unless (eq ibuffer-sorting-mode 'alphabetic)
-				(ibuffer-do-sort-by-alphabetic)))))
+			  (ibuffer-vc-set-filter-groups-by-vc-root)
+			  (unless (eq ibuffer-sorting-mode 'alphabetic)
+			    (ibuffer-do-sort-by-alphabetic)))))
    #+end_src
 
 ** Emacs Package Repos
@@ -360,7 +360,7 @@
       ;; Don't "layer" themes on top of each other when calling load-theme.
       (defadvice load-theme (before theme-dont-propagate activate)
 	"Advise load-theme to disable all custom themes before loading (enabling) another one.
-		    See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
+			  See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
 	(mapc #'disable-theme custom-enabled-themes))
 
       ;; Automatic theme-switching based on time of day.
@@ -500,24 +500,24 @@
 	:map treemacs-mode-map
 	([mouse-1] . treemacs-single-click-expand-action)))
 
-       ;; (use-package treemacs-evil
-       ;;   :after (treemacs evil)
-       ;;   :ensure t)
+     ;; (use-package treemacs-evil
+     ;;   :after (treemacs evil)
+     ;;   :ensure t)
 
-       (use-package treemacs-projectile
-	 :after (treemacs projectile)
-	 :ensure t)
+     (use-package treemacs-projectile
+       :after (treemacs projectile)
+       :ensure t)
 
-       (use-package treemacs-icons-dired
-	 :after (treemacs dired)
-	 :ensure t
-	 :config (treemacs-icons-dired-mode))
+     (use-package treemacs-icons-dired
+       :after (treemacs dired)
+       :ensure t
+       :config (treemacs-icons-dired-mode))
 
-       (use-package treemacs-magit
-	 :after (treemacs magit)
-	 :ensure t)
+     (use-package treemacs-magit
+       :after (treemacs magit)
+       :ensure t)
 
-       (use-package treemacs-all-the-icons :ensure)
+     (use-package treemacs-all-the-icons :ensure)
 
      ;; (use-package treemacs-persp ;;treemacs-perspective if you use perspective.el vs. persp-mode
      ;;   :after (treemacs persp-mode) ;;or perspective vs. persp-mode
@@ -558,16 +558,16 @@
     | M-x list-bookmarks         | Display a list of existing bookmarks                         |
     | C-x r l                    | list-bookmarks                                               |
 
-   #+begin_src emacs-lisp
-     ;; Burly is a lightweight workspace manager that builds on top of
-     ;; Emacs' bookmark system.
-     ;; https://github.com/alphapapa/burly.el
-     (use-package burly
-       :ensure
-       :bind (("C-c b f" . burly-bookmark-frames)
-	      ("C-c b w" . burly-bookmark-windows)
-	      ("C-c b o" . burly-open-bookmark)))
-   #+end_src
+    #+begin_src emacs-lisp
+      ;; Burly is a lightweight workspace manager that builds on top of
+      ;; Emacs' bookmark system.
+      ;; https://github.com/alphapapa/burly.el
+      (use-package burly
+	:ensure
+	:bind (("C-c b f" . burly-bookmark-frames)
+	       ("C-c b w" . burly-bookmark-windows)
+	       ("C-c b o" . burly-open-bookmark)))
+    #+end_src
 
 *** Focus Modes
 
@@ -792,17 +792,17 @@
 			      :headline "Contacts"
 			      :empty-lines-before 1
 			      :template ("* %^{Name}"
-					  ":PROPERTIES:"
-					  ":EMAIL: %^{Email}"
-					  ":PHONE:"
-					  ":ALIAS:"
-					  ":NICKNAME:"
-					  ":IGNORE:"
-					  ":ICON:"
-					  ":NOTE: %^{NOTE}"
-					  ":ADDRESS:"
-					  ":BIRTHDAY: %^{yyyy-mm-dd}"
-					  ":END:"))))))
+					 ":PROPERTIES:"
+					 ":EMAIL: %^{Email}"
+					 ":PHONE:"
+					 ":ALIAS:"
+					 ":NICKNAME:"
+					 ":IGNORE:"
+					 ":ICON:"
+					 ":NOTE: %^{NOTE}"
+					 ":ADDRESS:"
+					 ":BIRTHDAY: %^{yyyy-mm-dd}"
+					 ":END:"))))))
     #+end_src
 
 ** Programming                                                  :programming:
@@ -816,10 +816,10 @@
 
 *** Structured Data
 
-     #+begin_src emacs-lisp
-       (use-package json-mode :ensure)
-       (use-package yaml-mode :ensure)
-     #+end_src
+    #+begin_src emacs-lisp
+      (use-package json-mode :ensure)
+      (use-package yaml-mode :ensure)
+    #+end_src
 
 *** Git
     :PROPERTIES:
