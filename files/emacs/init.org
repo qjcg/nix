@@ -991,6 +991,7 @@
     #+begin_src emacs-lisp
       (use-package mermaid-mode :ensure)
       (use-package ob-mermaid :ensure)
+      (use-package plantuml-mode :ensure)
 
       (use-package vega-view :ensure)
     #+end_src
