@@ -1,4 +1,4 @@
-{ pkgs, }:
+{ pkgs }:
 let
   inherit (pkgs) makeWrapper runCommand;
   inherit (pkgs.lib) fakeSha256 makeBinPath;
@@ -10,17 +10,6 @@ let
       mkdir -p $out/share/emacs/site-lisp
       cp -r ${src}/* $out/share/emacs/site-lisp/
     '';
-
-  # Non-elisp app packages required for various emacs features and modes.
-  apps = with pkgs; [
-    graphviz
-    nodePackages.mermaid-cli
-    nodePackages.prettier
-    nodePackages.vega-cli
-    nodePackages.vega-lite
-    plantuml
-    tectonic
-  ];
 
   # See https://github.com/nix-community/emacs-overlay/#extra-library-functionality
   myEmacs = pkgs.emacsWithPackagesFromUsePackage {
@@ -110,12 +99,4 @@ let
 
   };
 in
-# FIXME: Not working! e.g. mmdc is NOT found by emacs mermaid-mode on C-c C-b
-  #  - https://nixos.org/manual/nixpkgs/unstable/#ssec-stdenv-functions
-  #  - https://github.com/apeyroux/nixpkgs-config/blob/5f235af4f478082e9c79c6d468d2a7dba90323ab/emacs.nix#L84
-myEmacs.overrideAttrs (old: rec {
-  nativeBuildInputs = [ makeWrapper ];
-  postInstall = old.postInstall or "" + ''
-    wrapProgram $out/bin/emacs --prefix PATH : ${makeBinPath apps}
-  '';
-})
+myEmacs
