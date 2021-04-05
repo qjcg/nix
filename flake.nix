@@ -96,6 +96,7 @@
               '';
 
               packages = with pkgs; [
+                jg.envs.env-emacs
                 jg.envs.env-nix
                 nodejs # Installed as neovim dependency (avoids startup error message).
               ];
@@ -103,16 +104,10 @@
               # Review what's installed in your devshell via the `menu` command.
               commands = [
                 {
-                  name = "emacs";
-                  package = "jg.overrides.emacs";
-                  category = "editors";
-                  help = "A sort of hybrid between Windows Notepad, a monolithic-kernel operating system, and the International Space Station.";
-                }
-                {
                   name = "neovim";
                   package = "jg.overrides.neovim";
                   category = "editors";
-                  help = "Vim, but new and stuff";
+                  help = "Vim, but new and shiny";
                 }
               ];
             };
