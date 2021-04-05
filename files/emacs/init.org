@@ -963,7 +963,11 @@
 
 *** CUE                                                                 :cue:
 
-    Consider using [[https://github.com/jdbaldry/cue-mode][cue-mode]].
+    Using [[https://github.com/jdbaldry/cue-mode][cue-mode]].
+
+    #+begin_src emacs-lisp
+      (use-package cue-mode)
+    #+end_src
 
 *** Python                                                           :python:
 **** Jinja2
