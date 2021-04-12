@@ -7,7 +7,7 @@
 let
   inherit (pkgs) buildGoModule fetchFromGitHub installShellFiles;
   inherit (pkgs.lib) fakeSha256 licenses;
-  version = "4.3.0";
+  version = "4.4.1";
 in
 buildGoModule {
   inherit version;
@@ -18,7 +18,7 @@ buildGoModule {
     owner = "rancher";
     repo = "k3d";
     rev = "v${version}";
-    sha256 = "sha256-ybEYKr0rQY8Qg74V1mXqShq5Z2d/Adf0bSSbEMIyo3I=";
+    sha256 = "sha256-u9P+7qNomamd4BkqWBxA6rDom0hF6t10QfDTjqOMGeE=";
   };
 
   vendorSha256 = null; # Use k3d's vendor directory.
