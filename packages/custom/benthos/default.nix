@@ -2,7 +2,7 @@
 let
   inherit (pkgs) buildGoModule fetchFromGitHub;
   inherit (pkgs.lib) fakeSha256 licenses;
-  version = "3.42.0";
+  version = "3.44.0";
 in
 buildGoModule {
   inherit version;
@@ -12,10 +12,10 @@ buildGoModule {
     owner = "Jeffail";
     repo = "benthos";
     rev = "v${version}";
-    sha256 = "sha256-nX7KpEtHYM6UtZl+7Cb73glLeXoM2TuyDGmLxUaE8Cw=";
+    sha256 = "sha256-a4461ilinCAR3qQduB7R8wumCcM93oT0GFyL6BrK2C0=";
   };
 
-  vendorSha256 = "sha256-z+by4WX04aOwcINSAUsQuKd/EzQ4WXH64rs1Zgg43yw=";
+  vendorSha256 = "sha256-argcVPV33ql3jhd8CmmqmVYVuWdoNYMdTX/5ZSBZUj8=";
 
   buildFlagsArray = [
     "-ldflags="
