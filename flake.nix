@@ -82,7 +82,7 @@
           devShell =
             let
               inherit (pkgs.devshell) mkShell;
-              name = "devshell-nix-qjcg";
+              name = "devshell-nix";
             in
             # See https://github.com/numtide/devshell/blob/master/devshell.toml
             mkShell {
