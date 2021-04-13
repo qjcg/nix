@@ -1,9 +1,27 @@
 { pkgs }:
 
 let
-  inherit (pkgs) buildEnv;
+  inherit (pkgs) buildEnv graphviz jre;
   inherit (pkgs.stdenv) isAarch64 isDarwin isLinux;
   inherit (pkgs.lib.lists) optionals;
+
+  # A headless version of plantuml to avoid the useless GUI stealing
+  # focus on each invocation (macOS). To achieve this, we add
+  # `-Djava.awt.headless=true` to the wrapped command's flags.
+  plantumlHeadless = pkgs.plantuml.overrideAttrs
+    (old: rec {
+      buildCommand = ''
+        install -Dm644 $src $out/lib/plantuml.jar
+       
+        mkdir -p $out/bin
+        makeWrapper ${jre}/bin/java $out/bin/plantuml \
+          --argv0 plantuml \
+          --set GRAPHVIZ_DOT ${graphviz}/bin/dot \
+          --add-flags "-Djava.awt.headless=true -jar $out/lib/plantuml.jar"
+       
+        $out/bin/plantuml -help
+      '';
+    });
 in
 
 buildEnv {
@@ -18,7 +36,7 @@ buildEnv {
     nodePackages.vega-lite
     tectonic
   ] ++ optionals (!isAarch64) [
-    plantuml # Unsupported on aarch64.
+    plantumlHeadless # Unsupported on aarch64.
   ];
 
   meta = {
