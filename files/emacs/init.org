@@ -594,7 +594,14 @@
 
      ;; Manage multiple vterm buffers.
      ;; https://github.com/suonlight/multi-vterm
-     (use-package multi-vterm :ensure)
+     (use-package multi-vterm
+       :ensure
+       :config
+       (global-set-key (kbd "C-;") 'multi-vterm-dedicated-toggle)
+       (global-set-key (kbd "C-:") 'multi-vterm-project)
+       (global-set-key (kbd "S-<left>") 'multi-vterm-prev)
+       (global-set-key (kbd "S-<right>") 'multi-vterm-next))
+
 
      ;; Helps you to use shell easily on Emacs. Only one key action to work.
      (use-package shell-pop
