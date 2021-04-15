@@ -31,11 +31,14 @@ buildEnv {
     jg.newer.cue
     jg.overrides.emacs
 
+    bash_5
     graphviz
     nodePackages.mermaid-cli
     nodePackages.prettier
     nodePackages.vega-cli
     nodePackages.vega-lite
+    python39Packages.black
+    python39Packages.isort
     tectonic
   ] ++ optionals (!isAarch64) [
     plantumlHeadless # Unsupported on aarch64.
