@@ -970,7 +970,10 @@
     Using [[https://github.com/jdbaldry/cue-mode][cue-mode]].
 
     #+begin_src emacs-lisp
-      (use-package cue-mode)
+      (use-package cue-mode
+	:hook (cue-mode . cue-fmt-on-save-mode)
+	:config
+	(reformatter-define cue-fmt :program "cue" :args '("fmt" "-s" "-")))
     #+end_src
 
 *** Python                                                           :python:
