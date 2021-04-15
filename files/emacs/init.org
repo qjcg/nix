@@ -588,6 +588,10 @@
    #+begin_src emacs-lisp
      (use-package vterm :ensure)
 
+     ;; Toggles between the vterm buffer and whatever buffer you are editing.
+     ;; https://github.com/jixiuf/vterm-toggle
+     (use-package vterm-toggle :ensure)
+
      ;; Manage multiple vterm buffers.
      ;; https://github.com/suonlight/multi-vterm
      (use-package multi-vterm :ensure)
