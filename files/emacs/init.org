@@ -362,22 +362,6 @@
 	"Advise load-theme to disable all custom themes before loading (enabling) another one.
 			  See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
 	(mapc #'disable-theme custom-enabled-themes))
-
-      ;; Automatic theme-switching based on time of day.
-      ;; See https://github.com/guidoschmidt/circadian.el
-      (use-package circadian
-	:disabled
-	:ensure
-	:config
-	(circadian-setup)
-
-	:custom
-	;; Can get lat/lon from https://www.latlong.net/
-	(calendar-latitude 45.501690)
-	(calendar-longitude -73.567253)
-	(circadian-themes
-	 '((:sunrise . modus-vivendi)
-	   (:sunset . modus-vivendi))))
     #+end_src
 
 *** Look & Feel
@@ -1112,16 +1096,10 @@
        (setq deft-recursive t)
        (setq deft-extensions '("org" "md")))
 
-     ;; Company mode is a standard completion package that works well with lsp-mode.
-     ;; company-lsp integrates company mode completion with lsp-mode.
-     ;; completion-at-point also works out of the box but doesn't support snippets.
+     ;; Company mode is a standard completion package.
      (use-package company
        :ensure
        :hook (after-init . global-company-mode))
-
-     (use-package company-lsp
-       :ensure
-       :commands company-lsp)
    #+END_SRC
 ** Media
 *** Web
