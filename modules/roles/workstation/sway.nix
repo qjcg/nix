@@ -24,6 +24,7 @@ mkMerge [
       wev # A tool for debugging events on a Wayland window, analagous to the X11 tool xev.
       wf-recorder # wayland screenrecorder
       wl-clipboard # clipboard CLI utilities
+      wldash # wayland launcher/dashboard
 
       wlogout # wayland-based logout menu
       wofi # dmenu replacement for wayland
@@ -31,7 +32,6 @@ mkMerge [
 
       # FIXME not building 2021-04-17
       #i3status-rust # simpler bar written in Rust
-      #wldash # wayland launcher/dashboard
 
       # TODO: more steps required to use this?
       #xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
