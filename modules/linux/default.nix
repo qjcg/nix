@@ -7,6 +7,7 @@
     ./games.nix
     ./gnome.nix
     ./nix.nix
+    ./security.nix
     ./sway.nix
   ];
 }
