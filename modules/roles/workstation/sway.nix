@@ -11,9 +11,7 @@ mkMerge [
       swaybg # required by sway for controlling desktop wallpaper
       swayidle # used for controlling idle timeouts and triggers (screen locking, etc)
       swaylock # used for locking Wayland sessions
-
       waybar # polybar-alike
-      i3status-rust # simpler bar written in Rust
 
       gebaar-libinput # libinput gestures utility
       glpaper # GL shaders as wallpaper
@@ -26,10 +24,14 @@ mkMerge [
       wev # A tool for debugging events on a Wayland window, analagous to the X11 tool xev.
       wf-recorder # wayland screenrecorder
       wl-clipboard # clipboard CLI utilities
-      wldash # wayland launcher/dashboard
+
       wlogout # wayland-based logout menu
       wofi # dmenu replacement for wayland
       wtype # xdotool, but for wayland
+
+      # FIXME not building 2021-04-17
+      #i3status-rust # simpler bar written in Rust
+      #wldash # wayland launcher/dashboard
 
       # TODO: more steps required to use this?
       #xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
@@ -39,9 +41,11 @@ mkMerge [
       # other compositors/window-managers
       #waybox   # An openbox clone on Wayland
       #bspwc    # Wayland compositor based on BSPWM
-      cage # A Wayland kiosk (runs a single app fullscreen)
       wayfire # 3D wayland compositor
-      wdisplays
+
+      # FIXME not building 2021-04-17
+      #cage # A Wayland kiosk (runs a single app fullscreen)
+      #wdisplays
     ];
   })
 ]
