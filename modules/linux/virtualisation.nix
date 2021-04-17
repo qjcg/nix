@@ -2,7 +2,14 @@
 
 {
   config = {
-    virtualisation.docker.enable = true;
-    virtualisation.virtualbox.host.enable = true;
+    virtualisation = {
+      docker = {
+        enable = true;
+        autoPrune.enable = true;
+      };
+
+      virtualbox.host.enable = true;
+    };
+
   };
 }
