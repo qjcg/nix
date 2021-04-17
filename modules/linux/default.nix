@@ -6,6 +6,7 @@
     ./fonts.nix
     ./games.nix
     ./gnome.nix
+    ./nix.nix
     ./sway.nix
   ];
 }
