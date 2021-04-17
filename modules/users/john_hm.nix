@@ -237,15 +237,23 @@ in
 
   # These are read by Wayland.
   # See https://wiki.archlinux.org/index.php/Systemd/User#Environment_variables
-  systemd.user.sessionVariables.BROWSER = "firefox";
-  systemd.user.sessionVariables.QT_PLATFORMTHEME = "qt5ct";
-  systemd.user.sessionVariables.QT_PLATFORM_PLUGIN = "qt5ct";
-  systemd.user.sessionVariables.QT_QPA_PLATFORMTHEME = "qt5ct";
+  systemd.user.sessionVariables = {
+    BROWSER = "firefox";
+    QT_PLATFORMTHEME = "qt5ct";
+    QT_PLATFORM_PLUGIN = "qt5ct";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
 
-  # Enable wayland with Firefox.
-  # See https://wiki.archlinux.org/index.php/Firefox#Wayland
-  # Verify via about:support -> "Window Protocol"
-  systemd.user.sessionVariables.MOZ_ENABLE_WAYLAND = "1";
+    # Enable wayland with Firefox.
+    # See https://wiki.archlinux.org/index.php/Firefox#Wayland
+    # Verify via about:support -> "Window Protocol"
+    MOZ_ENABLE_WAYLAND = "1";
+
+    # For Firefox HiDPI
+    # See:
+    #   - https://wiki.archlinux.org/index.php/HiDPI#GDK_3_(GTK_3)
+    #   - https://wiki.archlinux.org/index.php/HiDPI#Firefox
+    GDK_DPI_SCALE = "1.5";
+  };
 
   wayland.windowManager.sway =
     let
