@@ -1,8 +1,6 @@
 { config, pkgs, secrets, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
-
   hardware.cpu.intel.updateMicrocode = true;
 
   boot.initrd.luks.devices = {
