@@ -3,7 +3,6 @@
 {
   config =
     {
-
       # The following base config is always applied when this role is enabled.
       environment.systemPackages = with pkgs.jg.envs; [
         env-go
@@ -15,8 +14,10 @@
         env-tools
       ];
 
-      environment.variables.EDITOR = "nvim";
-      environment.variables.PAGER = "less";
-      environment.variables.VISUAL = "nvim";
+      environment.variables = {
+        EDITOR = "nvim";
+        PAGER = "less";
+        VISUAL = "nvim";
+      };
     };
 }

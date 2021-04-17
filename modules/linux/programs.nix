@@ -2,6 +2,6 @@
 
 {
   config = {
-    security.sudo.wheelNeedsPassword = false;
+    programs.mtr.enable = true;
   };
 }
