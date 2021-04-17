@@ -7,30 +7,22 @@ in
   options = {
 
     roles.emacs = {
-
       enable = mkEnableOption "emacs";
-
       orgDir = mkOption {
         type = types.path;
         default = false;
         description = "Base directory for org-mode files";
       };
-
     };
+
   };
 
-  config = mkMerge [
+  config = {
 
-    (mkIf cfg.enable {
-      environment.systemPackages = with pkgs; [
-        jg.overrides.emacs
+    environment.systemPackages = mkIf cfg.enable (with pkgs; [
+      jg.envs.env-emacs
+      hello
+    ]);
 
-        # Optional dependencies for various emacs packages.
-        graphviz # Used by org-roam
-        tectonic # Used by org-export LaTeX
-        zathura # A PDF reader for reading emacs-generated PDFs.
-      ];
-    })
-
-  ];
+  };
 }

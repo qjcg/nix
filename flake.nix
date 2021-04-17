@@ -260,6 +260,8 @@
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t460s
               ./modules/machines/luban
               (import ./modules/users/john.nix { inherit dag; pkgs = myPkgs; })
+
+              #{ roles.emacs.enable = false; }
             ];
           };
 

@@ -3,8 +3,14 @@
 
 {
   config = {
-    networking.firewall.enable = true;
-    networking.firewall.allowedTCPPorts = [ ];
-    networking.firewall.allowedUDPPorts = [ ];
+
+    networking = {
+      firewall = {
+        enable = true;
+        allowedTCPPorts = [ ];
+        allowedUDPPorts = [ ];
+      };
+    };
+
   };
 }

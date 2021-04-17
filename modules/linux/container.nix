@@ -4,10 +4,12 @@
 
 {
   config = {
+
     boot.isContainer = true;
 
     # See [Container Networking](https://nixos.org/manual/nixos/unstable/index.html#sec-container-networking).
     # DHCP not needed/used in systemd-nspawn container? (To confirm).
     networking.useDHCP = false;
+
   };
 }

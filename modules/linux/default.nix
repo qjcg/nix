@@ -2,9 +2,11 @@
 
 {
   imports = [
+    ../common/emacs.nix
     ../common/environment.nix
-    ../common/programs.nix
     ../common/nix.nix
+    ../common/nixpkgs.nix
+    ../common/programs.nix
 
     #./container.nix # TODO: Add option to enable.
     ./fonts.nix
