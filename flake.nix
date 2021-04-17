@@ -199,21 +199,23 @@
             self.nixosModules.linux
           ];
 
-          pkgsFunc = {
-            system ? "x86_64-linux",
-            overlays ? linuxOverlays,
-          }:
+          pkgsFunc =
+            { system ? "x86_64-linux"
+            , overlays ? linuxOverlays
+            ,
+            }:
 
-          import inputs.nixpkgs { inherit overlays system; }
+            import inputs.nixpkgs { inherit overlays system; };
 
           myPkgs = pkgsFunc { };
 
           # A function wrapping nixosSystem with my preferred defaults.
-          mkLinux = {
-              system ? "x86_64-linux",
-              modules ? linuxModules,
-              overlays ? linuxOverlays,
-              extraModules ? [ ],
+          mkLinux =
+            { system ? "x86_64-linux"
+            , modules ? linuxModules
+            , overlays ? linuxOverlays
+            , extraModules ? [ ]
+            ,
             }:
 
             inputs.nixpkgs.lib.nixosSystem {
