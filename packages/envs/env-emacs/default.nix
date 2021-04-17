@@ -31,7 +31,6 @@ buildEnv {
     jg.newer.cue
     jg.overrides.emacs
 
-    bash_5
     graphviz
     nodePackages.mermaid-cli
     nodePackages.prettier
