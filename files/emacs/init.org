@@ -280,6 +280,11 @@
        (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
        (projectile-mode +1))
 
+     ;; Emacs front-end for ripgrep, a command line search tool
+     ;; Installed for use with projectile-ripgrep.
+     ;; https://github.com/nlamirault/ripgrep.el
+     (use-package ripgrep :ensure)
+
      (use-package org-projectile
        :ensure
        :bind (("C-c n p" . org-projectile-project-todo-completing-read))

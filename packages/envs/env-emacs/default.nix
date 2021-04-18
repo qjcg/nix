@@ -38,6 +38,7 @@ buildEnv {
     nodePackages.vega-lite
     python39Packages.black
     python39Packages.isort
+    ripgrep
     tectonic
   ] ++ optionals (!isAarch64) [
     plantumlHeadless # Unsupported on aarch64.
