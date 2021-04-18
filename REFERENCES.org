@@ -126,6 +126,10 @@
    - [[https://github.com/vyorkin/nixos-config/][vyorkin/nixos-config]]: flake-based configuration
    - [[https://github.com/Mic92/dotfiles][Mic92/dotfiles]]: Uses secrets via sops-nix, interesting layout
 
+*** nix-darwin Flakes
+
+    - [[https://github.com/quartz55/dotsnix/blob/e5d74d9abe7d1ee4565527ccb6b1352cb20994d6/flake.nix][quartz55/dotsnix]] (modules function, home-manager user)
+
 ** Community Resources
    :PROPERTIES:
    :CUSTOM_ID: community-resources
