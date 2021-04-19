@@ -277,10 +277,11 @@
       darwinConfigurations =
         {
           mtlmp-jgosset1 = inputs.nix-darwin.lib.darwinSystem {
+            inputs = { nixpkgs = inputs.nixpkgs-darwin; };
             modules = [
               inputs.home-manager.darwinModules.home-manager
               self.nixosModules.darwin
-              ./modules/users/hm-darwin_jgosset.nix
+              #./modules/users/hm-darwin_jgosset.nix
 
               {
                 nixpkgs.overlays = [
@@ -288,7 +289,7 @@
                   self.overlay
                 ];
 
-                roles.workstation.enable = true;
+                #roles.workstation.enable = true;
               }
 
             ];

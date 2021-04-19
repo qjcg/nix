@@ -9,7 +9,7 @@
     go-font
     inconsolata-nerdfont
     iosevka
-    julia-mono
+    #julia-mono
     noto-fonts
     noto-fonts-emoji
     noto-fonts-extra
