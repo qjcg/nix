@@ -27,8 +27,6 @@ in
 buildEnv {
   name = "env-emacs";
   paths = with pkgs; [
-    jg.custom.k3d
-    jg.newer.cue
     jg.overrides.emacs
 
     graphviz
