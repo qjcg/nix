@@ -983,6 +983,18 @@
     #+end_src
 
 *** Python                                                           :python:
+
+#+name: python mode
+#+begin_src emacs-lisp
+  (use-package python-mode
+    :hook ((python-mode . python-black-on-save-mode)
+	   (python-mode . python-isort-on-save-mode))
+    :config
+    (reformatter-define black :program "black")
+    (reformatter-define isort :program "isort"))
+
+#+end_src
+
 **** Jinja2
 
      #+begin_src emacs-lisp
