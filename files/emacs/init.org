@@ -328,7 +328,8 @@
       ;; Modus Themes
       ;; https://protesilaos.com/modus-themes/
       (use-package modus-themes
-	:ensure ;; TODO: Remove ensure once part of Emacs.
+        :disabled
+	;;:ensure ;; TODO: Remove ensure once part of Emacs.
 	:init
 	;; Add all your customizations prior to loading the themes
 	(setq modus-themes-slanted-constructs t
