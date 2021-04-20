@@ -15,7 +15,7 @@
   #   - https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-develop.html#description
   nixConfig = {
     bash-prompt = "\\u@\\h \\W \\$ ";
-    bash-prompt-suffix = "(nix develop) ";
+    bash-prompt-suffix = "(qjcg/nix shell) ";
   };
 
   inputs = {
