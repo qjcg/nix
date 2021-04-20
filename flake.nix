@@ -288,7 +288,7 @@
                   self.overlay
                 ];
 
-                #roles.workstation.enable = true;
+                #profiles.emacs.enable = true;
               }
 
             ];

@@ -1,12 +1,12 @@
 { config, pkgs, ... }:
 let
   inherit (pkgs.lib) mkEnableOption mkIf mkMerge mkOption types;
-  cfg = config.roles.emacs;
+  cfg = config.profiles.emacs;
 in
 {
   options = {
 
-    roles.emacs = {
+    profiles.emacs = {
       enable = mkEnableOption "emacs";
       orgDir = mkOption {
         type = types.path;
