@@ -29,7 +29,6 @@
     nix-darwin.url = "github:lnl7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    nixpkgs-darwin.url = "github:nixos/nixpkgs/nixpkgs-20.09-darwin";
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nur.url = "github:nix-community/NUR";
     wayland.url = "github:colemickens/nixpkgs-wayland";
@@ -277,11 +276,11 @@
       darwinConfigurations =
         {
           mtlmp-jgosset1 = inputs.nix-darwin.lib.darwinSystem {
-            inputs = { nixpkgs = inputs.nixpkgs-darwin; };
+            inputs = { nixpkgs = inputs.nixpkgs; };
             modules = [
               inputs.home-manager.darwinModules.home-manager
               self.nixosModules.darwin
-              #./modules/users/hm-darwin_jgosset.nix
+              ./modules/users/hm-darwin_jgosset.nix
 
               {
                 nixpkgs.overlays = [
