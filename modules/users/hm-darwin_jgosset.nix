@@ -176,9 +176,6 @@ in
           FZF_ALT_C_OPTS = "--preview 'tree -C {} | head -100'";
           FZF_DEFAULT_OPTS =
             " --height 75% --multi --reverse --bind ctrl-f:page-down,ctrl-b:page-up ";
-
-          DG = "${secrets.git-remote-base}"; # DG: DRW Git
-          DGG = "${secrets.git-remote-gss}"; # DGG: DRW Git GSS-SW
         };
 
         shellAliases = rec {
@@ -199,7 +196,7 @@ in
 
           grep = "grep -E";
           k = "kubectl";
-          ls = "${pkgs.lsd}/bin/lsd --group-dirs first";
+          ls = "${pkgs.coreutils}/bin/ls --color --group-directories-first";
           tree = "tree -A -C";
           vi = "nvim";
           vim = "nvim";
