@@ -9,10 +9,16 @@ in
 { pkgs, ... }:
 
 {
-  inherit (secrets) users;
-
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
+  users.users.jgosset = {
+    packages = with pkgs; [
+      jg.envs.env-emacs
+      jg.envs.env-go
+      jg.envs.env-k8s
+      jg.envs.env-tools
+    ];
+  }; # Not nix-managed.
   home-manager.users.jgosset = {
     programs = {
 
