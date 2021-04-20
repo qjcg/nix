@@ -8,7 +8,7 @@ pkgs.buildEnv {
   paths = [
     age
     jg.custom.annie
-    jg.custom.battery
+    #jg.custom.battery
     aria2
     bat
     binutils
