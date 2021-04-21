@@ -1,6 +1,7 @@
-{ lib, fetchFromGitHub, buildGoModule, }:
+{ pkgs }:
 let
-  inherit (lib) licenses;
+  inherit (pkgs) buildGoModule fetchFromGitHub;
+  inherit (pkgs.lib) fakeSha256 licenses;
   version = "0.3.0";
 in
 buildGoModule {
