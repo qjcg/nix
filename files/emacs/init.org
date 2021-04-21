@@ -743,6 +743,7 @@
 	:custom
 	(org-roam-directory (concat org-directory "/roam"))
 	(make-directory org-roam-directory t)
+	(org-roam-graph-exclude-matcher '("daily"))
 	:bind (:map org-roam-mode-map
 		    (("C-c n d" . org-roam-dailies-find-today)
 
