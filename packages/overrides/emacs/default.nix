@@ -81,7 +81,7 @@ let
         (pkgs.fetchFromGitHub {
           owner = "jdbaldry";
           repo = "cue-mode";
-          rev = "b942180bd4e725aa3b1861bf468804c7ad88360e";
+          rev = "b4ede4da2930525017ec8b81670bdc3f764dabdf";
           sha256 = "sha256-xqTc9RtBv5b/YD+Xvj3pq2qKhtwZqu9tzRHEvz5/efM=";
         }) "cue-mode";
 
