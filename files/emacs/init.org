@@ -978,9 +978,10 @@
 
     #+begin_src emacs-lisp
       (use-package cue-mode
-	:hook (cue-mode . cue-fmt-on-save-mode)
-	:config
-	(reformatter-define cue-fmt :program "cue" :args '("fmt" "-s" "-")))
+	:hook cue-fmt-on-save-mode
+	:init
+	(reformatter-define cue-fmt :program "cue" :args '("fmt" "-s" "-"))
+	(add-to-list 'auto-mode-alist '("\\.cue\\'" . cue-mode)))
     #+end_src
 
 *** Python                                                           :python:
