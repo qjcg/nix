@@ -27,6 +27,7 @@ in
 buildEnv {
   name = "env-emacs";
   paths = with pkgs; [
+    jg.newer.cue # Needed for cue-mode.
     jg.overrides.emacs
 
     graphviz
