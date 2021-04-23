@@ -3,7 +3,7 @@ let
   inherit (pkgs) buildGoModule fetchFromGitHub;
   inherit (pkgs.lib) fakeSha256 licenses maintainers;
 
-  version = "0.7.2-dev";
+  version = "0.7.3";
 in
 
 buildGoModule {
@@ -14,10 +14,10 @@ buildGoModule {
     rev = "master";
     owner = "Arkweid";
     repo = "lefthook";
-    sha256 = "sha256-ciROP7CnnwVnwSMM1imh3R9cFeKNQVImRHBJKODO7f0=";
+    sha256 = "sha256-nTskHBtBtykzt4WhTzKtPMkaiUEuRR18matuyQM7sG8=";
   };
 
-  vendorSha256 = "sha256-P0xZxTiIS2D39iggbk0ugkJj2sVDbv1Gd3dl8J/tVuA=";
+  vendorSha256 = "sha256-XR7xJZfgt0Hx2DccdNlwEmuduuVU8IBR0pcIUyRhdko=";
 
   doCheck = false;
 
