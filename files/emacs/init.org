@@ -192,7 +192,7 @@
        (setq show-trailing-whitespace t)
        (setq auto-fill-mode t)
        (setq browse-url-browser-function 'eww-browse-url) ;; Browse with eww by default
-       (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backup"))))
+       (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backup")))))
 
      (use-package recentf
        :init
