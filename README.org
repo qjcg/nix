@@ -42,19 +42,3 @@
       cd ~/.config/nixpkgs
       nixos-rebuild switch --upgrade -I nixos-config=$HOME/.config/nixpkgs/machines/rpi3/configuration.nix
     #+end_example
-
-** Layout
-   :PROPERTIES:
-   :CUSTOM_ID: layout
-   :END:
-   #+begin_example
-     .
-     ├── README.md   - the very file you're reading!
-     ├── config.nix  - nix configuration
-     ├── files/      - application files and templates
-     ├── machines/   - per-machine configuration
-     ├── packages/   - custom packages, environments, and overrides
-     ├── roles/      - system roles
-     └── secrets.nix - secrets file (gitignored, do e.g.: `gopass nix-secrets > secrets.nix`)
-   #+end_example
-
