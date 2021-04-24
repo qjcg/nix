@@ -816,6 +816,14 @@
 					 ":END:"))))))
     #+end_src
 
+*** Calendar & Diary
+    
+    #+begin_src elisp
+      (use-package calendar
+	:custom
+	(calendar-date-style "iso" "Use year/month/day format"))
+    #+end_src
+
 ** Programming                                                  :programming:
 *** General
 
