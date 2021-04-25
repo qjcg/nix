@@ -649,6 +649,8 @@
 	  (plantuml . t)))
 
        :custom
+       (org-plantuml-exec-mode 'plantuml)
+       (org-plantuml-executable-path 'plantuml)
        (org-startup-with-inline-images t)
        (org-image-actual-width nil)
        (org-default-notes-file "notes.org")
@@ -1031,10 +1033,10 @@
       (use-package ob-mermaid :ensure)
       (use-package plantuml-mode
 	:ensure
-	:config
+	:init
 	;; Sample executable configuration
 	(setq plantuml-executable-path "plantuml") ;; In-path with env-emacs (nix).
-	(setq plantuml-default-exec-mode 'executable)
+	(setq plantuml-default-exec-mode "executable")
 
 	;; Enable plantuml-mode for PlantUML files
 	(add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
