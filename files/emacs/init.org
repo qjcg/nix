@@ -643,7 +643,10 @@
 	'org-babel-load-languages
 	'((awk . t)
 	  (emacs-lisp . t)
-	  (shell . t)))
+	  (js . t)
+	  (python . t)
+	  (shell . t)
+	  (plantuml . t)))
 
        :custom
        (org-startup-with-inline-images t)
