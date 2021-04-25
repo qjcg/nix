@@ -48,6 +48,7 @@ pkgs.buildEnv {
     htop
     imagemagick
     influxdb
+    jg.newer.innernet
     jq
     lastpass-cli
     libfaketime
