@@ -1025,14 +1025,11 @@
       (use-package ob-mermaid :ensure)
       (use-package plantuml-mode
 	:ensure
-	:init
-	;; Sample executable configuration
-	(setq plantuml-executable-path "plantuml") ;; In-path with env-emacs (nix).
-	(setq plantuml-default-exec-mode "executable")
-
-	;; Enable plantuml-mode for PlantUML files
-	(add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
-	(add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode)))
+	:mode (("\\.plantuml\\'" . plantuml-mode)
+		("\\.puml\\'" . plantuml-mode))
+	:custom
+	(plantuml-executable-path "plantuml")
+	(plantuml-default-exec-mode "executable"))
 
       (use-package vega-view :ensure)
     #+end_src
