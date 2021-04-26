@@ -265,7 +265,7 @@
 
      (use-package rainbow-delimiters
        :ensure
-       :hook prog-mode)
+       :hook (prog-mode . rainbow-delimiters-mode))
 
      (use-package dired-subtree
        :ensure
