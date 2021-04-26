@@ -29,6 +29,7 @@ buildEnv {
   paths = with pkgs; [
     jg.newer.cue # Needed for cue-mode.
     jg.overrides.emacs
+    jg.envs.env-python
 
     graphviz
     nodejs-16_x
@@ -36,9 +37,6 @@ buildEnv {
     nodePackages.prettier
     nodePackages.vega-cli
     nodePackages.vega-lite
-    python39
-    python39Packages.black
-    python39Packages.isort
     ripgrep
     tectonic
   ] ++ optionals (!isAarch64) [
