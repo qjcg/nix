@@ -9,6 +9,7 @@
     ../common/programs.nix
 
     #./container.nix # TODO: Add option to enable.
+    ./environment.nix
     ./fonts.nix
     ./games.nix
     ./gnome.nix
