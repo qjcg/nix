@@ -26,6 +26,12 @@ buildRustPackage {
   buildInputs = [ libiconv sqlite ] ++ optionals isDarwin [ Security ];
   cargoSha256 = "sha256-WSkN5aXMgfqZJAV1b3elF7kwf2f5OpcntKSf8620YcY=";
 
+  # FIXME: Systemd file NOT available in /etc.
+  postInstall = ''
+    # Install the systemd service file for innernet.
+    install -Dm644 $src/server/innernet-server@.service $out/etc/systemd/system/innernet-server@.service
+  '';
+
   meta = {
     description = "A private network system that uses WireGuard under the hood";
     homepage = "https://github.com/tonarino/innernet";
