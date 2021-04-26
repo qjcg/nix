@@ -5,18 +5,23 @@ with pkgs;
 buildEnv {
   name = "env-python";
   paths = [
-    (python38.withPackages (ps:
+    (python39.withPackages (ps:
       with ps; [
         ansible
-        #ansible-lint
         beautifulsoup4
         black
         cookiecutter
         ipython
+        isort
+        jupyter
+        matplotlib
         mypy
+        numpy
         #poetry
+        pandas
         pylint
         requests
+        seaborn
       ]))
   ];
   meta = {
