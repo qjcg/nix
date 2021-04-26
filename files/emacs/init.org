@@ -191,7 +191,7 @@
        (menu-bar-mode nil)
        (mouse-yank-at-point t "Yank at point, NOT click (i.e. mouse cursor position).")
        (scroll-bar-mode nil)
-       (show-trailing-whitespace t)
+       (show-trailing-whitespace nil "Do NOT enable this globally, bad on terminals for example.")
        (tool-bar-mode nil))
 
      (use-package recentf
@@ -264,7 +264,7 @@
 
      (use-package rainbow-delimiters
        :ensure
-       :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+       :hook prog-mode)
 
      (use-package dired-subtree
        :ensure
@@ -288,11 +288,13 @@
      (use-package org-projectile
        :ensure
        :bind (("C-c n p" . org-projectile-project-todo-completing-read))
+
+       :custom
+       (org-projectile-projects-file (concat org-directory "/projects.org"))
+       (org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+
        :config
-       (progn
-	 (setq org-projectile-projects-file (concat org-directory "/projects.org"))
-	 (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-	 (push (org-projectile-project-todo-entry) org-capture-templates)))
+       (push (org-projectile-project-todo-entry) org-capture-templates))
 
      (use-package expand-region
        :ensure
@@ -418,7 +420,6 @@
      ;; https://github.com/Alexander-Miller/treemacs
      (use-package treemacs
        :ensure
-       :defer t
        :init
        (with-eval-after-load 'winum
 	 (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
@@ -495,24 +496,19 @@
      ;;   :ensure t)
 
      (use-package treemacs-projectile
-       :after (treemacs projectile)
-       :ensure t)
+       :ensure
+       :after (treemacs projectile))
 
      (use-package treemacs-icons-dired
+       :ensure
        :after (treemacs dired)
-       :ensure t
        :config (treemacs-icons-dired-mode))
 
      (use-package treemacs-magit
-       :after (treemacs magit)
-       :ensure t)
+       :ensure
+       :after (treemacs magit))
 
      (use-package treemacs-all-the-icons :ensure)
-
-     ;; (use-package treemacs-persp ;;treemacs-perspective if you use perspective.el vs. persp-mode
-     ;;   :after (treemacs persp-mode) ;;or perspective vs. persp-mode
-     ;;   :ensure t
-     ;;   :config (treemacs-set-scope-type 'Perspectives))
    #+end_src
 
 ** Auth
@@ -822,7 +818,7 @@
     #+end_src
 
 *** Calendar & Diary
-    
+
     #+begin_src elisp
       (use-package calendar
 	:custom
@@ -835,7 +831,9 @@
     #+begin_src emacs-lisp
       ;; Define commands which run reformatters on the current Emacs buffer
       ;; https://github.com/purcell/reformatter.el
-      (use-package reformatter :ensure)
+      (use-package reformatter
+	:ensure
+	:commands reformatter-define)
     #+end_src
 
 *** Structured Data
@@ -870,7 +868,7 @@
 
       (use-package git-gutter
 	:ensure
-	:config
+	:custom
 	(global-git-gutter-mode t)
 	:bind
 	(("C-x C-g" . git-gutter)
@@ -935,7 +933,7 @@
       ;; https://github.com/purcell/elisp-slime-nav
       (use-package elisp-slime-nav
 	:ensure
-	:hook ((emacs-lisp-mode ielm-mode) . elisp-slime-nav-mode))
+	:hook ((emacs-lisp-mode ielm-mode org-mode) . elisp-slime-nav-mode))
     #+end_src
 
 *** Go                                                                   :go:
@@ -956,6 +954,7 @@
 	:after lsp
 	:hook ((before-save-hook . lsp-format-buffer)
 	       (before-save-hook . lsp-organize-imports))
+
 	:init
 	(display-line-numbers-mode 1)
 
@@ -1054,7 +1053,7 @@
 
     #+begin_src emacs-lisp
       (use-package docker
-	:ensure t
+	:ensure
 	:bind ("C-c d" . docker))
 
       (use-package dockerfile-mode :ensure)
