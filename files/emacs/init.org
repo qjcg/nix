@@ -937,6 +937,14 @@
 	:hook ((emacs-lisp-mode ielm-mode org-mode) . elisp-slime-nav-mode))
     #+end_src
 
+*** Forth                                                             :forth:
+
+    #+begin_src elisp
+      ;; Programming language mode for Forth.
+      ;; https://github.com/larsbrinkhoff/forth-mode
+      ;;(use-package forth-mode)
+    #+end_src
+
 *** Go                                                                   :go:
     :PROPERTIES:
     :ID:       92ca2abc-410e-4ffb-b86d-c2e1d427ab78
