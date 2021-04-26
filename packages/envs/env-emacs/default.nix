@@ -31,10 +31,12 @@ buildEnv {
     jg.overrides.emacs
 
     graphviz
+    nodejs-16_x
     nodePackages.mermaid-cli
     nodePackages.prettier
     nodePackages.vega-cli
     nodePackages.vega-lite
+    python39
     python39Packages.black
     python39Packages.isort
     ripgrep
