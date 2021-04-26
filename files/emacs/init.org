@@ -331,7 +331,7 @@
       ;; Modus Themes
       ;; https://protesilaos.com/modus-themes/
       (use-package modus-themes
-        :disabled
+	:disabled
 	;;:ensure ;; TODO: Remove ensure once part of Emacs.
 	:init
 	;; Add all your customizations prior to loading the themes
