@@ -167,10 +167,7 @@
    #+begin_src emacs-lisp
      (use-package emacs
        :init
-       (menu-bar-mode -1)
-       (tool-bar-mode -1)
-       (scroll-bar-mode -1)
-       (display-time-mode)
+       (auto-fill-mode)
 
        ;; Load custom theme(s) from here.
        (add-to-list 'custom-theme-load-path
@@ -180,19 +177,22 @@
        (when (member "JuliaMono" (font-family-list))
 	 (add-to-list 'default-frame-alist '(font . "JuliaMono-20")))
 
-       ;; FIXME: Not being loaded since 2021-01-23!
-       :config
+       :custom
        ;; Use a *separate* file for customizations.
        ;; See https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations
-       (setq custom-file "~/.config/emacs/custom.el")
-       (setq echo-keystrokes 0.1) ;; Show keystrokes ASAP
-       (setq inhibit-startup-screen t)
-       (setq initial-scratch-message nil)
-       (setq mouse-yank-at-point t) ;; Yank at point, NOT click (i.e. mouse cursor position).
-       (setq show-trailing-whitespace t)
-       (setq auto-fill-mode t)
-       (setq browse-url-browser-function 'eww-browse-url) ;; Browse with eww by default
-       (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backup")))))
+       (custom-file (concat user-emacs-directory "custom.el"))
+
+       (backup-directory-alist `(("." . ,(concat user-emacs-directory "backup"))))
+       (browse-url-browser-function 'eww-browse-url "Browse with eww by default")
+       (display-time-mode t)
+       (echo-keystrokes 0.1 "Show keystrokes ASAP")
+       (inhibit-startup-screen t)
+       (initial-scratch-message nil)
+       (menu-bar-mode nil)
+       (mouse-yank-at-point t "Yank at point, NOT click (i.e. mouse cursor position).")
+       (scroll-bar-mode nil)
+       (show-trailing-whitespace t)
+       (tool-bar-mode nil))
 
      (use-package recentf
        :init
