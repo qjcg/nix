@@ -16,6 +16,7 @@ in
       jg.envs.env-emacs
       jg.envs.env-go
       jg.envs.env-k8s
+      jg.envs.env-nix
       jg.envs.env-tools
     ];
   }; # Not nix-managed.
