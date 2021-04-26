@@ -31,6 +31,7 @@ pkgs.buildEnv {
     fzf
     gallery-dl
     getent
+    gforth
     git
     github-cli
     gitAndTools.delta
