@@ -988,7 +988,7 @@
 	:hook fmt-nix-on-save-mode
 	:config
 	(reformatter-define fmt-nix :program "nixpkgs-fmt"))
-	;;(reformatter-define fmt-nix-linter :program "nix-linter"))
+      ;;(reformatter-define fmt-nix-linter :program "nix-linter"))
     #+end_src
 
 *** CUE                                                                 :cue:
@@ -1013,7 +1013,7 @@
 	(reformatter-define fmt-black :program "black" :args '("-"))
 	(reformatter-define fmt-isort :program "isort" :args '("-" "-d")))
 
-       (use-package jinja2-mode :ensure)
+      (use-package jinja2-mode :ensure)
     #+end_src
 
 **** References
@@ -1034,7 +1034,7 @@
       (use-package plantuml-mode
 	:ensure
 	:mode (("\\.plantuml\\'" . plantuml-mode)
-		("\\.puml\\'" . plantuml-mode))
+	       ("\\.puml\\'" . plantuml-mode))
 	:custom
 	(plantuml-executable-path "plantuml")
 	(plantuml-default-exec-mode "executable"))
