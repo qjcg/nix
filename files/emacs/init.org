@@ -165,6 +165,7 @@
    See: https://tech.toryanderson.com/2020/11/13/migrating-to-a-custom-file-less-setup/
 
    #+begin_src emacs-lisp
+     ;; TODO: Move appropriate parts of this to site-start.el or defaults.el.
      (use-package emacs
        :init
        (auto-fill-mode)
@@ -976,12 +977,10 @@
       ;; https://github.com/NixOS/nix-mode
       (use-package nix-mode
 	:ensure
-	:hook (nix-mode . nixpkgs-fmt-on-save-mode)
+	:hook fmt-nix-on-save-mode
 	:config
-	(reformatter-define nixpkgs-fmt :program "nixpkgs-fmt"))
-
-      ;; (reformatter-define nix-linter
-      ;;   :program "nix-linter"))
+	(reformatter-define fmt-nix :program "nixpkgs-fmt"))
+	;;(reformatter-define fmt-nix-linter :program "nix-linter"))
     #+end_src
 
 *** CUE                                                                 :cue:
@@ -990,36 +989,30 @@
 
     #+begin_src emacs-lisp
       (use-package cue-mode
-	:hook cue-fmt-on-save-mode
-	:init
-	(reformatter-define cue-fmt :program "cue" :args '("fmt" "-s" "-"))
-	(add-to-list 'auto-mode-alist '("\\.cue\\'" . cue-mode)))
+	:hook fmt-cue-on-save-mode
+	:mode "\\.cue\\'"
+	:config
+	(reformatter-define fmt-cue :program "cue" :args '("fmt" "-s" "-")))
     #+end_src
 
 *** Python                                                           :python:
 
-#+name: python mode
-#+begin_src emacs-lisp
-  (use-package python-mode
-    :hook ((python-mode . python-black-on-save-mode)
-	   (python-mode . python-isort-on-save-mode))
-    :config
-    (reformatter-define black :program "black")
-    (reformatter-define isort :program "isort"))
+    #+name: python mode
+    #+begin_src emacs-lisp
+      (use-package python
+	:hook ((fmt-black-on-save-mode fmt-isort-on-save-mode) . python-mode)
+	:init
+	(reformatter-define fmt-black :program "black" :args '("-"))
+	(reformatter-define fmt-isort :program "isort" :args '("-" "-d")))
 
-#+end_src
-
-**** Jinja2
-
-     #+begin_src emacs-lisp
        (use-package jinja2-mode :ensure)
-     #+end_src
+    #+end_src
 
 **** References
 
      - https://realpython.com/emacs-the-best-python-editor/
      - https://elpy.readthedocs.io/en/latest/index.html
-    
+
 *** Javascript / TypeScript                                :javascript:empty:
 *** Ruby                                                         :ruby:empty:
 *** Visualizations
