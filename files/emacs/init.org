@@ -170,6 +170,8 @@
        :init
        (auto-fill-mode)
 
+       (defalias 'setd 'setq-default) ; setd is shorter to type!
+
        ;; Load custom theme(s) from here.
        (add-to-list 'custom-theme-load-path
 		    (concat user-emacs-directory "themes"))
