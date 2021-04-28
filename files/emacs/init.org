@@ -665,12 +665,10 @@
 				       :headline "Tasks"
 				       :empty-lines-before 1
 				       :todo-state "TODO"
-				       :template ("* %{todo-state} %^{Description}"
+				       :template ("* %{todo-state} %^{Description|%i} %^G"
 						  ":PROPERTIES:"
 						  ":Created: %U"
-						  ":END:"
-						  "%i"
-						  "%a"))
+						  ":END:"))
 
 				      ("Article"
 				       :keys "a"
@@ -687,17 +685,54 @@
 						  ""
 						  "%i"))
 
+				      ("Meeting Notes"
+				       :keys "m"
+				       :file "todo.org"
+				       :headline "Meeting Notes"
+				       :empty-lines-before 1
+				       :todo-state "TODO"
+				       :template ("* %{todo-state} %^{Description} %^G"
+						  ":PROPERTIES:"
+						  ":CAPTURED: %U"
+						  ":ATTENDEES: %^{Attendees|jgosset}"
+						  ":LOCATION: %^{Location|Zoom}"
+						  ":END:"
+						  ""
+						  "** Agenda"
+						  "** Minutes"
+						  "** Glossary"
+						  "** Action Items"
+						  "** Follow-up Date"
+						  ""))
+
+				      ("Software"
+				       :keys "s"
+				       :file "todo.org"
+				       :headline "Software"
+				       :empty-lines-before 1
+				       :todo-state "TODO"
+				       :template ("* %{todo-state} %^{Name} %^G"
+						  ":PROPERTIES:"
+						  ":CAPTURED: %U"
+						  ":URL: %^{URL}p"
+						  ":DESCRIPTION: %^{DESCRIPTION}p"
+						  ":END:"
+						  ""
+						  "%i"
+						  "%a"))
+
 				      ("Emacs Package"
 				       :keys "e"
 				       :file "todo.org"
 				       :headline "Emacs Packages to Review"
 				       :empty-lines-before 1
 				       :todo-state "TODO"
-				       :template ("* %{todo-state} %^{Emacs Packaage Name} %^G"
+				       :template ("* %{todo-state} %^{Emacs Package Name} %^G"
 						  ":PROPERTIES:"
 						  ":CAPTURED: %U"
 						  ":URL: %^{URL}p"
 						  ":DESCRIPTION: %^{DESCRIPTION}p"
+						  ":RATING: %^{RATING}p"
 						  ":END:"
 						  ""
 						  "%i"
