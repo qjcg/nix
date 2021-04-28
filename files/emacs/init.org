@@ -978,8 +978,9 @@
 
     #+begin_src elisp
       ;; Programming language mode for Forth.
+      ;; NOTE: Elisp package used here is the one distributed with gforth (nixpkgs).
       ;; https://github.com/larsbrinkhoff/forth-mode
-      ;;(use-package forth-mode)
+      (use-package forth-mode)
     #+end_src
 
 *** Go                                                                   :go:
