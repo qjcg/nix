@@ -31,6 +31,7 @@ buildEnv {
     jg.overrides.emacs
     jg.envs.env-python
 
+    gforth
     graphviz
     nodejs-16_x
     nodePackages.mermaid-cli
