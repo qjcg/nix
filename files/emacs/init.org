@@ -994,20 +994,20 @@
     #+begin_src emacs-lisp
       (use-package go-mode
 	:ensure
-	:defer t
-	:after lsp
-	:hook ((before-save-hook . lsp-format-buffer)
-	       (before-save-hook . lsp-organize-imports))
-
-	:init
-	(display-line-numbers-mode 1)
+	;;:after lsp
+	:hook (go-mode . fmt-go-on-save-mode)
 
 	:bind (("M-," . compile)
 	       ("M-." . godef-jump))
 
-	:custom
-	(compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linting... && golangci-lint")
-	(compilation-read-command nil))
+	:init
+	(reformatter-define fmt-go :program "goimports")
+
+	:config
+	(setd gofmt-command "goimports")
+	(setd compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linting... && golangci-lint")
+	(setd compilation-read-command nil)
+	(setq-local display-line-numbers "relative"))
     #+end_src
 
 *** Nix                                                                 :nix:
@@ -1020,8 +1020,8 @@
       ;; https://github.com/NixOS/nix-mode
       (use-package nix-mode
 	:ensure
-	:hook fmt-nix-on-save-mode
-	:config
+	:hook (nix-mode . fmt-nix-on-save-mode)
+	:init
 	(reformatter-define fmt-nix :program "nixpkgs-fmt"))
       ;;(reformatter-define fmt-nix-linter :program "nix-linter"))
     #+end_src
@@ -1032,9 +1032,9 @@
 
     #+begin_src emacs-lisp
       (use-package cue-mode
-	:hook fmt-cue-on-save-mode
+	:hook (cue-mode . fmt-cue-on-save-mode)
 	:mode "\\.cue\\'"
-	:config
+	:init
 	(reformatter-define fmt-cue :program "cue" :args '("fmt" "-s" "-")))
     #+end_src
 
@@ -1043,7 +1043,8 @@
     #+name: python mode
     #+begin_src emacs-lisp
       (use-package python
-	:hook ((fmt-black-on-save-mode fmt-isort-on-save-mode) . python-mode)
+	:hook ((python-mode . fmt-black-on-save-mode)
+	       (python-mode . fmt-isort-on-save-mode))
 	:init
 	(reformatter-define fmt-black :program "black" :args '("-"))
 	(reformatter-define fmt-isort :program "isort" :args '("-" "-d")))
