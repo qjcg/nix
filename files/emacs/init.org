@@ -17,15 +17,15 @@
 
    What do I want from Emacs?
 
-*** TODO Provide ultimate Developer Experience (DX) [6/10]
+*** TODO Provide ultimate Developer Experience (DX) [8/10]
     - [X] Git (magit)
     - [X] Reproducible editor package (via Nix)
     - [X] Snippets (yasnippets)
     - [X] Fuzzy-find (rg/fzf integration, prot window)
     - [X] Completion
     - [X] Nix (format)
-    - [ ] Go (format, compile, test, jump-to-definition, debug)
-    - [ ] CUE (format, highlight)
+    - [X] Go (format, compile, test, jump-to-definition, debug)
+    - [X] CUE (format, highlight)
     - [ ] NodeJS
     - [ ] Python
 *** DONE Provide excellent DevOps experience [2/2]
