@@ -1020,7 +1020,7 @@
 
 	:config
 	(setd gofmt-command "goimports")
-	(setd compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linting... && golangci-lint")
+	(setd compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linting... && golangci-lint run")
 	(setd compilation-read-command nil)
 	(setq-local display-line-numbers "relative"))
     #+end_src
