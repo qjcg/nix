@@ -662,6 +662,11 @@
        (org-refile-targets '((org-agenda-files . (:maxlevel . 5))))
        (org-confirm-babel-evaluate nil "Don't ask for confirmation before executing code blocks")
 
+       (org-agenda-custom-commands
+	'(("w" "Agenda and Work-related tasks"
+	   ((agenda "")
+	    (tags-todo "-articles -emacs")))))
+
        (org-capture-templates (doct '(("Todo"
 				       :keys "t"
 				       :file "todo.org"
