@@ -978,6 +978,10 @@
       (use-package elisp-slime-nav
 	:ensure
 	:hook ((emacs-lisp-mode ielm-mode org-mode) . elisp-slime-nav-mode))
+
+      ;; Behavior-Driven Emacs Lisp Testing
+      ;; https://github.com/jorgenschaefer/emacs-buttercup
+      (use-package buttercup :ensure)
     #+end_src
 
 *** Forth                                                             :forth:
