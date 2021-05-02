@@ -676,7 +676,9 @@
 				       :template ("* %{todo-state} %^{Description|%i} %^G"
 						  ":PROPERTIES:"
 						  ":Created: %U"
-						  ":END:"))
+						  ":END:"
+						  ""
+						  " - [ ] Wrike task created"))
 
 				      ("Article"
 				       :keys "a"
