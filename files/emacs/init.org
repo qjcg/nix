@@ -195,6 +195,7 @@
        (mouse-yank-at-point t "Yank at point, NOT click (i.e. mouse cursor position).")
        (scroll-bar-mode nil)
        (show-trailing-whitespace nil "Do NOT enable this globally, bad on terminals for example.")
+       (truncate-lines t "Do NOT display continuation lines")
        (tool-bar-mode nil))
 
      (use-package recentf
