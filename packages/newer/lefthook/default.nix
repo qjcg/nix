@@ -14,7 +14,7 @@ buildGoModule {
     rev = "master";
     owner = "Arkweid";
     repo = "lefthook";
-    sha256 = "sha256-wW8Obh0YmAZHKrXLQ8364+TrAmLIYKRir2qXdWLtVkE=";
+    sha256 = "sha256-cSqwUf8KSr5uwXmlKbVUYqw+QJOsqb9P4N7Dkvzb39Q=";
   };
 
   vendorSha256 = "sha256-XR7xJZfgt0Hx2DccdNlwEmuduuVU8IBR0pcIUyRhdko=";
