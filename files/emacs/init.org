@@ -650,6 +650,11 @@
 	  (plantuml . t)))
 
        :custom
+       (org-feed-alist '(("Sacha Chua: Emacs News"
+			  "https://sachachua.com/blog/category/emacs-news/feed/"
+			  (concat org-directory "/feeds.org")
+			  "Articles")))
+
        (org-plantuml-exec-mode 'plantuml)
        (org-plantuml-executable-path 'plantuml)
        (org-startup-with-inline-images t)
