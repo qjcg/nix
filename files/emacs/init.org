@@ -679,12 +679,12 @@
 						  ":Created: %U"
 						  ":END:"
 						  ""
-						  " - [ ] Wrike task created"))
+						  "** TODO Wrike task created"))
 
-				      ("Article"
-				       :keys "a"
+				      ("Reading"
+				       :keys "r"
 				       :file "todo.org"
-				       :headline "Articles"
+				       :headline "Reading"
 				       :empty-lines-before 1
 				       :todo-state "TODO"
 				       :template ("* %{todo-state} %a %^G"
@@ -701,19 +701,18 @@
 				       :file "todo.org"
 				       :headline "Meeting Notes"
 				       :empty-lines-before 1
-				       :todo-state "TODO"
-				       :template ("* %{todo-state} %^{Description} %^G"
+				       :todo-state "PLANNED"
+				       :template ("* %{todo-state} %^{Description|Standup: GSS-SW|Standup: } %^G"
 						  ":PROPERTIES:"
 						  ":CAPTURED: %U"
-						  ":ATTENDEES: %^{Attendees|jgosset}"
+						  ":ATTENDEES: %^{Attendees|jgosset|gss-sw}"
 						  ":LOCATION: %^{Location|Zoom}"
 						  ":END:"
 						  ""
 						  "** Agenda"
 						  "** Minutes"
-						  "** Glossary"
-						  "** Action Items"
-						  "** Follow-up Date"
+						  "** Decisions"
+						  "** Action Items [/]"
 						  ""))
 
 				      ("Software"
