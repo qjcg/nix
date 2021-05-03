@@ -984,6 +984,13 @@
       ;; Behavior-Driven Emacs Lisp Testing
       ;; https://github.com/jorgenschaefer/emacs-buttercup
       (use-package buttercup :ensure)
+
+
+      ;; A minor mode for performing structured editing of S-expression data.
+      ;; See:
+      ;;   https://www.emacswiki.org/emacs/ParEdit
+      ;;   http://emacsrocks.com/e14.html
+      (use-package paredit :ensure)
     #+end_src
 
 *** Forth                                                             :forth:
