@@ -671,7 +671,7 @@
        (org-agenda-custom-commands
 	'(("w" "Agenda and Work-related tasks"
 	   ((agenda "")
-	    (tags-todo "-articles -emacs")))))
+	    (tags-todo "-reading-emacs-software")))))
 
        (org-capture-templates (doct '(("Todo"
 				       :keys "t"
@@ -1147,6 +1147,14 @@
 	:ensure
 	:init
 	(add-hook 'yaml-mode-hook '(lambda () (ansible 1))))
+    #+end_src
+
+*** Nginx
+
+    #+begin_src elisp
+      ;; Emacs editing mode for Nginx config files
+      ;; https://github.com/ajc/nginx-mode
+      (use-package nginx-mode :ensure)
     #+end_src
 
 ** Completion
