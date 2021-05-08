@@ -5,15 +5,18 @@ with pkgs;
 buildEnv {
   name = "env-k8s";
   paths = [
-    argo
-    argocd
     jg.custom.benthos
-    conftest
-    jg.newer.cue
-    dive
-    fly
+    jg.custom.container-structure-test
     jg.custom.k3c
     jg.custom.k3d
+    jg.custom.rancher-cli
+    jg.newer.cue
+
+    argo
+    argocd
+    conftest
+    dive
+    fly
     kompose
     kubectl
     kubectx
@@ -21,7 +24,6 @@ buildEnv {
     kubeseal
     minio-client
     open-policy-agent
-    jg.custom.rancher-cli
     skaffold
     skopeo
     sops
