@@ -468,7 +468,7 @@ in
 
         startup = [
           #{ notification = false; command = "${cmd_set_wallpaper}"; }
-          { command = "${pkgs.jg.overrides.emacs}/bin/emacs"; }
+          { command = "${pkgs.jg.overrides.emacs}/bin/emacsclient -cn"; }
           { command = "${cmd_browser}"; }
         ];
 
