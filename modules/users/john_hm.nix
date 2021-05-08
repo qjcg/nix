@@ -203,6 +203,12 @@ in
 
   services = {
 
+    emacs = {
+      enable = true;
+      package = pkgs.jg.overrides.emacs;
+      socketActivation.enable = true;
+    };
+
     gpg-agent = {
       enable = true;
       pinentryFlavor = "tty";
