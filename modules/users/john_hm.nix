@@ -38,9 +38,9 @@ in
     language = { base = "en_US.utf8"; };
 
     sessionVariables = {
-      EDITOR = "nvim";
+      EDITOR = "emacsclient -cn";
       PAGER = "less";
-      VISUAL = "nvim";
+      VISUAL = "emacsclient -cn";
 
       NIX_PATH =
         "nixpkgs=$HOME/.nix-defexpr/channels/nixpkgs:nixos-config=$HOME/.config/nixpkgs/configuration.nix:/nix/var/nix/profiles/per-user/root/channels";
@@ -105,6 +105,7 @@ in
       '';
 
       shellAliases = rec {
+        e = "emacsclient -cn";
         k = "kubectl";
 
         ls = "ls --color --human-readable --group-directories-first";
