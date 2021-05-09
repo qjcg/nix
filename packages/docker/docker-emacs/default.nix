@@ -8,7 +8,7 @@ dockerTools.buildImage {
   created = "now";
   contents = with pkgs; [
     busybox
-    jg.overrides.emacs
+    jg.overrides.emacs-nox
   ];
 
   config = {
