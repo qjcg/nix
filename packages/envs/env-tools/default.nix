@@ -36,7 +36,6 @@ pkgs.buildEnv {
     github-cli
     gitAndTools.delta
     gitAndTools.hub
-    jg.newer.lefthook
     gnugrep
     gnumake
     gnupg
@@ -52,6 +51,7 @@ pkgs.buildEnv {
     jg.newer.innernet
     jq
     lastpass-cli
+    lefthook
     libfaketime
     #loccount
     lsd
