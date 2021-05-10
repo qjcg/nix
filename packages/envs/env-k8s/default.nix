@@ -7,6 +7,7 @@ buildEnv {
   paths = [
     jg.custom.benthos
     jg.custom.container-structure-test
+    jg.custom.go-internal
     jg.custom.k3c
     jg.custom.k3d
     jg.custom.rancher-cli
