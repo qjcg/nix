@@ -1,21 +1,27 @@
-{ lib, buildGoModule, fetchFromGitHub, }:
+{ pkgs, lib, buildGoModule, fetchFromGitHub, }:
 
 with lib;
 
+let
+  inherit (pkgs) buildGoModule fetchFromGitHub;
+  inherit (pkgs.lib) fakeSha256 licenses;
+
+  version = "2.4.11";
+in
 buildGoModule rec {
+  inherit version;
   pname = "rancher-cli";
-  version = "2.4.7";
+
 
   src = fetchFromGitHub {
     owner = "rancher";
     repo = "cli";
     rev = "v${version}";
-    sha256 = "sha256-eKRgI/7F/YPa2qy9sddHGF5CKfcGpshUL7xhcw54x7Y=";
+    sha256 = "sha256-PhI+1xSdkXqREJPq7JjsmnnZY1D5b1NxaHnoxAa7vxM=";
   };
 
   subPackages = [ "." ];
-  deleteVendor = true;
-  vendorSha256 = "sha256-PNR1kK+Ad6nz2hVgB3SSyztSVhTkGfzdysevXe2M0ko=";
+  vendorSha256 = "sha256-/etX/SFoaze2ZVp6XLypgEfQ22R/tD1xNwuTTvvvPw8=";
   buildFlagsArray = [ "-ldflags=-s -w -X main.VERSION=v${version}" ];
 
   postFixup = ''
