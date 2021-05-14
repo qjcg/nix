@@ -64,6 +64,7 @@ pkgs.buildEnv {
     mtr
     neofetch
     jg.overrides.neovim
+    nfpm
     nmap
     nncp
     onefetch
