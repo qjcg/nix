@@ -767,11 +767,7 @@
        (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
        :custom
        ;; Set different bullets, with one getting a terminal fallback.
-       (org-superstar-headline-bullets-list '("☰"
-					      "◉"
-					      "○"
-					      "▶"
-					      "▷")))
+       (org-superstar-headline-bullets-list '("☰" "◉" "○" "▶" "▷")))
 
      ;; Display Org Mode priorities as custom strings
      ;; https://github.com/harrybournis/org-fancy-priorities
@@ -780,7 +776,11 @@
        :hook
        (org-mode . org-fancy-priorities-mode)
        :config
-       (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕")))
+       (setq org-priority-faces
+	     '((?A . (:foreground "red" :weight "bold"))
+	       (?B . (:foreground "gold" :weight "bold"))
+	       (?C . (:foreground "blue" :weight "bold"))))
+       (setq org-fancy-priorities-list '("🅰" "🅱" "🅲" "🅳")))
 
      (use-package org-sidebar
        :ensure
