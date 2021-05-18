@@ -7,10 +7,12 @@ in
 buildEnv {
   name = "env-go";
   paths = with pkgs; [
+    jg.custom.gohack
+
     go
     godef
-    jg.custom.gohack
     golangci-lint
+    gomacro
     gopls
     gotools
     protobuf
