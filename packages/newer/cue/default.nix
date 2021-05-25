@@ -2,7 +2,7 @@
 let
   inherit (pkgs) buildGoModule fetchgit;
   inherit (pkgs.lib) fakeSha256 licenses maintainers;
-  version = "0.3.2";
+  version = "0.4.0";
 in
 buildGoModule {
   inherit version;
@@ -11,10 +11,10 @@ buildGoModule {
   src = fetchgit {
     url = "https://cue.googlesource.com/cue";
     rev = "v${version}";
-    sha256 = "sha256-FDHMCl5P9SuaBoX1rLLPe8MG9i72S7YPqH803wi+z2U=";
+    sha256 = "sha256-rcGEl+CMFyxZKsOKhVimhv5/ONo3xS6FjgKModZGR2o=";
   };
 
-  vendorSha256 = "sha256-d8p/vsbJ/bQbT2xrqqCoU1sQB8MrwKOMwEYhNYTWe4I=";
+  vendorSha256 = "sha256-eSKVlBgnHR1R0j1lNwtFoIgRuj8GqoMbvuBl/N1SanY=";
 
   doCheck = false;
 
