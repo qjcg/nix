@@ -6,6 +6,7 @@ buildEnv {
   name = "env-k8s";
   paths = [
     jg.custom.benthos
+    jg.custom.blox
     jg.custom.container-structure-test
     jg.custom.go-internal
     jg.custom.k3c
