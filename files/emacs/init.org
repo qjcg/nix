@@ -780,6 +780,8 @@
 	     '((?A . (:foreground "red" :weight "bold"))
 	       (?B . (:foreground "gold" :weight "bold"))
 	       (?C . (:foreground "blue" :weight "bold"))))
+
+       ;; See https://en.wikipedia.org/wiki/Enclosed_Alphanumeric_Supplement
        (setq org-fancy-priorities-list '("🅰" "🅱" "🅲" "🅳")))
 
      (use-package org-sidebar
