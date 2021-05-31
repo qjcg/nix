@@ -48,7 +48,7 @@ pkgs.buildEnv {
     htop
     imagemagick
     influxdb
-    jg.newer.innernet
+    innernet
     jq
     lastpass-cli
     lefthook
