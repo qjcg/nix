@@ -56,7 +56,7 @@ pkgs.buildEnv {
     #loccount
     lsd
     lsof
-    jg.custom.maddy
+    maddy
     jg.custom.mark
     mdbook
     minisign
