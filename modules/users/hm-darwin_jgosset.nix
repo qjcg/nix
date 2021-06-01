@@ -214,12 +214,29 @@ in
         enable = true;
         userName = "${secrets.git-name}";
         userEmail = "${secrets.git-email}";
-        ignores = [ "node_modules" "__pycache__" "*.pyc" "*.iso" ".netrwhist" ];
+        ignores = [
+          # emacs
+          "\\#*\\#" # auto-save files
+          "\\.\\#" # lock files
 
-        delta = {
-          enable = true;
-          options = { features = "side-by-side line-numbers decorations"; };
-        };
+          # node
+          "node_modules"
+
+          # python
+          "*.pyc"
+          "__pycache__"
+
+          # vim
+          ".netrwhist"
+
+          # large files
+          "*.iso"
+        ];
+
+        # delta = {
+        #   enable = true;
+        #   options = { features = "side-by-side line-numbers decorations"; };
+        # };
 
         extraConfig = { pull.rebase = false; };
 
