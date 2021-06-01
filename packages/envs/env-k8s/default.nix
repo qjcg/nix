@@ -10,10 +10,10 @@ buildEnv {
     jg.custom.container-structure-test
     jg.custom.go-internal
     jg.custom.k3c
-    jg.custom.k3d
     jg.custom.rancher-cli
     jg.custom.unity
     jg.newer.cue
+    jg.overrides.kube3d
 
     argo
     argocd
