@@ -144,7 +144,6 @@
      | orderless      | Emacs completion style that matches multiple regexps in any order    | https://github.com/oantolin/orderless          |        |
      | consult        | Various commands to quickly select an item from a list of candidates | https://github.com/minad/consult               |        |
      | embark         | Mini-Buffer Actions Rooted in Keymaps                                | https://github.com/oantolin/embark/            |        |
-     | marginalia     | Marginalia in the minibuffer                                         | https://github.com/minad/marginalia            |        |
 
 ** TODO Config changes to review [0/8]
    - [ ] [[https://github.com/terlar/emacs-config/blob/master/default.nix#L11-L27][Use Nix to manage emacs init file (tangle init.org, etc)]] (see also:  [[https://github.com/nix-community/emacs-overlay/issues/106][Provide tangled .el file from Org configs]])
@@ -1415,7 +1414,7 @@
 	:config
 	(which-key-mode))
 
-      ;; Enable richer annotations using the Marginalia package
+      ;; Marginalia in the minibuffer
       ;; https://github.com/minad/marginalia
       (use-package marginalia
 	:ensure
