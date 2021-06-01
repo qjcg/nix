@@ -216,8 +216,8 @@ in
         userEmail = "${secrets.git-email}";
         ignores = [
           # emacs
-          "\\#*\\#" # auto-save files
-          "\\.\\#" # lock files
+          ''\#*#'' # auto-save files
+          ".#*" # lock files
 
           # node
           "node_modules"
