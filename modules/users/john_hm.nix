@@ -54,8 +54,6 @@ in
       options = [ "grp:shifts_toggle" ];
     };
 
-    packages = with pkgs.jg.envs; [ env-multimedia env-personal env-tools env-emacs ];
-
   };
 
   programs = {

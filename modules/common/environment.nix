@@ -5,6 +5,7 @@
 
     # The following base config is always applied when this role is enabled.
     environment.systemPackages = with pkgs.jg.envs; [
+      env-clojure
       env-go
       env-k8s
       env-multimedia
