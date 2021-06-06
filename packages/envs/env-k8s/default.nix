@@ -1,10 +1,14 @@
 { pkgs, ... }:
 
-with pkgs;
-
+let
+  inherit (builtins) getFlake;
+  inherit (pkgs) buildEnv;
+  inherit (pkgs.lib.lists) optionals;
+  inherit (pkgs.stdenv) isLinux;
+in
 buildEnv {
   name = "env-k8s";
-  paths = [
+  paths = with pkgs; [
     jg.custom.benthos
     jg.custom.blox
     jg.custom.container-structure-test
@@ -31,7 +35,7 @@ buildEnv {
     skopeo
     sops
     stern
-  ] ++ lib.lists.optionals stdenv.isLinux [ k3s tektoncd-cli ];
+  ] ++ optionals isLinux [ k3s tektoncd-cli ];
   meta = {
     description = "An environment for working with Kubernetes";
     priority = 0;
