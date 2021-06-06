@@ -437,7 +437,10 @@ in
             position = "top";
             mode = "dock";
 
-            fonts = [ "Iosevka Medium 13" ];
+            fonts = {
+              names = [ "Iosevka Medium" ];
+              size = 13.0;
+            };
 
             colors = {
               background = "#000000";
