@@ -295,7 +295,10 @@ in
       '';
 
       config = {
-        fonts = [ "Iosevka Medium 13" ];
+        fonts = {
+          names = [ "Iosevka Medium" ];
+          size = 13.0;
+        };
 
         modifier = "${modifier}";
 
@@ -393,7 +396,10 @@ in
             position = "top";
             mode = "dock";
 
-            fonts = [ "Iosevka Medium 16" ];
+            fonts = {
+              names = [ "Iosevka Medium" ];
+              size = 16.0;
+            };
 
             colors = {
               background = "#000000";
