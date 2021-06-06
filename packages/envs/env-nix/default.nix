@@ -29,7 +29,8 @@ buildEnv {
 
     # Quickly locate nix packages with specific files.
     # https://github.com/bennofs/nix-index
-    nix-index
+    # FIXME: Commented out due to broken build (2021-06-06).
+    #nix-index
 
     # Prefetch any fetcher function call, e.g. a package source.
     # https://github.com/msteen/nix-prefetch
