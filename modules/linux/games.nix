@@ -8,7 +8,7 @@
       jg.overrides.retroarch
     ];
 
-    services.gnome3.games.enable = true;
+    services.gnome.games.enable = true;
 
   };
 }

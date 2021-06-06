@@ -5,10 +5,10 @@
   config = {
 
     environment.systemPackages = with pkgs; [
-      gnome3.gitg
-      gnome3.gnome-tweak-tool
-      gnome3.rhythmbox
-      gnome3.shotwell
+      gnome.gitg
+      gnome.gnome-tweak-tool
+      gnome.rhythmbox
+      gnome.shotwell
       lollypop
       olive-editor
       pitivi
@@ -20,7 +20,7 @@
     services.xserver.layout = "us";
     services.xserver.displayManager.defaultSession = "gnome";
     services.xserver.displayManager.gdm.enable = true;
-    services.xserver.desktopManager.gnome3.enable = true;
+    services.xserver.desktopManager.gnome.enable = true;
   };
 
 }

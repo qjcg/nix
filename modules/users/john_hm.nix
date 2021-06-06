@@ -266,7 +266,7 @@ in
     let
       modifier = "Mod4";
 
-      cmd_term = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
+      cmd_term = "${pkgs.gnome.gnome-terminal}/bin/gnome-terminal";
       cmd_term_tmux = "${cmd_term} -t tmux-main -- sh -c 'tmux new -ADs main'";
 
       cmd_menu =
@@ -473,7 +473,7 @@ in
           { command = "${cmd_browser}"; }
         ];
 
-        terminal = "${pkgs.gnome3.gnome-terminal}/bin/gnome-terminal";
+        terminal = "${pkgs.gnome.gnome-terminal}/bin/gnome-terminal";
 
       };
     };
