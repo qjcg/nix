@@ -12,12 +12,12 @@ buildEnv {
     jg.custom.k3c
     jg.custom.rancher-cli
     jg.custom.unity
-    jg.newer.cue
     jg.overrides.kube3d
 
     argo
     argocd
     conftest
+    cue
     dive
     fly
     kompose

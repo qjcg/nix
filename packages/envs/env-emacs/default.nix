@@ -27,10 +27,10 @@ in
 buildEnv {
   name = "env-emacs";
   paths = with pkgs; [
-    jg.newer.cue # Needed for cue-mode.
     jg.overrides.emacs
     jg.envs.env-python
 
+    cue
     gforth
     graphviz
     nodejs-16_x
