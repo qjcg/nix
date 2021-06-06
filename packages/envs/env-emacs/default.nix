@@ -28,12 +28,10 @@ buildEnv {
   name = "env-emacs";
   paths = with pkgs; [
     jg.overrides.emacs
-    jg.envs.env-python
 
     cue
     gforth
     graphviz
-    nodejs-16_x
     nodePackages.mermaid-cli
     nodePackages.prettier
     nodePackages.vega-cli

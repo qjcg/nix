@@ -5,10 +5,8 @@ with pkgs;
 buildEnv {
   name = "env-js";
   paths = [
-    nodejs
-    nodePackages.mermaid-cli
+    nodejs-16_x
     nodePackages.node2nix
-    nodePackages.prettier
   ];
   meta = {
     description = "An environment for JS development";

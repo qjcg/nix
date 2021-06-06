@@ -22,6 +22,6 @@ buildEnv {
   ];
   meta = {
     description = "An environment for Go development";
-    priority = 0;
+    priority = 2;
   };
 }

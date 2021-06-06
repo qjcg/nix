@@ -6,21 +6,27 @@ with pkgs;
 pkgs.buildEnv {
   name = "env-tools";
   paths = [
-    age
     jg.custom.annie
     #jg.custom.battery
+    jg.custom.cm
+    jg.custom.conform
+    jg.custom.got
+    jg.custom.grafterm
+    jg.custom.mark
+    #jg.custom.s-nail
+    jg.overrides.emacs
+    jg.overrides.neovim
+
+    age
     aria2
     bat
     binutils
     bottom
     caddy
-    jg.custom.cm
-    jg.custom.conform
     coreutils
     croc
     dnsutils
     ed
-    jg.overrides.emacs
     exa
     fd
     fdupes
@@ -40,8 +46,6 @@ pkgs.buildEnv {
     gnumake
     gnupg
     gopass
-    jg.custom.got
-    jg.custom.grafterm
     grpcurl
     gtop
     hey
@@ -57,13 +61,11 @@ pkgs.buildEnv {
     lsd
     lsof
     maddy
-    jg.custom.mark
     mdbook
     minisign
     mkcert
     mtr
     neofetch
-    jg.overrides.neovim
     nfpm
     nmap
     nncp
@@ -79,7 +81,6 @@ pkgs.buildEnv {
     ripgrep
     rlwrap
     rsync
-    #jg.custom.s-nail
     shellcheck
     shfmt
     sqlite

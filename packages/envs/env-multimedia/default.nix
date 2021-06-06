@@ -5,7 +5,7 @@ with pkgs;
 buildEnv {
   name = "env-multimedia";
   paths = [
-    #cmus
+    cmus
     ffmpeg
     mpv
     sox
