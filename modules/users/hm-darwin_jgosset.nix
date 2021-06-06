@@ -13,10 +13,16 @@ in
   home-manager.useUserPackages = true;
   users.users.jgosset = {
     packages = with pkgs; [
+      jg.envs.env-clojure
       jg.envs.env-emacs
       jg.envs.env-go
+      jg.envs.env-js
       jg.envs.env-k8s
+      jg.envs.env-multimedia
       jg.envs.env-nix
+      jg.envs.env-personal
+      jg.envs.env-python
+      jg.envs.env-ruby
       jg.envs.env-tools
     ];
   }; # Not nix-managed.
