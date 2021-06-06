@@ -29,7 +29,7 @@
     nix-darwin.url = "github:lnl7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/release-21.05";
     nur.url = "github:nix-community/NUR";
     wayland.url = "github:colemickens/nixpkgs-wayland";
     wayland.inputs.nixpkgs.follows = "nixpkgs";
