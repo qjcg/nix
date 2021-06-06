@@ -79,7 +79,7 @@ pkgs.buildEnv {
     ripgrep
     rlwrap
     rsync
-    jg.custom.s-nail
+    #jg.custom.s-nail
     shellcheck
     shfmt
     sqlite
