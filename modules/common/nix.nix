@@ -4,7 +4,7 @@
   config = {
 
     nix = {
-      package = pkgs.nixUnstable;
+      package = pkgs.jg.unstable.nixUnstable;
       extraOptions = "experimental-features = nix-command flakes";
       trustedUsers = [ "root" "@wheel" ];
     };
