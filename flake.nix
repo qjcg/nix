@@ -30,6 +30,7 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nixpkgs.url = "github:nixos/nixpkgs/release-21.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nur.url = "github:nix-community/NUR";
     wayland.url = "github:colemickens/nixpkgs-wayland";
     wayland.inputs.nixpkgs.follows = "nixpkgs";
@@ -120,8 +121,7 @@
 
       lib = import ./lib { pkgs = inputs.nixpkgs; };
 
-      overlay =
-        final: prev:
+      overlay = final: prev:
         let
           lib = import ./lib { pkgs = prev; };
           inherit (lib) pkgsFromDir;
@@ -135,6 +135,8 @@
             envs = pkgsFromDir ./packages/envs;
             newer = pkgsFromDir ./packages/newer;
             overrides = pkgsFromDir ./packages/overrides;
+
+            unstable = import inputs.nixpkgs-unstable { system = prev.system; };
           };
         };
 
