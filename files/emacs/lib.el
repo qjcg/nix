@@ -36,7 +36,7 @@ TODO: Use a test-double for dns-query.
   (should (equal (jg-greet-dns "example.com") "HELLO 93.184.216.34")))
 
 
-;; This will run all tests (on "eval-buffer").
+;; This will run all tests (on "eval-buffer" or "eval-region").
 (ert t)
 
 
