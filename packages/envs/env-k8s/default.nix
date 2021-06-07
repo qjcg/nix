@@ -19,10 +19,12 @@ buildEnv {
 
     jg.overrides.kube3d
 
+    jg.unstable.cue
+
+
     argo
     argocd
     conftest
-    cue
     dive
     fly
     kompose

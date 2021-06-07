@@ -28,8 +28,8 @@ buildEnv {
   name = "env-emacs";
   paths = with pkgs; [
     jg.overrides.emacs
+    jg.unstable.cue
 
-    cue
     gforth
     graphviz
     nodePackages.mermaid-cli
