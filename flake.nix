@@ -68,7 +68,7 @@
           filters = {
             x86_64-linux = null;
             x86_64-darwin = "docker-.*|env-desktop|freetube|retroarch|sbagen|sxiv|wayfire";
-            aarch64-linux = "env-multimedia|sbagen";
+            aarch64-linux = "env-clojure|env-multimedia|sbagen";
           };
         in
         {
