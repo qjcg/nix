@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 let
-  inherit (builtins) getFlake;
   inherit (pkgs) buildEnv;
   inherit (pkgs.lib.lists) optionals;
   inherit (pkgs.stdenv) isLinux;
@@ -16,11 +15,8 @@ buildEnv {
     jg.custom.k3c
     jg.custom.rancher-cli
     jg.custom.unity
-
     jg.overrides.kube3d
-
     jg.unstable.cue
-
 
     argo
     argocd
