@@ -1,6 +1,5 @@
 let
   inherit (builtins) getFlake match trace;
-  inherit (pkgs.lib) filterAttrs;
 
   # This repo's main flake.
   thisFlake = getFlake (toString ../.);
