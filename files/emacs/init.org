@@ -125,7 +125,6 @@
    - [X] which-key
    - [ ] strokes (see strokes-mode, strokes-help)
    - [ ] [[https://github.com/countvajhula/rigpa/][rigpa]]
-   - [ ] org-projectile
    - [ ] projectile-speedbar
    - [ ] [[https://github.com/emacsmirror/excorporate][excorporate]] (office 365 mail, calendar, ...)
    - [ ] [[https://github.com/kljohann/mpv.el][mpv.el]]
@@ -136,7 +135,6 @@
      #+title: Emacs Packages to Review
      | Name           | Description                                                          | URL                                            | Rating |
      |----------------+----------------------------------------------------------------------+------------------------------------------------+--------|
-     | org-projectile |                                                                      |                                                |        |
      | rigpa          |                                                                      | AKA "Epistemic Mode". See emacsconf 2020 talk. |        |
      | dashboard      |                                                                      |                                                |        |
      | mu4e           |                                                                      |                                                |        |
@@ -275,30 +273,6 @@
        (bind-keys :map dired-mode-map
 		  ("i" . dired-subtree-insert)
 		  (";" . dired-subtree-remove)))
-
-     ;; Projects based on version control repo presence (e.g. git). Excellent!
-     (use-package projectile
-       :ensure
-       :config
-       (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-       (projectile-mode +1))
-
-     ;; Emacs front-end for ripgrep, a command line search tool
-     ;; Installed for use with projectile-ripgrep.
-     ;; https://github.com/nlamirault/ripgrep.el
-     (use-package ripgrep :ensure)
-
-     (use-package org-projectile
-       :ensure
-       :bind (("C-c n p" . org-projectile-project-todo-completing-read))
-
-       :custom
-       (org-projectile-projects-file (concat org-directory "/projects.org"))
-       (org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-
-       :config
-       (push (org-projectile-project-todo-entry) org-capture-templates))
-
      (use-package expand-region
        :ensure
        :config
@@ -497,10 +471,6 @@
      ;; (use-package treemacs-evil
      ;;   :after (treemacs evil)
      ;;   :ensure t)
-
-     (use-package treemacs-projectile
-       :ensure
-       :after (treemacs projectile))
 
      (use-package treemacs-icons-dired
        :ensure
