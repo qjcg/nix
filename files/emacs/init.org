@@ -872,7 +872,7 @@
 
 *** Calendar & Diary
 
-    #+begin_src elisp
+    #+begin_src emacs-lisp
       (use-package calendar
 	:custom
 	(calendar-date-style "iso" "Use year/month/day format"))
@@ -1002,7 +1002,7 @@
 
 *** Forth                                                             :forth:
 
-    #+begin_src elisp
+    #+begin_src emacs-lisp
       ;; Programming language mode for Forth.
       ;; NOTE: Elisp package used here is the one distributed with gforth (nixpkgs).
       ;; https://github.com/larsbrinkhoff/forth-mode
@@ -1153,7 +1153,7 @@
 
 *** Nginx
 
-    #+begin_src elisp
+    #+begin_src emacs-lisp
       ;; Emacs editing mode for Nginx config files
       ;; https://github.com/ajc/nginx-mode
       (use-package nginx-mode :ensure)
@@ -1170,7 +1170,7 @@
    - [[https://www.youtube.com/watch?v=IDkx48JwDco][Emacs: fuzzy find files (fzf, ripgrep, Ivy+Counsel)]]
    - [[https://www.youtube.com/watch?v=43Dg5zYPHTU][Emacs: completion framework (Embark,Consult,Orderless,etc.)]]
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      ;; Better solution for incremental narrowing in Emacs.
      (use-package selectrum
        :ensure
@@ -1526,7 +1526,7 @@
    This is an area for things I suspect I don't need, but am not
    completely sure about deleting yet. On thin ice!
 
-   #+BEGIN_SRC emacs-lisp
+   #+begin_src emacs-lisp
      (setq compilation-window-height 14)
 
      (defun my-compilation-hook ()
@@ -1540,4 +1540,4 @@
 	       (shrink-window (- h compilation-window-height)))))))
 
      (add-hook 'compilation-mode-hook 'my-compilation-hook)
-   #+END_SRC
+   #+end_src
