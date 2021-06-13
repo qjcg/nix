@@ -499,10 +499,31 @@
      (use-package pass :ensure)
    #+end_src
 
-** Workspaces & Layouts
+** Projects, Layouts and Navigation
    :PROPERTIES:
    :ID:       b7339f82-aa91-4770-a62a-873aff27a6c5
    :END:
+
+*** Projects
+
+    Managing source code.
+
+    See:
+    - [[info:emacs#Maintaining][Maintaining Large Programs]] (Emacs manual)
+    - [[info:emacs#Projects][Projects]] (subsection of the above)
+
+    #+begin_src emacs-lisp
+      ;; Project handling via the built-in project.el
+      (use-package project
+	:custom
+	(project-vc-merge-submodules nil) ;; nil treats submodules as separate projects
+	(project-switch-commands
+	 '((project-find-file "File" ?f)
+	   (project-find-regexp "Grep" ?g)
+	   (project-dired "Dired" ?d)
+	   (project-switch-to-buffer "Buffer" ?b)
+	   (magit-status "Magit" ?m))))
+   #+end_src    
 
 *** Burly
 
