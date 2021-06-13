@@ -1377,27 +1377,6 @@
       (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
       (setq compilation-scroll-output t)
 
-      (use-package dumb-jump
-	:ensure
-	:bind (("M-g o" . dumb-jump-go-other-window)
-	       ("M-g j" . dumb-jump-go)
-	       ("M-g b" . dumb-jump-back)
-	       ("M-g i" . dumb-jump-go-prompt)
-	       ("M-g x" . dumb-jump-go-prefer-external)
-	       ("M-g z" . dumb-jump-go-prefer-external-other-window))
-	:custom
-	(dumb-jump-selector 'completing-read "completing-read is for use with selectrum"))
-
-      (defhydra dumb-jump-hydra (:color blue :columns 3)
-	"Dumb Jump"
-	("j" dumb-jump-go "Go")
-	("o" dumb-jump-go-other-window "Other window")
-	("e" dumb-jump-go-prefer-external "Go external")
-	("x" dumb-jump-go-prefer-external-other-window "Go external other window")
-	("i" dumb-jump-go-prompt "Prompt")
-	("l" dumb-jump-quick-look "Quick look")
-	("b" dumb-jump-back "Back"))
-
       ;; Emacs package that displays available keybindings in popup.
       ;; https://github.com/justbur/emacs-which-key
       (use-package which-key
