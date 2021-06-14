@@ -14,7 +14,6 @@
     noto-fonts-emoji
     noto-fonts-extra
     roboto
-    unifont
     victor-mono
   ];
 }
