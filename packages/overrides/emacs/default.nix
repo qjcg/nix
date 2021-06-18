@@ -34,6 +34,14 @@ let
           sha256 = "sha256-wJC+m4G2Jy+YbL23UT6Y24eDTMUE0IXjpcHZjC3KU6A=";
         }) "elfeed-dashboard";
 
+      markdown-bullets = elisp
+        (pkgs.fetchFromGitHub {
+          owner = "xuchunyang";
+          repo = "markdown-bullets";
+          rev = "04ede1e4ce44056c4730c5ba8e28451f4b3c11a8";
+          sha256 = "sha256-Ew+/uLatLOByQt5ayXXsdPyU0mgntF1ZzNb5aXomPq4=";
+        }) "markdown-bullets";
+
       ob-go = elisp
         (pkgs.fetchFromGitHub {
           owner = "pope";
@@ -90,6 +98,7 @@ let
     extraEmacsPackages = epkgs: with epkgs; [
       cue-mode
       elfeed-dashboard
+      markdown-bullets
       ob-go
       rigpa
       show-font-mode

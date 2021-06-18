@@ -770,6 +770,13 @@
        ;; Set different bullets, with one getting a terminal fallback.
        (org-superstar-headline-bullets-list '("☰" "◉" "○" "▶" "▷")))
      
+     ;; A Markdown port of org-bullets for prettifying Markdown headings.
+     ;; https://github.com/xuchunyang/markdown-bullets
+     (use-package markdown-bullets
+       :hook markdown-mode
+       :config
+       (setq markdown-bullets-bullet-list  '("☰" "◉" "○" "▶" "▷")))
+     
      ;; Display Org Mode priorities as custom strings
      ;; https://github.com/harrybournis/org-fancy-priorities
      (use-package org-fancy-priorities
