@@ -426,7 +426,8 @@
 	   (project-find-regexp "Grep" ?g)
 	   (project-dired "Dired" ?d)
 	   (project-switch-to-buffer "Buffer" ?b)
-	   (vterm "VTerm" ?t)
+	   (vterm "VTerm" ?v)
+	   (project-eshell "EShell" ?e)
 	   (magit-status "Magit" ?m))))
    #+end_src    
 
