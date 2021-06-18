@@ -533,10 +533,19 @@
 	     (treemacs-git-mode 'deferred))
 	    (`(t . _)
 	     (treemacs-git-mode 'simple))))
+      
+	(defun jg-treemacs-project ()
+	  "Toggle treemacs, displaying only the current project.
+      
+      Adapted from the `treemacs` function."
+	  (interactive)
+	  (pcase (treemacs-current-visibility)
+	    ('visible (delete-window (treemacs-get-local-window)))
+	    (- (treemacs-display-current-project-exclusively))))
 	:bind
 	(("C-x t t"   . treemacs-select-window)
 	 ("C-x t 1"   . treemacs-delete-other-windows)
-	 ("M-0"       . treemacs) ;; TOGGLE treemacs
+	 ("M-0"       . jg-treemacs-project) ;; TOGGLE treemacs
 	 ("C-x t B"   . treemacs-bookmark)
 	 ("C-x t C-t" . treemacs-find-file)
 	 ("C-x t M-t" . treemacs-find-tag)
