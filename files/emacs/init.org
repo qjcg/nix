@@ -166,22 +166,21 @@
      (use-package emacs
        :init
        (auto-fill-mode)
-
+     
        (defalias 'setd 'setq-default) ; setd is shorter to type!
-
+     
        ;; Load custom theme(s) from here.
        (add-to-list 'custom-theme-load-path
 		    (concat user-emacs-directory "themes"))
-
+     
        ;; Specify default font without using Customize.
        (when (member "JuliaMono" (font-family-list))
 	 (add-to-list 'default-frame-alist '(font . "JuliaMono-20")))
-
+     
        :custom
        ;; Use a *separate* file for customizations.
        ;; See https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations
        (custom-file (concat user-emacs-directory "custom.el"))
-
        (backup-directory-alist `(("." . ,(concat user-emacs-directory "backup"))))
        (browse-url-browser-function 'eww-browse-url "Browse with eww by default")
        (display-time-mode t)
@@ -194,7 +193,7 @@
        (show-trailing-whitespace nil "Do NOT enable this globally, bad on terminals for example.")
        (truncate-lines t "Do NOT display continuation lines")
        (tool-bar-mode nil))
-
+     
      (use-package recentf
        :init
        (recentf-mode 1)
@@ -206,11 +205,11 @@
 	 (interactive)
 	 (let ((files (mapcar 'abbreviate-file-name recentf-list)))
 	   (find-file (completing-read "Find recent file: " files nil t)))))
-
+     
      (use-package ibuffer
        :init
        (global-set-key (kbd "C-x C-b") 'ibuffer))
-
+     
      ;; Group buffers in ibuffer list by VC project
      ;; https://github.com/purcell/ibuffer-vc
      (use-package ibuffer-vc
@@ -254,25 +253,26 @@
      (use-package bug-hunter :ensure)
      (use-package discover-my-major :ensure)
      (use-package hydra :ensure)
-
+     
      (use-package page-break-lines :ensure)
-
+     
      (use-package paradox :ensure)
      (use-package systemd :ensure)
      (use-package undo-tree :ensure)
-
+     
      (use-package elpher :ensure)
-
+     
      (use-package rainbow-delimiters
        :ensure
        :hook (prog-mode . rainbow-delimiters-mode))
-
+     
      (use-package dired-subtree
        :ensure
        :config
        (bind-keys :map dired-mode-map
 		  ("i" . dired-subtree-insert)
 		  (";" . dired-subtree-remove)))
+     
      (use-package expand-region
        :ensure
        :config
@@ -302,8 +302,7 @@
       (use-package laguna-theme :ensure)
       (use-package monotropic-theme :ensure)
       (use-package solo-jazz-theme)
-
-
+      
       ;; Modus Themes
       ;; https://protesilaos.com/modus-themes/
       (use-package modus-themes
@@ -320,7 +319,7 @@
 	;; Load the theme of your choice:
 	(modus-themes-load-vivendi)
 	:bind ("<f5>" . modus-themes-toggle))
-
+      
       (use-package theme-looper
 	:ensure
 	:config
@@ -331,17 +330,17 @@
 					    base16-synth-midnight-dark
 					    laguna
 					    solo-jazz))
-
+      
 	(global-set-key (kbd "C-}") 'theme-looper-enable-next-theme)
 	(global-set-key (kbd "C-{") 'theme-looper-enable-previous-theme)
 	(global-set-key (kbd "C-\\") 'theme-looper-enable-random-theme)
-
+      
 	;; NOTE: The functions below rely on the "ivy" package.
 	;;(global-set-key (kbd "C-|") 'theme-looper-select-theme)
 	;;(global-set-key (kbd "C-M-|") 'theme-looper-select-theme-from-all)
 	)
-
-
+      
+      
       ;; Don't "layer" themes on top of each other when calling load-theme.
       (defadvice load-theme (before theme-dont-propagate activate)
 	"Advise load-theme to disable all custom themes before loading (enabling) another one.
@@ -356,7 +355,7 @@
     #+begin_src emacs-lisp
       ;; Show font at point on mode line.
       (use-package show-font-mode :ensure)
-
+      
       ;; Pulse modified region.
       (use-package goggles
 	:ensure
@@ -364,7 +363,7 @@
 	:config
 	(goggles-mode)
 	(setq-default goggles-pulse t)) ;; set to nil to disable pulsing
-
+      
       ;; A light that follows your cursor around so you don't lose it!
       (use-package beacon
 	:ensure
@@ -373,16 +372,16 @@
 	:custom
 	(beacon-blink-delay 0.5)
 	(beacon-blink-duration 0.5))
-
+      
       (use-package org-variable-pitch
 	:ensure
 	:after org
 	:config
 	(set-face-attribute 'org-variable-pitch-fixed-face nil :height 180)
 	(set-face-attribute 'org-variable-pitch-fixed-face nil :weight 'regular)
-
+      
 	(add-hook 'org-mode-hook #'org-variable-pitch-minor-mode)
-
+      
 	:custom
 	(org-variable-pitch-fontify-headline-prefix t)
 	(org-variable-pitch-fixed-font "Roboto"))
@@ -397,7 +396,7 @@
        :ensure
        :config
        (auth-source-pass-enable))
-
+     
      ;; A major mode for password-store
      ;; https://github.com/NicolasPetton/pass
      (use-package pass :ensure)
@@ -429,7 +428,7 @@
 	   (vterm "VTerm" ?v)
 	   (project-eshell "EShell" ?e)
 	   (magit-status "Magit" ?m))))
-   #+end_src    
+    #+end_src    
 
 *** Burly
 
@@ -519,11 +518,11 @@
 		treemacs-user-header-line-format       nil
 		treemacs-width                         35
 		treemacs-workspace-switch-cleanup      nil)
-     
+      
 	  ;; The default width and height of the icons is 22 pixels. If you are
 	  ;; using a Hi-DPI display, uncomment this to double the icon size.
 	  ;;(treemacs-resize-icons 44)
-     
+      
 	  (treemacs-follow-mode t)
 	  (treemacs-filewatch-mode t)
 	  (treemacs-fringe-indicator-mode 'always)
@@ -549,23 +548,23 @@
 	 ("C-x t B"   . treemacs-bookmark)
 	 ("C-x t C-t" . treemacs-find-file)
 	 ("C-x t M-t" . treemacs-find-tag)
-     
+      
 	 :map treemacs-mode-map
 	 ([mouse-1] . treemacs-single-click-expand-action)))
-     
+      
       ;; (use-package treemacs-evil
       ;;   :after (treemacs evil)
       ;;   :ensure t)
-     
+      
       (use-package treemacs-icons-dired
 	:ensure
 	:after (treemacs dired)
 	:config (treemacs-icons-dired-mode))
-     
+      
       (use-package treemacs-magit
 	:ensure
 	:after (treemacs magit))
-     
+      
       (use-package treemacs-all-the-icons :ensure)
     #+end_src
 
@@ -588,11 +587,11 @@
        :ensure
        :custom
        (vterm-shell "bash"))
-
+     
      ;; Toggles between the vterm buffer and whatever buffer you are editing.
      ;; https://github.com/jixiuf/vterm-toggle
      (use-package vterm-toggle :ensure)
-
+     
      ;; Manage multiple vterm buffers.
      ;; https://github.com/suonlight/multi-vterm
      (use-package multi-vterm
@@ -602,8 +601,8 @@
        (global-set-key (kbd "C-:") 'multi-vterm-project)
        (global-set-key (kbd "S-<left>") 'multi-vterm-prev)
        (global-set-key (kbd "S-<right>") 'multi-vterm-next))
-
-
+     
+     
      ;; Helps you to use shell easily on Emacs. Only one key action to work.
      (use-package shell-pop
        :ensure
@@ -611,7 +610,7 @@
        ;; Workaround for annoying shell-pop layout issue.
        ;; See https://github.com/kyagi/shell-pop-el/issues/51#issuecomment-297470855
        (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
-
+     
        :custom
        (shell-pop-universal-key "C-;" "Toggle a shell via shell-pop.")
        (shell-pop-shell-type
@@ -639,7 +638,7 @@
        (global-set-key (kbd "C-c l") 'org-store-link)
        (global-set-key (kbd "C-c a") 'org-agenda)
        (global-set-key (kbd "C-c c") 'org-capture)
-
+     
        ;; This is required, see here.
        (org-babel-do-load-languages
 	'org-babel-load-languages
@@ -650,13 +649,13 @@
 	  (python . t)
 	  (shell . t)
 	  (plantuml . t)))
-
+     
        :custom
        (org-feed-alist '(("Sacha Chua: Emacs News"
 			  "https://sachachua.com/blog/category/emacs-news/feed/"
 			  (concat org-directory "/feeds.org")
 			  "Articles")))
-
+     
        (org-plantuml-exec-mode 'plantuml)
        (org-plantuml-executable-path 'plantuml)
        (org-startup-with-inline-images t)
@@ -669,12 +668,12 @@
 			  (concat org-directory "/roam/daily")))
        (org-refile-targets '((org-agenda-files . (:maxlevel . 5))))
        (org-confirm-babel-evaluate nil "Don't ask for confirmation before executing code blocks")
-
+     
        (org-agenda-custom-commands
 	'(("w" "Agenda and Work-related tasks"
 	   ((agenda "")
 	    (tags-todo "-reading-emacs-software")))))
-
+     
        (org-capture-templates (doct '(("Todo"
 				       :keys "t"
 				       :file "todo.org"
@@ -687,7 +686,7 @@
 						  ":END:"
 						  ""
 						  "** TODO Wrike task created"))
-
+     
 				      ("Reading"
 				       :keys "r"
 				       :file "todo.org"
@@ -702,7 +701,7 @@
 						  ":END:"
 						  ""
 						  "%i"))
-
+     
 				      ("Meeting Notes"
 				       :keys "m"
 				       :file "todo.org"
@@ -721,7 +720,7 @@
 						  "** Decisions"
 						  "** Action Items [/]"
 						  ""))
-
+     
 				      ("Software"
 				       :keys "s"
 				       :file "todo.org"
@@ -737,7 +736,7 @@
 						  ""
 						  "%i"
 						  "%a"))
-
+     
 				      ("Emacs Package"
 				       :keys "e"
 				       :file "todo.org"
@@ -754,13 +753,13 @@
 						  ""
 						  "%i"
 						  "%a"))))))
-
+     
      (use-package doct
        :ensure
        :commands (doct))
-
+     
      (use-package ob-go)
-
+     
      ;; Use unicode bullet characters in org-mode.
      ;; To customize, see https://github.com/integral-dw/org-superstar-mode/blob/master/DEMO.org
      (use-package org-superstar
@@ -770,7 +769,7 @@
        :custom
        ;; Set different bullets, with one getting a terminal fallback.
        (org-superstar-headline-bullets-list '("☰" "◉" "○" "▶" "▷")))
-
+     
      ;; Display Org Mode priorities as custom strings
      ;; https://github.com/harrybournis/org-fancy-priorities
      (use-package org-fancy-priorities
@@ -782,10 +781,10 @@
 	     '((?A . (:foreground "red" :weight "bold"))
 	       (?B . (:foreground "gold" :weight "bold"))
 	       (?C . (:foreground "blue" :weight "bold"))))
-
+     
        ;; See https://en.wikipedia.org/wiki/Enclosed_Alphanumeric_Supplement
        (setq org-fancy-priorities-list '("🅰" "🅱" "🅲" "🅳")))
-
+     
      (use-package org-sidebar
        :ensure
        :after (general)
@@ -811,11 +810,11 @@
 	(org-roam-graph-exclude-matcher '("daily"))
 	:bind (:map org-roam-mode-map
 		    (("C-c n d" . org-roam-dailies-find-today)
-
+      
 		     ;; FIXME: conflicts with org-projectile
 		     ;; ("C-c n p" . org-roam-dailies-find-previous-note)
 		     ;; ("C-c n n" . org-roam-dailies-find-next-note)
-
+      
 		     ("C-c n l" . org-roam)
 		     ("C-c n f" . org-roam-find-file)
 		     ("C-c n g" . org-roam-graph))
@@ -830,10 +829,10 @@
     #+begin_src emacs-lisp
       ;; A presentation tool for org-mode based on the visibility of outline trees
       (use-package org-tree-slide :ensure)
-
+      
       ;; Good-lookinig Emacs presentations based on org files.
       (use-package zpresent :ensure)
-
+      
       ;; Ultra-minimalist presentation minor-mode for Emacs org-mode.
       (use-package org-present
 	:ensure
@@ -843,7 +842,7 @@
 		    (org-present-big)
 		    (org-present-hide-cursor)
 		    (org-present-read-only)))
-
+      
 	(add-hook 'org-present-mode-quit-hook
 		  (lambda ()
 		    (org-present-small)
@@ -920,16 +919,16 @@
 	  "Display BUFFER in the selected window like God intended."
 	  (display-buffer
 	   buffer '(display-buffer-same-window)))
-
+      
 	(setq magit-display-buffer-function 'magit-display-buffer-same-window)
 	(setq magit-popup-display-buffer-action '((display-buffer-same-window))))
-
+      
       ;; Work with Git forges from the comfort of Magit.
       ;; https://github.com/magit/forge
       (use-package forge
 	:ensure
 	:after magit)
-
+      
       (use-package git-gutter
 	:ensure
 	:custom
@@ -942,7 +941,7 @@
 	 ("C-x v s" . git-gutter:stage-hunk)
 	 ("C-x v r" . git-gutter:revert-hunk)
 	 ("C-x v SPC" . git-gutter:mark-hunk)))
-
+      
       (use-package gitignore-mode :ensure)
     #+end_src
 
@@ -958,7 +957,7 @@
 	:ensure
 	:commands (lsp lsp-deferred)
 	:hook (go-mode . lsp-deferred))
-
+      
       (use-package lsp-ui
 	:ensure
 	:commands lsp-ui-mode
@@ -998,12 +997,12 @@
       (use-package elisp-slime-nav
 	:ensure
 	:hook ((emacs-lisp-mode ielm-mode org-mode) . elisp-slime-nav-mode))
-
+      
       ;; Behavior-Driven Emacs Lisp Testing
       ;; https://github.com/jorgenschaefer/emacs-buttercup
       (use-package buttercup :ensure)
-
-
+      
+      
       ;; A minor mode for performing structured editing of S-expression data.
       ;; See:
       ;;   https://www.emacswiki.org/emacs/ParEdit
@@ -1036,13 +1035,13 @@
 	:ensure
 	;;:after lsp
 	:hook (go-mode . fmt-go-on-save-mode)
-
+      
 	:bind (("M-," . compile)
 	       ("M-." . godef-jump))
-
+      
 	:init
 	(reformatter-define fmt-go :program "goimports")
-
+      
 	:config
 	(setd gofmt-command "goimports")
 	(setd compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linting... && golangci-lint run")
@@ -1088,7 +1087,7 @@
 	:init
 	(reformatter-define fmt-black :program "black" :args '("-"))
 	(reformatter-define fmt-isort :program "isort" :args '("-" "-d")))
-
+      
       (use-package jinja2-mode :ensure)
     #+end_src
 
@@ -1114,10 +1113,9 @@
 	:custom
 	(plantuml-executable-path "plantuml")
 	(plantuml-default-exec-mode "executable"))
-
+      
       (use-package vega-view :ensure)
     #+end_src
-
 
 ** DevOps                                                            :devops:
 *** Docker
@@ -1129,7 +1127,7 @@
       (use-package docker
 	:ensure
 	:bind ("C-c d" . docker))
-
+      
       (use-package dockerfile-mode :ensure)
     #+end_src
 
@@ -1145,7 +1143,7 @@
       (use-package kubernetes
 	:ensure t
 	:commands (kubernetes-overview))
-
+      
       ;; See https://github.com/abrochard/kubel
       (use-package kubel :ensure)
     #+end_src
@@ -1187,7 +1185,7 @@
        :ensure
        :init
        (selectrum-mode +1))
-
+     
      ;; Simple but effective sorting and filtering for Emacs.
      (use-package prescient
        :ensure
@@ -1197,17 +1195,17 @@
        (prescient-persist-mode 1)
        :custom
        (prescient-filter-method '(literal regexp initialism fuzzy)))
-
+     
      ;; Use prescient sorting with Company.
      (use-package company-prescient :ensure)
-
+     
      ;; Use prescient sorting with Selectrum.
      (use-package selectrum-prescient
        :ensure
        :init
        ;; Make sorting and filtering more intelligent.
        (selectrum-prescient-mode +1))
-
+     
      ;; An Emacs mode for quickly browsing, filtering, and editing
      ;; directories of plain text notes.
      (use-package deft
@@ -1218,7 +1216,7 @@
        (setq deft-directory org-directory)
        (setq deft-recursive t)
        (setq deft-extensions '("org" "md")))
-
+     
      ;; Company mode is a standard completion package.
      (use-package company
        :ensure
@@ -1238,7 +1236,7 @@
 	(shrface-trial)
 	(shrface-default-keybindings) ; setup default keybindings
 	(setq shrface-href-versatile t)
-
+      
 	;; Convenience functions for archiving URLs as org files.
 	;; See also these functions that are part of shrface:
 	;;   - shrface-html-export-as-org
@@ -1258,7 +1256,7 @@
 	       (when (= 0 (process-exit-status p))
 		 (with-current-buffer buf
 		   (shrface-html-export-as-org (buffer-string))))))))
-
+      
 	(defun request-url-to-org (url)
 	  (interactive "sRequest url: ")
 	  (require 'shrface)
@@ -1273,7 +1271,7 @@
 	       (when (= 0 (process-exit-status p))
 		 (with-current-buffer buf
 		   (shrface-html-export-to-org (buffer-string) "request.org"))))))))
-
+      
       ;; Use shrface-mode with eww to browse/archive web pages as org files.
       (use-package eww
 	:after shrface
@@ -1298,17 +1296,17 @@
       ;; An Emacs web feeds client
       ;; https://github.com/skeeto/elfeed
       (use-package elfeed :ensure)
-
+      
       ;; Configure the Elfeed RSS reader with an Orgmode file
       ;; https://github.com/remyhonig/elfeed-org
       (use-package elfeed-org
 	:ensure
 	:config
 	(elfeed-org)
-
+      
 	:custom
 	(rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
-
+      
       ;; A frontend for elfeed.
       ;; https://github.com/Manoj321/elfeed-dashboard
       (use-package elfeed-dashboard
@@ -1332,12 +1330,12 @@
 	(bongo-custom-backend-matchers
 	 `((mpv local-file "opus"))
 	 "It seems bongo doesn't play opus files by default. Let's fix that!"))
-
+      
       ;; The Emacs Multi-Media System.
       ;; See https://www.gnu.org/software/emms/
       (use-package emms
 	:ensure
-
+      
 	:bind (("C-c e p" . emms-pause)
 	       ("C-c e f" . emms-next)
 	       ("C-c e b" . emms-previous)
@@ -1346,21 +1344,21 @@
 	       ("C-c e <" . (lambda () (interactive) (emms-seek -30)))
 	       :map dired-mode-map
 	       ("C-c e SPC" . emms-play-dired))
-
+      
 	:config
 	(require 'emms-mark)
 	(require 'emms-setup)
 	(require 'emms-streams)
-
+      
 	(emms-all)
 	(emms-default-players)
-
+      
 	(setq emms-playlist-default-major-mode 'emms-mark-mode)
 	(setq emms-source-file-default-directory "~/Music/"))
-
+      
       ;; TODO: Re-enable later?
       ;;(setq emms-player-list '(emms-player-mpv))
-
+      
       ;; (emms-player-set 'emms-player-simple-ipc-mpv 'regex
       ;; 		   (emms-player-simple-regexp
       ;; 		    "ogg" "opus" "mp3" "wav" "mpg" "mpeg" "wmv" "wma"
@@ -1388,14 +1386,14 @@
     #+begin_src emacs-lisp
       (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
       (setq compilation-scroll-output t)
-
+      
       ;; Emacs package that displays available keybindings in popup.
       ;; https://github.com/justbur/emacs-which-key
       (use-package which-key
 	:ensure
 	:config
 	(which-key-mode))
-
+      
       ;; Marginalia in the minibuffer
       ;; https://github.com/minad/marginalia
       (use-package marginalia
@@ -1403,21 +1401,21 @@
 	:bind (("M-A" . marginalia-cycle)
 	       :map minibuffer-local-map
 	       ("M-A" . marginalia-cycle))
-
+      
 	;; The :init configuration is always executed (Not lazy!)
 	:init
-
+      
 	;; Must be in the :init section of use-package such that the mode gets
 	;; enabled right away. Note that this forces loading the package.
 	(marginalia-mode))
-
+      
       ;; NOTES:
       ;;   - Not in (M)ELPA yet, do not :ensure.
       ;;   - Watching for a first non-pre-release on GH, see https://github.com/countvajhula/rigpa/issues/1#issuecomment-743849934
       ;; (use-package rigpa
       ;;   :config
       ;;   (setq rigpa-mode t))
-
+      
       ;;   ;; navigating meta modes
       ;;   (global-set-key (kbd "s-m s-m") 'rigpa-flashback-to-last-tower)
       ;;   (global-set-key (kbd "C-<escape>") 'my-enter-tower-mode)
@@ -1539,7 +1537,7 @@
 
    #+begin_src emacs-lisp
      (setq compilation-window-height 14)
-
+     
      (defun my-compilation-hook ()
        (when (not (get-buffer-window "*compilation*"))
 	 (save-selected-window
@@ -1549,6 +1547,6 @@
 	       (select-window w)
 	       (switch-to-buffer "*compilation*")
 	       (shrink-window (- h compilation-window-height)))))))
-
+     
      (add-hook 'compilation-mode-hook 'my-compilation-hook)
    #+end_src
