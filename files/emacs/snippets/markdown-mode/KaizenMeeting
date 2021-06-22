@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: KaizenMeeting
+# key: ;kzm
+# --
+
+## ${1:`(format-time-string "%Y-%m-%d")`: ${2:Awesome Agenda Item}}
+
+- Present: ${3:jgosset,massi}
+
+### $2

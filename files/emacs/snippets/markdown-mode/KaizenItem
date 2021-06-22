@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: KaizenItem
+# key: ;kzi
+# --
+### ${1:Awesome Agenda Item}
+
+- Time Estimate: ${2:15m}
+- Added by: ${3:jgosset}
+
+#### Pre-Meeting Notes
+
+- $4
+
+#### Meeting Minutes
+
+#### Decisions
+
+#### Action Items

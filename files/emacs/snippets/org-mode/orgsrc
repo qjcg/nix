@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: OrgSrc
+# key: ;orgsrc
+# --
+
+#+name: $1
+#+begin_src ${2:emacs-lisp}
+$3
+#+end_src
