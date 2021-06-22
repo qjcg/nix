@@ -16,6 +16,7 @@ pkgs.buildEnv {
     #jg.custom.s-nail
     jg.overrides.emacs
     jg.overrides.neovim
+    jg.unstable.mdbook
 
     age
     aria2
@@ -61,7 +62,6 @@ pkgs.buildEnv {
     lsd
     lsof
     maddy
-    mdbook
     minisign
     mkcert
     mtr
