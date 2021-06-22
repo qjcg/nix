@@ -46,6 +46,7 @@ pkgs.buildEnv {
     gnugrep
     gnumake
     gnupg
+    gomplate
     gopass
     grpcurl
     gtop
