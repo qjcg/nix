@@ -771,10 +771,15 @@
        ;; Set different bullets, with one getting a terminal fallback.
        (org-superstar-headline-bullets-list '("☰" "◉" "○" "▶" "▷")))
      
+     ;; Generate a TOC in markdown file.
+     ;; https://github.com/ardumont/markdown-toc
+     (use-package markdown-toc :ensure)
+     
      ;; A Markdown port of org-bullets for prettifying Markdown headings.
      ;; https://github.com/xuchunyang/markdown-bullets
      (use-package markdown-bullets
-       :hook markdown-mode
+       :disabled
+       :hook (markdown-mode . markdown-bullets-mode)
        :config
        (setq markdown-bullets-bullet-list  '("☰" "◉" "○" "▶" "▷")))
      
