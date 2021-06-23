@@ -354,7 +354,8 @@
 
     #+begin_src emacs-lisp
       ;; Show font at point on mode line.
-      (use-package show-font-mode :ensure)
+      ;; https://github.com/melissaboiko/show-font-mode
+      (use-package show-font-mode)
       
       ;; Pulse modified region.
       (use-package goggles
