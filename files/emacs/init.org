@@ -773,7 +773,9 @@
      
      ;; Generate a TOC in markdown file.
      ;; https://github.com/ardumont/markdown-toc
-     (use-package markdown-toc :ensure)
+     (use-package markdown-toc
+       :ensure
+       :hook (markdown-mode . markdown-toc-mode))
      
      ;; A Markdown port of org-bullets for prettifying Markdown headings.
      ;; https://github.com/xuchunyang/markdown-bullets
