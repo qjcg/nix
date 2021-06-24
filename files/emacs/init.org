@@ -1158,13 +1158,23 @@
     Packages for interacting with Kubernetes.
 
     #+begin_src emacs-lisp
+      ;; Emacs porcelain for Kubernetes.
       ;; See https://github.com/chrisbarrett/kubernetes-el
       (use-package kubernetes
-	:ensure t
+	:ensure
 	:commands (kubernetes-overview))
       
+      ;; Emacs extension for controlling Kubernetes with limited permissions
       ;; See https://github.com/abrochard/kubel
       (use-package kubel :ensure)
+      
+      ;; TRAMP integration for kubernetes containers
+      ;; https://github.com/gruggiero/kubernetes-tramp
+      (use-package kubernetes-tramp :ensure)
+      
+      ;; Kubernetes mode in Emacs
+      ;; https://github.com/TxGVNN/emacs-k8s-mode
+      (use-package k8s-mode :ensure)
     #+end_src
 
 *** Ansible
