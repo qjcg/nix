@@ -1162,11 +1162,10 @@
       ;; See https://github.com/chrisbarrett/kubernetes-el
       (use-package kubernetes
 	:ensure
+	:bind (("C-c k" . kubernetes-overview))
+	:custom
+	(kubernetes-overview-custom-views-alist '((overview . (context deployments pods ingress))))
 	:commands (kubernetes-overview))
-      
-      ;; Emacs extension for controlling Kubernetes with limited permissions
-      ;; See https://github.com/abrochard/kubel
-      (use-package kubel :ensure)
       
       ;; TRAMP integration for kubernetes containers
       ;; https://github.com/gruggiero/kubernetes-tramp
