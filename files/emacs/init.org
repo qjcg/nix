@@ -185,6 +185,7 @@
        (browse-url-browser-function 'eww-browse-url "Browse with eww by default")
        (display-time-mode t)
        (echo-keystrokes 0.1 "Show keystrokes ASAP")
+       (hl-line-mode t)
        (inhibit-startup-screen t)
        (initial-scratch-message nil)
        (menu-bar-mode nil)
@@ -306,19 +307,21 @@
       ;; Modus Themes
       ;; https://protesilaos.com/modus-themes/
       (use-package modus-themes
-	:ensure
-	;;:ensure ;; TODO: Remove ensure once part of Emacs.
-	:init
-	;; Add all your customizations prior to loading the themes
-	(setq modus-themes-slanted-constructs t)
-	(setq modus-themes-bold-constructs t)
+	:ensure ;; TODO: Remove :ensure once using emacs 28 (built-in).
       
-	;; Load the theme files before enabling a theme
+	:custom
+	(modus-themes-slanted-constructs t)
+	(modus-themes-bold-constructs t)
+	(modus-themes-hl-line 'underline-accented)
+      
+	:init
+	;; Load the theme files before enabling a theme.
 	(modus-themes-load-themes)
+      
+	:bind ("<f5>" . modus-themes-toggle)
+      
 	:config
-	;; Load the theme of your choice:
-	(modus-themes-load-vivendi)
-	:bind ("<f5>" . modus-themes-toggle))
+	(modus-themes-load-vivendi))
       
       (use-package theme-looper
 	:ensure
@@ -603,6 +606,16 @@
        (global-set-key (kbd "S-<left>") 'multi-vterm-prev)
        (global-set-key (kbd "S-<right>") 'multi-vterm-next))
      
+     
+     ;; An Emacs shell-mode (and comint-mode) extension that enables
+     ;; displaying small plots and graphics and lets users write shell
+     ;; commands in Emacs Lisp.
+     ;; 
+     ;; https://github.com/riscy/shx-for-emacs
+     (use-package shx
+       :ensure
+       :custom
+       (shx-global-mode t))
      
      ;; Helps you to use shell easily on Emacs. Only one key action to work.
      (use-package shell-pop
@@ -1162,13 +1175,17 @@
       ;; See https://github.com/chrisbarrett/kubernetes-el
       (use-package kubernetes
 	:ensure
-	:bind (("C-c k" . kubernetes-overview))
+	:bind (("C-c k" . kubernetes-overview)) ;; Mirrors "C-c d" for docker
+
 	:custom
 	(kubernetes-overview-custom-views-alist '((overview . (context deployments pods ingress))))
+
 	:commands (kubernetes-overview))
       
       ;; TRAMP integration for kubernetes containers
       ;; https://github.com/gruggiero/kubernetes-tramp
+      ;; 
+      ;; TODO: REMOVE this package once this PR is merged: https://github.com/kubernetes-el/kubernetes-el/pull/167
       (use-package kubernetes-tramp :ensure)
       
       ;; Kubernetes mode in Emacs
