@@ -1144,6 +1144,10 @@
 	:bind ("C-c d" . docker))
       
       (use-package dockerfile-mode :ensure)
+      
+      ;; TRAMP integration for docker containers
+      ;; https://github.com/emacs-pe/docker-tramp.el
+      (use-package docker-tramp :ensure)
     #+end_src
 
 *** Kubernetes
