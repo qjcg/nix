@@ -30,7 +30,7 @@
     - [ ] Python
 *** DONE Provide excellent DevOps experience [2/2]
     - [X] Docker (docker)
-    - [X] Kubernetes (kubernetes-overview, kubel)
+    - [X] Kubernetes (kubernetes-overview)
 *** TODO Provide integrated daily drivers [3/10]
     - [X] web (eww BUT sometimes hangs? Performance mediocre)
     - [X] music (bongo w/ mpv backend)
@@ -72,6 +72,41 @@
       - [ ] Web bookmarks (from browser)
     - [ ] Evaluate related packages
     - [ ] Add Wrike custom link type (e.g. "wrike:12345")
+
+** TODO Packages to review [2/11]
+
+   Review should have 3 steps: research, pilot, review.
+
+   - [X] burly
+   - [X] which-key
+   - [ ] strokes (see strokes-mode, strokes-help)
+   - [ ] [[https://github.com/countvajhula/rigpa/][rigpa]]
+   - [ ] projectile-speedbar
+   - [ ] [[https://github.com/emacsmirror/excorporate][excorporate]] (office 365 mail, calendar, ...)
+   - [ ] [[https://github.com/kljohann/mpv.el][mpv.el]]
+   - [ ] paredit (see [[http://danmidwood.com/content/2014/11/21/animated-paredit.html][Structured Guide to Paredit]])
+   - [ ] [[http://xelf.me/emacs-mosaic.html][EmacsMosaic]] for [[http://xelf.me/scheme-mosaic.html][SchemeMosaic]] (music creation)
+
+     #+title: Emacs Packages to Review
+     | Name           | Description                                                          | URL                                            | Rating |
+     |----------------+----------------------------------------------------------------------+------------------------------------------------+--------|
+     | rigpa          |                                                                      | AKA "Epistemic Mode". See emacsconf 2020 talk. |        |
+     | dashboard      |                                                                      |                                                |        |
+     | mu4e           |                                                                      |                                                |        |
+     | notmuch        |                                                                      |                                                |        |
+     | orderless      | Emacs completion style that matches multiple regexps in any order    | https://github.com/oantolin/orderless          |        |
+     | consult        | Various commands to quickly select an item from a list of candidates | https://github.com/minad/consult               |        |
+     | embark         | Mini-Buffer Actions Rooted in Keymaps                                | https://github.com/oantolin/embark/            |        |
+** TODO Config changes to review [0/8]
+   - [ ] [[https://github.com/terlar/emacs-config/blob/master/default.nix#L11-L27][Use Nix to manage emacs init file (tangle init.org, etc)]] (see also:  [[https://github.com/nix-community/emacs-overlay/issues/106][Provide tangled .el file from Org configs]])
+   - [ ] [[https://github.com/jjuliano/practical.org.el][Practical GTD and Zettelkasten workflow]]
+   - [ ] [[https://yannherklotz.com/blog/2020-12-21-introduction-to-luhmanns-zettelkasten.html][Introduction to Luhmann's Zettelkasten]]
+   - [ ] [[https://takeonrules.com/2020/12/18/directory-structure-for-my-org-instance/][Directory structure for my org instance]]
+   - [ ] [[http://www.nextpoint.se/?p=834][Static generation for init file?]]
+   - [ ] [[http://www.nextpoint.se/?p=845][Byte compile the quickstart file]]
+   - [ ] [[https://github.com/alhassy/org-special-block-extras][Use org-special-block-extras for generating HTML and/or LaTeX]]
+   - [ ] [[https://github.com/tecosaur/org-pandoc-import][Use org-pandoc-import (convert various file types to org)]]
+   - [ ] [[https://github.com/jixiuf/vterm-toggle][vterm-toggle]]
 
 ** Comparison with alternatives
 
@@ -117,43 +152,6 @@
 
 
 * Configuration
-** TODO Packages to review [2/11]
-
-   Review should have 3 steps: research, pilot, review.
-
-   - [X] burly
-   - [X] which-key
-   - [ ] strokes (see strokes-mode, strokes-help)
-   - [ ] [[https://github.com/countvajhula/rigpa/][rigpa]]
-   - [ ] projectile-speedbar
-   - [ ] [[https://github.com/emacsmirror/excorporate][excorporate]] (office 365 mail, calendar, ...)
-   - [ ] [[https://github.com/kljohann/mpv.el][mpv.el]]
-   - [ ] smex (smart "M-x")
-   - [ ] paredit (see [[http://danmidwood.com/content/2014/11/21/animated-paredit.html][Structured Guide to Paredit]])
-   - [ ] [[http://xelf.me/emacs-mosaic.html][EmacsMosaic]] for [[http://xelf.me/scheme-mosaic.html][SchemeMosaic]] (music creation)
-
-     #+title: Emacs Packages to Review
-     | Name           | Description                                                          | URL                                            | Rating |
-     |----------------+----------------------------------------------------------------------+------------------------------------------------+--------|
-     | rigpa          |                                                                      | AKA "Epistemic Mode". See emacsconf 2020 talk. |        |
-     | dashboard      |                                                                      |                                                |        |
-     | mu4e           |                                                                      |                                                |        |
-     | notmuch        |                                                                      |                                                |        |
-     | orderless      | Emacs completion style that matches multiple regexps in any order    | https://github.com/oantolin/orderless          |        |
-     | consult        | Various commands to quickly select an item from a list of candidates | https://github.com/minad/consult               |        |
-     | embark         | Mini-Buffer Actions Rooted in Keymaps                                | https://github.com/oantolin/embark/            |        |
-
-** TODO Config changes to review [0/8]
-   - [ ] [[https://github.com/terlar/emacs-config/blob/master/default.nix#L11-L27][Use Nix to manage emacs init file (tangle init.org, etc)]] (see also:  [[https://github.com/nix-community/emacs-overlay/issues/106][Provide tangled .el file from Org configs]])
-   - [ ] [[https://github.com/jjuliano/practical.org.el][Practical GTD and Zettelkasten workflow]]
-   - [ ] [[https://yannherklotz.com/blog/2020-12-21-introduction-to-luhmanns-zettelkasten.html][Introduction to Luhmann's Zettelkasten]]
-   - [ ] [[https://takeonrules.com/2020/12/18/directory-structure-for-my-org-instance/][Directory structure for my org instance]]
-   - [ ] [[http://www.nextpoint.se/?p=834][Static generation for init file?]]
-   - [ ] [[http://www.nextpoint.se/?p=845][Byte compile the quickstart file]]
-   - [ ] [[https://github.com/alhassy/org-special-block-extras][Use org-special-block-extras for generating HTML and/or LaTeX]]
-   - [ ] [[https://github.com/tecosaur/org-pandoc-import][Use org-pandoc-import (convert various file types to org)]]
-   - [ ] [[https://github.com/jixiuf/vterm-toggle][vterm-toggle]]
-
 ** Emacs Basics
    :PROPERTIES:
    :ID:       cd50c59c-387b-4c55-9b98-94dd93268980
@@ -253,15 +251,12 @@
    #+begin_src emacs-lisp
      (use-package bug-hunter :ensure)
      (use-package discover-my-major :ensure)
+     (use-package elpher :ensure)
      (use-package hydra :ensure)
-     
      (use-package page-break-lines :ensure)
-     
      (use-package paradox :ensure)
      (use-package systemd :ensure)
      (use-package undo-tree :ensure)
-     
-     (use-package elpher :ensure)
      
      (use-package rainbow-delimiters
        :ensure
@@ -390,9 +385,8 @@
 
    #+begin_src emacs-lisp
      ;; Integrate Emacs' auth-source with password-store
-     ;; https://github.com/DamienCassou/auth-source-pass
+     ;; https://github.com/emacs-mirror/emacs/blob/master/lisp/auth-source-pass.el
      (use-package auth-source-pass
-       :ensure
        :config
        (auth-source-pass-enable))
      
@@ -883,6 +877,7 @@
 	:custom
 	(org-contacts-files '("contacts.org"))
 	:config
+	;; FIXME: org-contacts template is NOT being added to org-capture-templates.
 	(add-to-list 'org-capture-templates
 		     (doct '(("Contact"
 			      :keys "c"
@@ -1171,10 +1166,10 @@
       (use-package kubernetes
 	:ensure
 	:bind (("C-c k" . kubernetes-overview)) ;; Mirrors "C-c d" for docker
-
+      
 	:custom
 	(kubernetes-overview-custom-views-alist '((overview . (context deployments pods ingress))))
-
+      
 	:commands (kubernetes-overview))
       
       ;; TRAMP integration for kubernetes containers
@@ -1345,13 +1340,13 @@
 	(elfeed-org)
       
 	:custom
-	(rmh-elfeed-org-files (list "~/.config/emacs/elfeed.org")))
+	(rmh-elfeed-org-files (list (expand-file-name "elfeed.org" user-emacs-directory))))
       
       ;; A frontend for elfeed.
       ;; https://github.com/Manoj321/elfeed-dashboard
       (use-package elfeed-dashboard
 	:config
-	(setq elfeed-dashboard-file "~/.config/emacs/lisp/elfeed-dashboard/elfeed-dashboard.org")
+	(setq elfeed-dashboard-file (expand-file-name "lisp/elfeed-dashboard/elfeed-dashboard.org" user-emacs-directory))
 	;; to update feed counts automatically
 	(advice-add 'elfeed-search-quit-window :after #'elfeed-dashboard-update-links))
     #+end_src
@@ -1558,13 +1553,13 @@
      ;; FIXME: package not found via melpa?
      ;; The I Ching, or Book of Changes
      ;; https://github.com/zzkt/i-ching
-     ;; (use-package i-ching
-     ;;   :ensure
-     ;;   :config (setq i-ching-hexagram-size 18
-     ;; 		i-ching-hexagram-font "DejaVu Sans"
-     ;; 		i-ching-divination-method '3-coins
-     ;; 		i-ching-randomness-source 'pseudo)
-     ;;   :bind (("H-i h" . i-ching-insert-hexagram)))
+     (use-package i-ching
+       :ensure
+       :config (setq i-ching-hexagram-size 18
+		     i-ching-hexagram-font "DejaVu Sans"
+		     i-ching-divination-method '3-coins
+		     i-ching-randomness-source 'pseudo)
+       :bind (("H-i h" . i-ching-insert-hexagram)))
    #+end_src
    
 ** Thin Ice!
