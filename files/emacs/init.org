@@ -361,21 +361,16 @@
       (use-package show-font-mode)
       
       ;; Pulse modified region.
+      ;; https://github.com/minad/goggles
       (use-package goggles
 	:ensure
-	:demand t
-	:config
-	(goggles-mode)
-	(setq-default goggles-pulse t)) ;; set to nil to disable pulsing
+	:hook ((prog-mode text-mode) . goggles-mode))
       
       ;; A light that follows your cursor around so you don't lose it!
       (use-package beacon
 	:ensure
 	:config
-	(beacon-mode 1)
-	:custom
-	(beacon-blink-delay 0.5)
-	(beacon-blink-duration 0.5))
+	(beacon-mode t))
       
       (use-package org-variable-pitch
 	:ensure
