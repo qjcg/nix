@@ -562,6 +562,14 @@
     #+end_src
 
 
+** Communication
+
+   #+begin_src emacs-lisp
+     ;; Exchange Web Services (EWS) integration.
+     ;; https://elpa.gnu.org/packages/excorporate.html
+     (use-package excorporate :ensure)
+   #+end_src
+
 ** Terminal
    :PROPERTIES:
    :ID:       2ecbc734-8793-48c8-8a6e-4a1ef14f19d3
