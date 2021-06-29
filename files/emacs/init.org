@@ -359,7 +359,7 @@
       ;; https://github.com/minad/goggles
       (use-package goggles
 	:ensure
-	:hook ((prog-mode text-mode) . goggles-mode))
+	:hook ((prog-mode text-mode conf-mode) . goggles-mode))
       
       ;; A light that follows your cursor around so you don't lose it!
       (use-package beacon
