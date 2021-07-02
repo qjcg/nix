@@ -13,51 +13,55 @@
 
   See https://orgmode.org/worg/org-contrib/babel/intro.html#emacs-initialization
 
-** Goals [1/6]
+** Goals [1/7]
 
    What do I want from Emacs?
 
-*** TODO Provide ultimate Developer Experience (DX) [8/10]
-    - [X] Git (magit)
+*** TODO Developer Experience (DX) [9/11]
     - [X] Reproducible editor package (via Nix)
+    - [X] Git (magit)
     - [X] Snippets (yasnippets)
-    - [X] Fuzzy-find (rg/fzf integration, prot window)
+    - [X] Fuzzy-find
     - [X] Completion
     - [X] Nix (format)
     - [X] Go (format, compile, test, jump-to-definition, debug)
     - [X] CUE (format, highlight)
+    - [X] LSP
     - [ ] NodeJS
     - [ ] Python
-*** DONE Provide excellent DevOps experience [2/2]
-    - [X] Docker (docker)
-    - [X] Kubernetes (kubernetes-overview)
-*** TODO Provide integrated daily drivers [3/10]
+*** DONE DevOps Experience [2/2]
+    - [X] Docker (docker + docker-tramp)
+    - [X] Kubernetes (kubernetes-overview + kubernetes-tramp)
+*** TODO Daily Drivers [5/10]
     - [X] web (eww BUT sometimes hangs? Performance mediocre)
     - [X] music (bongo w/ mpv backend)
+    - [X] image viewer
+      - [X] image-dired
+    - [X] shell (eshell + vterm)
+    - [X] slides
+      - [X] org-present
     - [-] videos (bongo w/ mpv backend)
       - [X] local videos
       - [ ] youtube etc.
-    - [ ] RSS (elfeed)
-      - [ ] Central elfeed file on server?
-    - [X] shell (eshell + vterm)
     - [-] Slack
       - [X] Read channels
       - [ ] Receive notifications
     - [ ] email
-    - [ ] image viewer
-    - [ ] slides
+      - [ ] mu4e vs notmuch
+    - [ ] RSS (elfeed)
+      - [ ] Central elfeed file on server?
     - [ ] making art (drawing, music, writing/blogging, etc)
-*** TODO Provide stunning looks [1/3]
+*** TODO Stunning Looks [1/3]
     - [X] Look into prot's bullet points, fonts, etc
     - [ ] multi-font theme(s)
     - [ ] awesome colorscheme
-*** TODO Provide ultimate hackability [0/5]
+*** TODO Ultimate Hackability [0/5]
     - [ ] Write 10 custom functions
     - [ ] Write a custom minor mode
     - [ ] Write a custom major mode
     - [ ] Add language support for an unsupported language (e.g. CUE)
     - [ ] Create a custom theme (e.g. via `M-x customize-create-theme`)
-*** TODO Provide OrgMode ExoBrain [3/7]
+*** TODO OrgMode ExoBrain [3/7]
 
     See [[https://github.com/JSmurf/awesome-org][awesome-org]].
 
@@ -72,6 +76,9 @@
       - [ ] Web bookmarks (from browser)
     - [ ] Evaluate related packages
     - [ ] Add Wrike custom link type (e.g. "wrike:12345")
+*** TODO Great Keybindings
+
+    See ~M-x display-personal-keybindings~
 
 ** TODO Packages to review [2/11]
 
@@ -116,10 +123,11 @@
    the reasons why.
 
    #+NAME: Emacs vs. Alternatives
-   | Feature  | Emacs        | VIM              | Acme                                | VSCode     |
-   |----------+--------------+------------------+-------------------------------------+------------|
-   | language | Emacs Lisp   | VimScript        | any                                 | JavaScript |
-   | scope    | kitchen sink | text-editor plus | integrating development environment | minimal    |
+   | Feature  | Emacs        | VIM              | VSCode     | Acme                                |
+   |----------+--------------+------------------+------------+-------------------------------------|
+   | language | Emacs Lisp   | VimScript        | JavaScript | any                                 |
+   | scope    | kitchen sink | text-editor plus | minimal    | integrating development environment |
+
 
 ** References
 *** Learning
@@ -561,7 +569,6 @@
       (use-package treemacs-all-the-icons :ensure)
     #+end_src
 
-
 ** Communication
 
    #+begin_src emacs-lisp
@@ -988,11 +995,11 @@
 	:ensure
 	:commands lsp-ui-mode
 	:init
-	(setq lsp-ui-doc-enable t
-	      lsp-ui-peek-enable t
-	      lsp-ui-sideline-enable t
-	      lsp-ui-imenu-enable t
-	      lsp-ui-flycheck-enable t))
+	(setq lsp-ui-doc-enable t)
+	(setq lsp-ui-peek-enable t)
+	(setq lsp-ui-sideline-enable t)
+	(setq lsp-ui-imenu-enable t)
+	(setq lsp-ui-flycheck-enable t))
     #+end_src
 *** Snippets
     :PROPERTIES:
@@ -1427,7 +1434,6 @@
     See `M-x describe-personal-keybindings`.
 
     #+begin_src emacs-lisp
-      (global-set-key (kbd "C-c C-c") 'comment-or-uncomment-region)
       (setq compilation-scroll-output t)
       
       ;; Emacs package that displays available keybindings in popup.
