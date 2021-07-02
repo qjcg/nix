@@ -930,6 +930,19 @@
       (use-package reformatter
 	:ensure
 	:commands reformatter-define)
+      
+      ;; Emacs plugin to show the current buffer's imenu entries in a separate buffer.
+      ;; https://github.com/bmag/imenu-list
+      (use-package imenu-list
+	:ensure
+	:bind (("C-'" . imenu-list-smart-toggle)))
+      
+      ;; Hustle through a buffer's Imenu in a side window in GNU Emacs.
+      ;; TODO: Decide whether this package or imenu-list is 
+      ;; https://github.com/rnkn/side-hustle
+      (use-package side-hustle
+	:ensure
+	:bind (("M-s l" . side-hustle-toggle)))
     #+end_src
 
 *** Structured Data
@@ -1149,8 +1162,26 @@
       
       (use-package vega-view :ensure)
     #+end_src
+*** Cursor
+
+    #+begin_src emacs-lisp
+      (use-package multiple-cursors
+	:ensure
+	:config
+	(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+	(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+	(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+	(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+	(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click))
+    #+end_src
+*** Compiler Explorer
+
+#+begin_src emacs-lisp
+  (use-package rmsbolt :ensure)
+#+end_src
 
 ** DevOps                                                            :devops:
+   
 *** Docker
     :PROPERTIES:
     :ID:       a97efd6c-7851-49cd-97c3-21b2ec9a1dea
@@ -1576,6 +1607,13 @@
        :bind (("H-i h" . i-ching-insert-hexagram)))
    #+end_src
    
+** Web Services
+
+   #+begin_src emacs-lisp
+     ;; Run Splunk search from Emacs.
+     ;; https://github.com/sebasmonia/pepita
+     (use-package pepita :ensure)
+   #+end_src
 ** Thin Ice!
    :PROPERTIES:
    :ID:       cc78bcc7-efbc-4243-a937-1de64fb84fa4
