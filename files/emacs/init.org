@@ -1408,9 +1408,11 @@
       (use-package bongo
 	:ensure
 	:custom
+	;; TODO: Play youtube stream URLs as audio-only.
+	;; See e.g.: https://github.com/Qkessler/dot_files/blob/c6abb7350881062e839f7a4dbb6ec0ed3e179efa/emacs/.emacs.d/lisp/prot-elfeed.el
 	(bongo-custom-backend-matchers
-	 `((mpv local-file "opus"))
-	 "It seems bongo doesn't play opus files by default. Let's fix that!"))
+	 `((mpv local-file "opus" "m4a") ;; Enable mpv to play various file types.
+	   (mpv ("http:" "https:") . t)))) ;; Enable mpv to play https? URLs.
       
       ;; The Emacs Multi-Media System.
       ;; See https://www.gnu.org/software/emms/
@@ -1426,25 +1428,18 @@
 	       :map dired-mode-map
 	       ("C-c e SPC" . emms-play-dired))
       
+	:custom
+	(emms-player-list '(emms-player-mpv))
+	(emms-playlist-default-major-mode 'emms-mark-mode)
+	(emms-source-file-default-directory "~/Music/")
+      
 	:config
 	(require 'emms-mark)
 	(require 'emms-setup)
 	(require 'emms-streams)
       
 	(emms-all)
-	(emms-default-players)
-      
-	(setq emms-playlist-default-major-mode 'emms-mark-mode)
-	(setq emms-source-file-default-directory "~/Music/"))
-      
-      ;; TODO: Re-enable later?
-      ;;(setq emms-player-list '(emms-player-mpv))
-      
-      ;; (emms-player-set 'emms-player-simple-ipc-mpv 'regex
-      ;; 		   (emms-player-simple-regexp
-      ;; 		    "ogg" "opus" "mp3" "wav" "mpg" "mpeg" "wmv" "wma"
-      ;; 		    "mov" "avi" "divx" "ogm" "ogv" "asf" "mkv" "rm" "rmvb"
-      ;; 		    "mp4" "flac" "vob" "m4a" "ape" "flv" "webm" "aif")))
+	(emms-default-players))
     #+end_src
 
 *** PDFs
