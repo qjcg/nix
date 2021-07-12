@@ -1431,11 +1431,11 @@
       (use-package bongo
 	:ensure
 	:custom
-	;; TODO: Play youtube stream URLs as audio-only.
-	;; See e.g.: https://github.com/Qkessler/dot_files/blob/c6abb7350881062e839f7a4dbb6ec0ed3e179efa/emacs/.emacs.d/lisp/prot-elfeed.el
+	(bongo-mpv-extra-arguments
+	 '("--audio-display=no" "--video=no"))
 	(bongo-custom-backend-matchers
 	 `((mpv local-file "opus" "m4a") ;; Enable mpv to play various file types.
-	   (mpv ("http:" "https:") . t)))) ;; Enable mpv to play https? URLs.
+	   (mpv ("http:" "https:") . t)))) ;; Enable mpv for https? URLs.
       
       ;; The Emacs Multi-Media System.
       ;; See https://www.gnu.org/software/emms/
