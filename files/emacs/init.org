@@ -1174,6 +1174,14 @@
 	(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 	(global-set-key (kbd "C-S-<mouse-1>") 'mc/add-cursor-on-click))
     #+end_src
+*** Behavior Driven Development (BDD)
+
+    #+begin_src emacs-lisp
+      ;; Mode for editing Cucumber (Gherkin) plain text stories
+      ;; https://github.com/michaelklishin/cucumber.el
+      (use-package feature-mode :ensure)
+    #+end_src
+
 *** Compiler Explorer
 
 #+begin_src emacs-lisp
