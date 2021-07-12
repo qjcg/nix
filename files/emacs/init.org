@@ -184,9 +184,8 @@
 	 (add-to-list 'default-frame-alist '(font . "JuliaMono-20")))
      
        :custom
-       ;; Use a *separate* file for customizations.
-       ;; See https://www.gnu.org/software/emacs/manual/html_node/emacs/Saving-Customizations.html#Saving-Customizations
-       (custom-file (concat user-emacs-directory "custom.el"))
+       (column-number-mode t "Show column number in the mode line")
+       (custom-file (concat user-emacs-directory "custom.el") "Use a separate file (not init) for customizations") ;; See info(emacs) Saving Customizations.
        (backup-directory-alist `(("." . ,(concat user-emacs-directory "backup"))))
        (browse-url-browser-function 'eww-browse-url "Browse with eww by default")
        (display-time-mode t)
@@ -317,6 +316,8 @@
 	(modus-themes-bold-constructs t)
 	(modus-themes-hl-line 'underline-accented)
       
+	:hook ((modus-themes-after-load-theme . my-modus-themes-custom-faces))
+      
 	:init
 	;; Load the theme files before enabling a theme.
 	(modus-themes-load-themes)
@@ -324,6 +325,11 @@
 	:bind ("<f5>" . modus-themes-toggle)
       
 	:config
+	(defun my-modus-themes-custom-faces ()
+	  "Add my customizations to modus themes"
+	  (interactive)
+	  (set-face-attribute 'cursor nil :background (modus-themes-color 'magenta-intense)))
+      
 	(modus-themes-load-vivendi))
       
       (use-package theme-looper
@@ -662,6 +668,7 @@
 	'org-babel-load-languages
 	'((awk . t)
 	  (emacs-lisp . t)
+	  (eshell . t)
 	  (forth . t)
 	  (js . t)
 	  (python . t)
@@ -703,7 +710,7 @@
 						  ":Created: %U"
 						  ":END:"
 						  ""
-						  "** TODO Wrike task created"))
+						  ""))
      
 				      ("Reading"
 				       :keys "r"
