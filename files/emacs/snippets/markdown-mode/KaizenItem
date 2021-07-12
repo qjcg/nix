@@ -2,17 +2,21 @@
 # name: KaizenItem
 # key: ;kzi
 # --
-### ${1:Awesome Agenda Item}
+---
+
+# ${1:Awesome Agenda Item}
 
 - Time Estimate: ${2:15m}
 - Added by: ${3:jgosset}
 
-#### Pre-Meeting Notes
+## Pre-Meeting Notes
 
-- $4
+$4
 
-#### Meeting Minutes
+## Meeting Minutes
 
-#### Decisions
+$5
 
-#### Action Items
+## Decisions
+
+## Action Items
