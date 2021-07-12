@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Feature
+# key: Feature
+# --
+Feature: $1
+  In order to $2
+  As a $3
+  I need to $4
