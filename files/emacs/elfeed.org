@@ -6,21 +6,29 @@
 
   See [[http://pragmaticemacs.com/emacs/read-your-rss-feeds-in-emacs-with-elfeed/][Read Your RSS Feeds in Emacs with ElFeed]]
 
-** Mindfulness                                                  :mindfulness:
 
-*** [[https://zenhabits.net/feed/][Zen Habits]]                                                   :simplicity:
-
-*** [[https://www.reddit.com/r/hypnosis/.rss][r/hypnosis]]                                                       :reddit:
-
-*** [[https://www.reddit.com/r/Binauralbeats/.rss][r/BinauralBeats]]                                                  :reddit:
-*** [[https://www.reddit.com/r/Meditation/.rss][r/meditation]]                                                     :reddit:
+** [[https://zenhabits.net/feed/][Zen Habits]]                                                    :simplicity:
+** [[https://xkcd.com/atom.xml][XKCD]]                                                              :comics:
 
 ** Tech                                                                :tech:
+*** [[https://www.phoronix.com/rss.php][Phoronix]]                                                        :preview:
+*** [[https://www.oreilly.com/feed/four-short-links/feed.atom][Four Short Links]]
+*** [[https://hnrss.org/frontpage][Hacker News (Front Page Firehose)]]                              :firehose:
+
+*** FSF                                                                 :fsf:
+**** [[https://static.fsf.org/fsforg/rss/news.xml][FSF News]]
+**** [[https://static.fsf.org/fsforg/rss/blogs.xml][FSF Blogs]]
+
+*** OS                                                                   :os:
+**** [[http://planet.nixos.org/atom.xml][Planet NixOS]]                                                     :nixos:
+**** [[https://guix.info/feeds/blog.atom][Guix Blog]]                                                         :guix:
 
 *** Programming                                                 :programming:
 
 **** [[http://lambda-the-ultimate.org/rss.xml][Lambda the Ultimate]]
-
+**** [[https://developers.redhat.com/blog/feed/atom/][RedHat Developers]]
+**** [[http://syndication.thedailywtf.com/TheDailyWtf][TheDailyWTF]]                   :humor:
+**** [[https://esoteric.codes/rss][esoteric.codes]]
 
 **** Go                                                                  :go:
 ***** [[https://www.ardanlabs.com/blog/index.xml][Ardan Labs Blog]]
@@ -28,8 +36,14 @@
 ***** https://appliedgo.net/index.xml
 ***** https://www.linxlabs.com/category/golang/atom
 ***** http://goz.hexacosa.net/index.rss
+***** https://dave.cheney.net/category/golang/atom                 :personal:
+      Dave Cheney
+***** [[https://research.swtch.com/feed.atom][Russ Cox]]                         :personal:
 ***** [[https://mariadesouza.com/category/golang/atom][All Things Tech / Maria DeSouza]]
 ***** [[https://blog.gopheracademy.com/index.xml][Gopher Academy]]
+
+**** Lisp                                                              :lisp:
+***** [[http://planet.lisp.org/rss20.xml][Planet Lisp]]
 
 **** Emacs                                                            :emacs:
 ***** [[http://pragmaticemacs.com/feed/][Pragmatic Emacs]]
@@ -41,41 +55,19 @@
 **** Machine Learning                                       :machinelearning:
 ***** [[https://machinelearningmastery.com/feed/][Machine Learning Mastery / Jason Brownlee]]
 
-*** Aggregators                                                 :aggregators:
-**** [[https://guix.info/feeds/blog.atom][Guix Blog]]                                                      :guix:os:
-**** [[https://hnrss.org/frontpage][Hacker News (Front Page Firehose)]]                             :firehose:
-**** [[https://www.oreilly.com/radar/feed/index.xml][O'Reilly Radar]]
-**** [[https://www.phoronix.com/rss.php][Phoronix]]                                                 :preview:linux:
-**** [[http://planet.lisp.org/rss20.xml][Planet Lisp]]                                           :lisp:programming:
-**** [[http://planet.nixos.org/atom.xml][Planet NixOS]]                                                  :nixos:os:
-**** [[https://developers.redhat.com/blog/feed/atom/][RedHat Developers]]                                            :redhat:os:
-**** [[https://www.reddit.com/r/NixOS/.rss][r/NixOS]]                                                :nixos:os:reddit:
-**** [[https://www.reddit.com/r/golang/.rss][r/golang]]                                                     :go:reddit:
-**** [[https://www.reddit.com/r/emacs/.rss][r/emacs]]                                                   :emacs:reddit:
-**** [[https://www.reddit.com/r/orgmode/.rss][r/orgmode]]                                                 :emacs:reddit:
-*** Personal                                                 :personal:blogs:
-
-    Blogs written by individual people.
-    
-**** [[https://bits.ashleyblewer.com/feed.xml][Ashley Blewer]]                                  :computerhistory:culture:
-
-     - [[ https://ashleyblewer.com/][Homepage]]
-     - [[https://bits.ashleyblewer.com/halt-and-catch-fire-syllabus/][Halt & Catch Fire Syllabus]] ([[https://github.com/ablwr/halt-and-catch-fire-syllabus][GitHub source]])
-
-**** [[https://apenwarr.ca/log/rss.php][Avery Pennarun]]                                     :wireguard:tailscale:
-**** [[https://utcc.utoronto.ca/~cks/space/blog/][Chris Siebenmann - Wandering Thoughts]]
-**** [[https://christine.website/blog.rss][Christine Dodrill]]                                      :nixos:tailscale:
-**** [[https://nullprogram.com/feed/][Chris Wellons - Null Program]]                         :emacs:programming:
+*** Personal                                                       :personal:
+**** [[http://esr.ibiblio.org/?feed=rss][Armed and Dangerous / Eric S. Raymond]]
+**** [[https://martinfowler.com/feed.atom][Martin Fowler]]
+**** [[https://utcc.utoronto.ca/~cks/space/blog/][Wandering Thoughts / Chris Siebenmann]]
+**** [[http://0pointer.net/blog/index.atom][Pid Eins / Lennart Poettering]]
+**** [[http://www.michaelburge.us/feed.xml][Michael Burge]] :lisp:machinelearning:BROKEN:emulators:
+**** [[https://nullprogram.com/feed/][Null Program / Chris Wellons]]                         :emacs:programming:
 
      Author of elfeed
 
-**** [[http://www.daemonology.net/blog/index.rss][Colin Percival - Daemonic Dispatches]]                           :freebsd:
-**** [[https://dave.cheney.net/category/golang/atom][Dave Cheney]]                        :go:
-     Dave Cheney
-**** [[https://drewdevault.com/feed.xml][Drew DeVault]]
-
-     Behind [[https://sr.ht/][sourcehut]] and the sway Wayland compositor. Thoughtful blog posts.
-**** [[http://esr.ibiblio.org/?feed=rss][Eric S. Raymond - Armed and Dangerous]]
+**** [[http://www.daemonology.net/blog/index.rss][Daemonic Dispatches / Colin Percival]]                           :freebsd:
+**** [[https://christine.website/blog.rss][Blog / Christine Dodrill]]
+**** [[http://feeds.feedburner.com/catonmat][catonmat.net – less is more / Peteris Krumins]]
 **** [[http://john.ankarstrom.se/feed.php][John Ankarström]]
      This guy writes his blog in pure HTML via Mozilla
      Seamonkey.
@@ -83,50 +75,12 @@
      He considers himself a non-programmer but has a
 [[http://john.ankarstrom.se/software/][     software page]] on his website, and has [[https://github.com/jocap][intriguing
      repos on GitHub]].
-**** [[http://0pointer.net/blog/index.atom][Lennart Poettering - Pid Eins]]                                  :systemd:
-**** [[https://martinfowler.com/feed.atom][Martin Fowler]]
-**** [[http://www.michaelburge.us/feed.xml][Michael Burge]] :lisp:machinelearning:BROKEN:emulators:
-**** [[https://www.oreilly.com/radar/topics/four-short-links/feed/index.xml][Nat Torkington - 4 Short Links]]
-**** [[http://feeds.feedburner.com/catonmat][Peteris Krumins - catonmat.net – less is more]]
-**** [[https://research.swtch.com/feed.atom][Russ Cox]]                                                            :go:
-**** [[https://sachachua.com/blog/feed/][Sacha Chua]]                                                       :emacs:
+**** [[https://drewdevault.com/feed.xml][Drew DeVault]]
 
-     - [[ https://ashleyblewer.com/][Homepage]]
-     - [[https://bits.ashleyblewer.com/halt-and-catch-fire-syllabus/][Halt & Catch Fire Syllabus]] ([[https://github.com/ablwr/halt-and-catch-fire-syllabus][GitHub source]])
-**** [[https://countvajhula.com/feed/][Sid Kasivajhula]]                                                          :emacs:
+     Behind [[https://sr.ht/][sourcehut]] and the sway Wayland compositor. Thoughtful blog posts.
 
-
-*** Organizations                                             :organizations:
-**** [[https://tailscale.com/blog/index.xml][TailScale]]
-
-**** [[https://www.tweag.io/rss.xml][Tweag]]                                                            :nixos:
-**** FSF                                                                :fsf:
-***** [[https://static.fsf.org/fsforg/rss/news.xml][FSF News]]
-***** [[https://static.fsf.org/fsforg/rss/blogs.xml][FSF Blogs]]
-
-*** Culture                                                         :culture:
-**** [[https://esoteric.codes/rss][esoteric.codes]]
-
-**** News                                                              :news:
-***** [[https://www.vice.com/en_us/rss/section/tech][Motherboard (tech by Vice)]]                                       :vice:
-
-**** Humor                                                            :humor:
-
-***** [[https://xkcd.com/atom.xml][XKCD]]                                                           :comics:
-***** [[http://syndication.thedailywtf.com/TheDailyWtf][TheDailyWTF]]
-
-*** Games                                                             :games:
-**** Retrogaming                                                :retrogaming:
-***** [[https://www.libretro.com/index.php/feed/
-][libretro]]
-***** [[https://misteraddons.com/blogs/news.atom][MiSTer Addons]]                                                  :mister:
-***** [[https://www.reddit.com/r/fpgagaming/.rss][r/fpgagaming]]                                            :mister:reddit:
-***** [[https://www.reddit.com/r/Roms/.rss][r/ROMs]]                                                         :reddit:
-***** [[https://www.reddit.com/r/RetroArch/.rss][r/retroarch]]                                                    :reddit:
 ** Music                                                              :music:
-*** [[https://www.fondsound.com/feed/][Fond/Sound]]
-
-*** Youtube                                                  :youtube:videos:
+*** Youtube                                                         :youtube:
 **** SynthWave / VaporWave                              :synthwave:vaporwave:
 ***** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCZyXa4H06Ws3Pwom9cYEdDA][Aesthenic]]
 ***** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCpbH_7H71IPKq4eH7CD5spg][Astral Throb]]
@@ -136,19 +90,13 @@
 
    Empty for now. If and when you find some awesome podcasts, add them here!
    
-** Local                                                              :local:
+*** [[https://feeds.megaphone.fm/behindthebastards][Behind The Bastards]]                                             :history:
+** News                                                                :news:
 
-*** [[https://www.reddit.com/r/montreal/.rss][r/montreal]]                                                       :reddit:
-
-** Financial                                                      :financial:
-
-*** [[https://www.reddit.com/r/PersonalFinanceCanada/.rss][r/PersonalFinanceCanada]]                                          :reddit:
-
-*** [[https://www.reddit.com/r/plaintextaccounting/.rss][r/PlainTextAccounting]]                                            :reddit:
-
+*** [[http://feeds.bbci.co.uk/news/rss.xml][BBC News Top Stories]]  
 
 * Imported Feeds
-** YouTube Subscriptions                                     :youtube:videos:
+** YouTube Subscriptions                                            :youtube:
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UC-tRVvDyvlu8IFImNQ4baiQ][Scott’s Cheap Flights]]
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCvVWCrxq_aZr7fN_KpaGGTA][The Guild of Ambience]]
 *** [[https://www.youtube.com/feeds/videos.xml?channel_id=UCk9NvmsPBC3lTn_L9kFaylA][iBSD]]
