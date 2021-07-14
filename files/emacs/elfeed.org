@@ -6,14 +6,17 @@
 
   See [[http://pragmaticemacs.com/emacs/read-your-rss-feeds-in-emacs-with-elfeed/][Read Your RSS Feeds in Emacs with ElFeed]]
 
-
-** [[https://zenhabits.net/feed/][Zen Habits]]                                                    :simplicity:
-** [[https://xkcd.com/atom.xml][XKCD]]                                                              :comics:
+** Kaizen                                                            :kaizen:
+*** [[https://zenhabits.net/feed/][Zen Habits]]                                                   :simplicity:
 
 ** Tech                                                                :tech:
+
 *** [[https://www.phoronix.com/rss.php][Phoronix]]                                                        :preview:
 *** [[https://www.oreilly.com/feed/four-short-links/feed.atom][Four Short Links]]
 *** [[https://hnrss.org/frontpage][Hacker News (Front Page Firehose)]]                              :firehose:
+
+*** Funny
+**** [[https://xkcd.com/atom.xml][XKCD]]                                                            :comics:
 
 *** FSF                                                                 :fsf:
 **** [[https://static.fsf.org/fsforg/rss/news.xml][FSF News]]
@@ -27,7 +30,7 @@
 
 **** [[http://lambda-the-ultimate.org/rss.xml][Lambda the Ultimate]]
 **** [[https://developers.redhat.com/blog/feed/atom/][RedHat Developers]]
-**** [[http://syndication.thedailywtf.com/TheDailyWtf][TheDailyWTF]]                   :humor:
+**** [[http://syndication.thedailywtf.com/TheDailyWtf][TheDailyWTF]]                                                      :funny:
 **** [[https://esoteric.codes/rss][esoteric.codes]]
 
 **** Go                                                                  :go:
@@ -75,6 +78,7 @@
      He considers himself a non-programmer but has a
 [[http://john.ankarstrom.se/software/][     software page]] on his website, and has [[https://github.com/jocap][intriguing
      repos on GitHub]].
+
 **** [[https://drewdevault.com/feed.xml][Drew DeVault]]
 
      Behind [[https://sr.ht/][sourcehut]] and the sway Wayland compositor. Thoughtful blog posts.
@@ -88,12 +92,34 @@
 
 ** Podcasts                                                        :podcasts:
 
-   Empty for now. If and when you find some awesome podcasts, add them here!
-   
 *** [[https://feeds.megaphone.fm/behindthebastards][Behind The Bastards]]                                             :history:
+
 ** News                                                                :news:
 
 *** [[http://feeds.bbci.co.uk/news/rss.xml][BBC News Top Stories]]  
+*** [[https://nationalpost.com/category/news/feed.xml][National Post: News]]
+
+*** Vice
+
+**** All
+
+***** [[https://www.vice.com/en/rss/][Vice: ALL]]                                                      :ignore:
+
+**** Sections
+
+     Base URL: ~https://www.vice.com/en_us/rss/section/<SECTION>~
+
+***** [[https://www.vice.com/en_us/rss/section/tech][Vice: Tech]]                                                       :tech:
+***** [[https://www.vice.com/en_us/rss/section/news][Vice: News]]
+
+**** Topics
+
+     Base URL: ~https://www.vice.com/en/rss/topic/<TOPIC>~
+
+***** [[https://www.vice.com/en/rss/topic/canadian-news][Vice: Canadian News]]
+***** [[https://www.vice.com/en/rss/topic/travel][Vice: Travel]]                                                   :travel:
+***** [[https://www.vice.com/en/rss/topic/bitcoin][Vice Topic: Bitcoin]]
+
 
 * Imported Feeds
 ** YouTube Subscriptions                                            :youtube:
