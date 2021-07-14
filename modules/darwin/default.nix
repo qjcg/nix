@@ -9,5 +9,6 @@
 
     #./fonts.nix
     ./services.nix
+    ./system.nix
   ];
 }
