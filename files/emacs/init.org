@@ -186,6 +186,7 @@
        :custom
        (column-number-mode t "Show column number in the mode line")
        (custom-file (concat user-emacs-directory "custom.el") "Use a separate file (not init) for customizations") ;; See info(emacs) Saving Customizations.
+       (compilation-scroll-output t)
        (backup-directory-alist `(("." . ,(concat user-emacs-directory "backup"))))
        (browse-url-browser-function 'eww-browse-url "Browse with eww by default")
        (display-time-mode t)
@@ -201,16 +202,8 @@
        (tool-bar-mode nil))
      
      (use-package recentf
-       :init
-       (recentf-mode 1)
-       :bind (("C-x C-r" . jg-recentf-open-files))
-       :config
-       ;; See https://github.com/raxod502/selectrum/wiki/Useful-Commands#switch-to-recent-file
-       (defun jg-recentf-open-files ()
-	 "Use `completing-read' to open a recent file."
-	 (interactive)
-	 (let ((files (mapcar 'abbreviate-file-name recentf-list)))
-	   (find-file (completing-read "Find recent file: " files nil t)))))
+       :custom
+       (recentf-mode 1))
      
      (use-package ibuffer
        :init
@@ -248,6 +241,53 @@
      (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
    #+end_src
 
+** Bindings
+   :PROPERTIES:
+   :ID:       7ee3cd8e-26ad-4d13-983e-11d11a80edb5
+   :END:
+
+*** Keyboard
+
+    Configuration relating mainly to key binding.
+
+    See `M-x describe-personal-keybindings`.
+
+    #+begin_src emacs-lisp
+      ;; Make Emacs bindings that stick around.
+      ;; https://github.com/abo-abo/hydra
+      (use-package hydra :ensure)
+      
+      ;; Create pretty hydras with a similar API and summon them with the
+      ;; same key across different major modes.
+      ;; https://github.com/jerrypnz/major-mode-hydra.el
+      (use-package major-mode-hydra
+	:ensure
+	:demand t
+	:bind
+	("M-SPC" . major-mode-hydra))
+      
+      ;; Emacs package that displays available keybindings in popup.
+      ;; https://github.com/justbur/emacs-which-key
+      (use-package which-key
+	:ensure
+	:config
+	(which-key-mode))
+      
+      ;; TODO: Install "rigpa"
+      ;; Watching for a first non-pre-release on GH, see:
+      ;; https://github.com/countvajhula/rigpa/issues/1#issuecomment-743849934
+    #+end_src
+  
+*** Mouse
+
+    #+begin_src emacs-lisp
+      ;; Built-in package that handles binding arbitrary actions to mouse strokes.
+      (use-package strokes
+	:init
+	(strokes-mode)
+	(setq strokes-use-strokes-buffer t)) ; Draw strokes to the screen
+    #+end_src
+
 ** Misc
    :PROPERTIES:
    :ID:       9ba89688-bb64-479d-88ac-703b1c7f7193
@@ -259,7 +299,6 @@
      (use-package bug-hunter :ensure)
      (use-package discover-my-major :ensure)
      (use-package elpher :ensure)
-     (use-package hydra :ensure)
      (use-package page-break-lines :ensure)
      (use-package paradox :ensure)
      (use-package systemd :ensure)
@@ -268,13 +307,6 @@
      (use-package rainbow-delimiters
        :ensure
        :hook (prog-mode . rainbow-delimiters-mode))
-     
-     (use-package dired-subtree
-       :ensure
-       :config
-       (bind-keys :map dired-mode-map
-		  ("i" . dired-subtree-insert)
-		  (";" . dired-subtree-remove)))
      
      (use-package expand-region
        :ensure
@@ -382,6 +414,7 @@
 	(beacon-mode t))
       
       (use-package org-variable-pitch
+	:disabled
 	:ensure
 	:after org
 	:config
@@ -1276,31 +1309,23 @@
    - [[https://www.youtube.com/watch?v=43Dg5zYPHTU][Emacs: completion framework (Embark,Consult,Orderless,etc.)]]
 
    #+begin_src emacs-lisp
-     ;; Better solution for incremental narrowing in Emacs.
-     (use-package selectrum
+     ;; Helm configuration
+     (use-package helm
        :ensure
+       :config
+       (require 'helm-config)
        :init
-       (selectrum-mode +1))
-     
-     ;; Simple but effective sorting and filtering for Emacs.
-     (use-package prescient
-       :ensure
-       :commands prescient-persist-mode
-       :init
-       ;; Save command history on disk, so that sorting gets more intelligent over time.
-       (prescient-persist-mode 1)
-       :custom
-       (prescient-filter-method '(literal regexp initialism fuzzy)))
-     
-     ;; Use prescient sorting with Company.
-     (use-package company-prescient :ensure)
-     
-     ;; Use prescient sorting with Selectrum.
-     (use-package selectrum-prescient
-       :ensure
-       :init
-       ;; Make sorting and filtering more intelligent.
-       (selectrum-prescient-mode +1))
+       (helm-mode 1)
+       :bind
+       (("M-x"     . helm-M-x) ;; run functions
+	("C-x C-f" . helm-find-files) ;; open or create files
+	("C-x b"   . helm-mini) ;; selct buffers
+	("C-x C-r" . helm-recentf) ;; select recently saved files
+	("C-c i"   . helm-imenu) ;; select heading
+	("M-y"     . helm-show-kill-ring) ;; show the kill ring
+	:map helm-map
+	("C-z" . helm-select-action)
+	("<tab>" . helm-execute-persistent-action)))
      
      ;; An Emacs mode for quickly browsing, filtering, and editing
      ;; directories of plain text notes.
@@ -1399,7 +1424,41 @@
     #+begin_src emacs-lisp
       ;; An Emacs web feeds client
       ;; https://github.com/skeeto/elfeed
-      (use-package elfeed :ensure)
+      (use-package elfeed
+	:ensure
+	:after (major-mode-hydra)
+	:mode-hydra
+      
+	;; TODO: Add things like
+	;;("V" . my/elfeed-search-yt-to-mpv)
+	;;("p" . my/elfeed-search-podcast-to-mpv))
+	(elfeed-search-mode
+	 (:title "Elfeed Search Mode Commands")
+	 ("Search"
+	  (("1" (elfeed-search-set-filter "+unread +personal") "personal")
+	   ("2" (elfeed-search-set-filter "+unread +emacs") "emacs")
+	   ("3" (elfeed-search-set-filter "+unread +youtube") "youtube")
+	   ("4" (elfeed-search-set-filter "+unread +news") "news")
+	   ("5" (elfeed-search-set-filter "+unread +tech") "tech"))
+	  "Tag"
+	  (("m" my-elfeed-search-toggle-star "star"))))
+      
+	(elfeed-show-mode
+	 (:title "Elfeed Show Mode Commands")
+	 ("Tag"
+	  (("m" my-elfeed-show-tag-star "star"))))
+      
+	:config
+	(defalias 'my-elfeed-search-toggle-star
+	  (elfeed-expose #'elfeed-search-toggle-all 'star))
+	(defalias 'my-elfeed-show-tag-star
+	  (elfeed-expose #'elfeed-show-tag 'star))
+	(defalias 'my-elfeed-search-toggle-interesting
+	  (elfeed-expose #'elfeed-search-toggle-all 'interesting))
+	(defalias 'my-elfeed-show-tag-interesting
+	  (elfeed-expose #'elfeed-show-tag 'interesting))
+	(defalias 'my-elfeed-search-toggle-unwatched
+	  (elfeed-expose #'elfeed-search-toggle-all 'unwatched)))
       
       ;; Configure the Elfeed RSS reader with an Orgmode file
       ;; https://github.com/remyhonig/elfeed-org
@@ -1410,6 +1469,15 @@
       
 	:custom
 	(rmh-elfeed-org-files (list (expand-file-name "elfeed.org" user-emacs-directory))))
+      
+      ;; Gnus-style scoring for elfeed
+      ;; https://github.com/sp1ff/elfeed-score
+      (use-package elfeed-score
+	:ensure
+	:config
+	(progn
+	  (elfeed-score-enable)
+	  (define-key elfeed-search-mode-map "=" elfeed-score-map)))
       
       ;; A frontend for elfeed.
       ;; https://github.com/Manoj321/elfeed-dashboard
@@ -1469,145 +1537,6 @@
 
     #+begin_src emacs-lisp
       (use-package pdf-tools :ensure)
-    #+end_src
-
-** Bindings
-   :PROPERTIES:
-   :ID:       7ee3cd8e-26ad-4d13-983e-11d11a80edb5
-   :END:
-
-*** Keyboard
-
-    Configuration relating mainly to key binding.
-
-    See `M-x describe-personal-keybindings`.
-
-    #+begin_src emacs-lisp
-      (setq compilation-scroll-output t)
-      
-      ;; Emacs package that displays available keybindings in popup.
-      ;; https://github.com/justbur/emacs-which-key
-      (use-package which-key
-	:ensure
-	:config
-	(which-key-mode))
-      
-      ;; Marginalia in the minibuffer
-      ;; https://github.com/minad/marginalia
-      (use-package marginalia
-	:ensure
-	:bind (("M-A" . marginalia-cycle)
-	       :map minibuffer-local-map
-	       ("M-A" . marginalia-cycle))
-      
-	;; The :init configuration is always executed (Not lazy!)
-	:init
-      
-	;; Must be in the :init section of use-package such that the mode gets
-	;; enabled right away. Note that this forces loading the package.
-	(marginalia-mode))
-      
-      ;; NOTES:
-      ;;   - Not in (M)ELPA yet, do not :ensure.
-      ;;   - Watching for a first non-pre-release on GH, see https://github.com/countvajhula/rigpa/issues/1#issuecomment-743849934
-      ;; (use-package rigpa
-      ;;   :config
-      ;;   (setq rigpa-mode t))
-      
-      ;;   ;; navigating meta modes
-      ;;   (global-set-key (kbd "s-m s-m") 'rigpa-flashback-to-last-tower)
-      ;;   (global-set-key (kbd "C-<escape>") 'my-enter-tower-mode)
-      ;;   (global-set-key (kbd "M-<escape>") 'my-enter-mode-mode)
-      ;;   (global-set-key (kbd "s-<escape>") 'my-enter-mode-mode)
-      ;;   (global-set-key (kbd "M-<return>")
-      ;; 		  (lambda ()
-      ;; 		    (interactive)
-      ;; 		    (rigpa-enter-selected-level)
-      ;; 		    (let ((ground (rigpa--get-ground-buffer)))
-      ;; 		      (my-exit-mode-mode)
-      ;; 		      (switch-to-buffer ground))))
-      ;;   (global-set-key (kbd "s-<return>")
-      ;; 		  (lambda ()
-      ;; 		    (interactive)
-      ;; 		    (rigpa-enter-selected-level)
-      ;; 		    (let ((ground (rigpa--get-ground-buffer)))
-      ;; 		      (my-exit-mode-mode)
-      ;; 		      (switch-to-buffer ground))))
-      ;;   (global-set-key (kbd "C-<return>")
-      ;; 		  (lambda ()
-      ;; 		    (interactive)
-      ;; 		    (my-exit-tower-mode)
-      ;; 		    (my-enter-mode-mode))))
-      ;;
-      ;; ;; indexed entry to various modes
-      ;; (global-set-key (kbd "s-n") 'evil-normal-state)
-      ;; (global-set-key (kbd "s-y")        ; symex mode
-      ;;                 (lambda ()
-      ;;                   (interactive)
-      ;;                   (rigpa-enter-mode "symex")))
-      ;; (global-set-key (kbd "s-;") (kbd "s-y"))
-      ;; (global-set-key (kbd "s-w")        ; window mode
-      ;;                 (lambda ()
-      ;;                   (interactive)
-      ;;                   (rigpa-enter-mode "window")))
-      ;; (global-set-key (kbd "s-v")        ; view mode
-      ;;                 (lambda ()
-      ;;                   (interactive)
-      ;;                   (rigpa-enter-mode "view")))
-      ;; (global-set-key (kbd "s-x")        ; char mode
-      ;;                 (lambda ()
-      ;;                   (interactive)
-      ;;                   (rigpa-enter-mode "char")))
-      ;; (global-set-key (kbd "s-a")        ; activity mode
-      ;;                 (lambda ()
-      ;;                   (interactive)
-      ;;                   (rigpa-enter-mode "activity")))
-      ;; (global-set-key (kbd "s-z")        ; text mode
-      ;;                 (lambda ()
-      ;;                   (interactive)
-      ;;                   (rigpa-enter-mode "text")))
-      ;; (global-set-key (kbd "s-g")        ; history mode
-      ;;                 (lambda ()
-      ;;                   (interactive)
-      ;;                   (rigpa-enter-mode "history")))
-      ;; (global-set-key (kbd "s-i")        ; system mode
-      ;;                 (lambda ()
-      ;;                   (interactive)
-      ;;                   (rigpa-enter-mode "system")))
-      ;; (global-set-key (kbd "s-b")        ; buffer mode
-      ;;                 (lambda ()
-      ;;                   (interactive)
-      ;;                   (rigpa-enter-mode "buffer")))
-      ;; (global-set-key (kbd "s-f")        ; file mode
-      ;;                 (lambda ()
-      ;;                   (interactive)
-      ;;                   (rigpa-enter-mode "file")))
-      ;; (global-set-key (kbd "s-t")        ; tab mode
-      ;;                 (lambda ()
-      ;;                   (interactive)
-      ;;                   (rigpa-enter-mode "tab")))
-      ;; (global-set-key (kbd "s-l")        ; line mode
-      ;;                 (lambda ()
-      ;;                   (interactive)
-      ;;                   (rigpa-enter-mode "line")))
-      ;; (global-set-key (kbd "s-e")        ; application mode
-      ;;                 (lambda ()
-      ;;                   (interactive)
-      ;;                   (rigpa-enter-mode "application")))
-      ;; (global-set-key (kbd "s-r")        ; word mode
-      ;;                 (lambda ()
-      ;;                   (interactive)
-      ;;                   (rigpa-enter-mode "word"))))
-    #+end_src
-  
-*** Mouse
-
-    #+begin_src emacs-lisp
-      ;; Built-in package that handles binding arbitrary actions to mouse strokes.
-      (use-package strokes
-	:init
-	(strokes-mode)
-	(setq strokes-use-strokes-buffer t)) ; Draw strokes to the screen
     #+end_src
 
 ** Creativity and Inspiration
