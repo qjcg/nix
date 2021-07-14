@@ -264,7 +264,29 @@
 	:ensure
 	:demand t
 	:bind
-	("M-SPC" . major-mode-hydra))
+	(("M-SPC" . major-mode-hydra)
+	 ("<f5>" . my-hydra-toggles/body))
+      
+	:config
+	(pretty-hydra-define my-hydra-toggles
+	  (:color amaranth :quit-key ("<f5>" "q") :title "TODO: Cool toggles title with Icon")
+	  ("Basic"
+	   (("n" linum-mode "line number" :toggle t)
+	    ("w" whitespace-mode "whitespace" :toggle t)
+	    ("W" whitespace-cleanup-mode "whitespace cleanup" :toggle t)
+	    ("L" page-break-lines-mode "page break lines" :toggle t))
+	   "Highlight"
+	   (("l" hl-line-mode "line" :toggle t))
+	   "UI"
+	   (("d" modus-themes-toggle "light/dark theme"))
+	   ;; "Coding"
+	   ;; (("p" smartparens-mode "smartparens" :toggle t)
+	   ;;  ("P" smartparens-strict-mode "smartparens strict" :toggle t)
+	   ;;  ("S" show-smartparens-mode "show smartparens" :toggle t)
+	   ;;  ("f" flycheck-mode "flycheck" :toggle t))
+	   "Emacs"
+	   (("D" toggle-debug-on-error "debug on error" :toggle (default-value 'debug-on-error))
+	    ("X" toggle-debug-on-quit "debug on quit" :toggle (default-value 'debug-on-quit))))))
       
       ;; Emacs package that displays available keybindings in popup.
       ;; https://github.com/justbur/emacs-which-key
@@ -303,6 +325,12 @@
      (use-package paradox :ensure)
      (use-package systemd :ensure)
      (use-package undo-tree :ensure)
+     
+     ;; Intelligently call whitespace-cleanup on save.
+     ;; https://github.com/purcell/whitespace-cleanup-mode
+     (use-package whitespace-cleanup-mode
+       :ensure
+       :hook yaml-mode)
      
      (use-package rainbow-delimiters
        :ensure
@@ -353,8 +381,6 @@
 	:init
 	;; Load the theme files before enabling a theme.
 	(modus-themes-load-themes)
-      
-	:bind ("<f5>" . modus-themes-toggle)
       
 	:config
 	(defun my-modus-themes-custom-faces ()
@@ -1224,9 +1250,9 @@
 
 *** Compiler Explorer
 
-#+begin_src emacs-lisp
-  (use-package rmsbolt :ensure)
-#+end_src
+    #+begin_src emacs-lisp
+      (use-package rmsbolt :ensure)
+    #+end_src
 
 ** DevOps                                                            :devops:
    
@@ -1322,6 +1348,7 @@
 	("C-x b"   . helm-mini) ;; selct buffers
 	("C-x C-r" . helm-recentf) ;; select recently saved files
 	("C-c i"   . helm-imenu) ;; select heading
+	("M-s o"   . helm-occur) ;; search buffer for lines matching pattern
 	("M-y"     . helm-show-kill-ring) ;; show the kill ring
 	:map helm-map
 	("C-z" . helm-select-action)
@@ -1424,16 +1451,17 @@
     #+begin_src emacs-lisp
       ;; An Emacs web feeds client
       ;; https://github.com/skeeto/elfeed
+      ;; 
+      ;; TODO: Add things like
+      ;; ("V" . my/elfeed-search-yt-to-mpv)
+      ;; ("p" . my/elfeed-search-podcast-to-mpv))
       (use-package elfeed
 	:ensure
 	:after (major-mode-hydra)
 	:mode-hydra
       
-	;; TODO: Add things like
-	;;("V" . my/elfeed-search-yt-to-mpv)
-	;;("p" . my/elfeed-search-podcast-to-mpv))
 	(elfeed-search-mode
-	 (:title "Elfeed Search Mode Commands")
+	 (:title "Elfeed Search Mode Commands" :color amaranth)
 	 ("Search"
 	  (("1" (elfeed-search-set-filter "+unread +personal") "personal")
 	   ("2" (elfeed-search-set-filter "+unread +emacs") "emacs")
