@@ -172,17 +172,17 @@
      (use-package emacs
        :init
        (auto-fill-mode)
-     
+
        (defalias 'setd 'setq-default) ; setd is shorter to type!
-     
+
        ;; Load custom theme(s) from here.
        (add-to-list 'custom-theme-load-path
 		    (concat user-emacs-directory "themes"))
-     
+
        ;; Specify default font without using Customize.
        (when (member "JuliaMono" (font-family-list))
 	 (add-to-list 'default-frame-alist '(font . "JuliaMono-20")))
-     
+
        :custom
        (column-number-mode t "Show column number in the mode line")
        (custom-file (concat user-emacs-directory "custom.el") "Use a separate file (not init) for customizations") ;; See info(emacs) Saving Customizations.
@@ -200,15 +200,15 @@
        (show-trailing-whitespace nil "Do NOT enable this globally, bad on terminals for example.")
        (truncate-lines t "Do NOT display continuation lines")
        (tool-bar-mode nil))
-     
+
      (use-package recentf
        :custom
        (recentf-mode 1))
-     
+
      (use-package ibuffer
        :init
        (global-set-key (kbd "C-x C-b") 'ibuffer))
-     
+
      ;; Group buffers in ibuffer list by VC project
      ;; https://github.com/purcell/ibuffer-vc
      (use-package ibuffer-vc
@@ -256,7 +256,7 @@
       ;; Make Emacs bindings that stick around.
       ;; https://github.com/abo-abo/hydra
       (use-package hydra :ensure)
-      
+
       ;; Create pretty hydras with a similar API and summon them with the
       ;; same key across different major modes.
       ;; https://github.com/jerrypnz/major-mode-hydra.el
@@ -266,7 +266,7 @@
 	:bind
 	(("M-SPC" . major-mode-hydra)
 	 ("<f5>" . my-hydra-toggles/body))
-      
+
 	:config
 	(pretty-hydra-define my-hydra-toggles
 	  (:color amaranth :quit-key ("<f5>" "q") :title "TODO: Cool toggles title with Icon")
@@ -287,19 +287,19 @@
 	   "Emacs"
 	   (("D" toggle-debug-on-error "debug on error" :toggle (default-value 'debug-on-error))
 	    ("X" toggle-debug-on-quit "debug on quit" :toggle (default-value 'debug-on-quit))))))
-      
+
       ;; Emacs package that displays available keybindings in popup.
       ;; https://github.com/justbur/emacs-which-key
       (use-package which-key
 	:ensure
 	:config
 	(which-key-mode))
-      
+
       ;; TODO: Install "rigpa"
       ;; Watching for a first non-pre-release on GH, see:
       ;; https://github.com/countvajhula/rigpa/issues/1#issuecomment-743849934
     #+end_src
-  
+
 *** Mouse
 
     #+begin_src emacs-lisp
@@ -325,17 +325,17 @@
      (use-package paradox :ensure)
      (use-package systemd :ensure)
      (use-package undo-tree :ensure)
-     
+
      ;; Intelligently call whitespace-cleanup on save.
      ;; https://github.com/purcell/whitespace-cleanup-mode
      (use-package whitespace-cleanup-mode
        :ensure
        :hook yaml-mode)
-     
+
      (use-package rainbow-delimiters
        :ensure
        :hook (prog-mode . rainbow-delimiters-mode))
-     
+
      (use-package expand-region
        :ensure
        :config
@@ -365,31 +365,31 @@
       (use-package laguna-theme :ensure)
       (use-package monotropic-theme :ensure)
       (use-package solo-jazz-theme)
-      
+
       ;; Modus Themes
       ;; https://protesilaos.com/modus-themes/
       (use-package modus-themes
 	:ensure ;; TODO: Remove :ensure once using emacs 28 (built-in).
-      
+
 	:custom
 	(modus-themes-slanted-constructs t)
 	(modus-themes-bold-constructs t)
 	(modus-themes-hl-line 'underline-accented)
-      
+
 	:hook ((modus-themes-after-load-theme . my-modus-themes-custom-faces))
-      
+
 	:init
 	;; Load the theme files before enabling a theme.
 	(modus-themes-load-themes)
-      
+
 	:config
 	(defun my-modus-themes-custom-faces ()
 	  "Add my customizations to modus themes"
 	  (interactive)
 	  (set-face-attribute 'cursor nil :background (modus-themes-color 'magenta-intense)))
-      
+
 	(modus-themes-load-vivendi))
-      
+
       (use-package theme-looper
 	:ensure
 	:config
@@ -400,21 +400,21 @@
 					    base16-synth-midnight-dark
 					    laguna
 					    solo-jazz))
-      
+
 	(global-set-key (kbd "C-}") 'theme-looper-enable-next-theme)
 	(global-set-key (kbd "C-{") 'theme-looper-enable-previous-theme)
 	(global-set-key (kbd "C-\\") 'theme-looper-enable-random-theme)
-      
+
 	;; NOTE: The functions below rely on the "ivy" package.
 	;;(global-set-key (kbd "C-|") 'theme-looper-select-theme)
 	;;(global-set-key (kbd "C-M-|") 'theme-looper-select-theme-from-all)
 	)
-      
-      
+
+
       ;; Don't "layer" themes on top of each other when calling load-theme.
       (defadvice load-theme (before theme-dont-propagate activate)
 	"Advise load-theme to disable all custom themes before loading (enabling) another one.
-			  See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
+				See this StackOverflow answer: https://emacs.stackexchange.com/a/3114"
 	(mapc #'disable-theme custom-enabled-themes))
     #+end_src
 
@@ -426,19 +426,19 @@
       ;; Show font at point on mode line.
       ;; https://github.com/melissaboiko/show-font-mode
       (use-package show-font-mode)
-      
+
       ;; Pulse modified region.
       ;; https://github.com/minad/goggles
       (use-package goggles
 	:ensure
 	:hook ((prog-mode text-mode conf-mode) . goggles-mode))
-      
+
       ;; A light that follows your cursor around so you don't lose it!
       (use-package beacon
 	:ensure
 	:config
 	(beacon-mode t))
-      
+
       (use-package org-variable-pitch
 	:disabled
 	:ensure
@@ -446,9 +446,9 @@
 	:config
 	(set-face-attribute 'org-variable-pitch-fixed-face nil :height 180)
 	(set-face-attribute 'org-variable-pitch-fixed-face nil :weight 'regular)
-      
+
 	(add-hook 'org-mode-hook #'org-variable-pitch-minor-mode)
-      
+
 	:custom
 	(org-variable-pitch-fontify-headline-prefix t)
 	(org-variable-pitch-fixed-font "Roboto"))
@@ -462,7 +462,7 @@
      (use-package auth-source-pass
        :config
        (auth-source-pass-enable))
-     
+
      ;; A major mode for password-store
      ;; https://github.com/NicolasPetton/pass
      (use-package pass :ensure)
@@ -494,7 +494,7 @@
 	   (vterm "VTerm" ?v)
 	   (project-eshell "EShell" ?e)
 	   (magit-status "Magit" ?m))))
-    #+end_src    
+    #+end_src
 
 *** Burly
 
@@ -584,11 +584,11 @@
 		treemacs-user-header-line-format       nil
 		treemacs-width                         35
 		treemacs-workspace-switch-cleanup      nil)
-      
+
 	  ;; The default width and height of the icons is 22 pixels. If you are
 	  ;; using a Hi-DPI display, uncomment this to double the icon size.
 	  ;;(treemacs-resize-icons 44)
-      
+
 	  (treemacs-follow-mode t)
 	  (treemacs-filewatch-mode t)
 	  (treemacs-fringe-indicator-mode 'always)
@@ -598,10 +598,10 @@
 	     (treemacs-git-mode 'deferred))
 	    (`(t . _)
 	     (treemacs-git-mode 'simple))))
-      
+
 	(defun jg-treemacs-project ()
 	  "Toggle treemacs, displaying only the current project.
-      
+
       Adapted from the `treemacs` function."
 	  (interactive)
 	  (pcase (treemacs-current-visibility)
@@ -614,23 +614,23 @@
 	 ("C-x t B"   . treemacs-bookmark)
 	 ("C-x t C-t" . treemacs-find-file)
 	 ("C-x t M-t" . treemacs-find-tag)
-      
+
 	 :map treemacs-mode-map
 	 ([mouse-1] . treemacs-single-click-expand-action)))
-      
+
       ;; (use-package treemacs-evil
       ;;   :after (treemacs evil)
       ;;   :ensure t)
-      
+
       (use-package treemacs-icons-dired
 	:ensure
 	:after (treemacs dired)
 	:config (treemacs-icons-dired-mode))
-      
+
       (use-package treemacs-magit
 	:ensure
 	:after (treemacs magit))
-      
+
       (use-package treemacs-all-the-icons :ensure)
     #+end_src
 
@@ -660,11 +660,11 @@
        :ensure
        :custom
        (vterm-shell "bash"))
-     
+
      ;; Toggles between the vterm buffer and whatever buffer you are editing.
      ;; https://github.com/jixiuf/vterm-toggle
      (use-package vterm-toggle :ensure)
-     
+
      ;; Manage multiple vterm buffers.
      ;; https://github.com/suonlight/multi-vterm
      (use-package multi-vterm
@@ -674,18 +674,18 @@
        (global-set-key (kbd "C-:") 'multi-vterm-project)
        (global-set-key (kbd "S-<left>") 'multi-vterm-prev)
        (global-set-key (kbd "S-<right>") 'multi-vterm-next))
-     
-     
+
+
      ;; An Emacs shell-mode (and comint-mode) extension that enables
      ;; displaying small plots and graphics and lets users write shell
      ;; commands in Emacs Lisp.
-     ;; 
+     ;;
      ;; https://github.com/riscy/shx-for-emacs
      (use-package shx
        :ensure
        :custom
        (shx-global-mode t))
-     
+
      ;; Helps you to use shell easily on Emacs. Only one key action to work.
      (use-package shell-pop
        :ensure
@@ -693,7 +693,7 @@
        ;; Workaround for annoying shell-pop layout issue.
        ;; See https://github.com/kyagi/shell-pop-el/issues/51#issuecomment-297470855
        (push (cons "\\*shell\\*" display-buffer--same-window-action) display-buffer-alist)
-     
+
        :custom
        (shell-pop-universal-key "C-;" "Toggle a shell via shell-pop.")
        (shell-pop-shell-type
@@ -721,7 +721,7 @@
        (global-set-key (kbd "C-c l") 'org-store-link)
        (global-set-key (kbd "C-c a") 'org-agenda)
        (global-set-key (kbd "C-c c") 'org-capture)
-     
+
        ;; This is required, see here.
        (org-babel-do-load-languages
 	'org-babel-load-languages
@@ -733,13 +733,13 @@
 	  (python . t)
 	  (shell . t)
 	  (plantuml . t)))
-     
+
        :custom
        (org-feed-alist '(("Sacha Chua: Emacs News"
 			  "https://sachachua.com/blog/category/emacs-news/feed/"
 			  (concat org-directory "/feeds.org")
 			  "Articles")))
-     
+
        (org-plantuml-exec-mode 'plantuml)
        (org-plantuml-executable-path 'plantuml)
        (org-startup-with-inline-images t)
@@ -752,12 +752,12 @@
 			  (concat org-directory "/roam/daily")))
        (org-refile-targets '((org-agenda-files . (:maxlevel . 5))))
        (org-confirm-babel-evaluate nil "Don't ask for confirmation before executing code blocks")
-     
+
        (org-agenda-custom-commands
 	'(("w" "Agenda and Work-related tasks"
 	   ((agenda "")
 	    (tags-todo "-reading-emacs-software")))))
-     
+
        (org-capture-templates (doct '(("Todo"
 				       :keys "t"
 				       :file "todo.org"
@@ -770,7 +770,7 @@
 						  ":END:"
 						  ""
 						  ""))
-     
+
 				      ("Reading"
 				       :keys "r"
 				       :file "todo.org"
@@ -785,7 +785,7 @@
 						  ":END:"
 						  ""
 						  "%i"))
-     
+
 				      ("Meeting Notes"
 				       :keys "m"
 				       :file "todo.org"
@@ -804,7 +804,7 @@
 						  "** Decisions"
 						  "** Action Items [/]"
 						  ""))
-     
+
 				      ("Software"
 				       :keys "s"
 				       :file "todo.org"
@@ -820,7 +820,7 @@
 						  ""
 						  "%i"
 						  "%a"))
-     
+
 				      ("Emacs Package"
 				       :keys "e"
 				       :file "todo.org"
@@ -837,13 +837,13 @@
 						  ""
 						  "%i"
 						  "%a"))))))
-     
+
      (use-package doct
        :ensure
        :commands (doct))
-     
+
      (use-package ob-go)
-     
+
      ;; Use unicode bullet characters in org-mode.
      ;; To customize, see https://github.com/integral-dw/org-superstar-mode/blob/master/DEMO.org
      (use-package org-superstar
@@ -853,13 +853,13 @@
        :custom
        ;; Set different bullets, with one getting a terminal fallback.
        (org-superstar-headline-bullets-list '("☰" "◉" "○" "▶" "▷")))
-     
+
      ;; Generate a TOC in markdown file.
      ;; https://github.com/ardumont/markdown-toc
      (use-package markdown-toc
        :ensure
        :hook (markdown-mode . markdown-toc-mode))
-     
+
      ;; A Markdown port of org-bullets for prettifying Markdown headings.
      ;; https://github.com/xuchunyang/markdown-bullets
      (use-package markdown-bullets
@@ -867,7 +867,7 @@
        :hook (markdown-mode . markdown-bullets-mode)
        :config
        (setq markdown-bullets-bullet-list  '("☰" "◉" "○" "▶" "▷")))
-     
+
      ;; Display Org Mode priorities as custom strings
      ;; https://github.com/harrybournis/org-fancy-priorities
      (use-package org-fancy-priorities
@@ -879,10 +879,10 @@
 	     '((?A . (:foreground "red" :weight "bold"))
 	       (?B . (:foreground "gold" :weight "bold"))
 	       (?C . (:foreground "blue" :weight "bold"))))
-     
+
        ;; See https://en.wikipedia.org/wiki/Enclosed_Alphanumeric_Supplement
        (setq org-fancy-priorities-list '("🅰" "🅱" "🅲" "🅳")))
-     
+
      (use-package org-sidebar
        :ensure
        :after (general)
@@ -908,11 +908,11 @@
 	(org-roam-graph-exclude-matcher '("daily"))
 	:bind (:map org-roam-mode-map
 		    (("C-c n d" . org-roam-dailies-find-today)
-      
+
 		     ;; FIXME: conflicts with org-projectile
 		     ;; ("C-c n p" . org-roam-dailies-find-previous-note)
 		     ;; ("C-c n n" . org-roam-dailies-find-next-note)
-      
+
 		     ("C-c n l" . org-roam)
 		     ("C-c n f" . org-roam-find-file)
 		     ("C-c n g" . org-roam-graph))
@@ -927,10 +927,10 @@
     #+begin_src emacs-lisp
       ;; A presentation tool for org-mode based on the visibility of outline trees
       (use-package org-tree-slide :ensure)
-      
+
       ;; Good-lookinig Emacs presentations based on org files.
       (use-package zpresent :ensure)
-      
+
       ;; Ultra-minimalist presentation minor-mode for Emacs org-mode.
       (use-package org-present
 	:ensure
@@ -940,7 +940,7 @@
 		    (org-present-big)
 		    (org-present-hide-cursor)
 		    (org-present-read-only)))
-      
+
 	(add-hook 'org-present-mode-quit-hook
 		  (lambda ()
 		    (org-present-small)
@@ -996,15 +996,15 @@
       (use-package reformatter
 	:ensure
 	:commands reformatter-define)
-      
+
       ;; Emacs plugin to show the current buffer's imenu entries in a separate buffer.
       ;; https://github.com/bmag/imenu-list
       (use-package imenu-list
 	:ensure
 	:bind (("C-'" . imenu-list-smart-toggle)))
-      
+
       ;; Hustle through a buffer's Imenu in a side window in GNU Emacs.
-      ;; TODO: Decide whether this package or imenu-list is 
+      ;; TODO: Decide whether this package or imenu-list is
       ;; https://github.com/rnkn/side-hustle
       (use-package side-hustle
 	:ensure
@@ -1031,16 +1031,16 @@
 	  "Display BUFFER in the selected window like God intended."
 	  (display-buffer
 	   buffer '(display-buffer-same-window)))
-      
+
 	(setq magit-display-buffer-function 'magit-display-buffer-same-window)
 	(setq magit-popup-display-buffer-action '((display-buffer-same-window))))
-      
+
       ;; Work with Git forges from the comfort of Magit.
       ;; https://github.com/magit/forge
       (use-package forge
 	:ensure
 	:after magit)
-      
+
       (use-package git-gutter
 	:ensure
 	:custom
@@ -1053,7 +1053,7 @@
 	 ("C-x v s" . git-gutter:stage-hunk)
 	 ("C-x v r" . git-gutter:revert-hunk)
 	 ("C-x v SPC" . git-gutter:mark-hunk)))
-      
+
       (use-package gitignore-mode :ensure)
     #+end_src
 
@@ -1069,7 +1069,7 @@
 	:ensure
 	:commands (lsp lsp-deferred)
 	:hook (go-mode . lsp-deferred))
-      
+
       (use-package lsp-ui
 	:ensure
 	:commands lsp-ui-mode
@@ -1109,12 +1109,12 @@
       (use-package elisp-slime-nav
 	:ensure
 	:hook ((emacs-lisp-mode ielm-mode org-mode) . elisp-slime-nav-mode))
-      
+
       ;; Behavior-Driven Emacs Lisp Testing
       ;; https://github.com/jorgenschaefer/emacs-buttercup
       (use-package buttercup :ensure)
-      
-      
+
+
       ;; A minor mode for performing structured editing of S-expression data.
       ;; See:
       ;;   https://www.emacswiki.org/emacs/ParEdit
@@ -1147,13 +1147,13 @@
 	:ensure
 	;;:after lsp
 	:hook (go-mode . fmt-go-on-save-mode)
-      
+
 	:bind (("M-," . compile)
 	       ("M-." . godef-jump))
-      
+
 	:init
 	(reformatter-define fmt-go :program "goimports")
-      
+
 	:config
 	(setd gofmt-command "goimports")
 	(setd compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linting... && golangci-lint run")
@@ -1199,7 +1199,7 @@
 	:init
 	(reformatter-define fmt-black :program "black" :args '("-"))
 	(reformatter-define fmt-isort :program "isort" :args '("-" "-d")))
-      
+
       (use-package jinja2-mode :ensure)
     #+end_src
 
@@ -1225,7 +1225,7 @@
 	:custom
 	(plantuml-executable-path "plantuml")
 	(plantuml-default-exec-mode "executable"))
-      
+
       (use-package vega-view :ensure)
     #+end_src
 *** Cursor
@@ -1255,7 +1255,7 @@
     #+end_src
 
 ** DevOps                                                            :devops:
-   
+
 *** Docker
     :PROPERTIES:
     :ID:       a97efd6c-7851-49cd-97c3-21b2ec9a1dea
@@ -1265,9 +1265,9 @@
       (use-package docker
 	:ensure
 	:bind ("C-c d" . docker))
-      
+
       (use-package dockerfile-mode :ensure)
-      
+
       ;; TRAMP integration for docker containers
       ;; https://github.com/emacs-pe/docker-tramp.el
       (use-package docker-tramp :ensure)
@@ -1286,18 +1286,18 @@
       (use-package kubernetes
 	:ensure
 	:bind (("C-c k" . kubernetes-overview)) ;; Mirrors "C-c d" for docker
-      
+
 	:custom
 	(kubernetes-overview-custom-views-alist '((overview . (context deployments pods ingress))))
-      
+
 	:commands (kubernetes-overview))
-      
+
       ;; TRAMP integration for kubernetes containers
       ;; https://github.com/gruggiero/kubernetes-tramp
-      ;; 
+      ;;
       ;; TODO: REMOVE this package once this PR is merged: https://github.com/kubernetes-el/kubernetes-el/pull/167
       (use-package kubernetes-tramp :ensure)
-      
+
       ;; Kubernetes mode in Emacs
       ;; https://github.com/TxGVNN/emacs-k8s-mode
       (use-package k8s-mode :ensure)
@@ -1353,7 +1353,7 @@
 	:map helm-map
 	("C-z" . helm-select-action)
 	("<tab>" . helm-execute-persistent-action)))
-     
+
      ;; An Emacs mode for quickly browsing, filtering, and editing
      ;; directories of plain text notes.
      (use-package deft
@@ -1364,7 +1364,7 @@
        (setq deft-directory org-directory)
        (setq deft-recursive t)
        (setq deft-extensions '("org" "md")))
-     
+
      ;; Company mode is a standard completion package.
      (use-package company
        :ensure
@@ -1373,27 +1373,27 @@
 ** Media
 *** Web
 
-    #+name: 
+    #+name:
     #+begin_src emacs-lisp
       ;; Easy HTTP requests for Emacs Lisp.
       ;; https://github.com/tkf/emacs-request
       (use-package request :ensure)
-      
+
       ;; Extend shr/eww and other modes with org features and analytics
       ;; capabilities. Also enables archiving web pages to org files with
       ;; shr.
       ;; https://github.com/chenyanming/shrface
       (use-package shrface
 	:ensure
-      
+
 	:custom
 	(shrface-href-versatile t)
-      
+
 	:config
 	(shrface-basic)
 	(shrface-trial)
 	(shrface-default-keybindings) ; setup default keybindings
-      
+
 	;; Convenience functions for archiving URLs as org files.
 	;; See also these functions that are part of shrface:
 	;;   - shrface-html-export-as-org
@@ -1412,7 +1412,7 @@
 		      (lambda (&key data &allow-other-keys)
 			(let ((shrface-request-url url))
 			  (shrface-html-export-as-org data))))))
-      
+
 	(defun jg-request-url-to-org (url)
 	  "Convenience function to save web content in an org file."
 	  (interactive "sRequest url: ")
@@ -1426,11 +1426,11 @@
 		      (lambda (&key data &allow-other-keys)
 			(let ((shrface-request-url url))
 			  (shrface-html-export-to-org data "request.org")))))))
-      
+
       ;; Use shrface-mode with eww to browse/archive web pages as org files.
       (use-package eww
 	:after shrface
-      
+
 	:init
 	(add-hook 'eww-after-render-hook #'shrface-mode)
 	:config
@@ -1442,7 +1442,7 @@
 	(define-key eww-mode-map (kbd "M-l") 'shrface-links-counsel) ; or 'shrface-links-helm
 	(define-key eww-mode-map (kbd "M-h") 'shrface-headline-counsel)) ; or 'shrface-headline-helm)
     #+end_src
-    
+
 *** RSS/Atom Feeds
     :PROPERTIES:
     :ID:       52508cea-200d-41bd-8759-62ca74da1fd0
@@ -1451,15 +1451,15 @@
     #+begin_src emacs-lisp
       ;; An Emacs web feeds client
       ;; https://github.com/skeeto/elfeed
-      ;; 
+      ;;
       ;; TODO: Add things like
       ;; ("V" . my/elfeed-search-yt-to-mpv)
       ;; ("p" . my/elfeed-search-podcast-to-mpv))
       (use-package elfeed
 	:ensure
 	:after (major-mode-hydra)
+
 	:mode-hydra
-      
 	(elfeed-search-mode
 	 (:title "Elfeed Search Mode Commands" :color amaranth)
 	 ("Search"
@@ -1475,7 +1475,7 @@
 	 (:title "Elfeed Show Mode Commands")
 	 ("Tag"
 	  (("m" my-elfeed-show-tag-star "star"))))
-      
+
 	:config
 	(defalias 'my-elfeed-search-toggle-star
 	  (elfeed-expose #'elfeed-search-toggle-all 'star))
@@ -1487,26 +1487,28 @@
 	  (elfeed-expose #'elfeed-show-tag 'interesting))
 	(defalias 'my-elfeed-search-toggle-unwatched
 	  (elfeed-expose #'elfeed-search-toggle-all 'unwatched)))
-      
+
       ;; Configure the Elfeed RSS reader with an Orgmode file
       ;; https://github.com/remyhonig/elfeed-org
       (use-package elfeed-org
 	:ensure
 	:config
 	(elfeed-org)
-      
+
 	:custom
 	(rmh-elfeed-org-files (list (expand-file-name "elfeed.org" user-emacs-directory))))
-      
+
       ;; Gnus-style scoring for elfeed
       ;; https://github.com/sp1ff/elfeed-score
       (use-package elfeed-score
 	:ensure
 	:config
+	(setq elfeed-search-print-entry-function #'elfeed-score-print-entry) ;; Print scores in search buffer.
+
 	(progn
 	  (elfeed-score-enable)
 	  (define-key elfeed-search-mode-map "=" elfeed-score-map)))
-      
+
       ;; A frontend for elfeed.
       ;; https://github.com/Manoj321/elfeed-dashboard
       (use-package elfeed-dashboard
@@ -1532,12 +1534,12 @@
 	(bongo-custom-backend-matchers
 	 `((mpv local-file "opus" "m4a") ;; Enable mpv to play various file types.
 	   (mpv ("http:" "https:") . t)))) ;; Enable mpv for https? URLs.
-      
+
       ;; The Emacs Multi-Media System.
       ;; See https://www.gnu.org/software/emms/
       (use-package emms
 	:ensure
-      
+
 	:bind (("C-c e p" . emms-pause)
 	       ("C-c e f" . emms-next)
 	       ("C-c e b" . emms-previous)
@@ -1546,17 +1548,17 @@
 	       ("C-c e <" . (lambda () (interactive) (emms-seek -30)))
 	       :map dired-mode-map
 	       ("C-c e SPC" . emms-play-dired))
-      
+
 	:custom
 	(emms-player-list '(emms-player-mpv))
 	(emms-playlist-default-major-mode 'emms-mark-mode)
 	(emms-source-file-default-directory "~/Music/")
-      
+
 	:config
 	(require 'emms-mark)
 	(require 'emms-setup)
 	(require 'emms-streams)
-      
+
 	(emms-all)
 	(emms-default-players))
     #+end_src
@@ -1568,7 +1570,7 @@
     #+end_src
 
 ** Creativity and Inspiration
-   
+
    #+begin_src emacs-lisp
      ;; FIXME: package not found via melpa?
      ;; The I Ching, or Book of Changes
@@ -1581,7 +1583,7 @@
 		     i-ching-randomness-source 'pseudo)
        :bind (("H-i h" . i-ching-insert-hexagram)))
    #+end_src
-   
+
 ** Web Services
 
    #+begin_src emacs-lisp
@@ -1599,7 +1601,7 @@
 
    #+begin_src emacs-lisp
      (setq compilation-window-height 14)
-     
+
      (defun my-compilation-hook ()
        (when (not (get-buffer-window "*compilation*"))
 	 (save-selected-window
@@ -1609,6 +1611,6 @@
 	       (select-window w)
 	       (switch-to-buffer "*compilation*")
 	       (shrink-window (- h compilation-window-height)))))))
-     
+
      (add-hook 'compilation-mode-hook 'my-compilation-hook)
    #+end_src
