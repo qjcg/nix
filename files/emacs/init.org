@@ -368,7 +368,21 @@
 
     #+begin_src emacs-lisp
       ;; Themes and theme-related packages.
-      (use-package all-the-icons :ensure)
+
+      ;; A utility package to collect various Icon Fonts and propertize them within Emacs.
+      ;; https://github.com/domtronn/all-the-icons.el
+      (use-package all-the-icons
+	:ensure
+	:config
+	(add-to-list 'all-the-icons-mode-icon-alist '(elfeed-search-mode all-the-icons-faicon "rss-square" :face all-the-icons-orange))
+	(add-to-list 'all-the-icons-mode-icon-alist '(elfeed-show-mode all-the-icons-faicon "rss-square" :face all-the-icons-orange)))
+
+      ;; Display icons for all buffers in ibuffer.
+      ;; https://github.com/seagle0128/all-the-icons-ibuffer
+      (use-package all-the-icons-ibuffer
+	:ensure
+	:init (all-the-icons-ibuffer-mode 1))
+
       (use-package almost-mono-themes :ensure)
       (use-package base16-theme :ensure)
       (use-package doom-modeline :ensure :init (doom-modeline-mode 1))
