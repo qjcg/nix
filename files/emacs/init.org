@@ -956,6 +956,10 @@
       ;; Good-lookinig Emacs presentations based on org files.
       (use-package zpresent :ensure)
 
+      ;; A package for running demonstrations and presentations from within Emacs.
+      ;; https://github.com/howardabrams/demo-it
+      (use-package demo-it :ensure)
+
       ;; Ultra-minimalist presentation minor-mode for Emacs org-mode.
       (use-package org-present
 	:ensure
