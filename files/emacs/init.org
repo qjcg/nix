@@ -1180,6 +1180,13 @@
 	(reformatter-define fmt-go :program "goimports")
 
 	:config
+	(defun my-go-run-buffer ()
+	  "Run current buffer contents via 'go run'"
+	  (interactive)
+	  (let ((f (make-temp-file "main_" :suffix ".go" :text )))
+	    (write-file f :confirm nil)
+	    (shell-command (format "go run %s" f))))
+
 	(setd gofmt-command "goimports")
 	(setd compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linting... && golangci-lint run")
 	(setd compilation-read-command nil)
