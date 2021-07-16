@@ -966,6 +966,7 @@
 	:init
 	(add-hook 'org-present-mode-hook
 		  (lambda ()
+		    (when beacon-mode (beacon-mode))
 		    (org-present-big)
 		    (org-present-hide-cursor)
 		    (org-present-read-only)))
