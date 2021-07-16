@@ -268,13 +268,24 @@
 	 ("<f5>" . my-hydra-toggles/body))
 
 	:config
+	(defvar my-hydra-toggles--title
+	  (concat (all-the-icons-faicon "toggle-on" :face 'all-the-icons-green) " Toggles"))
+
 	(pretty-hydra-define my-hydra-toggles
-	  (:color amaranth :quit-key ("<f5>" "q") :title "TODO: Cool toggles title with Icon")
+	  (:color amaranth :quit-key ("<f5>" "q") :title my-hydra-toggles--title)
 	  ("Basic"
 	   (("n" linum-mode "line number" :toggle t)
 	    ("w" whitespace-mode "whitespace" :toggle t)
 	    ("W" whitespace-cleanup-mode "whitespace cleanup" :toggle t)
 	    ("L" page-break-lines-mode "page break lines" :toggle t))
+	   "Wrapping"
+	   ;; See:
+	   ;;   https://www.emacswiki.org/emacs/LineWrap
+	   (("f" set-fill-column :title %fill-column)
+	    ("v" visual-fill-column-mode :toggle t)
+	    ("V" visual-line-mode :toggle t)
+	    ("t" toggle-truncate-lines)
+	    ("a" auto-fill-mode))
 	   "Highlight"
 	   (("l" hl-line-mode "line" :toggle t))
 	   "UI"
@@ -1461,7 +1472,7 @@
 
 	:mode-hydra
 	(elfeed-search-mode
-	 (:title "Elfeed Search Mode Commands" :color amaranth)
+	 (:title " Elfeed Search Mode Commands" :color amaranth :quit-key "q")
 	 ("Search"
 	  (("1" (elfeed-search-set-filter "+unread +personal") "personal")
 	   ("2" (elfeed-search-set-filter "+unread +emacs") "emacs")
@@ -1470,9 +1481,9 @@
 	   ("5" (elfeed-search-set-filter "+unread +tech") "tech"))
 	  "Tag"
 	  (("m" my-elfeed-search-toggle-star "star"))))
-      
+
 	(elfeed-show-mode
-	 (:title "Elfeed Show Mode Commands")
+	 (:title " Elfeed Show Mode Commands")
 	 ("Tag"
 	  (("m" my-elfeed-show-tag-star "star"))))
 
