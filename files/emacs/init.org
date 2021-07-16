@@ -1184,6 +1184,10 @@
 	(setd compile-command "echo Building... && go build -v && echo Testing... && go test -v && echo Linting... && golangci-lint run")
 	(setd compilation-read-command nil)
 	(setq-local display-line-numbers "relative"))
+
+      ;; Emacs mode to go unit test command line tool
+      ;; https://github.com/nlamirault/gotest.el
+      (use-package gotest :ensure)
     #+end_src
 
 *** Nix                                                                 :nix:
